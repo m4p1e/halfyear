@@ -1,0 +1,93 @@
+\documentclass{article}
+
+\usepackage{ctex}
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\usetikzlibrary{decorations.pathreplacing}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{unicode-math}
+
+\usepackage{enumitem}
+
+\usepackage[textwidth=18cm]{geometry} % 设置页宽=18
+
+\usepackage{blindtext}
+\usepackage{bm}
+\parindent=0pt
+\setlength{\parindent}{2em} 
+\usepackage{indentfirst}
+
+
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
+\titleformat{\subsection}[hang]{\color{red}\Large\bfseries}{}{0em}{}
+%\setcounter{secnumdepth}{1} %section 序号
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{exercise}{Exercise}[section]
+
+\newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
+\newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
+
+\newcommand\Set[2]{\{\,#1\mid#2\,\}} %集合
+\newcommand\SET[2]{\Set{#1}{\text{#2}}} %
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % 范数
+\newcommand{\vect}[1]{\mathbf{#1}} % vector
+
+\begin{document}
+\title{考研高数}
+\author{枫聆}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{经典证明}
+\begin{definition}
+\rm {\color{red} 连续函数在闭区间上有界} 若real-valued函数$f$在闭区间$[a,b]$上连续，那么它在其上有界.
+\end{definition}
+
+\begin{proof}
+{(\color{blue} $f(x)$非空子区间$[a,x]$，求其上确界)} 假设$B$是使得$f(x)$在形如闭区间$[a,x]$上有界的$x \in [a,b]$集合，显然$a \in B$，所以$B$非空。若$e \in B$且$e > a$，那么$a$和$e$之间的点都是在$B$里面的，所以实际上$B$是一个闭区间. 我们再考虑$B$的上确界，根据$x$的取法，有$x \leq b$，如果我们能证明它的上确界在$b$出取得，那么整个命题就得证. 现在假设$\sup(B) < b$, 由于$B$是一个闭区间，所以$\sup(B) \in B$. 由于$f$是连续的，那么足够靠近$\sup(B)$的地方，即$s -\sup(B) < \delta$且$s > \sup(B)$，有$|f(s) - f(\sup(B))| < \varepsilon$，那么$[\sup(B),s]$也是有界，这是和$\sup{B}$是$B$的上确界矛盾的.
+\end{proof}
+
+\begin{definition}
+\rm 若real-valued函数$f$在闭区间$[a,b]$连续，那们存在$c,d \in [a,b]$使得
+$$
+f(c) \leq f(x) \leq f(d),\; x \in [a,b].
+$$
+\end{definition}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{definition}
+\rm 如果real-valued函数$f$在闭区间$[a,b]$上连续，且在开区间$(a,b)$内可导，若有$f(a) = f(b)$，那么存在至少一个$c \in (a,b)$使得
+$$
+f'(c) = 0.
+$$
+\end{definition}
+
+\begin{proof}
+
+\end{proof}
+
+\newpage
+\section{函数极限}
+
+
+
+\end{document}
