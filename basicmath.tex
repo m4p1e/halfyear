@@ -56,15 +56,29 @@
 \newpage
 \section{经典证明}
 \begin{definition}
-\rm {\color{red} 连续函数在闭区间上有界} 若real-valued函数$f$在闭区间$[a,b]$上连续，那么它在其上有界.
+\rm {\color{red} (连续函数在闭区间上有界)} 若real-valued函数$f$在闭区间$[a,b]$上连续，那么它在其上有界.
 \end{definition}
 
 \begin{proof}
-{(\color{blue} $f(x)$非空子区间$[a,x]$，求其上确界)} 假设$B$是使得$f(x)$在形如闭区间$[a,x]$上有界的$x \in [a,b]$集合，显然$a \in B$，所以$B$非空。若$e \in B$且$e > a$，那么$a$和$e$之间的点都是在$B$里面的，所以实际上$B$是一个闭区间. 我们再考虑$B$的上确界，根据$x$的取法，有$x \leq b$，如果我们能证明它的上确界在$b$出取得，那么整个命题就得证. 现在假设$\sup(B) < b$, 由于$B$是一个闭区间，所以$\sup(B) \in B$. 由于$f$是连续的，那么足够靠近$\sup(B)$的地方，即$s -\sup(B) < \delta$且$s > \sup(B)$，有$|f(s) - f(\sup(B))| < \varepsilon$，那么$[\sup(B),s]$也是有界，这是和$\sup{B}$是$B$的上确界矛盾的.
+{\color{blue} (方法1: $f(x)$非空子区间$[a,x]$，求其上确界)} 假设$B$是使得$f(x)$在形如闭区间$[a,x]$上有界的$x \in [a,b]$集合，显然$a \in B$，所以$B$非空。若$e \in B$且$e > a$，那么$a$和$e$之间的点都是在$B$里面的，所以实际上$B$是一个闭区间. 我们再考虑$B$的上确界，根据$x$的取法，有$x \leq b$，如果我们能证明它的上确界在$b$出取得，那么整个命题就得证. 现在假设$\sup(B) < b$, 由于$B$是一个闭区间，所以$\sup(B) \in B$. 由于$f$是连续的，那么足够靠近$\sup(B)$的地方，即$s -\sup(B) < \delta$且$s > \sup(B)$，有$|f(s) - f(\sup(B))| < \varepsilon$，那么$[\sup(B),s]$也是有界，这是和$\sup{B}$是$B$的上确界矛盾的.
+
+(方法2: 构造一个严格递增的数列，其子列收敛造矛盾)
 \end{proof}
 
 \begin{definition}
-\rm 若real-valued函数$f$在闭区间$[a,b]$连续，那们存在$c,d \in [a,b]$使得
+\rm {\color{red} (确界原理)} 任一有上界的非空实数集必有上确界，同理任一有下界的非空实数集必有下确界.
+\end{definition}
+
+\begin{proof}
+假设非空实数集$S$有上界$M$，取$S$所有上界为集合$B$. 因为$M \in B$所以$B$非空，取$A = \mathbb{R} \setminus B$，要证明$A$是非空是trivial的，取$x = x_0 - 1,\; x_0 \in S$，那么$x \in A$. 显然地$A$里面所有的元素都小于$B$里面的元素（若是大于$B$里面某个元素，那么它就是$S$的一个上界了，这是矛盾的），这样我们就可以得到一个实数上的划分，根据戴德金实数分割定理，存在一个$\beta$，它要么是$A$里面最大值或者要么$B$里面的最小值. 假设它是$A$里面的最大值，根据$A$的定义，对于任意$a \in A$都存在一个$x_0 \in S$使得$a < x_0$，将其作用到$\beta$上，我们得到某个$x_0' \in S$使得$\beta < x_0'$. 我们考虑$\frac{x_0'+\beta}{2}$，有
+$$
+\beta < \frac{x_0' + \beta}{2} < x_0'
+$$
+所以$x_0' \in A$，这和$\beta$是$A$里面最大值是矛盾的，所以$\beta \in B$，即这个$\beta$就是$S$的上确界.
+\end{proof}
+
+\begin{definition}
+\rm {\color{red} (极值定理)} 若real-valued函数$f$在闭区间$[a,b]$连续，那们存在$c,d \in [a,b]$使得
 $$
 f(c) \leq f(x) \leq f(d),\; x \in [a,b].
 $$
@@ -75,7 +89,7 @@ $$
 \end{proof}
 
 \begin{definition}
-\rm 如果real-valued函数$f$在闭区间$[a,b]$上连续，且在开区间$(a,b)$内可导，若有$f(a) = f(b)$，那么存在至少一个$c \in (a,b)$使得
+\rm {\color{red} (罗尔定理)}如果real-valued函数$f$在闭区间$[a,b]$上连续，且在开区间$(a,b)$内可导，若有$f(a) = f(b)$，那么存在至少一个$c \in (a,b)$使得
 $$
 f'(c) = 0.
 $$
