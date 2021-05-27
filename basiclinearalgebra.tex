@@ -1,0 +1,108 @@
+\documentclass{article}
+
+\usepackage{ctex}
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\usetikzlibrary{paths.ortho} % path折线
+%\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{graphs, graphs.standard, quotes}% quotes library is for the [""] edges
+\usetikzlibrary{positioning} %right of 描述位置的
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{unicode-math}
+
+\usepackage{enumitem}
+
+\usepackage[textwidth=18cm]{geometry} % 设置页宽=18
+
+\usepackage{blindtext}
+\usepackage{bm}
+\parindent=0pt
+\setlength{\parindent}{2em} 
+\usepackage{indentfirst}
+
+
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
+\titleformat{\subsection}[hang]{\color{red}\Large\bfseries}{}{0em}{}
+%\setcounter{secnumdepth}{1} %section 序号
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{exercise}{Exercise}[section]
+
+\newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
+\newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
+
+\newcommand\Set[2]{\{\,#1\mid#2\,\}} %集合
+\newcommand\SET[2]{\Set{#1}{\text{#2}}} %
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % 范数
+\newcommand{\vect}[1]{\mathbf{#1}} % vector
+
+\begin{document}
+\title{考研高数}
+\author{枫聆}
+\maketitle
+\tableofcontents
+
+\newpage 
+\section{高等代数的研究对象}
+
+linear algebra在研究多元一次方程组的解的过程中逐渐形成的一门学科. 如有这样一个方程组
+$$
+\begin{array}{cl}
+x_1 + 3x_2 + x_3 &= 2,\\
+3x_1 + 4x_2 + 2x_3 &= 9, \\
+-x_1 - 5x_2 + 4x_3 &= 10,  \\
+2x_2 + 7x_2 + x_3 &= 1
+\end{array}
+$$
+我们求解方程组的解过程通常是把用某一行的$n$倍加上或者减去另一行，这种情况下我们其实是在对每一行方程的变元前面的系数做运算，只要我们排列好对应系数的位置就可以避免每一次都写变元，自然而然地，多元一次方程组对应的{\color{red}系数矩阵}和 {\color{red} 增广矩阵}就诞生了，例如上面方程组的增广矩阵如下
+$$
+\begin{bmatrix}
+1 & 3 & 1 & 2 \\
+3 & 4 & 2 & 9 \\
+-1 & -5 & 4 & 10  \\
+2 & 7 & 1 & 1
+\end{bmatrix}
+$$
+这个矩阵也可以称为4阶矩阵($4 \times 4$). 去掉最后常数项列就是对应的系数矩阵. 我们通过研究增广矩阵来研究原方程的解，那么研究方程组的解可以从两个方向出发，把解直接解出来或者判别方程组解的情况.
+
+\begin{center}
+\begin{tikzpicture}[v/.style={rectangle,draw=blue}]
+\node (linear equation) [v] {n元线性方程组};
+\node (matrix) [v, below right = of linear equation] {矩阵};
+%\node (vector) [v, below = of linear equation] {n维向量};
+\node (vector space) [v, below = of linear equation] {n维向量空间};
+\node (linear space) [v, below = of vector space] {线性空间};
+\node (linear map)	[v, below = of matrix] {线性映射};
+\node (linear transform) [v, below = of linear map] {线性变换};
+\node (double vector-value function) [v, left = of linear space] {双线性函数};
+\node (linear metric space) [v, below = of double vector-value function] {具有度量的线性空间};
+\node (metric via linear transformation) [v, below = of linear transform] {与度量相关的线性变换};
+
+\draw [->]	(linear equation) to (vector space);
+\draw [->]	(linear equation.east) -| (matrix);
+\draw [->]	(vector space) to (linear space);
+\draw [->]	(linear space) to (linear map);
+\draw [->]	(linear map) to (linear transform);
+\draw [->]	(linear space) to (double vector-value function);
+\draw [<->]	(matrix) to (linear map);
+\draw [->]	(double vector-value function) to (linear metric space);
+\draw [->] (linear transform) to (metric via linear transformation);
+\draw [->] (double vector-value function) |-| (metric via linear transformation.north);
+\end{tikzpicture}
+\end{center}
+
+\end{document}
