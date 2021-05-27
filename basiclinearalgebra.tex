@@ -3,8 +3,9 @@
 \usepackage{ctex}
 \usepackage{tikz}
 \usetikzlibrary{cd}
-\usetikzlibrary{paths.ortho} % path折线
+%\usetikzlibrary{paths.ortho} % path折线
 %\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{calc}
 \usetikzlibrary{graphs, graphs.standard, quotes}% quotes library is for the [""] edges
 \usetikzlibrary{positioning} %right of 描述位置的
 
@@ -79,6 +80,24 @@ $$
 $$
 这个矩阵也可以称为4阶矩阵($4 \times 4$). 去掉最后常数项列就是对应的系数矩阵. 我们通过研究增广矩阵来研究原方程的解，那么研究方程组的解可以从两个方向出发，把解直接解出来或者判别方程组解的情况.
 
+%两种折线
+\tikzset{
+  -|-/.style={
+    to path={
+      (\tikztostart) -| ($(\tikztostart)!#1!(\tikztotarget)$) |- (\tikztotarget)
+      \tikztonodes
+    }
+  },
+  -|-/.default=0.5,
+  |-|/.style={
+    to path={
+      (\tikztostart) |- ($(\tikztostart)!#1!(\tikztotarget)$) -| (\tikztotarget)
+      \tikztonodes
+    }
+  },
+  |-|/.default=0.5,
+}
+
 \begin{center}
 \begin{tikzpicture}[v/.style={rectangle,draw=blue}]
 \node (linear equation) [v] {n元线性方程组};
@@ -90,7 +109,8 @@ $$
 \node (linear transform) [v, below = of linear map] {线性变换};
 \node (double vector-value function) [v, left = of linear space] {双线性函数};
 \node (linear metric space) [v, below = of double vector-value function] {具有度量的线性空间};
-\node (metric via linear transformation) [v, below = of linear transform] {与度量相关的线性变换};
+\node (metric via linear transformation) [v,below = of $(linear metric space)!0.5!(linear transform)$] {与度量相关的线性变换};
+\coordinate (metric join linear transformation) at ([yshift=0.5cm]metric via linear transformation.north); 
 
 \draw [->]	(linear equation) to (vector space);
 \draw [->]	(linear equation.east) -| (matrix);
@@ -100,9 +120,10 @@ $$
 \draw [->]	(linear space) to (double vector-value function);
 \draw [<->]	(matrix) to (linear map);
 \draw [->]	(double vector-value function) to (linear metric space);
-\draw [->] (linear transform) to (metric via linear transformation);
-\draw [->] (double vector-value function) |-| (metric via linear transformation.north);
+\draw [-] (linear transform) |- (metric join linear transformation);
+\draw [-] (linear metric space) |- (metric join linear transformation);
+\draw [->] (metric join linear transformation) -> (metric via linear transformation.north);
 \end{tikzpicture}
 \end{center}
-
+上图是整个linear algebra研究过程的发展，值得关注是{\color{red}线性空间是向量空间的一般推广}；{\color{red} 矩阵不光可以表示$n$维线性方程，同样也是可以用来表示线性映射的}； {\color{red}线性空间到自身的线性映射叫做线性变换}； {\color{red} 从线性空间到线性度量空间需要用到一个双线性函数来描述两个其空间两个元素的度量}；
 \end{document}
