@@ -9,8 +9,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
-\usepackage{unicode-math}
-
 \usepackage{enumitem}
 
 \usepackage[textwidth=18cm]{geometry} % 设置页宽=18
@@ -60,7 +58,7 @@
 \end{definition}
 
 \begin{proof}
-{\color{blue} (方法1: $f(x)$非空子区间$[a,x]$，求其上确界)} 假设$B$是使得$f(x)$在形如闭区间$[a,x]$上有界的$x \in [a,b]$集合，显然$a \in B$，所以$B$非空。若$e \in B$且$e > a$，那么$a$和$e$之间的点都是在$B$里面的，所以实际上$B$是一个闭区间. 我们再考虑$B$的上确界，根据$x$的取法，有$x \leq b$，如果我们能证明它的上确界在$b$出取得，那么整个命题就得证. 现在假设$\sup(B) < b$, 由于$B$是一个闭区间，所以$\sup(B) \in B$. 由于$f$是连续的，那么足够靠近$\sup(B)$的地方，即$s -\sup(B) < \delta$且$s > \sup(B)$，有$|f(s) - f(\sup(B))| < \varepsilon$，那么$[\sup(B),s]$也是有界，这是和$\sup{B}$是$B$的上确界矛盾的.
+{\color{blue} (方法1: $f(x)$非空子区间$[a,x]$，求其上确界)} 假设$B$是使得$f(x)$在形如闭区间$[a,x]$上有界的$x \in [a,b]$集合，显然$a \in B$，所以$B$非空。若$e \in B$且$e > a$，那么$a$和$e$之间的点都是在$B$里面的，所以实际上$B$是一个闭区间. 我们再考虑$B$的上确界，根据$x$的取法，有$x \leq b$，如果我们能证明它的上确界在$b$出取得，那么整个命题就得证. 现在假设$\sup(B) < b$, 由于$B$是一个闭区间，所以$\sup(B) \in B$. 由于$f$是连续的，那么足够靠近$\sup(B)$的地方，即$s -\sup(B) < \delta$且$s > \sup(B)$，有$|f(s) - f(\sup(B))| < \varepsilon$，那么$f(x),\;x \in [\sup(B),s]$也是有界，这是和$\sup{B}$是$B$的上确界矛盾的.
 
 {\color{blue} (方法2: 构造一个严格递增的数列，其子列收敛造矛盾)}.
 \end{proof}
@@ -70,7 +68,7 @@
 \end{definition}
 
 \begin{proof}
-{\color{blue} 构造一个实数划分，用戴德金分割定理说明界数就是确界}假设非空实数集$S$有上界$M$，取$S$所有上界为集合$B$. 因为$M \in B$所以$B$非空，取$A = \mathbb{R} \setminus B$，要证明$A$是非空是trivial的，取$x = x_0 - 1,\; x_0 \in S$，那么$x \in A$. 显然地$A$里面所有的元素都小于$B$里面的元素（若是大于$B$里面某个元素，那么它就是$S$的一个上界了，这是矛盾的），这样我们就可以得到一个实数上的划分，根据戴德金实数分割定理，存在一个$\beta$，它要么是$A$里面最大值或者要么$B$里面的最小值. 假设它是$A$里面的最大值，根据$A$的定义，对于任意$a \in A$都存在一个$x_0 \in S$使得$a < x_0$，将其作用到$\beta$上，我们得到某个$x_0' \in S$使得$\beta < x_0'$. 我们考虑$\frac{x_0'+\beta}{2}$，有
+{\color{blue} 构造一个实数划分，用戴德金分割定理说明界数就是确界}假设非空实数集$S$有上界$M$，取$S$所有上界为集合$B$. 因为$M \in B$所以$B$非空，取$A = \mathbb{R} \setminus B$，要证明$A$是非空是trivial的，取$x = x_0 - 1,\; x_0 \in S$，那么$x \in A$. 显然地$A$里面所有的元素都小于$B$里面的元素（若是大于$B$里面某个元素，那么它就是$S$的一个上界了，这是矛盾的），这样我们就可以得到一个实数上的划分，根据{\color{red} 戴德金实数分割定理}，存在一个$\beta$，它要么是$A$里面最大值或者要么$B$里面的最小值. 假设它是$A$里面的最大值，根据$A$的定义，对于任意$a \in A$都存在一个$x_0 \in S$使得$a < x_0$，将其作用到$\beta$上，我们得到某个$x_0' \in S$使得$\beta < x_0'$. 我们考虑$\frac{x_0'+\beta}{2}$，有
 $$
 \beta < \frac{x_0' + \beta}{2} < x_0'
 $$
@@ -85,7 +83,7 @@ $$
 \end{definition}
 
 \begin{proof}
-{\color{blue} (构造一个特殊连续函数说明原函数可以取到确界)}$f$在闭区间$[a,b]$上连续，那么马上可以得到$f$在$[a,b]$上有界. 取集合$Y = \Set{f(x)}{ x \in [a,b]}$，即$Y$有界，根据确界原理$Y$有确界，那么我们下面证明思路，就是看$f(x)$是不是能取到这个确界. 取其上确界为$m$，假设不存在$c \in [a,b]$使得$f(c) = m$，那么我们考虑函数$g(x)=\frac{1}{m - f(x)}$，由于$m > f(x),\; x \in [a,b]$，所以$g(x)$在$[a,b]$上是连续的，又因为$f$在$[a,b]$是上有界的，那么$g$在其上也是有界的. 由于$m$是上确界，所以对任意的正实数$\varepsilon$，都有$m - f(x) \leq \varepsilon$，那么$g(x) \geq \frac{1}{\varepsilon}$，这说明$g(x)$是发散的，造成了矛盾. 所以$f$是可以取到上确界的.
+{\color{blue} (构造一个特殊连续函数说明原函数可以取到确界)}$f$在闭区间$[a,b]$上连续({\color{red} 连续闭有界})，那么马上可以得到$f$在$[a,b]$上有界. 取集合$Y = \Set{f(x)}{ x \in [a,b]}$，即$Y$有界，根据{\color{red}确界原理}$Y$有确界，那么我们下面证明思路，就是看$f(x)$是不是能取到这个确界. 取其上确界为$m$，假设不存在$d \in [a,b]$使得$f(d) = m$，那么我们考虑函数$g(x)=\frac{1}{m - f(x)}$，由于$m > f(x),\; x \in [a,b]$，所以$g(x)$在$[a,b]$上是连续的，又因为$f$在$[a,b]$是上有界的，那么$g$在其上也是有界的. 由于$m$是上确界，所以对任意的正实数$\varepsilon$，都有$m - f(x) \leq \varepsilon$，那么$g(x) \geq \frac{1}{\varepsilon}$，这说明$g(x)$是发散的，造成了矛盾. 所以$f$是可以取到上确界的.
 \end{proof}
 
 \begin{definition}
@@ -96,7 +94,7 @@ $$
 \end{definition}
 
 \begin{proof}
-{\color{blue} (导数存在的充分必要条件)}$f$在$[a,b]$上连续，那么其在$[a,b]$是可以取到极值的，分两种情况讨论: (1 如果其最大值和最小值同时在$a,b$取得，那么$f$就是常函数，对任意的$x \in [a,b]$都有$f'(x) = 0$. (2 不失一般性，我们假设$f$在一点$c \in (a,b)$处$f(c)$为最大值，我们来考虑$c$的一个邻域$(c-\varepsilon, c+\varepsilon)$两边，其中$c-\varepsilon$和$c+\varepsilon$均在$[a,b]$里面. 对任意的$h \in (c-\varepsilon, c)$都有
+{\color{blue} (导数存在的充分必要条件)}$f$在$[a,b]$上连续，那么根据{\color{red} 极值定理}其在$[a,b]$是可以取到极值的，分两种情况讨论: (1 如果其最大值和最小值同时在$a,b$取得，那么$f$就是常函数，对任意的$x \in [a,b]$都有$f'(x) = 0$. (2 不失一般性，我们假设$f$在一点$c \in (a,b)$处$f(c)$为最大值(若是最小值，考虑$-f$即可)，我们来考虑$c$的一个邻域$(c-\varepsilon, c+\varepsilon)$两边，其中$c-\varepsilon$和$c+\varepsilon$均在$[a,b]$里面. 对任意的$h \in (c-\varepsilon, c)$都有
 $$
 f'(c^-) = \lim\limits_{h \rightarrow c^-}\frac{f(c)- f(h)}{c-h} \leq 0. 
 $$
@@ -107,9 +105,119 @@ $$
 由于$f$在$c$点可导，那么$f'(c) = f'(c^-) = f'(c^+) = 0$.
 \end{proof}
 
+
+\begin{definition}
+\rm {\color{red} (中值定理)} 若real-valued函数$f$在闭区间$[a,b]$($a < b$)上连续，且在$(a,b)$上可导，那么存在一个实数$c \in (a,b)$使得
+$$
+f'(c) = \frac{f(b) - f(a)}{b-a}
+$$ 
+\end{definition}
+
+\begin{proof}
+{\color{blue} (中值定理是罗尔定理的推广)} 构造函数$g(x) = f(x) - rx$，通过选择合适的$r$，使得$g(a) = g(b)$，即
+$$
+\begin{array}{ll}
+g(a) = g(b) &\Leftrightarrow f(a) - ra = f(b) - rb \\
+			&\Leftrightarrow r = \frac{f(b) - f(a)}{b-a}.
+\end{array} 
+$$
+那么根据{\color{red} 罗尔定理}，我们知道存在一点$c \in (a,b)$，使得$g'(c) = 0$，
+$$
+\begin{array}{ll}
+g'(x) = f'(x) - r \\
+g'(c) = f'(c) - r = 0 \\
+f'(c) = r = \frac{f(b) - f(a)}{b-a}.
+\end{array}  
+$$
+证毕.
+\end{proof}
+
+
+\begin{definition}
+\rm {\color{red} (柯西中值定理)} 若两个real-valued函数$f$和$g$都在闭区间$[a,b]$($a < b$)上连续，且都在$(a,b)$上可导. 那么存在一点$c \in (a,b)$，使得
+$$
+(f(b) - f(a))g'(c) = (g(b) - g(a))f'(c). 
+$$
+特别地，若$g(b) \neq g(a)$且$g'(c) \neq 0$，等价于
+$$
+\frac{f'(c)}{g'(c)} = \frac{f(b)-f(a)}{g(b) - g(a)}.
+$$
+\end{definition}
+
+\begin{proof}
+{\color{blue} (柯西中值定理是中值定理的扩展)} 构造函数$h(x) = f(x) - rg(x)$，选择合适$r$使得$h(a) = h(b)$，若$g(b) \neq g(a)$即$r = \frac{f(b)-f(a)}{g(b) - g(a)}$，那么根据{\color{red}罗尔定理}可以得到$h'(c) = 0$, 即
+$$
+0 = g'(c) - rf'(c) = f'(c) -  \frac{f(b)-f(a)}{g(b) - g(a)}g'(x).
+$$
+若$g(a) = g(b)$，同样根据{\color{red}罗尔定理}有$g'(c) = 0$，这个条件显然是使得前面第一个等式成立的.
+\end{proof}
+
+
+\newpage
+\section{数列极限}
+
+\subsection{上下极限}
+
+
 \newpage
 \section{函数极限}
 
+\subsection{洛必达法则}
 
+\begin{definition}
+\rm 若real-value函数$f$和$g$在去心邻域$\tilde{U}(c,\delta)$可导，有
+$$
+\lim\limits_{x \rightarrow c} f(x) = \lim\limits_{x \rightarrow c} g(x) = 0 ~\text{或者}~ \lim\limits_{x \rightarrow c} g(x) = \infty,
+$$
+且对任意$x \in \tilde{U}$都有$g'(x) \neq 0$，同时有$\lim\limits_{x \rightarrow c}\frac{f'(x)}{g'(x)}$存在，那么
+$$
+\lim\limits_{x \rightarrow c} \frac{f(x)}{g(x)} = \lim\limits_{x \rightarrow c} \frac{f'(x)}{g'(x)}.
+$$
+\end{definition}
+
+\begin{proof}
+首先来看一个比较特殊的情况，除满足上述条件之外，若还满足$f(c) = g(c) = 0$，并且$g'(c) \neq 0$，那么
+$$
+\lim\limits_{x \rightarrow c}  \frac{f(x)}{g(x)} = \lim\limits_{x \rightarrow c} \frac{f(x) - f(c)}{g(x) - g(c)} = \lim\limits_{x \rightarrow c} \frac{ \frac{f(x) - f(c)}{x-c}}{\frac{g(x) - g(c)}{x-c}} = \frac{f'(c)}{g'(c)} = \lim\limits_{x \rightarrow c} \frac{f'(x)}{g'(x)}.
+$$
+下面来严格证明分两种情况来证明，由于$\tilde{U}$在$c$这里间断，后面需要频繁使用到柯西中值定理，所以自然地在$\title{U}$的两端来分析，取开区间$\mathcal{I}$以$c$点为端点，且$\mathcal{I} \subset \tilde{U}$.注意到条件满足对任意的$x \in \mathcal{I}$有$g'(x) \neq 0$，并且$g$在$\mathcal{I}$上是连续的，那么是可以在$\mathcal{I}$里面找到一个足够小的区间使得$g(x)\neq 0$，那这个小区间代替$\mathcal{I}$. 
+
+我们定义$m(x) = \inf\frac{f'(c)}{g'(c)}$和$M(x) = \sup\frac{f'(c)}{g'(c)}$其中$c$取遍$x$和$c$之间的数. 我们再取定$x$和$c$之间一点$y$，结合柯西中值定理可以保证在它们之间找到一个$c$使得
+$$
+ m(x) \leq \frac{f(x) - f(y)}{g(x) - g(y)} = \frac{f'(c)}{g'(c)} \leq M(x).
+$$
+注意为什么这里可以保证$g(x) - g(y) \neq 0$? 假设存在$g(x) = g(y)$, 那么根据罗尔定理，就存在一点$p$使得$g'(p) = 0$，这是个前提条件$g(x) \neq 0$矛盾的.
+
+{\color{blue}情况一}：$\lim\limits_{x \rightarrow c} f(x) = \lim\limits_{x \rightarrow c} g(x) = 0.$
+
+对任意的$x \in \mathcal{I}$, 取$y$位于$x$和$c$之间，为了得到$\frac{f(x)}{g(x)}$，我们让
+$$
+m(x) \leq \frac{f(x) - f(y)}{g(x) - g(y)} = \frac{\frac{f(x)}{g(x)} - \frac{f(y)}{g(x)}}{1 - \frac{g(y)}{g(x)}} \leq M(x).
+$$
+当$y \rightarrow c$时，$\frac{f(y)}{g(x)}$和$\frac{g(y)}{g(x)}$都趋向于$0$，所以
+$$
+m(x) \leq \frac{f(x)}{g(x)} \leq M(x).
+$$
+
+{\color{blue}情况二}：$\lim\limits_{x \rightarrow c} g(x) = \infty.$
+对任意的$x \in \mathcal{I}$, 取$y$位于$x$和$c$之间. 如果我们还是用上面的分式，直接尝试把$\frac{f(x)}{g(x)}$构造出来，整体这个分式对$y \rightarrow c$，显然是无法处理的. 同时你注意到在当前条件下是对$\lim\limits_{x \rightarrow c} f(x)$是没有特别说明的，言下之意它不会对我们的证明产生影响. 现在我们考虑把前面分式上下都除以$g(y)$，同时上下同时取负，即
+$$
+m(x) \leq \frac{f(y) - f(x)}{g(y) - g(x)} = \frac{\frac{f(y)}{g(y)} - \frac{f(x)}{g(y)}}{1 - \frac{g(x)}{g(y)}} \leq M(x).
+$$
+那么当$y \rightarrow c$时，$\frac{f(x)}{g(y)}$和$\frac{g(x)}{g(y)}$都是趋于$0$，那么此刻关键是我们如何需要考虑$\lim\limits_{y \rightarrow c}\frac{f(y)}{g(y)}$? 让$S_x = \SET{y}{y~\text{位于}~x~\text{和}~c~\text{之间}}$, 我们取遍$y \in S_x$, 我们可以得到得到一个有界数列$\{\frac{f(y)}{g(y)}\}$，我们考虑其上下极限
+$$
+m(x) \leq \lim\limits_{y \rightarrow c }\inf\frac{f(y)}{g(y)} \leq \lim\limits_{y \rightarrow c }\sup\frac{f(y)}{g(y)} \leq M(x).
+$$
+
+当对$m(x)$和$M(x)$也取极限$x \rightarrow c$时，有
+$$
+\lim\limits_{x \rightarrow c} m(x) = \lim\limits_{x \rightarrow c} M(x) = \lim\limits_{x \rightarrow c} \frac{f'(x)}{g'(x)}.
+$$
+对{\color{blue}情况一}使用{\color{red} 夹逼准则}，可以很快得到$\lim\limits_{x \rightarrow c} \frac{f(x)}{g(x)} = \lim\limits_{x \rightarrow c} \frac{f'(x)}{g'(x)}$. 对{\color{blue} 情况二 }也同样使用{\color{red} 夹逼准则}，可以得到
+$$
+\lim\limits_{y \rightarrow c }\inf\frac{f(y)}{g(y)} = \lim\limits_{y \rightarrow c }\sup\frac{f(y)}{g(y)} = \lim\limits_{x \rightarrow c} \frac{f'(x)}{g'(x)},
+$$
+上下极限相等可以马上得到$\lim\limits_{x \rightarrow c} \frac{f(x)}{g(x)} = \lim\limits_{x \rightarrow c} \frac{f'(x)}{g'(x)}$. 最终证毕.
+\end{proof}
 
 \end{document}
