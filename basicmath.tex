@@ -153,11 +153,35 @@ $$
 \end{proof}
 
 
+\begin{definition}
+\rm {\color{red} (夹逼准则)} 若函数$f,g,h$均在以点$a$为聚点的区间$I$上定义着，且对任意的$x \in I$，其中$x \neq a$都有
+$$
+g(x) \leq f(x) \leq h(x),
+$$
+并且同时满足
+$$
+\lim\limits_{x \rightarrow a}g(x) = \lim\limits_{x \rightarrow a}h(x) = L.
+$$
+那么$\lim\limits_{x \rightarrow a}f(x) = L$.
+\end{definition}
+
+\begin{proof}
+{\color{blue} 经典两边夹}取任意的正实数$\varepsilon > 0$，根据极限地定义对$g(x)$和$h(x)$我们可以分别找到$|x| < \delta_1$和$|x| < \delta_2$，使得
+$$
+L-\varepsilon < g(x) < L + \varepsilon~\text{和}~L-\varepsilon < h(x) < L + \varepsilon
+$$
+成立，我们取$\delta = \min(\delta_1, \delta_2)$，那么当$|x| < \delta$时有
+$$
+L-\varepsilon < g(x) \leq f(x) \leq h(x) < L+\varepsilon.
+$$
+由于$\varepsilon$的任意性，所以有$\lim\limits_{x \rightarrow a} f(x) = L$.
+\end{proof}
+
 \newpage
 \section{数列极限}
 
 \subsection{上下极限}
-
+%https://en.wikipedia.org/wiki/Limit_inferior_and_limit_superior
 
 \newpage
 \section{函数极限}
