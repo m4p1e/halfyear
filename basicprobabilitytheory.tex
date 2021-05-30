@@ -78,7 +78,29 @@
 \end{definition}
 
 \begin{definition}
-\rm 
+\rm 若事件$A$的发生{\color{red}必然导致}事件$B$发生，则称事件$B$包含事件$A$，记为$B \supset A$. 若$A \supset B$和$A \subset B$同时成立，则称事件$A$和事件$B$相等，记为$A=B$.
 \end{definition}
 
+\begin{definition}
+\rm 给定事件$A$和$B$, 它们的交记为$A \cap B$, 表示其所有的公共样本点构成的事件. 这样事件的发生，将导致{\color{red}事件$A$和$B$同时发生}.它们的并记为$A \cup B$，表示它们所有样本点放在一起构成的事件，这样的事件发生将导致{\color{red}至少事件$A$和$B$其中一个发生}.
+\end{definition}
+
+
+\begin{definition}
+\rm 设试验$E$的样本空间为$\Omega$，real-valued函数$\func{P}{\mathcal{A}}{\mathbb{R}}$被为一个概率函数，其中$\mathcal{A}$被称为{\color{red}输入空间}或者{\color{red}事件空间}，即样本空间的{\color{red}幂集}. 当其满足如下条件时
+\begin{enumerate}
+	\item 对于任意的$A \in \mathcal{A}$，有$P(A) \geq 0$;
+	\item $P(\Omega) = 1$;
+	\item 对于一个两两不相交的事件可数序列$A_1,A_2,\cdots$，有$P(\bigcup\limits_{i=1}^{\infty} A_i) = \bigcup\limits_{i=1}^{\infty}P(A_i)$成立.
+\end{enumerate}
+则成$P$是试验$E$的一个{\color{red}概率分布}.
+\end{definition}
+
+\begin{definition}
+\rm 若事件$A,B$满足等式
+$$
+P(AB) = P(A)P(B),
+$$
+则称$A$与$B${\color{red}相互独立}.
+\end{definition}
 \end{document}
