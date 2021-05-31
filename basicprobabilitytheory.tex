@@ -82,18 +82,33 @@
 \end{definition}
 
 \begin{definition}
-\rm 给定事件$A$和$B$, 它们的交记为$A \cap B$, 表示其所有的公共样本点构成的事件. 这样事件的发生，将导致{\color{red}事件$A$和$B$同时发生}.它们的并记为$A \cup B$，表示它们所有样本点放在一起构成的事件，这样的事件发生将导致{\color{red}至少事件$A$和$B$其中一个发生}.
+\rm 给定事件$A$和$B$, 它们的交记为$A \cap B$或者$AB$, 表示其所有的公共样本点构成的事件. 这样事件的发生，将导致{\color{red}事件$A$和$B$同时发生}.它们的并记为$A \cup B$，表示它们所有样本点放在一起构成的事件，这样的事件发生将导致{\color{red}至少事件$A$和$B$其中一个发生}.
 \end{definition}
 
+\begin{definition}
+\rm 给定事件$A$和$B$，若它们的交$AB = \emptyset$，则称事件$A$和$B${\color{red}互斥}或者{\color{red}互不相容}. 若它们的并$A\cup B = \Omega$，且$AB=\emptyset$，则称事件$A$和$B$为{\color{red}对立事件}或者{\color{red}互逆事件}，记为$\bar{A} = B$或者$\bar{B} = A$.
+\end{definition}
 
 \begin{definition}
-\rm 设试验$E$的样本空间为$\Omega$，real-valued函数$\func{P}{\mathcal{A}}{\mathbb{R}}$被为一个概率函数，其中$\mathcal{A}$被称为{\color{red}输入空间}或者{\color{red}事件空间}，即样本空间的{\color{red}幂集}. 当其满足如下条件时
+\rm 给定事件$A$和$B$，它们的差记为$A-B$，表示事件$A$有而$B$没有的样本点，通俗地来讲表示事件$A$发生而$B$不发生的样本点组成的新事件.
+\end{definition}
+
+\begin{definition}
+\rm 设试验$E$的样本空间为$\Omega$，real-valued函数$\func{P}{\mathcal{A}}{\mathbb{R}}$被为一个概率函数，其中$\mathcal{A}$被称为{\color{red}输入空间}或者{\color{red}事件空间}，即样本空间的{\color{red}幂集}. 当其满足如下条件(Kolmogorov axioms)时
 \begin{enumerate}
 	\item 对于任意的$A \in \mathcal{A}$，有$P(A) \geq 0$;
 	\item $P(\Omega) = 1$;
 	\item 对于一个两两不相交的事件可数序列$A_1,A_2,\cdots$，有$P(\bigcup\limits_{i=1}^{\infty} A_i) = \bigcup\limits_{i=1}^{\infty}P(A_i)$成立.
 \end{enumerate}
-则成$P$是试验$E$的一个{\color{red}概率分布}.
+则成$P$是试验$E$的一个{\color{red}概率分布}. {\color{blue} 这个real-value $P$其实看做一个代数形式，其需要满足3个公理.}
+\end{definition}
+
+\begin{definition}
+\rm 给定事件$A$和$B$，且$P(A) > 0$, 称
+$$
+P(B|A) = \frac{P(AB)}{P(A)}.
+$$
+为在事件$A$发生的条件下事件$B$发生的{\color{red}条件概率}.
 \end{definition}
 
 \begin{definition}
@@ -103,4 +118,76 @@ P(AB) = P(A)P(B),
 $$
 则称$A$与$B${\color{red}相互独立}.
 \end{definition}
+
+\newpage
+\subsection{基本性质和运算法则}
+
+\begin{proposition}
+\rm {\color{red}事件相关的运算法则}
+\begin{enumerate}
+	\item 交换律 $A \cup B = B \cup A;\;A \cap B = B \cap A$.
+	\item 结合律 $(A \cup B) \cup C = A \cup (B \cup C);\; (A \cap B) \cap C = A \cap (B \cap C).$
+	\item 分配律 $A \cap (B \cup C) = (A \cap B) \cup (A \cap C);\; A \cup (B \cap C) = (A \cup B) \cap (A \cup C).$
+	\item 对偶律 $\overline{A \cup B} = \bar{A} \cap \bar{B};\; \overline{A \cap B} = \bar{A} \cup \bar{B};\; \overline{\bigcup\limits_{i=1}^n A_i} = \bigcap\limits_{i=1}^n \bar{A_i};\; \overline{\bigcap\limits_{i=1}^n A_i} = \bigcup\limits_{i=1}^n \bar{A_i}$ 
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+\rm {\color{red}概率分布相关性质}
+\begin{enumerate}
+	\item $P(\emptyset) = 0$;
+	\item $P(\bar{A}) = 1 - P(A)$;
+	\item $A\subset B$，则$P(A) \leq P(B)$;
+	\item $0 \leq P(A) \leq 1$;
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(2) 因为$P(\Omega) = P(A\bar{A}) =P(A) + P(\bar{A})$.
+
+(1) 可以马上通过(2)直接得到.
+
+(3) $P$满足{\color{blue}单调性}，可以根据Kolmogorov axioms(3)很自然地可以得到.
+
+(4) $P(\emptyset) \leq P(A) \leq P(\Omega).$
+\end{proof}
+
+\begin{proposition}
+\rm 五大概率公式
+\begin{enumerate}
+	\item {\color{red}加法公式} $P(A \cup B) = P(A) + P(B) - P(AB)$.
+	\item {\color{red}减法公式} $P(A - B) = P(A) - P(AB)$.
+	\item {\color{red}乘法公式} 当$P(A) > 0$时，$P(AB) = P(A)P(B|A)$;
+	
+	当$P(A_1A_2\cdots A_{n-1}) > 0$时，$P(A_1A_2\cdots A_n) = P(A_1)P(A_2|A_1)\cdots P(A_n|A_1A_2\cdots A_{n-1}).$
+	\item {\color{red}全概率公式} 设$B_1,B_2,\cdots,B_n$满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$且$P(B_k) > 0,\; k=1,2,\cdots,n$，则对任意事件有
+	$$
+		P(A) = \sum\limits_{i=1}^n P(B_i)P(A|B_i).
+	$$
+	\item {\color{red}贝叶斯公式} 设$B_1,B_2,\cdots,B_n$满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$且$P(A)>0, P(B_k) > 0,\; k=1,2,\cdots,n$，则
+	$$
+		P(B_j | A) = \frac{P(B_j)P(A|B_j)}{\sum\limits_{i=1}^n P(B_i)P(A|B_i)},\; j = 1,2,\cdots,n.
+	$$
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(2) $P(A) = P(AB \cup A\bar{B}) = P(AB)+P(A-B).$
+
+(1) $P(A \cup B) = P((A-AB) \cup (B-AB) \cup AB)$, 再根据(2)有
+$$
+\begin{array}{ll}
+P((A-AB) \cup (B-AB) \cup AB) &= P(A)-P(AB) + P(B) - P(AB) + P(AB) \\
+&= P(A) + P(B) -P(AB).
+\end{array}
+$$
+{\color{blue} 实际上这里还是要分类讨论一下当$A=B$的时候.}
+
+(3) 条件概率的另一种写法.
+
+(4) $P(A) = P(\bigcup\limits_{i=1}^n AB_i) = \bigcup\limits_{i=1}^n P(AB_i)$，再用(3)替换一下即可.
+
+(5) $P(B_j | A) =  \frac{P(B_jA)}{P(A)}$，用(3)和(4)分别替换分子和分母即可.
+\end{proof}
 \end{document}
