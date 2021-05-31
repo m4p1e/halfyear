@@ -116,7 +116,7 @@ $$
 $$
 P(AB) = P(A)P(B),
 $$
-则称$A$与$B${\color{red}相互独立}.
+则称$A$与$B${\color{red}相互独立}. {\color{blue} 从条件概率看两个事件的独立性，也就是其中一个发生的概率是不会影响另一个发生的概率}.
 \end{definition}
 
 \newpage
@@ -165,6 +165,7 @@ $$
 	$$
 		P(A) = \sum\limits_{i=1}^n P(B_i)P(A|B_i).
 	$$
+	其中称满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$的$B_1,B_2,\cdots,B_n$为一个{\color{red}完备事件组}. 通常把$P(B_1), P(B_2),\cdots,P(B_n)$叫做{\color{red}先验概率}. {\color{blue}全概率公式的意义在于可以将复杂的事件$A$划分为简单互斥事件$AB_1,AB_2,\cdots,AB_n$，再结乘法公式计算出$A$的概率}.
 	\item {\color{red}贝叶斯公式} 设$B_1,B_2,\cdots,B_n$满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$且$P(A)>0, P(B_k) > 0,\; k=1,2,\cdots,n$，则
 	$$
 		P(B_j | A) = \frac{P(B_j)P(A|B_j)}{\sum\limits_{i=1}^n P(B_i)P(A|B_i)},\; j = 1,2,\cdots,n.
@@ -189,5 +190,6 @@ $$
 (4) $P(A) = P(\bigcup\limits_{i=1}^n AB_i) = \bigcup\limits_{i=1}^n P(AB_i)$，再用(3)替换一下即可.
 
 (5) $P(B_j | A) =  \frac{P(B_jA)}{P(A)}$，用(3)和(4)分别替换分子和分母即可.
+
 \end{proof}
 \end{document}
