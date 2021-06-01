@@ -41,6 +41,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{exercise}{Exercise}[section]
+\newtheorem{annotation}[theorem]{Annotation}
 
 \newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
 \newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
@@ -158,11 +159,25 @@ $$
 \begin{proposition}
 \rm 五大概率公式
 \begin{enumerate}
-	\item {\color{red}加法公式} $P(A \cup B) = P(A) + P(B) - P(AB)$.
-	\item {\color{red}减法公式} $P(A - B) = P(A) - P(AB)$.
-	\item {\color{red}乘法公式} 当$P(A) > 0$时，$P(AB) = P(A)P(B|A)$;
-	
-	当$P(A_1A_2\cdots A_{n-1}) > 0$时，$P(A_1A_2\cdots A_n) = P(A_1)P(A_2|A_1)\cdots P(A_n|A_1A_2\cdots A_{n-1}).$
+	\item {\color{red}加法公式} 
+	$$
+	\begin{array}{c}
+	P(A \cup B) = P(A) + P(B) - P(AB);\\
+	P(A \cup B \cup C) = P(A) + P(B) +P(C) -P(AB) - P(AC) -P(BC) {\color{red}+}P(ABC).
+	\end{array}
+	$$
+	\item {\color{red}减法公式} 
+	$$
+	P(A - B) = P(A) - P(AB).
+	$$
+	\item {\color{red}乘法公式} 当$P(A) > 0$时，
+	$$
+	P(AB) = P(A)P(B|A);
+	$$
+	当$P(A_1A_2\cdots A_{n-1}) > 0$时，
+	$$
+	P(A_1A_2\cdots A_n) = P(A_1)P(A_2|A_1)\cdots P(A_n|A_1A_2\cdots A_{n-1}).
+	$$
 	\item {\color{red}全概率公式} 设$B_1,B_2,\cdots,B_n$满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$且$P(B_k) > 0,\; k=1,2,\cdots,n$，则对任意事件有
 	$$
 		P(A) = \sum\limits_{i=1}^n P(B_i)P(A|B_i).
@@ -193,6 +208,44 @@ $$
 (4) $P(A) = P(\bigcup\limits_{i=1}^n AB_i) = \bigcup\limits_{i=1}^n P(AB_i)$，再用(3)替换一下即可.
 
 (5) $P(B_j | A) =  \frac{P(B_jA)}{P(A)}$，用(3)和(4)分别替换分子和分母即可.
-
 \end{proof}
+
+\newpage
+\subsection{更深的思考和技巧}
+
+\begin{annotation}
+\rm {\color{red} 当$P(A) = 0$时，如何计算$P(AB)$？}条件概率的定义中特别指明了$P(A) > 0$，那么$P(A)$等于$0$时候，条件概率$P(B|A)$是未定义的. 那么此时如果我们要计算$P(AB)$应该怎么办呢？ 肯定不能使用乘法公式了. 我们可以利用$P$的{\color{blue}单调性}，因为$AB \subseteq A$，所以$P(AB) \leq P(A)$，所以$P(AB)=0$.
+\end{annotation}
+
+\begin{annotation}
+\rm {\color{red} 取部分对立事件不影响独立性} 若$P(AB) = P(A)P(B)$，有下面等式成立
+$$
+\begin{array}{l}
+P(\bar{A}\bar{B}) = P(\bar{A})P(\bar{B})\\
+P(\bar{A}B) = P(\bar{A})P(B)\\
+P(A\bar{B}) = P(A)P(\bar{B})
+\end{array}
+$$
+我们来证明第一个等式
+$$
+\begin{array}{rl}
+P(AB) &= P(A)P(B) \\
+	  &= (1-P(\bar{A}))(1-P(\bar{B}))\\
+	  &= 1-P(\bar{A})-P(\bar{B}) + P(\bar{A})P(\bar{B})\\
+	  \\
+	  \\
+P(\bar{A}) + P(\bar{B}) - P(\bar{A} \cup \bar{B}) &= P(\bar{A})P(\bar{B}) \\
+P(\bar{A}\bar{B}) &= P(\bar{A})P(\bar{B})
+\end{array}
+$$
+其余的等式应用类似的手法. 由此在$A$和$B$相互独立的情况下，延伸出来一些有用的等式
+$$
+\begin{array}{l}
+P(A \cup B) = 1 - P(\bar{A}\bar{B}) = 1-P(\bar{A})P(\bar{B})\\
+P(A-B) = P(A\bar{B}) = P(A)P(\bar{B}) 
+\end{array}
+$$
+\end{annotation}
+
+
 \end{document}
