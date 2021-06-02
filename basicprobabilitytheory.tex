@@ -117,7 +117,10 @@ $$
 $$
 P(AB) = P(A)P(B),
 $$
-则称$A$与$B${\color{red}相互独立}. {\color{blue} 从条件概率看两个事件的独立性，也就是其中一个发生的概率是不会影响另一个发生的概率}.
+则称$A$与$B${\color{red}相互独立}. {\color{blue} 从条件概率看两个事件的独立性，也就是其中一个发生的概率是不会影响另一个发生的概率}. 推广至$n$个事件$A_1,\cdots,A_n$相互独立，需要$\binom n2 + \binom n3 + \cdots + \binom nn = 2^n - n -1$等式成立，即设任意的$1<k \leq n$，对任意$1 \leq i_1 \leq \cdots \leq i_k \leq n$满足等式
+$$
+P(A_{i_1}\cdots A_{i_k})=P(A_{i_1})\cdots P(A_{i_k}).
+$$
 \end{definition}
 
 \newpage
@@ -214,6 +217,19 @@ $$
 \subsection{更深的思考和技巧}
 
 \begin{annotation}
+\rm {\color{red} 零概率事件$P(A) = 0$与不可能事件$A=\emptyset$不是一个概念}.
+\end{annotation}
+
+
+\begin{annotation}
+\rm {\color{red} 如何理解事件之间独立性} 事件$A$和$B$独立，则有下面等式成立
+$$
+P(AB) = P(A)P(B). 
+$$
+你可能总想深究其更本质的含义，可能你会联想到当事件$A$和$B$独立时，那么$A$和$B$之间有什么关系呢？ 实际上并{\color{blue}不能确定$A$和$B$有什么特别地确切的关系}，所以你把上述等价理解为在描述一个代数结构就好了，从这个代数结构可以引发一些有趣的性质i.e. 例如化简某些运算{\color{blue}条件概率}，所以就特别地把这个代数结构提出来了. 但是当$P(A)>0, P(B) > 0$时，有这样一种关系: {\color{red} 互斥不独立，独立不互斥}，证明也是很显然的.
+\end{annotation}
+
+\begin{annotation}
 \rm {\color{red} 当$P(A) = 0$时，如何计算$P(AB)$？}条件概率的定义中特别指明了$P(A) > 0$，那么$P(A)$等于$0$时候，条件概率$P(B|A)$是未定义的. 那么此时如果我们要计算$P(AB)$应该怎么办呢？ 肯定不能使用乘法公式了. 我们可以利用$P$的{\color{blue}单调性}，因为$AB \subseteq A$，所以$P(AB) \leq P(A)$，所以$P(AB)=0$.
 \end{annotation}
 
@@ -233,18 +249,18 @@ P(AB) &= P(A)P(B) \\
 	  &= (1-P(\bar{A}))(1-P(\bar{B}))\\
 	  &= 1-P(\bar{A})-P(\bar{B}) + P(\bar{A})P(\bar{B})\\
 	  \\
-	  \\
 P(\bar{A}) + P(\bar{B}) - P(\bar{A} \cup \bar{B}) &= P(\bar{A})P(\bar{B}) \\
 P(\bar{A}\bar{B}) &= P(\bar{A})P(\bar{B})
 \end{array}
 $$
-其余的等式应用类似的手法. 由此在$A$和$B$相互独立的情况下，延伸出来一些有用的等式
+其余的等式应用类似的手法来证明. 由此在$A$和$B$相互独立的情况下，延伸出来一些有用的等式
 $$
 \begin{array}{l}
 P(A \cup B) = 1 - P(\bar{A}\bar{B}) = 1-P(\bar{A})P(\bar{B})\\
 P(A-B) = P(A\bar{B}) = P(A)P(\bar{B}) 
 \end{array}
 $$
+这些等式也可以推广为$n$个事件相互独立.
 \end{annotation}
 
 
