@@ -123,6 +123,35 @@ P(A_{i_1}\cdots A_{i_k})=P(A_{i_1})\cdots P(A_{i_k}).
 $$
 \end{definition}
 
+\begin{definition}
+\rm 当试验的样本空间由$n$个{\color{red}有限}样本点构成，且{\color{red}每个样本点的发生具有相同的可能性}，即若事件$A$由$n_A$个样本点组成，则事件$A$对应的概率为
+$$
+P(A) = \frac{n_A}{n}.
+$$
+称这样的有限等可能试验中事件$A$的概率$P(A)$为{\color{red}古典型概率}.
+\end{definition}
+
+
+\begin{definition}
+\rm 当试验的样本空间是某区域(该区域可以是一维，二维或者三维等等)，以$L(\Omega)$表示其几何度量，$L(\Omega)$有限，{\color{red}且试验结果出现在$\Omega$中任何区域的可能性只与该区域几何度量成正比}，事件$A$的样本点所表示的区域为$\Omega_A$，则事件$A$的概率为
+$$
+P(A) = \frac{L(\Omega_A)}{L(\Omega)}.
+$$
+称这种样本点个数无限但是其几何度量上的等可能试验中事件$A$的概率$P(A)$为{\color{red}几何型概率}.
+\end{definition}
+
+\begin{definition}
+\rm 把一随机试验独立重复做若干次，即同一事件在各次试验中出现的概率相同. 这个过程称为{\color{red}独立重复试验}.
+\end{definition}
+
+\begin{definition}
+\rm 如果每次试验只有两个结果$A$和$\bar{A}$，则称这种试验为{\color{red}伯努利试验}，将伯努利试验独立重复进行$n$次，称为{\color{red}$n$重伯努利试验}. 设在每次试验中，概率$P(A)=p~(0<p<1)$，则在$n$重伯努利试验中事件$A$发生$k$次的概率为
+$$
+C_n^kp^k(1-p)^{n-k},\; k=1,2,\cdots,n,
+$$
+其又称为{\color{red}二项概率公式}.
+\end{definition}
+
 \newpage
 \subsection{基本性质和运算法则}
 
@@ -211,6 +240,71 @@ $$
 (4) $P(A) = P(\bigcup\limits_{i=1}^n AB_i) = \bigcup\limits_{i=1}^n P(AB_i)$，再用(3)替换一下即可.
 
 (5) $P(B_j | A) =  \frac{P(B_jA)}{P(A)}$，用(3)和(4)分别替换分子和分母即可.
+\end{proof}
+
+
+{\color{blue}下面都是一些高中学过的排列组合的性质}.
+
+\begin{definition}
+\rm {\color{red} 加法原理} 若完成一件事，有$n$类方式，第一类方式有$m_1$种解决方法，第二类方式有$m_2$种解决方式，如此定义下去即第$i$类方法有$m_i$种解决方法. 那么完成这件事就一共有$m_1 + m_2 + \cdots + m_n$种不同的方法. 
+\end{definition}
+
+\begin{definition}
+\rm {\color{red} 乘法原理} 若完成一件事分成$n$个步骤，其中第$i$步有$m_i$种不同的方法，必须依次完成每一步之后才能进行下一步，那么完成这件事就一共有$m_1m_2\cdots m_n$.
+\end{definition}
+
+\begin{definition}
+\rm {\color{red} 排列数公式} 从$n$个元素中取$m$个元素出来进行排列，则不同排列的总数为
+$$
+P^m_n = \frac{n!}{(n-m)!} = n\times(n-1)\times\cdots(n-k+1).
+$$
+特别地，若$m=n$时，$P^n_n = n!$其被称为{\color{red}全排列}；若有放回的取，则不同的排列总数为$n^n$；
+\end{definition}
+
+\begin{definition}
+\rm {\color{red} 组合数公式} 从$n$个元素中取$m$个元素组成一组，即不管其顺序，则不同的组合总数为
+$$
+C^m_n = \binom nm  = \frac{n!}{m!(n-m)!} = \frac{P^m_n}{m!}. 
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 如果把$n$个不同的元素分成$k$组($1\leq k \leq n$)，使得第$i$组有$n_i$个元素，那么$\sum\limits_{i=1}^k n_i = n$，组内不考虑元素的排列，那么不同的分法总数有
+$$
+\frac{n!}{n_1!n_2!\cdots n_k!}.
+$$
+\end{proposition}
+
+\begin{proof}
+实际上就是
+$$
+\begin{array}{ll}
+\binom {n}{n_1} \binom{n-n_1}{n_2} \cdots \binom{n-n_1-\cdots-n_{k-1}}{n_k} &= \frac{n!}{n_1!(n-n_1)!} \frac{(n-n_1)!}{n_2!((n-n_1)-n_2)!}\cdots \frac{(n-n_1-\cdots-n_{k-1})!}{n_k!((n-n_1-\cdots-n_{k-1})-n_{k})!} \\
+&= \frac{n!}{n_1!n_2\cdots n_k!}.
+\end{array}
+$$
+\end{proof}
+
+\begin{proposition}
+\rm {\color{red} 常用的组合数公式}
+$$
+\begin{array}{rl}
+C^k_n &= C^{n-k}_n \\ \\
+C^k_{n+1} &= C^k_n + C^{k-1}_n \\ \\
+\sum\limits_{i=0}^n C^i_n &= 2^n \\ \\
+C^k_{n+m} &= \sum\limits_{i=0}^k C^i_n C^{k-i}_m \\ \\
+\end{array}
+$$
+\end{proposition}
+
+\begin{proof}
+(1) 比较trivial.
+
+(2) 用自然语言来解释，就是说我在$n+1$个元素里面取$k$等价于我先考虑在$n$个元素里面取$k$，然后现在又来了一个新的元素$e$，考虑多出的取法显然要包括这个$e$，那么现在我只要再去原来$n$个元素里面取$k-1$就够了，这就是第二个等式的含义. 代数证明就略过了...
+
+(3) 直接考虑$(1+1)^n$的展开式就够了.
+
+(4) 实际上也比较trivial，即考虑$k$分别在$m$个元素和$n$元素里面取.
 \end{proof}
 
 \newpage
