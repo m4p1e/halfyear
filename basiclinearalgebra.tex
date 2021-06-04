@@ -41,6 +41,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{exercise}{Exercise}[section]
+\newtheorem{annotation}[theorem]{Annotation}
 
 \newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
 \newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
@@ -126,4 +127,126 @@ $$
 \end{tikzpicture}
 \end{center}
 上图是整个linear algebra研究过程的发展，值得关注是{\color{red}线性空间是向量空间的一般推广}；{\color{red} 矩阵不光可以表示$n$维线性方程，同样也是可以用来表示线性映射}； {\color{red}线性空间到自身的线性映射叫做线性变换}； {\color{red} 从线性空间到线性度量空间需要用到一个双线性函数来描述两个其空间两个元素的度量}；
+
+
+\begin{definition}
+\rm {\color{red} 阶梯型矩阵} 若给定矩阵满足下面条件
+\begin{enumerate}
+	\item $0$行全在下方;
+	\item {\color{red}主元}(非零行第一个非零元素)的列指标随着行指标的增加而严格增大.
+\end{enumerate}
+则称其为行阶梯形矩阵. i.e.
+$$
+\begin{pmatrix}
+{\color{red}1} & 3 & 1 & 2 \\
+0 & {\color{red}1} & -1 & -3 \\
+0 & 0 & {\color{red}3} & 6 \\
+0 & 0 & 0 & 0 \\
+\end{pmatrix}
+$$
+同理还有列阶梯形矩阵，把上面这个矩阵顺时针旋转90°.
+$$
+\begin{pmatrix}
+2 & -3 & 6 & 0 \\
+1 & -1 & 3 & 0 \\
+3 & 3 & 0 & 0  \\
+1 & 0 & 0 & 0 \\
+\end{pmatrix}
+$$
+\end{definition}
+
+\begin{definition}
+\rm {\color{red} (简化阶梯型矩阵)} 若给定行阶梯形满足下面条件
+\begin{enumerate}
+	\item 主元都是$1$.
+	\item 主元所在列的其余元素都是$0$.
+\end{enumerate}
+则称其为简化行阶梯形矩阵. i.e.
+$$
+\begin{pmatrix}
+{\color{red}1} & 0 & 0 & 3 \\
+0 & {\color{red}1} & 0 & -1 \\
+0 & 0 & {\color{red}1} & 2 \\
+0 & 0 & 0 & 0 \\
+\end{pmatrix}
+$$
+\end{definition}
+
+\begin{definition}
+\rm 下面几种矩阵变换操作称之为矩阵的{\color{red}初等行变换}
+\begin{enumerate}
+	\item 把一行的倍数加到另一行上;
+	\item 两行互换;
+	\item 一行乘以一个非零数.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+\rm {\color{red} (初等行变换的性质)}矩阵的初等行变换得到的方程组与原来的方程组同解.
+\end{theorem}
+
+\begin{proposition}
+\rm $n$元线性方程组解的情况只有三种可能，其对应的行阶梯行矩阵的特征如下
+\begin{enumerate}
+	\item 若非零行个数等于未知数个数，则有唯一解;
+	\item 若非零行个数小于未知数个数，则有无穷多个解;
+	\item 若存在非零行对应等式$0=d$，其中$d$不等于零，则无解.
+\end{enumerate}
+有一个很形象的理解方式类比{\color{blue}到平面上两条直线，它们可能存在三种关系: 平行，相交(相交于一点)，重合}.
+\end{proposition}
+
+\begin{proof}
+其中无解对应的情况是显然的，那么我们在确保不会出现$0=d$的情况下有解，且为什么只会出现唯一解或者无穷多个解，而不会出现有两个解的这种情况呢？ 若给定$n$元线性方程组的增广矩阵，经过初等行变换化成行阶梯形矩阵$J$. 设$J$有$r$个非零行，显然$J$有$n+1$列，其中$n+1$列表示等式右边的常数项.
+$$
+J=
+\begin{pmatrix}
+\cdots & \cdots &c_1 \\
+\vdots & \vdots & \vdots \\
+\cdots & b_{rt} &\cdots \\
+\end{pmatrix}
+$$
+设$r$行的主元为$b_{rt}$，即它在第$t$列，那么必有$t \leq n$. 根据行阶梯形的定义，列指标是随着行指标的增加而严格增大的，因此也有$t \geq r$. 所以结合前面两个关系，可以得到$r \leq n$，即非零行的个数是不会超过$n$的. 此刻先把$J$通过初等行变换变成简化行阶梯形矩阵$J_1$，那么$J_1$也有$r$非零行，即有$r$个主元，下面分两种情况分别讨论: {\color{red}当$r=n$时}，$J_1$就有$n$个主元，那么按照行阶梯形主元排列顺序，
+$$
+J_1 =
+\begin{pmatrix}
+1 & \cdots & \cdots &\cdots & c_1 \\
+0 & 1 & \cdots & \cdots & c_2 \\
+0 & 0 & 1 & \cdots & c_3 \\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+\cdots & \cdots & \cdots & 1 & c_n 
+\end{pmatrix}
+$$
+即$n$个主元，要分别放到$n$列，那么就是每列都有一个主元，即原方程组有唯一解. {\color{red}当$r < n$时}，此时简化行梯形矩阵为
+$$
+J_1 =
+\begin{pmatrix}
+1 & \cdots & \cdots &\cdots & \cdots & c_1 \\
+\cdots & 1 & \cdots & \cdots & \cdots & c_2 \\
+\cdots & \cdots & 1 & \cdots & \cdots & c_3 \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+\cdots & \cdots & \cdots & 1 & \cdots & c_r 
+\end{pmatrix}
+$$
+那么现在我们可以把上面这$r$个主元对应的未知数表示出来
+$$
+\begin{array}{ll}
+x_1 &= a_{1,1}x_{i_1} + a_{1,2}x_{i_2} + \cdots + a_{1,n-r} x_{n-r} \\
+x_{j_2} &= a_{j_2,1}x_{i_1} + a_{j_2,2}x_{i_2} + \cdots + a_{j-2,n-r} x_{n-r} \\
+&\vdots \\
+x_{j_r} &= a_{j_r,1}x_{i_1} + a_{j_r,2}x_{i_2} + \cdots + a_{j-r,n-r} x_{n-r}
+\end{array}
+$$
+其中$x_1,x_{j_2},\cdots x_{j_r}$表示对应列的$r$个主元，其余的自由变量有$n-r$个用$x_{i_1},x_{i_2},\cdots,x_{n-r}$表示. 那么只要任意确定一组自由变量的取值，就可以有一组解，即这种情况下只有无穷多个解.
+\end{proof}
+
+
+\newpage
+\section{行列式}
+\begin{annotation}
+\rm {\color{red} 行列式的意义} 在用矩阵解$n$元线性方程组的过程中，我们需要将对应的增广矩阵转换为阶梯型矩阵，然后向上回溯求解. 如果对于一个$n$元线性方程组，我们只想关注它的解结构或者更明确一点，是否有解就够了，那我们是否可以在不把具体解解出来的情况下，回答这个问题呢？也就是说我们是否在可以在不做矩阵转阶梯型矩阵的情况下，来回答这个问题呢？
+
+
+\end{annotation}
+
+
 \end{document}
