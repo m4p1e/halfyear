@@ -52,6 +52,8 @@
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert} % 范数
 \newcommand{\vect}[1]{\mathbf{#1}} % vector
 
+\newcommand\bigzero{\makebox(0,0){\text{\huge0}}} %bigzero
+
 \begin{document}
 \title{考研线代}
 \author{枫聆}
@@ -457,7 +459,7 @@ $$
 {\color{red}(4)} 按照完全展开式
 $$
 \begin{array}{ll}
-|\mathbf{A}| &= \sum\limits_{j_1j_2\cdots j_n}(-1)^{\tau(j_1j_2\cdots j_n)} a_{1j_1}\cdots (a_{ij_i}b_{ij_i}) \cdots a_{nj_n}\\
+|\mathbf{A}| &= \sum\limits_{j_1j_2\cdots j_n}(-1)^{\tau(j_1j_2\cdots j_n)} a_{1j_1}\cdots (a_{ij_i}+b_{ij_i}) \cdots a_{nj_n}\\
 &=  \sum\limits_{j_1j_2\cdots j_n}(-1)^{\tau(j_1j_2\cdots j_n)} a_{1j_1}\cdots a_{ij_i} \cdots a_{nj_n} + \sum\limits_{j_1j_2\cdots j_n}(-1)^{\tau(j_1j_2\cdots j_n)} a_{1j_1}\cdots b_{ij_i} \cdots a_{nj_n}
 \end{array}
 $$
@@ -534,13 +536,102 @@ $$
 \begin{proof}
 将$D$按第$i$行拆成$n$个行列式.
 $$
-D = \begin{vmatrix}
+\begin{array}{ll}
+D &= \begin{vmatrix}
 a_{11} & a_{12} & \cdots & a_{1n} \\
 \vdots & \vdots & &\vdots \\
-a_{i1}+0+\cdots+0 & 0+a_{i2}+0+\cdots+0 & \cdots & 0+0+\cdots+a_{in}\\
+a_{i1}+0+\cdots+0 & 0+a_{i2}+\cdots+0 & \cdots & 0+0+\cdots+a_{in}\\
+a_{n1} & a_{n2} &  \cdots & a_{nn} 
+\end{vmatrix} \\
+&= \begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & &\vdots \\
+a_{i1} & 0 & \cdots & 0\\
 a_{n1} & a_{n2} &  \cdots & a_{nn} 
 \end{vmatrix}
++ \begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & &\vdots \\
+0 & a_{i2} & \cdots & 0\\
+a_{n1} & a_{n2} &  \cdots & a_{nn} 
+\end{vmatrix}
++ \cdots 
++ \begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & &\vdots \\
+0 & 0 & \cdots & a_{in}\\
+a_{n1} & a_{n2} &  \cdots & a_{nn} 
+\end{vmatrix} \\
+&= a_{i1}A_{i1} + a_{i2}A_{i2} + \cdots + a_{in}A_{in}.
+\end{array}
 $$
+\end{proof}
+
+\begin{theorem}
+\rm $n$阶行列式的任一行(列)元素与另一行(列)元素的代数余子式乘积的代数和等于零，即
+$$
+a_{i1}A_{j1} + a_{i2}A_{j2} + \cdots + a_{in}A_{jn} = 0,\;(i\neq j).
+$$
+\end{theorem}
+
+
+\begin{proof}
+我们把给定行列式$D$的第$j$行特别地标注出来
+$$
+D=
+\begin{vmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots && \vdots \\
+b_1 & \cdots & b_n \\
+\vdots && \vdots \\
+a_{n1} & \cdot & a_{nn} \\
+\end{vmatrix}
+$$
+其中$b_1,\cdots,b_n$表示第$j$行，那么此时
+$$
+D = b_1A_{j1} + \cdots +b_nA_{jn}.
+$$
+我们再第$j$行用第$i$行换掉得到$D_1$，那么此时第$j$行各元素的代数余子式是没有发生变化的，且现在$D_1$是有两行相同的元素，所以
+$$
+D_1 = a_{i1}A_{j1} + \cdots + a_{in}A_{jn} = 0.
+$$
+同理也可以对第$j$列做上述操作.
+\end{proof}
+
+\begin{proposition}
+\rm {\color{red} (几种特殊的行列式)}
+\begin{enumerate}
+	\item {\color{red}上(下)三角形行列式}
+	$$
+	\begin{vmatrix}
+	a_{11} & & \bigzero\\
+	a_{21} & a_{22} \\
+	\vdots & \vdots & \ddots \\
+	a_{n1} & a_{n2} & \cdots & a_{nn}
+	\end{vmatrix} =
+	\begin{vmatrix}
+	a_{11} & a_{12} & \cdots & a_{1n}\\
+	&	a_{22} & \cdots & a_{2n} \\
+	&\bigzero& \ddots & \vdots \\
+	&&& a_{nn} \\
+	\end{vmatrix} = a_{11}a_{22}\cdots a_{nn}.
+	$$
+	\item {\color{red}对角行列式}
+	$$
+	\begin{vmatrix}
+	a_{11} &&& \\
+	&a_{22} &\bigzero& \\
+	&\bigzero&\ddots& \\
+	&&&a_{nn}
+	\end{vmatrix} = a_{11}a_{22}\cdots a_{nn}.
+	$$
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+{\color{red}(1)} 完全展开式需要取值不同行不同列元素乘积的代数和，那么在上三角行列式中，只考虑非零项，因此第一行只能取$a_{11}$，接着第二行也就只能取$a_{22}$，如此去下去，最后只有$a_{11}a_{22}\cdots a_{nn}$这个非零项.
+
+{\color{red}(2)} (1)的一个特殊情况.
 \end{proof}
 
 \end{document}
