@@ -35,6 +35,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{exercise}{Exercise}[section]
+\newtheorem{annotation}[theorem]{Annotation}
 
 \newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
 \newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
@@ -192,14 +193,41 @@ $$
 
 \subsection{数列极限的基本性质}
 %局部性
+\begin{proposition}
+\rm 若$\lim x_n = a$，又$a > p$，那么存在某个正整数$N$，当$n > N$时，一切$x_n$都满足$x_n > p$.
+\end{proposition}
+
 %包号性
+\begin{proposition}
+\rm 若$\lim x_n = a$，有$a > 0$，那么存在某个正整数$N$，当$n > N$时，一切$x_n$都满足$x_n > 0$.
+\end{proposition}
+
+%保值性？
+\begin{proposition}
+\rm 若$\lim x_n = a$，且$a \neq 0$，则必有充分远的$x_n$值，其绝对值大于某个正数$r$:
+$$
+|x_n| > r > 0 \; (n > N).
+$$
+{\color{blue} 性质1的推论}.
+\end{proposition}
+
 %有界性
+\begin{proposition}
+\rm 若$\lim x_n = a$，则$(x_n)$必有界.
+\end{proposition}
+
+\begin{proof}
+我们知道任意给定一个$\varepsilon > 0$，可以找到正整数$N$，使得当$n > N$时的一切$x_n$都满足$ a-\varepsilon < x_n < a + \varepsilon$，因此当$n > N$是存在一个界数使得$|x_n| < M$. 接着再考虑$n \leq N$时，注意这时候只有有限个$x_n$，我们把$M$和它们放在一起，取它们里面绝对值最大的数$M'$，即有$|x_n| \leq M'$.
+\end{proof} 
+
 %极限唯一
+\begin{proposition}
+\rm 若同时有$\lim x_n = a,\; \lim x_n = b$，则$a = b$.  
+\end{proposition}
 
+\subsection{数列无穷小和无穷大}
 
-\subsection{无穷小和无穷大}
-
-\subsection{极限运算}
+\subsection{数列极限运算}
 
 \begin{proposition}
 \rm 若$x_n = y_n$，则$\lim x_n = \lim y_n$.
@@ -245,6 +273,74 @@ $$
 
 \subsection{不定式}
 
+\begin{annotation}
+$$
+\frac{x_n}{y_n} \sim \frac{0}{0}
+$$
+\end{annotation}
+
+\begin{annotation}
+$$
+\frac{x_n}{y_n} \sim \frac{\infty}{\infty}
+$$
+\end{annotation}
+
+\begin{annotation}
+$$
+x_n y_n \sim  0 \cdot \infty
+$$
+\end{annotation}
+
+\begin{annotation}
+$$
+x_n - y_n \sim \infty - \infty
+$$
+\end{annotation}
+
+\subsection{单调数列的极限}
+
+\begin{theorem}
+\rm 给定单调增加的数列$(x_n)$，若它有上界
+$$
+x_n \leq M,\; n = 1,2,\cdots
+$$
+则它必有一有限极限，此极限为上确界. 同理单调减少的数理$(x_n)$，若它有下界
+$$
+x_n \geq M, \; n = 1,2,\cdots
+$$
+则它必有一有限极限，此极限为下确界.
+\end{theorem}
+
+\subsection{收敛原理}
+
+\begin{theorem}
+\rm {\color{red} (柯西收敛原理)}数列$(x_n)$有有限极限的必要且充分条件是: 对于任意的数$\varepsilon > 0$，总存在着整数$N$，使得当$n > N$和$n' > N$时有下面不等式成立
+$$
+|x_n - x_{n'}| < \varepsilon.
+$$
+\end{theorem}
+
+\begin{proof}
+{\color{red} (必要性)} 若$\lim x_n = a$，即对任意的$\frac{\varepsilon}{2}$，能找到一个整数$N$，使得$n, n' > N$时有
+$$
+|x_n - a| < \frac{\varepsilon}{2},\; |x_{n'} - a| < \frac{\varepsilon}{2}
+$$
+成立. 那么
+$$
+|x_n - x_{n'}| = |(x_n -a ) + (a - x_{n'})| \leq |x_n-a| + |x_{n'}-a| < \varepsilon
+$$
+
+{\color{red} (充分性)} 若满足上述定理中的条件，{\color{blue}我们要证明$\lim x_n = a$，我们得想办法把这个$a$表示出来，这里手法将会用戴德金实数划分的结论来把这个$a$弄出来}.
+
+在全体实数域下构造一个划分. 对于任何实数$\alpha$，若$x_n$从某项其满足不等式\[x_n > \alpha,\]则取这种实数$\alpha$归入下组$A$，其余的(即不落在$A$里面的)一起实数归入上组$A'$.
+
+首先我们来说明这样确实产生了一个实数上的划分. 由前提条件，对于任意数$\varepsilon>0$及其对应的$N$. 若$n > N$及$n' > N$，则下面不等式成立\[x_{n'} - \varepsilon < x_n < x_{n'}+\varepsilon.\]现在我们可以看到每一个数$x_{n'} - \varepsilon$都是小于$x_n$的，所以它归入下组$A$. 另一方面$x_{n'}+\varepsilon$都大于$x_n$，所以$x_{n'}+\varepsilon$放不进去$A$，那它只能归入$A'$了,所以$A$和$A'$都是非空的. 我们的划分方式对于每一个数$\alpha$和确定序列$x_n$，要么它属于$A$或者属于$A'$. 同时$A$中实数都小于$A'$的实数. 如果$\alpha > \alpha', \alpha \in A , \alpha' \in A'$，则$x_n$从某一项其也都大于$a'$，这样就产生矛盾了. 因此的确产生了一个实数上的划分.
+
+根据戴德金基本定理，有实数$a$存在它是$A$和$A'$的界数，即\[\alpha \leq a \leq \alpha', \; \alpha \in A,\alpha' \in A'.\]我们注意到当$n > N$时，$x_{n'} - \varepsilon$是一个$\alpha$,而$x_{n'} +\varepsilon$是一个$\alpha'$. 所以我们有\[x_{n'} - \varepsilon \leq a \leq x_{n'} + \varepsilon.\]即$|x_{n'}-a| \leq \varepsilon$，所以$\lim x_n = a$.
+
+{\color{blue} 若是不用实数划分的手法，也可以构造$a_n = \inf\limits_{k \geq n} x_k$和$b_n=\sup\limits_{k \geq n}$，证明$\lim a_n = \lim b_n = c$，再用一下夹逼准则$a_n \leq x_n \leq b_n$.}
+\end{proof}
+
 \subsection{上下极限}
 %https://en.wikipedia.org/wiki/Limit_inferior_and_limit_superior
 \begin{definition}
@@ -256,6 +352,50 @@ $$
 
 \newpage
 \section{函数极限}
+
+\subsection{函数极限的定义}
+
+\subsection{函数左右极限}
+
+\subsection{两个重要极限}
+
+\begin{proposition}
+$$
+\lim\limits_{x \rightarrow 0} \frac{\sin x}{x}.
+$$
+\end{proposition}
+
+\begin{proof}
+几何证明的手法，或者直接上洛必达.
+\end{proof}
+
+\begin{proposition}
+$$
+\lim\limits_{x \rightarrow +\infty} (1+\frac{1}{x})^x.
+$$
+\end{proposition}
+
+
+\begin{proof}
+单调有界.
+\end{proof}
+
+\subsection{函数极限的基本性质}
+
+%局部性
+%保号性
+%有界性
+\begin{proposition}
+\rm 若$\lim\limits_{x \rightarrow a} = A$，则对于充分接近$a$的$x$的函数值是有界的
+$$
+|f(x)| \leq M ,\; |x-a| < \delta.
+$$
+{\color{blue} 注意这里和$\lim x_n = b$，而导致整个$(x_n)$有界是区别的，因为这里当$x-a < -\delta$或者$x-a > \delta$可能是有无限多个函数值的，它们是否有界是无法确定的}.
+\end{proposition}
+
+\subsection{函数极限运算}
+
+
 
 \subsection{洛必达法则}
 
