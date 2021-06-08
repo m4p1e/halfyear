@@ -55,13 +55,13 @@
 \newpage
 \section{经典证明}
 \begin{theorem}
-\rm {\color{red} (连续函数在闭区间上有界)} 若real-valued函数$f$在闭区间$[a,b]$上连续，那么它在其上有界(上下界).
+\rm {\color{red} (Weierstrass第一定理或者连续函数在闭区间上必有界)} 若real-valued函数$f$在闭区间$[a,b]$上连续，那么它在其上有界(上下界).
 \end{theorem}
 
 \begin{proof}
 {\color{blue} (方法1: 构造$f(x)$非空子区间$[a,x]$，求其上确界)} 假设$B$是使得$f(x)$在形如闭区间$[a,x]$上有界的$x \in [a,b]$集合，显然$a \in B$，所以$B$非空。若$e \in B$且$e > a$，那么$a$和$e$之间的点都是在$B$里面的，所以实际上$B$是一个闭区间. 我们再考虑$B$的上确界，根据$x$的取法，有$x \leq b$，如果我们能证明它的上确界在$b$出取得，那么整个命题就得证. 现在假设$\sup(B) < b$, 由于$B$是一个闭区间，所以$\sup(B) \in B$. 由于$f$是连续的，那么足够靠近$\sup(B)$的地方，即$s -\sup(B) < \delta$且$s > \sup(B)$，有$|f(s) - f(\sup(B))| < \varepsilon$，那么$f(x),\;x \in [\sup(B),s]$也是有界，这是和$\sup{B}$是$B$的上确界矛盾的.
 
-{\color{blue} (方法2: 构造一个严格递增的数列，其子列收敛造矛盾)}.
+{\color{blue} (方法2: 构造一个严格递增的发散数列，其所有子列收敛造矛盾，即Bolzano-Weierstrass定理)}.
 \end{proof}
 
 \begin{theorem}
@@ -77,15 +77,46 @@ $$
 \end{proof}
 
 \begin{theorem}
-\rm {\color{red} (极值定理)} 若real-valued函数$f$在闭区间$[a,b]$连续，那们存在$c,d \in [a,b]$使得
+\rm {\color{red} (零点定理或者Bolzano-Cauchy第一定理)} 若real-valued函数$f(x)$在闭区间$[a,b]$上定义着并且连续，且$f(a)f(b) < 0$. 则$a$与$b$之间存在一点$c$，使得
+$$
+f(c) = 0.
+$$
+\end{theorem}
+
+\begin{proof}
+{\color{blue} ($c$是集合的确界) }为方便证明我们假设$f(a) < 0$和$f(b) > 0$，根据$f(x)$在点$a$处连续，根据保号性可知在足够接近$a$的$x$的函数值也都是小于$0$的，我们取集合$S = \Set{x \in [a,b]}{f(x) < 0}$，显然$S$是不为空的，因为$a \in S$，我们考虑$\sup S$，记为$c = \sup S$. 显然一定也有$c \leq b$. 我们来证明$f(c) = 0$，利用反证法假设$f(c) < 0$，那么由于$f(x)$在$c$点连续，我们在其右边$c+\delta$找到一点$c'$使得$f(c') < 0$，这和$c$的定义是矛盾的，再考虑$f(c) > 0$，同样由于其连续性，同样可以在$c$左边$c-\delta$找到一点$c'$使得$f(c') > 0$，这和$c$的定义还是矛盾的. 所以$f(c) = 0$.
+
+{\color{blue} 另一种证明手法可以使用区间套}.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} (介值定理或者Bolzano-Cauchy第二定理)} 若real-valued函数$f(x)$在区间$\mathcal{X}$上定义着并且连续. 若在$\mathcal{X}$上两点$x=a$和$x=b$处有着不相同的函数值
+$$
+f(a) = A ~\text{and} ~f(b) = B.
+$$
+则对于$A$和$B$之间任意的数$C$，均存在一点$c$位于$a$和$b$之间使得
+$$
+f(c) = C.
+$$
+用自然语言描述这个性质就是{\color{blue}当连续函数从一个值转变到另一个值时，它必经过每一中间值一次，换句话说就是$x$在$\mathcal{X}$上变动时其对应的函数值将完全充满某一区间$\mathcal{Y}$}.
+\end{theorem}
+
+\begin{proof}
+为方便证明，我们设$A < C < B$且$a < b$. 在$[a,b]$上考察连续函数$\varphi(x) = f(x) - C$，那么有$\varphi(a) = f(a) - C < 0$和$\varphi(b) = f(b) - C >0$，根据零点定理，我们可以马上得到存在$x=c$使得$\varphi(c) =f(c) - C =0$，即$f(c) = C$.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} (极值定理或者Weierstrass第二定理)} 若real-valued函数$f$在闭区间$[a,b]$连续，那们存在$c,d \in [a,b]$使得
 $$
 f(c) \leq f(x) \leq f(d),\; x \in [a,b].
 $$
 \end{theorem}
 
 \begin{proof}
-{\color{blue} (构造一个特殊连续函数说明原函数可以取到确界)}$f$在闭区间$[a,b]$上连续({\color{red} 连续闭有界})，那么马上可以得到$f$在$[a,b]$上有界. 取集合$Y = \Set{f(x)}{ x \in [a,b]}$，即$Y$有界，根据{\color{red}确界原理}$Y$有确界，那么我们下面证明思路，就是看$f(x)$是不是能取到这个确界. 取其上确界为$m$，假设不存在$d \in [a,b]$使得$f(d) = m$，那么我们考虑函数$g(x)=\frac{1}{m - f(x)}$，由于$m > f(x),\; x \in [a,b]$，所以$g(x)$在$[a,b]$上是连续的，又因为$f$在$[a,b]$是上有界的，那么$g$在其上也是有界的. 由于$m$是上确界，所以对任意的正实数$\varepsilon$，都有$m - f(x) \leq \varepsilon$，那么$g(x) \geq \frac{1}{\varepsilon}$，这说明$g(x)$是发散的，造成了矛盾. 所以$f$是可以取到上确界的.
+{\color{blue} (构造一个特殊连续函数说明原函数可以取到确界)}$f$在闭区间$[a,b]$上连续({\color{red} 连续闭有界})，那么马上可以得到$f$在$[a,b]$上有界. 取集合$Y = \Set{f(x)}{ x \in [a,b]}$，即$Y$有界，根据{\color{red}确界原理} $Y$有确界，那么我们下面证明思路，就是看$f(x)$是不是能取到这个确界. 取其上确界为$m$，假设不存在$d \in [a,b]$使得$f(d) = m$，那么我们考虑函数$g(x)=\frac{1}{m - f(x)}$，由于$m > f(x),\; x \in [a,b]$，所以$g(x)$在$[a,b]$上是连续的，又因为$f$在$[a,b]$是上有界的，那么$g$在其上也是有界的. 由于$m$是上确界，所以对任意的正实数$\varepsilon$，都有$m - f(x) \leq \varepsilon$，那么$g(x) \geq \frac{1}{\varepsilon}$，这说明$g(x)$是发散的，造成了矛盾. 所以$f$是可以取到上确界的.
 \end{proof}
+
+
 
 \begin{theorem}
 \rm {\color{red} (罗尔定理)}如果real-valued函数$f$在闭区间$[a,b]$上连续，且在开区间$(a,b)$内可导，若有$f(a) = f(b)$，那么存在至少一个$c \in (a,b)$使得
@@ -95,7 +126,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-{\color{blue} (确界处导数存在的充分必要条件)}$f$在$[a,b]$上连续，那么根据{\color{red} 极值定理}其在$[a,b]$是可以取到极值的，分两种情况讨论: (1 如果其最大值和最小值同时在$a,b$取得，那么$f$就是常函数，对任意的$x \in [a,b]$都有$f'(x) = 0$. (2 不失一般性，我们假设$f$在一点$c \in (a,b)$处$f(c)$为最大值(若是最小值，考虑$-f$即可)，我们来考虑$c$的一个邻域$(c-\varepsilon, c+\varepsilon)$两边，其中$c-\varepsilon$和$c+\varepsilon$均在$[a,b]$里面. 对任意的$h \in (c-\varepsilon, c)$都有
+{\color{blue} (确界处导数存在的充分必要条件)} 若函数$f$在$[a,b]$上连续，那么根据{\color{red} 极值定理}其在$[a,b]$是可以取到极值的，分两种情况讨论: (1 如果其最大值和最小值同时在$a,b$取得，那么$f$就是常函数，对任意的$x \in [a,b]$都有$f'(x) = 0$. (2 不失一般性，我们假设$f$在一点$c \in (a,b)$处$f(c)$为最大值(若是最小值，考虑$-f$即可)，我们来考虑$c$的一个邻域$(c-\varepsilon, c+\varepsilon)$两边，其中$c-\varepsilon$和$c+\varepsilon$均在$[a,b]$里面. 对任意的$h \in (c-\varepsilon, c)$都有
 $$
 f'(c^-) = \lim\limits_{h \rightarrow c^-}\frac{f(c)- f(h)}{c-h} \leq 0. 
 $$
@@ -357,6 +388,8 @@ $$
 
 \subsection{函数左右极限}
 
+\subsection{用数列的语言来描述函数极限}
+
 \subsection{两个重要极限}
 
 \begin{proposition}
@@ -390,11 +423,125 @@ $$
 $$
 |f(x)| \leq M ,\; |x-a| < \delta.
 $$
-{\color{blue} 注意这里和$\lim x_n = b$，而导致整个$(x_n)$有界是区别的，因为这里当$x-a < -\delta$或者$x-a > \delta$可能是有无限多个函数值的，它们是否有界是无法确定的}.
+{\color{blue} 注意这里和$\lim x_n = b$，而导致整个$(x_n)$有界是区别的，因为这里当$x-a < -\delta$或者$x-a > \delta$可能有无限多个函数值的，它们是否有界是无法确定的}.
 \end{proposition}
 
 \subsection{函数极限运算}
 
+\begin{proposition}
+\rm 若$\lim\limits_{x \rightarrow a} f(x) = A$和$\lim\limits_{x \rightarrow a} g(x) = B$，则函数
+$$
+\begin{array}{ll}
+\lim\limits_{x \rightarrow a} (f(x) \pm  g(x)) &= A \pm B,\\
+\lim\limits_{x \rightarrow a} f(x) \cdot g(x) & = A\cdot B, \\
+\lim\limits_{x \rightarrow a} \frac{f(x)}{g(x)} &= \frac{A}{B}.
+\end{array}
+$$
+\end{proposition}
+
+\subsection{不定式}
+
+\begin{annotation}
+$$
+\frac{0}{0},\; \frac{\infty}{\infty},\; 0\cdot \infty,\; \infty-\infty.
+$$
+\end{annotation}
+
+\subsection{单调函数的极限}
+
+\begin{theorem}
+\rm 若单调增大函数$f(x)$在区域$\mathcal{X}$内变动着. 区域$\mathcal{X}$以大于一切$x$值的数$a$(它可以是有限的数，或者等于$+\infty$)作为聚点，若在这时函数$f(x)$在$\mathcal{X}$上有上界
+$$
+\forall x \in \mathcal{X},\;f(x) \leq M.
+$$
+则当$x \rightarrow a$时$f(x)$有一有限极限. 
+\end{theorem}
+
+\begin{proof}
+若$f(x)$上有界，考虑$f$在$\mathcal{X}$上变动构成的集合$\{f(x)\}$，即$\{f(x)\}$是有上界的，那么根据确界原理，$\{f(x)\}$有上确界，设其为$A$，接下来我们证明$A$就是$f(x)$趋向于$a$的极限.
+
+给定任意$\varepsilon > 0$，根据上确界的性质，可以找到一个$x' < a$，使得$f(x') > A-\varepsilon$. 再由于$f(x)$是单调增的，所以当$x > x'$时，都有$f(x) > A -\varepsilon$，其上界也很容易得到$f(x) \leq A < A+\varepsilon$，所以综上当$x > x'$有
+$$
+A-\varepsilon < f(x) < A+\varepsilon.
+$$
+这里$\delta$的取值取决于$a$的取值，若$a$是一个有限的数，那么$\delta = a-x'$即可，若$a = +\infty$，则取$\Delta = x'$. 
+\end{proof}
+
+\subsection{函数收敛的判定方法}
+
+\begin{theorem}
+\rm 函数$f(x)$当$x$趋于$a$时有一有限极限的充分必要条件为，对于任意$\varepsilon > 0$必存在着$\delta > 0$，只需要满足
+$$
+|x-a| < \delta,\; |x'-a| < \delta.
+$$
+就能使得下面不等式成立
+$$
+|f(x)-f(x')| < \varepsilon.
+$$
+\end{theorem}
+
+\begin{proof}
+{\color{blue}充分性显然，必要性可以通过用数列描述函数极限的方法，配合数列中有限极限存在的充要来条件来进行证明}.
+\end{proof}
+
+\subsection{无穷小及无穷大的分阶}
+
+
+\begin{definition}
+\rm 给定两个无穷小$\alpha$和$\beta$
+\begin{enumerate}
+	\item 若$\frac{\beta}{\alpha}$有一异于零的有限极限，则称$\alpha$和$\beta$是{\color{red}同阶无穷小};
+	\item 若$\frac{\beta}{\alpha}$趋于无穷小，则称$\beta$是$\alpha$的{\color{red} 高阶无穷小}，记做$\beta = o(\alpha)$.
+	同时$\alpha$是$\beta$的低阶无穷小;
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+\rm 为了更精确地比较无穷小的性态，需要用数字来表示它们的阶，在这种情形下，我们首先在所研究的无穷小内选出一个作为一种"标准"，把它称为{\color{red}基本无穷小}.
+\end{definition}
+
+\begin{definition}
+\rm 若$\beta$与$\alpha^k$是同阶的无穷小量，则称$\beta$是基本无穷小$\alpha$的$k$阶无穷小.
+\end{definition}
+
+\begin{definition}
+\rm 给定两个无穷小$\alpha$和$\beta$，若它们的差$\gamma = \beta - \alpha$是比$\alpha$和$\beta$中任何一个更高阶的无穷小，则称$\alpha$和$\beta$为{\color{red}等价无穷小}，记做$\alpha \sim \beta$.
+\end{definition}
+
+\begin{proposition}
+\rm 给定两个无穷小$\alpha$和$\beta$，若它们是等价无穷小当且仅当$\lim \frac{\beta}{\alpha} = 1$.
+\end{proposition}
+
+\begin{proof}
+经常看见的定义实际是一个充要条件，首先证明充分性，设$\delta = \frac{\beta}{\alpha} - 1$，所以有$\lim \delta = 0$. 那么
+$$
+\gamma = \delta \alpha，
+$$
+很容易得到$\lim \frac{\gamma}{\alpha} =\lim \delta = 0$和$\lim \frac{\gamma}{\beta} = \lim \delta = 0$.
+
+若$\alpha$和$\beta$是等价无穷小，那么
+$$
+\lim \frac{\beta-\alpha}{\alpha} = \lim (\frac{\beta}{\alpha} - 1) = 0,
+$$
+所以$\lim \frac{\beta}{\alpha} = 1$.
+\end{proof}
+
+
+\begin{definition}
+\rm 若选定$\alpha$为基本无穷小，则形如$c\cdot \alpha^k$就被称为{\color{red}最简单的无穷小}，其中$c$是一个常数，而$k > 0$. 设$\beta$关于$\alpha$的$k$阶无穷小，即
+$$
+\lim \frac{\beta}{\alpha^k} = c,
+$$
+其中$c$是异于零的有限数，则
+$$
+\lim \frac{\beta}{\alpha^k} = 1,
+$$
+因此$\beta$和$c\alpha^k$为等价无穷小. 与给定无穷小$\beta$等价的最简单的无穷小$c\alpha^k$被称为$\beta$的{\color{red}主部}.
+\end{definition}
+
+\begin{annotation}
+\rm 设$\beta \sim c\alpha^k$，即$\beta = c\alpha^k + \gamma$，其中$\gamma = o(c\alpha^k)$. 可以想象，再从$\gamma$也可以分出主部$\gamma = c'\alpha^{k'} + \delta$，其中$k' > k$，而$\delta = o(c'\alpha^{k'})$，余类推. {\color{blue}是不是感觉你可以把泰勒展开式由此推出来？ 但是这种方法太低效了，但是它却能帮你更好的理解无穷小的概念}.
+\end{annotation}
 
 
 \subsection{洛必达法则}
@@ -455,5 +602,103 @@ $$
 $$
 上下极限相等可以马上得到$\lim\limits_{x \rightarrow c} \frac{f(x)}{g(x)} = \lim\limits_{x \rightarrow c} \frac{f'(x)}{g'(x)}$. 最终证毕.
 \end{proof}
+
+\newpage
+\section{函数连续及其间断}
+
+\subsection{函数连续的定义}
+
+\begin{annotation}
+\rm {\color{red} (motivation)} 在研究$x$趋向于$x_0$的极限时候，即$\lim\limits_{x \rightarrow x_0} f(x)$，并不要求$x$可以取到$x_0$，即使$f(x_0)$有定义，极限也不依赖它. 自然地，现在我们特别地考虑若$f(x_0)$有定义，且$\lim\limits_{x \rightarrow }f(x_0)$，这种情形下我们就说$f$在$x_0$处{\color{red}连续}，其他情况下则说$f$在$x_0$这里有{\color{red}间断}.
+\end{annotation}
+
+%严格定义
+
+\subsection{连续函数的算术运算}
+
+\begin{theorem}
+\rm 若函数$f(x)$和$g(x)$都在区间$\mathcal{X}$上变动着，且都在点$x_0$处连续，则函数
+$$
+f(x) \pm g(x),\; f(x)\cdots g(x), \; \frac{f(x)}{g(x)}~(g(x_0) \neq 0)
+$$
+也在都$x_0$处连续.
+\end{theorem}
+
+\begin{proof}
+{\color{blue}与相关函数的极限联系起来即可}.
+\end{proof}
+
+\subsection{单侧连续和间断分类}
+
+\begin{definition}
+\rm {\color{red} (单侧极限) }若$f(x)$在$x_0$处是左(右)连续，只需要满足下面关系式
+$$
+\begin{array}{ll}
+f(x_0^-) = \lim\limits_{x \rightarrow x_0^-} = f(x_0). \\
+\left[ f(x_0^+) = \lim\limits_{x \rightarrow x_0^+} = f(x_0) \right]
+\end{array}
+$$
+{\color{blue}用自然语言说就是求极限过程中，我们既可以从左边接近$x_0$，也可以从右边接近$x_0$，于是就有了单侧极限的概念}.
+\end{definition}
+
+\begin{theorem}
+\rm {\color{red} (连续的充要条件)} 函数$f(x_0)$在点$x_0$处连续当且仅当其左极限和右极限都存在且相等.
+\end{theorem}
+
+\begin{definition}
+\rm 函数$f(x)$可能在$x_0$处存在两类间断点
+\begin{enumerate}
+	\item $x_0$处单侧极限存在但是不等于$f(x_0)$，则$f(x)$在$x_0$处有间断点，称其为{\color{red}普通间断点}或者{\color{red}第一类间断点}，通常说在$f(x)$在$x_0$处有{\color{red}跃度}.
+	\item $x_0$处单侧极限是无穷或者根本不存在，则$f(x)$在$x_0$处有间断点，称其为{\color{red} 第二类间断点}.
+\end{enumerate}
+\end{definition}
+
+\subsection{单调函数的连续性和间断}
+
+\begin{theorem}
+\rm {\color{red} (单调函数上的间断点)} 若单调函数$f(x)$在区间$\mathcal{X}$内有间断点，那么只能是第一类间断点.
+\end{theorem}
+
+\begin{proof}
+若$f(x)$是单调增的，且在$x_0$处有间断点，那么考虑其左极限，当$x < x_0$时，都有$f(x) < f(x_0)$，即$f(x)$在趋近于$x_0$过程中是有界，那么根据单调函数有界则必有有限极限的定理，则有
+$$
+\lim\limits_{x \rightarrow x^-} f(x) \leq f(x_0).
+$$
+若可以取到等号，则$f(x)$在$x_0$处左连续，反之$f(x)$在$x_0$处有跃度，所以是第一类间断点. 同理也可以考虑右极限.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} (单调函数连续性判别)} 若在区间$\mathcal{X}$上的单调函数$f(x)$的函数值都含于区间$\mathcal{Y}$，且把整个$\mathcal{Y}$都填满了，即$\forall y \in \mathcal{Y}$，都存在一个$x \in \mathcal{X}$使得$f(x) = y$，则$f(x)$在$\mathcal{X}$上连续.
+\end{theorem}
+
+\begin{proof}
+若$f(x)$为单调增的，假设$f(x)$在$\mathcal{X}$在$x_0$处有间断点，即$\lim\limits_{x \rightarrow x_0 ^-} f(x) < f(x_0)$，那么$f(x_0^-)$和$f(x_0)$之间的值，$f(x)$是无法取到的，这和命题是矛盾的，所以$f(x)$在$\mathcal{X}$上连续.
+\end{proof}
+
+\subsection{初等函数的连续性}
+
+\subsection{连续函数的复合}
+
+\begin{theorem}
+若函数$\varphi(y)$定义在区间$\mathcal{Y}$上，而函数$f(x)$定义于区间$\mathcal{X}$上，且其对应的函数值含于$\mathcal{Y}$. 若$f(x)$在$\mathcal{X}$中的一点$x_0$连续，又$\varphi(y)$在$y_0 = f(x_0)$这一点也是连续的，则复合函数$\varphi(f(x))$在点$x_0$处亦是连续的.
+\end{theorem}
+
+\subsection{一致性连续}
+
+
+\newpage
+\section{函数导数}
+
+\subsection{导数定义}
+
+\begin{definition}
+\rm 设函数$y=f(x)$在点$x_0$的某个邻域内有定义，当自变量$x$在$x_0$处取得增量$\Delta x$时，相应地，因变量取得增量$\Delta y = f(x_0 + \Delta x) - f(x_0)$. 如果$\frac{\Delta y}{\Delta x}$当$\Delta x$趋近于$0$时极限存在，那么称函数$y = f(x)$在$x_0$处可导，并称这个极限为函数$y=f(x)$在点$x_0$处的导数，记做$f'(x_0)$，即
+$$
+f'(x_0) = \lim\limits_{\Delta x \rightarrow 0} \frac{\Delta y}{\Delta x} = \lim\limits_{\Delta x \rightarrow 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}.
+$$
+\end{definition}
+
+\newpage
+\section{函数微分}
 
 \end{document}
