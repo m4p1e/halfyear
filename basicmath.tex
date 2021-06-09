@@ -116,6 +116,18 @@ $$
 {\color{blue} (构造一个特殊连续函数说明原函数可以取到确界)}$f$在闭区间$[a,b]$上连续({\color{red} 连续闭有界})，那么马上可以得到$f$在$[a,b]$上有界. 取集合$Y = \Set{f(x)}{ x \in [a,b]}$，即$Y$有界，根据{\color{red}确界原理} $Y$有确界，那么我们下面证明思路，就是看$f(x)$是不是能取到这个确界. 取其上确界为$m$，假设不存在$d \in [a,b]$使得$f(d) = m$，那么我们考虑函数$g(x)=\frac{1}{m - f(x)}$，由于$m > f(x),\; x \in [a,b]$，所以$g(x)$在$[a,b]$上是连续的，又因为$f$在$[a,b]$是上有界的，那么$g$在其上也是有界的. 由于$m$是上确界，所以对任意的正实数$\varepsilon$，都有$m - f(x) \leq \varepsilon$，那么$g(x) \geq \frac{1}{\varepsilon}$，这说明$g(x)$是发散的，造成了矛盾. 所以$f$是可以取到上确界的.
 \end{proof}
 
+\begin{lemma}
+\rm 设real-valued函数$f(x)$在点$x_0$处有有限导数$f'(x_0)$. 若$f'(x) > 0$，则当$x$取右方充分接近$x_0$的数时就有$f(x) > f(x_0)$，而当$x$取左方充分接近于$x_0$的数值时就有$f(x) < f(x_0)$.
+\end{lemma}
+
+\begin{theorem}
+\rm {\color{red} 费马定理}
+\end{theorem}
+
+\begin{theorem}
+\rm {\color{red} 达布定理}
+\end{theorem}
+
 
 
 \begin{theorem}
@@ -139,7 +151,7 @@ $$
 
 
 \begin{theorem}
-\rm {\color{red} (中值定理)} 若real-valued函数$f$在闭区间$[a,b]$($a < b$)上连续，且在$(a,b)$上可导，那么存在一个实数$c \in (a,b)$使得
+\rm {\color{red} (拉格朗日中值定理)} 若real-valued函数$f$在闭区间$[a,b]$($a < b$)上连续，且在$(a,b)$上可导，那么存在一个实数$c \in (a,b)$使得
 $$
 f'(c) = \frac{f(b) - f(a)}{b-a}
 $$ 
@@ -698,7 +710,230 @@ f'(x_0) = \lim\limits_{\Delta x \rightarrow 0} \frac{\Delta y}{\Delta x} = \lim\
 $$
 \end{definition}
 
+\begin{definition}
+\rm {\color{red} 导数的记法}
+\begin{enumerate}
+	\item $\frac{dy}{dx}$或$\frac{df(x_0)}{dx}$ 莱布尼茨(G.W.Leibniz);
+	\item $y'$或者$f'(x_0)$ 拉格朗日(J.L.Lagrange);
+	\item $Dy$或者$Df(x_0)$ 柯西(A.L.Cauchy).
+\end{enumerate}
+\end{definition}
+
+\subsection{初等函数导数表}
+
+
+\subsection{函数增量公式}
+
+\begin{definition}
+\rm 若函数$y=f(x)$在$x_0$处有导数$y_x'=f'(x_0)$，则函数的增量可以表示为如下形式
+$$
+\Delta f(x_0) = f'(x_0) \cdot \Delta x + \alpha \cdot \Delta x,
+$$
+其中$\Delta x \lessgtr 0$，且$x_0 + \Delta x \in \mathcal{X}$. 或者更简短地
+$$
+\Delta y = y_x'\cdot \Delta x + \alpha \cdot \Delta x.
+$$
+式中$\alpha$是依赖于$\Delta x$的量，且随着$\Delta x$一同趋于0，因为由导数定义，在$\Delta \rightarrow 0$时有
+$$
+\frac{\Delta y}{\Delta x} \rightarrow y_x'
+$$
+故令
+$$
+\alpha =  \frac{\Delta y}{\Delta x} - y_x'
+$$
+自然地$\alpha \Delta x$是比$\Delta x$更高阶无穷小，上式也可以写作
+$$
+\Delta y = y_x' \cdot \Delta x + o(\Delta x).
+$$
+\end{definition}
+
+\subsection{导数的基本性质}
+
+\begin{proposition}
+\rm {\color{red} (可导必连续)} 若函数$y = f(x)$在点$x_0$处可导，则函数在这点必是连续的.
+\end{proposition}
+
+\begin{proof}
+由导数的定义，当$\Delta x \rightarrow 0$，有$(f(x_0 + \Delta x) - f(x_0)) \rightarrow 0$，即给定$\varepsilon > 0$， 可以找到$|\Delta x| = |\Delta x + x_0-x_0| < \delta$，使得$|f(x_0 + \Delta x) - f(x_0)| < \varepsilon$，把$\Delta x+ x_0$用$x$替换，即得到极限的定义.
+\end{proof}
+
+\subsection{求导法则}
+
+\begin{proposition}
+\rm 若函数$u=\varphi(x)$和$v=\psi(x)$都在点$x$处有导数，那么它们的和，差，积，商(除分母为$0$的点之外)都在$x$处有导数，即
+\begin{enumerate}
+	\item 给定常数$c$，那么函数$y = cu$的导数为 
+	$$
+	y' = (c\cdot u)' = c \cdot u.'
+	$$
+	\item 函数$y = u \pm v$的导数为
+	$$
+	y' = (u \pm v)' = u' \pm v'.
+	$$
+	\item 函数$y = u \cdot v$的导数为
+	$$
+	y' = (u \cdot v)' = u'v + v'u.
+	$$
+	\item 函数$y = \frac{u}{v}$的导数为
+	$$
+	y' = (\frac{u}{v})' = \frac{u'v - uv'}{v^2}.
+	$$
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+{\color{red}(1)}
+$$
+\lim\limits_{\Delta x \rightarrow 0} \frac{\Delta y}{\Delta x} = c \cdot \lim\limits_{\Delta x \rightarrow 0} \frac{\Delta u}{\Delta x} = cu'.
+$$
+
+{\color{red}(2)}
+$$
+\lim\limits_{\Delta x \rightarrow 0} \frac{\Delta y}{\Delta x} = \lim\limits_{\Delta x \rightarrow 0} \frac{(u+\Delta u \pm v+\Delta v)-(u+v)}{\Delta x} = \lim\limits_{\Delta x \rightarrow 0} \frac{\Delta u}{\Delta x} \pm \lim\limits_{\Delta x \rightarrow 0} \frac{\Delta v}{\Delta x} = u'+v'.
+$$
+
+{\color{red}(3)}
+$$
+\lim\limits_{\Delta x \rightarrow 0} \frac{\Delta y}{\Delta x} = \lim\limits_{\Delta x \rightarrow 0} \frac{(u+\Delta u)(v+\Delta v)-uv}{\Delta x} = \lim\limits_{\Delta x \rightarrow 0} \frac{\Delta u}{\Delta x}v + u\frac{\Delta v}{\Delta x} + o(\Delta) = u'v + uv'.
+$$
+
+{\color{red}(4)}
+$$
+\lim\limits_{\Delta x \rightarrow 0} \frac{\Delta y}{\Delta x} = \lim\limits_{\Delta x \rightarrow 0} \frac{(\frac{u+\Delta u}{v+\Delta v} - \frac{u}{v})}{\Delta x} = \lim\limits_{\Delta x \rightarrow 0} \frac{\frac{v\Delta u-u\Delta u}{v(v+\Delta v)}}{\Delta x} = \lim\limits_{\Delta x \rightarrow 0} \frac{v\cdot \frac{\Delta u}{\Delta x}- u \cdot \frac{\Delta v}{\Delta x}}{v(v+\Delta v)} = \frac{u'v + uv'}{v^2}.
+$$
+\end{proof}
+
+\begin{proposition}
+\rm {\color{red} $n$个函数相乘求导推广} 若$y = uvw\cdots st$，那么其导数为
+$$
+y' = u'vw\cdots st + uv'w\cdots st + \cdots uvw\cdots s't + uvw\cdots s t'.
+$$
+\end{proposition}
+
+\subsection{复合函数求导}
+
+\begin{definition}
+\rm 设函数$u=\varphi(x)$在某一点$x_0$处有导数$u_x' = \varphi'(x_0)$. 函数$y=f(u)$在对应点$u_0 = \varphi(x_0)$处也有导数$y_x' = f'(u_0)$. 那么复合函数$f(\varphi(x))$在$x_0$处也有导数，它等于
+$$
+\left[ f(\varphi(x_0))\right]' =  f'(\varphi(x_0)) \cdot \varphi'(x_0).
+$$
+或者更简短地
+$$
+y_x' = y_u' \cdot u_x'
+$$
+\end{definition}
+
+\begin{proof}
+若给定点$x_0$一任意增量$\Delta x$，设$\Delta u$是$\Delta x$引起函数$u=\varphi(x)$的增量，设$\Delta y$又是由$\Delta u$引起函数$y=f(u)$的增量，那么$\Delta y$可以用增量公式来表示
+$$
+\Delta y = y_u' \Delta u + \alpha \cdot \Delta u,
+$$
+其中$\alpha$依赖于$\Delta u$的取值并与它一同趋向于$0$. 再用$\Delta x$除以等式两边得到
+$$
+\frac{\Delta y}{\Delta x} = y_u'\frac{\Delta u}{\Delta x} + \alpha \cdot \frac{\Delta u}{\Delta x}.
+$$
+若$\Delta x \rightarrow 0$，则$\Delta u$同样也趋向于$0$，由于$\alpha$随着$\Delta u$也趋向于$0$, 因此上述等式的极限存在，即
+$$
+\lim\limits_{\Delta x \rightarrow 0} \frac{\Delta y}{\Delta x} = y_u' u_x'
+$$
+\end{proof}
+
 \newpage
 \section{函数微分}
+
+\subsection{微分定义}
+\begin{definition}
+\rm 设函数$y=f(x)$在某一区间$\mathcal{X}$上定义，并且在$x_0$处是连续的，于是对应于变元的增量$\Delta x$，函数的增量为
+$$
+\Delta y = \Delta f(x_0) = f(x_0 + \Delta x) - f(x_0).
+$$
+若{\color{red}存在着一个关于$\Delta x$为线性的无穷小$A \cdot \Delta x$($A$是一个常数)，使得它与$\Delta y$的差是较$\Delta x$更高阶的无穷小}，{\color{blue}言下之意就是$\Delta y$和$A \cdot \Delta x$是等价无穷小}，即
+$$
+\Delta y = A \cdot \Delta x + o(\Delta x).
+$$
+则称函数$f(x)$在点$x_0$ {\color{red}可微}，表达式$A \cdot \Delta x$称为函数$f(x)$的{\color{red}微分}，用记号$dy$或者$df(x_0)$表示.
+\end{definition}
+
+
+\subsection{可微和可导的关系}
+
+\begin{proposition}
+\rm 函数$y=f(x)$在点$x_0$可微的充分必要条件是函数$y=f(x)$在点$x_0$可导，且有
+$$
+dy = y_x' \cdot \Delta x.
+$$
+若按照微分的定义，来讨论自变量$x$本身，称它的微分就是增量$\Delta$，即约定
+$$
+dx = \Delta x.
+$$
+于是前式可以写作
+$$
+dy = y_x' \cdot dx.
+$$
+由此可得
+$$
+y_x' = \frac{dy}{dx}.
+$$
+\end{proposition}
+
+\begin{proof}
+{\color{blue}从两者的定义里面很容易看出是等价的，实际上上面函数微分表示式中的$A$就是$f(x)$在其这一点的导数}.
+\end{proof}
+
+
+
+\subsection{初等函数微分公式}
+
+
+\subsection{微分运算法则}
+
+\begin{proposition}
+\rm 基本{\color{red}微分运算法则}如下
+\begin{enumerate}
+	\item $d(cu) = c\cdot du,$
+	\item $d(u\pm v)= du \pm dv,$
+	\item $d(uv) = u\cdot dv + v\cdot du,$
+	\item $d(\frac{u}{v}) = \frac{v\cdot du - u \cdot dv}{v^2}.$
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+{\color{blue}根据对应的导数运算法则可以很快的推导}.
+\end{proof}
+
+\subsection{微分不变性}
+
+\begin{definition}
+\rm 给定两个函数$y = f(x)$和$x = \varphi(t)$，可以它们组成复合函数$y = f(\varepsilon(t))$. 若导数$y_x'$和$x_t'$存在，则复合函数亦存在着导数
+$$
+y_t' = y_x' \cdot x_t'
+$$
+若把$x$当做自变量，则微分$dy = y_x'dx$. 现在改用$t$当做自变量，那么微分另一表达式如下
+$$
+dy = {\color{red}y_t' \cdot dt} = y_x' \cdot x_t' \cdot dt = {\color{red}y_x' \cdot dx}
+$$
+又回到原来的微分形式. 这种微分形式即使在原来的自变量换成新的自变量以后仍可以保持着的性质称为{\color{red}微分形式不变性}. 要注意的是上面式子中$dx$并不是表示$\Delta x$，而是$x=\varphi(t)$的微分.
+\end{definition}
+
+\begin{example}
+\rm 当$y$对于$x$的关系不是直接给定，而是由$x$及$y$两者对于第三方辅助变量(参变量)的关系所给定时
+$$
+x = \varphi(t), \; y=\psi(t).
+$$
+现在要来求$y_x'$，假定这两函数都有导数，而且$x=\varphi(t)$又存在反函数$t = \theta(x)$，那么$y$关于$x$的函数可以写作
+$$
+y = \psi(\theta(x)).
+$$
+它也有导数存在. 我们可以不必重新建立上面这个关系来求$y_x'$，可以通过下面方法来完成
+$$
+y_x' = \frac{dy}{dx} = \frac{y_t' \cdot dt}{x_t' \cdot dt} = \frac{y_t'}{x_t'} = \frac{\varphi'(t)
+}{\psi'(t)}. 
+$$
+\end{example}
+
+\subsection{近似计算}
+
+
+\subsection{微分基本定理}
 
 \end{document}
