@@ -117,18 +117,34 @@ $$
 \end{proof}
 
 \begin{lemma}
-\rm 设real-valued函数$f(x)$在点$x_0$处有有限导数$f'(x_0)$. 若$f'(x) > 0$，则当$x$取右方充分接近$x_0$的数时就有$f(x) > f(x_0)$，而当$x$取左方充分接近于$x_0$的数值时就有$f(x) < f(x_0)$.
+\rm {\color{red} (方便证明费马定理的小引理)} 设real-valued函数$f(x)$在点$x_0$处有有限导数$f'(x_0)$. 若$f'(x_0) > 0\left[ f'(x_0) < 0\right]$，则当$x$取右方充分接近$x_0$的数时就有$f(x) > f(x_0)\left[ f(x) < f(x_0)\right]$，而当$x$取左方充分接近于$x_0$的数值时就有$f(x) < f(x_0)\left[ f(x) > f(x_0)\right]$.
 \end{lemma}
 
-\begin{theorem}
-\rm {\color{red} 费马定理}
-\end{theorem}
+\begin{proof}
+{\color{blue}这里就需要考虑单侧导数}，若$f(x_0) > 0$，依据导数的定义
+$$
+\frac{f(x) - f(x_0)}{x - x_0},
+$$
+若$x$从左边接近$x_0$，那么有$x-x_0  < 0$，那么必然有$f(x)-f(x_0) < 0$ ($x$充分接近$x_0$). 同理$x$从右边接近$x_0$，那么$x- x_0 > 0$，必然也有$f(x)-f(x_0) > 0$ ($x$充分接近$x_0$).
+\end{proof}
 
 \begin{theorem}
-\rm {\color{red} 达布定理}
+\rm {\color{red} (费马定理)} 设real-valued函数是在某一区间$\mathcal{X}$上定义着，并且在这区间的内点$c$ (存在一个$\mathcal{X}$的子开区间包含$c$) 取得最大(最小值). 若在这点处存在着有限导数$f'(c)$，则必有$f'(c) = 0$.
 \end{theorem}
 
+\begin{proof}
+方便证明，假设$f(x)$在$c$点取得最大值. 分情况考虑，若$f'(c) > 0$，那么在其$c$左边充分接近$c$的函数值$f(x) > f(c)$，这其最大值的含义矛盾. 同理若$f'(c) < 0$，那么在其$c$的右边充分接近$c$的函数值$f(x) > f(c)$，也是和其最大值矛盾的. 故$f'(c) = 0$.
+\end{proof}
 
+\begin{theorem}
+\rm {\color{red} (达布定理)} 若real-valued函数$f(x)$在闭区间$[a,b]$内有有限导数，则$f'(x)$必至少有一次取得介于$f'(a)$及$f'(b)$之间的值.
+\end{theorem}
+
+\begin{proof}
+{\color{blue} 第一想法肯定是特别想用连续函数的介值定理，但是用不了，这里并没有条件说明$f'(x)$是连续的}，特别地{\color{red}可导不一定代表其导函数连续}，i.e. $x^2 \sin\frac{1}{x}$ . 首先证明若$f'(a)$和$f'(b)$异号时，必有$c \in (a,b)$使得$f'(c)=0$，方便证明不是一般性设$f'(a) < 0$和$f'(b) > 0$，$f(x)$可导即连续，根据{\color{red}极值定理}，存在一点$c$使得$f(c)$为最大值，根据前面的{\color{red}费马定理}，这个最大值必不可能在$a$或者$b$点取到，因此$c \in (a,b)$且$f'(c)=0$.
+
+再来考虑一般情况，取位于$f'(a)$和$f'(b)$之间任意的$C$，方便证明设$f'(a) < C < f'(b)$. 考虑函数$\varphi(x) = f(x) - Cx$，它的导数为$\varphi'(x) = f'(x) - C$，特别地有$\varphi'(a) < 0$和$\varphi'(b) > 0$，即回到了我们刚开始考虑的情况，所以存在一点$c \in (a,b)$使得$\varphi'(c) = f'(c) - C =0$.
+\end{proof}
 
 \begin{theorem}
 \rm {\color{red} (罗尔定理)}如果real-valued函数$f$在闭区间$[a,b]$上连续，且在开区间$(a,b)$内可导，若有$f(a) = f(b)$，那么存在至少一个$c \in (a,b)$使得
@@ -862,7 +878,7 @@ $$
 $$
 dy = y_x' \cdot \Delta x.
 $$
-若按照微分的定义，来讨论自变量$x$本身，称它的微分就是增量$\Delta$，即约定
+若按照微分的定义，来讨论自变量$x$本身，称它的微分就是增量$\Delta x$，即约定
 $$
 dx = \Delta x.
 $$
@@ -936,4 +952,83 @@ $$
 
 \subsection{微分基本定理}
 
+\begin{annotation}
+\rm 均在经典证明中
+\begin{enumerate}
+	\item 费马定理
+	\item 达布定理
+	\item 拉格朗日中值定理
+	\item 柯西中值定理
+\end{enumerate}
+\end{annotation}
+
+\newpage
+\section{高阶导数及微分}
+
+\subsection{高阶导数定义}
+\begin{definition}
+\rm 函数$f(x)$的{\color{red}二阶导数}记为
+$$
+\frac{d^2y}{dx^2}~\text{或}~ y^{''}
+$$
+推广至$n$阶导数，记为
+$$
+\frac{d^ny}{dx^n}~\text{或}~ y^{(n)}
+$$
+\end{definition}
+
+\subsection{初等函数的$n$阶导数公式}
+
+\subsection{莱布尼茨公式}
+
+\begin{proposition}
+\rm 给定两个关于$x$的函数$u,v$，均在其定义域上有$n$阶导数，那么它们乘积$y=uv$的$n$阶导数公式为
+$$
+y^{(n)} =(uv)^{(n)} = \sum\limits_{i=0}^n C^i_n u^{(n-i)}v^{(i)}.
+$$
+\end{proposition}
+
+\begin{proof}
+采用数学归纳法，考虑$n+1$阶导数的情况
+$$
+\begin{array}{ll}
+y^{(n+1)} &= \sum\limits_{i=0}^n C^i_n \left[u^{(n-i)}v^{(i)}\right]' \\
+	&= \sum\limits_{i=0}^n C^i_n u^{(n-i+1)}v^{(i)} + \sum\limits_{i=0}^n C^i_n u^{(n-i)}v^{(i+1)}.
+\end{array} 
+$$
+考虑两个和式中相同未知数的项，设第一个和式中某一项$C^k_n u^{(n-k+1)}v^{k}$，那么对应第二个和式中的项就是
+$$
+C^{k-1}_n u^{(n-(k-1))}v^{((k-1)+1)}.
+$$
+二者的系数相加
+$$
+C^k_n + C^{k-1}_n = C^k_{n+1}.
+$$
+注意这里需要$k\geq 1$，因此二者还各自存在两个独立的项$u^{(n+1)}v$和$uv^{(n+1)}$，那么上述整体和式可以写作
+$$
+\begin{array}{ll}
+y^{(n+1)} &= u^{(n+1)}v + \sum\limits_{i=i}^{n} C^i_{n+1} u^{(n-i)}v^{(i)} + uv^{(n+1)} \\
+& = \sum\limits_{i=0}^{n+1} C^i_{n+1} u^{(n-i)}v^{(i)}.
+\end{array}
+$$
+\end{proof}
+
+\subsection{高阶微分定义}
+
+\begin{definition}
+\rm 函数$f(x)$的二阶微分记为
+$$
+d^2y = d(dy).
+$$
+推广至$n$阶微分，记为
+$$
+d^ny = d(d^{n-1}y).
+$$
+\end{definition}
+
+\subsection{参变量微分法}
+
+\subsection{泰勒公式}
+
+\subsection{插值法}
 \end{document}
