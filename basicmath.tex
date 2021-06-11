@@ -9,6 +9,16 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\usepackage{hyperref} %url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
 \usepackage{enumitem}
 
 \usepackage[textwidth=18cm]{geometry} % 设置页宽=18
@@ -1030,5 +1040,171 @@ $$
 
 \subsection{泰勒公式}
 
+\begin{annotation}
+\rm 几种泰勒公式的推导思路
+\begin{enumerate}
+	\item 积分推导泰勒公式 \\
+	\url{https://math.stackexchange.com/questions/481661/simplest-proof-of-taylors-theorem} 
+	\item 部分积分推导泰勒公式 \\ 
+	\url{https://proofwiki.org/wiki/Taylor's_Theorem/One_Variable}
+	\item 洛必达推导泰勒公式 \\
+	\url{https://zhuanlan.zhihu.com/p/88855321}
+\end{enumerate} 
+\end{annotation}
+%https://math.stackexchange.com/questions/481661/simplest-proof-of-taylors-theorem 积分推导泰勒公式
+%https://proofwiki.org/wiki/Taylor's_Theorem/One_Variable 部分积分推导泰勒公式
+%https://zhuanlan.zhihu.com/p/88855321 洛必达推导泰勒公式
+
+\begin{theorem}
+\rm 若函数$f(x)$在某$x_0$的邻域定义着，$f(x)$在此邻域上有直至$(n-1)$的各阶导数，并且特别地在点$x_0$上有$n$阶导数，则对于该邻域内的任一$x$，有
+$$
+f(x) = f(x_0) + f'(x_0)(x-x_0) + \frac{f^{''}(x_0)}{2!}(x-x_0)^2 + \cdots + \frac{f^{(n)}}{n!}(x-x_0)^n + R_n(x),
+$$
+其中$R_n = o((x-x_0)^n)$. 上述等式称为{\color{red}带佩亚诺余项的泰勒公式}.
+\end{theorem}
+
+\begin{proof}
+把$f(x_0) + f'(x_0)(x-x_0) + \frac{f^{''}(x_0)}{2!}(x-x_0)^2 + \cdots + \frac{f^{(n)}}{n!}(x-x_0)^n$记为$p_n$，所以$R_n = f(x) - p(x)$. 注意到$f(x)$在$p(x)$在$x_0$处，它们两个的函数值和各阶导数直到$n$都是相等. 我们需要证明的是当$f(x)$被展开成上述多项式形式之后余项$R_n$是比$(x-x_0)^n$($x \rightarrow x_0$)还高阶的无穷小，也就是来探究这个这个余项的形式. 
+
+对$R_n(x) = f(x) - p(x)$两边都取$n$次导数之后，很快可以得到
+$$
+R_n(x_0) = R_n'(x_0) = \cdots = R_n^{(n)}(x_0) = 0.
+$$
+接下来的证明手法有两种，{\color{red}第一种是高数书上的对$\lim\limits_{x \rightarrow x_0} \frac{R_n}{(x-x_0)^n}$使用$n-1$次洛必达}；{\color{blue}第二种用数学归纳法}. 这里使用我选择用数学归纳法来证明，当$n=1$时，即满足
+$$
+R_n(x_0) = R_n'(x) = 0
+$$
+由于
+$$
+\lim\limits_{x \rightarrow x_0} \frac{R_n(x)}{x-x_0}= \frac{R_n(x) - R_n(x_0)}{x-x_0} = R_n'(x_0) = 0
+$$
+所以$R_n(x) = o((x-x_0))$. 假设$n=k,\; k =1,2,3,\cdots$时成立，那么考虑$n=k+1$时，满足条件
+$$
+R_{n+1}(x_0) = R_{n+1}'(x_0) = \cdots = R_{n+1}^{(n)}(x_0) = R_{n+1}^{(n+1)}(x_0)  = 0.
+$$
+按照假设有$R_{n+1}'(x) = o((x-x_0)^n)$，根据拉格朗日中值定理，$x$和$x_0$之间存在一点$c$使得
+$$
+R_{n+1}(x) = R_{n+1}(x) - R_{n+1}(x_0) =R_{n+1}'(c)(x-x_0). 
+$$
+因为$|x-c| < |x-x_0|$，所以有
+$$
+R_{n+1}'(c) = o((x-c)^n) = o((x-x_0)^n),
+$$
+由此$R_{n+1}(x) = o((x-x_0)^{n+1})$. 主要这里为什么可以用拉格朗日中值，因为我们特别说明$f(x)$在某个邻域上是可导的.
+\end{proof}
+
+\begin{proposition}
+\rm {\color{red} (泰勒展开的唯一性)} 函数$f(x)$的泰勒展开式唯一.
+\end{proposition}
+
+\begin{proof}
+设$f(x)$的泰勒展开为
+$$
+f(x) = A_0 + A_1(x-x_0) + \cdots + A_n(x-x_0)^n + R_n(x).
+$$
+若还存在另外一个多项式
+$$
+f(x) = A_0' + A_1'(x-x_0) + \cdots + A_n'(x-x_0)^n + R_n(x).
+$$
+那么必有$A_0 = A_0',\; A_1 = A_1',\;\cdots \; A_n = A_n'$. 这是因为，分别比较未知数指数相同的项，首先可以马上得到$A_0 = A_0'$，约去这两项之后，再求导. 接着又可以类似的得到$A_1 = A_1'$，余类推，因此系数都相同.
+\end{proof}
+
+\begin{definition}
+\rm 取$x_0 = 0$时，函数$f(x)$的带佩亚诺余项的泰勒公式被称为{\color{red}麦克劳林}公式，即
+$$
+f(x) = f(0)+\frac{f'(0)}{1!}x + \frac{f^{''}(0)}{2!}x^2 + \cdots + \frac{f^{(n)}}{n!}x^n + o(x^n).
+$$
+\end{definition}
+
+\begin{proposition}
+\rm {\color{red}各初等函数在$x_0 = 0$处的泰勒公式}
+\begin{enumerate}
+	\item 若$f(x) = e^x$，则$f^{(k)} = e^x(k=1,2,3,\cdots)$
+	$$
+	e^x = 1 + x + \frac{1}{2}x^2 + \cdots + \frac{1}{n!}x^n + o(x^n). 
+	$$
+	\item 若$f(x) = \sin x$，则$f^{(k)} = \sin (x+ k\cdot \frac{\pi}{2})$，令$n=2m, m = 1,2,3,\cdots$
+	$$
+	\sin x = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 + \cdots + (-1)^{m-1}\frac{1}{(2m-1)!}x^{2m-1}+o(x^{2m}).
+	$$
+	\item 若$f(x) = \cos x$，则$f^{(k)} = \cos (x+k\cdot \frac{\pi}{2})$，令$n=2m+1,\; m = 1,2,3\cdots$
+	$$
+	\cos x = 1 - \frac{1}{2!}x^2 + \frac{1}{4!}x^4 + \cdots + (-1)^{m} \frac{1}{(2m!)}x^{2m} + o(x^{2m+1}).
+	$$
+	\item 若$f(x)=x^m$，其中$m$为任意非零实数，这里需要先考虑一些小细节，当$x \rightarrow 0$，$x^m$或者其$n$阶导数($n > m$)可能趋于无穷大，此处取$x_0$做泰勒展开出来的结果可能没有意义. 所以应该取$x_0 = 1$，即用$(x-x_0)$来展开$x^m$，这就相对于我们在$x_0 = 0$时，用$x$展开$(1+x)^m$. 因此这里我们略微调整一下来展开$f(x) = (1+x)^m$
+	$$
+	(1+x)^m = 1 + mx + \frac{m(m-1)}{2!}x^2 \cdots \frac{m(m-1)\cdots(m-n+1)}{n!}x^n + o(x^{n+1}).
+	$$
+	\item 若$f(x) = \ln x$，它在$x \rightarrow 0$时其函数值趋于无穷大，所以仿照前面，只考虑$f(x) = \ln (1+x)$，则$f^{(k)} = \frac{(-1)^{k-1}(k-1)!}{(1+x)^k}$
+	$$
+	\ln (1+x) = x - \frac{1}{2} x^2 + \frac{1}{3}x^3 +\cdots + (-1)^{n-1}\frac{1}{n}x^n + o(x^{n}).
+	$$
+	\item 反三角函数 ...
+\end{enumerate}
+\end{proposition}
+
+
+\begin{theorem}
+\rm 设函数$f(x)$在区间$[x_0, x_0 + H]$上定义着，且$f(x)$在$(x_0,H_0)$上均存在$(n+1)$阶有限的导数，则对于任意$x \in [x_0,x_0+H]$均有
+$$
+f(x) = f(x_0) + f'(x_0)(x-x_0) + \frac{f^{''}(x_0)}{2!}(x-x_0)^2 + \cdots + \frac{f^{(n)}}{n!}(x-x_0)^n + R_n(x),
+$$
+其中$R_n = \frac{\psi(x) -\psi(x_0)}{\psi'(c)}\cdot \frac{f^{(n+1)}(c)}{n!}(x-c)^n$，$\psi(x)$是定义在$=[x_0,x]$上连续的函数且在$(x_0,x)$上都存在不为零的有限导数，而$x_0 < c < x$. 
+
+当$\psi(z)$取定$(x-z)^p$时，有
+$$
+r_n = \frac{f^{n+1}(c)}{n!p}(x-c)^{n+1-p}(x-x_0)^p.
+$$
+该表达式称为{\color{red}施勒米尔希(Schlomilch-Roche)余式}. 若令上式$p=n+1$，就可以得到{\color{red}拉格朗日余项}.
+$$
+r_n(x) = \frac{f^{n+1}(c)}{(n+1)!}(x-x_0)^{n+1}.
+$$
+\end{theorem}
+
+\begin{proof}
+$$
+R_n(x) = f(x) - f(x_0) + f'(x_0)(x-x_0) + \frac{f^{''}(x_0)}{2!}(x-x_0)^2 + \cdots + \frac{f^{(n)}}{n!}(x-x_0)^n.
+$$
+实际上$R_n(x)$也可以写作$R_n(x,x_0)$，这个定理的动机就是为了推导具体的余项，使得我们根据展开式计算某个函数值$f(x)$时，可以知道我们结果误差的程度，当前我们粗略的认为误差的程度与$x$和$x_0$的取定有所关系. 
+
+不想推了，去看菲砖上构造证明，没怎么弄懂...
+\end{proof}
+
 \subsection{插值法}
+
+\begin{definition}
+\rm 设定义在$[a,b]$上的某函数$f(x)$，若给定$x_0,x_1,\cdots,x_m$处的$m+1$个函数值. 若存在某个近似函数$L(x)$，使得$L(x_i) = f(x_i)$，这个表达式叫做{\color{red}插值公式}. 特别地若
+$$
+L(x) = \sum\limits_{k=0}^m f(x_k)l_k(x).
+$$
+其中$l_k = \frac{(x-x_0)\cdots(x-x_{k-1})(x-x_{k+1})\cdots(x-x_m)}{(x_k-x_0)\cdots(x_k-x_{k-1})(x_k-x_{k+1})\cdots(x_k-x_m)},$ 显然地有$l_k(x_k) = 1$和$l_k(x_i) = 0,\;i \neq k$.
+\end{definition}
+
+
+\newpage
+\section{利用导数研究函数}
+
+\begin{theorem}
+\rm {\color{red} (常函数的判定)} 设函数$f(x)$在区间$\mathcal{X}$上定义着且连续可导. $f(x)$在$\mathcal{X}$上是常数当且仅当对任意的$x \in \mathcal{X}$都有$f'(x)=0$. {\color{blue} 在做理论研究时，若所给函数不能从定义看出它是一个常函数，这个定理的威力就显示出来了.}
+\end{theorem}
+
+\begin{corollary}
+\rm 给定在区间$\mathcal{X}$上的两个连续可导函数$f(x)$和$g(x)$，并且
+$$
+\forall x \in \mathcal{X},\;f'(x) = g'(x).
+$$
+则$f(x) = g(x) + C$，其中$C$是一个常数. {\color{red} $h(x) = f(x) - g(x)$还原到上述定理}
+\end{corollary}
+
+
+\begin{theorem}
+\rm {\color{red} (函数单调性判定)}
+\end{theorem}
+
+\begin{theorem}
+\rm {\color{red} (函数严格单调性判定)}
+\end{theorem}
+
+
+
 \end{document}
