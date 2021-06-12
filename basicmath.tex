@@ -2,6 +2,7 @@
 
 \usepackage{ctex}
 \usepackage{tikz}
+\usetikzlibrary{calc}
 \usetikzlibrary{cd}
 \usetikzlibrary{decorations.pathreplacing}
 
@@ -1184,8 +1185,10 @@ $$
 \newpage
 \section{利用导数研究函数}
 
+\subsection{基本性质的判定}
+
 \begin{theorem}
-\rm {\color{red} (常函数的判定)} 设函数$f(x)$在区间$\mathcal{X}$上定义着且连续可导. $f(x)$在$\mathcal{X}$上是常数当且仅当对任意的$x \in \mathcal{X}$都有$f'(x)=0$. {\color{blue} 在做理论研究时，若所给函数不能从定义看出它是一个常函数，这个定理的威力就显示出来了.}
+\rm {\color{red} (常函数的判定)} 设函数$f(x)$在区间$\mathcal{X}$上定义着且连续可导. $f(x)$在$\mathcal{X}$上是常数当且仅当对任意的$x \in \mathcal{X}$都有$f'(x)=0$. {\color{blue} 在做理论研究时，若所给函数不能从定义看出它是一个常函数，这个定理的威力就显现出来了.}
 \end{theorem}
 
 \begin{corollary}
@@ -1198,13 +1201,213 @@ $$
 
 
 \begin{theorem}
-\rm {\color{red} (函数单调性判定)}
+\rm {\color{red} (函数单调性判定)} 设函数$f(x)$在区间$\mathcal{X}$上定义着且连续可导. $f(x)$在$\mathcal{X}$上单调增大(减少)当且仅当对任意的$x \in \mathcal{X}$都有$f'(x) \geq 0(\leq 0)$.
 \end{theorem}
 
 \begin{theorem}
-\rm {\color{red} (函数严格单调性判定)}
+\rm {\color{red} (函数严格单调性判定)} 设函数$f(x)$在区间$\mathcal{X}$上定义着且连续可导. $f(x)$在$\mathcal{X}$上严格单调增大(减少)的充要条件为
+\begin{enumerate}
+	\item 任意$x \in \mathcal{X}$，都有$f'(x) \geq 0(\leq 0)$;
+	\item 任意$\mathcal{X}$的子区间内$f'(x)$不恒为0.
+\end{enumerate}
 \end{theorem}
 
+\begin{proof}
+{\color{blue}第一个条件保证了$f(x)$单调，第二个条件保证了$f(x)$在$\mathcal{X}$上没有常数段. 为什么还可以允许$f(x)=0$，如果存在这样的点，那么这个点是一个拐点}.
+\end{proof}
 
+\begin{definition}
+\rm 给定连续函数$f(x)$，若函数$f(x_0)$在$x_0$的某个邻域上取得最大值(最小值)，则称$f(x)$在$x_0$处有{\color{red}极大值(极小值)}.
+\end{definition}
+
+\begin{proposition}
+\rm {\color{red} (极值判定充分条件-第一法则)} \rm 给定连续函数$f(x)$，若$f(x)$在$x_0$处导数为零或者不存在有限导数，且$f(x)$在$x_0$的某一个去心邻域上可导，那么存在下面三种情况
+\begin{enumerate}
+	\item 若$x < x_0$时$f'(x) > 0$，而在$x > x_0$时有$f'(x) < 0$，则在$x_0$处有极大值;
+	\item 若$x < x_0$时$f'(x) < 0$，而在$x > x_0$时有$f'(x) > 0$，则在$x_0$处有极小值;
+	\item 若$x < x_0$和$x > x_0$都有$f'(x) > 0$或者$f'(x) < 0$，则在$x_0$处无极值.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+\rm {\color{red} (极值判定充分条件-第二法则)} \rm 给定连续函数$f(x)$，若$f(x)$在$x_0$某个邻域上可导，并且在$x_0$处有二阶导数. 那么当$f(x_0) = 0$，考虑两种情况
+\begin{enumerate}
+	\item 若$f^{''}(x_0) > 0$，则在$x_0$处有极小值;
+	\item 若$f^{''}(x_0) < 0$，则在$x_0$处有极大值.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm {\color{red} (当$f'(x_0) = 0,\; f^{''}(x_0) = 0$时极值判定推广)} 给定给定函数$f(x)$，$f(x)$在$x_0$处$n$阶可导，且一阶导数到$(n-1)$阶导数全为$0$，即
+$$
+f'(x_0) = f^{''}(x_0) = \cdots = f^{(n-1)}(x_0) = 0,
+$$
+同时也有$f^{(n)} \neq 0$. 则当$n$为奇数时，在$x_0$处没有极值; 当$n$为偶数时，若$f^{(n)} > 0$，在$x_0$处有极小值，若$f^{(n)} < 0$，在$x_0$处有极大值.
+\end{proposition}
+
+\begin{proof}
+在$x_0$处用带peano余项泰勒公式展开即有
+$$
+f(x) - f(x_0) = \frac{f^{(n)(x_0)}}{n!}(x-x_0)^n + \alpha\cdot( x-x_0)^n,
+$$
+前$n-1$阶导均为0. 当$x \rightarrow x_0$时，$\alpha$也是趋向于零. 在$x$充分接近$x_0$条件下，考虑两种情况
+\begin{enumerate}
+\item 若$n$是一个奇数，在$x < x_0$时，$(x-x_0)^n < 0$，而$f^{(n)}(x_0)+\alpha$的符号和$f^{(n)}(x_0)$是相同，因此等式左边的符号是$-f^{(n)}(x_0)$相同，方便证明假设$f^{(n)}(x_0) < 0$，那么$f(x) > f(x_0)$，当$x > x_0$时，$(x-x_0)^n > 0$，因此等式左边符号是和$f^{(n)}(x_0)$，那么$f(x) < f(x_0)$，所以在$f(x_0)$左右两边都可以取它小或者大的数，因此在$x_0$这里没有极值，同理假设$f^{(n)}(x_0) > 0$也会得到类似的结果;
+
+\item 若$n$是一个偶数，那么$(x-x_0)^n$的值恒大于零，即等式左边的符号和$f^{(n)}(x_0)$保持一致，假设$f^{(n)}(x_0) > 0$，那么$x_0$两边均有$f(x) > f(x_0)$，所以在$x_0$处取极小值，同理当$f^{(n)}(x_0) < 0$时，在$x_0$处取得极大值.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+\rm 给定有限闭区间$[a,b]$上函数$f(x)$，其上所有极大值中最大值(极小值中的最小值)为$f(x)$在$[a,b]$上的{\color{red}最大值(最小值)}.
+\end{definition}
+
+\subsection{凹凸性}
+
+\begin{definition}
+\rm 给定在区间$\mathcal{X}$上定义着的连续函数$f(x)$，若对$\mathcal{X}$上任意两点$x_1,x_2$均满足不等式
+$$
+f((1-\alpha)x_1 + \alpha x_2) \geq (1-\alpha)f(x_1) + \alpha f(x_2),
+$$
+其中$\alpha \in [0,1]$，则$f(x)$被称为{\color{red}凹函数}. 前述给定条件不定，若满足不等式
+$$
+f((1-\alpha)x_1 + \alpha x_2) \leq (1-\alpha)f(x_1) + \alpha f(x_2),
+$$
+则$f(x)$被称为{\color{red}凸函数}.
+\end{definition}
+
+\begin{annotation}
+\rm {\color{blue}特别的标注一下上面$\alpha$是如何推导而来的}，下面是一个凹函数的图像，我们需要描述性质是$f(x) \leq y$，先把$y$表示出来
+$$
+\begin{array}{ll}
+y &= f(x_1) + (f(x_2) - f(x_1))\frac{x-x_1}{x_2-x_1} \\
+&=  \frac{x_2 - x}{x_2-x_1}f(x_1) + \frac{x-x_1}{x_2-x_1}f(x_2).
+\end{array}
+$$
+我们让$\alpha = \frac{x-x_1}{x_2-x_1}$，那么$y = (1-\alpha) f(x_1) + \alpha f(x_2)$. 同样$x$也可以变换为
+$$
+x = x_1 - \alpha(x_1-x_2) = (1-\alpha) x_1 + \alpha x_2.
+$$
+于是就有了上面定义的形式.
+\begin{center}
+\begin{tikzpicture}[my plot/.style={
+                        thick,
+                        smooth,
+                        samples=100,
+                        domain=0.1:5},
+                    my grid/.style={dashed,opacity=0.5, every node/.style={black,opacity=1}},
+                    my axis/.style={latex-latex}]
+\draw[my plot] (0,0) plot (\x,{ln(\x)});
+\coordinate (start plot) at (0.1,{ln(0.1)}); % domain start
+\coordinate (end plot) at (5,{ln(5)}); % domain end
+\draw[my axis] ([shift={(-0.5cm,0.5cm)}]start plot |- end plot) node[left] {} |- node[coordinate](origin){} ([shift={(0.5cm,-0.5cm)}]start plot -| end plot) node[below] {}; %creates the axis a little bigger than the plot and also sepatared
+\def\x{0.5}\def\y{4}\def\p{0.55} % define the x, y and p values
+\coordinate (Ux) at (\x,{ln(\x)}); % set the u(x) coordinate
+\coordinate (Uy) at (\y,{ln(\y)}); % set the u(y) coordinate
+\coordinate (Up) at ({\p*\x+(1-\p)*\y},{ln(\p*\x+(1-\p)*\y)}); % set the u(p*x+(1-p)*y) coordinate
+\draw (Ux) -- coordinate[pos=1-\p] (Up-mid) (Uy); % set the coordinate on the linear curve
+\path let \p1=(Up-mid), \n1={pow(e,\y1*0.03514)} in (28.4576*\n1,\y1) coordinate (Up-mid2); %this is the most tricky part explained in the answer
+% with everything set, just draw the lines:
+\draw[my grid] (Ux) |- node[below]{$x_1$} (origin) |- node[left]{$f(x_1)$} cycle;
+\draw[my grid] (Uy) |- node[below]{$x_2$} (origin) |- node[left]{$f(x_2)$} cycle;
+\draw[my grid] (Up) |- node[below]{$x$} (origin) |- node[left]{$f(x)$} cycle;
+\draw[my grid] (Up-mid2) |- node[below]{} (origin) |- node[left]{$y$} cycle;
+\draw[my grid] (Up-mid) -- (Up-mid2);
+\end{tikzpicture}
+\end{center}
+\end{annotation}
+
+
+\begin{annotation}
+\rm 我们这里使用的凹凸性都是描述函数性质的，并不是用来描述函数图像的，{\color{red}高数书使用的是对图像的凹凸性描述的}，这里有几种记忆函数凹凸性质的方法.
+\begin{enumerate}
+	\item 从几何性质上，凹函数的曲线在两点确定的弦之上，凸函数的曲线在两点确定的弦之下.
+\end{enumerate}	
+\end{annotation}
+
+\begin{theorem}
+\rm {\color{red} (凹凸性判定1)} 给定在区间$\mathcal{X}$上定义着的连续可导函数$f(x)$，它是凸函数(凹函数)当且仅当它导数$f'(x)$是单调增的(单调减的). 
+\end{theorem}
+
+\begin{proof}
+前面我们知道凸函数的性质可以用
+$$
+f(x) \leq \frac{x_2 - x}{x_2-x_1}f(x_1) + \frac{x-x_1}{x_2-x_1}f(x_2),\; x \in [x_1,x_2]
+$$
+来描述，来略微整理一下
+$$
+\begin{array}{ll}
+&(x_2-x)f(x_1) + (x_1-x_2)f(x) + (x-x_1)f(x_2) \geq 0 \\ \\
+\Rightarrow & (x_2 - x)(f(x_1)-f(x)) + (x_1 -x)(f(x)-f(x_2)) \leq  0 \\ \\
+\Rightarrow & \frac{f(x) - f(x_1)}{x -x_1} \leq \frac{f(x_2) - f(x)}{x_2 - x} \\
+\end{array}
+$$
+不等式两边在必要性证明中可以让$x$分别趋向$x_1$或者$x_2$求得
+$$
+f'(x_1) \leq \frac{f(x_2) - f(x_1)}{x_2 - x_1}
+$$
+和 
+$$
+f'(x_2) \geq \frac{f(x_2) - f(x_1)}{x_2 - x_1} 
+$$
+即有$f'(x_2) \geq f(x_1)$.
+
+在充分证明中可以使用拉格朗日中值定理让等式两边分别等于$f(\xi_1)$和$f(\xi_2)$，其中$x_1 < \xi_1 < x < \xi_2 < x_2$.
+\end{proof}
+
+
+\begin{theorem}
+\rm {\color{red} (凹凸性判定2)} 给定在区间$\mathcal{X}$上定义着的连续且二阶可导函数$f(x)$，它是凸函数(凹函数)当且仅当$f^{''}(x) \geq 0(\leq 0)$.
+\end{theorem}
+
+\begin{proof}
+由单调性判定定理，回到前一个定理中的$f'(x)$的性质即可.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} (凹凸性判定3)} 给定在区间$\mathcal{X}$上定义着的连续可导函数$f(x)$，它是凸函数(凹函数)当且仅当它的曲线在它任意切线上面(切线下面).
+\end{theorem}
+
+\begin{proof}
+{\color{blue}充分性} 任意点$x_0 \in \mathcal{X}$处切线方程$y = f(x_0) + f'(x)(x-x_0)$，那么只需要证明
+$$
+f(x) \leq f(x_0) + f'(x)(x-x_0) 
+$$
+当$x > x_0$时有
+$$
+f'(x_0) \geq \frac{f(x)-f(x_0)}{x-x_0}.
+$$
+当$x < x_0$时有
+$$
+f'(x_0) \leq \frac{f(x)-f(x_0)}{x-x_0}.
+$$
+那么根据拉格朗日中值定理可以找到$\xi_1 <x_0 < \xi_2$，使得
+$$
+f'(x_0) \leq f'(\xi_2),\; f'(x_0) \leq f'(\xi_1).
+$$
+即$f'(\xi_1) \leq f'(\xi_2)$，回到第一个判别定理.
+\end{proof}
+
+\begin{proposition}
+\rm {\color{red} (琴生不等式)} 凸函数满足 
+$$
+f(q_1x_1 + q_2x_2 + \cdots + q_nx_n) \leq q_1f(x_1) +q_2f(x_2) + \cdots + q_nf(x_n),
+$$
+其中$q_1 + q_2 + \cdots + q_n = 1,\; q_1,q_2,\cdots,q_n > 0$.
+\end{proposition}
+
+\begin{definition}
+\rm 若曲线$f(x)$在经过$(x_0,f(x_0))$时，曲线的凹凸性改变了，则这一点称为{\color{red}拐点}.
+\end{definition}
+
+\begin{proposition}
+\rm {\color{red}判别拐点的存在方法}
+\begin{enumerate}
+	\item 若$f(x)$的二阶导存在，且$f(x)$在$x_0$处$f^{''}(x)=0$变号，则在$x_0$处有拐点.
+	\item 若$f(x)$的$n$阶导数存在，如果点$x_0$处第一个不为零的导数(大于二阶导)是奇数阶导数，那么在$x_0$处有拐点，如果是偶数阶导数，则没有拐点.
+\end{enumerate}
+\end{proposition}
 
 \end{document}
+
