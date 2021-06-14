@@ -648,7 +648,7 @@ $$
 \subsection{函数连续的定义}
 
 \begin{annotation}
-\rm {\color{red} (motivation)} 在研究$x$趋向于$x_0$的极限时候，即$\lim\limits_{x \rightarrow x_0} f(x)$，并不要求$x$可以取到$x_0$，即使$f(x_0)$有定义，极限也不依赖它. 自然地，现在我们特别地考虑若$f(x_0)$有定义，且$\lim\limits_{x \rightarrow }f(x_0)$，这种情形下我们就说$f$在$x_0$处{\color{red}连续}，其他情况下则说$f$在$x_0$这里有{\color{red}间断}.
+\rm {\color{red} (motivation)} 在研究$x$趋向于$x_0$的极限时候，即$\lim\limits_{x \rightarrow x_0} f(x)$，并不要求$x$可以取到$x_0$，即使$f(x_0)$有定义，极限也不依赖它. 自然地，现在我们特别地考虑若$f(x_0)$有定义，且$\lim\limits_{x \rightarrow x_0}f(x) = f(x_0)$，这种情形下我们就说$f$在$x_0$处{\color{red}连续}，其他情况下则说$f$在$x_0$这里有{\color{red}间断}. {\color{blue} 函数连续是一个局部的性质}.
 \end{annotation}
 
 %严格定义
@@ -939,7 +939,7 @@ $$
 $$
 dy = {\color{red}y_t' \cdot dt} = y_x' \cdot x_t' \cdot dt = {\color{red}y_x' \cdot dx}
 $$
-又回到原来的微分形式. 这种微分形式即使在原来的自变量换成新的自变量以后仍可以保持着的性质称为{\color{red}微分形式不变性}. 要注意的是上面式子中$dx$并不是表示$\Delta x$，而是$x=\varphi(t)$的微分.
+又回到原来的微分形式. 这种微分形式即使在原来的自变量换成新的自变量以后仍可以保持着的性质称为{\color{red}微分形式不变性}. {\color{blue}要注意的是上面式子中$dx$并不是表示$\Delta x$，而是$x=\varphi(t)$的微分}.
 \end{definition}
 
 \begin{example}
@@ -1406,6 +1406,226 @@ $$
 \begin{enumerate}
 	\item 若$f(x)$的二阶导存在，且$f(x)$在$x_0$处$f^{''}(x)=0$变号，则在$x_0$处有拐点.
 	\item 若$f(x)$的$n$阶导数存在，如果点$x_0$处第一个不为零的导数(大于二阶导)是奇数阶导数，那么在$x_0$处有拐点，如果是偶数阶导数，则没有拐点.
+\end{enumerate}
+\end{proposition}
+
+\newpage
+\section{不定积分}
+
+\subsection{基本定义}
+\begin{definition}
+\rm 若在给定的整个区间上，$f(x)$是函数$F(x)$的导数，或$f(x)dx$是$F(x)$的微分，即
+$$
+F'(x) = f(x)~\text{或}~dF(x) = f(x)dx,
+$$
+那么，在所给定的区间上，函数$F(x)$叫做$f(x)$的{\color{red}原函数}或者$f(x)$的{\color{red}积分}.
+\end{definition}
+
+\begin{theorem}
+\rm {\color{red} (不定积分表达式) }若在某一个区间$\mathcal{X}$上，函数$F(x)$是$f(x)$的一个原函数，那么$F(x)+C$也是$f(x)$的原函数，其中$C$是任意常数. 反过来说，在区间$\mathcal{X}$上$f(x)$的每一个原函数都可表示这种形式.
+\end{theorem}
+
+\begin{proof}
+记$\Phi(x)$是$f(x)$另一个原函数，则考虑辅助函数$\varphi(x) = \Phi(x) - F(x)$的导数
+$$
+(\Phi(x)-F(x))' = f(x)-f(x) = 0.
+$$
+由常函数判定定理，可以知道$\varphi(x) = C$，所以$\Phi(x) = F(x) + C$.
+\end{proof}
+
+\begin{definition}
+\rm 在区间$\mathcal{X}$，函数$f(x)$的带任意常数项的原函数称为$f(x)$在$\mathcal{X}$上的{\color{red}不定积分}，记做
+$$
+\int f(x)dx
+$$
+来表示，其中$f(x)$表示{\color{red}被积函数}，乘积$f(x)dx$被称为{\color{red}被积表达式}.
+\end{definition}
+
+\begin{proposition}
+\rm 从不定积分的定义可以很容易直接推导下面一些性质
+\begin{enumerate}
+	\item $d\int f(x)dx = f(x)dx,$
+	\item $\int F'(x)dx = F(x)+C~\text{或}~\int dF(x) = F(x)+C.$
+\end{enumerate}
+\end{proposition}
+
+
+\subsection{基本积分表}
+
+\subsection{简单积分法则}
+
+\begin{proposition}
+\rm 简单法则
+\begin{enumerate}
+	\item 若$a$是常数且不等于0，则
+	$$
+	\int a\cdot f(x)dx = a \int f(x)dx,
+	$$
+	\item 
+	$$
+	\int \left[ f(x) \pm  g(x) \right]dx = \int f(x)dx + \int g(x)dx,
+	$$
+	\item 若$\int f(t)dt = F(t)+C$，则
+	$$
+	\int f(ax+b)dx = \frac{1}{a}\cdot F(ax+b)+C'
+	$$
+	{\color{red} 换元法则中极为特别的情形}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+{\color{blue}证明手法通常对右边取微分}.
+\end{proof}
+
+
+\subsection{换元积分法}
+\begin{proposition}
+\rm 如果已知
+$$
+\int g(t)dx = G(t)+C,
+$$
+即有
+$$
+\int g(\omega(x))\omega'(x)dx = G(\omega(x)) + C'.
+$$
+\end{proposition}
+
+\begin{proof}
+$$
+\frac{d}{dx}G(\omega(x)) = G'(\omega(x))w'(x) = g(\omega(x))\omega'(x).
+$$
+\end{proof}
+
+\begin{annotation}
+\rm {\color{red} (换元积分法使用的直觉)} 要理解上述方法的先决条件，只需要关系式$dG(t)=g(t)dt$成立，就有上述换元之后的关系式存在. 现在换个思路，若先要计算积分
+$$
+\int f(x)dx,
+$$
+但是这个$f(x)$并不好直接利用现有的一些手法求出其原函数，若被积部分可以表示成前面第二个关系式的左边
+$$
+f(x)dx = g(\omega(x))\omega'(x)dx,
+$$
+那么说明其原函数可以表示$G(\omega(x))$，这样我们尝试先求出$G(t)$，现在我们让$t=\omega(x)$，上式就变成了$\int g(t)dt$，{\color{blue}最重要是需要它是可以稍微容易求解的形式，不然换元就没什么意义}. 那么把它积出来之后等于$G(t)+C$，之后我们只需要把$t$用$\omega(x)$替换即可，因此可以简单的写成
+$$
+\int f(x)dx = \int g(x)dx.
+$$
+\end{annotation}
+
+\begin{example}
+\rm 求积分
+$$
+\int \sin^3\cos xdx.
+$$
+设$t=\sin x$，那么原式为
+$$
+\int \sin^3x\cos xdx = \int \sin^3xd\sin x = \int t^3 dt = \frac{t^4}{t}+C.
+$$
+最后$t$替换为$\sin x$即可.
+\end{example}
+
+\subsection{分部积分法}
+
+\begin{proposition}
+\rm 设$u=f(x)$和$v=g(x)$都是两个关于$x$的连续可导的函数，则
+$$
+\int udv  = uv - \int vdu.
+$$
+\end{proposition}
+
+\begin{proof}
+根据微分乘法法则
+$$
+d(uv) = udv + udv,
+$$
+两边取积分得到原式.
+\end{proof}
+
+\begin{annotation}
+\rm {\color{red} (分部积分使用注意)} 它进行如下转换
+$$
+f(x)dx = uv'dx = udv = uv-vdu = vu'dx.
+$$
+在应用分部积分的时候，需要注意以下几点
+\begin{enumerate}
+	\item 被积表达式$f(x)$要被分成两个因式$u$和$dv=v'dx$.
+	\item 微分$vu'dx$要比原式更容易积分.
+\end{enumerate}
+\end{annotation}
+
+
+\begin{example}
+\rm 求积分
+$$
+\int x\cos xdx.
+$$
+设$u=x,\; v= \sin x$，那么原式变为
+$$
+\int xd\sin x = x\sin x - \int \sin x dx = x\sin x +\cos x + C.
+$$
+\end{example}
+
+
+\begin{proposition}
+\rm {\color{red} (分部积分的推广公式)} 若$u$和$v$在所考虑的区间上有直到$(n+1)$阶的各阶连续导数，那么可以用$v^{(n)}$替换前式中的$v$，则
+$$
+\int uv^{(n+1)}dx = \int udv^{(n)} = uv^{(n)} - \int v^{(n)}du = uv^{(n)} - \int u'v^{(n)}dx.
+$$
+类似的
+$$
+\begin{array}{ll}
+\int u'v^{(n)}dx &= u'v^{(n-1)} - \int u^{''}v^{(n-1)}dx, \\
+\int u^{''}v^{(n-1)}dx &= u^{''}v^{(n-2)} - \int u^{'''}v^{(n-2)}dx, \\
+&\vdots \\
+\int u^{(n)}v'dx &= u^{(n)}v - \int u^{(n+1)}vdx, \\
+\end{array}
+$$
+因此最终可以得到
+$$
+\int uv^{(n+1)}dx = uv^{(n)} - u'v^{(n-1)} + u^{''}v^{(n-2)} -\cdots + (-1)^{n} u^{(n)}v +  (-1)^{n+1} \int u^{(n+1)}vdx.
+$$
+\end{proposition}
+
+\begin{annotation}
+\rm {\color{red} (推广式中的特殊情况) }特别地，如果$u$是$n$元多项式，那么在$n+1$次求导之后就变成零了，上式子的尾巴就消失了.
+\end{annotation}
+
+\begin{example}
+\rm 求积分
+$$
+J_n = \int \frac{1}{(x^2+a^2)^n}dx,\; n =1,2,3,\cdots.
+$$
+令$u=\frac{1}{(x^2+a^2)^n},\; v = x$，即
+$$
+J_n = \int \frac{1}{(x^2+a^2)^n}dx = \frac{x}{(x^2+a^2)^n} + 2n \int \frac{x^2}{(x^2+a^2)^{n+1}}dx. 
+$$
+考虑右式最后一项
+$$
+\int \frac{x^2}{(x^2+a^2)^{n+1}}dx =\int \frac{(x^2+a^2) - a^2}{(x^2+a^2)^{n+1}}dx = J_n - a^2 J_{n+1}.
+$$
+带入原式
+$$
+J_n = \frac{x}{(x^2+a^2)^n}+2nJ_n - 2a^2nJ_{n+1},
+$$
+整理得到递归式
+$$
+J_{n+1} = \frac{1}{a^2}\frac{2n-1}{2n}J_n + \frac{1}{2a^2}\frac{1}{n}\frac{x}{(x^2+a^2)^n}.
+$$
+易得$J_1 = \frac{1}{a} \arctan \frac{x}{a}.$ 
+\end{example}
+
+\subsection{有理式积分}
+
+\begin{annotation}
+\rm 在各类函数的积分中使我们{\color{red}最感兴趣的是什么}，要根据什么样的{\color{red}法则}，才能得到它们的积分，是这一节我们主要关注的问题. 积佬养成）
+\end{annotation}
+
+\begin{proposition}
+\rm {\color{red} 部分分式和它们的积分} 这里讨论几种真分式中的部分积分
+\begin{enumerate}
+	\item $\frac{A}{x-a}$
+	\item $\frac{A}{(x-a)^k},\; k = 2,3,\cdots$
+	\item $\frac{Mx+N}{x^2+px+q}$
+	\item $\frac{Mx+N}{(x^2+px+q)^m},\; m= 2,3,\cdots$
 \end{enumerate}
 \end{proposition}
 
