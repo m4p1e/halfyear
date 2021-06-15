@@ -1606,7 +1606,7 @@ $$
 $$
 J_n = \frac{x}{(x^2+a^2)^n}+2nJ_n - 2a^2nJ_{n+1},
 $$
-整理得到递归式
+整理得到{\color{red}递归式}
 $$
 J_{n+1} = \frac{1}{a^2}\frac{2n-1}{2n}J_n + \frac{1}{2a^2}\frac{1}{n}\frac{x}{(x^2+a^2)^n}.
 $$
@@ -1619,15 +1619,104 @@ $$
 \rm 在各类函数的积分中使我们{\color{red}最感兴趣的是什么}，要根据什么样的{\color{red}法则}，才能得到它们的积分，是这一节我们主要关注的问题. 积佬养成）
 \end{annotation}
 
+\begin{definition}
+\rm 形如
+$$
+f(x)=\frac{P(x)}{Q(x)}
+$$
+的函数，其中$P(x),Q(x)$均为多项式. 这样的函数被称为{\color{red}有理函数}.
+\end{definition}
+
 \begin{proposition}
-\rm {\color{red} 部分分式和它们的积分} 这里讨论几种真分式中的部分积分
+\rm 两种{\color{red}简单真分式}积分方法
 \begin{enumerate}
 	\item $\frac{A}{x-a}$
+	$$
+	A\int \frac{1}{x-a}dx = A \ln(x-a) + C.
+	$$
 	\item $\frac{A}{(x-a)^k},\; k = 2,3,\cdots$
-	\item $\frac{Mx+N}{x^2+px+q}$
-	\item $\frac{Mx+N}{(x^2+px+q)^m},\; m= 2,3,\cdots$
+	$$
+	A\int \frac{1}{(x-a)^k}dx = -\frac{A}{k-1}\frac{1}{(x-a)^{k-1}} + C
+	$$
 \end{enumerate}
 \end{proposition}
 
+\begin{annotation}
+\rm {\color{red}(部分分式)}求积分
+$$
+\int \frac{Mx+N}{(x^2+px+q)^m}dx,\; m = 2,3,4,\cdots.
+$$
+同时假定$x^2+px+q$没有实根，即$p^2 - 4q < 0$.
+
+先对分母括号中的二次多项式进行配方
+$$
+\begin{array}{ll}
+\int \frac{Mx+N}{(x^2+px+q)^m}dx &= \int \frac{Mx+N}{(x^2+2\frac{p}{2}x+\frac{p^2}{4}-\frac{p^2}{4}+q)^m}dx\\
+&= \int \frac{Mx+N}{\left[(x+\frac{p}{2})^2+(q-\frac{p^2}{4})\right]^m}dx
+\end{array}
+$$
+设$x+\frac{p}{2} = t, a = + \sqrt{q-\frac{p^2}{4}}$，现在$dt=dx$，那么原式变为
+$$
+\int \frac{M(t-\frac{p}{2})+N}{\left(t^2+a^2\right)^m}dt = M\int \frac{t}{\left(t^2+a^2\right)^m}dt + (N-\frac{Mp}{2})\int \frac{1}{\left(t^2+a^2\right)^m}dt,
+$$
+等式右边第一个积分，设$t^2+a^2 = u$，那么其积分变为
+$$
+M\int \frac{t}{\left(t^2+a^2\right)^m}dt = \frac{M}{2} \int  \frac{du}{u^m} = \frac{M}{2} \frac{-1}{m-1}\frac{1}{u^{m-1}} + C = \frac{-M}{2(m-1)}\frac{1}{(t^2+a)^{m-1}}+C.
+$$
+右边第二个积分使用我们在分部积分里面提到的{\color{blue}递归式求解}即可. 
+\end{annotation}
+
+\begin{theorem}
+\rm 每个真分式
+$$
+\frac{P(x)}{Q(x)}
+$$
+可被表示成{\color{red}有限个部分分式的代数和}的形状. {\color{blue}总感觉有点环上PID性质在里面？？？？？？}
+\end{theorem}
+
+\begin{proof}
+首先我们需要知道任意一个多项式的分解可以写成下述形式
+$$
+Q(x) = (x-a)^k \cdots (x^2+px+q)^m \cdots,\; k,m \in \mathbb{N},\; a,p,q \in \mathbb{R},
+$$
+其中$x^2+px+q$没有实根，相当于在实数环上做因式分解. 下面分两种情况来讨论$\frac{P(x)}{Q(x)}$的部分分式. 
+
+{\color{blue}(1)} 若所给真分式为
+$$
+\frac{P(x)}{Q(x)} = \frac{P(x)}{(x-a)^kQ_1(x)}.
+$$
+则可以表示成下述两个真分式的和
+$$
+\frac{P(x)}{(x-a)^kQ_1(x)} = \frac{A}{(x-a)^k} + \frac{P_1(x)}{(x-a)^{k-1}Q_1(x)},
+$$
+其中$A$是一个常量，接下来就是确定$A$和$P_1(x)$，即这里有一个恒等式
+$$
+P(x) = AQ_1(x) + P_1(x)(x-a).
+$$
+首先我们得确定这里有解才行，{\color{blue}注意这里$(x-a)$和$Q_1(x)$是互素的，但是不能直接用Bezout定理说明这里有解，因为这里限定$A$是一个常量而不是一个关于$x$的多项式}. 那么现在问题变成了要说明其中一个解是常量，是这样的因为Bezont定理，我们得到这样一个等式
+$$
+u(x)Q_1(x) + v(x)(x-a) = 1.
+$$
+可以来尝试把所有$Q_1(x)$和$(x-a)$线性组合为$1$的系数用$u(x)$和$v(x)$表示出来，即
+$$
+U(x) = u(x) - (x-a)t(x),\; V(x) = v(x) - Q_1(x)t(x). 
+$$
+我们主要关注$U(x)$来说明一定可以取到常数$A$，相当于$U(x)$可以是$u(x)$除$(x-a)$的余数，所以$U(x)$是一定可以取到某个常数$A$.自然地，这里考虑可以取$x = a$消去含$P_1(x)$的项，于是得到$A=\frac{P(a)}{Q_1(a)}$，即$A$是一个常量，然后再确定$Q_1(a)$. 记录一个我自己的疑问{\color{red}为什么给定真分式不能分解为}
+$$
+\frac{A}{(x-a)^k} + \frac{B}{Q_1(x)},\; k=2,3,\cdots,
+$$
+那么确定的恒等式就变成了
+$$
+P(x) = AQ_1(x) + B(x-a)^k, 
+$$
+按照前面的思路这里$U(x) = u(x) - (x-a)^kt(x)$，所以只能保证$U(x)$取到某个$ax+b$，那么这里$A$可能就不一定是一个常数.
+
+{\color{blue}(2)} 若所给真分式为
+$$
+\frac{P(x)}{Q(x)} = \frac{P(x)}{(x+px+q)^mQ_1(x)}.
+$$
+
+
+\end{proof}
 \end{document}
 
