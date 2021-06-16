@@ -724,6 +724,29 @@ $$
 
 \subsection{一致性连续}
 
+\begin{annotation}
+\rm 在函数连续的定义中，$\delta$的选择可能不仅仅依赖$\varepsilon$，可能同样依赖于$x_0$的选择，因为函数在每个某个点上变动情况可能不一样，变动的越剧烈，$\delta$的选择可能更小，那么是否存在一种连续性$\delta$的选择只依赖$\varepsilon$呢？一致连续就运营而生了.
+\end{annotation}
+
+\begin{definition}
+\rm 若对于任一数$\varepsilon > 0$，都能求出$\delta > 0$使得当满足
+$$
+|x-x_0| < \delta
+$$
+时，都有$|f(x)-f(x_0)| < \varepsilon$，不论$x_0$及$x$在定义域区间$\mathcal{X}$怎样选择，我们就称$f(x)$在$\mathcal{X}$上{\color{red}一致连续}，即$\delta$是适用于一切的$x_0$.
+\end{definition}
+
+\begin{annotation}
+\rm 一致性也可以表示为在$\mathcal{X}$上任意两个$x$取值，只要它们足够的近，它们对应的函数值也是相对来说足够的近. 
+\end{annotation}
+
+\begin{theorem}
+\rm {\color{red} (康托定理) }若函数$f(x)$是在闭区间$[a,b]$内定义着而且连续，则它在这区间上也是一致连续的.
+\end{theorem}
+
+\begin{corollary}
+\rm 若函数$f(x)$在闭区间$[a,b]$上定义着且连续. 则对任意的$\varepsilon > 0$，能求出$\delta > 0$，使得把$[a,b]$分成若干个长度小于$\delta$小区间，那么在每个小区间上$f(x)$的振幅(最大值和最小值的差)将小于$\varepsilon$.
+\end{corollary}
 
 \newpage
 \section{函数导数}
@@ -1412,7 +1435,7 @@ $$
 \newpage
 \section{不定积分}
 
-\subsection{基本定义}
+\subsection{不定积分定义}
 \begin{definition}
 \rm 若在给定的整个区间上，$f(x)$是函数$F(x)$的导数，或$f(x)dx$是$F(x)$的微分，即
 $$
@@ -1721,7 +1744,7 @@ $$
 $$
 其中$M,N,P_1(x)$确定要稍微复杂一点，但是整体思路是明确的，详细参考菲砖对应有理分式积分章节.
 
-上面两种情况的尾巴均可以在依次取类似的部分分式，即
+上面两种情况的尾巴均可以再依次取类似的部分分式，即
 $$
 \frac{A_1}{x-a} + \frac{A_2}{(x-a)^2} + \cdots + \frac{A_k}{(x-a)^k}.
 $$
@@ -1734,11 +1757,268 @@ $$
 
 
 \begin{example}
-求下列给定分式的分解式
+\rm 求下列给定分式的分解式
 $$
 \frac{2x^2+2x+13}{(x-2)(x^2+1)^2}
 $$
+原式的分解形式可以先写成如下形式
+$$
+\frac{A}{x-2} + \frac{Bx+C}{x^2+1} + \frac{Dx+E}{(x^2+1)^2}.
+$$
+其中$A,B,C$就是待定系数，它和原式关系等式为
+$$
+\begin{array}{ll}
+2x^2 + 2x+ 13 &= A(x^2+1)^2 + (Bx+C)(x-2)(x^2+1) + (Dx+E)(x-2) \\
+			  &= (A+B)x^4 + (C-2B)x^3 + (2A+B-2C+D)x^2 + (C-2B-2D+E)x + (A-2C-2E).
+\end{array}
+$$
+这里对应一个含5个方程的方程组
+$$
+\left\{ 
+\begin{array}{ll}
+A+B &= 0 \\
+C-2B &= 0 \\
+2A+B-2C+D &= 2 \\
+C-2B-2D+E &= 2 \\
+A-2C-2E &= 13  
+\end{array}
+\right.
+$$
+解这个方程组可以先利用后三项消去$D,F$得到一个只含$A,B,C$的等式，再配合前两项，先解出$A,B,C$. 由此
+$$
+A = 1,\;B = -1,\;C = -2,\;D = -3 ,\;E=-4.
+$$
+最后
+$$
+\frac{2x^2+2x+13}{(x-2)(x^2+1)^2} = \frac{1}{x-2} + \frac{-x-2}{x^2+1} + \frac{-3x-4}{(x^2+1)^2}.
+$$
 \end{example}
 
+\newpage
+\section{定积分}
+
+\subsection{定积分定义}
+
+\begin{definition}
+\rm 给定定义在区间$[a,b]$上的函数$f(x)$. 在$a$和$b$之间插入若干分点
+$$
+a = x_0 < x_1 <x_2 < \cdots < x_{n-1} < x_n = b
+$$
+把$[a,b]$分成$n$个小区间
+$$
+[x_0,x_1],[x_1,x_2],\cdots,[x_{n-1},x_n].
+$$
+用$\Delta x_i = x_{i+1}-x_i$第$i$小区间的长度，记$\lambda = \max{\{\Delta x_i\}}$. 从每个小区间$[x_i,x_{i+1}]$上任取一点$x=\xi_i$并做出和
+$$
+\sigma = \sum\limits_{i=0}^{n-1}f(\xi_i)\Delta x_i.
+$$
+若$\lambda \rightarrow 0$时$\sigma$有有限极限$I$，用极限的语言描述即对任意的$\varepsilon > 0$，都可以找到数$\delta$，只要$\lambda < delta$，不等式
+$$
+|\sigma - I| < \varepsilon
+$$
+在任意的$\xi_i$选择之下皆成立，把其记做
+$$
+I = \lim\limits_{\lambda \rightarrow 0} \sigma.
+$$
+则这极限$I$叫做函数$f(x)$在从$[a,b]$上的{\color{red}定积分}，记为
+$$
+I = \int_a^b f(x)dx.
+$$
+在这情形下$f(x)$叫做$[a,b]$上的{\color{red}可积函数}，数$a$与$b$分别叫做积分的{\color{red}上限}和{\color{red}下限}，区间$[a,b]$，叫做{\color{red}积分区间}，变量$x$叫做{\color{red}积分变量}. $\sigma$也被称为{\color{red}黎曼和}，上述定义本身就是{\color{red}黎曼定义}.
+\end{definition}
+
+\subsection{定积分基本性质}
+
+\begin{proposition}
+\rm {\color{red} (可积的必要条件)} 可积函数一定是有界的.
+\end{proposition}
+
+\begin{definition}
+\rm 用$m_i$与$M_i$分别表示函数$f(x)$在第$i$个部分区间$[x_i,x_{i+1}]$上的下确界和上确界，并作和
+$$
+s = \sum\limits_{i=0}^{n-1}m_i\Delta x_i,\; S = s = \sum\limits_{i=0}^{n-1}M_i\Delta x_i
+$$
+这两个和分别叫做{\color{red}下积分}和与{\color{red}上积分和}，或者{\color{red}达布和}. 当$f(x)$连续时，$f(x)$在每个区间上都能去掉确界，于是
+$$
+m_i \leq f(\xi_i) \leq M_i,
+$$ 
+自然地也有
+$$
+s \leq \sigma \leq S.
+$$
+这意味着$s$与$S$分别是积分和的下确界与上确界.
+\end{definition}
+
+
+\begin{lemma}
+\rm 如果把一些新的点加入到已有的分点中，即插入$x'$位于任意的部分区间$[x_k,x_{k+1}]$有$x_k < x' < x_{k+1}$. 则达布下和只有可能因此增加，而上和只可能减少.
+\end{lemma}
+
+\begin{proof}
+一个小区间被分成了两个更小的区间，这两个更小区间的积分和加起来是小于原先区间的积分和.
+\end{proof}
+
+\begin{lemma}
+\rm 任何一个达布下和都不超过任何一个上和，即使是对应于区间的另一个划分的上和，即两个不同的区间划分构造$s_1,S_2$和$s_2,S_2$，也有$s_1 < S_2$.
+\end{lemma}
+
+\begin{proof}
+通过第一个lemma，通过加点的方式，联合两个构造组成一个新的构造$s_3,S_3$，因此有$s_1 \leq s_3$和$S_2 \geq S_3$，且有$s_3 \leq S_3$，所以$s_1 \leq S_2$.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red}定积分存在的充要条件}是
+$$
+\lim\limits_{\lambda \rightarrow 0} (S-s) = 0.
+$$
+设$\omega_i$为第$i$区间上的{\color{red}振幅}$M_i - m_i$，那么上述式子也可以表示成
+$$
+\lim\limits_{\lambda \rightarrow 0} (S-s) = \sum\limits_{i=0}^{n-1} (M_i-m_i) \Delta x_i = \sum\limits_{i=0}^{n-1} \omega_i \Delta x_i = 0.
+$$
+\end{theorem}
+
+\begin{proof}
+{\color{blue} 必要性} 由极限定义
+$$
+I-\varepsilon \leq s \leq \sigma \leq S \leq I+\varepsilon.
+$$
+可以马上得到$|S-s| \leq \varepsilon$.
+
+{\color{blue} 充分性} 由前一个lemma，可以知道所有的达布下积分都有上界，取对应的上确界为$I_*$； 下积分都有下界，取对应的下确界为$I^*$. 命题条件说明当$\lambda \rightarrow 0$时，有$I_* = I^*$，设其公共值为$I$，即有
+$$
+s \leq I \leq S,
+$$
+同时也有
+$$
+s \leq \sigma \leq S,
+$$
+自然地，在$\lim\limits_{\lambda \rightarrow 0} (S-s) = 0$极限意义下，有$|\sigma -I| < \varepsilon$.
+\end{proof}
+
+
+\begin{theorem}
+\rm {\color{red} (可积的判别条件1) }如果函数$f(x)$在区间$[a,b]$上是连续的，则函数$f(x)$是可积的.
+\end{theorem}
+
+\begin{proof}
+由函数在闭区间上连续，可知$f(x)$在$[a,b]$上一致连续，由其推论可知，给定任意$\varepsilon > 0$，能找到$\delta > 0$，使得把$[a,b]$分隔若干长度$\Delta x_i$小于$\delta$的小区间，则小区间上函数值的振幅小于$\varepsilon$，其用语言描述就是
+$$
+\sum\limits_{i=0}^{n-1} \omega_i \Delta x_i  \sum\limits_{i=0}^{n-1} \varepsilon \Delta x_i = \varepsilon(b-a).
+$$
+最后需要回顾极限的定义上，这里只有$\lambda < \delta$，我们再需要说明一下当满足前面条件的同时$\lambda \rightarrow 0$，积分和保持是小于$\sum\limits_{i=0}^{n-1} \varepsilon \Delta x_i$，这是显然的，使用在证明lemma 10.4中的手法说明即可.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} (可积的判别条件2) } 若在区间$[a,b]$上的有界函数$f(x)$只有有限多个间断点，则它是可积的.
+\end{theorem}
+
+\begin{proof}
+在间断点处划分区间，详细证明见菲砖.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} (可积的判别条件3) } 在$[a,b]$单调有界函数$f(x)$永远可积.
+\end{theorem}
+
+\begin{proof}
+方便证明设$f(x)$是单调增函数，那么在部分区间$[x_i,x_{i+1}]$上，其振幅为
+$$
+\omega_i = f(x_{i+1})-f(x_{i}).
+$$
+对于任意的$\varepsilon > 0$，我们让
+$$
+\delta = \frac{\varepsilon}{f(b)-f(a)}.
+$$
+使得$f(b)\neq f(a)$，不然常函数肯定可积. 再让$\lambda < \delta$那么
+$$
+\sum\limits_{i=0}^{n-1}\omega_i\Delta x_i < \sum\limits_{i=0}^{n-1}\left[f(x_{i+1})-f(x_{i})\right] \delta = \delta\left[ f(b)-f(a) \right] 
+$$
+由此可推导$f(x)$可积.
+\end{proof}
+
+\begin{proposition}
+\rm {\color{red}可积函数的一些性质}
+\begin{enumerate}
+	\item 若$f(x)$在区间$[a,b]$上可积，则函数$|f(x)|$和$kf(x)$($k$是任意常数)在这区间上也是可积的.
+	\item 若$f(x)$和$g(x)$在区间$[a,b]$上是可积的，则它们的和，差与乘积也是可积的.
+	\item 若$f(x)$在区间$[a,b]$上可积，则它在这区间上的任意一个部分区间$[\alpha,\beta]$都是可积的. 反之如果区间$[a,b]$被分割成了若干部分区间，并且分别在每个部分区间上$f(x)$是可积，则它在整个区间$[a,b]$也是可积的.
+	\item 如果改变可积函数在有限个点上的值，则它的可积性并不会被破坏. {\color{blue} 即使$f(x)$在区间$[a,b]$的有限个点上不确定时，我们也可以谈论积分$\int_a^b f(x)dx$. 同时可以在这些点处给定它们任意的函数值而考虑整个区间上的积分. 如我们已经见到的，无论积分是否存在，或是它的值都不依赖在那些不存在函数的点处我们加上的函数值}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+特别地说明一下(4), 为什么在{\color{red}改变有限个函数值之后积分结果不变}？ 考虑积分定义
+$$
+\int_a^b f(\xi_i)\Delta x_idx,
+$$ 
+由于$f(x)$本身的可积性，保证了我们任取$\xi_i$最后极限都是一样的，那么当我们改变了有限个函数值之后，上面和式中的只有有限项会被影响，针对这有限项我们只需要在选择$\xi_i$的时候避开其改变了函数值的那些点，最后还是可以保证极限.
+\end{proof}
+
+\begin{proposition}
+\rm {\color{red}定积分的一些性质} 若$f(x)$在$[a,b]$上可积
+\begin{enumerate}
+	\item 
+	$$
+	\int_a^b f(x)dx = - \int_b^a f(x)dx.
+	$$
+	\item 若$a<c<b$，则
+	$$
+	\int_a^b f(x)dx  = \int_a^c f(x)dx + \int_c^b f(x)dx.
+	$$
+	\item 给定常数$k$，则
+	$$
+	\int_a^b kf(x)dx = k \int_a^b f(x)dx.
+	$$
+	\item 若$g(x)$也在$[a,b]$上可积，则
+	$$
+	\int_a^b f(x)\pm g(x)dx = \int_a^b f(x)dx \pm \int_a^b g(x)dx.
+	$$
+	\item 若$f(x)$在$[a,b]$非负，则
+	$$
+	\int_a^b f(x)dx \geq 0.
+	$$
+	\item 若$g(x)$也在$[a,b]$上可积，且恒有$g(x) \geq f(x)$，则
+	$$
+	\int_a^b f(x)dx \leq \int_a^b g(x)dx.
+	$$
+	\item 
+	$$
+	\left|\int_a^b f(x)dx\right| \leq \int_a^b |f(x)|dx.
+	$$
+	\item 若在$[a,b]$上有$m \leq f(x) \leq M$，则
+	$$
+	m(b-a) \leq \int_a^b f(x)dx \leq M(b-a).
+	$$
+\end{enumerate}
+\end{proposition}
+
+
+\begin{theorem}
+\rm {\color{red} (积分中值定理) } 若$f(x)$在$[a,b]$上可积，在整个区间上都有$m \leq f(x) \leq M$，则
+$$
+\int_a^b f(x)dx = \mu(b-a),
+$$
+其中$m\leq \mu \leq M$. 特别地当$f(x)$连续时，存在一点$c\in [a,b]$使得$u=f(c)$.  
+\end{theorem}
+
+\begin{proof}
+根据前面性质(8)，有
+$$
+m \leq \frac{1}{b-a}\int_a^b f(x)dx \leq M \\
+$$
+令
+$$
+\frac{1}{b-a}\int_a^b f(x)dx = u,
+$$
+即马上可以得到命题中的结论.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} 推广中值定理} (1)$f(x)$和$g(x)$在区间$[a,b]$上可积；(2)$m\leq f(x) \leq M$；(3) $g(x)$在整个区间上不变号，即$g(x) \leq 0$或者$g(x) \geq 0$. 则
+$$
+\int_a^b f(x)g(x)dx = u\int_a^b g(x)dx.
+$$
+特别地当$f(x)$连续时，存在一点$c\in [a,b]$使得$u=f(c)$.  
+\end{theorem}
 \end{document}
 
