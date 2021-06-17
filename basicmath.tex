@@ -1812,7 +1812,7 @@ $$
 $$
 \sigma = \sum\limits_{i=0}^{n-1}f(\xi_i)\Delta x_i.
 $$
-若$\lambda \rightarrow 0$时$\sigma$有有限极限$I$，用极限的语言描述即对任意的$\varepsilon > 0$，都可以找到数$\delta$，只要$\lambda < delta$，不等式
+若$\lambda \rightarrow 0$时$\sigma$有有限极限$I$，用极限的语言描述即对任意的$\varepsilon > 0$，都可以找到数$\delta$，只要$\lambda < \delta$，不等式
 $$
 |\sigma - I| < \varepsilon
 $$
@@ -2020,5 +2020,98 @@ $$
 $$
 特别地当$f(x)$连续时，存在一点$c\in [a,b]$使得$u=f(c)$.  
 \end{theorem}
+
+\begin{proof}
+由$m \leq f(x) \leq M$和$g(x)$不变号，方便证明我们假设$g(x) \geq 0$，马上可以得到
+$$
+mg(x) \leq f(x)g(x) \leq Mg(x),
+$$
+同时取积分，可以得到
+$$
+m \leq \frac{\int_a^b f(x)g(x)dx}{\int_a^b g(x)dx} \leq M.
+$$
+即$u = \frac{\int_a^b f(x)g(x)dx}{\int_a^b g(x)dx}$. 自然地若$f(x)$连续，根据介值定理就可以找到一点$c \in [a,b]$使得$f(c) = u$.
+\end{proof}
+
+\subsection{积分上限函数}
+
+\begin{definition}
+\rm 若函数在区间$[a,b]$上可积，则它在区间$[a,x]$上也是可积的，其中$x \in [a,b]$. 用变量$x$替换定积分的积分上限$b$之后，得到表达式
+$$
+\Phi(x) = \int_a^x f(t)dt.
+$$
+\end{definition}
+
+\begin{theorem}
+\rm 若函数$f(x)$在$[a,b]$上可积，则$\Psi(x)$在这个区间上是$x$的连续函数.
+\end{theorem}
+
+\begin{proof}
+给$x$一任意增量$\Delta x = h$，考虑其函数值
+$$
+\Phi(x+h) = \int_a^{x+h} f(t)dt = \int_a^x f(t)dt  + \int_x^{x+h} f(t)dt.
+$$
+于是
+$$
+\Phi(x+h) - \Phi(x) = \int_x^{x+h} f(t)dt,
+$$
+对齐应用中值定理有
+$$
+\Phi(x+h) - \Phi(x)  = \mu h.
+$$
+其中$m \leq \mu \leq M$，注意这个确界是$[x,x+h]$上的，言下之意它更是包含在$[a,b]$的确界之中的，说明$\mu$是bounded，即证明了$\Phi(x+h) - \Phi(x) = 0$.
+\end{proof}
+
+\begin{theorem}
+\rm 若函数$f(t)$在$t=x$是连续的，则在这点函数$\Phi(x)$有导数，等于$f(x)$.
+\end{theorem}
+
+\begin{proof}
+由连续性其限定了确界的取值，从上面定理可知其也限定了$\mu$的取值
+$$
+f(x) - \varepsilon \leq m  \leq u \leq M \leq f(x) + \varepsilon. 
+$$
+即$|\mu-f(x)| \leq \varepsilon$. 自然地
+$$
+\Phi'(x) = \lim\limits_{h \rightarrow 0} \frac{\Phi(x+h)-\Phi(x)}{h} = \lim\limits_{h \rightarrow 0} u = f(x).
+$$
+\end{proof}
+
+\begin{lemma}
+\rm {\color{red} (波内公式)}若函数$f(x)$在$[a,b]$上单调减且非负，而$g(x)$是可积的，则
+$$
+\int_a^b f(x)g(x)dx = f(a) \int_a^\xi g(x)dx,
+$$
+其中$a \leq \xi \leq b$.
+\end{lemma}
+
+\begin{lemma}
+\rm 若函数$f(x)$在$[a,b]$上单调增且非负，而$g(x)$是可积的，则
+$$
+\int_a^b f(x)g(x)dx = f(a) \int_\xi^b g(x)dx,
+$$
+其中$a \leq \xi \leq b$.
+\end{lemma}
+
+\begin{theorem}
+\rm {\color{red} (第二中值定理)}若函数$f(x)$在$[a,b]$上单调，而$g(x)$是可积的，则
+$$
+\int_a^b f(x)g(x)dx = f(a) \int_a^\xi g(x)dx + f(b) \int_\xi^b g(x)dx,
+$$
+其中$a \leq \xi \leq b$.
+\end{theorem}
+
+\begin{proof}
+引入辅助函数
+$$
+\varphi(x) = f(a)\int_a^x g(t)dt + f(b)\int_x^b g(t)dt,
+$$
+首先这个函数是连续的(变上下限积分的连续性在前面已经证明了)，我们需要证明
+$\int_a^b f(x)g(x)dx$在$\varphi(a) = f(b)\int_a^b g(t)dt$和$\varphi(b) = f(a) \int_a^b g(t)dt$之间，然后再用一下介值定理就可以找到对应的$\xi$. 但是我发现这个条并不好走，因为把$f(x)$提到积分外面来并不是一件很显然的事，
+\end{proof}
+
+\subsection{积分学的基本公式}
+
+
 \end{document}
 
