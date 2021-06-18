@@ -1505,7 +1505,7 @@ $$
 \begin{proposition}
 \rm 如果已知
 $$
-\int g(t)dx = G(t)+C,
+\int g(x)dx = G(t)+C,
 $$
 即有
 $$
@@ -1929,7 +1929,7 @@ $$
 $$
 \delta = \frac{\varepsilon}{f(b)-f(a)}.
 $$
-使得$f(b)\neq f(a)$，不然常函数肯定可积. 再让$\lambda < \delta$那么
+使得$f(b)\neq f(a)$，不然常函数肯定可积. 再让$\lambda < \delta$，即$\Delta x_i < \delta$，那么
 $$
 \sum\limits_{i=0}^{n-1}\omega_i\Delta x_i < \sum\limits_{i=0}^{n-1}\left[f(x_{i+1})-f(x_{i})\right] \delta = \delta\left[ f(b)-f(a) \right] 
 $$
@@ -2055,15 +2055,15 @@ $$
 $$
 \Phi(x+h) - \Phi(x) = \int_x^{x+h} f(t)dt,
 $$
-对齐应用中值定理有
+对其应用中值定理有
 $$
 \Phi(x+h) - \Phi(x)  = \mu h.
 $$
-其中$m \leq \mu \leq M$，注意这个确界是$[x,x+h]$上的，言下之意它更是包含在$[a,b]$的确界之中的，说明$\mu$是bounded，即证明了$\Phi(x+h) - \Phi(x) = 0$.
+其中$m \leq \mu \leq M$，这个确界是$f(x)$在$[x,x+h]$上的，言下之意它更是包含在$[a,b]$的确界之中的，说明$\mu$是bounded，即证明了$\Phi(x+h) - \Phi(x) = 0$.
 \end{proof}
 
 \begin{theorem}
-\rm 若函数$f(t)$在$t=x$是连续的，则在这点函数$\Phi(x)$有导数，等于$f(x)$.
+\rm {\color{red} (连续即原函数)} 若函数$f(t)$在$t=x$是连续的，则在这点函数$\Phi(x)$有导数，等于$f(x)$.
 \end{theorem}
 
 \begin{proof}
@@ -2102,16 +2102,142 @@ $$
 \end{theorem}
 
 \begin{proof}
-引入辅助函数
+{\color{blue}先回答一个问题为什么$f(x)$可积}，因为单调有界必可积. 引入辅助函数
 $$
 \varphi(x) = f(a)\int_a^x g(t)dt + f(b)\int_x^b g(t)dt,
 $$
 首先这个函数是连续的(变上下限积分的连续性在前面已经证明了)，我们需要证明
-$\int_a^b f(x)g(x)dx$在$\varphi(a) = f(b)\int_a^b g(t)dt$和$\varphi(b) = f(a) \int_a^b g(t)dt$之间，然后再用一下介值定理就可以找到对应的$\xi$. 但是我发现这个条并不好走，因为把$f(x)$提到积分外面来并不是一件很显然的事，
+$\int_a^b f(x)g(x)dx$在$\varphi(a) = f(b)\int_a^b g(t)dt$和$\varphi(b) = f(a) \int_a^b g(t)dt$之间，然后再用一下介值定理就可以找到对应的$\xi$. 但是我发现这条路并不好走，因为{\color{blue}把$f(x)$提到积分外面来并不是一件很显然的事}，所以这里的证明用了比较具有构造性的手法，使得
+$$
+\begin{array}{ll}
+I &= \sum\limits_{i=0}^{n-1}\int_{x_i}^{x_{i+1}} f(x)g(x)dx \\
+&= \sum\limits_{i=0}^{n-1}\int_{x_i}^{x_{i+1}}\left[ f(x)-f(x_i)+f(x_i)\right]g(x)dx \\
+&= \sum\limits_{i=0}^{n-1} f(x_i) \int_{x_i}^{x_{i+1}}g(x)dx + \sum\limits_{i=0}^{n-1}\int_{x_i}^{x_{i+1}}\left[ f(x)-f(x_i)\right]g(x)dx, \\
+\end{array}
+$$
+其中和式的最后一项因为避免符号带来影响，我们考虑其绝对值
+$$
+\left|\sum\limits_{i=0}^{n-1}\int_{x_i}^{x_{i+1}}\left[ f(x)-f(x_i)\right]g(x)dx \right| \leq \sum\limits_{i=0}^{n-1}\int_{x_i}^{x_{i+1}}\left| f(x)-f(x_i)\right||g(x)|dx \leq L \sum\limits_{i=0}^{n-1} \omega_i\Delta x_i. 
+$$
+其中$L$表示$|g(x)|$在$[a,b]$的上确界，$\omega_i$表示$f(x)$在$[x_i,x_{i+1}]$的振幅. 由于$f(x)$可积，所以最后一项等于$0$. 下面来考虑第一项，我们再来引入一个辅助函数$G(x) = \int_a^x g(t)dt$，那么
+$$
+\int_{x_i}^{x_{i+1}} g(x)dx = G(x_{i+1})-G(x_{i}).
+$$
+那么第一项我们可以写成
+$$
+\begin{array}{ll}
+\sum\limits_{i=0}^{n-1} f(x_i) \int_{x_i}^{x_{i+1}}g(x)dx &= \sum\limits_{i=0}^{n-1} f(x_i)\left[ G(x_{i+1})-G(x_{i})\right],
+\end{array}
+$$
+我们记上面这个式子为$\sigma$，下一步需要对$\sigma$来进行放缩. 我们对$f(x)$来放缩一下，那么$\sigma$应该位于
+$$
+f(a)\sum\limits_{i=0}^{n-1} \left[ G(x_{i+1})-G(x_{i})\right]~\text{与}~f(b)\sum\limits_{i=0}^{n-1} \left[ G(x_{i+1})-G(x_{i})\right]
+$$之间，注意到它们里面的和式都是可以化简的，最后即$f(a)G(b)$和$f(b)G(b)$. 这样就把$f(x)$提出来了，因此可以找到$\xi \in [a,b]$使得$\varphi(c)=I$. 
+
+下面来证明前面两个小lemma，首先以第一个lemma为例子，即$f(x)$单调减且非负.     这就意味着$f(a)G(b)$和$f(b)G(b)$是同号的，那么这个范围是可以继续放缩的，即$\sigma$位于$f(a)G(b)$和$0$之间的，这个$0$可以写作$f(a)G(a)$，因此考虑新的辅助函数$\varphi_1(x)=f(a)G(x)$，它是连续的，所以根据介值定理我们可以找到一点$\xi_1$使得$\varphi_1(\xi_1) = u$. 同理$f(x)$单调增且非负的时候，$\sigma$位于$f(b)G(b)$和$0$中间，这个$0$可以写做$f(b)\int_b^{b} g(x)dx$，因此考虑新的辅助函数$\varphi_2(x) = f(b)\int_{x}^b g(t)dt$，根据介值定理也可以找到一点$\xi_2$使得$\varphi_2(\xi_2) = \sigma$，第二个lemma得证.
 \end{proof}
 
 \subsection{积分学的基本公式}
 
+\begin{theorem}
+\rm {\color{red} 微积分基本定理} 如果函数$F(x)$是连续函数$f(x)$在区间$[a,b]$上的一个原函数，那么
+$$
+\int_a^b f(x)dx = F(b)-F(a).
+$$
+通常记为$F(x)\rvert_a^b$.
+\end{theorem}
+
+\begin{proof}
+由于$f(x)$是连续的，所以它的上限积分函数
+$$
+\Phi(x) =\int_a^x f(t)dt
+$$
+也是它的一个原函数，即有$\Phi(x) = F(x)+C$. 而
+$$
+\int_a^b f(x)dx  = \Phi(b) - \Phi(a) = F(b)-F(a).
+$$
+\end{proof}
+
+\subsection{定积分的分部积分和换元积分}
+
+
+\begin{proposition}
+\rm {\color{red}定积分的分部积分公式}
+$$
+\int_a^b udv = uv\rvert_a^b + \int_a^b vd u.  
+$$
+\end{proposition}
+
+\begin{proof}
+因为$\int udv = uv + \int vdu$，所以
+$$
+\int_a^b udv = \left[ uv + \int vdu \right]_a^b = uv\rvert_a^b + \int_a^b vdu.
+$$
+\end{proof}
+
+
+\begin{proposition}
+\rm {\color{red}定积分的换元积分法}
+给定区间$[a,b]$上的连续函数$f(x)$. 令$x = \varphi(t)$，使函数$\varphi(t)$满足下述条件
+\begin{enumerate}
+	\item $\varphi(t)$在某一区间$[\alpha,\beta]$上定义且连续，当$t$在$[\alpha,\beta]$上变动时不越出$[a,b]$的范围;
+	\item $\varphi(\alpha)=a,\varphi(\beta)=b$;
+	\item $\varphi(t)$在$[\alpha,\beta]$上存在连续导数.
+\end{enumerate}
+则等式
+$$
+\int_a^b f(x)dx = \int_\alpha^{\beta} f(\varphi(t))\varphi'(t)dt
+$$
+成立.
+\end{proposition}
+
+\begin{proof}
+设$f(x)$的原函数为$F(x)$，那么$f(\varphi(t))\varphi'(t)$的原函数为$F(\varphi(t))$，自然地
+$$
+\int_a^b f(x)dx = F(b)-F(a) = F(\varphi(\beta))-F(\varphi(\beta)) = \int_\alpha^{\beta} f(\varphi(t))\varphi'(t)dt.
+$$
+\end{proof}
+
+\newpage
+\section{反常积分}
+
+\subsection{基本定义}
+\begin{definition}
+\rm 假定函数$f(x)$定义在区间$[a,+\infty]$上，而且在这区间的任一有限部分$[a,A]$上都是可积的. 若这积分当$A \rightarrow +\infty$时具有一个有限的极限，则称这极限为函数$f(x)$在由$a$到$+\infty$的区间上的积分，记做
+$$
+\int_a^{+\infty} f(x)dx = \lim\limits_{A \rightarrow +\infty} \int_a^A f(x)dx.
+$$
+这种情形下我们说上述积分{\color{red}存在}或者{\color{red}收敛}，即$f(x)$在{\color{red}无穷区间}$[a,+\infty]$上可积，并称这个积分定义为{\color{red}反常积分}. 若关于这样的反常积分不存在，我们说它{\color{red}不存在}或者{\color{red}发散}.
+\end{definition}
+
+\begin{proposition}
+\rm {\color{red} 应用积分基本公式} 若反常积分$\int_a^{+\infty} f(x)dx$存在有限极限，等价于$\lim\limits_(A \rightarrow +\infty)$存在有限极限，其中$F(x)$是$f(x)$在$[a,+\infty)$上的原函数.
+$$
+\int_a^{+\infty} f(x)dx = \lim\limits_{A \rightarrow +\infty}F(A) - F(a),
+$$ 
+\end{proposition}
+
+\subsection{反常积分收敛判定}
+
+\begin{theorem}
+\rm {\color{red} (正函数且原函数有界必收敛)} 设函数$f(x)$在区间$[a,+\infty)$上连续. 若$f(x)$在$[a,+\infty)$恒有$f(x)\geq 0$，且$\Phi(A) = \int_a^A f(x)dx$上有界. 则反常积分$\int_a^{+\infty} f(x)dx$收敛.
+\end{theorem}
+
+\begin{proof}
+当$f(x)\geq 0$时，其原函数$\Phi(A)$是一个增函数，所以当其上有界时必收敛.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} (正函数收敛相互比较)} 设函数$f(x),g(x)$在区间$[a,+\infty)$上连续. 若$0 \leq f(x) \leq g(x)$，则$\int_a^{+\infty} g(x)dx$收敛可推出$\int_a^{+\infty} f(x)dx$收敛，或者$\int_a^{+\infty} f(x)dx$发散可推出$\int_a^{+\infty} g(x)dx$也发散.
+\end{theorem}
+
+\begin{proof}
+对任意上限数$A$，有
+$$
+\int_a^A f(x)dx \leq \int_a^A g(x)dx \leq \int_a^{+\infty} g(x)dx,
+$$
+因此$\int_a^A f(x)dx$上有界，所以其收敛.
+\end{proof}
 
 \end{document}
 
