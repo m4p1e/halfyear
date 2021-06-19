@@ -256,36 +256,59 @@ $$
 \subsection{数列极限的定义}
 
 \begin{definition}
-\rm 若对于每一整数$\varepsilon$,不论它怎样小，恒有序号$N$,使在$n > N$时，一切$x_n$满足不等式\[|x_n-a| < \varepsilon\],则称常数$a$为数列$(x_n)$当$n$趋向于无穷时的{\color{red}极限}，记为$\lim\limits_{n \rightarrow \infty}=a$. 也可以说这个序列收敛于$a$.
+\rm 若对于每一整数$\varepsilon$,不论它怎样小，恒有序号$N$,使在$n > N$时，一切$x_n$满足不等式\[|x_n-a| < \varepsilon\],则称常数$a$为数列$(x_n)$当$n$趋向于无穷时的{\color{red}极限}，记为$\lim\limits_{n \rightarrow \infty}=a$. 也可以说这个序列收敛于$a$. 
 \end{definition}
 
-\subsection{数列极限的几何意义}
+\begin{proposition}
+\rm 数列$\{x_n\}$以常数$a$为极限的充要条件为它们的差$\alpha_n = x_n-a$是等价无穷小. 所以
+$$
+\lim {x_n} = a + \lim \alpha_n = a + \alpha.
+$$
+{\color{blue}带个小尾巴$\alpha$会帮助我们方便地建立其他序列的极限}，在后面会看到. 
+\end{proposition}
 
-\subsection{数列左右极限}
+\subsection{数列极限的几何意义}
+\begin{center}
+\begin{tikzpicture}
+\draw[thick,->] (0,0) -- (10,0);
+\draw (0.5,0) node[circle,draw,scale=0.3]{} node[above] {$x_2$};
+\draw [decorate,decoration={brace,amplitude=5pt,mirror,raise=4ex}]
+  (1.5,0) node[circle,draw,scale=0.3]{} node[above]{$a-\varepsilon$} -- (6.5,0) node[midway,yshift=-3em]{$2 \varepsilon$} node[circle,draw,scale=0.3]{} node[above]{$a+\varepsilon$};
+%\draw [Parenthesis-Parenthesis,] (2,0) node[above] {$a-\varepsilon$} -- (7,0) node[above] {$a+\varepsilon$};
+\draw (2.5,0) node[circle,draw,scale=0.3]{} node[above] {$x_{n+1}$};
+\draw (4,0) node[circle,draw,scale=0.3]{} node[above] {$a$};
+\draw (5,0) node[circle,draw,scale=0.3]{} node[above] {$x_n$};
+%\draw (7,0) node[circle,draw,scale=0.3]{} node[above] {$a+\varepsilon$};
+\draw (8,0) node[circle,draw,scale=0.3]{} node[above] {$x_3$};
+\draw (9,0) node[circle,draw,scale=0.3]{} node[above] {$x_1$};
+\end{tikzpicture}
+\end{center}
+
+以$a$点为中心的线段不论取的多小(其长度为$2\varepsilon$),一切$x_n$点从某点起，必全部落在这线段之内,这样在线段之外一定只有有限长度个点了,表示极限的点$a$表示整序变量的数值的点的凝聚中心.
 
 \subsection{数列极限的基本性质}
 %局部性
 \begin{proposition}
-\rm 若$\lim x_n = a$，又$a > p$，那么存在某个正整数$N$，当$n > N$时，一切$x_n$都满足$x_n > p$.
+\rm {\color{red} (局部性)} 若$\lim x_n = a$，又$a > p$，那么存在某个正整数$N$，当$n > N$时，一切$x_n$都满足$x_n > p$.
 \end{proposition}
 
-%包号性
+%保号性
 \begin{proposition}
-\rm 若$\lim x_n = a$，有$a > 0$，那么存在某个正整数$N$，当$n > N$时，一切$x_n$都满足$x_n > 0$.
+\rm {\color{red} (保号性)} 若$\lim x_n = a$，有$a > 0$，那么存在某个正整数$N$，当$n > N$时，一切$x_n$都满足$x_n > 0$.
 \end{proposition}
 
 %保值性？
 \begin{proposition}
-\rm 若$\lim x_n = a$，且$a \neq 0$，则必有充分远的$x_n$值，其绝对值大于某个正数$r$:
+\rm {\color{red} (局部性一个推广)} 若$\lim x_n = a$，且$a \neq 0$，则必有充分远的$x_n$值，其绝对值大于某个正数$r$
 $$
-|x_n| > r > 0 \; (n > N).
+|x_n| > r > 0 ~ (n > N).
 $$
 {\color{blue} 性质1的推论}.
 \end{proposition}
 
 %有界性
 \begin{proposition}
-\rm 若$\lim x_n = a$，则$(x_n)$必有界.
+\rm {\color{red} (极限存在必有界)} 若$\lim x_n = a$，则$(x_n)$必有界.
 \end{proposition}
 
 \begin{proof}
@@ -294,7 +317,7 @@ $$
 
 %极限唯一
 \begin{proposition}
-\rm 若同时有$\lim x_n = a,\; \lim x_n = b$，则$a = b$.  
+\rm {\color{red} (极限唯一)} 若同时有$\lim x_n = a,\; \lim x_n = b$，则$a = b$.  
 \end{proposition}
 
 \subsection{数列无穷小和无穷大}
@@ -302,11 +325,11 @@ $$
 \subsection{数列极限运算}
 
 \begin{proposition}
-\rm 若$x_n = y_n$，则$\lim x_n = \lim y_n$.
+\rm {\color{red} (数列相同则极限相同)} 若$x_n = y_n$，则$\lim x_n = \lim y_n$.
 \end{proposition}
 
 \begin{proposition}
-\rm 若恒有$x_n \leq y_n$，且各自趋于有限极限，则$\lim x_n \leq \lim y_n$.
+\rm {\color{red} (数列比较导出极限关系)} 若恒有$x_n \leq y_n$，且各自趋于有限极限，则$\lim x_n \leq \lim y_n$.
 \end{proposition}
 
 \begin{proposition}
@@ -339,8 +362,14 @@ $$
 \begin{proposition}
 \rm 若$\lim x_n = a,\; \lim y_n =b$，且$b\neq 0$，则$\lim \frac{x_n}{y_n} = \frac{a}{b}$. 考虑两个极限的尾巴
 $$
-\lim \frac{x_n}{y_n} = \frac{a+\alpha}{b+\beta}.
+\begin{array}{ll}
+\lim \frac{x_n}{y_n} - \frac{a}{b} &= \frac{a+\alpha}{b+\beta} - \frac{a}{b} \\
+&= \frac{b\alpha - a\beta}{b(b+\beta)} \\
+&= \frac{1}{b+\beta}(\alpha-\frac{a}{b} \beta) \\
+&= \lim \frac{1}{y_n}(\alpha-\frac{a}{b}\beta).
+\end{array}
 $$
+显然{\color{blue}有界乘上无穷小还是无穷小}.
 \end{proposition}
 
 \subsection{不定式}
@@ -428,6 +457,13 @@ $$
 \subsection{函数极限的定义}
 
 \subsection{函数左右极限}
+\begin{definition}
+\rm 给定定义在区间$\mathcal{X}$上函数$f(x)$，点$x_0$是其一个聚点. 若给定任意的$\varepsilon > 0$，都能找到$\delta > 0$，使得对$x \in (x_0-\delta,x_0)$满足
+$$
+|f(x_0)-A| < \varepsilon.
+$$
+则称$f(x)$在$x_0$处有{\color{red}左极限}存在. 同理若使得$x \in (x_0,x_0 +\delta)$也满足上述不等式，则称$f(x)$在$x_0$处有{\color{red}右极限}.
+\end{definition}
 
 \subsection{用数列的语言来描述函数极限}
 
@@ -464,7 +500,7 @@ $$
 $$
 |f(x)| \leq M ,\; |x-a| < \delta.
 $$
-{\color{blue} 注意这里和$\lim x_n = b$，而导致整个$(x_n)$有界是区别的，因为这里当$x-a < -\delta$或者$x-a > \delta$可能有无限多个函数值的，它们是否有界是无法确定的}.
+即在$x_0$某个去心邻域有界. {\color{blue} 注意这里和序列极限$\lim x_n = b$，而导致整个$(x_n)$有界是区别的，因为这里当$x-a < -\delta$或者$x-a > \delta$可能有无限多个函数值的，它们是否有界是无法确定的}. {\color{red} 命题反过来不一定正确，即有界不一定收敛}.
 \end{proposition}
 
 \subsection{函数极限运算}
