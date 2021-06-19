@@ -10,6 +10,9 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
 \usepackage{hyperref} %url
 \hypersetup{
     colorlinks=true,
@@ -29,7 +32,6 @@
 \parindent=0pt
 \setlength{\parindent}{2em} 
 \usepackage{indentfirst}
-
 
 
 \usepackage{xcolor}
@@ -2203,41 +2205,225 @@ $$
 
 \subsection{基本定义}
 \begin{definition}
-\rm 假定函数$f(x)$定义在区间$[a,+\infty]$上，而且在这区间的任一有限部分$[a,A]$上都是可积的. 若这积分当$A \rightarrow +\infty$时具有一个有限的极限，则称这极限为函数$f(x)$在由$a$到$+\infty$的区间上的积分，记做
+\rm 假定函数$f(x)$定义在区间$[a,+\infty]$上，而且在这区间的任一有限部分$[a,x]$上都是可积的. 若这积分当$x \rightarrow +\infty$时具有一个有限的极限，则称这极限为函数$f(x)$在由$a$到$+\infty$的区间上的积分，记做
 $$
-\int_a^{+\infty} f(x)dx = \lim\limits_{A \rightarrow +\infty} \int_a^A f(x)dx.
+\int_a^{+\infty} f(x)dx = \lim\limits_{x \rightarrow +\infty} \int_a^x f(x)dx.
 $$
-这种情形下我们说上述积分{\color{red}存在}或者{\color{red}收敛}，即$f(x)$在{\color{red}无穷区间}$[a,+\infty]$上可积，并称这个积分定义为{\color{red}反常积分}. 若关于这样的反常积分不存在，我们说它{\color{red}不存在}或者{\color{red}发散}.
+这种情形下我们说上述积分{\color{red}存在}或者{\color{red}收敛}，即$f(x)$在{\color{red}无穷区间}$[a,+\infty)$上可积({\color{red}菲砖在这里用区间$[a,+\infty]$表示，我不知道带上后面这个闭是否规范})，并称这个积分定义为{\color{red}反常积分}. 若关于这样的反常积分不存在，我们说它{\color{red}不存在}或者{\color{red}发散}.
 \end{definition}
 
 \begin{proposition}
-\rm {\color{red} 应用积分基本公式} 若反常积分$\int_a^{+\infty} f(x)dx$存在有限极限，等价于$\lim\limits_(A \rightarrow +\infty)$存在有限极限，其中$F(x)$是$f(x)$在$[a,+\infty)$上的原函数.
+\rm {\color{red} 应用积分基本公式} 设函数$f(x)$在$[a,b]$上连续，若反常积分$\int_a^{+\infty} f(x)dx$存在有限极限，等价于$\lim\limits_{x \rightarrow +\infty}F(x)$存在有限极限，其中$F(x)$是$f(x)$在$[a,+\infty)$上的原函数.
 $$
-\int_a^{+\infty} f(x)dx = \lim\limits_{A \rightarrow +\infty}F(A) - F(a),
+\int_a^{+\infty} f(x)dx = \lim\limits_{x \rightarrow +\infty}F(x) - F(a),
 $$ 
 \end{proposition}
 
 \subsection{反常积分收敛判定}
 
 \begin{theorem}
-\rm {\color{red} (正函数且原函数有界必收敛)} 设函数$f(x)$在区间$[a,+\infty)$上连续. 若$f(x)$在$[a,+\infty)$恒有$f(x)\geq 0$，且$\Phi(A) = \int_a^A f(x)dx$上有界. 则反常积分$\int_a^{+\infty} f(x)dx$收敛.
+\rm {\color{red} (正函数且原函数有界必收敛)} 设函数$f(x)$在区间$[a,+\infty)$上连续. 若$f(x)$在$[a,+\infty)$恒有$f(x)\geq 0$，且$\Phi(x) = \int_a^x f(t)dt$上有界. 则反常积分$\int_a^{+\infty} f(x)dx$收敛.
 \end{theorem}
 
 \begin{proof}
-当$f(x)\geq 0$时，其原函数$\Phi(A)$是一个增函数，所以当其上有界时必收敛.
+当$f(x)\geq 0$时，其原函数$\Phi(x)$是一个增函数，所以当其上有界时必收敛.
 \end{proof}
 
 \begin{theorem}
-\rm {\color{red} (正函数收敛相互比较)} 设函数$f(x),g(x)$在区间$[a,+\infty)$上连续. 若$0 \leq f(x) \leq g(x)$，则$\int_a^{+\infty} g(x)dx$收敛可推出$\int_a^{+\infty} f(x)dx$收敛，或者$\int_a^{+\infty} f(x)dx$发散可推出$\int_a^{+\infty} g(x)dx$也发散.
+\rm {\color{red} (正函数相互审敛法1)} 设函数$f(x),g(x)$在区间$[a,+\infty)$上连续. 若$0 \leq f(x) \leq g(x)$，则$\int_a^{+\infty} g(x)dx$收敛可推出$\int_a^{+\infty} f(x)dx$收敛，或者$\int_a^{+\infty} f(x)dx$发散可推出$\int_a^{+\infty} g(x)dx$也发散.
 \end{theorem}
 
 \begin{proof}
-对任意上限数$A$，有
+对任意上限数$x$，有
 $$
-\int_a^A f(x)dx \leq \int_a^A g(x)dx \leq \int_a^{+\infty} g(x)dx,
+\int_a^x f(t)dt \leq \int_a^x g(t)dt \leq \int_a^{+\infty} g(t)dt,
 $$
-因此$\int_a^A f(x)dx$上有界，所以其收敛.
+因此$\int_a^x f(t)dt$上有界，所以其收敛.
 \end{proof}
+
+\begin{theorem}
+\rm \rm {\color{red} (正函数相互审敛法2)} 设函数$f(x),g(x)$在区间$[a,+\infty)$上连续，且$f(x)\geq 0,\; g(x) \geq 0$. 若极限
+$$
+\lim\limits_{x \rightarrow + \infty} \frac{f(x)}{g(x)} = K~(0 \leq K \leq +\infty)
+$$
+存在，则$\int_a^{+\infty} g(x)dx$和$\int_a^{+\infty} f(x)dx$同时收敛或者同时发散. 
+\end{theorem}
+
+\begin{proof}
+根据极限的定义，任取$\varepsilon > 0$，存在充分大的$x > \Delta x$，使得
+$$
+\frac{f(x)}{g(x)} < K + \varepsilon,
+$$
+故有$f(x) <  (K+\varepsilon)g(x)$. 这里需要知道$\int_a^{+\infty}(K+\varepsilon)g(x)dx$和$\int_a^{+\infty}g(x)dx$收敛性也是相同的，即同时收敛或者同时发散. 当$x$取定之后，$\int_a^{x} f(x)dx$和$\int_a^{x} g(x)dx$都是存在的，这是条件给定的，所以只需要考虑$\int_{x}^{+\infty}f(x)dx$和$\int_{x}^{+\infty}g(x)dx$反常积分存在. 若$\int_{x}^{+\infty}g(x)dx$存在，回归到前面的定理上，$\int_{x}^{+\infty}f(x)dx$也存在; 若$\int_{x}^{+\infty}g(x)dx$不存在，假设$\int_{x}^{+\infty}f(x)dx$存在，那么调整一下上面不等式为
+$$
+K-\varepsilon < \frac{f(x)}{g(x)},
+$$
+这样根据上面的证明手法会推得$\int_{x}^{+\infty}g(x)dx$也存在，这就产生矛盾了，因此$\int_{x}^{+\infty}f(x)dx$也不存在. 
+\end{proof}
+
+\begin{proposition}
+\rm {\color{red} (柯西判别法)} 特别地，当上述定理中的$g(x)$取$\frac{1}{x^\lambda}$时，即若对于充分大的$x$，函数$f(x)$具有如下形式
+$$
+f(x) = \frac{\varphi(x)}{x^\lambda}~(\lambda > 0),
+$$
+若$\lambda > 1$，而$\varphi(x) \leq c$($c$是一个非负常数)，则$\int_a^{+\infty}f(x)dx$收敛; 若$\lambda \leq 1$，而$\varphi(x) \geq c \geq 0$，则$\int_a^{+\infty}f(x)dx$发散.
+\end{proposition}
+
+\begin{proof}
+{\color{blue}注意这里的$\varphi(x)$是根据$\lambda$的选定而不同}，所以它也是作为一个来比较$f(x)$和$\frac{1}{x^\lambda}$关系的条件. 
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} (绝对收敛必收敛)} 设函数$f(x)$在$[a,b]$上连续，若反常积分
+$$
+\int_a^{+\infty} |f(x)|dx
+$$
+收敛，则反常积分
+$$
+\int_a^{+\infty} f(x)dx
+$$
+也收敛，这种清楚下称反常积分$\int_a^{+\infty} f(x)dx$为{\color{red}绝对收敛}.
+\end{theorem}
+
+\begin{proof}
+{\color{blue}现在$f(x)$可能是一个变号函数，我们无法使用前面正函数的判定手法，但是我们由它构造一个正函数}，即引入辅助函数
+$$
+\varphi(x) = \frac{1}{2}\left[f(x) + |f(x)|\right],
+$$
+显然$\varphi(x)$是一个正函数，同时也有$\varphi(x) \leq |f(x)|$，而$\int_a^{+\infty} |f(x)|dx$收敛，则$\int_a^{+\infty} \varphi(x)$也收敛. 此时有$f(x) = 2\varphi(x) - |f(x)|$，于是
+$$
+\int_a^{+\infty} f(x)dx = \int_a^{+\infty} \left[2\varphi(x) - |f(x)| \right] dx=  \int_a^{+\infty} 2\varphi(x)dx - \int_a^{+\infty} |f(x)|dx,
+$$ 
+因此反常积分是$\int_a^{+\infty} f(x)dx$是两个收敛反常积分的差，那么它也是一个收敛的反常积分. 
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} (绝对可积有界不破坏)} 若函数$f(x)$在区间$[a,+\infty)$上绝对可积，而可积函数$g(x)$有界，则$f(x)\cdot g(x)$在$[a,+\infty)$上绝对可积.
+\end{theorem}
+
+\begin{proof}
+$$
+|f(x)\cdot g(x)| \leq L|f(x)|,
+$$
+其中$L$表示$|g(x)|$的上界. 
+\end{proof}
+
+\subsection{无界函数的反常积分}
+
+
+\begin{definition}
+\rm 设定义在$[a,b)$上的无界函数$f(x)$，其在任一区间$[a,b-\eta](0 < \eta < b-a)$上有界而且可积，而在$[b-\eta,b)$无界，这种情况下称点$b$为$f(x)$的{\color{red}瑕点}或者{\color{red}奇点}.无界函数的反常积分又称为{\color{red}瑕积分}，记为
+$$
+\int_a^b f(x)dx = \lim\limits_{\eta \rightarrow 0} \int_a^{b-\eta} f(x)dx.
+$$
+若上述极限存在，则说反常积分$\int_a^b f(x)dx$ {\color{red}收敛}. 反之，反常积分$\int_a^b f(x)dx$ {\color{red}发散}. 为了让上述极限形式更简单一些，我们通常取$t \in [a,b)$，使得
+$$
+\lim\limits_{t \rightarrow b^{-}}\int_a^t f(x)dx.
+$$
+\end{definition}
+
+\begin{definition}
+\rm {\color{red}普遍情况下区间$[a,b]$上可能有若干个奇点}，在这些点附近函数$f(x)$都是无界的，但是在不包含这些奇点的每一个区间上，函数都有界且可积. 假定只有三个奇点，其中两个分别是这区间上的两个端点$a$和$b$，第三点$c$位于这个区间之中，那么函数$f(x)$从$a$到$b$的反常积分为
+$$
+\int_a^b f(x)dx = \lim\limits_{\mbox{\tiny$\begin{array}{ll}
+t_1 \rightarrow	 a^+ \\
+t_2 \rightarrow  c^- \\
+t_3 \rightarrow  c^+ \\
+t_4 \rightarrow  b^- \\
+\end{array}$}} \left[ \int_{t_1}^{t_2}f(x)dx + \int_{t_3}^{t_4} f(x)dx \right].
+$$
+若在区间$(a,c),(c,b)$上各取$d,e$两点，则有
+$$
+\int_a^b f(x)dx  = \int_a^d f(x)dx + \int_d^c f(x)dx + \int_c^e f(x)dx + \int_e^b dx, 
+$$
+左边反常积分$\int_a^b f(x)dx$存在，则右边这些反常积分都存在，且与$d,e$的选择无关. 
+\end{definition}
+
+\begin{proposition}
+\rm {\color{red} 应用积分基本公式} 定义在$[a,b)$上无界连续函数$f(x)$({\color{blue}这里表征连续，是需要保证$F(x)$确实是$f(x)$的原函数，换句话说就是$F(x)$在其区间上的导数均为$f(x)$})，其中$b$是奇点. 若反常积分$\int_a^b f(x)dx$存在有限极限，等价于极限$\lim\limits_{t \rightarrow b^-}F(b)$存在，其中$F(x)$是$f(x)$的原函数. 
+$$
+\int_a^b f(x)dx = \lim\limits_{t \rightarrow b^-}F(b)-F(a).
+$$
+\end{proposition}
+
+\subsection{无界函数的反常积分收敛判定}
+
+\begin{proposition}
+\rm {\color{red} 柯西判别法} 设定义在$[a,b)$上的无界正函数$f(x)$在任一$[a,A]$区间上都可积，点$b$是它一个奇点. 现在要使$g(x)=(x-b)^\lambda$，若对于充分大的$x$，函数$f(x)$具有如下形式
+$$
+f(x) = \frac{\varphi(x)}{(x-b)^\lambda}~(\lambda > 0).
+$$
+若$\lambda < 1$，且$\varphi \leq c$($c$是一个常数)，则积分$\int_a^b f(x)dx$收敛; 若$\lambda \geq 1$，且$\varphi \geq c > 0$，则积分$\int_a^b f(x)dx$发散.
+\end{proposition}
+
+\begin{proof}
+$$
+\int \frac{1}{(x-b)^\lambda} = \left\{ \begin{array}{ll}
+\ln(x-b) & \text{if}~\lambda = 1\\
+\frac{-1}{\lambda-1}\frac{1}{(x-b)^{\lambda-1}} & \text{if}~\lambda \neq 1
+\end{array} \right.
+$$
+当$\lambda < 1$时，$\lim\limits_{x \rightarrow b} \frac{-1}{\lambda-1}\frac{1}{(x-b)^{\lambda-1}} = 0$，当$\lambda \geq 1$时，$\lim\limits_{x \rightarrow b} \frac{-1}{\lambda-1}\frac{1}{(x-b)^{\lambda-1}} = \infty$.
+\end{proof}
+
+\subsection{Gamma函数}
+
+\begin{definition}
+\rm 对$s > 0$，Gamma函数定义为
+$$
+\Gamma(s) = \int_0^{+\infty} e^{-x}x^{s-1}dx.
+$$
+\begin{center}
+%an approximation
+\begin{tikzpicture}[]
+\begin{axis}[
+xmin =0, xmax = 5.1, 
+%ymin = -3.5, ymax = 3.5,  
+restrict y to domain=-6:6,
+axis lines = middle,
+xlabel={$x$}, 
+ylabel={$y$},
+enlarge x limits=0.05,
+enlarge y limits=0.1,
+x label style={at={(ticklabel* cs:1.00)}, inner sep=5pt, anchor=north},
+y label style={at={(ticklabel* cs:1.00)}, inner sep=2pt, anchor=south east},
+]
+\addplot[color=blue, samples=222, smooth, 
+domain = 0:5] {sqrt(2*pi)*x^(x-0.5)*exp(-x)*exp(1/(12*x))};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{definition}
+
+\begin{proposition}
+\rm 积分$\int_0^{+\infty} e^{-x}x^{s-1}dx$对任意的$s > 0$都收敛.
+\end{proposition}
+
+\begin{proposition}
+\rm 递推公式
+$$
+\Gamma(s+1) = s\Gamma(s). 
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 当$s \rightarrow 0^+$时，$\Gamma(s) \rightarrow +\infty$.
+\end{proposition}
+
+\begin{proposition}
+\rm 对$0<s<1$，有
+$$
+\Gamma(s)\Gamma(1-s) = \frac{\pi}{\sin \pi s}. 
+$$
+特别地，$\Gamma(\frac{1}{2})=\sqrt{\pi}$.
+\end{proposition}
+
+\begin{proposition}
+\rm {\color{red} (高斯积分)}
+$$
+\int_0^{+\infty} e^{-u^2} du = \frac{\sqrt{\pi}}{2}.
+$$
+\end{proposition}
 
 \end{document}
 
