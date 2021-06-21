@@ -1,0 +1,184 @@
+\documentclass{article}
+
+\usepackage{ctex}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{cd}
+\usetikzlibrary{decorations.pathreplacing}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepackage{hyperref} %url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage{enumitem}
+
+\usepackage[textwidth=18cm]{geometry} % 设置页宽=18
+
+\usepackage{blindtext}
+\usepackage{bm}
+\parindent=0pt
+\setlength{\parindent}{2em} 
+\usepackage{indentfirst}
+
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
+\titleformat{\subsection}[hang]{\color{red}\Large\bfseries}{}{0em}{}
+%\setcounter{secnumdepth}{1} %section 序号
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{annotation}[theorem]{Annotation}
+
+\newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
+\newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
+
+\newcommand\Set[2]{\{\,#1\mid#2\,\}} %集合
+\newcommand\SET[2]{\Set{#1}{\text{#2}}} %
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % 范数
+\newcommand{\vect}[1]{\mathbf{#1}} % vector
+\newcommand{\hints}{{\color{blue} \text{hints}}}
+
+\begin{document}
+\title{考研高数习题集}
+\author{枫聆}
+\maketitle
+\tableofcontents
+
+
+\newpage
+\section{极限相关}
+
+\subsection{$1^\infty$类型极限}
+
+\begin{example}
+若$\lim \alpha(x)=1,\lim \beta(x)=\infty$，且$\lim \alpha(x)\beta(x) = A$，其中$A$是一个常数，则
+$$
+\lim \left[ 1 + \alpha(x) \right]^{\beta(x)} = e^A.
+$$
+\hints\ 带指数形式的表达式，第一想法是把指数拿下来
+$$
+\lim \left[ 1 + \alpha(x) \right]^{\beta(x)} = \lim e^{\beta(x)\ln(1+\alpha(x))} = \lim e^{\beta(x)\alpha(x)} = e^A.
+$$
+\end{example}
+
+\subsection{夹逼准则应用}
+
+\begin{example}
+求极限
+$$
+\lim\limits_{n \rightarrow \infty}\left( \frac{n}{n^2+1} + \frac{n}{n^2+2} + \cdots + \frac{n}{n^2+n} \right).
+$$
+\hints
+$$
+\frac{n^2}{n^2+n} \leq s \leq  \frac{n^2}{n^2+1}.
+$$
+\end{example}
+
+\begin{example}
+求极限
+$$
+\lim\limits_{n \rightarrow 0^+} x\left[ \frac{1}{x} \right].
+$$
+\hints
+$$
+x-1 \leq \left[ x \right] \leq x
+$$
+\end{example}
+
+\begin{example}
+求极限
+$$
+\lim\limits_{n \rightarrow \infty} \frac{2^n}{n!}.
+$$
+\hints
+$$
+\left(\frac{2}{1}\right)\times\frac{2}{2}\times\frac{2}{3}\times \cdots \times \frac{2}{n}.
+$$
+\end{example}
+
+\newpage
+\subsection{级数相关的极限}
+
+\begin{example}
+当$\lim\limits_{n \rightarrow \infty} a_n = A$，则
+$$
+\lim\limits_{n \rightarrow \infty} \frac{a_1+a_2+\cdots+a_n}{n} = A.
+$$
+\hints\ 直接考察
+$$
+\left|\frac{a_1+a_2+\cdots+a_n}{n} - A \right| = \left| \frac{(a_1-A)+(a_2-A)+\cdots+(a_n-A)}{n} \right|
+$$
+{\color{blue}用极限的定义等式右边分成两部分}，即对任意的$\varepsilon > 0$，可以找到一个$n_1$，使得$n > n_1$时有$|x_n - A| < \varepsilon$，那么
+$$
+\begin{array}{ll}
+\left|\frac{(a_1-A) + (a_2-A) + \cdots + (a_{n_1}-A)}{n} + \frac{(a_{n_1 + 1}-A)+ (a_{n_1 + 2}-A) + \cdots + (a_{n}-A)}{n} \right| \\ \leq \frac{|a_1-A| + |a_2-A| + \cdots + |a_{n_1}-A|}{n} + \frac{|a_{n_1 + 2}-A|+ |a_{n_1 + 1}-A| + \cdots + |a_{n}-A|}{n}
+\end{array}
+$$
+上述不等式右边第一项，形如$\frac{C}{n}$，因为先对任意$n > n_1$都有上述不等式成立，那么只需要让$n$取的大一点，就能使得$\frac{C}{n} < \varepsilon$({\color{red}阿基米德公理}). 右边第二项显然小于$\frac{n-n_1}{n}\varepsilon$，于是综上
+$$
+\left|\frac{a_1+a_2+\cdots+a_n}{n} - A \right| < \varepsilon+\frac{n-n_1}{n}\varepsilon < 2\varepsilon.
+$$
+{\color{blue}如果题目中没有直接给出极限的具体值，我们可以用O.Stolz定理先猜出来，然后用初等方法来验证，再根据极限的唯一性，就得到了答案}. 把$a_n$换成形式，例如
+$$
+\lim\limits_{n \rightarrow \infty} \frac{1+\sqrt[2]{2}+\cdots+\sqrt[n]{n}}{n} = \lim\limits_{n \rightarrow \infty} \sqrt[n]{n} = 1.
+$$ 
+\end{example}
+
+
+\begin{example}
+求极限
+$$
+x_n  = \frac{1^k + 2^k + \cdots + n^k}{n^{k+1}}.
+$$
+\hints\ 用O.Stolz定理考虑
+$$
+\lim\limits_{n \rightarrow \infty} \frac{n^k}{n^{k+1} - (n-1)^{k+1}}
+$$
+分母二项式展开合并极有$\lim \frac{n^k}{(k+1)n^k + \cdots} = \frac{1}{k+1}$. 这道题初等方法似乎不能很好的把握，用和式的方法写出来其实就是黎曼积分的定义
+$$
+\lim\limits_{n \rightarrow \infty} \frac{1}{n} \sum\limits_{k=1}^k \frac{k}{n} = \int_0^1 x^k = \frac{1}{k+1}. 
+$$
+{\color{blue} 级数相关的问题往往可以尝试考虑用定积分的思路来解决}. 下面是$1^k + 2^k +\cdots + n^k$的转换思路
+$$
+\sum_{i=1}^n i^k=n^{k+1}\frac1n\sum_{i=1}^n \left(\frac in\right)^k\sim_\infty n^{k+1}\int_0^1 x^kdx=\frac{n^{k+1}}{k+1}
+$$
+\end{example}
+
+\newpage
+\section{tricks}
+
+\subsection{一些有趣的不等式}
+
+\begin{proposition}
+$$
+a^{\frac{1}{n}}-1 < \frac{a-1}{n},\; a > 1.
+$$
+\hints\ {\color{red}伯努利不等式}.
+$$
+(1+x)^2 \leq 1 + 2x.
+$$
+\end{proposition}
+
+\end{document}
