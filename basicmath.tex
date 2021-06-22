@@ -517,11 +517,11 @@ $$
 \begin{enumerate}
 	\item 
 	$$
-		\lim\limits_{n \rightarrow \infty} \sqrt[n]{n} = 1.
+		\lim\limits_{n \rightarrow \infty} \sqrt[n]{n} = 1. ~{\color{blue}\text{(取对数证明)}}
 	$$
 	\item
 	$$
-		\lim\limits_{n \rightarrow \infty} \sqrt[n]{a} = 1,\; a > 0.
+		\lim\limits_{n \rightarrow \infty} \sqrt[n]{a} = 1,\; a > 0. ~\text{(取对数证明或者伯努利不等式)}
 	$$
 \end{enumerate}
 \end{proposition}
@@ -581,6 +581,28 @@ $$
 \end{proof}
 
 \begin{proposition}
+\rm {\color{blue}$\lim\limits_{x \rightarrow 0} \frac{\sin x}{x}$延伸的极限}
+\begin{enumerate}
+	\item $\frac{0}{0}$
+	$$
+	\lim\limits_{x \rightarrow 0} \frac{\tan x}{x} = \lim\limits_{x \rightarrow 0} \frac{\frac{\sin x}{\cos x}}{x} = 1
+	$$
+	\item $\frac{0}{0}$
+	$$
+	\lim\limits_{x \rightarrow 0} \frac{1-\cos x}{x^2} = \lim\limits_{x \rightarrow 0} \frac{2\sin^2\frac{x}{2}}{4(\frac{x}{2})^2} = \frac{1}{2}
+	$$
+	\item $\frac{0}{0}$
+	$$
+	\lim\limits_{x \rightarrow 0} \frac{\tan x-\sin x}{x^3} = \lim\limits_{x \rightarrow 0} \frac{1-\cos x}{x^2\cos x}\frac{\sin x}{x} = \frac{1}{2}
+	$$
+	\item $\infty - \infty$ 通过和差化积是有点麻烦的，但是可以算的，这里用一点小trick，调整一下自变量使得$\alpha = \frac{\pi}{2} - x$
+	$$
+		\lim\limits_{x \rightarrow \frac{\pi}{2}} \sec x -\tan x = \lim\limits_{\alpha \rightarrow 0} \csc x - \cot x = \lim\limits_{\alpha \rightarrow 0} \frac{1-\cos x}{\sin x} = \lim\limits_{\alpha \rightarrow 0} \frac{1-\cos x}{x^2} \frac{x}{\sin x} x = 0.
+	$$
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
 $$
 \lim\limits_{x \rightarrow +\infty} (1+\frac{1}{x})^x = e.
 $$
@@ -589,6 +611,18 @@ $$
 \begin{proof}
 单调有界.
 \end{proof}
+
+\subsection{常用极限}
+
+\begin{proposition}
+\rm {\color{red}常用极限，需熟记}
+\begin{enumerate}
+	\item 
+	$$
+	\lim\limits_{x \rightarrow 0} \sqrt[m]{1+x} = 1.
+	$$
+\end{enumerate}
+\end{proposition}
 
 \subsection{函数极限的基本性质}
 
@@ -622,6 +656,7 @@ $$
 $$
 \frac{0}{0},\; \frac{\infty}{\infty},\; 0\cdot \infty,\; \infty-\infty.
 $$
+\end{annotation}
 
 \begin{proposition}
 \rm {\color{red}常见$\frac{\infty}{\infty}$极限}.
@@ -636,7 +671,16 @@ $$
 	$$
 \end{enumerate}
 \end{proposition}
-\end{annotation}
+
+\begin{proposition}
+\rm {\color{red}常见$\frac{0}{0}$极限}
+\begin{enumerate}
+	\item 
+	$$
+	\lim\limits_{x \rightarrow 0} \frac{\sqrt[m]{1+x}-1}{x} = \frac{1}{m}.
+	$$
+\end{enumerate}
+\end{proposition}
 
 \subsection{单调函数的极限}
 
@@ -751,9 +795,9 @@ $$
 $$
 \lim\limits_{x \rightarrow x_0} \frac{\alpha_1}{\alpha_2}= \lim\limits_{x \rightarrow x_0} \frac{\alpha_1}{\beta_1} \cdot \frac{\beta_1}{\beta_2} \cdot \frac{\beta_2}{\alpha_2} = \frac{\beta_1}{\beta_2}. 
 $$
-加法证明，由条件可知$\alpha_1 = A\beta_2 + o(\beta_2),\alpha_2 = \frac{1}{A}\beta_1 + o(\beta_1)$，那么
+加法证明，设$\gamma_1 = \frac{\alpha_1}{\beta_1} - 1,\gamma_2 = \frac{\alpha_2}{\beta_2} - 1$，则
 $$
-\lim \left[(\alpha_1 + \alpha_2) - (\beta_1 + \beta_2)\right] = (A-1)\beta_2 + (\frac{1}{A}-1)\beta_1 + o(\beta_2) + o(\beta_1). 
+\lim\limits_{x \rightarrow x_0} \frac{\alpha_1+\alpha_2}{\beta_1 + \beta_2} = \lim\limits_{x \rightarrow x_0} \frac{\beta_1(1+\gamma_1) + \beta_2(1+\gamma_2)}{\beta_1 + \beta_2} = \lim\limits_{x \rightarrow x_0} \left( \frac{1+\gamma_1}{1+\frac{\beta_2}{\beta_1}} + \frac{1+\gamma_2}{1+\frac{\beta_2}{\beta_1}} \right) = 1. 
 $$
 \end{proof}
 

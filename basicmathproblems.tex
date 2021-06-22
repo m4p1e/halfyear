@@ -166,6 +166,31 @@ $$
 $$
 \end{example}
 
+\subsection{换元取极限}
+
+\begin{example}
+求极限
+$$
+\lim\limits_{x \rightarrow 0} \frac{\sqrt[m]{x+1}-1}{x},\; m \in \mathbb{N}.
+$$
+\hints\ 设$y = \sqrt[m]{x+1}-1$，显然$y$在$x = 0$处连续，所以当$x \rightarrow 0$时有$y \rightarrow 0$，那么此时的极限就变成了
+$$
+\lim\limits_{y \rightarrow 0} \frac{y}{(y+1)^m-1} = \frac{1}{m}.
+$$
+这样上下都变成我们熟悉的多项式，分母二项式展开.
+\end{example}
+
+\begin{example}
+求极限
+$$
+\lim\limits_{x \rightarrow 0} \frac{(x+1)^{\frac{n}{m}}-1}{x}.
+$$
+\hints\ 还是使得$y = (x+1)^{\frac{1}{m}}-1$，那么就变成了
+$$
+\lim\limits_{y \rightarrow 0} \frac{(1+y)^n-1}{(1+y)^m-1} = \lim\limits_{y \rightarrow 0} \frac{(1+y)^n-1}{y}\frac{y}{(1+y)m-1} = \frac{n}{m}. 
+$$
+\end{example}
+
 \newpage
 \section{tricks}
 
@@ -177,8 +202,9 @@ a^{\frac{1}{n}}-1 < \frac{a-1}{n},\; a > 1.
 $$
 \hints\ {\color{red}伯努利不等式}.
 $$
-(1+x)^2 \leq 1 + 2x.
+(1+x)^n \leq 1 + nx, \; n \geq 0, x \leq -1.
 $$
+使得$(1+x) = a^{\frac{1}{n}}$，即可得到上式.
 \end{proposition}
 
 \end{document}
