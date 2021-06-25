@@ -612,6 +612,20 @@ $$
 单调有界.
 \end{proof}
 
+\begin{proposition}
+\rm $\lim\limits_{x \rightarrow +\infty} (1+\frac{1}{x})^x = e$延伸出来的极限
+\begin{enumerate}
+	\item $\frac{0}{0}$
+	$$
+	\lim\limits_{x \rightarrow 0} \frac{\log_a x}{x} = \log_a e.
+	$$
+	\item $\frac{0}{0}$
+	$$
+	\lim\limits_{x \rightarrow 0} \frac{a^x - 1}{x} = \ln a
+	$$
+\end{enumerate}
+\end{proposition}
+
 \subsection{常用极限}
 
 \begin{proposition}
@@ -877,6 +891,25 @@ $$
 
 \begin{annotation}
 \rm {\color{red} (motivation)} 在研究$x$趋向于$x_0$的极限时候，即$\lim\limits_{x \rightarrow x_0} f(x)$，并不要求$x$可以取到$x_0$，即使$f(x_0)$有定义，极限也不依赖它. 自然地，现在我们特别地考虑若$f(x_0)$有定义，且$\lim\limits_{x \rightarrow x_0}f(x) = f(x_0)$，这种情形下我们就说$f$在$x_0$处{\color{red}连续}，其他情况下则说$f$在$x_0$这里有{\color{red}间断}. {\color{blue} 函数连续是一个局部的性质}.
+\end{annotation}
+
+
+\subsection{函数连续性在计算极限时的应用}
+
+\begin{proposition}
+\rm {\color{red} (推进极限符号)} 若函数$f(x)$在$x = x_0$处连续，则
+$$
+\lim\limits_{x \rightarrow x_0} f(g(x)) = f(\lim\limits_{x \rightarrow x_0}g(x)),
+$$
+只需要极限$\lim\limits_{x \rightarrow x_0}g(x)$存在.
+\end{proposition}
+
+\begin{annotation}
+\rm 从函数连续的定义上可知$\lim\limits_{x \rightarrow x_0}f(x) = f(x_0)$，即在某点连续，这点的极限就是其函数值，这个关系对求极限是非常有用. 例如
+$$
+\lim\limits_{x \rightarrow 1} \sqrt[m]{x} = 1.
+$$
+其中$\sqrt[m]{x}$是连续的.
 \end{annotation}
 
 %严格定义

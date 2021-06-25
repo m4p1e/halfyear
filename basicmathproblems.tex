@@ -83,6 +83,33 @@ $$
 $$
 \end{example}
 
+\begin{example}
+求极限
+$$
+\lim\limits_{x \rightarrow \infty} \left[ \frac{x^2}{(x-a)(x+b)}\right]^x.
+$$
+\hints
+$$
+\left[ \frac{x^2}{(x-a)(x+b)}\right]^x = \left(\frac{x}{x-a}\right)^x + \left(\frac{x}{x+b} \right)^x = \left(1+\frac{a}{x-a}\right)^x + \left(1-\frac{b}{x+b}\right)^x = e^{a-b}.
+$$
+\end{example}
+
+\begin{example}
+求极限
+$$
+\lim\limits_{n \rightarrow \infty} \left( \frac{\sqrt[n]{a} + \sqrt[n]{b} + \sqrt[n]{c}}{3} \right)^n.
+$$
+\hints\ 往$(1+\alpha(x))^{\beta(x)}$上凑
+$$
+\left( \frac{\sqrt[n]{a} + \sqrt[n]{b} + \sqrt[n]{c}}{3} \right)^n = \left( 1 + \frac{\sqrt[n]{a} + \sqrt[n]{b} + \sqrt[n]{c}-3}{3}\right)^n
+$$
+考虑$\alpha(x)\beta(x)$
+$$
+\frac{(\sqrt[n]{a}-1) + (\sqrt[n]{b}-1) + (\sqrt[n]{c}-1)}{3}\cdot n = \frac{1}{3}\left( \frac{\sqrt[n]{a}-1}{\frac{1}{n}} + \frac{\sqrt[n]{b}-1}{\frac{1}{n}} + \frac{\sqrt[n]{c}-1}{\frac{1}{n}}\right)
+$$
+\end{example}
+
+\newpage
 \subsection{夹逼准则应用}
 
 \begin{example}
@@ -118,10 +145,11 @@ $$
 $$
 \end{example}
 
+
 \newpage
 \subsection{级数相关的极限}
 
-\begin{example}
+\begin{example} \label{ex:jishu1}
 当$\lim\limits_{n \rightarrow \infty} a_n = A$，则
 $$
 \lim\limits_{n \rightarrow \infty} \frac{a_1+a_2+\cdots+a_n}{n} = A.
@@ -162,10 +190,108 @@ $$
 $$
 {\color{blue} 级数相关的问题往往可以尝试考虑用定积分的思路来解决}. 下面是$1^k + 2^k +\cdots + n^k$的转换思路
 $$
+{\color{red}
 \sum_{i=1}^n i^k=n^{k+1}\frac1n\sum_{i=1}^n \left(\frac in\right)^k\sim_\infty n^{k+1}\int_0^1 x^kdx=\frac{n^{k+1}}{k+1}
+}
 $$
 \end{example}
 
+\newpage
+\begin{example}\label{ex:jishu2}
+当$\lim\limits_{n \rightarrow \infty} a_n = a, a_n > 0$，则
+$$
+\lim\limits_{n \rightarrow \infty } \ln \sqrt[n]{a_1a_2\cdots a_n} = \ln a.
+$$
+\hints\
+$$
+\ln \sqrt[n]{a_1a_2\cdots a_n} = \frac{\ln a_1 + \ln a_2 + \cdots + \ln a_n}{n} = \ln a.
+$$
+因为$\ln x$的连续性，所以$\lim \ln a_n = \ln a$，再根据\ref{ex:jishu1}. 
+\end{example}
+
+\begin{example}\label{ex:jishu3}
+当$\lim\limits_{n \rightarrow \infty} a_n = a, a_n > 0$，则
+$$
+\lim\limits_{n \rightarrow \infty} \sqrt[n]{a_1a_2\cdots a_n} = a.
+$$
+\hints\ 取对数再根据\ref{ex:jishu2}
+$$
+\sqrt[n]{a_1a_2\cdots a_n} = e^{\ln \sqrt[n]{a_1a_2\cdots a_n}} = e^{ln a} = a.
+$$
+\end{example}
+
+\begin{example}
+求极限
+$$
+\lim\limits_{n \rightarrow \infty}\frac{\sqrt[n]{n!}}{n}.
+$$
+\hints\ 由 \ref{ex:jishu3} 可知$a_n$和$b_n = \sqrt[n]{a_1a_2\cdots a_n}$的极限是相同的(假设$a_n$的极限存在). 那么有一个推论，对于数列
+$$
+a_1, \frac{a_2}{a_1}, \frac{a_3}{a_2},\cdots,\frac{a_{n+1}}{a_n},\cdots
+$$
+则$\lim \sqrt[n]{a_n} = \lim \frac{a_{n+1}}{a_{n}}$，只要等式右边的极限存在就行. 在这里我们只要设$a_n = \frac{n!}{n^n}$即可，那么
+$$
+\lim \frac{(n+1)!}{(n+1)^{n+1}} \cdot \frac{n^n}{n!} = \lim \frac{n^n}{(n+1)^n} = \frac{1}{(1+\frac{1}{n})^n} = \frac{1}{e}.
+$$
+\end{example}
+
+\newpage
+\subsection{去除根式的尴尬}
+
+%https://math.stackexchange.com/questions/3491441/limit-lim-limits-x-to-infty-sqrtnxa-1xa-2-xa-n-x?noredirect=1&lq=1
+\begin{example}
+求极限
+$$
+\lim\limits_{x \rightarrow +\infty} \left[ \sqrt[k]{(x+a_1)(x+a_2)\cdots(x+a_k)} - x\right].
+$$
+\hints\ 
+$$
+(x+a_1)(x+a_2)\cdots(x+a_k) = x^k\left(1+\frac{a_1+a_2+\cdots+a_k}{x}+\mathcal{O}\left(\frac{1}{x^2}\right)\right)
+$$
+那么
+$$
+x\left(1+\frac{a_1+a_2+\cdots+a_k}{x}+\mathcal{O}\left(\frac{1}{x^2}\right)\right)^{\frac{1}{n}} = x\left(1+ \frac{a_1+a_2+\cdots+a_n}{nx} + \mathcal{O}\left(\frac{1}{x^2}\right)\right) = x + \frac{a_1+a_2+\cdots+a_n}{nx} + \mathcal{O}\left(\frac{1}{x}\right),
+$$
+这里第一个等号右边对$(1+x)^p$在$x=0$处用了一下{\color{blue}泰勒展开}得到$(1+qx+\mathcal{O}(x^2))$，这个$\mathcal{O}$表示最高次的多项式. 
+
+还有一种{\color{blue}升次}的方法，即下面的恒等式
+$$
+{\color{red}
+y-z = \frac{y^k-z^k}{y^{k-1} + y^{k-2}z + \cdots + z^{k-1}}.
+}
+$$
+这里我们使得$y = \sqrt[k]{(x+a_1)(x+a_2)\cdots(x+a_k)}$及$z = x$，那么原式就变成了
+$$
+\begin{array}{lll}
+= &\frac{(x+a_1)(x+a_2)\cdots(x+a_k) - x^k}{\left[\sqrt[k]{(x+a_1)(x+a_2)\cdots(x+a_k)}\right]^{k-1}+\left[\sqrt[k]{(x+a_1)(x+a_2)\cdots(x+a_k)}\right]^{k-2}x + \cdots + x^{k-1} } \\
+= & \frac{a_1+a_2+\cdots + a_k + \mathcal{O}(\frac{1}{x})}{\left[\sqrt[k]{(1+\frac{a_1}{x})(1+\frac{a_2}{x})\cdots(1+\frac{a_k}{x})}\right]^{k-1}+\left[\sqrt[k]{(1+\frac{a_1}{x})(1+\frac{a_2}{x})\cdots(1+\frac{a_k}{x})}\right]^{k-2}x + \cdots + 1} & {\color{blue}\text{上下除以$x^{k-1}$}}
+\end{array}
+$$
+分母中$\sqrt[k]{(1+\frac{a_1}{x})(1+\frac{a_2}{x})\cdots(1+\frac{a_k}{x})}$是趋于$1$的，再用一下函数$x^{\frac{m}{n}}$的连续性，取其函数值也是等于$1$，所以分母就有$k \cdot 1$.
+\end{example}
+
+%https://math.stackexchange.com/questions/28348/proof-of-lim-n-to-infty-sqrtnn-1
+\begin{example}
+求极限
+$$
+\lim\limits_{n \rightarrow \infty} \sqrt[n]{n} = 1.
+$$
+\hints\ 取对数应用$e^x$的连续性
+$$
+\lim e^\frac{\ln n}{n} = e^{\lim \frac{\ln n}{n}} = 1. 
+$$
+也可以使用一下\ref{prop: bonuli}的伯努利不等式来证明，这里设$\sqrt[n]{n} = 1+h$，那么
+$$
+\begin{array}{ll}
+&n = (1+h)^n = 1+nh + \frac{n(n-1)}{2}h^2 + \cdots \\
+\Rightarrow & n \geq \frac{n(n-1)}{2}h^2  \\
+\Rightarrow & h^2 \leq \frac{2}{n-1}.
+\end{array}
+$$
+当$n \rightarrow \infty$时，$h \rightarrow 0$，即$\sqrt[n]{n}-1 \rightarrow 0$，所以$\lim \sqrt[n]{n} = 1$.
+\end{example}
+
+\newpage
 \subsection{换元取极限}
 
 \begin{example}
@@ -196,7 +322,7 @@ $$
 
 \subsection{一些有趣的不等式}
 
-\begin{proposition}
+\begin{proposition}\label{prop: bonuli}
 $$
 a^{\frac{1}{n}}-1 < \frac{a-1}{n},\; a > 1.
 $$
