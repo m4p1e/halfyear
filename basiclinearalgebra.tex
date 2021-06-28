@@ -12,8 +12,15 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
-
-\usepackage{unicode-math}
+\usepackage{hyperref} %url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
 
 \usepackage{enumitem}
 
@@ -53,7 +60,8 @@
 \newcommand{\vect}[1]{\mathbf{#1}} % vector
 
 \newcommand\bigzero{\makebox(0,0){\text{\huge0}}} %bigzero
-
+\newcommand{\hints}{{\color{blue} \text{hints}}}
+\newcommand{\mbf}[1]{\mathbf{#1}} 
 \begin{document}
 \title{考研线代}
 \author{枫聆}
@@ -198,16 +206,17 @@ $$
 \end{proposition}
 
 \begin{proof}
-其中无解对应的情况是显然的，那么我们在确保不会出现$0=d$的情况下有解，且为什么只会出现唯一解或者无穷多个解，而不会出现有两个解的这种情况呢？ 若给定$n$元线性方程组的增广矩阵，经过初等行变换化成行阶梯形矩阵$J$. 设$J$有$r$个非零行，显然$J$有$n+1$列，其中$n+1$列表示等式右边的常数项.
+其中无解对应的情况是显然的，那么我们在确保不会出现$0=d$的情况下有解，且为什么只会出现唯一解或者无穷多个解，而不会出现有两个解的这种情况呢？ 若给定$n$元线性方程组的增广矩阵，经过初等行变换化成行阶梯形矩阵$J$. 设$J$有$r$个非零行，$J$有$n+1$列，其中$n+1$列表示等式右边的常数项.
 $$
 J=
 \begin{pmatrix}
 \cdots & \cdots &c_1 \\
 \vdots & \vdots & \vdots \\
 \cdots & b_{rt} &\cdots \\
+&\bigzero&
 \end{pmatrix}
 $$
-设$r$行的主元为$b_{rt}$，即它在第$t$列，那么必有$t \leq n$. 根据行阶梯形的定义，列指标是随着行指标的增加而严格增大的，因此也有$t \geq r$. 所以结合前面两个关系，可以得到$r \leq n$，即非零行的个数是不会超过$n$的. 此刻先把$J$通过初等行变换变成简化行阶梯形矩阵$J_1$，那么$J_1$也有$r$非零行，即有$r$个主元，下面分两种情况分别讨论: {\color{red}当$r=n$时}，$J_1$就有$n$个主元，那么按照行阶梯形主元排列顺序，
+设$r$行的主元为$b_{rt}$，即它在第$t$列，那么必有$t \leq n$. 根据行阶梯形的定义，列指标是随着行指标的增加而严格增大的，因此也有$t \geq r$，同时$t \leq n$，因此可以得到$r \leq n$，即非零行的个数是不会超过$n$的. 此刻再把$J$通过初等行变换变成简化行阶梯形矩阵$J_1$，那么$J_1$也有$r$非零行，即有$r$个主元，下面分两种情况分别讨论: {\color{red}当$r=n$时}，$J_1$就有$n$个主元，那么按照行阶梯形主元排列顺序，
 $$
 J_1 =
 \begin{pmatrix}
@@ -232,13 +241,13 @@ $$
 那么现在我们可以把上面这$r$个主元对应的未知数表示出来
 $$
 \begin{array}{ll}
-x_1 &= a_{1,1}x_{i_1} + a_{1,2}x_{i_2} + \cdots + a_{1,n-r} x_{n-r} \\
-x_{j_2} &= a_{j_2,1}x_{i_1} + a_{j_2,2}x_{i_2} + \cdots + a_{j-2,n-r} x_{n-r} \\
+x_1 &= b_{1,1}x_{i_1} + b_{1,2}x_{i_2} + \cdots + b_{1,n-r} x_{n-r} + d_1 \\
+x_{j_2} &= b_{j_2,1}x_{i_1} + b_{j_2,2}x_{i_2} + \cdots + b_{j-2,n-r} x_{n-r} + d_{j_2} \\
 &\vdots \\
-x_{j_r} &= a_{j_r,1}x_{i_1} + a_{j_r,2}x_{i_2} + \cdots + a_{j-r,n-r} x_{n-r}
+x_{j_r} &= b_{j_r,1}x_{i_1} + b_{j_r,2}x_{i_2} + \cdots + b_{j-r,n-r} x_{n-r} + d_{j_r}
 \end{array}
 $$
-其中$x_1,x_{j_2},\cdots x_{j_r}$表示对应列的$r$个主元，其余的自由变量有$n-r$个用$x_{i_1},x_{i_2},\cdots,x_{n-r}$表示. 那么只要任意确定一组自由变量的取值，也就确定了一组解，即这种情况下只有无穷多个解，上面这个形式也称为{\color{red}一般解}.
+其中$x_1,x_{j_2},\cdots x_{j_r}$表示对应列的$r$个主元，其余的自由变量有$n-r$个用$x_{i_1},x_{i_2},\cdots,x_{n-r}$表示，常数$b_{ij}$. 那么只要任意确定一组自由变量的取值，也就确定了一组解，即这种情况下只有无穷多个解，上面这个形式也称为{\color{red}一般解}.
 \end{proof}
 
 \begin{definition}
@@ -255,7 +264,7 @@ $$
 \end{definition}
 
 \begin{lemma}
-\rm {\color{red} (齐次线性方程组有非零解的充要条件)} $n$元齐次线性方程组有零解当且仅当{\color{red}系数矩阵}经过初等行变换得到的阶梯形矩阵的非零行个数$r<n$.
+\rm {\color{red} (齐次线性方程组有非零解的充要条件)} $n$元齐次线性方程组有非零解当且仅当{\color{red}系数矩阵}经过初等行变换得到的阶梯形矩阵的非零行个数$r<n$.
 \end{lemma}
 
 \begin{lemma}
@@ -324,19 +333,19 @@ a_{11} & a_{21} & \cdots & a_{n1} \\
 a_{12} & a_{22} & \cdots & a_{n2} \\
 \vdots & \vdots & 		 & \vdots \\
 a_{1n} & a_{n2} & \cdots & a_{nn} \\
-\end{vmatrix}$称为$|A|$的{\color{red}转置行列式}.
+\end{vmatrix}$称为$|\mbf{A}|$的{\color{red}转置行列式}.
 \end{definition}
 
 
 \begin{definition}
-\rm 在$n$阶行列式中划去$a_{ij}$所在的第$i$行和第$j$列，留下来的$n-1$阶行列式叫做$a_{ij}$的{\color{red}余子式}; 称$(-1)^{i+j}M_{ij}$为{\color{red}代数余子式}，记为$A_{ij}$.
+\rm 在$n$阶行列式中划去$a_{ij}$所在的第$i$行和第$j$列，留下来的$n-1$阶行列式叫做$a_{ij}$的{\color{red}余子式}，记为$M_{ij}$; 称$(-1)^{i+j}M_{ij}$为{\color{red}代数余子式}，记为$A_{ij}$.
 \end{definition}
 
 
 \newpage
 \subsection{基本性质}
 
-\begin{lemma}
+\begin{lemma}\label{det: nixu}
 \rm 一个排列中任意两个元素对换，其逆序数的奇偶性改变.
 \end{lemma}
 
@@ -345,17 +354,45 @@ a_{1n} & a_{n2} & \cdots & a_{nn} \\
 $$
 j_1j_2\cdots j_{i}j_{i+1}\cdots j_n \longrightarrow j_1j_2\cdots j_{i+1}j_{i}\cdots j_n
 $$
-其中$1\leq i <n$. 很显然相邻的两个数交换，并不会影响它们两边的数的逆序个数，分两种情况，若$j_i > j_k$，那么变换之后的排列的逆序数减1; 若$j_i < j_k$，那么变换之后的排列数的逆序数加1即，因此做一次相邻交换其奇偶性改变. 再来考虑交换任意两个数$j_i$和$j_k$，我们可以把这个交换拆解为多个相邻数的交换，即
+其中$1\leq i <n$. 很显然相邻的两个数交换，并不会影响它们两边的数的逆序个数，再分两种情况讨论，若$j_i > j_k$，那么变换之后的排列的逆序数减1; 若$j_i < j_k$，那么变换之后的排列数的逆序数加1即，因此做一次相邻交换其奇偶性改变. 再来考虑交换任意两个数$j_i$和$j_k$，我们可以把这个交换拆解为多个相邻数的交换，即
 $$
 j_1j_2\cdots j_{i}\cdots j_{k}\cdots j_n \longrightarrow j_1j_2\cdots j_{i-1}\cdots j_{i}j_{k}\cdots j_n \longrightarrow j_1j_2\cdots j_{i-1}j_k\cdots j_{i}\cdots j_n
 $$
 那么第一个箭头做了$k-i-1$次两两交换，第二个箭头做了$k-i$次两两交换，那么一共做了$2(k-i)-1$次，因此这个排列的逆序数的奇偶性一定会改变.
 \end{proof}
 
+\begin{lemma}\label{det: nixu2}
+\rm 任意一个排列$j_1j_2\cdots\j_n$的逆序数与它经过一系列对换变到自然序$123\cdots n$的次数的奇偶性相同.
+\end{lemma}
+
+\begin{proof}
+首先自然序的逆序数等于0是一个偶数，那么分两种情况来考虑. 若$j_1j_2\cdots\j_n$逆序数是一个奇数，那么它必须经过奇数次相邻变换才能得到一个逆序数是偶数的排列，同理若$j_1j_2\cdots\j_n$逆序数是一个偶数，那么它必须经过偶数次相邻变换才能得到一个逆序数是偶数的排列.
+\end{proof}
+
+
+\begin{lemma}\label{det: nixu3}
+\rm 任取$n$阶行列式中一项$(-1)^{\tau(j_1j_2\cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n}$经过$s$次两个元素位置互换，使其变成了$a_{i_1k_1}a_{i_2k_2}\cdots a_{i_nk_n}$，则
+$$
+(-1)^{\tau(j_1j_2\cdots j_n)} = (-1)^{\tau(i_1i_2\cdots i_n)+\tau(k_1k_2\cdots k_n)}.
+$$
+{\color{blue} 元素位置交换得到新排列的行指标逆序数与列指标逆序数的和与原来排列逆序数的奇偶性相同}. {\color{red} 这个lemma还是比较重要的，因为它可以改写行列式通项公式的，就是说不一定行指标要按自然序排列}.
+\end{lemma}
+
+\begin{proof}
+分别考虑行指标和列指标的变换，则有
+$$
+\begin{array}{ll}
+(-1)^{\tau(i_1i_2\cdots i_n)} = (-1)^s (-1)^{\tau(123\cdots n)} \\
+(-1)^{\tau(k_1k_2\cdots k_n)} = (-1)^s (-1)^{\tau(j_1j_2\cdots j_n)}
+\end{array}
+$$
+两式左右两边相乘就可以得到命题结果.
+\end{proof}
+
 \begin{proposition}
 \rm 行列式的基本性质如下
 \begin{enumerate}
-	\item 行列式和它的转置行列式相等，即$|A^T| = |A|$;
+	\item 行列式和它的转置行列式相等，即$|\mathbf{A}^T| = |\mathbf{A}|$;
 	\item 两行互换位置，行列式的值变号;
 	\item 某行若有公因子$k$，则可以把$k$提出行列式记号之外;
 	\item 如果行列式某行(或列)是两个元素之和，则可把行列式拆成两个行列式之和;
@@ -382,7 +419,7 @@ b_{i1} & b_{i1} & \cdots & b_{in} \\
 a_{n1} & a_{n2} & \cdots & a_{nn} \\
 \end{vmatrix}
 	$$
-	\item 把某行(或者列)的$k$加到另一行(或者列)，行列式的值不变.
+	\item 把某行(或者列)的$k$加到另一行(或者列)，行列式的值不变({\color{red} 契合初等变换中最重要的一个性质}).
 \end{enumerate}
 \end{proposition}
 
@@ -394,15 +431,14 @@ a_{21} & a_{22} & \cdots & a_{2n} \\
 a_{n1} & a_{n2} & \cdots & a_{nn} \\
 \end{vmatrix}$.
 
-{\color{red}(1)} 设$|\mathbf{A}^T|=\sum\limits_{p_1,p_2,\cdots,p_n} (-1)^{\tau(p_1p_2\cdots p_n)} b_{1p_1}b_{2p_2}\cdots b_{np_n} = \sum\limits_{p_1,p_2,\cdots,p_n} (-1)^{\tau(p_1p_2\cdots p_n)} a_{p_11}a_{p_22}\cdots a_{p_nn}$，其中$b_{ij} = a_{ij}$. 要证明$|\mathbf{A}| = |\mathbf{A}^T|$，{\color{blue}我们需要证明对于$|A^T|$代数和中的任意一项都有$|\mathbf{A}|$代数和的一项与其对应，反之亦然}. 那么任取$|\mathbf{A}^T|$中一项$\sum\limits (-1)^t a_{p_11}a_{p_22}\cdots a_{p_nn}$   ，我们考虑任意交换其中的两个元素$a_{p_ii}$和$a_{p_jj}$，即
+{\color{red}(1)} 设$|\mathbf{A}^T|=\sum\limits_{p_1,p_2,\cdots,p_n} (-1)^{\tau(p_1p_2\cdots p_n)} b_{1p_1}b_{2p_2}\cdots b_{np_n} = \sum\limits_{p_1,p_2,\cdots,p_n} (-1)^{\tau(p_1p_2\cdots p_n)} a_{p_11}a_{p_22}\cdots a_{p_nn}$，其中$b_{ij} = a_{ji}$. 要证明$|\mathbf{A}| = |\mathbf{A}^T|$，{\color{blue}我们需要证明对于$|A^T|$代数和中的任意一项都有$|\mathbf{A}|$代数和的一项与其对应，反之亦然}. 那么任取$|\mathbf{A}^T|$中一项$\sum\limits (-1)^{\tau(p_1p_2\cdots p_n)} a_{p_11}a_{p_22}\cdots a_{p_nn}$，我们可以让其通过有限次相邻元素交换变成$a_{1q_1}a_{2q_2}\cdots a_{nq_n}$之后，现在这个排列就是按行取元素的一个形式，但是还不确定是其逆序数的情况，记其相邻交换的次数为$s$. 这里我们同时考察行指标和列指标变化，即有
 $$
-\sum\limits_{p_1,p_2,\cdots,p_n} (-1)^t a_{p_11}a_{p_22}\cdots a_{p_ii} \cdots a_{p_jj} \cdots a_{p_nn} = \sum\limits_{p_1,p_2,\cdots,p_n} (-1)^t a_{p_11}a_{p_22}\cdots a_{p_jj} \cdots a_{p_ii} \cdots a_{p_nn}
-$$
-这里观察两个排列的逆序数的改变，一个是列指标排列$1,2,\cdots,j,\cdots,i,\cdots,n$，原本$1,2,\cdots,i,j,\cdots,n$是自然序排列，它的逆序数为零(偶数排列)，那么根据前面的lemma，现在它的逆序数设为$r$，$r$此刻应该是一个奇数. 另一个是行指标排列$p_1,p_2,\cdots,p_j,\cdots,p_i,\cdots,p_n$，原本为$t$，此刻设为$t_1$，那么还是根据前面的lemma，现在有$(-1)^t_1 = (-1)(-1)^t$. 我们尝试用$r$和$t_1$替换掉$t$，即
-$$
-(-1)^t = (-1) (-1)^{t_1} = (-1)^r (-1)^{t_1} = (-1)^{r+t}.
+\begin{array}{ll}
+(-1)^{\tau(q_1q_2\cdots q_n)} = (-1)^{s} (-1)^{\tau(123\cdots n)} \\
+(-1)^{\tau(123\cdots n)} = (-1)^{s} (-1)^{\tau(p_1p_2\cdots p_n)}.
+\end{array}
 $$ 
-{\color{blue}上面这个等式的告诉我们无论经过多少次的$a_{p_ii}$和$a_{p_jj}$的交换，$t$都可以用行指标排列和列指标排列的逆序数的和来代替}. 那么当通过有限次元素交换把$a_{p_11}a_{p_22}\cdots a_{p_nn}$变到$a_{1q_1}a_{2q_2}\cdots a_{nq_n}$之后，此时行指标排列是一个自然序，则$t = \tau(q_1,q_2,\cdots,q_n)$，这样就得到了$|A|$代数和中的某项，并且如果$a_{p_jj}$对应元素$a_{ij}$，那么当前$a_{iq_i}$也应该是对应着相同元素$a_{ij}$，即$p_1,p_2,\cdots,p_n$唯一确定了一组$q_1,q_2,\cdots,q_n$. 反之任取$|\mathbf{A}|$代数和中的一项$\sum\limits_{p_1,p_2,\cdots,p_n}(-1)^{\tau(p_1p_2\cdots p_n)}a_{1p_1}a_{2p_2}\cdots a_{np_n}$，也可以在$|A^T|$代数和中找到一项$\sum\limits_{q_1,q_2,\cdots,q_n}(-1)^{\tau(q_1q_2\cdots q_n)}a_{q_11}a_{q_22}\cdots a_{q_nn}$与之对应. {\color{blue}这个性质更本质的意义是行列式中的行和列具有同等的地位}.
+等式两边相差我们就可以得到$(-1)^{\tau(q_1q_2\cdots q_n)} = (-1)^{\tau(p_1p_2\cdots p_3)}$，所以经过变换之后确实找到了$|\mathbf{A}|$代数和中的一项，实际上这是lemma \ref{det: nixu3} 中的一个特殊情况. 反之任取$|\mathbf{A}|$代数和中的一项$\sum\limits_{p_1,p_2,\cdots,p_n}(-1)^{\tau(p_1p_2\cdots p_n)}a_{1p_1}a_{2p_2}\cdots a_{np_n}$，也可以在$|A^T|$代数和中找到一项$\sum\limits_{q_1,q_2,\cdots,q_n}(-1)^{\tau(q_1q_2\cdots q_n)}a_{q_11}a_{q_22}\cdots a_{q_nn}$与之对应. {\color{blue}这个性质更本质的意义是行列式中的行和列具有同等的地位}.
 
 
 {\color{red}(2)} 如果我们交换第$i$和$k$行得到的矩阵我们记为$A_2$，如下
@@ -492,12 +528,14 @@ $$
 这其实是很trivial的，其完全展开式如下
 $$
 \begin{array}{ll}
-\det(D) &= \sum\limits_{j_1,j_2,\cdots,j_n} (-1)^{\tau(j_1j_2\cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{j_nn} \\
-&= a_{11} \sum\limits_{j_2,\cdots,j_n} (-1)^{\tau(j_2\cdots j_n)}a_{2j_2}\cdots a_{j_nn} \\
+\det(D) &= \sum\limits_{j_1,j_2,\cdots,j_n} (-1)^{\tau(j_1j_2\cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n} \\
+&= \sum\limits_{j_1=1,\cdots,j_n} (-1)^{\tau(j_1j_2\cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n} \\
+&= a_{11} \sum\limits_{k_2,\cdots,k_n} (-1)^{\tau(k_2\cdots k_n)}a_{2k_2}\cdots a_{nk_n} \\
 &= a_{11}(-1)^{1+1}M_{11}\\
-&= a_{11}A_{11}.
+&= a_{11}A_{11},
 \end{array}
 $$
+其中$\tau(1j_2j_3\cdots j_n) = \tau(j_2j_3\cdots j_n)$，$k_2,k_3,\cdots,k_n$均不为$1$.
 \end{proof}
 
 \begin{lemma}
@@ -527,8 +565,8 @@ $$
 \rm {\color{red} (按行(列)展开定理)} $n$阶行列式等于它的任一行(列)的各元素与其对应的代数余子式乘积的代数和，即
 $$
 \begin{array}{ll}
-D = a_{i1}A_{i1} + a_{i2}A_{i2} + \cdots + a_{in}A_{in} \; i=1,2,\cdots,n\\ \\
-D = a_{1j}A_{1j} + a_{2j}A_{2j} + \cdots + a_{nj}A_{nj} \; j=1,2,\cdots,n. 
+D = a_{i1}A_{i1} + a_{i2}A_{i2} + \cdots + a_{in}A_{in}, \; i=1,2,\cdots,n\\ \\
+D = a_{1j}A_{1j} + a_{2j}A_{2j} + \cdots + a_{nj}A_{nj}, \; j=1,2,\cdots,n. 
 \end{array}
 $$
 \end{theorem}
@@ -628,10 +666,147 @@ $$
 \end{enumerate}
 \end{proposition}
 
-\begin{proof}
-{\color{red}(1)} 完全展开式需要取值不同行不同列元素乘积的代数和，那么在上三角行列式中，只考虑非零项，因此第一行只能取$a_{11}$，接着第二行也就只能取$a_{22}$，如此去下去，最后只有$a_{11}a_{22}\cdots a_{nn}$这个非零项.
 
-{\color{red}(2)} (1)的一个特殊情况.
-\end{proof}
+\newpage
+\subsection{行列式的计算}
+
+\begin{example}
+\rm 计算$n$阶行列式($n \geq 2$)
+$$
+\begin{vmatrix}
+k & \lambda & \lambda & \cdots & \lambda \\
+\lambda & k & \lambda & \cdots & \lambda \\
+\lambda & \lambda & k & \cdots & \lambda \\
+\vdots & \vdots & \vdots & \cdots & \lambda \\
+\lambda & \lambda & \lambda & \cdots & k \\
+\end{vmatrix}
+$$
+\hints\ 化阶梯型.
+$$
+\begin{array}{ll}
+\begin{vmatrix}
+k + (n-1)\lambda & \lambda & \lambda & \cdots & \lambda \\
+k + (n-1)\lambda & k & \lambda & \cdots & \lambda \\
+k + (n-1)\lambda & \lambda & k & \cdots & \lambda \\
+\vdots & \vdots & \vdots & \cdots & \lambda \\
+k + (n-1)\lambda & \lambda & \lambda & \cdots & k \\
+\end{vmatrix} &= 
+\left[ k + (n-1)\lambda \right]
+\begin{vmatrix}
+1 & \lambda & \lambda & \cdots & \lambda \\
+1 & k & \lambda & \cdots & \lambda \\
+1 & \lambda & k & \cdots & \lambda \\
+\vdots & \vdots & \vdots & \cdots & \lambda \\
+1 & \lambda & \lambda & \cdots & k \\
+\end{vmatrix} \\ \\
+& = 
+\left[ k + (n-1)\lambda \right]
+\begin{vmatrix}
+1 & \lambda & \lambda & \cdots & 0 \\
+0 & k-\lambda & 0 & \cdots & 0 \\
+0 & 0 & k-\lambda & \cdots & 0 \\
+\vdots & \vdots & \vdots & \cdots & 0 \\
+0 & 0 & 0 & \cdots & k-\lambda \\ 
+\end{vmatrix} \\ \\
+& = \left[ k + (n-1)\lambda \right](k-1)^{n-1}
+\end{array}
+$$
+\end{example}
+
+\begin{example}
+\rm 计算3阶行列式
+$$
+\begin{vmatrix}
+1 & 1 & 1\\
+a_1 & a_2 & a_3 \\
+a_1^2 & a_2^2 & a_3^2 \\
+\end{vmatrix}
+$$
+\hints\ 按第一列展开.
+$$
+\begin{array}{ll}
+\begin{vmatrix}
+1 & 1 & 1\\
+a_1 & a_2 & a_3 \\
+0 & a_2^2-a_1a_2 & a_3^2-a_1a_3 \\
+\end{vmatrix} = 
+\begin{vmatrix}
+1 & 1 & 1\\
+0 & a_2-a_1 & a_3-a_1 \\
+0 & a_2^2-a_1a_2 & a_3^2-a_1a_3 \\
+\end{vmatrix} &=
+(a_2-a_1)(a_3-a_1)
+\begin{vmatrix}
+1 & 1 \\
+a_2 & a_3
+\end{vmatrix} \\
+&= (a_2-a_1)(a_3-a_1)(a_3-a_2).
+\end{array}
+$$
+%$$
+%\begin{array}{ll}
+%\begin{vmatrix}
+%1 & 0 & 0\\
+%a_1 & a_2-a_1 & a_3-a_1 \\
+%a_1^2 & a_2^2-a_1^2 & a_3^2-a_1^2 \\
+%\end{vmatrix} =
+%(a_2-a_1)(a_3-a_1)
+%\begin{vmatrix}
+%1 & 1\\
+%a_2+a_1 & a_3+a_1 \\
+%\end{vmatrix}
+%= (a_2-a_1)(a_3-a_1)(a_3-a_2).
+%\end{array}
+%$$
+\end{example}
+
+\begin{example}
+\rm 计算$n$阶{\color{red}范德蒙行列式}($n \geq 2$)
+$$
+\begin{vmatrix}
+1 & 1 & 1 & \cdots & 1\\
+a_1 & a_2 & a_3 & \cdots & a_n \\
+a_1^2 & a_2^2 & a_3^2 & \cdots & a_n^2 \\
+\vdots& \vdots& \vdots& \vdots & \\
+a_1^{n-1} & a_2^{n-1} & a_3^{n-1} & \cdots & a_n^{n-1} 
+\end{vmatrix} = \prod\limits_{1 \leq i < j \leq n}(a_j-a_i).
+$$
+\hints\ 数学归纳法.
+显然在$n=2$时成立，假设$n=k$时成立. 那么当$n=k+1$时，我们把第一列变成除了$a_{11}$其余全为$0$，变的方法是从最后一行开始，用第$i$行乘$a_1$消去第$i+1$的$a^i$，则有
+$$
+\begin{array}{ll}
+=&\begin{vmatrix}
+1 & 1 & 1 & \cdots & 1 & 1\\
+a_1 & a_2 & a_3 & \cdots & a_k & a_{k+1} \\
+a_1^2 & a_2^2 & a_3^2 & \cdots & a_k^2 & a_{k+1}^2\\
+\vdots& \vdots& \vdots&  & \vdots &\vdots \\
+a_1^{k-1} & a_2^{k-1}-a_1a_2^{k-2} & a_3^{k-1}-a_1a_3^{k-1} & \cdots & a_k^{k-1}-a_1a_k^{k-2} & a_{k+1}^{k-1} - a_1a_{k+1}^{k-2} \\
+0 & a_2^{k}-a_1a_2^{k-2} & a_3^{k}-a_1a_3^{k} & \cdots & a_k^{k}-a_1a_k^{k-1} & a_{k+1}^{k} - a_1a_{k+1}^{k-1} 
+\end{vmatrix} \\ \\
+&\vdots \\ \\
+=& 
+\begin{vmatrix}
+1 & 1 & 1 & \cdots & 1 & 1\\
+0 & a_2-a_1 & a_3-a_1 & \cdots & a_k-a_1 & a_{k+1}-a_1 \\
+0 & a_2(a_2-a_1) & a_3(a_3-a_1) & \cdots & a_k(a_k-a_1) & a_{k+1}(a_{k+1}-a_1) \\
+\vdots& \vdots& \vdots &  & \vdots & \vdots \\
+0 & a_2^{k-2}(a_2-a_1) & a_3^{k-2}(a_3-a_1) & \cdots & a_k^{k-2}(a_k - a_1) & a_{k+1}^{k-2}(a_{k+1}-a_1) \\
+0 & a_2^{k-1}(a_2-a_1) & a_3^{k-1}(a_3-a_1) & \cdots & a_{k}^{k-1}(a_{k} - a_1) & a_{k+1}^{k-1}(a_{k+1}-a_1) \\
+\end{vmatrix} \\ \\
+=& (a_2-a_1)(a_3-a_1)\cdots(a_k-a_1)(a_{k+1}-a_1)
+\begin{vmatrix}
+1 & 1& \cdots & 1 & 1\\
+a_2 & a_3 & \cdots & a_k & a_{k+1} \\
+\vdots & \vdots& &\vdots &\vdots \\
+a_2^{k-2} & a_3^{k-2} & \cdots & a_k^{k-2} & a_{k-1}^{k-2} \\
+a_2^{k-1} & a_3^{k-1} & \cdots & a_k^{k-1} & a_{k-1}^{k-1} 
+\end{vmatrix} \\
+=& (a_2-a_1)(a_3-a_1)\cdots(a_k-a_1)(a_{k+1}-a_1) \prod\limits_{2\leq i < j \leq k+1}(a_j - a_i) \\
+=& \prod\limits_{1 \leq i < j \leq k+1}(a_j - a_i)
+\end{array}
+$$
+\end{example}
+
+
 
 \end{document}

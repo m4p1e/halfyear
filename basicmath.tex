@@ -59,6 +59,10 @@
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert} % 范数
 \newcommand{\vect}[1]{\mathbf{#1}} % vector
 
+\DeclareMathOperator{\arcsec}{arcsec}%反三角函数
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
 \begin{document}
 \title{考研高数}
 \author{枫聆}
@@ -1030,9 +1034,32 @@ $$
 \end{enumerate}
 \end{definition}
 
+\subsection{函数左右导数}
+
+\newpage
 \subsection{初等函数导数表}
 
+\begin{proposition} \rm 常用初等函数导数表 
+\begin{enumerate} 
+	\item $(x^a)' = ax^{a-1}$.
+	\item $(a^x)' = \ln a\cdot a^x $.
+	\item $(e^x)' = e^x$.
+	\item $(\log_a x)' = \frac{1}{x\ln a}$.
+	\item $(\ln |x|)' = \frac{1}{x}$.
+	\item $(\sin x)' = \cos x$.
+	\item $(\cos x)' = -\sin x$.
+	\item $(\tan x)' = \sec^2 x$.
+	\item $(\cot x)' = -\csc^2 x$.
+	\item $(\sec x)' = \sec x \tan x$.
+	\item $(\csc x)' = -\csc x \cot x$.
+	\item $(\arcsin x)' = \frac{1}{\sqrt{1-x^2}}$.
+	\item $(\arccos x)' = -\frac{1}{\sqrt{1-x^2}}$.
+	\item $(\arctan x)' = \frac{1}{1+x^2}$.
+	\item $(\arccot x)' = -\frac{1}{1+x^2}$.
+\end{enumerate}
+\end{proposition}
 
+\newpage
 \subsection{函数增量公式}
 
 \begin{definition}
@@ -1272,8 +1299,25 @@ $$
 $$
 \end{definition}
 
+\newpage
 \subsection{初等函数的$n$阶导数公式}
 
+\begin{proposition} \rm 常用初等函数$n$阶导通项，{\color{blue}其推导菲砖p193}
+\begin{enumerate} 
+	\item $(x^a)^{(n)} = a(a-1)\cdots(a-n+1)x^{a-n}$.
+	\item $\left(\frac{1}{x}\right)^{(n)} = (-1)(-2)\cdots(-n)x^{-1-n} = \frac{(-1)^n n!}{x^{n+1}}$.
+	\item $\left[(b+cx)^a\right]^{(n)} = a(a-1)\cdots(a-n+1)b!(bx+c)^{a-n}$.
+	\item $\left(\frac{1}{a+bx}\right)^{(n)} = \frac{(-1)^n n!b!}{(ax+b)^{n+1}}$.
+	\item $(\ln x)^{(x)} = \frac{(-1)^{n-1}(n-1)!}{x^n}$.
+	\item $(a^x)^{(n)} = a^x\cdot (\ln a)^2$.
+	\item $(\sin x)^{(n)} = \sin (x+n\cdot\frac{\pi}{2})$.
+	\item $(\cos x)^{(n)} = \cos (x+n\cdot\frac{\pi}{2})$.
+	\item $(\arctan x)^{(n)} = (n-1)!\cos^n y\cdot\sin n(y+\frac{\pi}{2})$，其中$y = \arctan x$.
+	\item $\left[ x^{n-1}e^\frac{1}{x}\right]^{(n)} = (-1)^n \frac{e^\frac{1}{x}}{x^{n+1}}$.
+\end{enumerate}
+\end{proposition}
+
+\newpage
 \subsection{莱布尼茨公式}
 
 \begin{proposition}
@@ -1404,27 +1448,38 @@ $$
 \begin{proposition}
 \rm {\color{red}各初等函数在$x_0 = 0$处的泰勒公式}
 \begin{enumerate}
-	\item 若$f(x) = e^x$，则$f^{(k)} = e^x(k=1,2,3,\cdots)$
+	\item {\color{red}若$f(x) = e^x$}，则$f^{(k)} = e^x(k=1,2,3,\cdots)$
 	$$
 	e^x = 1 + x + \frac{1}{2}x^2 + \cdots + \frac{1}{n!}x^n + o(x^n). 
 	$$
-	\item 若$f(x) = \sin x$，则$f^{(k)} = \sin (x+ k\cdot \frac{\pi}{2})$，令$n=2m, m = 1,2,3,\cdots$
+	\item {\color{red}若$f(x) = \sin x$}，则$f^{(k)} = \sin (x+ k\cdot \frac{\pi}{2})$，令$n=2m, m = 1,2,3,\cdots$
 	$$
 	\sin x = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 + \cdots + (-1)^{m-1}\frac{1}{(2m-1)!}x^{2m-1}+o(x^{2m}).
 	$$
-	\item 若$f(x) = \cos x$，则$f^{(k)} = \cos (x+k\cdot \frac{\pi}{2})$，令$n=2m+1,\; m = 1,2,3\cdots$
+	\item {\color{red}若$f(x) = \cos x$}，则$f^{(k)} = \cos (x+k\cdot \frac{\pi}{2})$，令$n=2m+1,\; m = 1,2,3\cdots$
 	$$
 	\cos x = 1 - \frac{1}{2!}x^2 + \frac{1}{4!}x^4 + \cdots + (-1)^{m} \frac{1}{(2m!)}x^{2m} + o(x^{2m+1}).
 	$$
-	\item 若$f(x)=x^m$，其中$m$为任意非零实数，这里需要先考虑一些小细节，当$x \rightarrow 0$，$x^m$或者其$n$阶导数($n > m$)可能趋于无穷大，此处取$x_0$做泰勒展开出来的结果可能没有意义. 所以应该取$x_0 = 1$，即用$(x-x_0)$来展开$x^m$，这就相对于我们在$x_0 = 0$时，用$x$展开$(1+x)^m$. 因此这里我们略微调整一下来展开$f(x) = (1+x)^m$
+	\item {\color{red}若$f(x)=x^m$}，其中$m$为任意非零实数，这里需要先考虑一些小细节，当$x \rightarrow 0$，$x^m$或者其$n$阶导数($n > m$)可能趋于无穷大，此处取$x_0$做泰勒展开出来的结果可能没有意义. 所以应该取$x_0 = 1$，即用$(x-x_0)$来展开$x^m$，这就相对于我们在$x_0 = 0$时，用$x$展开$(1+x)^m$. 因此这里我们略微调整一下来展开$f(x) = (1+x)^m$
 	$$
 	(1+x)^m = 1 + mx + \frac{m(m-1)}{2!}x^2 \cdots \frac{m(m-1)\cdots(m-n+1)}{n!}x^n + o(x^{n+1}).
 	$$
-	\item 若$f(x) = \ln x$，它在$x \rightarrow 0$时其函数值趋于无穷大，所以仿照前面，只考虑$f(x) = \ln (1+x)$，则$f^{(k)} = \frac{(-1)^{k-1}(k-1)!}{(1+x)^k}$
+	\item {\color{red}若$f(x) = \ln x$}，它在$x \rightarrow 0$时其函数值趋于无穷大，所以仿照前面，只考虑$f(x) = \ln (1+x)$，则$f^{(k)} = \frac{(-1)^{k-1}(k-1)!}{(1+x)^k}$
 	$$
 	\ln (1+x) = x - \frac{1}{2} x^2 + \frac{1}{3}x^3 +\cdots + (-1)^{n-1}\frac{1}{n}x^n + o(x^{n}).
 	$$
-	\item 反三角函数 ...
+	\item {\color{red}若$f(x) = \arctan x$}，则$f^{(2m)}(0) = 0,f^{(2m-1)}(0) = (-1)^{m-1}(2m-2)!$
+	$$
+	\arctan x = x-\frac{x^3}{3} + \frac{x^5}{5} - \cdots + (-1)^{m-1}\frac{x^{2m-1}}{2m-1} + o(x^{2m}).
+	$$
+	\item 若{\color{red}$f(x) = \tan x$},
+	$$
+	\tan x =x + \frac{x^3}{3} + o(x^3).
+	$$
+	\item 若{\color{red}$f(x) = \arcsin x$},
+	$$
+	\arcsin x = x + \frac{x^3}{6} + o(x^3).
+	$$
 \end{enumerate}
 \end{proposition}
 
@@ -1981,9 +2036,9 @@ $$
 $$
 u(x)Q_1(x) + v(x)(x-a) = 1.
 $$
-可以来尝试把所有$Q_1(x)$和$(x-a)$线性组合为$1$的系数用$u(x)$和$v(x)$表示出来，即
+可以来尝试把所有$Q_1(x)$和$(x-a)$线性组合为$1$的系数用已知的$u(x)$和$v(x)$表示出来，即
 $$
-U(x) = u(x) - (x-a)t(x),\; V(x) = v(x) - Q_1(x)t(x). 
+U(x) = u(x) - (x-a)t(x),\; V(x) = v(x) + Q_1(x)t(x). 
 $$
 我们主要关注$U(x)$来说明一定可以取到常数$A$，相当于$U(x)$可以是$u(x)$除$(x-a)$的余数，所以$U(x)$是一定可以取到某个常数$A$.自然地，这里考虑可以取$x = a$消去含$P_1(x)$的项，于是得到$A=\frac{P(a)}{Q_1(a)}$，随之再确定$Q_1(a)$. 记录一个我自己的疑问{\color{red}为什么给定真分式不能分解为}
 $$
@@ -2718,6 +2773,22 @@ c~co~余~补角
 	\item $\sin^2 x + \cos^2 x =1$;
 	\item $1 + \tan^2 x = \sec^2 x$;
 \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm 三角函数周期性的相关性质
+$$
+\begin{array}{ll}
+\sin (x+\frac{\pi}{2}) &= \cos x \\
+\sin (x+\pi) &= -\sin x \\
+\sin (x+\frac{3\pi}{2}) &= -\cos x \\
+\sin (x+2\pi) &= \sin x \\
+\cos (x+\frac{\pi}{2}) &= -\sin x \\
+\cos (x+\pi) &= -\cos x \\
+\cos (x+\frac{3\pi}{2}) &= \sin x \\
+\cos (x+2\pi) &= \cos x \\
+\end{array}
+$$
 \end{proposition}
 
 \begin{proposition}
