@@ -383,7 +383,10 @@ $$
 $$
 (-1)^{\tau(j_1j_2\cdots j_n)} = (-1)^{\tau(i_1i_2\cdots i_n)+\tau(k_1k_2\cdots k_n)}.
 $$
-{\color{blue} 元素位置交换得到新排列的行指标逆序数与列指标逆序数的和与原来排列逆序数的奇偶性相同}. {\color{red} 这个lemma还是比较重要的，因为它可以改写行列式通项公式的，就是说不一定行指标要按自然序排列}.
+{\color{blue} 元素位置交换得到新排列的行指标逆序数与列指标逆序数的和与原来排列逆序数的奇偶性相同}. {\color{red} 这个lemma还是比较重要的，因为它可以改写行列式通项公式的，就是说不一定行指标要按自然序排列}，即选定行指标$i_1,i_2,\cdots,i_n$之后，有
+$$
+\sum\limits_{k_1,k_2,\cdots,k_n}(-1)^{\tau(i_1i_2\cdots i_n) + \tau(k_1k_2\cdots k_n)}a_{i_1k_1}a_{i_2k_2}\cdots a_{nj_n}.
+$$
 \end{lemma}
 
 \begin{proof}
@@ -835,6 +838,63 @@ $$
 C_n^k (k)!(n-k)! = \frac{n!}{k!(n-k)!}(k)!(n-k)! = n!,
 $$
 即定理得证.
+
+\newpage
+{\color{blue}若我们舍弃上面构造性的证明手法，从行列式的完全展开式出发去理解laplace展开}. 首先我们取定$i_1 < i_2 < \cdots < i_k, i_1' < i_2 < \cdots < i_{n-k}'$，其中$\{i_1',i_2',\cdots, i_{n-k}'\} = \{1,2,\cdots,n\}\setminus\{i_1,i_2,\cdots,i_k\}$，那么可以将完全展开式写成
+$$
+\sum\limits_{\alpha_1,\alpha_2,\cdots,\alpha_k,\beta_1,\cdots,\beta_{n-k}}(-1)^{(i_1-1)+(i_2-2) +\cdots + (i_k-k) + \tau(\alpha_1\alpha_2\cdots\alpha_k\beta_1\beta_2\cdots \beta_{n-k})} a_{i_1\alpha_1}a_{i_2\alpha_2}\cdots a_{i_k\alpha_k}a_{i_1'\beta_1}a_{i_2'\beta_2}\cdots a_{i_{n-k}'\beta_{n-k}}.
+$$
+接下来我们将一个$\sum$分解成三个. 我们考虑先从选出第$j_1,j_2,\cdots,j_k$行，且$j_1 < j_2 < \cdots < j_k$，那么剩下第$j_1',j_2',\cdots,j_{n-k}'$行，且$j_1' < j_2' < \cdots < j_{n-k}'$. 然后我们从$j_1,j_2,\cdots,j_k$里面确定一个排列$\alpha_1\alpha_2\cdots\alpha_k$，再从$j_1',j_2',\cdots,j_{n-k}'$中确定一个排列$\beta_1\beta_2\cdots \beta_{n-k}$. 这样一来依然确定了原式中的一个$\alpha_1\alpha_2\cdots\alpha_k\beta_1\beta_2\cdots\beta_{n-k}$排列，即此时有
+$$
+\sum\limits_{1\leq j_1 < j_2 < \cdots < j_k \leq n} \sum\limits_{\alpha_1,\alpha_2,\cdots,\alpha_k} \sum\limits_{\beta_1,\beta_2,\cdots,\beta_{n-k}} S
+$$
+其中$S = (-1)^{(i_1-1)+(i_2-2) +\cdots + (i_k-k) + \tau(\alpha_1\alpha_2\cdots\alpha_k\beta_1\beta_2\cdots \beta_{n-k})} a_{i_1\alpha_1}a_{i_2\alpha_2}\cdots a_{i_k\alpha_k}a_{i_1'\beta_1}a_{i_2'\beta_2}\cdots a_{i_{n-k}'\beta_{n-k}}$. 下面再将指示符号拆开
+$$
+\begin{array}{ll}
+(-1)^{(i_1-1)+(i_2-2) +\cdots + (i_k-k) + \tau(\alpha_1\alpha_2\cdots\alpha_k\beta_1\beta_2\cdots \beta_{n-k})} &= (-1)^{(i_1 + i_2 + \cdots + i_k) - \frac{k(k+1)}{2} + \tau(\alpha_1\alpha_2\cdots\alpha_k\beta_1\beta_2\cdots \beta_{n-k})} \\
+&= (-1)^{(i_1 + i_2 + \cdots + i_k) - \frac{k(k+1)}{2}} \cdot \\
+&~~~(-1)^{\tau(\alpha_1\alpha_2\cdots\alpha_k)}(-1)^{\tau(j_1j_2\cdots j_k\beta_1\beta_2\cdots\beta_{n-k})} \\
+&= (-1)^{(i_1 + i_2 + \cdots + i_k)-\frac{k(k+1)}{2}} \cdot \\
+&~~~(-1)^{(j_1 + j_2 + \cdots + j_k) - \frac{k(k+1)}{2}} \\
+&~~~(-1)^{\tau(\alpha_1\alpha_2\cdots\alpha_k)}(-1)^{\tau(\beta_1\beta_2\cdots\beta_{n-k})}.
+\end{array}
+$$
+最终展开式就可以写成
+$$
+\begin{array}{cl}
+\sum\limits_{1\leq j_1 < j_2 < \cdots < j_k \leq n}&(-1)^{(i_1+i_2+\cdots+i_k)+(j_1+j_2+\cdots+j_k)} \\
+\sum\limits_{\alpha_1,\alpha_2,\cdots,\alpha_k}&(-1)^{\tau(\alpha_1\alpha_2\cdots\alpha_k)}a_{i_1\alpha_1}a_{i_2\alpha_2}\cdots a_{i_k\alpha_k}\\ \sum\limits_{\beta_1,\beta_2,\cdots,\beta_{n-k}}& (-1)^{\tau(\beta_1\beta_2\cdots\beta_{n-k})} a_{i_1'\beta_1}a_{i_2'\beta_2}\cdots a_{i_{n-k}'\beta_{n-k}}
+\end{array}
+$$
+{\color{blue}非常美妙!}
+\end{proof}
+
+\begin{corollary}
+\rm 下式成立
+$$
+\begin{vmatrix}
+a_{11} &\cdots &a_{1k} & 0 & \cdots & 0 \\
+\vdots & \mbf{A} & \vdots & \vdots &  &\vdots\\
+a_{k1} &\cdots& a_{kk} & 0 & \cdots & 0 \\
+c_{11} &\cdots &c_{1k} & b_{11} & \cdots & b_{1r} \\
+\vdots & \mbf{C} & \vdots & \vdots & \mbf{B} &\vdots \\
+c_{r1} &\cdots& c_{rk} & b_{r1} & \cdots & b_{rr} \\
+\end{vmatrix} = 
+\begin{vmatrix}
+a_{11} &\cdots &a_{1k} \\
+\vdots & & \vdots  \\
+a_{k1} &\cdots& a_{kk} \\
+\end{vmatrix} \cdot
+\begin{vmatrix}
+b_{11} &\cdots &b_{1r} \\
+\vdots & & \vdots  \\
+b_{r1} &\cdots& b_{rr} \\
+\end{vmatrix}(|\mbf{A}|\cdot|\mbf{B}|).
+$$ 
+\end{corollary}
+
+\begin{proof}
+利用laplace开展，选择前$k$行，那么只有在选择前$k$列的时候，其$k$阶子式才没有零列，此时余子式为右下方的$|\mbf{B}|$. 
 \end{proof}
 
 
