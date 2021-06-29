@@ -9,6 +9,10 @@
 \usetikzlibrary{graphs, graphs.standard, quotes}% quotes library is for the [""] edges
 \usetikzlibrary{positioning} %right of 描述位置的
 
+
+\usepackage{arydshln}
+%\usepackage{mathtools}
+
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -301,7 +305,18 @@ $$
 若$a_{11}a_{22}-a_{12}a_{21} \neq 0$，则原方程组有唯一解; 反之，若$a_{11}a_{22}-a_{12}a_{21} = 0$，则原方程组有无穷多个解或者无解. 可以很快发现$a_{11}a_{22}-a_{12}a_{21}$就是$\begin{pmatrix}
 a_{11} & a_{12} \\
 a_{21} & a_{21} 
-\end{pmatrix}$的行列式，称其为{\color{red} 二阶行列式}. 基于这个直觉就将其推广到$n$元方程组对应的系数矩阵行列式来判别解的情况.
+\end{pmatrix}$的行列式，称其为{\color{red} 二阶行列式}. 基于这个直觉就将其推广到$n$元方程组对应的系数矩阵行列式来判别解的情况. 观察$x_2 = \frac{c_2a_{11}-c_1a_{21}}{a_{11}a_{22}-a_{12}a_{21}}$，实际上它就是两个行列式做除法
+$$
+x_2 = \frac{\begin{pmatrix}
+a_{11} & c_1\\
+a_{21} & c_2 
+\end{pmatrix}}{\begin{pmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{21} 
+\end{pmatrix}}
+=\frac{|\mbf{B}_2|}{|\mbf{A}|}.
+$$
+其中$|\mbf{B}_1|$就是将其系数矩阵的第2列换成常数项，这也是后面会提到{\color{red}克拉默法则}的一个特殊情况.
 \end{annotation}
 
 \begin{definition}
@@ -339,6 +354,35 @@ a_{1n} & a_{n2} & \cdots & a_{nn} \\
 
 \begin{definition}
 \rm 在$n$阶行列式中划去$a_{ij}$所在的第$i$行和第$j$列，留下来的$n-1$阶行列式叫做$a_{ij}$的{\color{red}余子式}，记为$M_{ij}$; 称$(-1)^{i+j}M_{ij}$为{\color{red}代数余子式}，记为$A_{ij}$.
+\end{definition}
+
+
+\begin{definition}
+\rm 在$n$阶行列式$|\mbf{A}|$中任意选定$k$行$k$列($k \leq n$)，位于这些行和列的交点上的$k^2$个元素按原来的次序组成的$k$阶行列式$M$，称为行列式$|\mbf{A}|$的{\color{red}$k$阶子式}，记做
+$$
+\mbf{A}\begin{pmatrix}
+i_1,i_2,\cdots,i_k \\
+j_1,j_2,\cdots,j_k
+\end{pmatrix},
+$$
+其中$i_1 < i_2 < \cdots < i_k,\; j_1 < j_2 < \cdots < j_k$. 当$k < n$时，在$|\mbf{A}|$中划去这$k$行$k$列后余下的元素按照原来的次序组成的$n-k$阶行列式$M'$称为{\color{red}$k$阶子式$M$的余子式}，令
+$$
+\begin{array}{ll}
+\{i_1',i_2',\cdots, i_{n-k}'\} = \{1,2,\cdots,n\}\setminus\{i_1,i_2,\cdots,i_k\}, \\
+\{j_1',j_2',\cdots, j_{n-k}'\} = \{1,2,\cdots,n\}\setminus\{j_1,j_2,\cdots,j_k\},
+\end{array}
+$$
+其中$i_1'< i_2'<\cdots < i_{n-k}',j_1' < j_2' < \cdots < j_{n-k}'$，则$M'$记为
+$$
+\mbf{A}\begin{pmatrix}
+i_1',i_2',\cdots, i_{n-k}' \\
+j_1',j_2',\cdots, j_{n-k}'
+\end{pmatrix}.
+$$
+{\color{red}$M$的代数余子式}为
+$$
+(-1)^{(i_1+i_2+\cdots+i_k) + (j_1+j_2+\cdots+j_k)}M'.
+$$
 \end{definition}
 
 
@@ -666,6 +710,115 @@ $$
 \end{enumerate}
 \end{proposition}
 
+
+\begin{proposition}
+\rm {\color{red} 行列式作为线性方程组解的判定条件} 给定$n$个$n$元线性方程的方程组，它有唯一解的充要条件其对应的系数矩阵的行列式不为零. 反之若其系数矩阵的行列式为零，则有无穷多个解或者有非零解.
+\end{proposition}
+
+\begin{corollary}
+\rm 给定$n$个$n$元线性方程的齐次线性方程组，有零解当且仅当系数矩阵的行列式等于零. 反之若其系数矩阵行列式等于零则有非零解.
+\end{corollary}
+
+\begin{annotation}
+\rm {\color{red} 行列式的几何意义} 给定两个向量$\begin{pmatrix}a_1 \\ a_2 \end{pmatrix}$及$\begin{pmatrix}b_1 \\ b_2 \end{pmatrix}$，且这两个向量不共线，则行列式
+$$
+\begin{vmatrix}
+a_1 & b_1 \\
+a_2 & b_2
+\end{vmatrix}
+$$
+表示这两个向量张成的平行四边形的定向面积.
+\end{annotation}
+
+\begin{lemma}\label{laplace: l1}
+\rm $n$阶行列式$|\mbf{A}|$的任一个子式$M$与它的代数余子式$A$的乘积中的每一项都是行列式$|\mbf{A}|$的展开式中的一项，而且符号也一致.
+\end{lemma}
+
+\begin{proof}
+首先考虑$M$位于$|\mbf{A}|$的左上角时，即
+$$
+\left|
+\begin{array}{c:c}
+\begin{matrix}
+a_{11} & a_{12} & \cdots & a_{1k} \\
+\vdots & \vdots & M & \vdots \\
+a_{k1} & a_{k2} & \cdots & a_{kk} 
+\end{matrix} &
+\begin{matrix}
+a_{1,k+1} & \cdots  & a_{1n} \\ 
+\vdots &  & \vdots \\
+a_{k,k+1} &  \cdots & a_{kn} 
+\end{matrix} \\
+\hdashline \\
+\begin{matrix}
+a_{k+1,1} & a_{k+1,2} & \cdots & a_{k+1,k} \\
+\vdots & \vdots &  & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nk} 
+\end{matrix} &
+\begin{matrix}
+a_{k+1,k+1} & \cdots  & a_{k+1,n} \\ 
+\vdots & M' & \vdots \\
+a_{k+1,k+1} &  \cdots & a_{k+1,n} 
+\end{matrix} \\
+\end{array} \right|
+$$
+此时$M$的代数余子式为
+$$
+A = (-1)^{(1+2+\cdots+k) + (1+2+\cdots+k)}M' = M'.
+$$
+$M$中的每一项记为
+$$
+(-1)^{\tau(\alpha_1\alpha_2\cdots\alpha_k)}a_{1\alpha_1}a_{1\alpha_2}\cdots a_{k\alpha_k},
+$$
+其中$\alpha_1\alpha_2\cdots\alpha_k$表示$1,2,\cdots,k$的一个排列.
+$M'$中的每一项记为
+$$
+(-1)^{\tau(\beta_{k+1}\beta_{k+2}\cdots\beta_{n-k})}a_{k+1,\beta_{k+1}}a_{k+2,\beta_{k+2}}\cdots a_{n,\beta_{n-k}},
+$$
+其中$\beta_1\beta_2\cdots\beta_{n-k}$表示$k+1,k+2,\cdots,n$的一个排列. 那么它们的乘积的每一项可以表示为
+$$
+\begin{array}{ll}
+=&(-1)^{\tau(\alpha_1\alpha_2\cdots\alpha_k) + \tau(\beta_{k+1}\beta_{k+2}\cdots\beta_{n-k})} a_{1\alpha_1}\cdots a_{k\alpha_k}a_{k+1,\beta_{k+1}}\cdots a_{n\beta_{n-k}} \\
+=&(-1)^{\tau(\alpha_1\alpha_2\cdots\alpha_k\beta_{k+1}\beta_{k+2}\cdots\beta_{n-k})} a_{1\alpha_1}\cdots a_{k\alpha_k}a_{k+1,\beta_{k+1}}\cdots a_{n\beta_{n-k}},
+\end{array}
+$$
+其中$\alpha_1,\alpha_1,\cdots,\alpha_k$均小于$\beta_{k+1},\beta_{k+2},\cdots,\beta_{n-k}$，因此乘积的每一项对应上了$|\mbf{A}|$中的一项. 
+
+下面来证明一般情况. 设$M$位于$|\mbf{A}|$的第$i_1,i_2,\cdots,i_k$行，第$j_1,j_2,\cdots,j_k$行,这里有
+$$
+i_1 < i_2 < \cdots < i_k,j_1 < j_2 < \cdots < j_k.
+$$
+我们现将$M$重新变换到$|A|$的左上角，即将第$i_1$行向上移动至第1行，依次再将剩下的第$i_2,\cdots,i_k$也上移，同理也将第$j_1$列向左移动至第一列，依次再将剩下的第$j_2,\cdots,j_k$也左移. 那么总共行和列移动的次数为
+$$
+\begin{array}{ll}
+=&(i_1-1)+(i_2-2)+\cdots+(i_k-k)+(j_1-1)+(j_2-2)+\cdots+(j_k-k)
+\\
+=&(i_1 + i_2 + \cdots + i_k) + (j_1 + j_2 + \cdots + j_k) + k(k+1),
+\end{array}
+$$
+将移动之后的行列式记为$|A'|$，那么
+$$
+|A'| = (-1)^{(i_1 + i_2 + \cdots + i_k) + (j_1 + j_2 + \cdots + j_k)}|A|,
+$$
+即$|A'|$和$|A|$中的对应项都只差一个符号. 同样现在$MA$的每一项和$|A'|$的一项$s$对应，那么就是和$|A|$中的$(-1)^{(i_1 + i_2 + \cdots + i_k) + (j_1 + j_2 + \cdots + j_k)}s$一项对应.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} Laplace定理} 设在$n$阶行列式$|\mbf{A}|$中任意取定了$k$($1\leq k \leq n-1$)个行. 由这$k$行元素所构成一切$k$阶子式与它们的代数余子式的乘积的和等于行列式$|\mbf{A}|$.
+\end{theorem}
+
+\begin{proof}
+设取定$k$行之后得到的所以子式为$M_1,M_2,\cdots M_t$，它们的余子式分别为$A_1,A_2,\cdots,A_t$，其中$t=C_n^k$. 定理要求证明
+$$
+|A| = M_1A_1 + M_2A_2 + \cdots + M_tA_t.
+$$
+根据lemma \ref{laplace: l1}，$M_iA_i$中每一项都是$|\mbf{A}|$中的一项，而且$M_iA_i$和$M_jA_j$($j \neq i$)无公共项. {\color{blue}因此我们只需要证明上述等式两边项数相等即可}. 左边已知有$n!$项，而右边每一项$M
+_iA_i$中有$(k)!(n-k)!$，那么一共有
+$$
+C_n^k (k)!(n-k)! = \frac{n!}{k!(n-k)!}(k)!(n-k)! = n!,
+$$
+即定理得证.
+\end{proof}
 
 \newpage
 \subsection{行列式的计算}
