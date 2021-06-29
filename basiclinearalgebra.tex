@@ -278,7 +278,7 @@ $$
 
 \newpage
 \section{行列式}
-\subsection{基本定义}
+\subsection{行列式的基本定义}
 %Determinant
 \begin{annotation}
 \rm {\color{red} 行列式的意义} 在用矩阵解$n$元线性方程组的过程中，我们需要将对应的增广矩阵转换为阶梯型矩阵，然后向上回溯求解. 如果对于一个$n$元线性方程组，我们只想关注它的解结构或者更明确一点，是否有解就够了，那我们是否可以在不把具体解解出来的情况下，回答这个问题呢？也就是说我们是否在可以在不进行初等行变换化阶梯形矩阵的情况下，来回答这个问题？
@@ -351,44 +351,8 @@ a_{1n} & a_{n2} & \cdots & a_{nn} \\
 \end{vmatrix}$称为$|\mbf{A}|$的{\color{red}转置行列式}.
 \end{definition}
 
-
-\begin{definition}
-\rm 在$n$阶行列式中划去$a_{ij}$所在的第$i$行和第$j$列，留下来的$n-1$阶行列式叫做$a_{ij}$的{\color{red}余子式}，记为$M_{ij}$; 称$(-1)^{i+j}M_{ij}$为{\color{red}代数余子式}，记为$A_{ij}$.
-\end{definition}
-
-
-\begin{definition}
-\rm 在$n$阶行列式$|\mbf{A}|$中任意选定$k$行$k$列($k \leq n$)，位于这些行和列的交点上的$k^2$个元素按原来的次序组成的$k$阶行列式$M$，称为行列式$|\mbf{A}|$的{\color{red}$k$阶子式}，记做
-$$
-\mbf{A}\begin{pmatrix}
-i_1,i_2,\cdots,i_k \\
-j_1,j_2,\cdots,j_k
-\end{pmatrix},
-$$
-其中$i_1 < i_2 < \cdots < i_k,\; j_1 < j_2 < \cdots < j_k$. 当$k < n$时，在$|\mbf{A}|$中划去这$k$行$k$列后余下的元素按照原来的次序组成的$n-k$阶行列式$M'$称为{\color{red}$k$阶子式$M$的余子式}，令
-$$
-\begin{array}{ll}
-\{i_1',i_2',\cdots, i_{n-k}'\} = \{1,2,\cdots,n\}\setminus\{i_1,i_2,\cdots,i_k\}, \\
-\{j_1',j_2',\cdots, j_{n-k}'\} = \{1,2,\cdots,n\}\setminus\{j_1,j_2,\cdots,j_k\},
-\end{array}
-$$
-其中$i_1'< i_2'<\cdots < i_{n-k}',j_1' < j_2' < \cdots < j_{n-k}'$，则$M'$记为
-$$
-\mbf{A}\begin{pmatrix}
-i_1',i_2',\cdots, i_{n-k}' \\
-j_1',j_2',\cdots, j_{n-k}'
-\end{pmatrix}.
-$$
-{\color{red}$M$的代数余子式}为
-$$
-(-1)^{(i_1+i_2+\cdots+i_k) + (j_1+j_2+\cdots+j_k)}M'.
-$$
-\end{definition}
-
-
 \newpage
-\subsection{基本性质}
-
+\subsection{行列式的基本性质}
 \begin{lemma}\label{det: nixu}
 \rm 一个排列中任意两个元素对换，其逆序数的奇偶性改变.
 \end{lemma}
@@ -554,6 +518,23 @@ $$
 $$
 \end{proof}
 
+\begin{annotation}
+\rm {\color{red} 行列式的几何意义} 给定两个向量$\begin{pmatrix}a_1 \\ a_2 \end{pmatrix}$及$\begin{pmatrix}b_1 \\ b_2 \end{pmatrix}$，且这两个向量不共线，则行列式
+$$
+\begin{vmatrix}
+a_1 & b_1 \\
+a_2 & b_2
+\end{vmatrix}
+$$
+表示这两个向量张成的平行四边形的定向面积.
+\end{annotation}
+
+\newpage
+\subsection{按行(列)展开}
+\begin{definition}
+\rm 在$n$阶行列式中划去$a_{ij}$所在的第$i$行和第$j$列，留下来的$n-1$阶行列式叫做$a_{ij}$的{\color{red}余子式}，记为$M_{ij}$; 称$(-1)^{i+j}M_{ij}$为{\color{red}代数余子式}，记为$A_{ij}$.
+\end{definition}
+
 \begin{lemma}
 \rm 给定如下行列式
 $$
@@ -649,7 +630,7 @@ a_{n1} & a_{n2} &  \cdots & a_{nn}
 $$
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{hls: zk2}
 \rm $n$阶行列式的任一行(列)元素与另一行(列)元素的代数余子式乘积的代数和等于零，即
 $$
 a_{i1}A_{j1} + a_{i2}A_{j2} + \cdots + a_{in}A_{jn} = 0,\;(i\neq j).
@@ -680,36 +661,8 @@ $$
 同理也可以对第$j$列做上述操作.
 \end{proof}
 
-\begin{proposition}
-\rm {\color{red} (几种特殊的行列式)}
-\begin{enumerate}
-	\item {\color{red}上(下)三角形行列式}
-	$$
-	\begin{vmatrix}
-	a_{11} & & \bigzero\\
-	a_{21} & a_{22} \\
-	\vdots & \vdots & \ddots \\
-	a_{n1} & a_{n2} & \cdots & a_{nn}
-	\end{vmatrix} =
-	\begin{vmatrix}
-	a_{11} & a_{12} & \cdots & a_{1n}\\
-	&	a_{22} & \cdots & a_{2n} \\
-	&\bigzero& \ddots & \vdots \\
-	&&& a_{nn} \\
-	\end{vmatrix} = a_{11}a_{22}\cdots a_{nn}.
-	$$
-	\item {\color{red}对角行列式}
-	$$
-	\begin{vmatrix}
-	a_{11} &&& \\
-	&a_{22} &\bigzero& \\
-	&\bigzero&\ddots& \\
-	&&&a_{nn}
-	\end{vmatrix} = a_{11}a_{22}\cdots a_{nn}.
-	$$
-\end{enumerate}
-\end{proposition}
-
+\newpage
+\subsection{克拉默法则}
 
 \begin{proposition}
 \rm {\color{red} 行列式作为线性方程组解的判定条件} 给定$n$个$n$元线性方程的方程组，它有唯一解的充要条件其对应的系数矩阵的行列式不为零. 反之若其系数矩阵的行列式为零，则有无穷多个解或者有非零解.
@@ -719,16 +672,80 @@ $$
 \rm 给定$n$个$n$元线性方程的齐次线性方程组，有零解当且仅当系数矩阵的行列式等于零. 反之若其系数矩阵行列式等于零则有非零解.
 \end{corollary}
 
-\begin{annotation}
-\rm {\color{red} 行列式的几何意义} 给定两个向量$\begin{pmatrix}a_1 \\ a_2 \end{pmatrix}$及$\begin{pmatrix}b_1 \\ b_2 \end{pmatrix}$，且这两个向量不共线，则行列式
+\begin{theorem}
+\rm 给定$n$个$n$元线性方程的方程组的系数矩阵如下
 $$
+\mbf{A}=
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & 		 & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn} \\
+\end{pmatrix},
+$$
+及其常数项为$\begin{pmatrix}b_1 \\ b_2 \\ \vdots \\b_n \end{pmatrix}$. 若$|\mbf{A}| \neq 0$，那么此线性方程组有唯一解，解可以为表示为
+$$
+x_1 = \frac{|\mbf{B}_1|}{|A|},x_2 = \frac{|\mbf{B}_2|}{|A|},\cdots, x_n = \frac{|\mbf{B_n}|}{|A|},
+$$
+其中$|\mbf{B}_i|$是把行列式$|\mbf{A}|$第$j$列换成方程常数项之后得到的行列式，即
+$$
+|\mbf{B}_j| = 
 \begin{vmatrix}
-a_1 & b_1 \\
-a_2 & b_2
-\end{vmatrix}
+a_{11} & \cdots & a_{1,j-1}  & b_1 & a_{1,j+1} & \cdots & a_{1n} \\
+a_{21} & \cdots & a_{2,j-1}  & b_2 & a_{2,j+1} & \cdots & a_{2n} \\
+\vdots &  & \vdots & \vdots &  \vdots & & \vdots \\
+a_{n1} & \cdots & a_{n,j-1}  & b_n & a_{n,j+1} & \cdots & a_{nn} \\
+\end{vmatrix},\; j=1,2,\cdots,n.
 $$
-表示这两个向量张成的平行四边形的定向面积.
-\end{annotation}
+
+\end{theorem}
+
+
+\begin{proof}
+下面将$(\frac{|\mbf{B}_1|}{|A|},\frac{|\mbf{B}_2|}{|A|},\cdots,\frac{|\mbf{B}_2|}{|A|})$带入原方程组，验证它的确是一个解. 首先将原方程组简写为
+$$
+\sum\limits_{j=1}^n a_{ij}x_j = b_i , \; i = 1,2,\cdots,n.
+$$
+那么
+$$
+\begin{array}{ll}
+\sum\limits_{j=1}^n a_{ij}\frac{|\mbf{B}_j|}{|\mbf{A}|} &= \frac{1}{|\mbf{A}|}\sum\limits_{j=1}^n a_{ij}|\mbf{B}_j| \\
+&= \frac{1}{|\mbf{A}|}\sum\limits_{j=1}^n a_{ij}\sum\limits_{s=1}^n b_sA_{sj} \\
+&= \frac{1}{|\mbf{A}|}\sum\limits_{s=1}^n\sum\limits_{j=1}^n b_sa_{ij}A_{sj} ~  ~ ~ ~ ~\text{theorem \ref{hls: zk2}}\\ 
+&= \frac{1}{|\mbf{A}|} b_i |\mbf{A}| = b_i.
+\end{array}
+$$
+\end{proof}
+
+\newpage
+\subsection{Laplace展开}
+\begin{definition}
+\rm 在$n$阶行列式$|\mbf{A}|$中任意选定$k$行$k$列($k \leq n$)，位于这些行和列的交点上的$k^2$个元素按原来的次序组成的$k$阶行列式$M$，称为行列式$|\mbf{A}|$的{\color{red}$k$阶子式}，记做
+$$
+\mbf{A}\begin{pmatrix}
+i_1,i_2,\cdots,i_k \\
+j_1,j_2,\cdots,j_k
+\end{pmatrix},
+$$
+其中$i_1 < i_2 < \cdots < i_k,\; j_1 < j_2 < \cdots < j_k$. 当$k < n$时，在$|\mbf{A}|$中划去这$k$行$k$列后余下的元素按照原来的次序组成的$n-k$阶行列式$M'$称为{\color{red}$k$阶子式$M$的余子式}，令
+$$
+\begin{array}{ll}
+\{i_1',i_2',\cdots, i_{n-k}'\} = \{1,2,\cdots,n\}\setminus\{i_1,i_2,\cdots,i_k\}, \\
+\{j_1',j_2',\cdots, j_{n-k}'\} = \{1,2,\cdots,n\}\setminus\{j_1,j_2,\cdots,j_k\},
+\end{array}
+$$
+其中$i_1'< i_2'<\cdots < i_{n-k}',j_1' < j_2' < \cdots < j_{n-k}'$，则$M'$记为
+$$
+\mbf{A}\begin{pmatrix}
+i_1',i_2',\cdots, i_{n-k}' \\
+j_1',j_2',\cdots, j_{n-k}'
+\end{pmatrix}.
+$$
+{\color{red}$M$的代数余子式}为
+$$
+(-1)^{(i_1+i_2+\cdots+i_k) + (j_1+j_2+\cdots+j_k)}M'.
+$$
+\end{definition}
 
 \begin{lemma}\label{laplace: l1}
 \rm $n$阶行列式$|\mbf{A}|$的任一个子式$M$与它的代数余子式$A$的乘积中的每一项都是行列式$|\mbf{A}|$的展开式中的一项，而且符号也一致.
@@ -820,9 +837,40 @@ $$
 即定理得证.
 \end{proof}
 
+
 \newpage
 \subsection{行列式的计算}
+\begin{proposition}
+\rm {\color{red} (几种特殊的行列式)}
+\begin{enumerate}
+	\item {\color{red}上(下)三角形行列式}
+	$$
+	\begin{vmatrix}
+	a_{11} & & \bigzero\\
+	a_{21} & a_{22} \\
+	\vdots & \vdots & \ddots \\
+	a_{n1} & a_{n2} & \cdots & a_{nn}
+	\end{vmatrix} =
+	\begin{vmatrix}
+	a_{11} & a_{12} & \cdots & a_{1n}\\
+	&	a_{22} & \cdots & a_{2n} \\
+	&\bigzero& \ddots & \vdots \\
+	&&& a_{nn} \\
+	\end{vmatrix} = a_{11}a_{22}\cdots a_{nn}.
+	$$
+	\item {\color{red}对角行列式}
+	$$
+	\begin{vmatrix}
+	a_{11} &&& \\
+	&a_{22} &\bigzero& \\
+	&\bigzero&\ddots& \\
+	&&&a_{nn}
+	\end{vmatrix} = a_{11}a_{22}\cdots a_{nn}.
+	$$
+\end{enumerate}
+\end{proposition}
 
+\newpage
 \begin{example}
 \rm 计算$n$阶行列式($n \geq 2$)
 $$
