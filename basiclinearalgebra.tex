@@ -16,15 +16,7 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{hyperref} %url
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
-    pdftitle={Overleaf Example},
-    pdfpagemode=FullScreen,
-    }
+
 
 \usepackage{enumitem}
 
@@ -370,11 +362,11 @@ $$
 \end{proof}
 
 \begin{lemma}\label{det: nixu2}
-\rm 任意一个排列$j_1j_2\cdots\j_n$的逆序数与它经过一系列对换变到自然序$123\cdots n$的次数的奇偶性相同.
+\rm 任意一个排列$j_1j_2\cdots j_n$的逆序数与它经过一系列对换变到自然序$123\cdots n$的次数的奇偶性相同.
 \end{lemma}
 
 \begin{proof}
-首先自然序的逆序数等于0是一个偶数，那么分两种情况来考虑. 若$j_1j_2\cdots\j_n$逆序数是一个奇数，那么它必须经过奇数次相邻变换才能得到一个逆序数是偶数的排列，同理若$j_1j_2\cdots\j_n$逆序数是一个偶数，那么它必须经过偶数次相邻变换才能得到一个逆序数是偶数的排列.
+首先自然序的逆序数等于0是一个偶数，那么分两种情况来考虑. 若$j_1j_2\cdots j_n$逆序数是一个奇数，那么它必须经过奇数次相邻变换才能得到一个逆序数是偶数的排列，同理若$j_1j_2\cdots j_n$逆序数是一个偶数，那么它必须经过偶数次相邻变换才能得到一个逆序数是偶数的排列.
 \end{proof}
 
 
@@ -808,7 +800,7 @@ $$
 $$
 i_1 < i_2 < \cdots < i_k,j_1 < j_2 < \cdots < j_k.
 $$
-我们现将$M$重新变换到$|A|$的左上角，即将第$i_1$行向上移动至第1行，依次再将剩下的第$i_2,\cdots,i_k$也上移，同理也将第$j_1$列向左移动至第一列，依次再将剩下的第$j_2,\cdots,j_k$也左移. 那么总共行和列移动的次数为
+我们现将$M$重新变换到$|\mbf{A}|$的左上角，即将第$i_1$行向上移动至第1行，依次再将剩下的第$i_2,\cdots,i_k$也上移，同理也将第$j_1$列向左移动至第一列，依次再将剩下的第$j_2,\cdots,j_k$也左移. 那么总共行和列移动的次数为
 $$
 \begin{array}{ll}
 =&(i_1-1)+(i_2-2)+\cdots+(i_k-k)+(j_1-1)+(j_2-2)+\cdots+(j_k-k)
@@ -816,11 +808,11 @@ $$
 =&(i_1 + i_2 + \cdots + i_k) + (j_1 + j_2 + \cdots + j_k) + k(k+1),
 \end{array}
 $$
-将移动之后的行列式记为$|A'|$，那么
+将移动之后的行列式记为$|\mbf{A}'|$，那么
 $$
-|A'| = (-1)^{(i_1 + i_2 + \cdots + i_k) + (j_1 + j_2 + \cdots + j_k)}|A|,
+|\mbf{A}'| = (-1)^{(i_1 + i_2 + \cdots + i_k) + (j_1 + j_2 + \cdots + j_k)}|\mathbf{A}|,
 $$
-即$|A'|$和$|A|$中的对应项都只差一个符号. 同样现在$MA$的每一项和$|A'|$的一项$s$对应，那么就是和$|A|$中的$(-1)^{(i_1 + i_2 + \cdots + i_k) + (j_1 + j_2 + \cdots + j_k)}s$一项对应.
+即$|\mathbf{A}'|$和$|\mathbf{A}|$中的对应项都只差一个符号. 同样现在$M\mathbf{A}$的每一项和$|\mathbf{A}'|$的一项$s$对应，那么就是和$|\mathbf{A}|$中的$(-1)^{(i_1 + i_2 + \cdots + i_k) + (j_1 + j_2 + \cdots + j_k)}s$一项对应.
 \end{proof}
 
 \begin{theorem}
@@ -832,8 +824,7 @@ $$
 $$
 |A| = M_1A_1 + M_2A_2 + \cdots + M_tA_t.
 $$
-根据lemma \ref{laplace: l1}，$M_iA_i$中每一项都是$|\mbf{A}|$中的一项，而且$M_iA_i$和$M_jA_j$($j \neq i$)无公共项. {\color{blue}因此我们只需要证明上述等式两边项数相等即可}. 左边已知有$n!$项，而右边每一项$M
-_iA_i$中有$(k)!(n-k)!$，那么一共有
+根据lemma \ref{laplace: l1}，$M_iA_i$中每一项都是$|\mbf{A}|$中的一项，而且$M_iA_i$和$M_jA_j$($j \neq i$)无公共项. {\color{blue}因此我们只需要证明上述等式两边项数相等即可}. 左边已知有$n!$项，而右边每一项$M_iA_i$中有$(k)!(n-k)!$，那么一共有
 $$
 C_n^k (k)!(n-k)! = \frac{n!}{k!(n-k)!}(k)!(n-k)! = n!,
 $$
@@ -1068,6 +1059,292 @@ a_2^{k-1} & a_3^{k-1} & \cdots & a_k^{k-1} & a_{k-1}^{k-1}
 $$
 \end{example}
 
+\newpage
+\section{线性空间}
 
+\subsection{线性空间的基本定义}
+
+\begin{definition}
+\rm 域$F$作用在一个阿贝尔群$G$上.
+\end{definition}
+
+\subsection{线性空间的基本性质}
+
+\begin{proposition}
+\rm 设$V$是数域$F$上的一个线性空间，则$V$的零元唯一.
+\end{proposition}
+
+
+\begin{proposition}
+\rm 设$V$是数域$F$上的一个线性空间，则$v \in V$都有唯一的逆元.
+\end{proposition}
+
+\begin{proposition}
+\rm 设$V$是数域$F$上的一个线性空间，则$v \in V$都有$0v=0$.
+\end{proposition}
+
+\begin{proposition}
+\rm 设$V$是数域$F$上的一个线性空间，给定$a \in F$和$v \in V$. 若$av = 0$，则$a = 0$或者$v=\mbf{0}$.
+\end{proposition}
+
+\begin{proposition}
+\rm 设$V$是数域$F$上的一个线性空间，则$v \in V$都有$(-1)v=-v$.
+\end{proposition}
+
+\subsection{子空间}
+
+\begin{definition}
+\rm 设$V$是数域$F$上的一个线性空间，给定$U$是$V$的一个子集. 若$U$中的元素在向量加法和数量下封闭，则称$U$是$V$的一个子空间（{\color{blue} 实际上这是一个proposition用于判定子空间的方法，让你不用考虑整个线性空间的定义}）.
+\end{definition}
+
+\subsection{线性组合和线性表出}
+
+\begin{definition}
+\rm 给定向量组$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n \in V$，任取$F$上一组数$a_1,a_2,\cdots,a_n$，称向量
+$$
+a_1\mbf{v}_1 + a_2\mbf{v}_2 + \cdots + a_n\mbf{v}_n
+$$
+为$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$的一个线性组合. 取定$v \in V$，若存在$c_1,c_2,\cdots,c_n$使得
+$$
+v = c_1\mbf{v}_1 + c_2\mbf{v}_2 + \cdots + c_n\mbf{v}_n,
+$$
+则称$v$可以由$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$线性表出. 
+\end{definition}
+
+
+\subsection{n元线性方程的线性表示}
+
+\begin{definition}
+\rm 给定$F$上$n$元线性方程组
+$$
+\left\{
+\begin{array}{c}
+a_{11}x_1 + a_{12}x_2 + \cdots a_{1n}x_n = b_1, \\
+a_{21}x_1 + a_{22}x_2 + \cdots a_{2n}x_n = b_2, \\
+\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots a_{mn}x_n = b_m, \\
+\end{array} \right.
+$$
+则可以写成
+$$
+x_1 \begin{pmatrix}
+a_{11} \\
+a_{21} \\
+\vdots \\
+a_{m1} 
+\end{pmatrix} + 
+x_2 \begin{pmatrix}
+a_{12} \\
+a_{22} \\
+\vdots \\
+a_{m2} 
+\end{pmatrix} +
+\cdots +
+x_n \begin{pmatrix}
+a_{1n} \\
+a_{2n} \\
+\vdots \\
+a_{mn}  
+\end{pmatrix} = 
+\begin{pmatrix}
+b_1 \\
+b_2 \\
+\vdots \\
+b_m  
+\end{pmatrix} 
+$$
+即$x_1\mbf{\alpha}_1 + x_2\mbf{\alpha}_2 + \cdots + x_n\mbf{\alpha}_n = \beta $，其中${\alpha}_1,{\alpha}_2,\cdots,{\alpha}_n$表示该线性方程组系数矩阵的列向量组，$\beta$是由其常数项组成的列向量.
+\end{definition}
+
+\begin{annotation}
+\rm {\color{red} 研究线性方程组解存在性的重要思路转换} $n$元线性方程组有解等价于$\beta$可以被${\alpha}_1,{\alpha}_2,\cdots,{\alpha}_n$线性表出. 更深刻一点，我们需要探究下述等式成立的条件
+$$
+\beta \overset{?}{\in} \text{span}({\alpha}_1,{\alpha}_2,\cdots,{\alpha}_n) 
+$$
+其中$\text{span}({\alpha}_1,{\alpha}_2,\cdots,{\alpha}_n)$是$F^{m,1}$的一个子空间，自然地后面需要子空间的一些结构和性质.
+\end{annotation}
+
+\subsection{线性相关和线性无关}
+
+\begin{definition}
+\rm 给定向量空间$V$上一组向量$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$. 若存在一组不全为$0$的数$a_1, a_2, \cdots, a_n \in F$使得
+$$
+a_1\mbf{v}_1 + a_2\mbf{v}_2 + \cdots + a_n\mbf{v}_n = \mbf{0},
+$$
+则称$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$是线性相关的. 反之只有在$a_1, a_2, \cdots, a_n$均为$0$上式成立，则称$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$是线性无关的.
+\end{definition}
+
+\newpage
+\subsection{线性相关和线性无关的性质}
+
+\begin{proposition}
+\rm 若$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$ {\color{red}线性相关}，则下面结论均成立.
+\begin{enumerate}
+	\item {\color{red} 内部线性表出} $\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$至少有一个向量可以由其余的向量组表出;
+	\item {\color{red} 齐次线性方程组} 若$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$表示齐次线性方程的系数矩阵的列向量组，则该齐次方程组有非零解;
+	\item {\color{red} 行列式} 以$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$为行(列)向量组成的矩阵的行列式等于零;
+	\item {\color{red} 线性表出任意向量} 若取定另外一个向量$v \in V$可以被$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$线性表出，则表出方式有无穷种.
+	\item {\color{red} 向量组与部分组的关系} 若取定另外一个向量$v \in V$，则$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n, v$也是线性相关.
+	\item {\color{red} 缩短向量组} 若将$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$中个每个向量都去掉相同位置的$m$个分量，则得到的新的向量组也是线性相关.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm 若$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$线性无关，则下面结论均成立.
+\begin{enumerate}
+	\item {\color{red} 内部线性表出} $\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$中的每一个向量都不能被其余的向量组表出;
+	\item {\color{red} 齐次线性方程组} 若$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$表示齐次线性方程的系数矩阵的列向量组，则该齐次方程组只有零解;
+	\item {\color{red} 行列式} 以$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$为行(列)向量组成的矩阵的行列式不等于零;
+	\item {\color{red} 线性表出任意向量} 若取定另外一个向量$v \in V$可以被$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$线性表出，则表出方式唯一.
+	\item {\color{red} 向量组与部分组的关系} 部分向量组$\mbf{v}_{i_1},\mbf{v}_{i_2},\cdots,\mbf{v}_{i_s}$也是线性无关. 
+	\item {\color{red} 延伸向量组} 若将$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$中个每个向量都新增相同位置的$m$个分量，则得到的新的向量组也是线性无关.
+\end{enumerate}
+\end{proposition}
+
+\subsection{极大线性无关组}
+
+\begin{definition}
+\rm 给定某个向量组，其基数(向量个数)最大的线性无关的部分向量组称为极大线性无关组.
+\end{definition}
+
+\subsection{向量组的秩} 
+
+\begin{definition}
+\rm 向量组的极大线性无关组中所含向量的个数被称为该向量组的秩. 全体由零向量组成的向量组的值规定为$0$.
+\end{definition}
+
+\begin{proposition}
+\rm 若向量组$\uppercase\expandafter{\romannumeral1}$可以由向量组$\uppercase\expandafter{\romannumeral2}$线性表出，那么
+$$
+\text{rank}~\uppercase\expandafter{\romannumeral1} \leq \text{rank}~\uppercase\expandafter{\romannumeral2}. 
+$$
+\end{proposition}
+
+\begin{proof}
+$\text{span}(\uppercase\expandafter{\romannumeral1}) \subseteq \text{span}(\uppercase\expandafter{\romannumeral2})$
+\end{proof}
+
+\begin{proposition}
+\rm 线性无关组的秩和其向量组个数相等.
+\end{proposition}
+
+
+\subsection{有限维线性空间的基和维数}
+
+\begin{definition}
+\rm 给定向量空间$V$， 取其空间上一组向量$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$若满足
+\begin{enumerate}
+	\item $\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$线性无关,
+	\item $\forall \mbf{v} \in V$，$\mbf{v}$都可以被$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$线性表出,
+\end{enumerate}
+则称$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$为$V$的一个基.
+\end{definition}
+
+\begin{proposition}
+\rm 向量空间上所有基所含向量的个数均相等.
+\end{proposition}
+
+\begin{definition}
+\rm 向量空间一个基所含向量的个数被称为该向量空间的维数.
+\end{definition}
+
+\subsection{矩阵的秩}
+
+\begin{definition}
+\rm 矩阵的行向量生成的向量空间的维数为矩阵的行秩，同理矩阵的列向量生成的向量空间的维数为矩阵的列秩.
+\end{definition}
+
+\begin{lemma}
+\rm 阶梯型矩阵的行秩和列秩相同.
+\end{lemma}
+
+\begin{lemma}
+\rm 初等行变换不改变矩阵的行秩和列秩.
+\end{lemma}
+
+\begin{proposition}
+\rm 矩阵的行秩和列秩相同.
+\end{proposition}
+
+\begin{corollary}
+\rm 矩阵通过初等变换化成行阶梯形矩阵的非零个数就是矩阵的秩.
+\end{corollary}
+
+\begin{theorem}
+\rm 矩阵的秩等于它的不为零的子式的最高阶数.
+\end{theorem}
+
+
+\begin{corollary}
+\rm 矩阵的不为零的最高阶数的子式所在的行和列是原矩阵的行向量和列向量的极大线性无关组.
+\end{corollary}
+
+
+\begin{definition}
+\rm $n$阶矩阵$\mbf{A}$的秩等于$n$，则称$\mbf{A}$是一个满秩矩阵.
+\end{definition}
+
+\begin{theorem}
+\rm $n$阶矩阵$\mbf{A}$的秩等于$n$当且仅当$|\mbf{A}| \neq 0$.
+\end{theorem}
+
+\subsection{方程组有解的充要条件}
+
+
+\begin{theorem}
+\rm 给定任意$n$线性方程组(任意方程个数)
+$$
+x_1 \vect{\alpha}_1 + x_2 \vect{\alpha}_2 + \cdots + x_n \vect{\alpha}_n = \beta
+$$
+有解的充分必要条件是: 它的系数矩阵与增广矩阵的秩相同.
+\end{theorem}
+
+\begin{proof}
+解的判定是看是否$\beta \in \text{span}(\alpha_1,\alpha_2,\cdots,\alpha_n)$. 
+\end{proof}
+
+\begin{theorem}
+\rm 给定$n$元线性方程组有解时，如果它的系数矩阵$\mbf{A}$的秩等于$n$，那么原方程组有唯一解; 如果$\mbf{A}$的秩小于$n$，那么原方程组有无穷多个解.
+\end{theorem}
+
+\begin{corollary}
+\rm 齐次线性方程组有非零解的条件是其系数矩阵的秩小于未知数的个数.
+\end{corollary}
+
+\subsection{齐次方程组解集结构}
+
+\begin{proposition}
+\rm $n$元齐次线性方程组的解集构成$F^n$的一个子空间.
+\end{proposition}
+
+\begin{definition}
+\rm 基础解系
+\end{definition}
+
+\begin{theorem}
+\rm $n$元齐次线性方程组的解空间的维数为
+$$
+\dim W = n - \text{rank}(\mbf{A}),
+$$
+其中$\mbf{A}$是它的系数矩阵.
+\end{theorem}
+
+\subsection{非齐次线性方程组解集结构}
+
+\begin{lemma}
+\rm 给定$n$元非齐次线性方程组，设它的解集为$U$. 若将其常数项都换成$0$变为齐次线性方程组，称其为原非齐次线性方程的导出组，设它的解集为$W$. 
+\begin{enumerate}
+	\item 对任意的$u_1, u_2 \in U$，有$u_1-u_1 \in W$.
+	\item 对任意的$u \in U$和$w \in W$，有$u+w \in U$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proposition}
+\rm {\color{red} affine set} 若$n$元非齐次线性方程组有解，那么它的解集$U$为
+$$
+U = \Set{u_0 + w}{ w \in W},
+$$
+其中$u_0$是取定$U$中的一个特解，$W$是原非齐次线性方程的导出组的解集. 
+\end{proposition}
 
 \end{document}

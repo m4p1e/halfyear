@@ -62,6 +62,7 @@
 \DeclareMathOperator{\arcsec}{arcsec}%反三角函数
 \DeclareMathOperator{\arccot}{arccot}
 \DeclareMathOperator{\arccsc}{arccsc}
+\newcommand{\hints}{{\color{blue} \text{hints}}}
 
 \begin{document}
 \title{考研高数}
@@ -621,11 +622,34 @@ $$
 \begin{enumerate}
 	\item $\frac{0}{0}$
 	$$
-	\lim\limits_{x \rightarrow 0} \frac{\log_a x}{x} = \log_a e.
+	\lim\limits_{x \rightarrow 0} \frac{\log_a(1+x)}{x} = \log_a e.
 	$$
+	\hints\ 直接用对数函数的性质，把$x$放到对数函数里面就行，对数函数里面的极限是$e$.当$a=e$时极限的结果就是很漂亮的$1$.
 	\item $\frac{0}{0}$
 	$$
 	\lim\limits_{x \rightarrow 0} \frac{a^x - 1}{x} = \ln a
+	$$
+	\hints\ 遇到这样略微有些复杂的表达式，直接考虑换元. 让$\beta = a^x -1$,则$\beta \rightarrow 0$. 原式就变成了$\lim\limits_{\beta \rightarrow 0} \frac{\beta}{\log_a(\beta+1)}$. 变成了上面我们熟悉样子.	
+	\item $\frac{0}{0}$ 
+	$$
+	\lim\limits_{x \rightarrow 0} \frac{(1+x)^\mu-1}{x} = \mu
+	$$
+	\hints\ 还是考虑换元，但是不要换的太彻底，适可而止即可. $\beta = (1+x)^\mu - 1$，其中$\beta \rightarrow 0$. 我们可以得到一个有趣的等式$\mu \ln(1+x) = \ln(1+\beta)$. 到这里就够了，不用把$\beta$把$\alpha$表示出来. 我们把原式现在整理如下\[\frac{(1+x)^\mu-1}{x} = \frac{\beta}{x} = \frac{\beta}{\ln(1+\beta)}\cdot\frac{\ln(1+x)}{x}\cdot \mu,\]又变成了我们熟悉的样子，两边的极限都是$1$，所以最后的整体的极限为$\mu$.	
+	\item $1 \cdot \infty$ 若$\lim\alpha(x) = 0,\lim\beta(x) = \infty$，且$\lim\alpha(x)\beta(x) = A$
+	$$
+	\lim(1+\alpha(x))^{\beta(x)} = e^A.
+	$$
+	\hints\
+	$$
+	(1+\alpha(x))^{\beta(x)}  =e^{\beta(x)\ln(1+\alpha(x))} = e^{\alpha(x)\beta(x)}.
+	$$
+	\item $\frac{0}{0}$ 若$\lim \alpha(x) = 0$，且$\lim\beta(x)\alpha(x) = 0$
+	$$
+	\lim\frac{(1+\alpha(x))^{\beta(x)}-1}{\alpha(x)\beta(x)} = 1.
+	$$
+	\hints\ 
+	$$
+	(1+\alpha(x))^{\beta(x)}-1 = e^{\beta(x)\ln(1+\alpha(x))} - 1
 	$$
 \end{enumerate}
 \end{proposition}
