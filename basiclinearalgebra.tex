@@ -17,6 +17,16 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\usepackage{hyperref} %url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
 
 \usepackage{enumitem}
 
@@ -58,6 +68,7 @@
 \newcommand\bigzero{\makebox(0,0){\text{\huge0}}} %bigzero
 \newcommand{\hints}{{\color{blue} \text{hints}}}
 \newcommand{\mbf}[1]{\mathbf{#1}} 
+\newcommand{\rank}[1]{\text{rank}(#1)} % rank
 \begin{document}
 \title{考研线代}
 \author{枫聆}
@@ -1213,6 +1224,22 @@ $$
 \rm 向量组的极大线性无关组中所含向量的个数被称为该向量组的秩. 全体由零向量组成的向量组的值规定为$0$.
 \end{definition}
 
+\begin{lemma}\label{vectors-rank: lemma1}
+\rm 设向量组$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$可以由$\mbf{v}'_1,\mbf{v}'_2,\cdots,\mbf{v}'_m$线性表出，如果$n > m$，则$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$线性相关.
+\end{lemma}
+
+\begin{proof}
+如何优雅的证明这个lemma? 如果$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$可以由$\mbf{v}'_1,\mbf{v}'_2,\cdots,\mbf{v}'_m$线性表出，那么
+$$
+\text{span}(\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n) \subseteq \text{span}(\mbf{v}'_1,\mbf{v}'_2,\cdots,\mbf{v}'_m)
+$$
+于是$\dim \text{span}(\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n) \leq \dim \text{span}(\mbf{v}'_1,\mbf{v}'_2,\cdots,\mbf{v}'_m) \leq m$. 所以当$n > m$时，$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$是线性相关的.
+\end{proof}
+
+\begin{lemma}
+\rm (\ref{vectors-rank: lemma1}的逆否命题) 设向量组$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$可以由$\mbf{v}'_1,\mbf{v}'_2,\cdots,\mbf{v}'_m$线性表出，如果$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$线性无关，则$n < m$.
+\end{lemma}
+
 \begin{proposition}
 \rm 若向量组$\uppercase\expandafter{\romannumeral1}$可以由向量组$\uppercase\expandafter{\romannumeral2}$线性表出，那么
 $$
@@ -1346,5 +1373,247 @@ U = \Set{u_0 + w}{ w \in W},
 $$
 其中$u_0$是取定$U$中的一个特解，$W$是原非齐次线性方程的导出组的解集. 
 \end{proposition}
+
+\newpage
+\section{矩阵运算}
+
+\subsection{矩阵运算的定义}
+
+\begin{definition}
+\rm 给定$F$上$m \times n$矩阵$\mbf{A}=(a_{ij})_{m \times n},\mbf{B}=(b_{ij})_{m \times n}$，则它们的加法定义为
+$$
+\mbf{A} + \mbf{B} = (a_{ij} + b_{ij})_{m \times n}.
+$$
+\end{definition}
+
+\begin{definition}
+\rm 给定$F$上$m\times n$矩阵$\mbf{A}=(a_{ij})_{m \times n}$和数$\lambda \in F$，则它们的数量乘法定义为
+$$
+\lambda\mbf{A} = (\lambda a_{ij})_{m \times n}.
+$$
+\end{definition}
+
+
+\begin{proposition}
+\rm 所有$m \times n$矩阵的集合记为$F^{m,n}$，则$F^{m,n}$构成一个向量空间.
+\end{proposition}
+
+\begin{definition}
+\rm 给定$F$上$m \times n$矩阵$\mbf{A}=(a_{ij})_{m \times s},\mbf{B}=(b_{ij})_{s \times n}$，则它们的乘法定义为
+$$
+\mbf{A}\mbf{B} = \mbf{C},
+$$
+其中$\mbf{C}=(c_{ij})_{m\times n}$是一个$m \times n$矩阵，$\mbf{C}$的第$i$行和第$j$列为
+$$
+c_{ij} = \sum\limits_{r=1}^{s} a_{ir}b_{rj}. 
+$$
+\end{definition}
+
+\subsection{矩阵运算的性质}
+
+\begin{proposition}
+\rm {\color{red}矩阵乘法的基本性质性质}
+\begin{enumerate}
+	\item 结合性\ 设$\mbf{A}=(a_{ij})_{m \times s},\mbf{B}=(b_{ij})_{s \times t},\mbf{C}=(c_{ij})_{t\times m}$，则$(\mbf{A}\mbf{B})\mbf{C} = \mbf{A}(\mbf{B}\mbf{C})$.
+	\item 分配性\ 设$\mbf{A}=(a_{ij})_{m \times s},\mbf{B}=(b_{ij})_{s \times n},\mbf{C}=(c_{ij})_{s\times n}$，则$\mbf{A}(\mbf{B} + \mbf{C}) = \mbf{A}\mbf{B} + \mbf{A}\mbf{C}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+\rm 主对角线上元素都是$1$，其余元素均为$0$的$n$级矩阵称为$n$级单位矩阵，记为$\mbf{I}_n$，或者简记为$\mbf{I}$.
+$$
+\begin{pmatrix}
+1 & 0 & \cdots & 0 \\
+0 & 1 & \cdots & 0 \\
+\vdots & \vdots & & \vdots \\
+0 & 0 &\cdots & 1 \\
+\end{pmatrix}
+$$
+\end{definition}
+
+\begin{definition}
+\rm $n$级矩阵的非负整数次幂定义为
+$$
+\begin{array}{ll}
+\mbf{A}^m = \underbrace{\mbf{A} \cdot \mbf{A} \cdot \mbf{A} \cdots \mbf{A} }_{m\text{个}}, m \in \mathbb{Z}^+;\\
+\mbf{A}^0 = \mbf{I}.
+\end{array}
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 矩阵加法，数量乘法和乘法与矩阵转置的关系如下
+\begin{enumerate}
+	\item $(\mbf{A} + \mbf{B})^T = \mbf{A}^T + \mbf{B}^T$;
+	\item $(k\mbf{A})^T = k\mbf{A}^T$;
+	\item $(\mbf{A}\mbf{B})^T = \mbf{B}^T \mbf{A}^T$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(3) 设$\mbf{A}=(a_{ij})_{m\times s},\mbf{B}=(b_{ij})_{s\times n}$，则
+$$
+\begin{array}{ll}
+(\mbf{A}\mbf{B})^T(i;j) = \mbf{A}\mbf{B}(j;i) = \sum\limits_{r = 1}^s a_{jr}b_{ri} \\
+(\mbf{B}^T\mbf{A}^T)(i;j) = \sum\limits_{r = 1}^s b'_{ir}a'_{rj} = \sum\limits_{r = 1}^s b_{ri}a_{jr},
+\end{array}
+$$
+其中$b'_{ij}$表示$\mbf{B}^T(i;j)$.
+\end{proof}
+
+\subsection{矩阵乘法中的线性组合}
+
+\begin{proposition}
+\rm 设$\mbf{A}=(a_{ij})_{m \times s},\mbf{B}=(b_{ij})_{s \times n}$，把$\mbf{A}$列向量组记为$\alpha_1,\alpha_2,\cdots,\alpha_s$，则
+$$
+\mbf{A}\mbf{B} = \begin{pmatrix}
+\alpha_1,\alpha_2,\cdots,\alpha_s
+\end{pmatrix}\begin{pmatrix}
+b_{11} & b_{12} & \cdots & b_{1m} \\
+b_{21} & b_{22} & \cdots & b_{2m} \\
+\vdots & \vdots & 		 & \vdots \\
+b_{s1} & b_{s2} & \cdots & b_{sm} \\
+\end{pmatrix} =
+(b_{11}\alpha_1 + b_{21}\alpha_2 + \cdots b_{s1}\alpha_s,\cdots, b_{1n}\alpha_1 + b_{2n}\alpha_2 + \cdots b_{sn}\alpha_s).
+$$
+即$\mbf{A}\mbf{B}$每一个列向量都是$\mbf{A}$列向量组的线性组合.
+\end{proposition}
+
+\begin{definition}
+\rm 设$\mbf{A}=(a_{ij})_{m \times s},\mbf{B}=(b_{ij})_{s \times n}$，把$\mbf{B}$行向量组记为$\begin{pmatrix}
+alpha_1,\alpha_2,\cdots,\alpha_s
+\end{pmatrix}$，则
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 设$\mbf{A}=(a_{ij})_{m\times n},\mbf{B} = (b_{ij})_{m\times n}$，则
+$$
+\rank{\mbf{A}\mbf{B}} \leq \min\{\rank{\mbf{A}}, \rank{\mbf{B}}\}.
+$$
+\end{proposition}
+
+\subsection{特殊矩阵}
+
+\begin{definition}
+\rm 基本矩阵
+\end{definition}
+
+\begin{definition}
+\rm 对角矩阵
+\end{definition}
+
+\begin{definition}
+\rm 数量矩阵
+\end{definition}
+
+\begin{definition}
+\rm 上三角矩阵
+\end{definition}
+
+\begin{definition}
+\rm 初等矩阵
+\end{definition}
+
+\begin{definition}
+\rm 对称矩阵
+\end{definition}
+
+\begin{definition}
+\rm 斜对角矩阵
+\end{definition}
+
+\subsection{可逆矩阵}
+
+\begin{definition}
+\rm 可逆矩阵的定义
+\end{definition}
+
+\begin{proposition}\label{invertible: cond}
+\rm $n$级矩阵$\mbf{A}$可逆当且仅当它的秩等于$n$，即$|\mbf{A}| \neq 0$.
+\end{proposition}
+
+\begin{proof}
+($\Rightarrow$)
+$$
+n =\rank{\mbf{I}} = \rank{\mbf{A}\mbf{A}^{-1}} \leq \rank{\mbf{A}} \leq n.
+$$
+
+($\Leftarrow$)
+$$
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots &&\vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{pmatrix}
+\begin{pmatrix}
+A_{11} & A_{21} & \cdots & A_{n1} \\
+A_{12} & A_{22} & \cdots & A_{n2} \\
+\vdots & \vdots &&\vdots \\
+A_{1n} & A_{2n} & \cdots & A_{nn}
+\end{pmatrix}
+=\begin{pmatrix}
+|\mbf{A}| & 0 & \cdots & 0\\
+0 & |\mbf{A}| & \cdots & 0\\
+\vdots & \vdots &  & \vdots\\
+0 & 0 & \cdots & |\mbf{A}|\\
+\end{pmatrix},
+$$
+其中$A_{ij}$表示$|A|$的第$i$阶行，第$j$列的代数余子式.
+\end{proof}
+
+\begin{definition}
+\rm 命题\ref{invertible: cond}中矩阵
+$$
+\begin{pmatrix}
+A_{11} & A_{21} & \cdots & A_{n1} \\
+A_{12} & A_{22} & \cdots & A_{n2} \\
+\vdots & \vdots &&\vdots \\
+A_{1n} & A_{2n} & \cdots & A_{nn}
+\end{pmatrix}
+$$
+被称为$\mbf{A}$的伴随矩阵，记为$\mbf{A}^*$. 即有
+$$
+\mbf{A}\mbf{A}^* = |\mbf{A}|\mbf{I}~\text{和}~\mbf{A}^*\mbf{A} = |\mbf{A}|\mbf{I}.
+$$
+那么$|\mbf{A}|$的逆矩阵记为
+$$
+\mbf{A}^{-1} = \frac{1}{|\mbf{a}|}\mbf{A}^*.
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 设$\mbf{A}$与$\mbf{B}$都是$n$级矩阵，若满足
+$$
+\mbf{A} \mbf{B} = \mbf{I},
+$$
+则$\mbf{A}$和$\mbf{B}$互为逆矩阵.
+\end{proposition}
+
+\begin{proof}
+首先由
+$$
+n = \rank{\mbf{A} \mbf{B}} \leq \mbf{A} \leq n
+$$
+所以$\mbf{A}$是一个满秩矩阵，同理可证$\mbf{B}$也是一个满秩矩阵. 即$\mbf{A}$和$\mbf{B}$均可逆. 命题等式两边同时乘上$\mbf{A}^{-1}$
+$$
+\mbf{A}^{-1}\mbf{A}\mbf{B} = \mbf{I}\mbf{B} = \mbf{A}^{-1}\mbf{I},
+$$
+即有$\mbf{B} = \mbf{A}^{-1}$，同理可证$\mbf{A} = \mbf{B}^{-1}$.
+\end{proof}
+
+\begin{proposition}
+\rm 初等矩阵都是可逆矩阵.
+\end{proposition}
+
+\begin{proposition}
+\rm 可逆矩阵的性质
+\end{proposition}
+
+\section{分块矩阵}
+
+\section{分块矩阵的初等变换}
+
 
 \end{document}
