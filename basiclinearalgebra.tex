@@ -39,7 +39,7 @@
 \usepackage{indentfirst}
 
 
-
+\usepackage{pifont} %圆圈数字
 \usepackage{xcolor}
 \usepackage{titlesec}
 \titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
@@ -1469,21 +1469,37 @@ $$
 \mbf{A}\mbf{B} = \begin{pmatrix}
 \alpha_1,\alpha_2,\cdots,\alpha_s
 \end{pmatrix}\begin{pmatrix}
-b_{11} & b_{12} & \cdots & b_{1m} \\
-b_{21} & b_{22} & \cdots & b_{2m} \\
+b_{11} & b_{12} & \cdots & b_{1n} \\
+b_{21} & b_{22} & \cdots & b_{2n} \\
 \vdots & \vdots & 		 & \vdots \\
-b_{s1} & b_{s2} & \cdots & b_{sm} \\
+b_{s1} & b_{s2} & \cdots & b_{sn} \\
 \end{pmatrix} =
-(b_{11}\alpha_1 + b_{21}\alpha_2 + \cdots b_{s1}\alpha_s,\cdots, b_{1n}\alpha_1 + b_{2n}\alpha_2 + \cdots b_{sn}\alpha_s).
+(b_{11}\alpha_1 + b_{21}\alpha_2 + \cdots + b_{s1}\alpha_s,\cdots, b_{1n}\alpha_1 + b_{2n}\alpha_2 + \cdots + b_{sn}\alpha_s).
 $$
 即$\mbf{A}\mbf{B}$每一个列向量都是$\mbf{A}$列向量组的线性组合.
 \end{proposition}
 
 \begin{definition}
 \rm 设$\mbf{A}=(a_{ij})_{m \times s},\mbf{B}=(b_{ij})_{s \times n}$，把$\mbf{B}$行向量组记为$\begin{pmatrix}
-alpha_1,\alpha_2,\cdots,\alpha_s
+\beta_1 \\ \beta_2 \\ \vdots \\ \beta_s
 \end{pmatrix}$，则
 $$
+\mbf{A}\mbf{B} = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1s} \\
+a_{21} & a_{22} & \cdots & a_{2s} \\
+\vdots & \vdots & 		 & \vdots \\
+a_{n1} & a_{s2} & \cdots & a_{ss} \\
+\end{pmatrix} \begin{pmatrix}
+\beta_1 \\ \beta_2 \\ \vdots \\ \beta_s
+\end{pmatrix} = 
+\begin{pmatrix}
+a_{11}\beta_1 + b_{12}\beta_2 + \cdots + b_{1s}\beta_s \\
+a_{21}\beta_1 + b_{22}\beta_2 + \cdots + b_{2s}\beta_s \\
+\vdots \\
+a_{m1}\beta_1 + b_{m2}\beta_2 + \cdots + b_{ms}\beta_s 
+\end{pmatrix}.
+$$
+即$\mbf{A}\mbf{B}$每一个行向量都是$\mbf{B}$行向量组的线性组合.
 \end{definition}
 
 \begin{proposition}
@@ -1496,23 +1512,66 @@ $$
 \subsection{特殊矩阵}
 
 \begin{definition}
-\rm 基本矩阵
+\rm 只有一个元素是$1$，其余元素均为$0$的矩阵我们称为基本矩阵. $(i,j)$元为$1$的基本矩阵记为$\mbf{E}_{ij}$
 \end{definition}
 
 \begin{definition}
-\rm 对角矩阵
+\rm 除对主角线以外的元素均为0的方阵称为对角矩阵.
+$$
+\begin{pmatrix}
+d_1 & 0 & \cdots & 0 \\
+0 & d_2 & \cdots & 0 \\
+\vdots & \vdots & & \vdots \\
+0 & 0 &\cdots & d_n \\
+\end{pmatrix},
+$$
+记为$\text{diag}\{d_1,d_2,\cdots,d_n\}$.
 \end{definition}
 
 \begin{definition}
-\rm 数量矩阵
+\rm 主对角线均为$\lambda$的对角矩阵称为数量矩阵.
+$$
+\begin{pmatrix}
+\lambda & 0 & \cdots & 0 \\
+0 & \lambda & \cdots & 0 \\
+\vdots & \vdots & & \vdots \\
+0 & 0 &\cdots & \lambda \\
+\end{pmatrix},
+$$
+记为$\lambda \mbf{I}_{n}$.
 \end{definition}
 
 \begin{definition}
-\rm 上三角矩阵
+\rm  主对角线以下(上)均为$0$的方阵称为上(下)三角矩阵. 
+$$
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+0 & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & & \vdots \\
+0 & 0 &\cdots & a_{nn} \\
+\end{pmatrix},
+$$
 \end{definition}
 
 \begin{definition}
-\rm 初等矩阵
+\rm 由单位矩阵经过一次初等行(列)变换得到的矩阵称为初等矩阵，其对应3种初等变换如下
+\begin{enumerate}
+	\item $\mbf{I}\xrightarrow{\tiny\textcircled{j} + k\tiny\textcircled{i}} P(j,i(k))$,
+	$$
+		\bordermatrix{
+		&\cr
+		& 1 & 0 & \cdots & 0 & \cdots & 0 & \cdots & 0 \cr
+		& 0 & 1 & \cdots & 0 & \cdots & 0 & \cdots & 0 \cr
+		& \vdots & \vdots & &\vdots && \vdots&  & \vdots \cr
+		i& 0 & 0 & \cdots & 1 & \cdots & 0 & \cdots & 0 \cr
+		& \vdots & \vdots & &\vdots && \vdots &  & \vdots \cr
+		j& 0 & 0 & \cdots & {\color{red}1} & \cdots & 1 & \cdots & 0\cr
+		& \vdots & \vdots & &\vdots && \vdots & & \vdots \cr
+		& 0 & 0 & \cdots & 0 & \cdots & 0 & \cdots & 1
+		}
+	$$
+	\item $\mbf{I}\xrightarrow{(\tiny\textcircled{i},\tiny\textcircled{j})} P(i,j)$,
+\end{enumerate}
 \end{definition}
 
 \begin{definition}
