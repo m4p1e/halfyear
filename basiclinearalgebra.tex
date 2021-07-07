@@ -16,6 +16,7 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{blkarray} %更丰富的array
 
 \usepackage{hyperref} %url
 \hypersetup{
@@ -1554,42 +1555,140 @@ $$
 \end{definition}
 
 \begin{definition}
-\rm 由单位矩阵经过一次初等行(列)变换得到的矩阵称为初等矩阵，其对应3种初等变换如下
+\rm 由单位矩阵经过一次初等行(列)变换得到的矩阵称为初等矩阵，其对应3种初等变换如下(箭头之上表示初等行变换，箭头之下表示初等列变换)
 \begin{enumerate}
-	\item $\mbf{I}\xrightarrow{\tiny\textcircled{j} + k\tiny\textcircled{i}} P(j,i(k))$,
+	\item $\mbf{I}\xrightarrow{\tiny\textcircled{j} + k\tiny\textcircled{i}} P(j,i(k))$ 或者  $\mbf{I}\xrightarrow[\tiny\textcircled{i} + k\tiny\textcircled{j}]{} P(j,i(k))$,
 	$$
 		\bordermatrix{
 		&\cr
-		& 1 & 0 & \cdots & 0 & \cdots & 0 & \cdots & 0 \cr
-		& 0 & 1 & \cdots & 0 & \cdots & 0 & \cdots & 0 \cr
-		& \vdots & \vdots & &\vdots && \vdots&  & \vdots \cr
-		i& 0 & 0 & \cdots & 1 & \cdots & 0 & \cdots & 0 \cr
-		& \vdots & \vdots & &\vdots && \vdots &  & \vdots \cr
-		j& 0 & 0 & \cdots & {\color{red}1} & \cdots & 1 & \cdots & 0\cr
-		& \vdots & \vdots & &\vdots && \vdots & & \vdots \cr
-		& 0 & 0 & \cdots & 0 & \cdots & 0 & \cdots & 1
+		& 1 \cr
+		& &\ddots	\cr
+		i& & & 1 \cr
+		& & & \vdots & \ddots	\cr
+		j& & &  1& \cdots & 1	\cr
+		& & & & & & \ddots	\cr
+		& & & & & & & 1	\cr
 		}
 	$$
-	\item $\mbf{I}\xrightarrow{(\tiny\textcircled{i},\tiny\textcircled{j})} P(i,j)$,
+	\item $\mbf{I}\xrightarrow{(\tiny\textcircled{i},\tiny\textcircled{j})} P(i,j)$ 或者 $\mbf{I}\xrightarrow[(\tiny\textcircled{i},\tiny\textcircled{j})]{} P(i,j)$,
+	$$
+	\bordermatrix{
+		&\cr
+		& 1 \cr
+		& &\ddots	\cr
+		i& & & 0 & \cdots & 1\cr
+		& & & \vdots & \ddots & \vdots	\cr
+		j& & &  1& \cdots & 0	\cr
+		& & & & & & \ddots	\cr
+		& & & & & & & 1	\cr
+		}
+	$$
+	\item $\mbf{I}\xrightarrow{\tiny\textcircled{i}\cdot \lambda} P(i(\lambda))$ 或者 $\mbf{I}\xrightarrow[\tiny\textcircled{j}\cdot \lambda]{}P(j(\lambda))$ ,
+	$$
+	\bordermatrix{
+		&\cr
+		& 1 \cr
+		& &\ddots	\cr
+		i& & & \lambda \cr
+		& & &  & \ddots	\cr
+		j& & &  &  & 1	\cr
+		& & & & & & \ddots	\cr
+		& & & & & & & 1	\cr
+		}
+	$$
 \end{enumerate}
 \end{definition}
 
-\begin{definition}
-\rm 对称矩阵
-\end{definition}
+\begin{theorem}
+\rm 用初等矩阵左(右)乘一个矩阵$\mbf{A}$，就相当于$\mbf{A}$作了一次相应的初等行(列)变换.
+\end{theorem}
+
+\begin{proof}
+设矩阵$\mbf{A}=(a_{ij})_{m\times n}$的行向量组为$\alpha_1,\alpha_2,\cdots,\alpha_m$，列向量组为$\gamma_1,\gamma_2,\cdots,\gamma_n$. 则对$\mbf{A}$左乘$P(j,i(k))$有
+$$
+P(j,i(k))A = \bordermatrix{
+		&\cr
+		& 1 \cr
+		& &\ddots	\cr
+		& & & 1 \cr
+		& & & \vdots & \ddots	\cr
+		& & &  1& \cdots & 1	\cr
+		& & & & & & \ddots	\cr
+		& & & & & & & 1	\cr
+		} \begin{pmatrix}\gamma_1 \\ \gamma_2 \\ \vdots \\ \gamma_n \end{pmatrix} = \begin{pmatrix}\gamma_1 \\ \gamma_2 \\ \vdots\\ \gamma_j + k\gamma_i \\ \vdots \\ \gamma_n \end{pmatrix},
+$$
+同理对$\mbf{A}$右乘$P(j,i(k))$有
+$$
+AP(j,i(k)) = (\alpha_1,\alpha_2,\cdots,\alpha_m) \bordermatrix{
+		&\cr
+		& 1 \cr
+		& &\ddots	\cr
+		& & & 1 \cr
+		& & & \vdots & \ddots	\cr
+		& & &  1& \cdots & 1	\cr
+		& & & & & & \ddots	\cr
+		& & & & & & & 1	\cr
+		} = (\alpha_1,\alpha_2,\cdots,\alpha_{i} + k\alpha_{j},\cdots,\alpha_m).
+$$
+其余两种变换都比较显然.
+\end{proof}
 
 \begin{definition}
-\rm 斜对角矩阵
+\rm 一个矩阵$\mbf{A}$如果满足$\mbf{A}^T = \mbf{A}$，那么就称$\mbf{A}$是对称矩阵. 
 \end{definition}
+
+\begin{proposition}
+\rm 对称矩阵是一个方阵，并且$n$级矩阵$\mbf{A}$是对称矩阵当且仅当
+$$
+A(i;j) = A(j;i), i,j = 1,2,\cdots,n.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 若$\mbf{A},\mbf{B}$都是$n$级对称矩阵，则$\mbf{A}\mbf{B}$为对称矩阵当且仅当$\mbf{A}\mbf{B} = \mbf{B}\mbf{A}$.
+\end{proposition}
+
+\begin{proof}
+$$
+(\mbf{A}\mbf{B})^T = \mbf{B}^T\mbf{A}^T = \mbf{B}\mbf{A}.
+$$
+\end{proof}
+
+\begin{definition}
+\rm 一个矩阵$\mbf{A}$如果满足$\mbf{A}^T = -\mbf{A}$，那么称$\mbf{A}$是斜对角矩阵.
+\end{definition}
+
+\begin{proposition}
+\rm 斜对角矩阵是一个方阵，并且$n$级矩阵$\mbf{A}$是斜对角矩阵当且仅当
+$$
+A(i;j) = -A(j;i), i,j = 1,2,\cdots,n.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 奇数级斜对角矩阵的行列式等于$0$.
+\end{proposition}
+
+\begin{proof}
+若$\mbf{A}^T = - \mbf{A}$，那么$|\mbf{A}^T| = |\mbf{A}| = |-\mbf{A}| = (-1)^n |\mbf{A}|$. 所以当$n$为奇数时，有$|\mbf{A}| = -|\mbf{A}| = 0$
+\end{proof}
 
 \subsection{可逆矩阵}
 
 \begin{definition}
-\rm 可逆矩阵的定义
+\rm 给定矩阵$\mbf{A}$，若存在矩阵$\mbf{B}$，使得
+$$
+\mbf{A}\mbf{B} = \mbf{B}\mbf{A} = \mbf{I},
+$$
+那么称$\mbf{A}$是一个可逆矩阵(非奇异矩阵). 若$\mbf{A}$是一个可逆矩阵，满足上式的$\mbf{B}$记为$\mbf{A}^{-1}$.
 \end{definition}
 
+\begin{proposition}
+\rm 可逆矩阵一定是方阵.
+\end{proposition}
+
 \begin{proposition}\label{invertible: cond}
-\rm $n$级矩阵$\mbf{A}$可逆当且仅当它的秩等于$n$，即$|\mbf{A}| \neq 0$.
+\rm $n$级矩阵$\mbf{A}$可逆当且仅当它的秩等于$n$(满秩矩阵)，即$|\mbf{A}| \neq 0$.
 \end{proposition}
 
 \begin{proof}
@@ -1619,7 +1718,7 @@ A_{1n} & A_{2n} & \cdots & A_{nn}
 0 & 0 & \cdots & |\mbf{A}|\\
 \end{pmatrix},
 $$
-其中$A_{ij}$表示$|A|$的第$i$阶行，第$j$列的代数余子式.
+其中$A_{ij}$表示$|\mbf{A}|$的第$i$阶行，第$j$列的代数余子式.
 \end{proof}
 
 \begin{definition}
@@ -1636,13 +1735,13 @@ $$
 $$
 \mbf{A}\mbf{A}^* = |\mbf{A}|\mbf{I}~\text{和}~\mbf{A}^*\mbf{A} = |\mbf{A}|\mbf{I}.
 $$
-那么$|\mbf{A}|$的逆矩阵记为
+若$\mbf{A}$可逆时，那么$|\mbf{A}|$的逆矩阵记为
 $$
 \mbf{A}^{-1} = \frac{1}{|\mbf{a}|}\mbf{A}^*.
 $$
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{invertible: prop1}
 \rm 设$\mbf{A}$与$\mbf{B}$都是$n$级矩阵，若满足
 $$
 \mbf{A} \mbf{B} = \mbf{I},
@@ -1653,24 +1752,113 @@ $$
 \begin{proof}
 首先由
 $$
-n = \rank{\mbf{A} \mbf{B}} \leq \mbf{A} \leq n
+n =\rank{\mbf{I}} =  \rank{\mbf{A} \mbf{B}} \leq \mbf{A} \leq n
 $$
 所以$\mbf{A}$是一个满秩矩阵，同理可证$\mbf{B}$也是一个满秩矩阵. 即$\mbf{A}$和$\mbf{B}$均可逆. 命题等式两边同时乘上$\mbf{A}^{-1}$
 $$
-\mbf{A}^{-1}\mbf{A}\mbf{B} = \mbf{I}\mbf{B} = \mbf{A}^{-1}\mbf{I},
+\mbf{A}^{-1}\mbf{A}\mbf{B} = \mbf{A}^{-1}\mbf{I},
 $$
 即有$\mbf{B} = \mbf{A}^{-1}$，同理可证$\mbf{A} = \mbf{B}^{-1}$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{invertible: id}
 \rm 初等矩阵都是可逆矩阵.
 \end{proposition}
 
-\begin{proposition}
-\rm 可逆矩阵的性质
+\begin{proof}
+$$
+\begin{array}{ll}
+P(j,i(-k))P(j,i(k)) = \mbf{I},\\
+P(i,j)P(i,j) = \mbf{I},\\
+P(i(\frac{1}{\lambda}))P(i(\lambda)) = \mbf{I} 
+\end{array}
+$$
+\end{proof}
+
+\begin{proposition}\label{invertible: basic}
+\rm 可逆矩阵基本性质
+\begin{enumerate}
+	\item 单位矩阵$\mbf{I}$可逆，$\mbf{I}^{-1} = \mbf{I}$;
+	\item 如果$\mbf{A}$可逆，那么$\mbf{A}^{-1}$也可逆，且$(\mbf{A}^{-1})^{-1} = \mbf{A}$;
+	\item 如果$n$级矩阵$\mbf{A},\mbf{B}$可逆，那么$\mbf{A}\mbf{B}$也可逆，且$(\mbf{A}\mbf{B})^{-1} = (\mbf{B}^{-1}\mbf{A}^{-1})$.该性质可以推广到2个以上$n$级矩阵. 
+	\item 如果$\mbf{A}$可逆，那么$\mbf{A}^{T}$也可逆，并且$(\mbf{A}^T)^{-1} = (\mbf{A}^{-1})^T$.
+\end{enumerate}
 \end{proposition}
 
+\begin{lemma}\label{invertible: 2id}
+\rm 可逆矩阵经过初等矩阵行变换成的简化梯形矩阵一定是单位矩阵.
+\end{lemma}
+
+\begin{proof}
+可逆矩阵是满秩矩阵，因此一定是单位矩阵.
+\end{proof}
+
+\begin{theorem}
+\rm 矩阵$\mbf{A}$可逆当且仅当它可以表示成一些初等矩阵的乘积.
+\end{theorem}
+
+\begin{proof}
+($\Rightarrow$) 由lemma \ref{invertible: 2id}，可知存在初等矩阵$P_1,P_2,\cdots,P_t$，使得
+$$
+P_t\cdots P_2P_1\mbf{A} = \mbf{I}.
+$$
+因此由proposition \ref{invertible: prop1}可知$(P_t\cdots P_2P_1)$和$\mbf{A}$可逆，再有proposition \ref{invertible: id}和proposition \ref{invertible: basic}中的(3)有
+$$
+\mbf{A} = P_1^{-1}P_2^{-1}\cdots P_t^{-1}.
+$$
+
+($\Leftarrow$) 若$A = P_1'P_2'\cdots P_t'$，由proposition \ref{invertible: id}和proposition \ref{invertible: basic}中的(3)可知$(P_1'P_2'\cdots P_t')$可逆，即$\mbf{A}$可逆.
+\end{proof}
+
+\begin{proposition}
+\rm 用一个可逆矩阵左(右)乘一个矩阵$\mbf{A}$，不改变$\mbf{A}$的秩.
+\end{proposition}
+
+\begin{proof}
+可逆矩阵可以分解成多个初等矩阵的乘积，那么每个初等矩阵作用在$\mbf{A}$上等价于对$\mbf{A}$做初等变换，而初等变换不改变矩阵的秩. 
+\end{proof}
+
 \section{分块矩阵}
+
+\begin{definition}
+\rm 由矩阵$\mbf{A}$的若干行和若干列的交叉位置元素按原来顺序排成的矩阵称为$\mbf{A}$的子矩阵.
+\end{definition}
+
+\begin{definition}
+\rm 把一个矩阵$\mbf{A}$的行分成若干组，列也分成若干组，从而$\mbf{A}$被分成了若干子矩阵，把$\mbf{A}$看成是由这些子矩阵组成的，这称为矩阵的分块. 这种由子矩阵组成的矩阵被称为分块矩阵.
+\end{definition}
+
+\begin{proposition}
+\rm 设$\mbf{A}=(a_{ij})_{m \times s},\mbf{B}=(b_{ij})_{s \times n}$，则
+$$
+\begin{array}{ll}
+&\begin{blockarray}{ccccc}
+    & s_1    & s_2    & \cdots & s_t  \\
+\begin{block}{c(cccc)}    
+m_1 & A_{11} & A_{12} & \cdots & A_{1t} \\
+m_2 & A_{21} & A_{22} & \cdots & A_{2t} \\
+\vdots & \vdots & \vdots & 		 & \vdots \\
+m_u & A_{u1} & A_{u2} & \cdots & A_{ut} \\
+\end{block} 
+\end{blockarray}~
+\begin{blockarray}{ccccc}
+n_1    & n_2    & \cdots & n_v  &\\
+\begin{block}{(cccc)c}
+B_{11} & B_{12} & \cdots & B_{1v} & s_1 \\
+B_{21} & B_{22} & \cdots & B_{2v} & s_2 \\
+\vdots & \vdots & 		 & \vdots & \vdots \\
+B_{t1} & B_{t2} & \cdots & B_{tv} & s_t \\
+\end{block}
+\end{blockarray}\\
+&= \begin{pmatrix}
+\sum\limits_{r=1}^t A_{1r}B_{r1} & \cdots & \sum\limits_{r=1}^t A_{1r}B_{rv} \\
+\sum\limits_{r=1}^t A_{2r}B_{r1} & \cdots & \sum\limits_{r=1}^t A_{2r}B_{rv} \\
+\vdots && \vdots \\
+\sum\limits_{r=1}^t A_{ur}B_{r1} & \cdots & \sum\limits_{r=1}^t A_{ur}B_{rv} 
+\end{pmatrix}
+\end{array}
+$$
+\end{proposition}
 
 \section{分块矩阵的初等变换}
 
