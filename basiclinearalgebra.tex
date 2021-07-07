@@ -1503,7 +1503,7 @@ $$
 即$\mbf{A}\mbf{B}$每一个行向量都是$\mbf{B}$行向量组的线性组合.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{matrix-mul: rank}
 \rm 设$\mbf{A}=(a_{ij})_{m\times n},\mbf{B} = (b_{ij})_{m\times n}$，则
 $$
 \rank{\mbf{A}\mbf{B}} \leq \min\{\rank{\mbf{A}}, \rank{\mbf{B}}\}.
@@ -1793,7 +1793,7 @@ $$
 可逆矩阵是满秩矩阵，因此一定是单位矩阵.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{invertible: decompose}
 \rm 矩阵$\mbf{A}$可逆当且仅当它可以表示成一些初等矩阵的乘积.
 \end{theorem}
 
@@ -1818,7 +1818,7 @@ $$
 可逆矩阵可以分解成多个初等矩阵的乘积，那么每个初等矩阵作用在$\mbf{A}$上等价于对$\mbf{A}$做初等变换，而初等变换不改变矩阵的秩. 
 \end{proof}
 
-\section{分块矩阵}
+\subsection{分块矩阵}
 
 \begin{definition}
 \rm 由矩阵$\mbf{A}$的若干行和若干列的交叉位置元素按原来顺序排成的矩阵称为$\mbf{A}$的子矩阵.
@@ -1860,7 +1860,385 @@ B_{t1} & B_{t2} & \cdots & B_{tv} & s_t \\
 $$
 \end{proposition}
 
-\section{分块矩阵的初等变换}
+\begin{proof}
+(1) 纯代数手法：直接比较分块矩阵乘法得到的$(i,j)$元和原常规矩阵乘法的$(i,j)$元. 棘手的地方在于你要确定$(i,j)$元在哪两个子矩阵乘积中.
 
+(2) 递归分解：
+$$
+\begin{array}{ll}
+&\begin{blockarray}{ccccc}
+    & s_1    & s_2    & \cdots & s_t  \\
+\begin{block}{c(c|ccc)}    
+m_1 & A_{11} & A_{12} & \cdots & A_{1t} \\
+m_2 & A_{21} & A_{22} & \cdots & A_{2t} \\
+\vdots & \vdots & \vdots & 		 & \vdots \\
+m_u & A_{u1} & A_{u2} & \cdots & A_{ut} \\
+\end{block} 
+\end{blockarray}~
+\begin{blockarray}{ccccc}
+n_1    & n_2    & \cdots & n_v  &\\
+\begin{block}{(cccc)c}
+B_{11} & B_{12} & \cdots & B_{1v} & s_1 \\
+\BAhhline{----}
+B_{21} & B_{22} & \cdots & B_{2v} & s_2 \\
+\vdots & \vdots & 		 & \vdots & \vdots \\
+B_{t1} & B_{t2} & \cdots & B_{tv} & s_t \\
+\end{block}
+\end{blockarray}\\
+&= \begin{blockarray}{(c)}
+A_{11} \\
+A_{21} \\
+\vdots \\
+A_{u1} \\
+\end{blockarray}
+\begin{blockarray}{(cccc)}
+B_{11} & B_{12} & \cdots & B_{1v} 
+\end{blockarray}  + 
+\begin{blockarray}{cccc}
+    & s_2    & \cdots & s_t  \\
+\begin{block}{c(c|cc)}    
+m_1  & A_{12} & \cdots & A_{1t} \\
+m_2  & A_{22} & \cdots & A_{2t} \\
+\vdots & \vdots & 		 & \vdots \\
+m_u  & A_{u2} & \cdots & A_{ut} \\
+\end{block} 
+\end{blockarray}~
+\begin{blockarray}{ccccc}
+n_1    & n_2    & \cdots & n_v  &\\
+\begin{block}{(cccc)c}
+B_{21} & B_{22} & \cdots & B_{2v} & s_2 \\
+\BAhhline{----}
+\vdots & \vdots & 		 & \vdots & \vdots \\
+B_{t1} & B_{t2} & \cdots & B_{tv} & s_t \\
+\end{block}
+\end{blockarray}
+\end{array}
+$$
+我们通过组合部分子矩阵构造了新的分块矩阵，所以我们只要证明两个更为简单的分块矩阵乘法即可，即
+$$
+\begin{blockarray}{(cc)}
+A_1 & A_2
+\end{blockarray} ~
+\begin{blockarray}{(c)}
+B_1 \\
+B_2 \\
+\end{blockarray}
+= \begin{blockarray}{(c)}
+A_1B_1 + A_2B_2
+\end{blockarray}
+$$
+和
+$$
+\begin{blockarray}{(c)}
+A_{1} \\
+A_{2} \\
+\vdots \\
+A_{u} \\
+\end{blockarray} ~
+\begin{blockarray}{(cccc)}
+B_{1} & B_{1} & \cdots & B_{v} 
+\end{blockarray} = 
+\begin{blockarray}{(cccc)}
+A_{1}B_1 & A_{1}B_{2} & \cdots & A_{1}B_{v} \\
+A_{2}B_1 & A_{2}B_{2} & \cdots & A_{2}B_{v} \\
+\vdots & \vdots &  & \vdots \\
+A_{u}B_1 & A_{u}B_{2} & \cdots & A_{u}B_{v} \\
+\end{blockarray}
+$$
+相对来要所要比直接证明一般的分部矩阵乘法要稍微简单一点. 
+\end{proof}
+
+\newpage
+\subsection{分块矩阵的初等变换}
+
+\begin{proposition}
+\rm 分块矩阵的初等行变换操作
+\begin{enumerate}
+	\item 把一个块行的{\color{red}左乘}$P$($P$是矩阵)倍加到另一个块行上，
+	$$
+	\begin{pmatrix}
+	A_1 & A_2 \\
+	A_3 & A_4
+	\end{pmatrix}\xrightarrow{\tiny\textcircled{2} + P \cdot \tiny\textcircled{1}} 
+	\begin{pmatrix}
+	A_1 & A_2 \\
+	PA_1+A_3 & PA_2 + A_4  
+	\end{pmatrix}.
+	$$
+	\item 互换两个块行的位置，
+	$$
+	\begin{pmatrix}
+	A_1 & A_2 \\
+	A_3 & A_4
+	\end{pmatrix}\xrightarrow{(\tiny\textcircled{1} ,  \tiny\textcircled{2})} 
+	\begin{pmatrix}
+	A_3 & A_4 \\
+	A_1 & A_2   
+	\end{pmatrix}.
+	$$
+	\item 用一个可逆矩阵{\color{red}左乘}某一块行.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+\rm 分块矩阵的初等列变换操作
+\begin{enumerate}
+	\item 把一个列行的{\color{red}右乘}$P$($P$是矩阵)倍加到另一个列行上，
+	$$
+	\begin{pmatrix}
+	A_1 & A_2 \\
+	A_3 & A_4
+	\end{pmatrix}\xrightarrow[\tiny\textcircled{2} +  \tiny\textcircled{1}\cdot P ]{} 
+	\begin{pmatrix}
+	A_1 & A_2P+ A_2 \\
+	A_3 & A_2P +A_4  
+	\end{pmatrix}.
+	$$
+	\item 互换两个列行的位置，
+	$$
+	\begin{pmatrix}
+	A_1 & A_2 \\
+	A_3 & A_4
+	\end{pmatrix}\xrightarrow[(\tiny\textcircled{1} ,  \tiny\textcircled{2})]{}
+	\begin{pmatrix}
+	A_2 & A_1 \\
+	A_4 & A_3   
+	\end{pmatrix}.
+	$$
+	\item 用一个可逆矩阵{\color{red}右乘}某一块列.
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+\rm 把单位矩阵分块得到的矩阵经过一次分块矩阵的初等行(列)变换得到的矩阵被称为分块初等矩阵，如下
+\begin{enumerate}
+	\item 
+	$$
+	\begin{array}{ll}
+	\begin{pmatrix} 
+	\mbf{I} & 0 \\
+	0 & \mbf{I} 
+	\end{pmatrix}\xrightarrow{\tiny\textcircled{2} + P \cdot \tiny\textcircled{1}}
+	\begin{pmatrix} 
+	\mbf{I} & 0 \\
+	P & \mbf{I}
+	\end{pmatrix} \\ \\
+	\begin{pmatrix} 
+	\mbf{I} & 0 \\
+	0 & \mbf{I} 
+	\end{pmatrix}\xrightarrow[\tiny\textcircled{1} +  \tiny\textcircled{2} \cdot P]{}
+	\begin{pmatrix} 
+	\mbf{I} & 0 \\
+	P & \mbf{I}
+	\end{pmatrix}
+	\end{array} 
+	$$
+	\item 
+	$$
+	\begin{array}{ll}
+	\begin{pmatrix} 
+	\mbf{I} & 0 \\
+	0 & \mbf{I} 
+	\end{pmatrix}\xrightarrow{(\tiny\textcircled{1} , \tiny\textcircled{2})}
+	\begin{pmatrix} 
+	0 & \mbf{I}  \\
+	\mbf{I} & 0 
+	\end{pmatrix} \\ \\
+	\begin{pmatrix} 
+	\mbf{I} & 0 \\
+	0 & \mbf{I} 
+	\end{pmatrix}\xrightarrow[(\tiny\textcircled{1} , \tiny\textcircled{2})]{}
+	\begin{pmatrix} 
+	0 & \mbf{I}  \\
+	\mbf{I} & 0 
+	\end{pmatrix}
+	\end{array}
+	$$ 
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+\rm 用分块初等矩阵左乘一个分块矩阵，就相当于对这个分块矩阵做了一次相应的分块矩阵的初等行变换. 同理用分块初等矩阵右乘一个分块矩阵，就相当于对这个分块矩阵做了一次相应的分块矩阵的初等列变换.
+\end{theorem}
+
+\begin{proof}
+$$
+\begin{array}{ll}
+\begin{pmatrix} 
+\mbf{I} & 0 \\
+P & \mbf{I}
+\end{pmatrix} 
+\begin{pmatrix}
+A_1 & A_2 \\
+A_3 & A_4
+\end{pmatrix}
+=
+\begin{pmatrix}
+A_1 & A_2 \\
+PA_1+A_3 & PA_2 + A_3 
+\end{pmatrix} \\ \\
+\begin{pmatrix}
+A_1 & A_2 \\
+A_3 & A_4
+\end{pmatrix}
+\begin{pmatrix} 
+\mbf{I} & 0 \\
+P & \mbf{I}
+\end{pmatrix} 
+=
+\begin{pmatrix}
+A_1 + A_2P & A_2 \\
+A_3 + A_4P & A_4  
+\end{pmatrix} \\ \\
+
+\begin{pmatrix} 
+ 0 & \mbf{I}  \\
+\mbf{I} & 0
+\end{pmatrix} 
+\begin{pmatrix}
+A_1 & A_2 \\
+A_3 & A_4
+\end{pmatrix} = 
+\begin{pmatrix}
+A_3 & A_4\\
+A_1 & A_2 
+\end{pmatrix} \\ \\
+
+\begin{pmatrix}
+A_1 & A_2 \\
+A_3 & A_4
+\end{pmatrix} 
+\begin{pmatrix} 
+ 0 & \mbf{I}  \\
+\mbf{I} & 0
+\end{pmatrix} = 
+\begin{pmatrix}
+A_2 & A_1\\
+A_4 & A_3 
+\end{pmatrix}
+
+\end{array}
+$$
+\end{proof}
+
+\begin{theorem}
+\rm 分块矩阵的初等行(列)变换不改变矩阵的秩.
+\end{theorem}
+
+\begin{proof}
+初等分块矩阵都是可逆矩阵.
+\end{proof}
+
+\newpage
+\subsection{矩阵乘积的秩和行列式}
+
+\begin{lemma}
+\rm 设$\mbf{A} = (a_{ij})_{n \times s},\mbf{B} = (b_{ij})_{s \times n}$，若$n  >  s$，则
+$$
+|\mbf{A}\mbf{B}| = 0.
+$$
+\end{lemma}
+
+\begin{proof}
+由proposition \ref{matrix-mul: rank}可知
+$$
+\rank{\mbf{A}\mbf{B}} < \rank{\mbf{B}} < s,
+$$
+而$\mbf{A}\mbf{B}$是一个$n \times n$矩阵，因此它不是满秩矩阵，即行列式等于$0$.
+\end{proof}
+
+\begin{lemma}
+\rm 设$\mbf{A} = (a_{ij})_{n \times s},\mbf{B} = (b_{ij})_{s \times n}$，若$n  =  s$，则
+$$
+|\mbf{A}\mbf{B}| = |\mbf{A}||\mbf{B}|.
+$$
+\end{lemma}
+
+\begin{proof}
+下面分两种情况讨论:
+
+若$|\mbf{A}| = 0$，那么$\mbf{A}$不是满秩，由proposition \ref{matrix-mul: rank}可知$|\mbf{A}\mbf{B}|$也不是满秩，即$|\mbf{A}\mbf{B}| = 0$.
+
+若$|\mbf{A}| \neq 0$，那么$\mbf{A}$就可逆. 因此由proposition \ref{invertible: decompose}有
+$$
+\mbf{A} = P_1P_2\cdots P_t\mbf{I}, 
+$$
+其中$P_1,P_2,\cdots,P_t$是一些初等矩阵. 那么
+$$
+\mbf{A}\mbf{B} = (P_1P_2\cdots P_t)\mbf{B}.
+$$
+下面考虑三种左乘初等矩阵对矩阵$\mbf{B}$的行列式改变，即分三种情况
+$$
+\begin{array}{ll}
+|P(j,i(k))\mbf{B}| = |\mbf{B}|\\
+|P(i,j)\mbf{B}| = -|\mbf{B}| \\
+|P(i(k))\mbf{B}| = k|\mbf{B}|
+\end{array}
+$$.
+特别地，当上述$\mbf{B}$取单位矩阵$\mbf{I}$时，我们有
+$$
+\begin{array}{ll}
+|P(j,i(k))\mbf{I}| = |P(j,i(k))| = |\mbf{I}| = 1\\
+|P(i,j)\mbf{I}| = |P(i,j)| = -|\mbf{I}| = -1 \\
+|P(i(k))\mbf{I}| = |P(i(k))| =k|\mbf{I}| = k
+\end{array}
+$$
+于是
+$$
+\begin{array}{ll}
+|P(j,i(k))\mbf{B}| =|P(j,i(k))| |\mbf{B}|\\
+|P(i,j)\mbf{B}| = |P(i,j)||\mbf{B}| \\
+|P(i(k))\mbf{B}| = |P(i(k))||\mbf{B}|
+\end{array}
+$$. 综上
+$$
+|\mbf{A}\mbf{B}| = |P_1P_2\cdots P_t\mbf{B}| = |P_1||P_2|\cdots |P_t||\mbf{B}|.
+$$
+特别地，当$\mbf{B} = \mbf{I}$时，
+$$
+|\mbf{A}| = |P_1||P_2|\cdots |P_t|,
+$$
+所以$|\mbf{A}\mbf{B}| = |\mbf{A}||\mbf{B}|$.
+\end{proof}
+
+\begin{theorem}
+\rm {\color{red} Binet-Cauchy公式} 设$\mbf{A} = (a_{ij})_{n \times s},\mbf{B} = (b_{ij})_{s \times n}$，若$n \leq s$，则
+$$
+|\mbf{A}\mbf{B}| = \sum\limits_{1\leq v_1 < v_2 < \cdots <v_n \leq s} \mbf{A} \begin{pmatrix}
+1,&2,&\cdots,&n \\
+v_1,&v_2,&\cdots,&v_n
+\end{pmatrix}\mbf{B} \begin{pmatrix}
+v_1,&v_2,&\cdots,&v_n \\
+1,&2,&\cdots,&n 
+\end{pmatrix}.
+$$
+即$|\mbf{A}\mbf{B}|$等于$\mbf{A}$的所有$n$阶子式与$\mbf{B}$的相应$n$阶子式的乘积之和.
+\end{theorem}
+
+\begin{proof}
+考虑特殊分块矩阵的行列值
+$$
+\begin{vmatrix}
+\mbf{A} & 0 \\
+\mbf{I}_n & \mbf{B} \\
+\end{vmatrix} = |\mbf{A}||\mbf{B}|.
+$$
+对这个分块矩阵我们把2行的$-\mbf{A}$倍加到第一行上去就可以把$\mbf{A}\mbf{B}$构造出来，这个初等变换操作等价于
+$$
+\begin{pmatrix}
+\mbf{I}_n & -\mbf{A} \\
+0 & \mbf{I}_n
+\end{pmatrix}
+\begin{pmatrix}
+\mbf{A} & 0 \\
+\mbf{I}_n & \mbf{B} \\
+\end{pmatrix} = 
+\begin{pmatrix}
+0 & -\mbf{A}\mbf{B} \\
+\mbf{I}_n & \mbf{B} 
+\end{pmatrix}
+$$
+\end{proof}
 
 \end{document}
