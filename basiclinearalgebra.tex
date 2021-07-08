@@ -47,6 +47,9 @@
 \titleformat{\subsection}[hang]{\color{red}\Large\bfseries}{}{0em}{}
 %\setcounter{secnumdepth}{1} %section 序号
 
+\counterwithin*{equation}{section} %equation重新编号
+\counterwithin*{equation}{subsection}
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -2490,20 +2493,91 @@ $$
 \subsection{矩阵的特征值和特征向量}
 
 \begin{definition}
-\rm 设$\mbf{A}$是一个$n$阶矩阵，如果数$\lambda$和非零列向量$\mbf{\alpha}$使得
-$$
+\rm 设$\mbf{A}$是一个$n$阶矩阵，如果数$\lambda$和$n$维非零列向量$\mbf{\alpha}$使得
+\begin{equation}
 \mbf{A}\mbf{\alpha} = \lambda\mbf{\alpha}
+\end{equation}
+成立. 那么称$\lambda$为矩阵$\mbf{A}$的特征值，非零向量$\mbf{\alpha}$称为矩阵$\mbf{A}$的对应于特征值$\lambda$的一个特征向量. (1)式可以改写为
+\begin{equation}
+(\mbf{A}-\lambda\mbf{I})\mbf{\alpha} = 0,
+\end{equation}
+这个等式可以看做一个$n$个未知数和$n$和方程的齐次线性方程组$(\mbf{A}-\lambda\mbf{I})\mbf{X} = 0$，这个方齐次线性方程被称为$\mbf{A}$的特征方程. 把$|\mbf{A}-\lambda\mbf{I}|$称为$\mbf{A}$的特征多项式，$|\mbf{A}-\lambda\mbf{I}|$写作
 $$
-成立. 那么称$\lambda$为矩阵$\mbf{A}$的特征值，非零向量$\mbf{\alpha}$称为矩阵$\mbf{A}$的对应于特征值$\lambda$的一个特征向量.
+|\mbf{A}-\lambda\mbf{I}| = 
+\begin{pmatrix}
+a_{11} - \lambda & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{21} - \lambda & \cdots & a_{2n} \\
+\vdots & \vdots && \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}-\lambda 
+\end{pmatrix}
+$$
 \end{definition}
 
 \begin{lemma}
-\rm 若$\mbf{\alpha}$是$\mbf{A}$的对应于特征值$\lambda$的一个特征向量，那么$k\mbf{\alpha}$也是$\mbf{A}$的对应于特征值$\lambda$的一个特征向量.
+\rm 若$\mbf{\alpha}$是$\mbf{A}$的对应于特征值$\lambda$的一个特征向量，那么$k\mbf{\alpha}$也是$\mbf{A}$的对应于特征值$\lambda$的一个特征向量. 
 \end{lemma}
 
 \begin{proof}
 $$
 \mbf{A}(k\mbf{\alpha}) = k(\mbf{A}\mbf{\alpha}) = k(\lambda\mbf{\alpha}) = \lambda(k\mbf{\alpha}).
+$$
+\end{proof}
+
+
+\begin{proposition}
+\rm $\mbf{A}$的特征值$\lambda$就是特征多项式的根.
+\end{proposition}
+
+\begin{proof}
+\rm (2)式要有非零解的充要条件是$|\mbf{A}-\lambda\mbf{I}| = 0$，而$|\mbf{A}-\lambda\mbf{I}|$是关于$\lambda$的一个多项式，因此所求$\lambda$就是特征多项式的根.
+\end{proof}
+
+\begin{proposition}
+\rm $\mbf{A}$的特征向量$\mbf{\alpha}$是齐次线性方程$(\mbf{A}-\lambda\mbf{I})\mbf{X} = 0$的一个非零解.
+\end{proposition}
+
+\begin{annotation}
+\rm 求$\mbf{A}$的全部特征值和特征向量的方法如下
+\begin{enumerate}
+	\item 计算$\mbf{A}$的特征多项式$|\mbf{A}-\lambda\mbf{I}|$,
+	\item 如果多项式$|\mbf{A}-\lambda\mbf{I}|$在数域$F$(实数域和复数域)中没有根，那么$\mbf{A}$没有根. 如果 如果多项式$|\mbf{A}-\lambda\mbf{I}|$在数域$F$中有根，那么它在$F$中的全部根就是$\mbf{A}$的特征值，此时再做第3步.
+	\item 对$\mbf{A}$的每一个特征值$\lambda_i$，求齐次线性方程组$(\mbf{A}-\lambda_i\mbf{I})\mbf{X} = 0$的一个基础解系$\eta_1,\eta_2,\cdots,\eta_t$. 于是$\mbf{A}$的对应于特征值$\lambda_i$的全部特征向量组成的集合是
+$$
+\Set{k_1\eta_1 + k_2\eta_2 + \cdots + k_t\eta_t}{k_1,k_2,\cdots,k_t \in F, ~\text{且它们不全为}~0}.
+$$
+\end{enumerate}
+\end{annotation}
+
+\begin{definition}
+\rm 设$\lambda$是$n$阶$\mbf{A}$的一个特征值，把齐次方程组$(\mbf{A}-\lambda\mbf{I})\mbf{X} = 0$的解空间称为$\mbf{A}$的对应于$\lambda$的特征子空间.
+\end{definition}
+
+\begin{proposition}
+\rm 设$\lambda$是$n$阶$\mbf{A}$的一个特征值，则下述命题成立
+\begin{enumerate}
+	\item $\lambda^m$是$\mbf{A}^m$的特征值;
+	\item 当$\mbf{A}$可逆时，则$\frac{1}{\lambda}$是$\mbf{A}^{-1}$的特征值.
+\end{enumerate}
+\end{proposition}
+
+\subsection{相似矩阵}
+
+\begin{definition}
+\rm 设$\mbf{A}$和$\mbf{B}$都是$n$阶矩阵，如果存在一个$n$阶可逆矩阵$\mbf{P}$使得
+$$
+\mbf{P}^{-1}\mbf{A}\mbf{P} = \mbf{B},
+$$
+那么称$\mbf{A}$和$\mbf{B}$是相似的，记做$\mbf{A} \sim \mbf{B}$.
+\end{definition}
+
+\begin{proposition}
+\rm 相似矩阵有相等的特征多项式.
+\end{proposition}
+
+\begin{proof}
+设$\mbf{A} \sim \mbf{B}$，有
+$$
+|\mbf{B} - \lambda\mbf{I}| = |\mbf{P}^{-1}\mbf{A}\mbf{P} -\lambda\mbf{P}^{-1}\mbf{P}| = |\mbf{P}^{-1}(\mbf{A}-\lambda\mbf{I})\mbf{P}| =|\mbf{A}-\lambda\mbf{I}|.
 $$
 \end{proof}
 
