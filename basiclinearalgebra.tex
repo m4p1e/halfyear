@@ -68,8 +68,9 @@
 
 \newcommand\bigzero{\makebox(0,0){\text{\huge0}}} %bigzero
 \newcommand{\hints}{{\color{blue} \text{hints}}}
-\newcommand{\mbf}[1]{\mathbf{#1}} 
+\newcommand{\mbf}[1]{\bm{#1}} 
 \newcommand{\rank}[1]{\text{rank}(#1)} % rank
+\newcommand\inp[2]{\langle #1, #2 \rangle} %inner product
 \begin{document}
 \title{考研线代}
 \author{枫聆}
@@ -1342,11 +1343,21 @@ $$
 \subsection{齐次方程组解集结构}
 
 \begin{proposition}
-\rm $n$元齐次线性方程组的解集构成$F^n$的一个子空间.
+\rm $n$元齐次线性方程组的解集$\left\{\begin{pmatrix}
+x_1\\
+x_2\\
+\vdots \\
+x_n
+\end{pmatrix}\right\}$构成$F^n$的一个子空间.
 \end{proposition}
 
 \begin{definition}
-\rm 基础解系
+\rm 齐次线性方程组有非零解时，如果它的有限多个解$\eta_1,\eta_2,\cdots,\eta_t$满足
+\begin{enumerate}
+	\item $\eta_1,\eta_2,\cdots,\eta_t$线性无关;
+	\item 该齐次线性方程组每一个解都可以由$\eta_1,\eta_2,\cdots,\eta_t$线性表出，
+\end{enumerate}
+那么就称$\eta_1,\eta_2,\cdots,\eta_t$是该齐次线性方程组的一个基础解系.
 \end{definition}
 
 \begin{theorem}
@@ -1356,6 +1367,73 @@ $$
 $$
 其中$\mbf{A}$是它的系数矩阵.
 \end{theorem}
+
+\begin{proof}
+分两种情况: 若$\rank{\mbf{A}} = n$，即原方程组只有零解，那么$W = {\mbf{0}}$. 自然地，命题中等式成立; 若$\rank{\mbf{A}} < n$.
+
+(step 1) 把$\mbf{A}$通过初等行变换化成简化行阶梯形矩阵$J$，设$J$有$r$个主元，不妨设它们分别在$1,2,\cdots,r$列. 于是该齐次线性方程组的一般解为
+$$
+\left\{
+\begin{array}{ll}
+x_1 &= -b_{1,r+1}x_{r+1} - b_{1,r+2}x_{r+2} - \cdots - b_{1n} x_{n} \\
+x_2 &= -b_{2,r+1}x_{r+1} - b_{2,r+2}x_{r+2} - \cdots - b_{2n} x_{n} \\
+&\vdots \\
+x_r &= -b_{r,r+1}x_{r+1} - b_{r,r+2}x_{r+2} - \cdots - b_{rn} x_{n}
+\end{array}
+\right.
+$$
+其中$x_{r+1},x_{r+2},\cdots,x_{n}$是自由变量.
+
+(step 2) 让自由未知量$x_{r+1},x_{r+2},\cdots,x_{n}$分别取下述$n-r$组数
+$$
+\begin{pmatrix}
+1 \\
+0 \\
+\vdots \\
+0
+\end{pmatrix},
+\begin{pmatrix}
+0 \\
+1 \\
+\vdots \\
+0
+\end{pmatrix},
+\cdots,
+\begin{pmatrix}
+0 \\
+0 \\
+\vdots \\
+1
+\end{pmatrix},
+$$
+则由一般解得到原方程组的$n-r$解，设其为$\eta_1,\eta_2,\cdots,\eta_{n-r}$，其中
+$$
+\eta_1 = 
+\begin{pmatrix}
+-b_{1,r+1}\\
+-b_{2,r+1}\\
+\vdots\\
+-b_{r,r+1}\\
+1 \\
+0 \\
+\vdots \\
+0
+\end{pmatrix},
+\cdots,
+\eta_{n-r}
+\begin{pmatrix}
+-b_{1n}\\
+-b_{2n}\\
+\vdots\\
+-b_{rn}\\
+1 \\
+0 \\
+\vdots \\
+0
+\end{pmatrix}.
+$$
+上面两步是求一个基础解系的方法. 下面需要证明$\eta_1,\eta_2,\cdots,\eta_{n-r}$可以线性表出原线性方程组的所有解.
+\end{proof}
 
 \subsection{非齐次线性方程组解集结构}
 
@@ -1489,15 +1567,15 @@ $$
 a_{11} & a_{12} & \cdots & a_{1s} \\
 a_{21} & a_{22} & \cdots & a_{2s} \\
 \vdots & \vdots & 		 & \vdots \\
-a_{n1} & a_{s2} & \cdots & a_{ss} \\
+a_{m1} & a_{s2} & \cdots & a_{ms} \\
 \end{pmatrix} \begin{pmatrix}
 \beta_1 \\ \beta_2 \\ \vdots \\ \beta_s
 \end{pmatrix} = 
 \begin{pmatrix}
-a_{11}\beta_1 + b_{12}\beta_2 + \cdots + b_{1s}\beta_s \\
-a_{21}\beta_1 + b_{22}\beta_2 + \cdots + b_{2s}\beta_s \\
+a_{11}\beta_1 + a_{12}\beta_2 + \cdots + a_{1s}\beta_s \\
+a_{21}\beta_1 + a_{22}\beta_2 + \cdots + a_{2s}\beta_s \\
 \vdots \\
-a_{m1}\beta_1 + b_{m2}\beta_2 + \cdots + b_{ms}\beta_s 
+a_{m1}\beta_1 + a_{m2}\beta_2 + \cdots + a_{ms}\beta_s 
 \end{pmatrix}.
 $$
 即$\mbf{A}\mbf{B}$每一个行向量都是$\mbf{B}$行向量组的线性组合.
@@ -1737,7 +1815,7 @@ $$
 $$
 若$\mbf{A}$可逆时，那么$|\mbf{A}|$的逆矩阵记为
 $$
-\mbf{A}^{-1} = \frac{1}{|\mbf{a}|}\mbf{A}^*.
+\mbf{A}^{-1} = \frac{1}{|\mbf{A}|}\mbf{A}^*.
 $$
 \end{definition}
 
@@ -2238,6 +2316,194 @@ $$
 0 & -\mbf{A}\mbf{B} \\
 \mbf{I}_n & \mbf{B} 
 \end{pmatrix}
+$$
+\end{proof}
+
+\newpage
+\section{矩阵相似及二次型}
+
+\subsection{内积和正交定义}
+\begin{definition}
+\rm 在$\mathbb{R}^n$中，任给$\mbf{\alpha}=(a_1,a_2,\cdots,a_n), \mbf{\beta} = (b_1,b_2,\cdots,b_n)$，规定
+$$
+\inp{\mbf{\alpha}}{\mbf{\beta}} = a_1b_1 + a_2b_2 + \cdots +a_nb_n,
+$$
+$\inp{\mbf{\alpha}}{\mbf{\beta}}$是$\mbf{\alpha}$和$\mbf{\beta}$的内积(实际上就是一个二元的线性泛函). 通常可以写作
+$$
+\inp{\mbf{\alpha}}{\mbf{\beta}} = \mbf{\alpha}\mbf{\beta}^{T}.
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 内积的基本性质如下
+\begin{enumerate}
+	\item 对称性 $\inp{\mbf{\alpha}}{\mbf{\beta}} = \inp{\mbf{\beta}}{\mbf{\alpha}}$;
+	\item 线性可加 $\inp{\mbf{\alpha}+\mbf{\gamma}}{\mbf{\beta}} = \inp{\mbf{\alpha}}{\mbf{\beta}} + \inp{\mbf{\gamma}}{\mbf{\beta}}$;
+	\item 线性齐次 $\inp{\lambda\mbf{\alpha}}{\mbf{\beta}} = \lambda \inp{\mbf{\alpha}}{\mbf{\beta}}$;
+	\item 正定性 $\inp{\mbf{\alpha}}{\mbf{\alpha}} \geq 0$，等号成立当且仅当$\mbf{\alpha} = \mbf{0}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+\rm 向量空间$\mathbb{R}^n$有了内积之后，就称$\mathbb{R}^n$为一个欧几里得空间(Euclidean space).
+\end{definition}
+
+\begin{definition}
+\rm 在欧几里得空间$\mathbb{R}^n$中，向量$\mbf{\alpha}$的长度$\norm{\mbf{\alpha}}$规定为
+$$
+\norm{\mbf{\alpha}} = \sqrt{\inp{\mbf{\alpha}}{\mbf{\alpha}}}.
+$$
+长度为$1$的向量称为单位向量. 
+\end{definition}
+
+\begin{lemma}
+$$
+|\lambda \mbf{\alpha}| = |\lambda||\mbf{\alpha}|.
+$$
+\end{lemma}
+
+\begin{definition}
+\rm 把非零向量$\mbf{\alpha}$乘上$\frac{1}{\norm{\mbf{\alpha}}}$称为把$\mbf{\alpha}$单位化.
+\end{definition}
+
+\begin{definition}
+\rm 在欧几里得空间$\mathbb{R}^n$中，如果$\inp{\mbf{\alpha}}{\mbf{\alpha}}=0$，那么称$\mbf{\alpha}$和$\mbf{\beta}$是正交，记做$\mbf{\alpha} \perp \mbf{\beta}$. 显然零向量与任何向量都正交.
+\end{definition}
+
+\begin{definition}
+\rm 在欧几里得空间$\mathbb{R}^n$中，由非零向量组成的向量组如果其中每两个不同的向量都正交，那么称它们为正交向量组. 如果正交向量组的每个向量都是单位向量，那么称它为正交单位向量组.
+\end{definition}
+
+\newpage
+\begin{proposition}
+\rm 在欧几里得空间$\mathbb{R}^n$中，正交向量组一定是线性无关的.
+\end{proposition}
+
+\begin{proof}
+设$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_t$是正交向量组. 设有$k_1,k_2,\cdots,k_t$使得
+$$
+k_1\mbf{\alpha}_1 + k_2\mbf{\alpha}_2 + \cdots + k_t\mbf{\alpha}_t = \mbf{0},
+$$
+等式两边同时分别取关于$\mbf{\alpha}_i$ ($1\leq i \leq t$)的内积，当$i \neq j$均有$\inp{\mbf{\alpha}_i}{\mbf{\alpha}_j} = \mbf{0}$，于是$k_i\inp{\mbf{\alpha}_i}{\mbf{\alpha}_i} = 0$，即$k_i = 0, 1 \leq i \leq t$.
+\end{proof}
+
+\begin{definition}
+\rm 在欧几里得空间$\mathbb{R}^n$中，$n$个向量组成的正交向量组一定是$\mathbb{R}^n$的一个基，称它为正交集. $n$个单位向量组成的正交向量组称为$\mathbb{R}^n$的一个标准正交基.
+\end{definition}
+
+\begin{theorem}
+\rm {\color{red}施密特(Schmit)正交化} 设$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_t$是欧几里得空间$\mathbb{R}^n$中的一个线性无关的向量组，令
+$$
+\begin{array}{ll}
+\mbf{\beta}_1 = \mbf{\alpha}_1 \\
+\mbf{\beta}_2 = \mbf{\alpha}_2 - \frac{\inp{\mbf{\alpha}_2}{\mbf{\beta}_1}}{\inp{\mbf{\beta}_1}{\mbf{\beta}_1}}\mbf{\beta}_1\\
+\cdots \\
+\mbf{\beta}_t = \mbf{\alpha}_t - \sum\limits_{i = 1}^{t-1}\frac{\inp{\mbf{\alpha}_t}{\mbf{\beta}_i}}{\inp{\mbf{\beta}_i}{\mbf{\beta}_i}}\mbf{\beta}_i
+\end{array},
+$$
+则$\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_t$是正交向量组，并且$\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_t$与$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_t$等价. 自然地，$\frac{\mbf{\beta}_1}{\norm{\mbf{\beta}_1}},\frac{\mbf{\beta}_2}{\norm{\mbf{\beta}_2}},\cdots,\frac{\mbf{\beta}_t}{\norm{\mbf{\beta}_t}}$是正交单位向量组.
+\end{theorem}
+
+\begin{proof}
+对所给定的线性无关的向量组所含向量个数进行归纳. 当$s = 1$时，$\mbf{\beta}_1 = \mbf{\alpha}_1$是正交向量组，且$\mbf{\beta}_1$和$\mbf{\alpha}_1$等价. 假设在$s = k$时成立，那么当$s = k+1$时，有
+
+\begin{equation}
+\mbf{\beta}_{k+1} = \mbf{\alpha}_{k+1} - \sum\limits_{i = 1}^{k}\frac{\inp{\mbf{\alpha}_{k+1}}{\mbf{\beta}_i}}{\inp{\mbf{\beta}_i}{\mbf{\beta}_i}}\mbf{\beta}_i,
+\end{equation}
+
+因此当$1\leq j \leq k$时，有
+$$
+\inp{\mbf{\beta}_{k+1}}{\mbf{\beta}_{j}} = \inp{\mbf{\beta}_{k+1}}{\mbf{\beta}_{j}}-\sum\limits_{i = 1}^{k}\frac{\inp{\mbf{\alpha}_{k+1}}{\mbf{\beta}_i}}{\inp{\mbf{\beta}_i}{\mbf{\beta}_i}}\inp{\mbf{\beta}_i}{\mbf{\beta}_j} = \inp{\mbf{\beta}_{k+1}}{\mbf{\beta}_{j}} - \inp{\mbf{\beta}_{k+1}}{\mbf{\beta}_{j}} = 0.
+$$
+所以$\mbf{\beta}_{k+1}$和$\mbf{\beta}_{j}$均正交. 观察(1)式可知$\mbf{\beta}_{k+1}$是由$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_t$线性表出的，并且$\mbf{\alpha}_k$的系数为1，所以$\mbf{\beta}_{k+1}$不为$\mbf{0}$. 于是$\mbf{\beta}_{1},\cdots,\mbf{\beta}_{k},\mbf{\beta}_{k+1}$为正交向量组. 还是由(1)式$\mbf{\beta}_{1},\cdots,\mbf{\beta}_{k},\mbf{\beta}_{k+1}$和$\mbf{\alpha}_{1},\cdots,\mbf{\alpha}_{k},\mbf{\alpha}_{k+1}$显然是等价.
+\end{proof}
+
+\subsection{正交矩阵}
+
+\begin{definition}
+\rm 如果$n$阶矩阵$\mbf{A}$满足
+$$
+\mbf{A}\mbf{A}^T = \mbf{I},
+$$
+则称$\mbf{A}$是正交矩阵. 
+\end{definition}
+
+\begin{proposition}
+\rm 下述性质是相互等价的(互为充要条件).
+\begin{enumerate}
+	\item $n$阶矩阵$\mbf{A}$是正交矩阵;
+	\item $\mbf{A}\mbf{A}^T = \mbf{I}$;
+	\item $\mbf{A}$可逆，且$\mbf{A}^{-1} = \mbf{A}^T$;
+	\item $\mbf{A}^T\mbf{A} = \mbf{I}$. 
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+从正交矩阵的定义，由proposition \label{invertible: prop1}直接可知$\mbf{A}$和$\mbf{A}^T$互为逆矩阵，因此上面的性质都很显然. 特别地，设$\mbf{A}$的行向量为$\alpha_1,\alpha_2,\cdots,\alpha_n$，那么按照正交矩阵的定义
+$$
+\begin{pmatrix}
+\alpha_1 \\
+\alpha_2 \\
+\vdots \\
+\alpha_n 
+\end{pmatrix}
+\begin{pmatrix}
+\alpha_1^T & \alpha_2^T & \cdots & \alpha_n^T
+\end{pmatrix} = \mbf{I}.
+$$
+它给定的关系式就是
+$$
+\alpha_i\alpha_j^T = \left\{ 
+\begin{array}{ll}
+1 & i=j,\\
+0 & i\neq j
+\end{array}
+\right.
+$$
+\end{proof}
+
+\begin{proposition}
+\rm 正交矩阵具有下列性质
+\begin{enumerate}
+	\item $\mbf{I}$是正交矩阵;
+	\item 若$\mbf{A}$和$\mbf{B}$都是$n$阶正交矩阵，则$\mbf{A}\mbf{B}$也是正交矩阵;
+	\item 若$\mbf{A}$是正交矩阵，则$\mbf{A}^{-1}$也是正交矩阵;
+	\item 若$\mbf{A}$是正交矩阵，则$|\mbf{A}| = 1$或者$-1$.
+\end{enumerate}
+	
+\begin{proof}
+
+\end{proof}
+(1)(3)是显然的. 若$\mbf{A}$是正交矩阵，那么
+$$
+|\mbf{A}\mbf{A}^T| =|\mbf{A}||\mbf{A}^T| = |\mbf{A}|^2 = |I|,
+$$
+所以$|\mbf{A}|=1$或者$\mbf{A}=-1$，即(4)得证. 若$\mbf{A}$和$\mbf{B}$都是$n$阶矩阵，那么
+$$
+\mbf{A}\mbf{B}(\mbf{A}\mbf{B})^T = \mbf{A}\mbf{B}\mbf{B}^T\mbf{A}^T = \mbf{I},
+$$
+即(2)得证. 
+\end{proposition}
+
+\subsection{正交变换}
+
+\subsection{矩阵的特征值和特征向量}
+
+\begin{definition}
+\rm 设$\mbf{A}$是一个$n$阶矩阵，如果数$\lambda$和非零列向量$\mbf{\alpha}$使得
+$$
+\mbf{A}\mbf{\alpha} = \lambda\mbf{\alpha}
+$$
+成立. 那么称$\lambda$为矩阵$\mbf{A}$的特征值，非零向量$\mbf{\alpha}$称为矩阵$\mbf{A}$的对应于特征值$\lambda$的一个特征向量.
+\end{definition}
+
+\begin{lemma}
+\rm 若$\mbf{\alpha}$是$\mbf{A}$的对应于特征值$\lambda$的一个特征向量，那么$k\mbf{\alpha}$也是$\mbf{A}$的对应于特征值$\lambda$的一个特征向量.
+\end{lemma}
+
+\begin{proof}
+$$
+\mbf{A}(k\mbf{\alpha}) = k(\mbf{A}\mbf{\alpha}) = k(\lambda\mbf{\alpha}) = \lambda(k\mbf{\alpha}).
 $$
 \end{proof}
 
