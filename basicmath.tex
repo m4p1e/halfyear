@@ -131,7 +131,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-{\color{blue} (构造一个特殊连续函数说明原函数可以取到确界)}$f$在闭区间$[a,b]$上连续({\color{red} 连续闭有界})，那么马上可以得到$f$在$[a,b]$上有界. 取集合$Y = \Set{f(x)}{ x \in [a,b]}$，即$Y$有界，根据{\color{red}确界原理} $Y$有确界，那么我们下面证明思路，就是看$f(x)$是不是能取到这个确界. 取其上确界为$m$，假设不存在$d \in [a,b]$使得$f(d) = m$，那么我们考虑函数$g(x)=\frac{1}{m - f(x)}$，由于$m > f(x),\; x \in [a,b]$，所以$g(x)$在$[a,b]$上是连续的，又因为$f$在$[a,b]$是上有界的，那么$g$在其上也是有界的. 由于$m$是上确界，所以对任意的正实数$\varepsilon$，都有$m - f(x) \leq \varepsilon$，那么$g(x) \geq \frac{1}{\varepsilon}$，这说明$g(x)$是发散的，造成了矛盾. 所以$f$是可以取到上确界的.
+{\color{blue} (构造一个特殊连续函数说明原函数可以取到确界)}$f$在闭区间$[a,b]$上连续({\color{red} 连续闭有界})，那么马上可以得到$f$在$[a,b]$上有界. 取集合$Y = \Set{f(x)}{ x \in [a,b]}$，即$Y$有界，根据{\color{red}确界原理} $Y$有确界，那么我们下面证明思路，就是看$f(x)$是不是能取到这个确界. 取其上确界为$m$，假设不存在$d \in [a,b]$使得$f(d) = m$，引入辅助函数$g(x)=\frac{1}{m - f(x)}$，由于$m > f(x),\; x \in [a,b]$，根据连续的复合性质$g(x)$在$[a,b]$上是连续的，又因为$f$在$[a,b]$是上有界的，那么$g$在其上也是有界的. 由于$m$是上确界，所以对任意的正实数$\varepsilon$，都有$m - f(x) \leq \varepsilon$，那么$g(x) \geq \frac{1}{\varepsilon}$，这说明$g(x)$是发散的，造成了矛盾. 所以$f$是可以取到上确界的.
 \end{proof}
 
 \begin{lemma}
@@ -159,7 +159,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-{\color{blue} 第一想法肯定是特别想用连续函数的介值定理，但是用不了，这里并没有条件说明$f'(x)$是连续的}，特别地{\color{red}可导不一定代表其导函数连续}，i.e. $x^2 \sin\frac{1}{x}$ . 首先证明若$f'(a)$和$f'(b)$异号时，必有$c \in (a,b)$使得$f'(c)=0$，方便证明不是一般性设$f'(a) < 0$和$f'(b) > 0$，$f(x)$可导即连续，根据{\color{red}极值定理}，存在一点$c$使得$f(c)$为最大值，根据前面的{\color{red}费马定理}，这个最大值必不可能在$a$或者$b$点取到，因此$c \in (a,b)$且$f'(c)=0$.
+{\color{blue} 第一想法肯定是特别想用连续函数的介值定理，但是用不了，这里并没有条件说明$f'(x)$是连续的}，即{\color{red}可导不一定代表其导函数连续}，i.e. $x^2 \sin\frac{1}{x}$ . 首先证明若$f'(a)$和$f'(b)$异号时，必有$c \in (a,b)$使得$f'(c)=0$. 方便证明不失一般性设$f'(a) < 0$和$f'(b) > 0$，$f(x)$可导即连续，根据{\color{red}极值定理}，存在一点$c$使得$f(c)$为最大值，根据前面的{\color{red}费马定理}，这个最大值必不可能在$a$或者$b$点取到，因此$c \in (a,b)$且$f'(c)=0$.
 
 再来考虑一般情况，取位于$f'(a)$和$f'(b)$之间任意的$C$，方便证明设$f'(a) < C < f'(b)$. 考虑函数$\varphi(x) = f(x) - Cx$，它的导数为$\varphi'(x) = f'(x) - C$，特别地有$\varphi'(a) < 0$和$\varphi'(b) > 0$，即回到了我们刚开始考虑的情况，所以存在一点$c \in (a,b)$使得$\varphi'(c) = f'(c) - C =0$.
 \end{proof}
@@ -174,11 +174,11 @@ $$
 \begin{proof}
 {\color{blue} (确界处导数存在的充分必要条件)} 若函数$f$在$[a,b]$上连续，那么根据{\color{red} 极值定理}其在$[a,b]$是可以取到极值的，分两种情况讨论: (1 如果其最大值和最小值同时在$a,b$取得，那么$f$就是常函数，对任意的$x \in [a,b]$都有$f'(x) = 0$. (2 不失一般性，我们假设$f$在一点$c \in (a,b)$处$f(c)$为最大值(若是最小值，考虑$-f$即可)，我们来考虑$c$的一个邻域$(c-\varepsilon, c+\varepsilon)$两边，其中$c-\varepsilon$和$c+\varepsilon$均在$[a,b]$里面. 对任意的$h \in (c-\varepsilon, c)$都有
 $$
-f'(c^-) = \lim\limits_{h \rightarrow c^-}\frac{f(c)- f(h)}{c-h} \leq 0. 
+f'(c^-) = \lim\limits_{h \rightarrow c^-}\frac{f(c)- f(h)}{c-h} \geq 0. 
 $$
 同理对任意的$t \in (c,c+\varepsilon)$都有
 $$
-f'(c^+) = \lim\limits_{t \rightarrow c^+}\frac{f(t)-f(c)}{t-c} \geq 0.
+f'(c^+) = \lim\limits_{t \rightarrow c^+}\frac{f(t)-f(c)}{t-c} \leq 0.
 $$
 由于$f$在$c$点可导，那么$f'(c) = f'(c^-) = f'(c^+) = 0$.
 \end{proof}

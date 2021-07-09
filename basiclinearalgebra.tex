@@ -2560,6 +2560,56 @@ $$
 \end{enumerate}
 \end{proposition}
 
+\begin{definition}
+\rm 设$\mbf{A}$是一个$n$阶行列式，$\lambda_1$是$\mbf{A}$的一个特征值. 把$\mbf{A}$的对应于$\lambda_1$的特征子空间的维数叫做特征值$\lambda_1$的几何重数. 而把$\lambda_1$作为$\mbf{A}$的特征多项式的根的重数叫做$\lambda_1$的代数重数，代数重数简称重数.
+\end{definition}
+
+\begin{proposition}
+\rm 设$\lambda_1$是$n$阶矩阵$\mbf{A}$的一个特征值，则$\lambda_
+1$的几何重数不超过它的代数重数.
+\end{proposition}
+
+\begin{proof}
+证明思路就是从多项式$|\mbf{A}-\lambda\mbf{I}|$里面提个$(\lambda-\lambda_1)^r$出来，其中$r$就是$\lambda_1$的几何重数. 详细证明丘高代p272.
+\end{proof}
+
+\begin{proposition}\label{characteristic: subspace-prop1}
+\rm 设$\lambda_1,\lambda_2,\cdots,\lambda_m$是$n$阶矩阵$\mbf{A}$的特征值，$\alpha_1,\alpha_2,\cdots,\alpha_m$分别是与之对应的特征向量. 如果$\lambda_1,\lambda_2,\cdots,\lambda_m$均互不相等，则$\alpha_1,\alpha_2,\cdots,\alpha_m$线性无关.
+\end{proposition}
+
+\begin{proof}
+对$m$进行归纳证明. 当$m=1$时，$\alpha_1$线性无关. 假设在$m=k$时成立. 那么当$m=k+1$，我们考察等式
+\begin{equation}
+b_1\alpha_1+b_2\alpha_2+\cdots+b_k\alpha_{k}+b_{k+1}\alpha_{k+1} = \mbf{0},
+\end{equation}
+上式两边左乘$\mbf{A}$，有
+$$
+b_1\mbf{A}\alpha_1+b_2\mbf{A}\alpha_2+\cdots+b_k\mbf{A}\alpha_{k}+b_{k+1}\mbf{A}\alpha_{k+1} = \mbf{0}, 
+$$
+即
+\begin{equation}
+b_1\lambda_1\alpha_1+b_2\lambda_2\alpha_2+\cdots+b_k\lambda_k\alpha_{k}+b_{k+1}\lambda_{k+1}\alpha_{k+1} = \mbf{0}.
+\end{equation}
+将(3)式乘上$\lambda_{k+1}$减去(4)式，有
+$$
+b_1(\lambda_{k+1}-\lambda_1)\alpha_1+b_2(\lambda_{k+1}-\lambda_2)\alpha_2+\cdots+b_k(\lambda_{k+1}-\lambda_k)\alpha_{k} = \mbf{0}
+$$
+根据假设$n=k$时命题成立，那么
+$$
+b_1(\lambda_{k+1}-\lambda_1) = b_2(\lambda_{k+1}-\lambda_2) =\cdots = b_k(\lambda_{k+1}-\lambda_k).
+$$
+其中$(\lambda_{k+1} - \lambda_i)$均不为零$(1\leq i \leq k)$，因此$b_1 = b_2 = \cdots = b_k = 0$，带入(3)式，因$\alpha_{k+1} \neq \mbf{0}$，所以$b_{k+1}=0$. 即$n = k+1$时命题也成立.  
+\end{proof}
+
+\begin{corollary}\label{characteristic: subspace-prop2}
+\rm 设$\lambda_1$和$\lambda_2$是$n$阶矩阵$\mbf{A}$的两个不同的特征值，那么分别对应于$\lambda_1$及$\lambda_2$下的两个线性无关特征向量组$\xi_1,\xi_2,\cdots,\xi_s$和$\eta_1,\eta_2,\cdots,\eta_t$合在一起也是线性无关的.
+\end{corollary}
+
+\begin{proof}
+由proposition \ref{characteristic: subspace-prop1}，可以清晰的感觉到不同特征值的特征子空间是distinct的，那么当前这个命题就很显然了. 
+\end{proof}
+
+\newpage
 \subsection{相似矩阵}
 
 \begin{definition}
@@ -2571,7 +2621,7 @@ $$
 \end{definition}
 
 \begin{proposition}
-\rm 相似矩阵有相等的特征多项式.
+\rm 相似矩阵有相等的特征多项式，从而特征值亦相同. 
 \end{proposition}
 
 \begin{proof}
@@ -2579,6 +2629,132 @@ $$
 $$
 |\mbf{B} - \lambda\mbf{I}| = |\mbf{P}^{-1}\mbf{A}\mbf{P} -\lambda\mbf{P}^{-1}\mbf{P}| = |\mbf{P}^{-1}(\mbf{A}-\lambda\mbf{I})\mbf{P}| =|\mbf{A}-\lambda\mbf{I}|.
 $$
+\end{proof}
+
+\begin{definition}
+\rm 若$n$阶矩阵$\mbf{A}$相似于一个对角矩阵，那么称$\mbf{A}$可对角化. 
+\end{definition}
+
+\begin{theorem}
+\rm $n$阶矩阵$\mbf{A}$可对角化的充分条件是存在$n$个线性无关的列向量$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$，以及$n$个数$\lambda_1,\lambda_2,\cdots,\lambda_n$(它们之中有些可能相等)，使得
+$$
+\mbf{A}\mbf{\alpha}_i = \lambda\mbf{\alpha}_i,\, i = 1,2,\cdots,n.
+$$
+这时，令$P = (\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n)$，则
+$$
+P^{-1}\mbf{A}P = \text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}.
+$$
+\end{theorem}
+
+\begin{proof}
+\rm \emph{充分性}\ 设存在$n$个线性无关的列向量$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$，以及$n$个数$\lambda_1,\lambda_2,\cdots,\lambda_n$，使得
+$$
+\mbf{A}\mbf{\alpha}_i = \lambda\mbf{\alpha}_i,\, i = 1,2,\cdots,n.
+$$
+于是有
+$$
+(\mbf{A}\mbf{\alpha}_1,\mbf{A}\mbf{\alpha}_2,\cdots,\mbf{A}\mbf{\alpha}_n) = (\lambda_1\mbf{\alpha}_1,\lambda_2\mbf{\alpha}_2,\cdots,\lambda_n\mbf{\alpha}_n),
+$$
+记$P=(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n)，D = \text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}$. 因此有
+$$
+\mbf{A}P = PD,
+$$
+由于$P$是满秩矩阵，所以$P$可逆，那么即有$P^{-1}\mbf{A}P = D$.
+
+\emph{必要性}\ 若$\mbf{A} \sim D=\text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}$，因此存在可逆矩阵$P=(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n)$使得
+$$
+\begin{array}{rl}
+P^{-1}\mbf{A}P &= D\\
+\mbf{A}P &= P^{-1}D\\
+(\mbf{A}\mbf{\alpha}_1,\mbf{A}\mbf{\alpha}_2,\cdots,\mbf{A}\mbf{\alpha}_n) &= (\lambda_1\mbf{\alpha}_1,\lambda_2\mbf{\alpha}_2,\cdots,\lambda_n\mbf{\alpha}_n).
+\end{array}
+$$
+即有对应列向量有$\mbf{A}\mbf{\alpha}_i = \lambda\mbf{\alpha}_i,\, i = 1,2,\cdots,n.$
+\end{proof}
+
+\begin{corollary}
+\rm 若$n$阶矩阵$\mbf{A}$与对角矩阵$D=\text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}$相似，那么$\lambda_1,\lambda_2,\cdots,\lambda_n$是$\mbf{A}$的特征值.
+\end{corollary}
+
+
+\begin{corollary}
+\rm 若$n$阶矩阵$\mbf{A}$的$n$个特征值互不相等，则$\mbf{A}$与对角矩阵相似.
+\end{corollary}
+
+\subsection{矩阵对角化的条件}
+
+\begin{theorem}
+\rm $n$阶矩阵$\mbf{A}$可对角化的充要条件是$\mbf{A}$有$n$个线性无关的特征向量$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$. 令$P=(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n)$，则
+$$
+P^{-1}\mbf{A}P = \text{diag}(\lambda_1,\lambda_2,\cdots,\lambda_n),
+$$
+其中$\lambda_i$是$\mbf{\alpha}_i$对应的特征值$(i=1,2,\cdots,n)$. {\color{blue} 注意矩阵$P$的构造中的列向量的位置要和对角矩阵的对角线元素对应}.
+\end{theorem}
+
+\begin{annotation}
+\rm {\color{red} 如何判定$n$阶矩阵$\mbf{A}$有没有$n$个线性无关的特征向量}?
+\begin{enumerate}
+	\item 求出$\mbf{A}$的全部特征值，设其为$\lambda_1,\lambda_2,\cdots,\lambda_m$.
+	\item 对于每一个特征值$\lambda_i$，求出齐次线性方程组$(\mbf{A}-\lambda_i\mbf{\alpha})\mbf{X}=\mbf{0}$的一个基础解系$\eta_{ir_i},\eta_{i2},\cdots,\eta_{ir}$.
+	\item 由corollary \ref{characteristic: subspace-prop2}，这$m$组线性无关向量合在一起还是线性无关的. 从而如果$r_1+r_2+\cdots+r_m = n$，那么$\mbf{A}$有$n$个线性无关的特征向量，即$\mbf{A}$可对角化. 反之如果$r_1+r_2+\cdots+r_m < n$，那么$\mbf{A}$没有$n$个线性无关的特征向量，即$\mbf{A}$不可对角化. 
+\end{enumerate}
+\end{annotation}
+
+\begin{theorem}
+\rm $n$阶矩阵$\mbf{A}$可对角化的充分必要条件是$\mbf{A}$的对应不同特征值的特征子空间的维数之和等于$n$.
+\end{theorem}
+
+\begin{proof}
+\rm 从前面的annotation即可得到.
+\end{proof}
+
+\begin{corollary}
+\rm 若$n$阶矩阵$\mbf{A}$有$n$个不同的特征值，那么$\mbf{A}$可对角化. 
+\end{corollary}
+
+\begin{theorem}
+\rm 数域$F$上的$n$阶矩阵$\mbf{A}$可对角化的充要条件是$\mbf{A}$的特征多项式的全部复根都属于$F$，并且$\mbf{A}$的每个特征值的几何重数等于它的代数重根.
+\end{theorem}
+
+\newpage
+\subsection{实对称矩阵的对角化}
+
+\begin{theorem}
+\rm $n$阶实对称矩阵的特征多项式的每一个复根都是实数，从而它们都是特征值.({\color{blue}代数基本定理告诉我们$n$次多项式在复数域上都$n$个复根，所以这里是相对于代数基本定理来说的})
+\end{theorem}
+
+\begin{proof}
+\rm 设$\lambda$是$n$阶实对称矩阵的特征多项式的任意一个复根，要证$\lambda$是一个实数，则需要证明$\bar{\lambda} = \lambda$. 首先把$\mbf{A}$看做一个复矩阵，则$\lambda$是$\mbf{A}$的一个特征值，从而存在对应的非零特征向量$\mbf{\alpha}\in \mathbb{C}^n$，使得
+\begin{equation}
+\mbf{A}\mbf{\alpha} = \lambda\mbf{\alpha}.
+\end{equation}
+我们定义$\bar{\mbf{A}}$表示对$\mbf{A}$里面的所有元素取共轭复数，然后对(1)式两边同时取共轭复数
+$$
+\begin{array}{ll}
+\overline{\mbf{A}\mbf{\alpha}} = \overline{\lambda\mbf{\alpha}} \\
+\overline{\mbf{A}}\overline{\mbf{\alpha}} = \overline{\lambda}\overline{\mbf{\alpha}}
+\end{array}.
+$$
+由于$\mbf{A}$是实对称矩阵，因此可以得到$\mbf{A}\overline{\mbf{\alpha}} = \overline{\lambda}\overline{\mbf{\alpha}}$. 对(1)式两边取转置，有
+$$
+\begin{array}{ll}
+(\mbf{A}\mbf{\alpha})^T = (\lambda\mbf{\alpha})^T\\
+\mbf{\alpha}^T\mbf{A}^T = \lambda\mbf{\alpha}^T,
+\end{array}
+$$
+由于$\mbf{A}$是对称矩阵，因此可以得到$\mbf{\alpha}^T\mbf{A} = \lambda\mbf{\alpha}^T$. 对得到的一个等式两边左乘$\mbf{a}^T$减去第二个等式右侧$\overline{\mbf{\alpha}}$，可以得到
+$$
+(\overline{\lambda}-\lambda)\mbf{\alpha}^T\overline{\mbf{\alpha}} = 0.
+$$
+由于$\mbf{\alpha} \neq 0$，所以$\mbf{\alpha}^T\overline{\mbf{\alpha}} \neq 0$(互为共轭的复数的乘积非负)，从而$\overline{\lambda} = \lambda$.
+\end{proof}
+
+\begin{theorem}
+\rm 实对称矩阵$\mbf{A}$的对应不同的特征值的特征向量是正交.
+\end{theorem}
+
+\begin{proof}
+
 \end{proof}
 
 \end{document}
