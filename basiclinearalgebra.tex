@@ -2057,7 +2057,17 @@ $$
 	A_1 & A_2   
 	\end{pmatrix}.
 	$$
-	\item 用一个可逆矩阵{\color{red}左乘}某一块行.
+	\item 用一个可逆矩阵{\color{red}左乘}某一块行,
+	$$
+	\begin{pmatrix}
+	A_1 & A_2 \\
+	A_3 & A_4
+	\end{pmatrix}\xrightarrow{P\cdot \tiny\textcircled{2}} 
+	\begin{pmatrix}
+	PA_1 & PA_2 \\
+	A_3 & A_4   
+	\end{pmatrix}.
+	$$
 \end{enumerate}
 \end{proposition}
 
@@ -2072,8 +2082,8 @@ $$
 	A_3 & A_4
 	\end{pmatrix}\xrightarrow[\tiny\textcircled{2} +  \tiny\textcircled{1}\cdot P ]{} 
 	\begin{pmatrix}
-	A_1 & A_2P+ A_2 \\
-	A_3 & A_2P +A_4  
+	A_1 & A_1P+ A_2 \\
+	A_3 & A_3P +A_4  
 	\end{pmatrix}.
 	$$
 	\item 互换两个列行的位置，
@@ -2087,7 +2097,17 @@ $$
 	A_4 & A_3   
 	\end{pmatrix}.
 	$$
-	\item 用一个可逆矩阵{\color{red}右乘}某一块列.
+	\item 用一个可逆矩阵{\color{red}右乘}某一块列,
+	$$
+	\begin{pmatrix}
+	A_1 & A_2 \\
+	A_3 & A_4
+	\end{pmatrix}\xrightarrow[P\cdot \tiny\textcircled{2}]{} 
+	\begin{pmatrix}
+	A_1 & A_2P \\
+	A_3 & A_4P   
+	\end{pmatrix}.
+	$$
 \end{enumerate}
 \end{proposition}
 
@@ -2135,6 +2155,27 @@ $$
 	\mbf{I} & 0 
 	\end{pmatrix}
 	\end{array}
+	$$
+	\item
+	$$
+	\begin{array}{ll}
+	\begin{pmatrix} 
+	\mbf{I} & 0 \\
+	0 & \mbf{I} 
+	\end{pmatrix}\xrightarrow{P \cdot \tiny\textcircled{2}}
+	\begin{pmatrix} 
+	\mbf{I} & 0 \\
+	0 & \mbf{P}
+	\end{pmatrix} \\ \\
+	\begin{pmatrix} 
+	\mbf{I} & 0 \\
+	0 & \mbf{I} 
+	\end{pmatrix}\xrightarrow[\tiny\textcircled{2} \cdot P]{}
+	\begin{pmatrix} 
+	\mbf{I} & 0 \\
+	0 & P
+	\end{pmatrix}
+	\end{array} 
 	$$ 
 \end{enumerate}
 \end{definition}
@@ -2157,7 +2198,7 @@ A_3 & A_4
 =
 \begin{pmatrix}
 A_1 & A_2 \\
-PA_1+A_3 & PA_2 + A_3 
+PA_1+A_3 & PA_2 + A_4 
 \end{pmatrix} \\ \\
 \begin{pmatrix}
 A_1 & A_2 \\
@@ -2197,7 +2238,36 @@ A_3 & A_4
 \begin{pmatrix}
 A_2 & A_1\\
 A_4 & A_3 
+\end{pmatrix} \\ \\
+
+\begin{pmatrix} 
+\mbf{I} & 0 \\
+0 & \mbf{P}
+\end{pmatrix} 
+\begin{pmatrix}
+A_1 & A_2 \\
+A_3 & A_4
 \end{pmatrix}
+=
+\begin{pmatrix}
+A_1 & A_2 \\
+PA_3 & PA_4 
+\end{pmatrix} \\ \\
+
+\begin{pmatrix}
+A_1 & A_2 \\
+A_3 & A_4
+\end{pmatrix}
+\begin{pmatrix} 
+\mbf{I} & 0 \\
+0 & \mbf{P}
+\end{pmatrix} 
+=
+\begin{pmatrix}
+A_1 & A_2P \\
+A_3 & A_4P 
+\end{pmatrix}
+
 
 \end{array}
 $$
@@ -2391,7 +2461,7 @@ $$
 \end{proof}
 
 \begin{definition}
-\rm 在欧几里得空间$\mathbb{R}^n$中，$n$个向量组成的正交向量组一定是$\mathbb{R}^n$的一个基，称它为正交集. $n$个单位向量组成的正交向量组称为$\mathbb{R}^n$的一个标准正交基.
+\rm 在欧几里得空间$\mathbb{R}^n$中，$n$个向量组成的正交向量组一定是$\mathbb{R}^n$的一个基，称它为正交基. $n$个单位向量组成的正交向量组称为$\mathbb{R}^n$的一个标准正交基.
 \end{definition}
 
 \begin{theorem}
@@ -2464,6 +2534,19 @@ $$
 \right.
 $$
 \end{proof}
+
+\begin{proposition}\label{orthogonal-matrix: basis}
+\rm 设$\eta_1,\eta_2,\cdots,\eta_n$是欧几里得空间$\mathbb{R}^n$的一个标准正交基，则以它们为行向量的矩阵
+$$
+\begin{pmatrix}
+\eta_1 \\
+\eta_2 \\
+\vdots \\
+\eta_n \\
+\end{pmatrix}
+$$
+是一个正交矩阵.
+\end{proposition}
 
 \begin{proposition}
 \rm 正交矩阵具有下列性质
@@ -2719,7 +2802,11 @@ $$
 \newpage
 \subsection{实对称矩阵的对角化}
 
-\begin{theorem}
+\begin{definition}
+\rm 如果对于$n$级实矩阵$\mbf{A},\mbf{B}$，存在一个$n$级正交矩阵$T$，使得$T^{-1}\mbf{A}T=\mbf{B}$，那么称$\mbf{A}$正交相似于$\mbf{B}$.
+\end{definition}
+
+\begin{theorem}\label{symmetry: real}
 \rm $n$阶实对称矩阵的特征多项式的每一个复根都是实数，从而它们都是特征值.({\color{blue}代数基本定理告诉我们$n$次多项式在复数域上都$n$个复根，所以这里是相对于代数基本定理来说的})
 \end{theorem}
 
@@ -2742,19 +2829,245 @@ $$
 \mbf{\alpha}^T\mbf{A}^T = \lambda\mbf{\alpha}^T,
 \end{array}
 $$
-由于$\mbf{A}$是对称矩阵，因此可以得到$\mbf{\alpha}^T\mbf{A} = \lambda\mbf{\alpha}^T$. 对得到的一个等式两边左乘$\mbf{a}^T$减去第二个等式右侧$\overline{\mbf{\alpha}}$，可以得到
+由于$\mbf{A}$是对称矩阵，因此可以得到$\mbf{\alpha}^T\mbf{A} = \lambda\mbf{\alpha}^T$. 对得到的一个等式两边左乘$\mbf{a}^T$减去第二个等式两边右侧$\overline{\mbf{\alpha}}$，可以得到
 $$
 (\overline{\lambda}-\lambda)\mbf{\alpha}^T\overline{\mbf{\alpha}} = 0.
 $$
 由于$\mbf{\alpha} \neq 0$，所以$\mbf{\alpha}^T\overline{\mbf{\alpha}} \neq 0$(互为共轭的复数的乘积非负)，从而$\overline{\lambda} = \lambda$.
 \end{proof}
 
-\begin{theorem}
+\begin{corollary}\label{symmetry: real2}
+\rm 实对称矩阵一定有特征值.
+\end{corollary}
+
+\begin{proof}
+\rm 配合代数基本定理和theorem \ref{symmetry: real}可知实对称矩阵一定有实数根，尽管可能是重根.
+\end{proof}
+
+
+\begin{theorem}\label{symmetry: theorem1}
 \rm 实对称矩阵$\mbf{A}$的对应不同的特征值的特征向量是正交.
 \end{theorem}
 
 \begin{proof}
+设$\lambda_1,\lambda_2$的$\mbf{A}$的两个不同特征值，$\mbf{A}$的分别与之它们对应的两个特征向量为$\mbf{\alpha}_1,\mbf{\alpha}_2$. 要证明$\inp{\mbf{\alpha}_1}{\mbf{\alpha}_2}=0$，为此计算
+$$
+\begin{array}{ll}
+\lambda_1\inp{\mbf{\alpha}_1}{\mbf{\alpha}_2} = \inp{\lambda_1\mbf{\alpha}_1}{\mbf{\alpha}_2} = (\mbf{A}\mbf{\alpha}_1)^T\mbf{\alpha}_2 = \mbf{\alpha}_1^T\mbf{A}\mbf{\alpha}_2, \\
+ \lambda_2\inp{\mbf{\alpha}_1}{\mbf{\alpha}_2} = \inp{\mbf{\alpha}_1}{\lambda_2\mbf{\alpha}_2}= \mbf{\alpha}_1^T(\mbf{A}\mbf{\alpha}_2) = \mbf{\alpha}_1^T\mbf{A}\mbf{\alpha}_2,
+\end{array}
+$$
+上述两式相减，得到$(\lambda_1-\lambda_2)\inp{\mbf{\alpha}_1}{\mbf{\alpha}_2}=0$. 由于$\lambda_1 \neq \lambda_2$，因此$\inp{\mbf{\alpha}_1}{\mbf{\alpha}_2} = 0$.
+\end{proof}
+
+\begin{theorem}\label{symmetry: theorem2}
+\rm 实对称矩阵一定正交相似于对角矩阵.
+\end{theorem}
+
+\begin{proof}
+对实对称矩阵的阶数$n$进行归纳. 当$n=1$时，$(1)^{-1}(a)(1) = (a)$，因此命题成立. 假设对于$n-1$阶实对称矩阵命题成立($n=2,3,\cdots$)，我们来考察$n$阶实对称矩阵$\mbf{A}$. 由corollary \ref{symmetry: real2}可知$\mbf{A}$一定存在一个特征值$\lambda_1$，那么存在$\mbf{A}$的对应$\lambda_1$的一个非零特征向量$\mbf{\alpha}_1$. 我们将$\mbf{\alpha}_1$单位化得到$\eta_1$，我们将$\eta_1$扩充称$\mathbb{R}^n$的一个基，然后经过施密特正交化和单位化，得到$\mathbb{R}^n$的一个标准正交基$\eta_1,\eta_2,\cdots,\eta_n$. 由proposition \ref{orthogonal-matrix: basis}可知$T_1=(\eta_1,\eta_2,\cdots,\eta_n)$是一个$n$级正交矩阵. 于是有
+\begin{equation}
+T_1^{-1}\mbf{A}T_1 = T_1^{-1}(\mbf{A}\eta_1,\mbf{A}\eta_2,\cdots,\mbf{A}\eta_n) = (T_1^{-1}\lambda_1\eta_1,T_1^{-1}\mbf{A}\eta_2,\cdots,T_1^{-1}\mbf{A}\eta_n).
+\end{equation}
+由于$T_1^{-1}T_1=(T_1^{-1}\eta_1,T_1^{-1}\eta_2,\cdots,T_1^{-1}\eta_n)=(\varepsilon_1,\varepsilon_2,\cdots,\varepsilon)$，因此$T_1^{-1}\eta_1=\varepsilon_1$，带入(2)式. 从而得到
+$$
+T_1^{-1}\mbf{A}T_1 = \begin{pmatrix}
+\lambda_1 & \mbf{\beta} \\
+\mbf{0} & \mbf{B} 
+\end{pmatrix}
+$$ 
+其中$\mbf{0}\in \mathbb{R}^{(n-1),1}$，$\mbf{\beta} \in \mathbb{R}^{1,(n-1)}$，自然地$\mbf{B}$是一个$n-1$阶矩阵. 首先我们考察一下$(T_1^{-1}\mbf{A}T_1)^T$，有
+$$
+(T_1^{-1}\mbf{A}T_1)^T = (\mbf{A}T_1)^T(T_1^{-1})^{T} = T_1^T \mbf{A}^T ({T_1^{-1}})^T = T_1^{-1}\mbf{A}T_1. 
+$$
+因此$T_1^{-1}\mbf{A}T_1$也是一个实对称矩阵，那么有$\mbf{\beta}=\mbf{0}$，$\mbf{B}$也是一个实对称矩阵. 自然地，我们希望把$(T_1^{-1}\mbf{A}T_1)^T$中$\mbf{B}$换成$T_2^{-1}\mbf{B}T_2 = \text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}$，来用假设中$n-1$阶实对称矩阵的结论. 这里很容易联想到{\color{blue}分块矩阵的初等变换}，即
+$$
+\begin{pmatrix}
+1 & \mbf{0} \\
+\mbf{0} & T_2^{-1}
+\end{pmatrix}
+\begin{pmatrix}
+\lambda_1 & \mbf{0} \\
+\mbf{0} & \mbf{B} 
+\end{pmatrix}
+\begin{pmatrix}
+1 & \mbf{0} \\
+\mbf{0} & T_2
+\end{pmatrix}
+= \begin{pmatrix}
+1 & \mbf{0} \\
+\mbf{0} & T_2
+\end{pmatrix}^{-1}T_1^{-1}\mbf{A}T_1\begin{pmatrix}
+1 & \mbf{0} \\
+\mbf{0} & T_2
+\end{pmatrix},
+$$
+所以我们需要重新构造一个新的正交矩阵$T$，令
+$$
+T = T_1\begin{pmatrix}
+1 & \mbf{0} \\
+\mbf{0} & T_2
+\end{pmatrix}. 
+$$
+显然$T$是一个正交矩阵，即对$n$阶实对称矩阵，命题也成立. 
+\end{proof}
+
+\begin{annotation}
+\rm {\color{red}对于$n$阶实对称矩阵$\mbf{A}$，如何找到一个正交矩阵$T$使得$T^{-1}\mbf{A}T$为一个对角矩阵}？ 步骤如下
+\begin{enumerate}
+	\item 计算特征多项式$|\mbf{A}-\lambda\mbf{I}|$，求出它的全部不同的根$\lambda_1,\lambda_2,\cdots,\lambda_m$，它们是$\mbf{A}$全部的特征值.
+	\item 对于每一个特征值$\lambda_i$($i=1,2,\cdots,m$)，求$(\mbf{A}-\lambda_i\mbf{I})X=0$一个基础解系，并对这个基础解系进行施密特正交化和单位化，得到$\eta_{i1},\eta_{i2},\cdots,\eta_{ir_i}$. 它们都是$\mbf{A}$的对应于$\lambda_i$的特征向量. 
+	\item 由theorem \ref{symmetry: theorem2}，可知$r_1 +r_2 +\cdots + r_m = n$，所以可对角化. 令
+	$$
+	T = (\eta_{11},\cdots,\eta_{1r_1},\cdots,\eta_{m1},\cdots,\eta_{mr_m}),
+	$$
+	由theorem \ref{symmetry: theorem1}可知$T$是$n$阶正交矩阵，且
+	$$
+	T^{-1}\mbf{A}T = \text{diag}\{\underbrace{\lambda_1,\cdots,\lambda_1}_{r_1},\cdots,\underbrace{\lambda_m,\cdots,\lambda_m}_{r_m}\}.
+	$$
+\end{enumerate}
+\end{annotation}
+
+\begin{theorem}
+\rm 如果$n$阶实矩阵$\mbf{A}$正交相似于一个对角矩阵，那么$\mbf{A}$一定是对称矩阵.
+\end{theorem}
+
+
+\begin{theorem}
+\rm 两个$n$阶实对称矩阵正交相似的充分必要条件是它们相似.
+\end{theorem}
+
+
+\newpage
+\section{二次型}
+
+\subsection{二次型及其标准型}
+
+\begin{definition}
+\rm 数域$F$上的一个$n$元二次型是系数在$F$中$n$个变量的二次齐次多项式，它的一般形式是
+\begin{equation}
+\begin{array}{rlll}
+f(x_1,x_2,\cdots,x_n) = a_{11}x_1^2 + 2a_{12}x_1x_2 &+ 2a_{13}x_1x_3 &+ \cdots &+ 2a_{1n}x_1x_n \\
++a_{22}x_2^{2} &+ 2a_{23}x_2x_3 &+  \cdots &+2a_{2n}x_2x_n\\
++\cdots &\cdots &\cdots &\cdots  \\
+&&&+a_{nn}x_n^2
+\end{array}.
+\end{equation}
+(1)式也可以写成
+\begin{equation}
+f(x_1,x_2,\cdots,x_n) = \sum\limits_{i=1}^n\sum\limits_{j=1}^n a_{ij}x_ix_j,
+\end{equation}
+其中当$j>i$时，$a_{ji}=a_{ij}$.
+\end{definition}
+
+\begin{definition}
+\rm 利用矩阵(2)式可表示为
+$$
+\begin{array}{rl}
+f(x) =& x_1(a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n) + x_2(a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n) \\ 
+&+ \cdots + x_n(a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nn}x_n) \\ \\
+=&(x_1,x_2,\cdots,x_n)
+\begin{pmatrix}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n \\
+\vdots \\
+a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nn}x_n
+\end{pmatrix} \\ \\
+=& (x_1,x_2,\cdots,x_n) 
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & 		 & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}x_n
+\end{pmatrix}
+\begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}
+\end{array},
+$$
+记$\mbf{X} = \begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}, \mbf{A} = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & 		 & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}x_n
+\end{pmatrix},$
+则二次型可用矩阵记做
+$$
+f(x_1,x_2,\cdots,x_n)=\mbf{X}^T\mbf{A}\mbf{X}.
+$$
+此时，称$\mbf{A}$是二次型$f(x_1,x_2,\cdots,x_n)$的矩阵，它是对称矩阵. 显然$\mbf{A}$是唯一的: 它的主对角线元素依次是$x_1^2,x_2^2,\cdots,x_n^2$的系数; 它的$(i,j)$元素是$x_ix_j$的系数的一半，其中$i<j$. 
+\end{definition}
+
+\begin{definition}
+\rm 令$\mbf{Y}=\begin{pmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n \\
+\end{pmatrix}$，设$C$是数域$F$上的$n$级可逆矩阵，则关系式
+$$
+\mbf{X} = C\mbf{Y}
+$$
+称为变量$x_1,x_2,\cdots,x_n$到变量$y_1,y_2,\cdots,y_n$的一个{\color{red}非退化线性替换}. 
+\end{definition}
+
+\begin{annotation}
+\rm 将$n$元二次型$\mbf{X^T}\mbf{A}\mbf{X}$经过非退化线性替换$\mbf{X} = C\mbf{Y}$变成
+\begin{equation}
+(C\mbf{Y})^T\mbf{A}(C\mbf{Y}) = \mbf{Y}^TC^T\mbf{A}C\mbf{Y},
+\end{equation}
+记$\mbf{B}=C^T\mbf{A}C$，那么(3)式就可以写作$\mbf{Y}^T\mbf{B}\mbf{Y}$. 这就是变量$y_1,y_2,\cdots,y_n$的一个二次型. 因为$\mbf{A}$是对称矩阵，所以$\mbf{B}$也是对称矩阵，从而$\mbf{B}$正好是二次型$\mbf{Y}^T\mbf{B}\mbf{Y}$的矩阵.
+\end{annotation}
+
+\begin{definition}
+\rm 给定两个$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$和$\mbf{Y}^T\mbf{B}\mbf{Y}$，若存在一个非退化线性替换$\mbf{X} = C\mbf{Y}$可以把$\mbf{X}^T\mbf{A}\mbf{X}$变换成$\mbf{Y}^T\mbf{B}\mbf{Y}$，那么就称二次型$\mbf{X}^T\mbf{A}\mbf{X}$和$\mbf{Y}^T\mbf{B}\mbf{Y}$等价，记为$\mbf{X}^T\mbf{A}\mbf{X} \cong \mbf{Y}^T\mbf{B}\mbf{Y}$. 
+\end{definition}
+
+\begin{definition}
+\rm 给定两个$n$阶矩阵$\mbf{A}$与$\mbf{B}$，若存在一个可逆$n$阶矩阵$C$使得
+$$
+C^T\mbf{A}C = \mbf{B},
+$$
+那么就称$\mbf{A}$与$\mbf{B}$ {\color{red}合同}，记为$\mbf{A} \simeq \mbf{B}$.
+\end{definition}
+
+\begin{proposition}
+\rm 若两个$n$阶矩阵$\mbf{A}$与$\mbf{B}$合同，则满足下述简单性质
+\begin{enumerate}
+	\item 若$\mbf{A}$是对称矩阵，那么$\mbf{B}$也是对称矩阵. 
+	\item $|\mbf{A}| = |\mbf{B}|$. 
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+\rm 两个$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$和$\mbf{Y}^T\mbf{B}\mbf{Y}$等价当且仅当$\mbf{A}$和$\mbf{B}$合同.
+\end{proposition}
+
+\begin{definition}
+\rm 如果二次型$\mbf{X}^T\mbf{A}\mbf{X}$等价于一个只含平方项的二次型，那么这个只含平方项的二次型称为$\mbf{X}^T\mbf{A}\mbf{X}$的一个{\color{red}标准型}.
+\end{definition}
+
+\begin{proposition}
+\rm 任给$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$都有一个标准型为
+$$
+\lambda_1y_1^2 + \lambda_2y^2 + \cdots + \lambda_n y^2,
+$$
+其中$\lambda_1,\lambda_2,\cdots,\lambda_n$是$\mbf{A}$的全部特征值. 
+\end{proposition}
+
+\begin{proof}
 
 \end{proof}
+
+
 
 \end{document}
