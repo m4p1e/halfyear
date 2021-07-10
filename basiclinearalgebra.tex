@@ -1646,7 +1646,7 @@ $$
 		& &\ddots	\cr
 		i& & & 1 \cr
 		& & & \vdots & \ddots	\cr
-		j& & &  1& \cdots & 1	\cr
+		j& & &  k& \cdots & 1	\cr
 		& & & & & & \ddots	\cr
 		& & & & & & & 1	\cr
 		}
@@ -1693,23 +1693,23 @@ P(j,i(k))A = \bordermatrix{
 		& &\ddots	\cr
 		& & & 1 \cr
 		& & & \vdots & \ddots	\cr
-		& & &  1& \cdots & 1	\cr
+		& & &  k& \cdots & 1	\cr
 		& & & & & & \ddots	\cr
 		& & & & & & & 1	\cr
-		} \begin{pmatrix}\gamma_1 \\ \gamma_2 \\ \vdots \\ \gamma_n \end{pmatrix} = \begin{pmatrix}\gamma_1 \\ \gamma_2 \\ \vdots\\ \gamma_j + k\gamma_i \\ \vdots \\ \gamma_n \end{pmatrix},
+		} \begin{pmatrix}\alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n \end{pmatrix} = \begin{pmatrix}\alpha_1 \\ \alpha_2 \\ \vdots\\ \alpha_j + k\alpha_i \\ \vdots \\ \alpha_n \end{pmatrix},
 $$
 同理对$\mbf{A}$右乘$P(j,i(k))$有
 $$
-AP(j,i(k)) = (\alpha_1,\alpha_2,\cdots,\alpha_m) \bordermatrix{
+AP(j,i(k)) = (\gamma_1,\gamma_2,\cdots,\gamma_m) \bordermatrix{
 		&\cr
 		& 1 \cr
 		& &\ddots	\cr
 		& & & 1 \cr
 		& & & \vdots & \ddots	\cr
-		& & &  1& \cdots & 1	\cr
+		& & &  k& \cdots & 1	\cr
 		& & & & & & \ddots	\cr
 		& & & & & & & 1	\cr
-		} = (\alpha_1,\alpha_2,\cdots,\alpha_{i} + k\alpha_{j},\cdots,\alpha_m).
+		} = (\gamma_1,\gamma_2,\cdots,\gamma_{i} + k\gamma_{j},\cdots,\gamma_m).
 $$
 其余两种变换都比较显然.
 \end{proof}
@@ -3049,11 +3049,11 @@ $$
 
 
 \begin{proposition}
-\rm 两个$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$和$\mbf{Y}^T\mbf{B}\mbf{Y}$等价当且仅当$\mbf{A}$和$\mbf{B}$合同.
+\rm 两个$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$和$\mbf{Y}^T\mbf{B}\mbf{Y}$等价当且仅当$\mbf{A}$和$\mbf{B}$合同(congruent).
 \end{proposition}
 
 \begin{definition}
-\rm 如果二次型$\mbf{X}^T\mbf{A}\mbf{X}$等价于一个只含平方项的二次型，那么这个只含平方项的二次型称为$\mbf{X}^T\mbf{A}\mbf{X}$的一个{\color{red}标准型}.
+\rm 如果二次型$\mbf{X}^T\mbf{A}\mbf{X}$等价于一个只含平方项的二次型(其对应的矩阵就是一个对角矩阵)，那么这个只含平方项的二次型称为$\mbf{X}^T\mbf{A}\mbf{X}$的一个{\color{red}标准型}.
 \end{definition}
 
 \begin{proposition}
@@ -3065,9 +3065,38 @@ $$
 \end{proposition}
 
 \begin{proof}
-
+由theorem \ref{symmetry: theorem2}. 
 \end{proof}
 
+\begin{annotation}
+\rm {\color{red}配方法}
+\end{annotation}
 
+\begin{proposition}
+\rm 
+$$
+\begin{array}{ll}
+P(j,i(k))^T = P(i,j(k)) \\
+P(i,j)^T = P(i,j) \\
+P(i(b))^T = P(i(b)) 
+\end{array}
+$$
+\end{proposition}
+
+\begin{definition}
+\rm 设$\mbf{A},\mbf{B}$是一个$n$阶矩阵，$P$是任意的一个初等矩阵，若
+$$
+\mbf{B} = P^T\mbf{A}P,
+$$
+那么称$\mbf{B}$是$\mbf{A}$通过一个{\color{red}成对初等行列变换}得到的.
+\end{definition}
+
+\begin{lemma}
+\rm 设$\mbf{A},\mbf{B}$都是$n$阶矩阵，若$\mbf{A}$合同于$\mbf{B}$当且仅当$\mbf{A}$是经过一系列成对初等行列变换可以得到$\mbf{B}$. 此时对$\mbf{I}$只做其中的列变换即可得到可逆矩阵$C$，使得$C^T\mbf{A}C = \mbf{B}$. 
+\end{lemma}
+
+\begin{theorem}
+\rm 任一$n$级对称矩阵一定合同于对角矩阵. 
+\end{theorem}
 
 \end{document}
