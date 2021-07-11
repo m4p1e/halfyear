@@ -1891,7 +1891,7 @@ $$
 ($\Leftarrow$) 若$A = P_1'P_2'\cdots P_t'$，由proposition \ref{invertible: id}和proposition \ref{invertible: basic}中的(3)可知$(P_1'P_2'\cdots P_t')$可逆，即$\mbf{A}$可逆.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{invertible: mul-rank-no-change}
 \rm 用一个可逆矩阵左(右)乘一个矩阵$\mbf{A}$，不改变$\mbf{A}$的秩.
 \end{proposition}
 
@@ -3088,15 +3088,257 @@ $$
 $$
 \mbf{B} = P^T\mbf{A}P,
 $$
-那么称$\mbf{B}$是$\mbf{A}$通过一个{\color{red}成对初等行列变换}得到的.
+那么称$\mbf{B}$是$\mbf{A}$通过一个{\color{red}成对初等行列变换}得到的. 用自然语言描述成对初等行列变换三种类型的操作如下
+\begin{enumerate}
+	\item $P(i,j(k))\mbf{A}P(j,i{k})$ 先将$\mbf{A}$第$j$行的$k$倍加到$i$行，再将第$j$列的$k$倍加到$i$列.
+	\item $P(i,j)\mbf{A}P(i,j)$ 先将$\mbf{A}$的第$i,j$行交换，再将第$i,j$列交换.
+	\item $P(i(b))\mbf{A}P(i(b))$ 先将$\mbf{A}$的第$i$行乘上非零数$b$，再将第$i$列乘上非零数$b$.
+\end{enumerate}
 \end{definition}
 
-\begin{lemma}
-\rm 设$\mbf{A},\mbf{B}$都是$n$阶矩阵，若$\mbf{A}$合同于$\mbf{B}$当且仅当$\mbf{A}$是经过一系列成对初等行列变换可以得到$\mbf{B}$. 此时对$\mbf{I}$只做其中的列变换即可得到可逆矩阵$C$，使得$C^T\mbf{A}C = \mbf{B}$. 
+\begin{lemma}\label{congruent: lemma1}
+\rm 设$\mbf{A},\mbf{B}$都是$n$阶矩阵，若$\mbf{A}$合同于$\mbf{B}$当且仅当$\mbf{A}$是经过一系列成对初等行列变换可以得到$\mbf{B}$. 此时对$\mbf{I}$只做其中的列变换即可得到可逆矩阵$C$，使得$C^T\mbf{A}C = \mbf{B}$.
 \end{lemma}
+
+\begin{proof}
+$\mbf{A}$和$\mbf{B}$合同的充要条件是存在可逆矩阵$C$，使得$C^T\mbf{A}C=\mbf{B}$. 而一个可逆矩阵$C$是可以被分解成多个初等矩阵的乘积，即$C=P_1P_2\cdots P_t$，所以前式就可以写成
+$$
+P_t^T\cdots P_2^TP_1^T\mbf{A}P_1P_2\cdots P_t = \mbf{B}.
+$$
+\end{proof}
 
 \begin{theorem}
 \rm 任一$n$级对称矩阵一定合同于对角矩阵. 
 \end{theorem}
 
+\begin{proof}
+\rm 证明手法比较巧妙使用数学归纳法配合lemma \ref{congruent: lemma1}. 对对称矩阵的阶数进行归纳.
+
+当$n=1$时，$(a) \simeq (a)$.
+假设$n-1$阶对称矩阵命题成立($n=2,3,\cdots$)，那么现在来考察$n$阶矩阵的情况$\mbf{A}$. 将$\mbf{A}$表示为
+$$
+\begin{pmatrix}
+a_{11} & \mbf{\alpha}\\
+\mbf{\alpha}^T & \mbf{D}_1
+\end{pmatrix}.
+$$
+
+\emph{情形}2 若$a_11 \neq 0$.
+
+首先对其做一个成对初等行列操作，将$\mbf{\alpha}$和$\mbf{\alpha}^T$变为$\mbf{0}$得到$\mbf{A_2}$，即
+$$
+\mbf{A_2} =
+\begin{pmatrix}
+1 & 0 \\
+-a_{11}\mbf{\alpha}^T & \mbf{I}
+\end{pmatrix}
+\begin{pmatrix}
+a_{11} & \mbf{\alpha}\\
+\mbf{\alpha}^T & \mbf{D}_1
+\end{pmatrix} 
+\begin{pmatrix}
+1 & -a_{11}^{-1}\mbf{\alpha} \\
+0 & \mbf{I}
+\end{pmatrix}
+= \begin{pmatrix}
+a_{11}  & \mbf{0} \\
+\mbf{0} & \mbf{D}_1-a_{11}\mbf{\alpha}^T\mbf{\alpha}.
+\end{pmatrix}
+$$
+记$\mbf{D}_2 =  \mbf{D}_1-a_{11}\mbf{\alpha}^T\mbf{\alpha}$，这里有$\mbf{A} \simeq \mbf{A}_2$. 显然$\mbf{D}_2$也是对称矩阵. 因此这里就可以用假设中$n-1$阶对称矩阵的结论，即存在$C_1^T\mbf{A}_2C_1 = \mbf{B}_2$，其中$\mbf{B}_2$是一个对角矩阵. 可以再通过一次成对初等行列变换把$\mbf{A}_2 = \begin{pmatrix}
+a_{11} & 0 \\
+0 & \mbf{D}_2
+\end{pmatrix}$的第二行左乘$C_1^{T}$和右乘$C_1$得到的矩阵为$\mbf{A}_3$，即
+$$
+\mbf{A}_3 =
+\begin{pmatrix}
+1 & 0 \\
+0 & C^T 
+\end{pmatrix}
+\begin{pmatrix}
+a_{11} & 0 \\
+0 & \mbf{D}_2
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 \\
+0 & C 
+\end{pmatrix} =
+\begin{pmatrix}
+a_{11} & 0 \\
+0 & C^T\mbf{D}_2C 
+\end{pmatrix} =
+\begin{pmatrix}
+a_{11} & 0 \\
+0 & \mbf{B}_2 
+\end{pmatrix}.
+$$
+因此$\mbf{A}_2 \simeq \mbf{A}_3$. 所以根据合同等价关系的传递性有$\mbf{A} \simeq \mbf{A}_3$，即$n$阶对称矩阵时命题也成立. 
+
+\emph{情形}2 若$a_{11} = 0$，存在$a_{ii} \neq 0$. 
+
+做一次成对行列变换将$\mbf{A}$第$1,i$行和第$1,i$列交换得到的矩阵$\mbf{A}_4$，其$(1,1)$元为$a_{ii} \neq 0$，所以又可以回到\emph{情形}1.
+
+\emph{情形}3 若$a_{11} = a_{22} = \cdots = a_{nn} = 0$，存在$a_{ij} \neq 0, i \neq j$. 
+
+做一次成对行列变换将$\mbf{A}$第$i$行加到$j$行上，再将第$i$列加到$j$列上得到矩阵$\mbf{A}_5$，其$(j,j)$元为$a_{ij} + a_{ji} = 2a_{ij} \neq 0$，所以又可以回到\emph{情形}1
+
+\emph{情形}4 若$\mbf{A} = \mbf{0}$.
+
+这种情况下就很显然了. 
+\end{proof}
+
+\begin{annotation}
+\rm 结合lemma \ref{congruent: lemma1}，这里就有一种求二次型的标准型的办法: 对于$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$,
+$$
+\begin{pmatrix}
+\mbf{A} \\
+\mbf{I}
+\end{pmatrix}
+\xrightarrow[\text{对$\mbf{A}$只做其中的初等列变换}]{\text{对$\mbf{A}$做成对初等行列变换}}
+\begin{pmatrix}
+\mbf{D} \\
+C
+\end{pmatrix}
+$$
+其中$D$是对角矩阵. 
+\end{annotation}
+
+\begin{proposition}
+\rm $n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$的任一标准形中，系数不为$0$的平方项个数等于$\mbf{A}$的秩.
+\end{proposition}
+
+\begin{proof}
+$$
+C^T\mbf{A}C = \text{diag}\{d_1,d_2,\cdots,d_r,0,\cdots,0\}.
+$$
+由proposition \ref{invertible: mul-rank-no-change}，可知$\rank{\mbf{A}} = r$.
+\end{proof}
+
+\newpage
+\subsection{规范形}
+
+\begin{definition}
+\rm $n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$的一个标准形，若其平方项系数的取值只为$1,-1,0$，那么就称其为一个{\color{red}规范形}.
+\end{definition}
+
+\begin{annotation}
+\rm 给定$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$的一个标准形为
+\begin{equation}
+d_1y_1^2 + \cdots + d_py_p^2 - d_{p+1}y_{p+1}^2 - \cdots - d_ry_r^,
+\end{equation}
+其中$d_i > 0, i = 1,2,\cdots,r$. 那么对(1)再做一次非退化线性替换
+$$
+\begin{array}{ll}
+y_i = \frac{1}{\sqrt{d_i}}z_i, ~i = 1,2,\cdots,r \\
+y_j = z_j,~j=r+1,\cdots,n.
+\end{array}.
+$$ 
+则可以得到一个规范形
+\begin{equation}
+z_1^2 + z_2^2 + \cdots + z_p^2 - z_{p+1}^2 -\cdots - z_{r}^2. 
+\end{equation}
+二次型的规范性实际上被$r$和$p$所决定了. 
+\end{annotation}
+
+\begin{theorem}
+\rm {\color{red} 惯性定理} $n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$的规范形是唯一的. 
+\end{theorem}
+
+\begin{proof}
+\rm 换句话说就是要证前面提到的$p$是唯一确定的，即标准型里面系数为正的平方项个数是唯一确定的，而$r$是$\mbf{A}$的秩，所以它总是保持不变的. 假设$\mbf{X}^T\mbf{A}\mbf{X}$分别经过两个非退化线性替换$\mbf{X} = C \mbf{Y}, \mbf{X} = B\mbf{Z}$变成了两个规范形
+\begin{equation}
+\mbf{X}^T\mbf{A}\mbf{X} = y_1^2+y_2^2 + \cdots + y_p^2 - y_{p+1}^2 - \cdots - y_{r}^2
+\end{equation}
+\begin{equation}
+\mbf{X}^T\mbf{A}\mbf{X} = z_1^2+z_2^2 + \cdots + z_q^2 - z_{q+1}^2 - \cdots - z_{r}^2
+\end{equation} 
+现在来证明$p=q$，从而$\mbf{X}^T\mbf{A}\mbf{X}$的规范形唯一. 由(3)式和(4)式，可以构造一个$\mbf{Z}$到$\mbf{Y}$的非退化线性替换，即$\mbf{Z} =(B^{-1}C)\mbf{Y}$，从而有
+\begin{equation}
+z_1^2+z_2^2 + \cdots + z_q^2 - z_{q+1}^2 - \cdots - z_{r}^2 = y_1^2+y_2^2 + \cdots + y_p^2 - y_{p+1}^2 - \cdots - y_{r}^2.
+\end{equation}
+记$G = (B^{-1}C)=(g_{ij})$. 假设$p > q$，我们可以构造一组$y_1,y_2,\cdots,y_n$的取值，通过$G$的变换得到$z_1,z_2,\cdots,z_n$使得(5)两边不等，造成矛盾. 若我们让$\mbf{Y}^T$取定
+$$
+\mbf{\beta} = (k_1,k_2,\cdots,k_p,0,\cdots,0),
+$$
+因此对应的$\mbf{Z}$的部分取值可以表示为
+$$
+\left\{
+\begin{array}{cl}
+z_1 = g_{11}k_1+ \cdots + g_{1p}k_p & \\
+z_2 = g_{21}k_1+ \cdots + g_{2p}k_p &\\ 
+\vdots& \\
+z_q = g_{q1}k_1+ \cdots + g_{qp}k_p &\\ 
+\end{array}
+\right.
+$$
+若我们想要$z_1 = z_2 = \cdots = z_q = 0$，从而(5)式左边肯定是非正的，并且也希望(5)式右边是正，这样就制造了一个矛盾. 由于这里$q < p$，所以我们可以找到一组不全为0的$k_1,k_2,\cdots,k_p$使得$z_1 = z_2 = \cdots = z_q = 0$，这样就满足了我们的需求. 同理构造从$\mbf{Y}$到$\mbf{Z}$的一个非退化线性替换，并假设当$p < q$，也有这样的矛盾产生. 从而$p = q$. 
+\end{proof}
+
+
+\begin{definition}
+\rm  在二次型$\mbf{X}^T\mbf{A}\mbf{X}$的规范形中，系数为正的平方项个数$p$被称为$\mbf{X}^T\mbf{A}\mbf{X}$的{\color{red}正惯性指数}; 系数为负的平方项个数$r-p$被称为$\mbf{X}^T\mbf{A}\mbf{X}$的{\color{red}负惯性指数}. 正惯性指数减去负惯性指数所得的差$2p-r$被称为$\mbf{X}^T\mbf{A}\mbf{X}$的{\color{red}符号差}.
+\end{definition}
+
+
+\subsection{正定二次型与正定矩阵}
+
+\begin{definition}
+\rm 设$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$，对任意非零的$\mbf{\alpha} \in \mathbb{R}^n$都有$\mbf{\alpha}^T \mbf{A} \mbf{\alpha} > 0$，则称$\mbf{X}^T\mbf{A}\mbf{X}$是{\color{red}正定}的.
+\end{definition}
+
+\begin{theorem}
+\rm $n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$是正定的当且仅当它的正惯性指数等于$n$.  
+\end{theorem}
+
+\begin{proof}
+\rm \emph{必要性}\ 若$\mbf{X}^T\mbf{A}\mbf{X}$是正定的，作非退化线性替换$\mbf{X}=C\mbf{Y}$，化为规范形
+$$
+y_1 ^2 + y_2^2 + \cdots + y_p^2 - y_{p+1}^2 -\cdots -y_r^2.
+$$
+假设$p < n$，那么$y_n^2$的系数可能为$-1$或者$0$，因此当$\mbf{Y}$取值$\mbf{\beta} = (0,\cdots,0,1)^T$时，令$\mbf{\alpha} = C\mbf{\beta}$，那么$\mbf{\alpha}\mbf{A}\mbf{\alpha} = \mbf{Y}^T(C^T\mbf{A}C)\mbf{Y}=-1$或者$0$，这就矛盾了. 因此$p \geq  n$，所以$p = n$.
+
+\emph{充分性} 若$\mbf{X}^T\mbf{A}\mbf{X}$的正惯性指数等于$n$，于是经过非退化线性替换$\mbf{X} = C\mbf{Y}$，化为规范形
+$$
+y_1^2 + y_2^2 + \cdots + y_n^2.
+$$
+因此当$\mbf{Y}$取值非零$\mbf{\beta}=(k_1,k_2,\cdots,k_n)$时(这里有一个小问题你要保证所有$\mbf{X}$的取值能完全被$C\mbf{Y}$盖住才行，这是显然，因为对任意的$\mbf{X}$取值，让$\mbf{Y}=C^{-1}\mbf{X} $即可)，有
+$$
+\mbf{Y}^T(C^T\mbf{A}C)\mbf{Y} = k_1^2 + k_2^2 + \cdots + k_n^2 \geq 0.
+$$
+所以$\mbf{X}^T\mbf{A}\mbf{X}$是正定的. 
+\end{proof}
+
+\begin{definition}
+\rm 给定$n$阶对称矩阵$\mbf{A}$，若它诱导出的$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$是正定的，则称$\mbf{A}$是{\color{red}正定矩阵}.
+\end{definition}
+
+
+\begin{proposition}
+\rm 若$n$阶对称矩阵$\mbf{A}$是正定的，那么有如下性质
+\begin{enumerate}
+	\item $\mbf{A}$的正惯性指数等于$n$;
+	\item $\mbf{A} \simeq \mbf{I}$;
+	\item $\mbf{A}$的合同标准形中主对角线元素大于0;
+	\item $\mbf{A}$的特征值大于$0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+\rm 与正定矩阵合同的对称矩阵也是正定矩阵.
+\end{corollary}
+
+\begin{proof}
+\rm 设$\mbf{A}$是正定的，存在$C$使得$C^T\mbf{A}C =\mbf{B}$，那么
+$$
+\mbf{\alpha}^T\mbf{B}\mbf{\alpha} = \mbf{\alpha}^TC^T\mbf{A}C\mbf{\alpha} = (C\mbf{\alpha})^T \mbf{A} (C\mbf{\alpha}) > 0.
+$$
+\end{proof}
+
+\begin{theorem}
+\rm $n$阶对称矩阵$\mbf{A}$是正定的当且仅当$\mbf{A}$的所有顺序主子式都大于$0$
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
 \end{document}
