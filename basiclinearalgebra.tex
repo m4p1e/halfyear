@@ -3323,7 +3323,7 @@ $$
 \end{enumerate}
 \end{proposition}
 
-\begin{corollary}
+\begin{corollary}\label{positive-definite: congruent}
 \rm 与正定矩阵合同的对称矩阵也是正定矩阵.
 \end{corollary}
 
@@ -3339,6 +3339,107 @@ $$
 \end{theorem}
 
 \begin{proof}
+\emph{必要性}\ 若$\mbf{A}$是正定的，对于$k \in \{1,2,\cdots,n-1\}$，把$\mbf{A}$写成分块矩阵
+$$
+\begin{pmatrix}
+\mbf{A}_k & B_1 \\
+B_1^T & B_2 
+\end{pmatrix},
+$$
+其中$|\mbf{A}_k|$是$\mbf{A}$的$k$阶顺序主子式. 在$\mathbb{R}^k$中取一个列向量$\mbf{\beta}$，由于$\mbf{A}$是正定的，于是
+$$
+\begin{pmatrix}
+\mbf{\beta} \\
+\mbf{0} 
+\end{pmatrix}^T
+\begin{pmatrix}
+\mbf{A}_k & B_1 \\
+B_1^T & B_2 
+\end{pmatrix}
+\begin{pmatrix}
+\mbf{\beta} \\
+\mbf{0} 
+\end{pmatrix} = \mbf{\beta}^T\mbf{A}_k\mbf{\beta} > 0. 
+$$
+因此$\mbf{A}_k$也是正定的，即$|\mbf{A}_k| > 0$. 
 
+\emph{充分性}\ 对对称矩阵的阶数进行归纳.
+
+当$n=1$时，一阶矩阵$(a)$，且$a > 0$. 显然$(a)$是正定的.
+
+假设命题对$n-1$阶对称矩阵成立($n=2,3,\cdots$)，我们来考察$n$阶矩阵$\mbf{A}=(a_{ij})$. 把$\mbf{A}$写成分块矩阵
+$$
+\begin{pmatrix}
+\mbf{A}_{n-1} & \mbf{\beta} \\
+\mbf{\beta}^T & a_{nn} 
+\end{pmatrix}.
+$$
+由于假设中$\mbf{A}_{n-1}$正定的，因此$\mbf{A}_{n-1}$满秩可逆，于是对$\mbf{A}$做两次初等变换，即
+\begin{equation}
+\begin{pmatrix}
+\mbf{I} & \mbf{0} \\
+-\mbf{\beta}^{T}\mbf{A}_{n-1}^{-1} & 1
+\end{pmatrix}
+\begin{pmatrix}
+\mbf{A}_{n-1} & \mbf{\beta} \\
+\mbf{\beta}^T & a_{nn} 
+\end{pmatrix}
+\begin{pmatrix}
+\mbf{I} & -\mbf{A}_{n-1}^{-1}\mbf{\beta} \\
+\mbf{0} & 1 
+\end{pmatrix} = 
+\begin{pmatrix}
+\mbf{A}_{n-1} & \mbf{0} \\
+\mbf{0} & a_{nn} -\mbf{\beta}^{T}\mbf{A}_{n-1}^{-1}\mbf{\beta}
+\end{pmatrix}.
+\end{equation}
+由于
+$$
+(-\mbf{\beta}^{T}\mbf{A}_{n-1}^{-1})^T =  -(\mbf{A}_{n-1}^{-1})^T\mbf{\beta} = -(\mbf{A}_{n-1}^T)^{-1}\mbf{\beta} = -\mbf{A}_{n-1}^{-1}\mbf{\beta}, 
+$$
+其中第二个等号用了一下$(\mbf{A}^{-1})^T = (\mbf{A}^{T})^{-1}$. 于是(1)式得到矩阵$\mbf{B}$可以写成
+$$
+\mbf{B} = 
+\begin{pmatrix}
+\mbf{I} & -\mbf{A}_{n-1}^{-1}\mbf{\beta} \\
+\mbf{0} & 1 
+\end{pmatrix}^T
+\begin{pmatrix}
+\mbf{A}_{n-1} & \mbf{\beta} \\
+\mbf{\beta}^T & a_{nn} 
+\end{pmatrix}
+\begin{pmatrix}
+\mbf{I} & -\mbf{A}_{n-1}^{-1}\mbf{\beta} \\
+\mbf{0} & 1 
+\end{pmatrix} = 
+\begin{pmatrix}
+\mbf{A}_{n-1} & \mbf{0} \\
+\mbf{0} & b
+\end{pmatrix},
+$$
+其中$b=a_{nn} -\mbf{\beta}^{T}\mbf{A}_{n-1}^{-1}\mbf{\beta}$，因此$\mbf{A} \simeq \mbf{B}$. 由于$|\mbf{A}| = |\mbf{A}_{n-1}|b$，所以$b >0$. 由于$\mbf{A}_{n-1}$是正定的，所以存在可逆矩阵$C$，使得$C^T\mbf{A}_{n-1}C = \mbf{I}_{n-1}$，再对$\mbf{B}$做一次成对初等行列变换得到对角矩阵$\mbf{D}$，即
+$$
+\mbf{D} = 
+\begin{pmatrix}
+C_1 & \mbf{0}\\
+\mbf{0} & 1
+\end{pmatrix}^T
+\begin{pmatrix}
+\mbf{A}_{n-1} & \mbf{0} \\
+\mbf{0} & b
+\end{pmatrix}\begin{pmatrix}
+C_1 & \mbf{0}\\
+\mbf{0} & 1
+\end{pmatrix} = \begin{pmatrix}
+C^T\mbf{A}_{n-1}C & \mbf{0} \\
+\mbf{0} & b
+\end{pmatrix} = \begin{pmatrix}
+\mbf{I}_{n-1} & \mbf{0} \\
+\mbf{0} & b
+\end{pmatrix}.
+$$
+因此最后有$\mbf{A} \simeq \mbf{B} \simeq \mbf{D}$，其中$\mbf{D}$是正定的，所以由corollary \ref{positive-definite: congruent} $\mbf{A}$也是正定的，那么$n$阶对称矩阵命题也成立. 由数学归纳法原理命题对任意阶对称矩阵均成立.
 \end{proof}
+
+
 \end{document}
