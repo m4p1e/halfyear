@@ -24,7 +24,15 @@
 \parindent=0pt
 \setlength{\parindent}{2em} 
 \usepackage{indentfirst}
-
+\usepackage{hyperref} %url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
 
 
 \usepackage{xcolor}
@@ -91,7 +99,7 @@
 \end{definition}
 
 \begin{definition}
-\rm 给定事件$A$和$B$，它们的差记为$A-B$，表示事件$A$有而$B$没有的样本点，通俗地来讲表示事件$A$发生而$B$不发生的样本点组成的新事件.
+\rm 给定事件$A$和$B$，它们的差记为$A-B$，表示事件$A$有而$B$没有的样本点，通俗地来讲表示{\color{red}事件$A$发生而事件$B$不发生}的样本点组成的新事件.
 \end{definition}
 
 \begin{definition}
@@ -101,7 +109,8 @@
 	\item $P(\Omega) = 1$;
 	\item 对于一个两两不相交的事件可数序列$A_1,A_2,\cdots$，有$P(\bigcup\limits_{i=1}^{\infty} A_i) = \bigcup\limits_{i=1}^{\infty}P(A_i)$成立.
 \end{enumerate}
-则成$P$是试验$E$的一个{\color{red}概率分布}. {\color{blue} 这个real-value $P$其实看做一个代数形式，其需要满足3个公理.}
+
+{\color{blue} 这个real-value $P$其实看做一个代数形式，其需要满足3个公理.}
 \end{definition}
 
 \begin{definition}
@@ -300,7 +309,7 @@ $$
 \begin{proof}
 (1) 比较trivial.
 
-(2) 用自然语言来解释，就是说我在$n+1$个元素里面取$k$等价于我先考虑在$n$个元素里面取$k$，然后现在又来了一个新的元素$e$，考虑多出的取法显然要包括这个$e$，那么现在我只要再去原来$n$个元素里面取$k-1$就够了，这就是第二个等式的含义. 代数证明就略过了...
+(2) 用自然语言来解释，就是说我在$n+1$个元素里面取$k$等价于我先考虑在$n$个元素里面取$k$，然后现在又来了一个新的元素$e$，考虑多出的取法显然要包括这个$e$，那么现在我只要再去原来$n$个元素里面取$k-1$就够了. 这就是第二个等式的含义. 代数证明就略过了...
 
 (3) 直接考虑$(1+1)^n$的展开式就够了.
 
@@ -311,16 +320,17 @@ $$
 \subsection{更深的思考和技巧}
 
 \begin{annotation}
-\rm {\color{red} 零概率事件$P(A) = 0$与不可能事件$A=\emptyset$不是一个概念}.
+\rm {\color{red} 零概率事件$P(A) = 0$与不可能事件$A=\emptyset,P(A) = 0$不是一个概念}.
 \end{annotation}
 
 
+%https://zhuanlan.zhihu.com/p/53736521 独立和互斥
 \begin{annotation}
 \rm {\color{red} 如何理解事件之间独立性} 事件$A$和$B$独立，则有下面等式成立
 $$
 P(AB) = P(A)P(B). 
 $$
-你可能总想深究其更本质的含义，可能你会联想到当事件$A$和$B$独立时，那么$A$和$B$之间有什么关系呢？ 实际上并{\color{blue}不能确定$A$和$B$有什么特别地确切的关系}，所以你把上述等价理解为在描述一个代数结构就好了，从这个代数结构可以引发一些有趣的性质i.e. 例如化简某些运算{\color{blue}条件概率}，所以就特别地把这个代数结构提出来了. 但是当$P(A)>0, P(B) > 0$时，有这样一种关系: {\color{red} 互斥不独立，独立不互斥}，证明也是很显然的.
+你可能总想深究其更本质的含义，可能你会联想到当事件$A$和$B$独立时，那么$A$和$B$之间有什么关系呢？ 实际上并{\color{blue}不能确定$A$和$B$有什么特别地确切的关系}，所以你把上述等式理解为在描述一个代数结构就好了，从这个代数结构可以引发一些有趣的性质i.e. 例如化简某些运算{\color{blue}条件概率}，所以就特别地把这个代数结构提出来了. 但是当$P(A)>0, P(B) > 0$时，有这样一种关系: {\color{red} 互斥不独立，独立不互斥}，证明也是很显然的.
 \end{annotation}
 
 \begin{annotation}
@@ -357,5 +367,173 @@ $$
 这些等式也可以推广为$n$个事件相互独立.
 \end{annotation}
 
+
+\section{随机变量及其概率分布}
+
+\subsection{随机变量及其分部函数}
+
+\begin{definition}
+\rm 在样本空间$\Omega$上的实值函数$X=X(\omega),\, \omega \in \Omega$，称$X(\omega)$为{\color{red}随机变量}，简记为$X$.  
+\end{definition}
+
+\begin{annotation}
+\rm 随机变量的概念引入是为了通过函数的image(实数)来描述preimage，即某一样本空间中的样本点, i.e. $P(X < 1)$. 
+\end{annotation}
+
+\begin{definition}
+\rm 如果一个随机变量的可能取值是有限多个或者可数无穷多个，则称它为{\color{red}离散型随机变量}.
+\end{definition}
+
+\begin{definition}
+\rm 设离散型随机变量$X$的可能取值是$x_k(k=1,2,\cdots)$，$X$取各可能值的概率为
+$$
+P\{X=x_k\} = p_k, k=1,2,\cdots,
+$$
+称上式为离散型随机变量$X$的概率分部或者分部律，其中$P$是一个概率函数.
+\end{definition}
+
+\begin{proposition}
+\rm 分部律的性质如下
+\begin{enumerate}
+	\item $p_k \geq 0,k=1,2,\cdots$;
+	\item $\sum\limits_{k=1}^\infty p_k = 1$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+{\color{red}(2)} $1 = P[\bigcup\limits_{k=1}^{\infty}\{X= x_k\}] = \sum\limits_{k=1}^{\infty} P\{X=x_k\}$，这里说明了$\{X=x_i\} \cap \{X = x_j\} = \emptyset, i \neq j$.
+\end{proof}
+
+\begin{definition}
+\rm 设$X$是一个随机变量，对于任意实数$x$，函数
+$$
+F(x) = P\{X \leq x\},\,-\infty < x < +\infty,
+$$
+称为随机变量$X$的分布函数(累积分布函数或者cumulative distribution function). 
+\end{definition}
+
+\begin{proposition}
+\rm 分布函数性质如下
+\begin{enumerate}
+	\item $0 \leq F(x) \leq 1$; $\lim\limits_{x \rightarrow -\infty}F(x) =F(-\infty) = 0$; $\lim\limits_{x \rightarrow +\infty}F(x) =F(+\infty)= 1$;
+	\item $F(x)$是单调函数，即当$x_1 < x_2$时，$F(x_1) \leq F(x_2)$;
+	\item $F(x)$是右连续的，即$F(x+0) = F(x)$; 
+	\item 对任意的$x_1 < x_2$，有$P\{x_1 < X \leq x_2\} = F(x_2) - F(x_1)$;
+	\item 对任意的$x$，有$P\{X = x\} = F(x) - F(x-0)$;  
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\rm  {\color{red}(3)} 从(1)(2)可知$F(x)$是单调有界的，若存在间断点，那么只能是第一类间断点，即$F(x)$的任意一点$x_0$处的右极限$F(x_0+0)$是存在的. 现在来证明$F(x+0) = F(x)$. 这里需要用一下函数极限用数列的表示方法"若$f(x)$在$x_0$处有极限当且仅当任意极限$\lim x_n = x_0$的数列其对应函数值极限$\lim f(x_n)$存在且相等". 这里取一个单调减的数列$x_1 > x_2 > \cdots > x_n > \cdots> x_0$， 即证$\lim\limits_{n \rightarrow \infty} F(x_n) = F(x_0)$. 而
+$$
+\begin{array}{ll}
+F(x_1) - F(x_0) =  P\{x_0 < X \leq x_1\} =  P\left[\bigcup\limits_{i=1}^\infty\{x_{i+1} < X \leq x_{i}\}\right] = \sum\limits_{i=1}^\infty P\{x_{i+1} < X \leq x_i\} \\
+= \sum\limits_{i=1}^\infty F(x_i) - F(x_{i+1}) =  F(x_1) - \sum\limits_{i=1}^\infty F(x_{i+1}),
+\end{array}
+$$
+因此有$F(x_0) = \sum\limits_{i=1}^\infty F(x_{i+1}) = F(x+0)$. 注意第二个等号使用了一个重要的极限
+$$
+\{x_0 < X \leq x_1\} = \lim\limits_{n \rightarrow \infty}\bigcup\limits_{i=1}^n\{x_{i+1} < X \leq x_{i}\}
+$$
+
+{\color{red}(5)} 这里因为无法保证是右连续的，所以减去$x$除的右极限的跃度就是这$x$这一点的概率.
+\end{proof}
+
+\begin{definition}
+\rm 如果对随机变量$X$的分布函数$F(x)$，存在一个非负可积函数$f(x)$，使得对任意的实数$x$，都有
+$$
+F(x) = \int_{-\infty}^x f(t)dt, - \infty < x < + \infty,
+$$
+那么称$X$为{\color{red}连续型随机变量}，函数$f(x)$称为$X$的{\color{red}概率密度}. 
+\end{definition}
+
+\begin{proposition}
+\rm 连续型随机变量的分布函数$F(x)$是在$(-\infty,+\infty)$上连续的.
+\end{proposition}
+
+\begin{proposition}\label{probability-density-func: prop1}
+\rm 概率密度函数$f(x)$的性质如下
+\begin{enumerate}
+	\item $f(x) \geq 0$ ({\color{red}$f(x)$是概率密度函数的充要条件之一});
+	\item 对于任意实数$x$，有$P\{X=x\} = F(x)-F(x-0) = 0$.
+	\item $F(+\infty) = \int_{-\infty}^{+\infty} f(t)dt = 1$ ({\color{red}$f(x)$是概率密度函数的充要条件之一});
+	\item 对任意实数$x_1 < x_2$，有$P\{x_1 < X \leq x_2 \} = F(x_2)-F(x_1) = \int_{x_1}^{x_2} f(t)dt$;
+	\item 在$f(x)$的连续点处有$F'(x) = f(x)$. (证明见高数积分上限函数一节) 
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+证明见高数积分上限函数一节
+\end{proof}
+
+\begin{proposition}
+\rm 若$X$是连续型随机变量，则
+$$
+P\{x_1 < X \leq x_2\} = P\{x_1 \leq  < x_2\} = P\{x_1 < X < x_2\} = P\{x_1 \leq  X \leq x_2\}.
+$$
+\end{proposition}
+
+\begin{proof}
+由proposition \ref{probability-density-func: prop1}中(2)易得. 
+\end{proof}
+
+
+\subsection{常用分布}
+
+\begin{definition}
+\rm 如果随机变量$X$的分布律为
+$$
+\begin{array}{c|cc}
+X & 0 & 1\\
+\hline
+P & 1-p & p
+\end{array}
+$$
+其中$0 < p < 1$，则称$X$服从参数为$p$的$0 - 1$分布或者两点分布.
+\end{definition}
+
+\begin{definition}
+\rm 如果随机变量$X$的分布律为
+$$
+P\{X = k\} = C_n^kp^kq^{n-k}, k = 0,1,2,\cdots,n,
+$$
+其中$0 < p < 1, q= 1- p$，则称$X$服从参数为$n,p$的二项分布，记做$X \sim B(n,p)$.
+\end{definition}
+
+\begin{annotation}
+\rm 在$n$重伯努利试验中，若每次试验成功率为$p(0 < p < 1)$，则在$n$次独立重复试验中成功的总次数$X$服从二项分布.
+\end{annotation}
+
+\begin{definition}
+\rm 如果随机变量$X$的分布律为
+$$
+P\{X=k\} = pq^{k-1}, k =1,2,\cdots,
+$$
+其中$0 < p < 1, q= 1- p$，则称$X$服从参数为$p$的几何分布，或称$X$具有几何分布.
+\end{definition}
+
+\begin{annotation}
+\rm 在独立地重复做一系列伯努利试验中，若每次试验成功率为$p(0 < p < 1)$，则在第$k$次试验时才首次试验成功的概率服从几何分布.
+\end{annotation}
+
+\begin{definition}
+\rm 如果随机变量$X$的分布律为
+$$
+P\{X=k\} = \frac{C_M^kC_{N-M}^{n-k}}{C_{N}^n}, k=l_1,\cdots,l_2,
+$$
+其中$l_1 = \max(0,n-N+M), l_2 = \min(M,n)$，则称随机变量$X$服从参数$n,N,M$的超几何分布.
+\end{definition}
+
+\begin{annotation}
+\rm 如果$N$件产品中含有$M$件次品，从中任意一次取出$n$件，令$X=$抽取的$n$件产品中的次品件数，则$X$服从参数$n,N,M$的超几何分布. 
+\end{annotation}
+
+\begin{definition}
+\rm 如果随机变量$X$的分布律为
+$$
+P\{X=k\} = \frac{\lambda^k}{k!}e^{-\lambda}, k = 0,1,2,\cdots,
+$$
+其中$\lambda > 0$为常数，则称随机变量$X$服从参数为$\lambda$的泊松分布. 
+\end{definition}
 
 \end{document}
