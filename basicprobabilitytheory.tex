@@ -533,7 +533,15 @@ $$
 $$
 P\{X=k\} = \frac{\lambda^k}{k!}e^{-\lambda}, k = 0,1,2,\cdots,
 $$
-其中$\lambda > 0$为常数，则称随机变量$X$服从参数为$\lambda$的泊松分布. 
+其中$\lambda > 0$为常数，则称随机变量$X$服从参数为$\lambda$的泊松分布，记为$X \sim \pi(\lambda)$. 
 \end{definition}
+
+\begin{annotation}
+\rm 
+$$
+\sum\limits_{k=0}^{\infty} P\{X =k\} = \sum\limits_{k=0}^{\infty}\frac{\lambda^k}{k!}e^{-\lambda} = e^{-\lambda}\sum\limits_{k=0}^{\infty}\frac{\lambda^k}{k!} = e^{-\lambda}e^{\lambda} = 1,
+$$
+其中$e^x = \sum\limits_{k=0}^{\infty}\frac{\lambda^k}{k!}$.
+\end{annotation}
 
 \end{document}
