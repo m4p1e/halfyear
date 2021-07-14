@@ -929,8 +929,16 @@ $$
 $$
 \lim\limits_{x \rightarrow x_0} f(g(x)) = f(\lim\limits_{x \rightarrow x_0}g(x)),
 $$
-只需要极限$\lim\limits_{x \rightarrow x_0}g(x)$存在.
+只需要极限$\lim\limits_{x \rightarrow x_0}g(x) = x_0$.
 \end{proposition}
+
+\begin{proof}
+\rm $f(x)$在$x_0$处连续当且仅当
+$$
+\lim\limits_{x \rightarrow x_0}f(x) = f(x_0). 
+$$
+若$\lim\limits_{x \rightarrow x_0}g(x) = x_0$，那么直接可将$\lim\limits_{x \rightarrow x_0}g(x)$替换$x_0$. 
+\end{proof}
 
 \begin{annotation}
 \rm 从函数连续的定义上可知$\lim\limits_{x \rightarrow x_0}f(x) = f(x_0)$，即在某点连续，这点的极限就是其函数值，这个关系对求极限是非常有用. 例如
@@ -2386,6 +2394,9 @@ m \leq \frac{\int_a^b f(x)g(x)dx}{\int_a^b g(x)dx} \leq M.
 $$
 即$u = \frac{\int_a^b f(x)g(x)dx}{\int_a^b g(x)dx}$. 自然地若$f(x)$连续，根据介值定理就可以找到一点$c \in [a,b]$使得$f(c) = u$.
 \end{proof}
+
+
+
 
 \subsection{积分上限函数}
 

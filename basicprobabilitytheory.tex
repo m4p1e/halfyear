@@ -12,6 +12,7 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{mathrsfs} %花写
 
 %\usepackage{unicode-math}
 
@@ -67,7 +68,7 @@
 \newpage
 \section{随机事件和概率}
 
-\subsection{基本定义}
+\subsection{样本空间与事件}
 
 \begin{definition}
 \rm 对随机现象进行观察或者实验被成为{\color{red} 随机试验}当且仅当满足以下条件
@@ -99,38 +100,28 @@
 \end{definition}
 
 \begin{definition}
+\rm 特别地，当$A_1,A_2,\cdots,A_n$两两无不相容时，并称为和，记做
+$$
+A_1 + A_2 + \cdots + A_n,
+$$
+或者$\sum\limits_{i=1}^n A_i$. 
+\end{definition}
+
+\begin{definition}
 \rm 给定事件$A$和$B$，它们的差记为$A-B$，表示事件$A$有而$B$没有的样本点，通俗地来讲表示{\color{red}事件$A$发生而事件$B$不发生}的样本点组成的新事件.
 \end{definition}
 
-\begin{definition}
-\rm 设试验$E$的样本空间为$\Omega$，real-valued函数$\func{P}{\mathcal{A}}{\mathbb{R}}$被为一个概率函数，其中$\mathcal{A}$被称为{\color{red}输入空间}或者{\color{red}事件空间}，即样本空间的{\color{red}幂集}. 当其满足如下条件(Kolmogorov axioms)时
+\begin{proposition}
+\rm {\color{red}事件相关的运算法则}
 \begin{enumerate}
-	\item 对于任意的$A \in \mathcal{A}$，有$P(A) \geq 0$;
-	\item $P(\Omega) = 1$;
-	\item 对于一个两两不相交的事件可数序列$A_1,A_2,\cdots$，有$P(\bigcup\limits_{i=1}^{\infty} A_i) = \bigcup\limits_{i=1}^{\infty}P(A_i)$成立.
+	\item 交换律 $A \cup B = B \cup A;\;A \cap B = B \cap A$.
+	\item 结合律 $(A \cup B) \cup C = A \cup (B \cup C);\; (A \cap B) \cap C = A \cap (B \cap C).$
+	\item 分配律 $A \cap (B \cup C) = (A \cap B) \cup (A \cap C);\; A \cup (B \cap C) = (A \cup B) \cap (A \cup C).$
+	\item 对偶律 $\overline{A \cup B} = \bar{A} \cap \bar{B};\; \overline{A \cap B} = \bar{A} \cup \bar{B};\; \overline{\bigcup\limits_{i=1}^n A_i} = \bigcap\limits_{i=1}^n \bar{A_i};\; \overline{\bigcap\limits_{i=1}^n A_i} = \bigcup\limits_{i=1}^n \bar{A_i}$ 
 \end{enumerate}
+\end{proposition}
 
-{\color{blue} 这个real-value $P$其实看做一个代数形式，其需要满足3个公理.}
-\end{definition}
-
-\begin{definition}
-\rm 给定事件$A$和$B$，且$P(A) > 0$, 称
-$$
-P(B|A) = \frac{P(AB)}{P(A)}.
-$$
-为在事件$A$发生的条件下事件$B$发生的{\color{red}条件概率}.
-\end{definition}
-
-\begin{definition}
-\rm 若事件$A,B$满足等式
-$$
-P(AB) = P(A)P(B),
-$$
-则称$A$与$B${\color{red}相互独立}. {\color{blue} 从条件概率看两个事件的独立性，也就是其中一个发生的概率是不会影响另一个发生的概率}. 推广至$n$个事件$A_1,\cdots,A_n$相互独立，需要$\binom n2 + \binom n3 + \cdots + \binom nn = 2^n - n -1$等式成立，即设任意的$1<k \leq n$，对任意$1 \leq i_1 \leq \cdots \leq i_k \leq n$满足等式
-$$
-P(A_{i_1}\cdots A_{i_k})=P(A_{i_1})\cdots P(A_{i_k}).
-$$
-\end{definition}
+\subsection{古典概型和几何概率}
 
 \begin{definition}
 \rm 当试验的样本空间由$n$个{\color{red}有限}样本点构成，且{\color{red}每个样本点的发生具有相同的可能性}，即若事件$A$由$n_A$个样本点组成，则事件$A$对应的概率为
@@ -161,39 +152,360 @@ $$
 其又称为{\color{red}二项概率公式}.
 \end{definition}
 
-\newpage
-\subsection{基本性质和运算法则}
+\begin{definition}
+\rm {\color{red} 加法原理} 若完成一件事，有$n$类方式，第一类方式有$m_1$种解决方法，第二类方式有$m_2$种解决方式，如此定义下去即第$i$类方法有$m_i$种解决方法. 那么完成这件事就一共有$m_1 + m_2 + \cdots + m_n$种不同的方法. 
+\end{definition}
+
+\begin{definition}
+\rm {\color{red} 乘法原理} 若完成一件事分成$n$个步骤，其中第$i$步有$m_i$种不同的方法，必须依次完成每一步之后才能进行下一步，那么完成这件事就一共有$m_1m_2\cdots m_n$.
+\end{definition}
+
+
+\begin{definition}
+\rm {\color{red} 排列数公式} 从$n$个元素中取$m$个元素出来进行排列，则不同排列的总数为
+$$
+P^m_n = \frac{n!}{(n-m)!} = n\times(n-1)\times\cdots(n-k+1).
+$$
+特别地，若$m=n$时，$P^n_n = n!$其被称为{\color{red}全排列}；若有放回的取，则不同的排列总数为$n^n$；
+\end{definition}
+
+\begin{definition}
+\rm {\color{red} 组合数公式} 从$n$个元素中取$m$个元素组成一组，即不管其顺序，则不同的组合总数为
+$$
+C^m_n = \binom nm  = \frac{n!}{m!(n-m)!} = \frac{P^m_n}{m!}. 
+$$
+\end{definition}
 
 \begin{proposition}
-\rm {\color{red}事件相关的运算法则}
-\begin{enumerate}
-	\item 交换律 $A \cup B = B \cup A;\;A \cap B = B \cap A$.
-	\item 结合律 $(A \cup B) \cup C = A \cup (B \cup C);\; (A \cap B) \cap C = A \cap (B \cap C).$
-	\item 分配律 $A \cap (B \cup C) = (A \cap B) \cup (A \cap C);\; A \cup (B \cap C) = (A \cup B) \cap (A \cup C).$
-	\item 对偶律 $\overline{A \cup B} = \bar{A} \cap \bar{B};\; \overline{A \cap B} = \bar{A} \cup \bar{B};\; \overline{\bigcup\limits_{i=1}^n A_i} = \bigcap\limits_{i=1}^n \bar{A_i};\; \overline{\bigcap\limits_{i=1}^n A_i} = \bigcup\limits_{i=1}^n \bar{A_i}$ 
-\end{enumerate}
+\rm 如果把$n$个不同的元素分成$k$组($1\leq k \leq n$)，使得第$i$组有$n_i$个元素，那么$\sum\limits_{i=1}^k n_i = n$，组内不考虑元素的排列，那么不同的分法总数有
+$$
+\frac{n!}{n_1!n_2!\cdots n_k!}.
+$$
 \end{proposition}
 
+\begin{proof}
+实际上就是
+$$
+\begin{array}{ll}
+\binom {n}{n_1} \binom{n-n_1}{n_2} \cdots \binom{n-n_1-\cdots-n_{k-1}}{n_k} &= \frac{n!}{n_1!(n-n_1)!} \frac{(n-n_1)!}{n_2!((n-n_1)-n_2)!}\cdots \frac{(n-n_1-\cdots-n_{k-1})!}{n_k!((n-n_1-\cdots-n_{k-1})-n_{k})!} \\
+&= \frac{n!}{n_1!n_2\cdots n_k!}.
+\end{array}
+$$
+\end{proof}
 
 \begin{proposition}
-\rm {\color{red}概率分布相关性质}
+\rm {\color{red} 常用的组合数公式}
+$$
+\begin{array}{rl}
+C^k_n &= C^{n-k}_n \\ \\
+C^k_{n+1} &= C^k_n + C^{k-1}_n \\ \\
+\sum\limits_{i=0}^n C^i_n &= 2^n \\ \\
+C^k_{n+m} &= \sum\limits_{i=0}^k C^i_n C^{k-i}_m \\ \\
+\end{array}
+$$
+\end{proposition}
+
+\begin{proof}
+(1) 比较trivial.
+
+(2) 用自然语言来解释，就是说我在$n+1$个元素里面取$k$等价于我先考虑在$n$个元素里面取$k$，然后现在又来了一个新的元素$e$，考虑多出的取法显然要包括这个$e$，那么现在我只要再去原来$n$个元素里面取$k-1$就够了. 这就是第二个等式的含义. 代数证明就略过了...
+
+(3) 直接考虑$(1+1)^n$的展开式就够了.
+
+(4) 实际上也比较trivial，即考虑$k$分别在$m$个元素和$n$元素里面取.
+\end{proof}
+
+\newpage
+\subsection{概率空间}
+
+\begin{annotation}
+\rm 对事件和概率的长期研究，发觉事件的运算与集合运算完全相似，概率与测度有相同的性质，这个事实随着当时在实变函数论中关于勒贝格测度和积分的研究以及一般抽象测度和积分理论的发展而日益明确起来. 
+
+另外，19世纪末以来，数学的各个分支广泛流行着一股公理化潮流，这个流派主张把最基本的假定公理化，其他结论则由它们经过演绎导出.
+
+在这种背景下，1933年，前苏联数学家科尔莫戈罗夫提出了概率论公理化结构，这个结构综合了前人成果，明确定义了基本概率，使概率论成为严谨的数学分支.
+\end{annotation}
+
+\begin{definition}
+\rm 若把事件的全体记为$\mathscr{F}$，它是由$\Omega$的一些子集构成的子集族. 当$\mathscr{F}$满足以下条件时
+\begin{enumerate}
+	\item $\Omega \in \mathscr{F}$;
+	\item 若$A \in \mathscr{F}$，则$\bar{A} \in \mathscr{F}$;
+	\item 若$A_n \in \mathscr{F}, \, n=1,2,\cdots$，则$\bigcup\limits_{n=1}^{\infty} A_n \in \mathscr{F}$.
+\end{enumerate}
+我们称$\mathscr{F}$是空间$\Omega$上的一个{\color{red}$\sigma$代数}. 
+\end{definition}
+
+\begin{definition}
+\rm 给定$\Omega$上某个非空集合$A$，通过对$A$里面的元素进行可数并，可数交和取补操作构造的包含$A$本身最小$\sigma$代数称为$A${\color{red}生成}的$\sigma$代数.
+\end{definition}
+
+\begin{annotation}
+\rm 包含$A$的$\sigma$代数是一定存在, i.e. $\Omega$. 将包含$A$的所有$\sigma$代数取交得到的就是包含$A$的最小$\sigma$代数. 
+\end{annotation}
+
+\begin{definition}
+\rm 由某个拓扑空间上的一些开集生成的$\sigma$代数成为{\color{red}Borel set}. 特别地，由$\mathcal{R}$上全体的左开右闭(左闭右开)区间构成的集合族所产生的$\sigma$代数成为一维Borel set，记为$\mathscr{F}_1$. 
+
+若$x,y$表示任意实数，由于
+$$
+\begin{array}{ll}
+\{x\} =\bigcap\limits_{n=1}^{\infty}\left[x,x+\frac{1}{n}\right) \\
+(x,y) = [x,y) - \{x\} \\
+\left[x,y\right] = [x,y) + \{y\} \\
+(x,y] = [x,y) + \{y\} - \{x\}
+\end{array}
+$$
+因此$\mathscr{F}_1$中包含一切开区间，闭区间，单个实数，可列个实数，以及由它们经过可列次并，交运算而得出的集合. 
+\end{definition}
+
+\begin{definition}
+\rm 定义在事件$\mathscr{F}$上的一个实值函数$P$称为{\color{red}概率函数}或者简称为概率，如果它满足如下三个条件(Kolmogorov axioms)
+\begin{enumerate}
+	\item 对于任意的$A \in \mathscr{F}$，有$P(A) \geq 0$;
+	\item $P(\Omega) = 1$;
+	\item 对于一个两两不相交的事件可数序列$A_1,A_2,\cdots$，有$P(\bigcup\limits_{i=1}^{\infty} A_i) = \bigcup\limits_{i=1}^{\infty}P(A_i)$成立.({\color{red}可数可加性或者可列可加性})
+\end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+\rm {\color{red}概率相关性质}
 \begin{enumerate}
 	\item $P(\emptyset) = 0$;
+	\item 概率具有有限可加性;
 	\item $P(\bar{A}) = 1 - P(A)$;
-	\item $A\subset B$，则$P(A) \leq P(B)$;
+	\item 若$A \subset B$，则$P(B-A) = P(B) - P(A)$;
+	\item 若$A\subset B$，则$P(A) \leq P(B)$; (单调性)
 	\item $0 \leq P(A) \leq 1$;
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-(2) 因为$P(\Omega) = P(A\bar{A}) =P(A) + P(\bar{A})$.
+(1) 因为$\Omega = \Omega + \emptyset + \cdots$，所以
+$$
+P(\Omega) = P(\Omega) + P(\emptyset) + \cdots.
+$$
+因此$P(\Omega) = 0$.
 
-(1) 可以马上通过(2)直接得到.
+(2) 对有限互斥事件$A_i,i=1,2,\cdots,n$，因为
+$$
+A_1 + A_2 + \cdots + A_n = A_1 + A_2 + \cdots + A_n + \emptyset +\emptyset + \cdots,
+$$
+由可数可加性和性质1有
+$$
+P(A_1 + A_2 + \cdots + A_n) = P(A_1) + P(A_2) + \cdots + P(A_n). 
+$$
 
-(3) $P$满足{\color{blue}单调性}，可以根据Kolmogorov axioms(3)很自然地可以得到.
+(3)
+因$A \cup \bar{A} = \Omega$，且$A\bar{A} = \emptyset$，于是由性质3
+$$
+1 = P(\Omega) = P(A \cup \bar{A}) = P(A) + P(\bar{A}).
+$$
 
-(4) $P(\emptyset) \leq P(A) \leq P(\Omega).$
+(4) 若$A \subset B$，则$A \cup (B-A) = B$，于是
+$$
+P(B) = P(A \cup (B-A)) = P(A) + P(B-A).
+$$
+故$P(B-A) = P(B) - P(A)$. 
+
+(5) 性质4的推论，由$P(B-A) \geq 0$，即得$P(B) \geq P(A)$. 
+
+(6) 由性质5可知，对任意的事件$A$，有$A \subset \Omega$，即$P(A) \leq P(\Omega) = 1$. 
 \end{proof}
+
+\begin{proposition}
+\rm 概率加法公式
+$$
+P(A \cup B) = P(A) + P(B) - P(AB) 
+$$
+\end{proposition}
+
+\begin{proof}
+因$A \cup B = A \cup (B - AB)$，且$A \cap (B-AB) = \emptyset$，于是由性质2有
+$$
+P(A \cup B) = P(A \cup (B-AB)) = P(A) + P(B-AB).
+$$
+因$AB \subset B$，那么用一下性质4，即可得到
+$$
+P(A \cup B) = P(A) + P(B-AB) = P(A) + P(B) - P(AB).
+$$
+\end{proof}
+
+\begin{corollary}
+\rm 布尔不等式
+$$
+P(A \cup B) \leq P(A) \cup P(B).
+$$
+\end{corollary}
+
+\begin{corollary}
+\rm Bonferroni不等式
+$$
+P(AB) \geq P(A) + P(B) -1.
+$$
+\end{corollary}
+
+\begin{proposition}
+\rm 一般加法公式
+$$
+P(A_1 \cup A_2 \cup \cdots \cup A_n) = \sum\limits_{1,\cdots,n} P(A_i) - \sum\limits_{i < j \atop i,j = 1,\cdots,n}P(A_iA_j) +  \sum\limits_{i < j < k \atop i,j,k = 1,\cdots,n}P(A_iA_jA_k) - \cdots + (-1)^{n-1}P(A_1A_2\cdots A_n). 
+$$
+\end{proposition}
+
+\begin{proof}
+可用数学归纳法证明. 
+\end{proof}
+
+\begin{proposition}
+\rm 概率减法公式 
+$$
+P(A - B) = P(A) - P(AB).
+$$
+\end{proposition}
+
+\begin{proof}
+因$A = A(B \cup \bar{B}) = AB \cup A\bar{B} = AB \cup (A-B)$，且$AB \cap (A-B) = \emptyset$，于是
+$$
+P(A) = P(AB \cup (A-B)) = P(AB) \cup P(A-B). 
+$$
+移项可得原式. 
+\end{proof}
+
+\begin{definition}
+\rm 在科尔莫戈洛夫的概率论公理化结构中，称三元组总体$(\Omega,\mathscr{F}, P)$为{\color{red}概率空间}，其中$\Omega$是样本空间，$\mathscr{F}$是事件域，$P$是概率. 
+\end{definition}
+
+
+
+\newpage
+\subsection{条件概率和事件独立性}
+
+\begin{definition}
+\rm 设$(\Omega,\mathscr{F}，P)$是一个概率空间，给定事件$A \in \mathscr{F}$和$B \in \mathscr{F}$，且$P(A) > 0$, 称
+$$
+P(B|A) = \frac{P(AB)}{P(A)}.
+$$
+为在事件$A$发生的条件下事件$B$发生的{\color{red}条件概率}(conditional probability).
+\end{definition}
+
+\begin{proposition}
+\rm 乘法公式(今后出现条件概率$P(B|A)$时，都假定$P(A) > 0$)
+$$
+P(AB) = P(A)P(B|A);
+$$
+\end{proposition}
+
+\begin{corollary}
+\rm 当$P(A) > 0,P(B) > 0$时，有
+$$
+P(AB) = P(A|B)P(B) = P(B|A)P(A).
+$$
+\end{corollary}
+
+\begin{proposition}
+\rm 条件概率$P(B|A)$具有概率的三个基本性质
+\begin{enumerate}
+	\item $P(B|A) \geq 0$ (非负性);
+	\item $P(\Omega|A) = 1$ (规范性);
+	\item $P(\sum\limits_{i=1}^{\infty} B_i | A) = \sum\limits_{i=1}^{\infty}P(B_i | A)$ (可列可加性); 
+\end{enumerate}
+
+利用这三个基本性质也可以导出其他的一些性质
+\begin{enumerate}
+	\item $P(\emptyset | B) = 0$;
+	\item $P(B|A) = 1 - P(\bar{B} | A)$;
+	\item $P(B_1 \cup B_2 | A) = P(B_1 | A) + P(B_2 | A) - P(B_1B_2 |A)$. 
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm 乘法公式可以推广到$n$个事件之交
+$$
+P(A_1A_2\cdots A_n) = P(A_1)P(A_2|A_1)P(A_3|A_1A_2)]\cdots P(A_n|A_1A_2\cdots A_{n-1}).
+$$
+这里要求$P(A_1A_2\cdots A_{n-1}) > 0$. 
+\end{proposition}
+
+\begin{proposition}
+\rm {\color{red}全概率公式} 设$B_1,B_2,\cdots,B_n$满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$且$P(B_k) > 0,\; k=1,2,\cdots,n$，则对任意事件有
+$$
+P(A) = \sum\limits_{i=1}^n P(B_i)P(A|B_i).
+$$
+称满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$的$B_1,B_2,\cdots,B_n$为一个{\color{red}完备事件组}.
+\end{proposition}
+
+\begin{proof}
+由概率的有限可列可加性有
+$$
+P(A) = \bigcup\limits_{i=1}^n P(AB_i),
+$$
+再利用乘法公式即得
+$$
+P(A) = \bigcup\limits_{i=1}^n P(B_i)P(A|B_i).
+$$
+\end{proof}
+
+\begin{annotation}
+\rm {\color{red}(全概率公式的motivation)} 概率论的重要研究课题之一是希望从已知的简单事件的概率推算出未知的复杂的事件的概率. 为了达到这个目的，经常把一个复杂的事件分解成若干不相容的简单事件之和，再用过分别计算这些简单事件的概率，最后利用概率的可加性得到最终的结果.
+
+\begin{center}
+\includegraphics[width=5cm, height=4cm]{images/total_probability.jpg}
+\end{center}
+\end{annotation}
+
+\begin{definition}
+\rm {\color{red}贝叶斯公式} 设$B_1,B_2,\cdots,B_n$满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$且$P(A)>0, P(B_k) > 0,\; k=1,2,\cdots,n$，则
+	$$
+		P(B_j | A) = \frac{P(B_j)P(A|B_j)}{\sum\limits_{i=1}^n P(B_i)P(A|B_i)},\; j = 1,2,\cdots,n.
+	$$
+前提条件可以换成“若事件$A$能且只能与两两互不相容的事件$B_1,B_2,\cdots,B_n$之一同时发生”，这个条件实际上更有实际意义. 其中$P(B_i)$称为先验概率，条件概率$P(B_i | A)$称为后验概率. 
+\end{definition}
+
+\begin{proof}
+由于$P(A) > 0,P(B_k) > 0$，那么此时有
+$$
+P(B_kA) = P(A)P(B_k|A) = P(B_k)P(A|B_k). 
+$$
+故
+$$
+P(B_j|A) = \frac{P(B_j)P(A|B_j)}{P(A)}.
+$$
+在利用全概率公式即有
+$$
+P(B_j|A) = \frac{P(B_j)P(A|B_j)}{\sum\limits_{i =1}^n P(B_i)P(A|B_i)}.
+$$
+\end{proof}
+
+\begin{annotation}
+\rm 贝叶斯公式中先验概率$P(B_i)$反应了各种“原因”发生的可能的性大小，一般是以往的经验总结，在当前试验前就已经知道了. 若当前试验产生了事件$A$，这个信息将有助于探讨事件发生的原因. 后验概率$P(B_i|A)$它反映了试验之后对各种原因发生的可能性大小的新知识.
+\end{annotation}
+
+\begin{example}
+\rm {\color{red}(贝叶斯决策)} 为了判定一个字母是"C"还是"O"，通常采取抽取它的一个特征$X$. 然后再根据这个特征作出判决，这时贝叶斯决策常用的方法之一. 
+
+以$A_1,A_2$分别表示被检验的字母为$C$或者$O$这一事件，它们的先验概率$P(A_1)$及$P(A_2)$应预先给定，此外要通过试验确定$P(X|A_1)$或者$P(X|A_2)$，由贝叶斯公式得
+$$
+P(A_i|X) = \frac{P(A_i)P(X|A_i)}{\sum\limits_{i=1}P(A_i)P(X|A_i)} 
+$$
+其中$i=1,2$. 若$P(A_1 | X) > P(A_2 | X)$，则做出决策，具有特征$X$的字母是$C$.
+\end{example}
+
+\begin{definition}
+\rm 若事件$A,B$满足等式
+$$
+P(AB) = P(A)P(B),
+$$
+则称$A$与$B${\color{red}相互独立}. {\color{blue} 从条件概率看两个事件的独立性，也就是其中一个发生的概率是不会影响另一个发生的概率}. 推广至$n$个事件$A_1,\cdots,A_n$相互独立，需要$\binom n2 + \binom n3 + \cdots + \binom nn = 2^n - n -1$等式成立，即设任意的$1<k \leq n$，对任意$1 \leq i_1 \leq \cdots \leq i_k \leq n$满足等式
+$$
+P(A_{i_1}\cdots A_{i_k})=P(A_{i_1})\cdots P(A_{i_k}).
+$$
+\end{definition}
+
+
+
+\newpage
+\subsection{基本性质和运算法则}
 
 
 %https://zhuanlan.zhihu.com/p/78297343 全概率公式和贝叶斯公式的相关lectures
@@ -249,71 +561,6 @@ $$
 (4) $P(A) = P(\bigcup\limits_{i=1}^n AB_i) = \bigcup\limits_{i=1}^n P(AB_i)$，再用(3)替换一下即可.
 
 (5) $P(B_j | A) =  \frac{P(B_jA)}{P(A)}$，用(3)和(4)分别替换分子和分母即可.
-\end{proof}
-
-
-{\color{blue}下面都是一些高中学过的排列组合的性质}.
-
-\begin{definition}
-\rm {\color{red} 加法原理} 若完成一件事，有$n$类方式，第一类方式有$m_1$种解决方法，第二类方式有$m_2$种解决方式，如此定义下去即第$i$类方法有$m_i$种解决方法. 那么完成这件事就一共有$m_1 + m_2 + \cdots + m_n$种不同的方法. 
-\end{definition}
-
-\begin{definition}
-\rm {\color{red} 乘法原理} 若完成一件事分成$n$个步骤，其中第$i$步有$m_i$种不同的方法，必须依次完成每一步之后才能进行下一步，那么完成这件事就一共有$m_1m_2\cdots m_n$.
-\end{definition}
-
-\begin{definition}
-\rm {\color{red} 排列数公式} 从$n$个元素中取$m$个元素出来进行排列，则不同排列的总数为
-$$
-P^m_n = \frac{n!}{(n-m)!} = n\times(n-1)\times\cdots(n-k+1).
-$$
-特别地，若$m=n$时，$P^n_n = n!$其被称为{\color{red}全排列}；若有放回的取，则不同的排列总数为$n^n$；
-\end{definition}
-
-\begin{definition}
-\rm {\color{red} 组合数公式} 从$n$个元素中取$m$个元素组成一组，即不管其顺序，则不同的组合总数为
-$$
-C^m_n = \binom nm  = \frac{n!}{m!(n-m)!} = \frac{P^m_n}{m!}. 
-$$
-\end{definition}
-
-\begin{proposition}
-\rm 如果把$n$个不同的元素分成$k$组($1\leq k \leq n$)，使得第$i$组有$n_i$个元素，那么$\sum\limits_{i=1}^k n_i = n$，组内不考虑元素的排列，那么不同的分法总数有
-$$
-\frac{n!}{n_1!n_2!\cdots n_k!}.
-$$
-\end{proposition}
-
-\begin{proof}
-实际上就是
-$$
-\begin{array}{ll}
-\binom {n}{n_1} \binom{n-n_1}{n_2} \cdots \binom{n-n_1-\cdots-n_{k-1}}{n_k} &= \frac{n!}{n_1!(n-n_1)!} \frac{(n-n_1)!}{n_2!((n-n_1)-n_2)!}\cdots \frac{(n-n_1-\cdots-n_{k-1})!}{n_k!((n-n_1-\cdots-n_{k-1})-n_{k})!} \\
-&= \frac{n!}{n_1!n_2\cdots n_k!}.
-\end{array}
-$$
-\end{proof}
-
-\begin{proposition}
-\rm {\color{red} 常用的组合数公式}
-$$
-\begin{array}{rl}
-C^k_n &= C^{n-k}_n \\ \\
-C^k_{n+1} &= C^k_n + C^{k-1}_n \\ \\
-\sum\limits_{i=0}^n C^i_n &= 2^n \\ \\
-C^k_{n+m} &= \sum\limits_{i=0}^k C^i_n C^{k-i}_m \\ \\
-\end{array}
-$$
-\end{proposition}
-
-\begin{proof}
-(1) 比较trivial.
-
-(2) 用自然语言来解释，就是说我在$n+1$个元素里面取$k$等价于我先考虑在$n$个元素里面取$k$，然后现在又来了一个新的元素$e$，考虑多出的取法显然要包括这个$e$，那么现在我只要再去原来$n$个元素里面取$k-1$就够了. 这就是第二个等式的含义. 代数证明就略过了...
-
-(3) 直接考虑$(1+1)^n$的展开式就够了.
-
-(4) 实际上也比较trivial，即考虑$k$分别在$m$个元素和$n$元素里面取.
 \end{proof}
 
 \newpage
@@ -543,5 +790,136 @@ $$
 $$
 其中$e^x = \sum\limits_{k=0}^{\infty}\frac{\lambda^k}{k!}$.
 \end{annotation}
+
+\begin{theorem}
+\rm {\color{red} 泊松定理} 设$\lambda > 0$是一个常数，$n$是任意整数，设$np_n = \lambda$，则对于任一固定的非负整数$k$，有
+$$
+\lim\limits_{n \rightarrow \infty}C_n^kp_n^k(1-p_n)^{n-k} = \frac{\lambda^ke^{-\lambda}}{k!}.
+$$
+\end{theorem}
+
+\begin{annotation}
+\rm 应用泊松定理来做二项式近似计算要求$n$较大，$p$较少，并且$np$不太大.
+\end{annotation}
+
+\begin{definition}
+\rm 如果连续型随机变量$X$的概率密度为
+$$
+f(x) = \left\{\begin{array}{ll}
+\frac{1}{b-a} & a \leq x \leq b\\
+0 & \text{other}
+\end{array}\right.,
+$$
+则称$X$在区间$[a,b]$上服从均有分布，记做$X \sim U[a,b]$. 其的分布函数为
+$$
+F(x) = \left\{\begin{array}{ll}
+0 & x < a \\
+\frac{x-a}{b-a} & a \leq x < b\\
+1 & x \geq b
+\end{array}\right..
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 设$X~U[a,b]$，则对$a \leq c < d \leq b$，有
+$$
+P\{c\leq x \leq d\} = \frac{d-c}{b-a}.
+$$
+\end{proposition}
+
+\begin{definition}
+\rm 如果连续型随机变量$X$的概率密度为
+$$
+f(x) = \left\{ \begin{array}{ll}
+\lambda e^{-\lambda x} & x > 0 \\
+0 & x \leq 0
+\end{array}\right.,
+$$
+其中$\lambda > 0$是个常数，则称$X$服从参数为$\lambda$的指数分布，记做$X \sim E(\lambda)$. 其分布函数为
+$$
+F(x) = \left\{\begin{array}{ll}
+1 - e^{-\lambda x} & x > 0 \\
+0 & x \leq 0
+\end{array}\right..
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 设$X \sim E(\lambda)$，则有
+\begin{enumerate}
+	\item 当$t > 0$时，$P\{X > t\} = \int_t^{+\infty} \lambda e^{-\lambda t}dt$;
+	\item 当$t > 0, s >0$时，$P\{X > t+s |x > s\} = \frac{P\{t+s\}}{P\{s\}} = \frac{e^{-\lambda(t+s)}}{e^{-\lambda}(s)} = e^{-\lambda t} = P\{X > t\}$. 此性质称为指数分布具有"无记忆性". 
+\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+\rm 如果连续性随机变量的概率密度为
+$$
+f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},
+$$
+其中$\mu,\sigma$为常数且$\sigma > 0$，则称$X$服从参数为$\mu,\sigma$的正态分布，记做$X~N(\mu,\sigma^2)$. 当$\mu=0,\sigma^2 =1$时，即$X~N(0,1)$，称$X$服从标准正态分布，此时用$\varphi(x)$表示$X$的概率密度，即
+$$
+\varphi(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}.
+$$
+当$X \sim N(\mu,\sigma^2)$，其分布函数为
+$$
+F(x) = \frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{x}e^{-\frac{(t-\mu)^2}{2\sigma^2}}dt. 
+$$
+当$X~N(0,1)$，其分布函数为
+$$
+\Phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-\frac{t^2}{2}}dt.
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 设$X \sim N(\mu,\sigma^2)$，则$Z = \frac{X-\mu}{\sigma} \sim N(0,1)$. 
+\end{proposition}
+
+\begin{proof}
+\rm $Z=\frac{X-\mu}{\sigma}$的分布函数为
+$$
+P\{Z \leq x\} = P\{\frac{X-\mu}{\sigma} \leq x\} = P\{X \leq \mu + \sigma x\} =  \frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{\mu+\sigma x}e^{-\frac{(t-\mu)^2}{2\sigma^2}}dt.
+$$
+令$u = \frac{t-\mu}{\sigma}$，那么$t = \sigma u + \mu$，于是
+$$
+P\{Z \leq x\} = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x} e^{\frac{u^2}{2}}du = \Phi(x). 
+$$
+由此$Z \sim N(0,1)$.
+\end{proof}
+
+\begin{corollary}
+\rm 若$X \sim N(\mu,\sigma^2)$，则其分布函数$F(x)$可写成
+$$
+F(x) = P\{X \leq x \} = P\{ \frac{X-\mu}{\sigma} \leq \frac{x-\mu}{\sigma} \} = \Phi(\frac{x-\mu}{\sigma}). 
+$$
+\end{corollary}
+
+\begin{proposition}
+\rm 设$X~N(\mu,\sigma^2)$，其分布函数为$F(x)$，则
+\begin{enumerate}
+	\item $P\{a < x \leq b\} = \Phi(\frac{b-\mu}{\sigma}) - \Phi(\frac{a-\mu}{\sigma})$;
+	\item 概率函数$f(x)$关于$x=\mu$对称，$\varphi(x)$是偶函数;
+	\item $\Phi(-x) = 1-\Phi(x)$，$\Phi(0) = \frac{1}{2}$;
+	\item 当$X \sim N(0,1)$且$a > 0$时，$P\{|X| \leq a\} = 1-2\Phi(-a) = 2\Phi(a) - 1$. 
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+{\color{red}(4)}
+$$
+I(a)=\int_0^{\infty}e^{-ax^2}dx =\frac12 \sqrt{\frac{\pi}{a}}
+$$
+\end{proof}
+
+\subsection{随机变量的函数的分布}
+
+\begin{theorem}
+\rm 设随机变量$X$具有概率密度$f_X(x)$对任意实数都有定义，又设函数$g(x)$处处可导且恒有$g'(x) > 0$(或恒有$g'(x) < 0$)，则$Y = g(X)$是连续型随机变量，其概率密度为
+$$
+f_Y(y) = 
+$$
+\end{theorem}
+
+
 
 \end{document}
