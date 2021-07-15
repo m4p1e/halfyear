@@ -153,6 +153,18 @@ $$
 \end{definition}
 
 \begin{definition}
+\rm 将每次伯努利试验结果推广至$A_1,A_2,\cdots,A_r$，而$P(A_i) = p_i, i = 1,2,\cdots,r$，且
+$$
+p_1 + p_2 + \cdots + p_r = 1, \,p_i \geq 0.
+$$
+当$r=2$时，即为伯努利试验. 将这种推广的伯努利试验独立重复进行$n$次， 设在$n$次试验中$A_1$出现$k_1$次，$A_2$出现$k_2$，$\cdots$， $A_r$出现$k_r$次的概率为
+$$
+\frac{n!}{k_1!k_2!\cdots k_r!}p_1^{k_1}p_2^{k_2}\cdots p_r^{k_r},
+$$
+其中$k_i \geq 0$，且$k_1 + k_2 + \cdots + k_r = n$. 该式被称为{\color{red}多项分布}，即它是$(p_1+p_2 + \cdots + p_r)^n$的展开式的一般项. 
+\end{definition}
+
+\begin{definition}
 \rm {\color{red} 加法原理} 若完成一件事，有$n$类方式，第一类方式有$m_1$种解决方法，第二类方式有$m_2$种解决方式，如此定义下去即第$i$类方法有$m_i$种解决方法. 那么完成这件事就一共有$m_1 + m_2 + \cdots + m_n$种不同的方法. 
 \end{definition}
 
@@ -188,7 +200,7 @@ $$
 $$
 \begin{array}{ll}
 \binom {n}{n_1} \binom{n-n_1}{n_2} \cdots \binom{n-n_1-\cdots-n_{k-1}}{n_k} &= \frac{n!}{n_1!(n-n_1)!} \frac{(n-n_1)!}{n_2!((n-n_1)-n_2)!}\cdots \frac{(n-n_1-\cdots-n_{k-1})!}{n_k!((n-n_1-\cdots-n_{k-1})-n_{k})!} \\
-&= \frac{n!}{n_1!n_2\cdots n_k!}.
+&= \frac{n!}{n_1!n_2!\cdots n_k!}.
 \end{array}
 $$
 \end{proof}
@@ -197,10 +209,10 @@ $$
 \rm {\color{red} 常用的组合数公式}
 $$
 \begin{array}{rl}
-C^k_n &= C^{n-k}_n \\ \\
-C^k_{n+1} &= C^k_n + C^{k-1}_n \\ \\
-\sum\limits_{i=0}^n C^i_n &= 2^n \\ \\
-C^k_{n+m} &= \sum\limits_{i=0}^k C^i_n C^{k-i}_m \\ \\
+C^k_n =& C^{n-k}_n \\ \\
+C^k_{n+1} =& C^k_n + C^{k-1}_n \\ \\
+\sum\limits_{i=0}^n C^i_n =& 2^n \\ \\
+C^k_{n+m} =& \sum\limits_{i=0}^k C^i_n C^{k-i}_m \\ \\
 \end{array}
 $$
 \end{proposition}
@@ -496,72 +508,79 @@ $$
 $$
 P(AB) = P(A)P(B),
 $$
-则称$A$与$B${\color{red}相互独立}. {\color{blue} 从条件概率看两个事件的独立性，也就是其中一个发生的概率是不会影响另一个发生的概率}. 推广至$n$个事件$A_1,\cdots,A_n$相互独立，需要$\binom n2 + \binom n3 + \cdots + \binom nn = 2^n - n -1$等式成立，即设任意的$1<k \leq n$，对任意$1 \leq i_1 \leq \cdots \leq i_k \leq n$满足等式
+则称$A$与$B${\color{red}相互独立}. 
+\end{definition}
+
+\begin{annotation}
+\rm {\color{blue} 从条件概率看两个事件的独立性，也就是其中一个发生的概率是不会影响另一个发生的概率}
+\end{annotation}
+
+\begin{corollary}
+\rm 若事件$A$与$B$独立，则下列各对立事件也相互独立
+$$
+\{\overline{A}, B\},\, \{A,\overline{B}\}, \{\overline{A},\overline{B}\}
+$$
+\end{corollary}
+
+\begin{proof}
+由于
+$$
+\begin{array}{ll}
+P(\overline{A}B) &= P(B-AB)=P(B)-P(AB)\\
+&= P(B)-P(A)P(B) = P(B)[1-P(A)]\\
+&= P(\overline{A})P(B).  
+\end{array}
+$$
+同理可得$\{A,\overline{B}\}$. 特别因为$\overline{A}$和$B$独立，马上可以得到
+$$
+P(\overline{A}) = P(\overline{A}B \cup \bar{A}\bar{B}) = P(\overline{A})P(B) + P(\bar{A}\bar{B}). 
+$$
+移项即可得到$P(\bar{A}\bar{B}) = P(\overline{A})P(\overline{B})$. 
+\end{proof}
+
+\begin{definition}
+\rm 推广至$n$个事件$A_1,\cdots,A_n$相互独立，需要$\binom n2 + \binom n3 + \cdots + \binom nn = 2^n - n -1$等式成立，即设任意的$1<k \leq n$，对任意$1 \leq i_1 \leq \cdots \leq i_k \leq n$满足等式
 $$
 P(A_{i_1}\cdots A_{i_k})=P(A_{i_1})\cdots P(A_{i_k}).
 $$
 \end{definition}
 
+\begin{annotation}
+\rm {\color{blue}任意事件两两独立并不能推出它们相互独立}.
+\end{annotation}
 
-
-\newpage
-\subsection{基本性质和运算法则}
-
-
-%https://zhuanlan.zhihu.com/p/78297343 全概率公式和贝叶斯公式的相关lectures
 \begin{proposition}
-\rm 五大概率公式
-\begin{enumerate}
-	\item {\color{red}加法公式} 
-	$$
-	\begin{array}{c}
-	P(A \cup B) = P(A) + P(B) - P(AB);\\
-	P(A \cup B \cup C) = P(A) + P(B) +P(C) -P(AB) - P(AC) -P(BC) {\color{red}+}P(ABC).
-	\end{array}
-	$$
-	\item {\color{red}减法公式} 
-	$$
-	P(A - B) = P(A) - P(AB).
-	$$
-	\item {\color{red}乘法公式} 当$P(A) > 0$时，
-	$$
-	P(AB) = P(A)P(B|A);
-	$$
-	当$P(A_1A_2\cdots A_{n-1}) > 0$时，
-	$$
-	P(A_1A_2\cdots A_n) = P(A_1)P(A_2|A_1)\cdots P(A_n|A_1A_2\cdots A_{n-1}).
-	$$
-	\item {\color{red}全概率公式} 设$B_1,B_2,\cdots,B_n$满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$且$P(B_k) > 0,\; k=1,2,\cdots,n$，则对任意事件有
-	$$
-		P(A) = \sum\limits_{i=1}^n P(B_i)P(A|B_i).
-	$$
-	其中称满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$的$B_1,B_2,\cdots,B_n$为一个{\color{red}完备事件组}. 通常把$P(B_1), P(B_2),\cdots,P(B_n)$叫做{\color{red}先验概率}. {\color{blue}全概率公式的意义在于可以将复杂的事件$A$划分为简单互斥事件$AB_1,AB_2,\cdots,AB_n$，再结乘法公式计算出$A$的概率}.
-	\item {\color{red}贝叶斯公式} 设$B_1,B_2,\cdots,B_n$满足$\bigcup\limits_{i=1}^n B_i = \Omega$，$B_iB_j = \emptyset$且$P(A)>0, P(B_k) > 0,\; k=1,2,\cdots,n$，则
-	$$
-		P(B_j | A) = \frac{P(B_j)P(A|B_j)}{\sum\limits_{i=1}^n P(B_i)P(A|B_i)},\; j = 1,2,\cdots,n.
-	$$
-	贝叶斯公式的意义在于{\color{blue}在事件$A$已经发生的条件下，贝叶斯公式可以用来寻找导致$A$发生各种“原因”$B_i$的概率}. 其中$P(B_j|A)$被称为{\color{red}后验概率}.
-\end{enumerate}
+\rm 若$A,B$是两个相互独立的事件，则
+$$
+P(A-B) = P(A)P(\overline{B}).
+$$
 \end{proposition}
 
 \begin{proof}
-(2) $P(A) = P(AB \cup A\bar{B}) = P(AB)+P(A-B).$
+\rm 
+$$
+P(A-B) = P(A)-P(AB) = P(A)(1-P(B)) = P(A)P(\overline{B}).
+$$
+\end{proof}
 
-(1) $P(A \cup B) = P((A-AB) \cup (B-AB) \cup AB)$, 再根据(2)有
+\begin{proposition}
+\rm 若$A_1,A_2,\cdots,A_n$是$n$个相互独立的事件，则
+$$
+P(A_1 \cup A_2 \cup \cdots \cup A_n) = 1-P(\overline{A}_1)P(\overline{A}_2)\cdots P(\overline{A}_n). 
+$$
+\end{proposition}
+
+\begin{proof}
+由于$\overline{A_1\cup A_2 \cup \cdots \cup A_n} = \overline{A}_1\overline{A}_2\cdots\overline{A}_n$，因此
 $$
 \begin{array}{ll}
-P((A-AB) \cup (B-AB) \cup AB) &= P(A)-P(AB) + P(B) - P(AB) + P(AB) \\
-&= P(A) + P(B) -P(AB).
+P(A_1 \cup A_2 \cup \cdots \cup A_n) &= 1-P(\overline{A}_1\overline{A}_2\cdots\overline{A}_n)\\
+&= 1 - P(\overline{A}_1)P(\overline{A}_2)\cdots P(\overline{A}_n).
 \end{array}
 $$
-{\color{blue} 实际上这里还是要分类讨论一下当$A=B$的时候.}
-
-(3) 条件概率的另一种写法.
-
-(4) $P(A) = P(\bigcup\limits_{i=1}^n AB_i) = \bigcup\limits_{i=1}^n P(AB_i)$，再用(3)替换一下即可.
-
-(5) $P(B_j | A) =  \frac{P(B_jA)}{P(A)}$，用(3)和(4)分别替换分子和分母即可.
 \end{proof}
+
+
 
 \newpage
 \subsection{更深的思考和技巧}
@@ -763,6 +782,26 @@ $$
 \rm 在独立地重复做一系列伯努利试验中，若每次试验成功率为$p(0 < p < 1)$，则在第$k$次试验时才首次试验成功的概率服从几何分布.
 \end{annotation}
 
+\begin{proposition}
+\rm 若$X~B(n,p)$，当$n$固定时，$P\{X=k\}$先随$k$增加而增大，达到某一极值后又逐渐下降，其在$k=\lfloor(n+1)p\rfloor$取得极值. 
+\end{proposition}
+
+\begin{proof}
+\rm 我们来考察
+$$
+\frac{P\{X=k\}}{P\{X=k-1\}} = \frac{C_n^k p}{C_n^{k-1}q} = \frac{(n+1-k)p}{kq} = \frac{(n+1)p-(1-q)k}{kq} = 1+ \frac{(n+1)p - k}{kq}
+$$
+因此
+
+当$k < (n+1)p$时，$P\{X=k\} > P\{X = k-1\}$;
+
+当$k = (n+1)p$时，$P\{X=k\} = P\{X = k-1\}$;
+
+当$k > (n+1)p$时，$P\{X=k\} < P\{X = k-1\}$;
+
+因为$(n+1)p$不一定是整数，所以存在整数$m$，使得$(n+1)p-1 < m \leq (n+1)p$，即当$k = m$时$P\{X=k\}$达到最大值.  
+\end{proof}
+
 \begin{definition}
 \rm 如果随机变量$X$的分布律为
 $$
@@ -799,7 +838,7 @@ $$
 \end{theorem}
 
 \begin{annotation}
-\rm 应用泊松定理来做二项式近似计算要求$n$较大，$p$较少，并且$np$不太大.
+\rm 应用泊松定理来做二项式近似计算要求$n$较大，$p$较少，并且$np$大小适中.
 \end{annotation}
 
 \begin{definition}
