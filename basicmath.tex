@@ -570,8 +570,26 @@ $$
 \subsection{用数列的语言来描述函数极限}
 
 \begin{annotation}
-\rm 在$\mathcal{X}$上任意挑一串收敛于$x_0$的数列$(x_n)$，考虑$(f(x_n))$的收敛情况.
+\rm  将数列可以视为函数$f : n \to a_n$，即自变量为自然数的函数. 则当$n \to \infty$时$f(n)$的极限，就可以直接用函数极限定义来表示.  
 \end{annotation}
+
+\begin{definition}
+\rm 数列极限是函数极限的特殊情形. 
+\end{definition}
+
+\begin{theorem}
+\rm 设定义在区间$\mathcal{X}$上的函数$f(x)$，点$x_0$是其一个聚点. $f(x)$在$x_0$处存在有限极限$A$当且仅当任意选自$\mathcal{X}$上以$x_0$为极限的数列$(x_n)$，其对应函数值的数列$(f(x_n))$极限均存在且等于$A$. {\color{red} 这是一个非常重要的定理，使得我们可以用数列的语言来描述函数极限，因此通常我们选取特殊的数列来描述函数的极限！}
+\end{theorem}
+
+\begin{proof}
+\rm 首先是如何构造一组趋于$x_0$的极限$(x_n)$. 在给定一趋于零的数列${\delta_n}$之后，由$x_0$是$\mathcal{X}$的聚点，那么恒能选出$x = x_n$使得$|x_n - x_0| < \delta_n$，因此$\lim x_n = x_0$. 
+
+\emph{必要性}\ 若$f(x)$在$x_0$存在有限极限$A$. 则对任意的$\varepsilon > 0$，存在$\delta > 0$，使得当$|x-x_0| < \delta$时满足$|f(x)-A| < \varepsilon$. 在充分大$n$时，亦有$|x_n - x_0| < \delta$，因此也有$|f(x_n)-A| < \varepsilon$，即当数列$(f{x_n})$的极限也等于$A$. 
+
+\emph{充分性}\ 若任意选自$\mathcal{X}$上以$x_0$为极限的数列$(x_n)$，其对应函数值的数列$\{f(x_n)\}$极限均存在且等于$A$. 若假设$A$不是$f(x)$在$x_0$处的极限，那么存在$\varepsilon > 0$，使得对任意的$\delta > 0$满足当$|x-x_0| < \delta$时，都有$|f(x)-A| \geq \varepsilon$. 因此取一趋于零的$(\delta_n)$，对任意一$\delta = \delta_n$，我们都可以挑一个$x_n$使得$|x_n' -x_0| < \delta_n$，这样我们就得到的${x_n'}$同样是以$x_0$为极限，但是此刻数列$(f(x_n))$的极限并不等于$A$，因此与前提矛盾. 即$A$是$f(x)$在$x_0$处的极限.  
+\end{proof}
+
+
 
 \subsection{两个重要极限}
 
@@ -742,6 +760,14 @@ $$
 A-\varepsilon < f(x) < A+\varepsilon.
 $$
 这里$\delta$的取值取决于$a$的取值，若$a$是一个有限的数，那么$\delta = a-x'$即可，若$a = +\infty$，则取$\Delta = x'$. 
+\end{proof}
+
+\begin{corollary}
+\rm 若单调增大函数$f(x)$在区域$\mathcal{X}$内变动着. 区域$\mathcal{X}$以大于一切$x$值的数$a$(它可以是有限的数，或者等于$+\infty$)作为聚点，且在这时函数$f(x)$在$\mathcal{X}$上有上界. 那么任意以取自$\mathcal{X}$上以$a$的单调增大数列$(x_n)$，它的极限等于$f(x)$在$a$点处的极限. 
+\end{corollary}
+
+\begin{proof}
+\rm 
 \end{proof}
 
 \subsection{函数收敛的判定方法}
