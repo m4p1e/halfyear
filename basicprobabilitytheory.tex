@@ -260,7 +260,7 @@ $$
 \end{annotation}
 
 \begin{definition}
-\rm 由某个拓扑空间上的一些开集生成的$\sigma$代数成为{\color{red}Borel set}. 特别地，由$\mathcal{R}$上全体的左开右闭(左闭右开)区间构成的集合族所产生的$\sigma$代数成为一维Borel set，记为$\mathscr{F}_1$. 
+\rm 由某个拓扑空间上的一些开集生成的$\sigma$代数称为Borel代数，构成Borel代数的集合称为{\color{red}Borel set}. 特别地，由$\mathcal{R}$上全体的左开右闭(左闭右开)区间构成的集合族所产生的$\sigma$代数中的集合称为一维Borel set，记为$\mathscr{F}_1$. 
 
 若$x,y$表示任意实数，由于
 $$
@@ -667,7 +667,7 @@ $$
 $$
 P\{X=x_k\} = p_k, k=1,2,\cdots,
 $$
-称上式为离散型随机变量$X$的概率分布或者分部律，其中$P$是一个概率函数.
+称上式为离散型随机变量$X$的\redt{概率(质量)分布}(probability mass function)或者分部律，其中$P$是一个概率函数.
 \end{definition}
 
 \begin{proposition}
@@ -1108,13 +1108,184 @@ $$
 
 \subsection{随机变量的函数的分布}
 
+
+\begin{annotation}
+\rm ??? CDF的导数是否等于PDF?
+$$
+F(x)' = f(x)
+$$
+\end{annotation}
+
+\begin{definition}
+\rm $y=f(x)$实际上是一个可测函数. 
+\end{definition}
+
 \begin{theorem}
-\rm 设随机变量$X$具有概率密度$f_X(x)$对任意实数都有定义，又设函数$g(x)$处处可导且恒有$g'(x) > 0$(或恒有$g'(x) < 0$)，则$Y = g(X)$是连续型随机变量，其概率密度为
+\rm 设随机变量$X$具有概率密度$f_X(x)$对任意实数都有定义. 若给定$g(x)$是严格单调的，其反函数$g^{-1}(x)$有\redt{连续导数}(有可能怕破坏$f_X(x)$的连续性？). 则$Y = g(X)$是连续型随机变量，其概率密度为
 $$
-f_Y(y) = 
+f_Y(y) = \left\{ \begin{array}{ll}
+f_X\left[ g^{-1}(y) \right]|\left[g^{-1}(y)\right]'| & \alpha < y < \beta \\
+0 , & \text{otherwise}
+\end{array}\right. ,
 $$
+其中$\alpha = \min(g(-\infty), g(+\infty)),\beta = \max(g(-\infty), g(+\infty))$. 
 \end{theorem}
 
+\begin{proof}
+若$g(x)$是严格单调增大，且其反函数$g^{-1}(x)$是有连续导数. 给定任意实数$a \in (\alpha,\beta)$，那么
+$$
+F_Y(y) = P\{Y \leq a \} = P\{X \leq g^{-1}(x)\} = F_X(g^{-1}(x))
+$$
+对$F_Y(y)$关于$y$求导，即有$f_Y(y) = f_X\left[ g^{-1}(y) \right]\left[g^{-1}(y)\right]'$. 若给定实数$a \leq \alpha$，那么显然有$F_Y(a) = 0$; 当$a \geq \beta$，有$F_Y(a) = 1$.
 
+同理若$g(x)$是严格单调递减，若给定任意实数$a \in (\alpha,\beta)$，那么
+$$
+F_Y(y) = P\{Y \leq a \} = P\{X \geq g^{-1}(a)\} = 1-F_Y(g^{-1}(a)), 
+$$
+对$F_Y(y)$关于$y$求导，即有$f_Y(y) = -f_X\left[ g^{-1}(y) \right]\left[g^{-1}(y)\right]'$. 综合两式便得命题中的概率密度函数. 
+\end{proof}
+
+\begin{corollary}
+\rm 设随机变量$X$具有概率密度$f_X(x)$对任意实数都有定义. 若$g(x)$在不相互重叠的区间$I_1,I_2,\cdots$上逐段严格单调，其反函数分别为$h_1(y),h_2(y),\cdots$，而且$h_1'(y),h_2'(y),\cdots$均为连续函数. 则$Y=g(X)$是连续型随机变量，其概率密度为
+$$
+f_Y(y) = \sum\limits_{i}f_X\left[h_i(y)\right]|h_i'(y)|. 
+$$
+\end{corollary}
+
+
+\newpage
+\section{多维随机变量及其分布}
+
+\subsection{多维分布}
+\begin{definition}
+\rm 若随机变量$X_1(\omega),X_2(\omega),\cdots,X_n(\omega)$定义在同一概率空间$(\Omega,\mathscr{F},P)$上，则称
+$$
+X(\omega) = (X_1(\omega),X_2(\omega),\cdots,X_n(\omega))
+$$
+构成一个\redt{$n$维随机向量}，亦称\redt{$n$维随机变量}.
+\end{definition}
+
+\begin{annotation}
+\rm 等待些许感受
+\begin{center}
+\includegraphics[width=5cm, height=4cm]{images/random_vector.jpg}
+\end{center}
+\end{annotation}
+
+\begin{definition}
+\rm 称$n$元函数
+$$
+F(x_1,x_2,\cdots,x_n) = P(X_1 \leq x_1, X_2 \leq x_2,\cdots, X_n \leq x_n)
+$$
+为$n$维随机变量$X=(X_1,X_2,\cdots,X_n)$的\redt{(联合)分布函数}. 
+\end{definition}
+
+\begin{proposition}
+\rm 多元分布函数的基本性质
+\begin{enumerate}
+	\item 关于每个变元是单调不减;
+	\item $0 \leq F(x_1,x_2,\cdots,x_n) \leq 1$;
+	\item $F(x_1,x_2,\cdots,-\infty,\cdots,x_n) = 0,F(+\infty,+\infty,\cdots,+\infty) = 1$;
+	\item 关于每个变元右连续;
+	\item 对任意$x_1 < x_2, y_1 < y_2$，都有
+	$$
+	F(x_2,y_2)-F(x_1,y_2) - F(x_2,y_1) + F(x_1,y_1) \geq 0.
+	$$
+	上述实际上就是概率$P\{x_1 < X \leq X_2, y_1 < Y \leq y_2\}$.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{definition}
+\rm 如果每一个$X_i$都是一个离散型随机变量，$i = 1,\cdots, n$，则称
+$X = (X_1,\cdots, X_n)$为一$n$维离散随机变量. 设$X_i$的所有
+可能取值 (有限或可数个) 为$\{a_{i1}, a_{i2}, \cdots \}, i = 1,\cdots, n$，则称
+$$
+p(j_1,j_2,\cdots,j_n) = P(X_1 = a_{1j_1}, X_2 = a_{2j_2},\cdots,X_n=a_{nj_n}),\, j_1,\cdots,j_n = 1,2,\cdots
+$$
+为$n$维离散型随机变量$X$的\redt{概率函数}或者\redt{分布律}. 
+\end{definition}
+
+\begin{proposition}
+\rm $n$维离散型随机变量的概率函数具有如下性质
+\begin{enumerate}
+	\item $p(j_1,j_2,\cdots,j_n) \geq 0, \, j_i = 1,2,\cdots ,\, i=1,2,\cdots,n$;
+	\item $\sum\limits_{j_1,\cdots,j_n} p(j_1,\cdots,j_n)=1$.
+\end{enumerate}
+\end{proposition}
+
+\begin{example}
+\rm 多项分布
+\end{example}
+
+\begin{definition}
+\rm 若对$n$维随机变量$X = (X_1,\cdots, X_n)$的分布函数存在$\mathbb{R}^n$上的非负函数$f(x_1,x_2,\cdots,x_n)$，对任意的实数$x_1,x_2,\cdots,x_n$，都有
+$$
+F(x_1,x_2,\cdots,x_n) = \int_{-\infty}^{x_1}\int_{-\infty}^{x_2}\cdots\int_{-\infty}^{x_n}f(v,u,\cdots,w)dv1du\cdots dw.
+$$
+则称$f(x)$为$X$的\redt{概率密度函数}. 
+\end{definition}
+
+\begin{example}
+\rm
+\end{example}
+
+\subsection{边缘分布}
+
+\begin{definition}
+\rm 多维随机变量中，只包含其中部分变量的概率分布被称为\redt{边缘分布}.
+\end{definition}
+
+\begin{definition}
+\rm 二维随机变量$(X,Y)$的分布函数为$F(x,y)$，分别称$F_X(x)=P\{X \leq x\}$和$F_Y(y) = P\{Y \leq x\}$为$(X,Y)$的一维\redt{边缘(累积)分布函数}. 即有下述等式成立
+$$
+\begin{array}{ll}
+F_X(x) = P\{X \leq x\} = P\{X \leq x,  -\infty < y < +\infty\} = F(x,+\infty),\\
+F_Y(y) = P\{Y \leq y\} = P\{-\infty < x < +\infty, Y \leq y\} = F(+\infty,y)
+\end{array}
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 给定二维离散型随机变量$(X,Y)$，$(X,Y)$的可能取值为$(x_i,y_j), i,j =1,2,\cdots$，$(X,Y)$的概率质量函数为$P\{X = x_i,Y = y_j\}=p_{ij}$. 则关于$X$和$Y$的一维\redt{边缘概率质量函数}或\redt{边缘分布律}分别为
+$$
+\begin{array}{ll}
+p_X(x_i) = P(X=x_i) = \sum\limits_{j=1}^{+\infty}p_{ij} \\
+p_Y(y_j) = P(Y=y_j) = \sum\limits_{i=1}^{+\infty}p_{ij}  
+\end{array}
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 给定二维连续型随机变量$(X,Y)$的概率密度函数为$f(x,y)$. 则关于$X$和$Y$的一维\redt{边缘概率密度函数}分别为
+$$
+\begin{array}{ll}
+f_X(x) = \int_{-\infty}^{+\infty}f(x,y)dy \\
+f_Y(y) = \int_{-\infty}^{+\infty}f(x,y)dx
+\end{array}
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 边缘分布律不能决定联合分布律; 边缘概率密度不能决定联合概率密度. 
+\end{proposition}
+
+\subsection{条件分布和随机变量的独立性}
+
+\begin{definition}
+\rm 设$(X,Y)$为二维离散型随机变量，其全部的可能取值为$(x_i,y_j), i,j=1,2,\cdots$. $(X,Y)$的联合分布律为$P\{X=x_i,Y=y_j\}=p_{ij}$ . 若给定事件$\{Y=y_j\}$，其概率$P\{Y=y_j\} > 0$，则称
+$$
+P\{X=x_i | Y=y_i\} = \frac{P\{X=x_i,Y=y_j\}}{P\{Y=y_j\}} = \frac{p_{ij}}{\sum\limits_{i=1}^{+\infty} p_ij}, \, i=1,2,\cdots 
+$$
+为在给定$Y=y_j$的条件下$X$的\redt{条件分布律}(概率函数). 类似的，若$P\{X_i\}>0$，则称
+$$
+P(Y=y_k|X=x_i) = \frac{P\{X=x_i,Y=y_j\}}{P\{X=x_i\}} = \frac{p_{ij}}{\sum\limits_{j=1}^{+\infty} p_ij}, \, j=1,2,\cdots
+$$
+为在给定条件$X=x_i$下$Y$的\redt{条件分布律}. 
+\end{definition}
+
+\begin{definition}
+\rm 设$(X,Y)$有概率密度$f(x,y)$，我们考虑在给定$y \leq X \leq y+\varepsilon$的条件下$X$
+\end{definition}
 
 \end{document}
