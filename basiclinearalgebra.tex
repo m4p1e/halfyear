@@ -74,6 +74,10 @@
 \newcommand{\mbf}[1]{\bm{#1}} 
 \newcommand{\rank}[1]{\text{rank}(#1)} % rank
 \newcommand\inp[2]{\langle #1, #2 \rangle} %inner product
+
+\newcommand{\redt}[1]{\textcolor{red}{#1}}
+\newcommand{\bluet}[1]{\textcolor{blue}{#1}}
+
 \begin{document}
 \title{考研线代}
 \author{枫聆}
@@ -327,6 +331,10 @@ $$
 其中$|\mbf{B}_1|$就是将其系数矩阵的第2列换成常数项，这也是后面会提到{\color{red}克拉默法则}的一个特殊情况.
 \end{annotation}
 
+\begin{example}
+\rm 3阶行列式的记忆法
+\end{example}
+
 \begin{definition}
 \rm {\color{red} (逆序数的概率)} 若给定一个排列$j_1j_2\cdots j_n$，取其中任意两个不同的数$j_p$和$j_q$，使得$1 \leq p< q <n$. 若$j_p > j_q$，就称$j_p$和$j_q$构成一个{\color{red}逆序}. 一个排列中所有逆序的总和称为这个排列的{\color{red}逆序数}. 特别地，如果一个排列的逆序数是偶数，则称这个排列为{\color{red}偶排列}，否则称为{\color{red}奇排列}.
 \end{definition}
@@ -457,7 +465,7 @@ $$
 (-1)^{\tau(123\cdots n)} = (-1)^{s} (-1)^{\tau(p_1p_2\cdots p_n)}.
 \end{array}
 $$ 
-等式两边相差我们就可以得到$(-1)^{\tau(q_1q_2\cdots q_n)} = (-1)^{\tau(p_1p_2\cdots p_3)}$，所以经过变换之后确实找到了$|\mathbf{A}|$代数和中的一项，实际上这是lemma \ref{det: nixu3} 中的一个特殊情况. 反之任取$|\mathbf{A}|$代数和中的一项$\sum\limits_{p_1,p_2,\cdots,p_n}(-1)^{\tau(p_1p_2\cdots p_n)}a_{1p_1}a_{2p_2}\cdots a_{np_n}$，也可以在$|A^T|$代数和中找到一项$\sum\limits_{q_1,q_2,\cdots,q_n}(-1)^{\tau(q_1q_2\cdots q_n)}a_{q_11}a_{q_22}\cdots a_{q_nn}$与之对应. {\color{blue}这个性质更本质的意义是行列式中的行和列具有同等的地位}.
+等式两边相乘我们就可以得到$(-1)^{\tau(q_1q_2\cdots q_n)} = (-1)^{\tau(p_1p_2\cdots p_3)}$，所以经过变换之后确实找到了$|\mathbf{A}|$代数和中的一项，实际上这是lemma \ref{det: nixu3} 中的一个特殊情况. 反之任取$|\mathbf{A}|$代数和中的一项$\sum\limits_{p_1,p_2,\cdots,p_n}(-1)^{\tau(p_1p_2\cdots p_n)}a_{1p_1}a_{2p_2}\cdots a_{np_n}$，也可以在$|A^T|$代数和中找到一项$\sum\limits_{q_1,q_2,\cdots,q_n}(-1)^{\tau(q_1q_2\cdots q_n)}a_{q_11}a_{q_22}\cdots a_{q_nn}$与之对应. {\color{blue}这个性质更本质的意义是行列式中的行和列具有同等的地位}.
 
 
 {\color{red}(2)} 如果我们交换第$i$和$k$行得到的矩阵我们记为$A_2$，如下
@@ -484,7 +492,7 @@ $$
 那么
 $$
 \begin{array}{ll}
-\det(\mathbf{A}_2) &=  \sum\limits_{j_1,j_2,\cdots,j_n} (-1)^{\tau(j_1j_2\cdots j_n)} b_{1j_1}b_{1j_1}b_{2j_1}\cdots b_{nj_n}\\
+\det(\mathbf{A}_2) &=  \sum\limits_{j_1,j_2,\cdots,j_n} (-1)^{\tau(j_1j_2\cdots j_n)} b_{1j_1}b_{2j_1}\cdots b_{nj_n}\\
 &= \sum\limits_{j_1,j_2,\cdots,j_n} (-1)^{\tau(j_1j_2\cdots {\color{red}j_i} \cdots {\color{red}j_k}\cdots j_n)} a_{1j_1}a_{2j_2}\cdots a_{kj_{k}}\cdots a_{ij_{i}} \cdots a_{nj_n} \\
 &= \sum\limits_{j_1,j_2,\cdots,j_n} (-1)^{\tau(j_1j_2\cdots {\color{red}j_k} \cdots {\color{red}j_i}\cdots j_n)+1} a_{1j_1}a_{2j_2}\cdots a_{ij_{i}}\cdots a_{kj_{k}} \cdots a_{nj_n}\; ({\color{blue}\text{性质1}})\\
 &= (-1)\sum\limits_{j_1,j_2,\cdots,j_n} (-1)^{\tau(j_1j_2\cdots {\color{red}j_k} \cdots {\color{red}j_i}\cdots j_n)} a_{1j_1}a_{2j_2}\cdots a_{ij_{i}}\cdots a_{kj_{k}} \cdots a_{nj_n}
@@ -696,7 +704,7 @@ a_{n1} & a_{n2} & \cdots & a_{nn} \\
 $$
 及其常数项为$\begin{pmatrix}b_1 \\ b_2 \\ \vdots \\b_n \end{pmatrix}$. 若$|\mbf{A}| \neq 0$，那么此线性方程组有唯一解，解可以为表示为
 $$
-x_1 = \frac{|\mbf{B}_1|}{|A|},x_2 = \frac{|\mbf{B}_2|}{|A|},\cdots, x_n = \frac{|\mbf{B_n}|}{|A|},
+x_1 = \frac{|\mbf{B}_1|}{|\mbf{A}|},x_2 = \frac{|\mbf{B}_2|}{\mbf{A}},\cdots, x_n = \frac{|\mbf{B_n}|}{\mbf{A}},
 $$
 其中$|\mbf{B}_i|$是把行列式$|\mbf{A}|$第$j$列换成方程常数项之后得到的行列式，即
 $$
@@ -1120,11 +1128,11 @@ $$
 $$
 a_1\mbf{v}_1 + a_2\mbf{v}_2 + \cdots + a_n\mbf{v}_n
 $$
-为$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$的一个线性组合. 取定$v \in V$，若存在$c_1,c_2,\cdots,c_n$使得
+为$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$的一个\redt{线性组合}. 取定$v \in V$，若存在$c_1,c_2,\cdots,c_n$使得
 $$
 v = c_1\mbf{v}_1 + c_2\mbf{v}_2 + \cdots + c_n\mbf{v}_n,
 $$
-则称$v$可以由$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$线性表出. 
+则称$v$可以由$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$\redt{线性表出}. 
 \end{definition}
 
 
@@ -1177,7 +1185,7 @@ $$
 $$
 \beta \overset{?}{\in} \text{span}({\alpha}_1,{\alpha}_2,\cdots,{\alpha}_n) 
 $$
-其中$\text{span}({\alpha}_1,{\alpha}_2,\cdots,{\alpha}_n)$是$F^{m,1}$的一个子空间，自然地后面需要子空间的一些结构和性质.
+其中$\text{span}({\alpha}_1,{\alpha}_2,\cdots,{\alpha}_n)$是$F^{m,1}$的一个子空间. \bluet{自然地，我们需要子空间的一些结构和性质}.
 \end{annotation}
 
 \subsection{线性相关和线性无关}
@@ -1187,7 +1195,7 @@ $$
 $$
 a_1\mbf{v}_1 + a_2\mbf{v}_2 + \cdots + a_n\mbf{v}_n = \mbf{0},
 $$
-则称$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$是线性相关的. 反之只有在$a_1, a_2, \cdots, a_n$均为$0$上式成立，则称$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$是线性无关的.
+则称$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$是\redt{线性相关}的. 反之只有在$a_1, a_2, \cdots, a_n$均为$0$上式成立，则称$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$是\redt{线性无关}的.
 \end{definition}
 
 \newpage
@@ -1201,7 +1209,7 @@ $$
 	\item {\color{red} 行列式} 以$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$为行(列)向量组成的矩阵的行列式等于零;
 	\item {\color{red} 线性表出任意向量} 若取定另外一个向量$v \in V$可以被$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$线性表出，则表出方式有无穷种.
 	\item {\color{red} 向量组与部分组的关系} 若取定另外一个向量$v \in V$，则$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n, v$也是线性相关.
-	\item {\color{red} 缩短向量组} 若将$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$中个每个向量都去掉相同位置的$m$个分量，则得到的新的向量组也是线性相关.
+	\item {\color{red} 缩短向量组} 若将$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$中个每个向量都去掉相同位置的$m$个分量，则得到的新的向量组也是线性相关. \bluet{相对于缩小了原来这$n$个向量生成的向量空间维数，$n$个向量在较大维数的向量空间是线性相关的，那么在更小维数的向量空间一定还是线性相关的}.
 \end{enumerate}
 \end{proposition}
 
@@ -1226,7 +1234,7 @@ $$
 \subsection{向量组的秩} 
 
 \begin{definition}
-\rm 向量组的极大线性无关组中所含向量的个数被称为该向量组的秩. 全体由零向量组成的向量组的值规定为$0$.
+\rm 向量组的极大线性无关组中所含向量的个数被称为该\redt{向量组的秩}. 全体由零向量组成的向量组的值规定为$0$.
 \end{definition}
 
 \begin{lemma}\label{vectors-rank: lemma1}
@@ -1234,11 +1242,11 @@ $$
 \end{lemma}
 
 \begin{proof}
-如何优雅的证明这个lemma? 如果$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$可以由$\mbf{v}'_1,\mbf{v}'_2,\cdots,\mbf{v}'_m$线性表出，那么
+如何\bluet{优雅}的证明这个lemma? 如果$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$可以由$\mbf{v}'_1,\mbf{v}'_2,\cdots,\mbf{v}'_m$线性表出，那么
 $$
 \text{span}(\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n) \subseteq \text{span}(\mbf{v}'_1,\mbf{v}'_2,\cdots,\mbf{v}'_m)
 $$
-于是$\dim \text{span}(\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n) \leq \dim \text{span}(\mbf{v}'_1,\mbf{v}'_2,\cdots,\mbf{v}'_m) \leq m$. 所以当$n > m$时，$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$是线性相关的.
+于是$\dim \text{span}(\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n) \leq \dim \text{span}(\mbf{v}'_1,\mbf{v}'_2,\cdots,\mbf{v}'_m) \leq m$. 因此当$n > m$时，$\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n$是线性相关的.
 \end{proof}
 
 \begin{lemma}

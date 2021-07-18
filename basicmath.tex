@@ -77,7 +77,7 @@
 \end{theorem}
 
 \begin{proof}
-{\color{blue} (方法1: 构造$f(x)$非空子区间$[a,x]$，求其上确界)} 假设$B$是使得$f(x)$在形如闭区间$[a,x]$上有界的$x$构成的集合，其中$x \in [a,b]$. 显然$a \in B$，所以$B$非空. 若$e \in B$且$e > a$，那么$a$和$e$之间的点都是在$B$里面的，所以实际上$B$是一个闭区间. 我们再考虑$B$的上确界，根据$x$的取法，有$x \leq b$，如果我们能证明它的上确界在$b$处取得，那么整个命题就得证. 现在假设$\sup(B) < b$, 由于$B$是一个闭区间，所以$\sup(B) \in B$. 再由于$f$是连续的，那么在充分靠近$\sup(B)$的地方，即$s -\sup(B) < \delta$且$s > \sup(B)$，有$|f(s) - f(\sup(B))| < \varepsilon$，那么$f(x)$在$[\sup(B),s]$s上也是有界，这是和$\sup(B)$是$B$的上确界矛盾的，遂原命题得证.
+{\color{blue} (方法1: 构造$f(x)$非空子区间$[a,x]$，求其上确界)} 假设$B$是使得$f(x)$在形如闭区间$[a,x]$上有界的$x$构成的集合，其中$x \in [a,b]$. 显然$a \in B$，所以$B$非空. 若$e \in B$且$e > a$，那么$a$和$e$之间的点都是在$B$里面的，所以实际上$B$是一个闭区间. 我们再考虑$B$的上确界，根据$x$的取法，有$x \leq b$，如果我们能证明它的上确界在$b$处取得，那么整个命题就得证. 现在假设$\sup(B) < b$, 由于$B$是一个闭区间，所以$\sup(B) \in B$. 再由于$f$是连续的，那么在充分靠近$\sup(B)$的地方，即$ 0 < s -\sup(B) < \delta$，有$|f(s) - f(\sup(B))| < \varepsilon$，那么$f(x)$在区间$[\sup(B),s]$上也是有界，这是和$\sup(B)$是$B$的上确界矛盾的，遂原命题得证.
 
 {\color{blue} (方法2: 构造一个严格递增的发散数列，其所有子列收敛造矛盾，即Bolzano-Weierstrass定理)}.
 \end{proof}
@@ -333,7 +333,7 @@ $$
 \subsection{数列无穷小和无穷大}
 
 \begin{definition}
-\rm 若给定数列当$n \rightarrow \infty$的极限为零，则称此数列为$n \rightarrow \infty$的{\color{red}无穷小量}. 同理若数列当$n \rightarrow \infty $的极限为无穷大，则称此数列为$n \rightarrow \infty$的{\color{red}无穷大量}.
+\rm 若给定数列当$n \rightarrow \infty$的极限为零，则称此数列为$n \rightarrow \infty$时的{\color{red}无穷小量}. 同理若数列当$n \rightarrow \infty $的极限为无穷大，则称此数列为$n \rightarrow \infty$时的{\color{red}无穷大量}.
 \end{definition}
 
 \begin{proposition}
@@ -429,7 +429,7 @@ $$
 \subsection{单调数列的极限}
 
 \begin{theorem}
-\rm 给定单调增加的数列$(x_n)$，若它有上界
+\rm {\color{red}(单调有界必有极限)} 给定单调增加的数列$(x_n)$，若它有上界
 $$
 x_n \leq M,\; n = 1,2,\cdots
 $$
@@ -450,7 +450,7 @@ $$
 \subsection{收敛原理}
 
 \begin{theorem}
-\rm {\color{red} (柯西收敛原理)}数列$(x_n)$有有限极限的必要且充分条件是: 对于任意的数$\varepsilon > 0$，总存在着整数$N$，使得当$n > N$和$n' > N$时有下面不等式成立
+\rm {\color{red} (柯西收敛原理)} 数列$(x_n)$有有限极限的必要且充分条件是: 对于任意的数$\varepsilon > 0$，总存在着整数$N$，使得当$n > N$和$n' > N$时有下面不等式成立
 $$
 |x_n - x_{n'}| < \varepsilon.
 $$
@@ -470,11 +470,11 @@ $$
 
 在全体实数域下构造一个划分. 对于任何实数$\alpha$，若$x_n$从某项其满足不等式\[x_n > \alpha,\]则取这种实数$\alpha$归入下组$A$，其余的(即不落在$A$里面的)一起实数归入上组$A'$.
 
-首先我们来说明这样确实产生了一个实数上的划分. 由前提条件，对于任意数$\varepsilon>0$及其对应的$N$. 若$n > N$及$n' > N$，则下面不等式成立\[x_{n'} - \varepsilon < x_n < x_{n'}+\varepsilon.\]现在我们可以看到每一个数$x_{n'} - \varepsilon$都是小于$x_n$的，所以它归入下组$A$. 另一方面$x_{n'}+\varepsilon$都大于$x_n$，所以$x_{n'}+\varepsilon$放不进去$A$，那它只能归入$A'$了,所以$A$和$A'$都是非空的. 我们的划分方式对于每一个数$\alpha$和确定序列$x_n$，要么它属于$A$或者属于$A'$. 同时$A$中实数都小于$A'$的实数. 如果$\alpha > \alpha', \alpha \in A , \alpha' \in A'$，则$x_n$从某一项其也都大于$a'$，这样就产生矛盾了. 因此的确产生了一个实数上的划分.
+首先我们来说明这样确实产生了一个实数上的划分. 由前提条件，对于任意数$\varepsilon>0$及其对应的$N$. 若$n > N$及$n' > N$，则下面不等式成立\[x_{n'} - \varepsilon < x_n < x_{n'}+\varepsilon.\]现在我们可以看到每一个数$x_{n'} - \varepsilon$都是小于$x_n$的，所以它归入下组$A$. 另一方面$x_{n'}+\varepsilon$都大于$x_n$，所以$x_{n'}+\varepsilon$放不进去$A$，那它只能归入$A'$了,所以$A$和$A'$都是非空的. 我们的划分方式对于每一个数$\alpha$和确定序列$x_n$，要么它属于$A$或者属于$A'$. 同时$A$中实数都小于$A'$的实数. 可以来验证一下，若$\alpha > \alpha', \alpha \in A , \alpha' \in A'$，则$x_n$从某一项其也都大于$\alpha$那么显然也是大于$\alpha'$，这样就产生矛盾了. 因此的确产生了一个实数上的划分.
 
 根据戴德金基本定理，有实数$a$存在它是$A$和$A'$的界数，即\[\alpha \leq a \leq \alpha', \; \alpha \in A,\alpha' \in A'.\]我们注意到当$n > N$时，$x_{n'} - \varepsilon$是一个$\alpha$,而$x_{n'} +\varepsilon$是一个$\alpha'$. 所以我们有\[x_{n'} - \varepsilon \leq a \leq x_{n'} + \varepsilon.\]即$|x_{n'}-a| \leq \varepsilon$，所以$\lim x_n = a$.
 
-{\color{blue} 若是不用实数划分的手法，也可以构造$a_n = \inf\limits_{k \geq n} x_k$和$b_n=\sup\limits_{k \geq n}$，证明$\lim a_n = \lim b_n = c$，再用一下夹逼准则$a_n \leq x_n \leq b_n$.}
+{\color{blue} 若是不用实数划分的手法，也可以构造$a_n = \inf\limits_{k \geq n} x_k$和$b_n=\sup\limits_{k \geq n} x_k$，证明$\lim a_n = \lim b_n = c$，再用一下夹逼准则$a_n \leq x_n \leq b_n$.}
 \end{proof}
 
 \subsection{上下极限}
@@ -642,7 +642,7 @@ $$
 	$$
 	\lim\limits_{x \rightarrow 0} \frac{\log_a(1+x)}{x} = \log_a e.
 	$$
-	\hints\ 直接用对数函数的性质，把$x$放到对数函数里面就行，对数函数里面的极限是$e$.当$a=e$时极限的结果就是很漂亮的$1$.
+	\hints\ 直接用对数函数的性质，把分母$x$放到对数函数里面就行，对数函数里面的极限是$e$.当$a=e$时极限的结果就是很漂亮的$1$.
 	\item $\frac{0}{0}$
 	$$
 	\lim\limits_{x \rightarrow 0} \frac{a^x - 1}{x} = \ln a
@@ -681,6 +681,7 @@ $$
 	$$
 	\lim\limits_{x \rightarrow 0} \sqrt[m]{1+x} = 1.
 	$$
+	\hints\ 函数的连续性.
 \end{enumerate}
 \end{proposition}
 

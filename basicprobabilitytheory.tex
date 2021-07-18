@@ -1221,7 +1221,7 @@ $$
 \begin{definition}
 \rm 若对$n$维随机变量$X = (X_1,\cdots, X_n)$的分布函数存在$\mathbb{R}^n$上的非负函数$f(x_1,x_2,\cdots,x_n)$，对任意的实数$x_1,x_2,\cdots,x_n$，都有
 $$
-F(x_1,x_2,\cdots,x_n) = \int_{-\infty}^{x_1}\int_{-\infty}^{x_2}\cdots\int_{-\infty}^{x_n}f(v,u,\cdots,w)dv1du\cdots dw.
+F(x_1,x_2,\cdots,x_n) = \int_{-\infty}^{x_1}\int_{-\infty}^{x_2}\cdots\int_{-\infty}^{x_n}f(v,u,\cdots,w)dvdu\cdots dw.
 $$
 则称$f(x)$为$X$的\redt{概率密度函数}. 
 \end{definition}
@@ -1285,7 +1285,24 @@ $$
 \end{definition}
 
 \begin{definition}
-\rm 设$(X,Y)$有概率密度$f(x,y)$，我们考虑在给定$y \leq X \leq y+\varepsilon$的条件下$X$
+\rm 设$(X,Y)$有概率密度$f(x,y)$和分布函数$F(x)$，则
+$$
+\begin{array}{ll}
+P\{X \leq x|Y = y\} &= \lim\limits_{\Delta y \to 0}P\{X \leq x|y \leq Y \leq y+\Delta y\} \\ \\
+&= \frac{P\{X \leq x, y \leq Y \leq y+\Delta y\}}{P\{y \leq Y \leq y+\Delta y\}} \\ \\
+&= \frac{F(x,y+\Delta y)-F(x,y)}{F(+\infty,y+\Delta y)-F(+\infty, y)} \\ \\
+&= \frac{\int_{-\infty}^{x}\left[\int_{y}^{y +\Delta y}f(v,u)du\right]dv}{\int^{+\infty}_{-\infty} \left[\int_{y}^{y + \Delta y} f(v,u)du\right]dv} ~~ \text{分子分母除以$\Delta y$} \\ \\
+&= \frac{\int_{-\infty}^{x}f(v,y)dv}{\int^{+\infty}_{-\infty} f(v,y)dv}
+\end{array}.
+$$
+于是$P\{X \leq x|Y = y\}= \frac{\int_{-\infty}^{x}f(v,y)dv}{f_Y(y)} = \int_{-\infty}^{x}\frac{f(v,y)}{f_Y(y)}dv$. 因此在给定$Y=y$的条件下，$X$的\redt{条件概率分布}为
+$$
+f_{X|Y}(x|y) = \frac{f(x,y)}{f_Y(y)}, \, f_Y(y) > 0.
+$$
+类似地，在给定$X=x$的条件下，$Y$的\redt{条件概率分布}为
+$$
+f_{Y|X}(y|x) = \frac{f(x,y)}{f_X(x)}, \, f_X(x) > 0.
+$$
 \end{definition}
 
 \end{document}
