@@ -577,7 +577,7 @@ $$
 \rm 数列极限是函数极限的特殊情形. 
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{func-limit: Heine}
 \rm 设定义在区间$\mathcal{X}$上的函数$f(x)$，点$x_0$是其一个聚点. $f(x)$在$x_0$处存在有限极限$A$当且仅当任意选自$\mathcal{X}$上以$x_0$为极限的数列$(x_n)$，其对应函数值的数列$(f(x_n))$极限均存在且等于$A$. {\color{red} 这是一个非常重要的定理，使得我们可以用数列的语言来描述函数极限，因此通常我们选取特殊的数列来描述函数的极限！}
 \end{theorem}
 
@@ -952,19 +952,23 @@ $$
 \subsection{函数连续性在计算极限时的应用}
 
 \begin{proposition}
-\rm {\color{red} (推进极限符号)} 若函数$f(x)$在$x = x_0$处连续，则
+\rm {\color{red} (推进极限符号)} 若函数$f(x)$在$\mathbb{R}$上连续，则
 $$
 \lim\limits_{x \rightarrow x_0} f(g(x)) = f(\lim\limits_{x \rightarrow x_0}g(x)),
 $$
-只需要极限$\lim\limits_{x \rightarrow x_0}g(x) = x_0$.
+只需要极限$\lim\limits_{x \rightarrow x_0}g(x)$存在.
 \end{proposition}
 
 \begin{proof}
-\rm $f(x)$在$x_0$处连续当且仅当
+\rm 若$\lim\limits_{x \rightarrow x_0}g(x) = t$，由\ref{func-limit: Heine}，可知
 $$
-\lim\limits_{x \rightarrow x_0}f(x) = f(x_0). 
+\lim\limits_{x \rightarrow x_0}g(x) = \lim\limits_{n \to \infty} g(a_n) = t,
 $$
-若$\lim\limits_{x \rightarrow x_0}g(x) = x_0$，那么直接可将$\lim\limits_{x \rightarrow x_0}g(x)$替换$x_0$. 
+其中$\lim\limits_{n \to \infty}a_n = x_0$. $f(x)$在$t$连续，于是
+$$
+\lim\limits_{x \rightarrow t} f(x) = \lim\limits_{n \to \infty} f(g(a_n)) = f(\lim\limits_{n \to \infty}g(a_n)) = f(\lim\limits_{x \rightarrow x_0}g(x)).
+$$
+由于$(a_n)$是任意，那么实际上式就保证了$\lim\limits_{x \rightarrow x_0}(f \circ g) (x)$极限存在，且$\lim\limits_{n \to \infty} f(g(a_n)) = \lim\limits_{x \rightarrow 0}(f \circ g) (x)$. 综上证闭.
 \end{proof}
 
 \begin{annotation}
@@ -982,7 +986,7 @@ $$
 \begin{theorem}
 \rm 若函数$f(x)$和$g(x)$都在区间$\mathcal{X}$上变动着，且都在点$x_0$处连续，则函数
 $$
-f(x) \pm g(x),\; f(x)\cdots g(x), \; \frac{f(x)}{g(x)}~(g(x_0) \neq 0)
+f(x) \pm g(x),\; f(x)\cdot g(x), \; \frac{f(x)}{g(x)}~(g(x_0) \neq 0)
 $$
 也在都$x_0$处连续.
 \end{theorem}

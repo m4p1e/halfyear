@@ -1322,11 +1322,11 @@ P\{X \leq x|Y = y\} &= \lim\limits_{\Delta y \to 0}P\{X \leq x|y \leq Y \leq y+\
 &= \frac{\int_{-\infty}^{x}f(v,y)dv}{\int^{+\infty}_{-\infty} f(v,y)dv}
 \end{array}.
 $$
-于是$P\{X \leq x|Y = y\}= \frac{\int_{-\infty}^{x}f(v,y)dv}{f_Y(y)} = \int_{-\infty}^{x}\frac{f(v,y)}{f_Y(y)}dv$. 因此在给定$Y=y$的条件下，$X$的\redt{条件概率分布}为
+于是$P\{X \leq x|Y = y\}= \frac{\int_{-\infty}^{x}f(v,y)dv}{f_Y(y)} = \int_{-\infty}^{x}\frac{f(v,y)}{f_Y(y)}dv$. 因此在给定$Y=y$的条件下，$X$的\redt{条件概率密}为
 $$
 f_{X|Y}(x|y) = \frac{f(x,y)}{f_Y(y)}, \, f_Y(y) > 0.
 $$
-类似地，在给定$X=x$的条件下，$Y$的\redt{条件概率分布}为
+类似地，在给定$X=x$的条件下，$Y$的\redt{条件概率密度}为
 $$
 f_{Y|X}(y|x) = \frac{f(x,y)}{f_X(x)}, \, f_X(x) > 0.
 $$
@@ -1377,5 +1377,121 @@ $$
 \end{proposition}
 
 
+\section{随机变量的数字特征}
+
+\subsection{数学期望}
+
+\begin{definition}
+\rm 设$X$为一离散型随机变量，其分布律为
+$$
+P\{X=x_i\} = p_i, i= 1,2,\cdots.
+$$
+如果级数$\sum\limits_{i=1}^{+\infty}x_ip_i$绝对收敛，则称此级数为随机变量$X$的\redt{数学期望}，记做$E(X)$，即$E(x) = \sum\limits_{i=1}^{+\infty}x_ip_i$. 若$\sum\limits_{i=1}^{+\infty}x_ip_i$发散，则称$X$的数学期望不存在. 
+\end{definition}
+
+\begin{definition}
+\rm 如果连续型随机变量$X$具有概率密度函数为$f(x)$，若积分
+$$
+\int_{-\infty}^{+\infty} xf(x)dx
+$$
+绝对收敛，则称此积分为随机变量$X$的\redt{数学期望}，记为$E(x)$，即
+$$
+E(x) = \int_{-\infty}^{+\infty} xf(x)dx. 
+$$
+\end{definition}
+
+\begin{definition}
+\rm 设$X$为一随机变量，其分布函数为$F(x)$，如果
+$$
+\int_{-\infty}^{+\infty} |x|dF(x)
+$$
+收敛，则称$\int_{-\infty}^{+\infty} xdF(x)$为随机变量$X$的\redt{数学期望}，记为$E(X)$. 
+\end{definition}
+
+\begin{proposition}
+\rm 给定随机变量$X$与$Y$，它们数学期望都存在分布为$E(X)$与$E(Y)$存在则有性质如下
+\begin{enumerate}
+	\item 若$X$是一常数$c$，则$E(c) = c$;
+	\item 任意给定常数$c$，则$E(cX) = cE(X)$;
+	\item $E(X\pm Y) = E(X)\pm E(Y)$;
+	\item 若$X \geq 0$，则$E(X) \geq 0$;
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\bluet{(3)} 若二维随机变量$(X,Y)$的概率密度为$f(x,y)$，其边缘的概率密度分布为$f_X(x),f_Y(y)$，则
+$$
+\begin{array}{ll}
+E(X+Y)&=\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}(x+y)f(x,y)dxdy \\
+&= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}xf(x,y)dydx + \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}yf(x,y)dxdy \\
+&= E(X) + E(Y).
+\end{array}
+$$
+\end{proof}
+
+\begin{proposition}
+\rm 若随机变量$X$和$Y$相互独立，且它们的数学期望均存在. 则
+$$
+E(XY)=E(X)E(Y).
+$$
+\end{proposition}
+
+\begin{proof}
+\rm 设二维随机变量$(X,Y)$的概率密度为$f(x,y)$，其边缘的概率分布为$f_X(x),f_Y(y)$，则
+$$
+\begin{array}{ll}
+E(XY) &= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty} xyf(x,y)dxdy \\
+&= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty} xyf_X(x)f_Y(y)dxdy \\
+&= \int_{-\infty}^{+\infty}yf_Y(y)\left[\int_{-\infty}^{+\infty}xf_X(x)dx\right]dy\\
+&=E(X)E(Y).
+\end{array}
+$$
+\end{proof}
+
+\subsection{方差、协方差和矩}
+
+\begin{definition}
+\rm 设$X$是一个随机变量，若$E\{\left[X-E(X)\right]^2\}$存在，则称$E\{\left[X-E(X)\right]^2\}$为$X$的\redt{方差}，记为$D(X)$或者$\text{Var}(D)$，即
+$$
+D(X) = \text{Var}(D) = E\{\left[X-E(X)\right]^2\}.
+$$
+称$\sqrt{D(X)}$为\redt{标准差}或者\redt{均方差}，记为$\sigma(X)$. 
+\end{definition}
+
+\begin{definition}
+\rm  对离散型随机变量$X$有
+$$
+D(X) = \sum\limits_{i = 0}^{+\infty} \left[ x_i - E(X) \right]^2 p_i.
+$$
+对连续型随机变量$X$有
+$$
+D(X) = \int_{-\infty}^{+\infty}\left[x-E(X)\right]^2dx.
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 
+$$
+D(X)= E(X^2) - E^2(X). 
+$$
+因此有$D(X) \leq E(X^2)$和$E(X^2) \geq E^2(X)$.
+\end{proposition}
+
+
+\begin{proposition}
+\rm 给定随机变量$X$与$Y$，它们的方差均存在分别为$D(X)$与$D(Y)$. 给定常数$c$，则有如下性质
+\begin{enumerate}
+	\item $D(c) = 0$;
+	\item $D(cX) = c^2D(X)$;
+	\item $D(X+Y) = D(X)+D(Y)+2E\left[(X-E(X))(Y-E(Y))\right]$;
+	\item $D(X) = 0$当且仅当$P(X=c) = 1$，其中$c=E(x)$.
+	\item 对任意常数$c$有，$D(X) \leq E^2(X-c)$，其中等号成立当且仅当$c = E(X)$.
+	\item 如果$X$和$Y$相互独立，$a,b$为常数. 则$D(aX+bY)=a^2D(X)+b^2D(Y)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\rm 
+\end{proof}
 
 \end{document}
