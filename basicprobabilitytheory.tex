@@ -1593,7 +1593,7 @@ $$
 \end{annotation}
 
 \begin{definition}
-\rm 称$E\{[X-E(X)][Y-E(Y)]\}$为随机变量$X,Y$的\redt{协方差}，记为$\text{Cov}(X,Y)$.
+\rm 称$E\{[X-E(X)][Y-E(Y)]\}$为随机变量$X,Y$的\redt{协方差}(Covariance)，记为$\text{Cov}(X,Y)$.
 \end{definition}
 
 \begin{proposition}\label{cov: variate}
@@ -1670,6 +1670,22 @@ $$
 [\text{Cov}(X,Y)]^2  =a^2\sigma_1^4=\sigma_1^2(a^2\sigma_1^2) =\sigma_1^2\sigma_2^2.
 $$
 \end{proof}
+
+\begin{definition}
+\rm 给定随机变量$X,Y$，则
+$$
+\frac{\text{Cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}
+$$
+称为$X,Y$的\redt{相关系数}，记为$\rho_{XY}$.
+\end{definition}
+
+\begin{annotation}
+\rm 形式上可以把相关系数视为“标准尺度下的协方差”. 协方差作为$[X-E(X)][Y-E(Y)]$的均值，依赖于$X,Y$的度量单位，选择适当单位使得$X,Y$的方差都为$1$，则协方差就是相关系数. 这样就能更好的反应$X,Y$之间的关系，不受所用单位的影响. 设$D(X)=\sigma_1^2$与$D(Y)=\sigma_2(X)$.
+$$
+\rho_{XY}=\frac{\text{Cov}(X,Y)}{\sigma_1\sigma_2} = \text{Cov}(\frac{X}{\sigma_1},\frac{Y}{\sigma_2}).
+$$
+此时$D(\frac{X}{\sigma_1})=D(\frac{Y}{\sigma_2}) = 1$.
+\end{annotation}
 
 
 \end{document}
