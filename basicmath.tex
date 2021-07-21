@@ -1607,12 +1607,20 @@ $$
 \rm {\color{red} (常函数的判定)} 设函数$f(x)$在区间$\mathcal{X}$上定义着且连续可导. $f(x)$在$\mathcal{X}$上是常数当且仅当对任意的$x \in \mathcal{X}$都有$f'(x)=0$. {\color{blue} 在做理论研究时，若所给函数不能从定义看出它是一个常函数，这个定理的威力就显现出来了.}
 \end{theorem}
 
+\begin{proof}
+\rm 必要性是显然的. 若$f'(x)=0$，固定一点$x_0 \in \mathcal{X}$，任取$x$，考虑区间$[x_0,x]$或者$[x,x_0]$，根据拉格朗日中值定理则有
+$$
+f(x)-f(x_0) =f'(c)(x-x_0) = 0,
+$$
+其中$c$位于$x$和$x_0$中间.由于$x$是任意的，因此$f(x)=f(x_0)=C$. 
+\end{proof}
+
 \begin{corollary}
 \rm 给定在区间$\mathcal{X}$上的两个连续可导函数$f(x)$和$g(x)$，并且
 $$
 \forall x \in \mathcal{X},\;f'(x) = g'(x).
 $$
-则$f(x) = g(x) + C$，其中$C$是一个常数. {\color{red} $h(x) = f(x) - g(x)$还原到上述定理}
+则$f(x) = g(x) + C$，其中$C$是一个常数. {\color{red} $h(x) = f(x) - g(x)$还原到前述定理}
 \end{corollary}
 
 
@@ -1621,7 +1629,7 @@ $$
 \end{theorem}
 
 \begin{theorem}
-\rm {\color{red} (函数严格单调性判定)} 设函数$f(x)$在区间$\mathcal{X}$上定义着且连续可导. $f(x)$在$\mathcal{X}$上严格单调增大(减少)的充要条件为
+\rm {\color{red} (函数严格单调性判定)} 设函数$f(x)$在区间$\mathcal{X}$上定义着且连续可导. $f(x)$在$\mathcal{X}$上{\color{red}严格单调}增大(减少)的充要条件为
 \begin{enumerate}
 	\item 任意$x \in \mathcal{X}$，都有$f'(x) \geq 0(\leq 0)$;
 	\item 任意$\mathcal{X}$的子区间内$f'(x)$不恒为0.
@@ -1647,7 +1655,7 @@ $$
 
 
 \begin{proposition}
-\rm {\color{red} (极值判定充分条件-第二法则)} \rm 给定连续函数$f(x)$，若$f(x)$在$x_0$某个邻域上可导，并且在$x_0$处有二阶导数. 那么当$f(x_0) = 0$，考虑两种情况
+\rm {\color{red} (极值判定充分条件-第二法则)} \rm 给定连续函数$f(x)$，若$f(x)$在$x_0$某个邻域上可导，并且在$x_0$处有二阶导数. 那么当$f'(x_0) = 0$，考虑两种情况
 \begin{enumerate}
 	\item 若$f^{''}(x_0) > 0$，则在$x_0$处有极小值;
 	\item 若$f^{''}(x_0) < 0$，则在$x_0$处有极大值.

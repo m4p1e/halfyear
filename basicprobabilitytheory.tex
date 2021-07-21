@@ -1534,20 +1534,6 @@ $$
 \rm 
 \end{proof}
 
-\begin{theorem}
-\rm \redt{(切比雪夫不等式)} 设随机变量$X$具有数学期望$E(X)=\mu$，方差为$D(X) = \sigma$，则有
-$$
-P\{|X-\mu| \geq \varepsilon \} \geq \frac{\sigma^2}{\varepsilon}. 
-$$
-\end{theorem}
-
-\begin{proof}
-若$X$是连续性随机变量，则
-$$
-P\{|X-\mu| \geq \varepsilon \} = \int_{|x-u| \geq \varepsilon} f(x)dx \leq \int_{|x-u| \geq \varepsilon} \frac{(x-\mu)^2}{\varepsilon^2}f(x)dx \leq \frac{1}{\varepsilon^2}\int_{-\infty}^{+\infty}(x-\mu)^2f(x)dx =\frac{\sigma^2}{\varepsilon^2}
-$$
-\end{proof}
-
 \begin{annotation}
 \rm 切比雪夫不等式用于在已知$E(X)$和$D(X)$的情况下估计概率$P\{|X-\mu|\geq \varepsilon\}$. 
 \end{annotation}
@@ -1634,7 +1620,7 @@ $$
 由\ref{cov: variate}和\ref{expectation: independent}可证. 
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{cov: lemma1}
 \rm 给定随机变量$X,Y$的方差分别为$D(X)=\sigma_1^2$与$D(Y)=\sigma_2^2$，则
 $$
 [\text{Cov}(X,Y)]^2  \leq \sigma_1^2\sigma_2^2.
@@ -1687,5 +1673,122 @@ $$
 此时$D(\frac{X}{\sigma_1})=D(\frac{Y}{\sigma_2}) = 1$.
 \end{annotation}
 
+\begin{theorem}
+\rm 给定随机变量$X,Y$，它们的协方差为$\rho_{XY}$. 则
+\begin{enumerate}
+	\item $ -1 \leq \rho_{XY} \leq 1$;
+	\item $|\rho_{XY}| = 1$当且仅当$X$和$Y$有严格线性关系. 
+\end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+直接由\ref{cov: lemma1}可得.
+\end{proof}
+
+\begin{definition}
+\rm 当$\rho_{XY}=0$(或$\text{Cov}(X,Y)=0$)时，称$X,Y$\redt{不相关}.
+\end{definition}
+
+\begin{proposition}
+\rm 若随机变量$X,Y$独立，则$X,Y$不相关. 反过来并不一定成立. 
+\end{proposition}
+
+\begin{annotation}
+\rm \redt{如何理解随机变量的之间线性关系的程度?} 如果$0 < |\rho_{X,Y}| < 1$，则解释为$X,Y$之前有“一定程度的”线性关系而非严格的线性关系. 何谓“一定程度”的线性关系，用下图来说明. 在下面的三个图中，我们都假定$(X,Y)$都服从区域$A,B,C$内的均匀分布. 在这三个图中，$X,Y$都无严格的线性关系，因为由$X$的值并不能确定$Y$的值. 可是由这几个图我们都能感觉处，$X,Y$之间存在一种线性趋势. 这种趋势，在第一幅图中$X$增加时，$Y$也倾向于增加(实际这里$\text{Cov}(X)>0$，关于这一点从\ref{cov: lemma1}的$t_0$的取值也可以看的出来). 第二幅图这种线性趋势更加明显(这里$\text{Cov}(X) < 0$). 第三幅图相比于前两幅图只有一点线性倾向，但是已经比较微弱(这里$\text{Cov}(X)>0$但是接近于$0$). 
+\begin{center}
+\includegraphics[width=10cm, height=4cm]{images/covariance.jpg}
+\end{center}
+\end{annotation}
+
+\begin{proposition}
+\rm \redt{最小二乘下的线性逼近} 设有两个随机变量$X,Y$. 给定两个实数$a,b$，若要使得$E\left\{\left[Y-(aX+b) \right]^2\right\}$达到最小，则得
+$$
+a  = \frac{\text{Cov}(X,Y)}{D(X)}
+$$
+和
+$$
+b = E(Y)-E(X)\frac{\text{Cov}(X,Y)}{D(X)}.
+$$
+其对应的最小值为
+$$
+E\left\{\left[Y-(aX+b) \right]^2\right\} = (1-\rho_{XY}^2)D(Y).
+$$
+\end{proposition}
+
+\begin{proof}
+我们设$E(X)=m_1,E(Y)=m_2,D(X)=\sigma_1^2,D(X)=\sigma_2^2$. 于是
+$$
+E\left\{\left[Y-(aX+b) \right]^2\right\} = E\left\{\left[(Y-m_2)-a(X-m_1)+ m_2 -am_1 - b \right]^2\right\}.
+$$
+记$c = m_2 -am_1 - b$，则
+$$
+E\left\{\left[(Y-m_2)-a(X-m_1)+ c \right]^2\right\} = \sigma_2^2 + a^2\sigma_1^2-2a\text{Cov}(X,Y) + c^2 .
+$$
+对上式分布求偏导并令它们等于0，可得$c=0$和$a = \frac{\text{Cov}(X,Y)}{D(X)}$，由此马上可到
+$$
+b = m_2-am_1 = E(Y)-E(X)\frac{\text{Cov}(X,Y)}{D(X)}.
+$$
+带入$b,c$即得
+$$
+E\left\{\left[Y-(aX+b) \right]^2\right\} = \sigma_2^2 + \frac{[\text{Cov}(X,Y)]^2}{\sigma_1^2}-2\frac{[\text{Cov}(X,Y)]^2}{\sigma_1^2} = \sigma_2^2(1-\rho_{XY}^2).
+$$
+\end{proof}
+
+\subsection{常用分布的数字特征}
+%regular_distribution_characterize.jpg
+\includegraphics[scale=0.2]{images/regular_distribution_characterize.jpg}
+
+\section{大数定理和中心极限定理}
+
+\begin{theorem}
+\rm \redt{(切比雪夫不等式)} 设随机变量$X$具有数学期望$E(X)=\mu$，方差为$D(X) = \sigma^2$，则有
+$$
+P\{|X-\mu| \geq \varepsilon \} \leq \frac{\sigma^2}{\varepsilon^2}. 
+$$
+\end{theorem}
+
+\begin{proof}
+若$X$是连续性随机变量，其概率密度为$f(x)$，则
+$$
+P\{|X-\mu| \geq \varepsilon \} = \int_{|x-u| \geq \varepsilon} f(x)dx \leq \int_{|x-u| \geq \varepsilon} \frac{(x-\mu)^2}{\varepsilon^2}f(x)dx \leq \frac{1}{\varepsilon^2}\int_{-\infty}^{+\infty}(x-\mu)^2f(x)dx =\frac{\sigma^2}{\varepsilon^2}
+$$
+\end{proof}
+
+\begin{theorem}
+\rm \redt{(马尔科夫不等式)} 设$X$为非负随机变量，则对任意数$\varepsilon > 0$有
+$$
+P\{X \geq \varepsilon\} \leq \frac{E(X)}{\varepsilon}.
+$$
+\end{theorem}
+
+\begin{proof}
+若$X$是连续性随机变量，其概率密度为$f(x)$. 因$X$非负，所以有$y < 0,f(y)=0$，故
+$$
+E(X) = \int_{0}^{+\infty} xf(x)dx \geq  \int_{\varepsilon}^{+\infty} xf(x)dy.
+$$
+当$x \in [\varepsilon,+\infty]$，有$x \geq \varepsilon$. 于是有
+$$
+E(X) \geq \int_{\varepsilon}^{+\infty} xf(x)dx \geq \varepsilon \int_{\varepsilon}^{+\infty}f(x)dx = \varepsilon P\{X \geq \varepsilon\}.
+$$
+\end{proof}
+
+\begin{theorem}
+\rm \redt{(大数定理)} 设$X_1,X_2,\cdots,X_n,\cdots$是独立同分布的随机变量，即$E(X_i) = \mu,i=1,2,\cdots$. 则对任意数$\varepsilon > 0$有
+$$
+\lim\limits_{n \rightarrow \infty}P\{|\bar{X}_n -\mu| \geq \varepsilon\} = 0,
+$$ 
+其中$\bar{X}_n = \frac{\sum\limits_{i=1}^n X_i}{n}$. 
+\end{theorem}
+
+\begin{proof}
+设$D(X_i) = \sigma^2, i =1,2,\cdots$. 由切比雪夫不等式有
+$$
+P\{|\bar{X}_n -\mu| \geq \varepsilon\} \leq \frac{D(\bar{X})}{\varepsilon} = \frac{n\frac{\sigma^2}{n^2}}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}. 
+$$
+因此
+$$
+\lim\limits_{n \rightarrow \infty} P\{|\bar{X}_n -\mu| \geq \varepsilon\} = \lim\limits_{n \rightarrow \infty} \frac{\sigma^2}{n\varepsilon^2} = 0.
+$$
+\end{proof}
 
 \end{document}
