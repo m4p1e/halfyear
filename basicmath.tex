@@ -2831,6 +2831,114 @@ $$
 $$
 \end{proposition}
 
+\section{多元函数微分}
+
+\subsection{多元函数的极限}
+
+\begin{definition}
+\rm 设函数$f(x_1,\cdots,x_n)$是在具有聚点$M_0(a_1,a_2,\cdots,a_n)$的某一点集$\mathcal{M}$内定义着. 如果对任意一数$\varepsilon > 0$，存在$\xi > 0$，只要满足
+$$
+|x_1 - a_1| < \xi,\cdots,|x_n - a_n| < \xi,
+$$
+就能使得
+$$
+|f(x_1,\cdots,x_n) - A| < \varepsilon. 
+$$
+那么就称$f(x_1,x_2,\cdots,x_n)$的变量$x_1,x_2,\cdots,x_n$依次趋于$a_1,a_2,\cdots,a_n$的极限为常数$A$. 记为
+$$
+\lim\limits_{(x_1,x_2,\cdots,x_n) \to (a_1,a_2,\cdots,a_n)}f(x_1,x_2,\cdots,x_n) = A.
+$$
+\end{definition}
+
+\begin{example}
+\rm 讨论极限:
+$$
+\lim\limits_{x \rightarrow 0 \atop y \rightarrow 0 } \frac{xy}{x^2+y^2}
+$$
+
+直接构造两个收敛到$0$的点列$\{M_k(\frac{1}{k}, \frac{1}{k})\}$和$\{M_k(\frac{2}{k}, \frac{1}{k})\}$，显然它们的对于一切$k$都有定值$\frac{1}{2}$和$\frac{2}{5}$.
+\end{example}
+
+\subsection{累次极限}
+
+\begin{annotation}
+\rm 前面在讨论多元函数极限的时候，都是自变量同时趋于各自的极限所得到的，这样的继续我们称为{\color{red}$n$重极限}. 除此之外，还有一种极限，它是由各自变量以某种次序相继地趋于各自极限而得到的.
+\end{annotation}
+
+\begin{definition}
+\rm 为简单起见，以讨论二元函数$f(x,y)$为限. 假设变量$x,y$的变动趋于是这样的: $x$可以(与$y$无关)取数集$X$内的所有数值，$y$可以(与$x$无关)取数集$Y$内所有的数值. 其中$X$有一个不属于它的聚点$a$, $Y$有一个不属于它的聚点$b$. 若固定$Y$内任意一$y$，函数$f(x,y)$在$x \rightarrow a$时极限存在，则这极限，一般地说，与预先固定$y$值有关:
+$$
+\lim\limits_{x \rightarrow a} f(x,y) = \varphi(y).
+$$
+然后讨论函数$\varphi(y)$在$y \rightarrow b$时的极限:
+$$
+\lim\limits_{y \rightarrow b} \varphi(y) = \lim\limits_{y \rightarrow b}\lim\limits_{x \rightarrow a} f(x,y).
+$$
+特别地，我们称这样的极限为{\color{red} 累次极限}. 若将上述自变量取极限次序交换，就可以得到另外一个累次极限.
+\end{definition}
+
+\begin{example}
+\rm $$
+	f(x,y) = \frac{x-y + x^2 + y^2}{x + y},
+$$
+其中$x,y$都在$(0,+\infty)$上变动，并取聚点$a,b$都为$0$. 那么
+$$
+\begin{array}{l}
+\varphi(y) = \lim\limits_{x \rightarrow 0} = y -1, \\
+\lim\limits_{y \rightarrow 0} \varphi(y) = -1.
+\end{array}
+$$
+再交换取极限的次序
+$$
+\begin{array}{l}
+\varphi(x) = \lim\limits_{y \rightarrow 0} = x+1, \\
+\lim\limits_{x \rightarrow 0} \varphi(x) = 1.
+\end{array}
+$$
+{\color{red} 这个结果告诉我们取极限次序不同，它们结果可能是不一样的}.
+\end{example}
+
+\begin{example}
+\rm 特别地
+$$
+f(x,y) = \frac{x\sin\frac{1}{x} + {y}}{x+y},~\text{或}~f(x,y)= x \cdot \sin\frac{1}{y}.
+$$
+它们都是极限$\lim\limits_{y \rightarrow 0}\lim\limits_{x \rightarrow 0}f$存在，而极限$\lim\limits_{x \rightarrow 0}\lim\limits_{y \rightarrow 0}f$不存在的情况. 甚至在后一种情况中单重极限$\lim\limits_{y \rightarrow 0}f$就是不存在的.
+\end{example}
+
+\begin{theorem}
+\rm 若二重极限
+$$
+A = \lim\limits_{x \rightarrow a \atop y \rightarrow b}f(x,y)
+$$
+存在，且对$Y$内任意一$y$有单重极限
+$$
+\varphi(y) = \lim\limits_{x \rightarrow a}f(x,y)
+$$
+存在，那么累次极限
+$$
+\lim\limits_{y \rightarrow b}\varphi(y) = \lim\limits_{y \rightarrow b}\lim\limits_{x \rightarrow a}f(x,y)
+$$
+必存在，且就等于二重极限.
+\end{theorem}
+
+%TODO
+\begin{proof}
+在二重极限存在的情况，按照定义给定$\varepsilon >0$，必能找到$\delta > 0$，只要满足$|x - a| < \delta$和$|y-b| < \delta$，就能使得
+$$
+|f(x,y) - A| < \varepsilon.
+$$
+现在固定$y$，那么自然地我们可以确定一个$\delta$使其满足$|y-b| < \delta$，对应地$|x-a| < \delta$也是$a$的一邻域，然后我们对上式$f(x,y)$取$x \rightarrow a$的单侧极限，引单重极限存在，故
+$$
+|\varphi(y)-A| \leq \varepsilon
+$$
+这里有一个问题一直困扰的着我，如果对不等式$|f(x,y)-A| < \varepsilon$求$\lim\limits_{x \rightarrow a}$，那你首先要保证这个不等式成立才行，所以要添加条件$|x -a | < \delta$，我认为实际上放缩$x$的定义域对取$x \rightarrow a$的极限没有影响，都保证了$a$是其聚点. 但是有一点值得说明的是，上面得到的不等式为什么有等号？是因为你在对$x$取极限的是有可能reach upperbound，举个例子$1-\frac{1}{n} < 1$是对任意的$\mathbb{N}$严格成立的，但是$\lim\limits_{n \rightarrow \infty} 1-\frac{1}{n} = 1$. 此处的$y$是任意的，且只要$|y-b| < \delta$就有上述不等式成立，所以
+$$
+A = \lim\limits_{y \rightarrow b}\varphi(y) = \lim\limits_{y \rightarrow b}\lim\limits_{x \rightarrow a}f(x,y).
+$$
+\end{proof}
+
+
 
 \newpage
 \section{Preliminary}
