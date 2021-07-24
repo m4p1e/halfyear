@@ -2862,6 +2862,10 @@ $$
 直接构造两个收敛到$0$的点列$\{M_k(\frac{1}{k}, \frac{1}{k})\}$和$\{M_k(\frac{2}{k}, \frac{1}{k})\}$，显然它们的对于一切$k$都有定值$\frac{1}{2}$和$\frac{2}{5}$.
 \end{example}
 
+\begin{theorem}
+\rm \redt{用数列极限表示函数极限的推广} 设函数$f(x_1,\cdots,x_n)$是在具有聚点$M_0(a_1,a_2,\cdots,a_n)$的某一点集$\mathcal{M}$内定义着. 函数$f(x_1,\cdots,x_n)$在$M_0$这一点极限$A$存在的充要条件: 若在$\mathcal{M}$内选出异于$M_0$而收敛于$M_0$的点列$(M_k)$，则由其对应的函数值所组成的数列$(f(M_k))$恒收敛于$A$. 
+\end{theorem}
+
 \subsection{累次极限}
 
 \begin{annotation}
@@ -2992,8 +2996,20 @@ $$
 
 \subsection{多元连续函数的性质}
 
+\begin{definition}
+\rm 若点集$\mathcal{M}$的聚点均含于$\mathcal{M}$则，称$\mathcal{M}$为\redt{闭集}.
+\end{definition}
+
+\begin{definition}
+\rm 若给定$n$维点集$\mathcal{M}$，若它可以被更大的某个$n$维点集$M'$盖住，则称$\mathcal{M}$是\redt{有界点集}. 
+\end{definition}
+
+\begin{definition}
+\rm 若点集$\mathcal{M}$中任意两点都能被一条折线连接起来，且这条折线上的所有点均在$\mathcal{M}$中，则称$\mathcal{M}$为一个\redt{连通集}. 特别地，连通域和它所有的聚点组成的新的域叫做\redt{闭连通集}.  
+\end{definition}
+
 \begin{theorem}
-\rm \redt{零点定理的推广} 设函数$f(x,y)$在某一连通域$\mathcal{D}$中有定义而且连续. 若在这域中的两点$M_0(x_0,y_0)$及$M_1(x_1,y_1)$的函数值异号
+\rm \redt{零点定理的推广} 设函数$f(x,y)$在某一连通集$\mathcal{D}$中有定义而且连续. 若在这域中的两点$M_0(x_0,y_0)$及$M_1(x_1,y_1)$的函数值异号
 $$
 f(x_0,y_0)f(x_1,y_1) < 0,
 $$
@@ -3001,7 +3017,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-我们使其变成一元函数的情形来证明. 由于$M_0$和$M_1$处于连通域$D$中，所以可以用一条$D$中的折线把它们连接起来，折线是由多个直线端组成. 我们假设$f(x_0,y_0) > 0,f(x_1,y_1) < 0$，我们从$M_0$出发，我们来依次考虑这些直线段的端点，设$M_0M_2$为第一个直线段，其中$M_2=(x_2,y_2)$. 分三种情况: 若$f(x_2,y_2) = 0$，那么我们证明就结束了; 若$f(x_2,y_2) < 0$，那么在直线段$M_0M_2$就可以用方程
+我们使其变成一元函数的情形来证明. 由于$M_0$和$M_1$处于连通域$D$中，所以可以用一条$D$中的折线把它们连接起来，折线是由多个直线端组成. 我们假设$f(x_0,y_0) > 0,f(x_1,y_1) < 0$，我们从$M_0$出发，我们来依次考虑这些直线段的端点，设$M_0M_2$为第一个直线段，其中$M_2=(x_2,y_2)$. 分三种情况: 若$f(x_2,y_2) = 0$，那么我们证明就直接结束了; 若$f(x_2,y_2) < 0$，那么在直线段$M_0M_2$就可以用方程
 $$
 x = x_0  + t(x_2 - x_0), y = y + t(y_2-y_0)
 $$
@@ -3015,6 +3031,107 @@ F(0) = f(x_0,y_0) > 0, F(1) = f(x_2,y_2) < 1,
 $$
 那么根据一元函数的零点定理，存在$t' [0,1]$使得$F(t') = 0$，这就证明当前命题; 若$f(x_2,y_2) > 0$，那么我们接着考虑从$M_2$开始的直线段$M_2M_3$，对$M_3=(x_3,y_3)$也像前面对$M_2$的考察一样. 同时由于$M_1$的存在，我们一定是可以找到一直线段的两个端点的函数值是异号的，于是对这段直线段做情况2的分析. 综上命题证毕.   
 \end{proof}
+
+\begin{lemma}\label{point-sequence: bounded-then-coverage}
+\rm \redt{有界数列的推广-点列} 任一有界点列
+$$
+M_1(x_1,y_1), M_2(x_2,y_2), \cdots , M_n(x_n,y_n),\cdots
+$$
+中恒能选出收敛于极限点的部分点列
+$$
+M_{n_1}(x_{n_1},y_{n-1}),M_{n_2}(x_{n_2},y_{n-2}),\cdots,M_{n_k}(x_{n_k},y_{n_k}),\cdots, n_1 < n_2 < \cdots < n_k <\cdots
+$$
+\end{lemma}
+
+\begin{proof}
+因为$(M_n)$有界，所以可以用一个大的矩形区域$S$把它们盖住. 通过不断切$S$出更小的包含$(M_n)$中无穷多个点的矩形. 每次都从这个矩形里面挑一个点出来，那么其组成的点列闭收敛. 
+\end{proof}
+
+\begin{theorem}
+\rm  若函数$f(x,y)$是在有界闭集$\mathcal{D}$中定义着而且连续的，则它必是有界的，即对于任意的$(x,y) \in \mathcal{D}$有
+$$
+m \leq f(x,y) \leq M,
+$$
+其中$m,M$为常数.
+\end{theorem}
+
+\begin{proof}
+\rm 这里使用反证法. 假设$f(x,y)$在$\mathcal{D}$上无界，那么我们可以构造出一个有界点列$(M_n)$使得
+$$
+|f(x_n,y_n)| > n , n =1,2,\cdots.
+$$
+那么由theorem \ref{point-sequence: bounded-then-coverage}，我们可以挑出收敛于$\bar{M}(\bar{x},\bar{y})$部分点列$(M_{n_k})$. 因为$\mathcal{D}$是闭集，所以其上的所有的收敛子列的极限都是含于$\mathcal{D}$，即$\bar{M} \in \mathcal{D}$，且$\bar{M}$是$\mathcal{D}$的一个聚点. 因为$f(x,y)$在$\mathcal{D}$上连续，根据极限存在的充要条件，所以必有$\{f(M_{nk})\}$收敛，这就产生矛盾了. 故$f(x,y)$在$\mathcal{D}$上是有界的. 
+\end{proof}
+
+\begin{definition}
+\rm \redt{多元函数的一致连续} 
+\end{definition}
+
+\begin{theorem}
+\rm \redt{康托定理的推广} 若函数$f(x,y)$在有界闭集$\mathcal{D}$上连续，则它在$\mathcal{D}$中也一致连续的. 
+\end{theorem}
+
+\newpage
+\subsection{偏导数和偏微分}
+
+\begin{definition}
+\rm 设函数$f(x,y)$在点$P_0(x_0,y_0)$的某一邻域内有定义，如果极限
+$$
+\lim\limits_{\Delta x \to 0} \frac{f(x_0 + \Delta x,y_0)}{\Delta}
+$$
+存在，则称这个极限值为函数$z = f(x,y)$在点$P_0(x_0,y_0)$处对$x$的\redt{偏导数}，记为
+$$
+\left.\frac{\partial z}{\partial x}\right|_{x=x_0,y=y_0} ~\text{或}~ f_x'(x_0,y_0).
+$$
+类似地，也有$z=f(x,y)$在$P_0$处对$y$的\redt{偏导数}
+$$
+\left.\frac{\partial z}{\partial y}\right|_{x=x_0,y=y_0} ~\text{或}~ f_y'(x_0,y_0).
+$$
+\end{definition}
+
+\begin{definition}
+\rm 偏导数$\frac{\partial z}{\partial x}$乘以任意增量$\Delta x$的积称为函数$z$关于$x$的\redt{偏微分}，记为
+$$
+d_x u =\frac{\partial z}{\partial x}\Delta x.
+$$
+若在此处把自变量$x$的微分理解为$dx$，则前面公式可以写作
+$$
+d_xz=\frac{\partial z}{\partial x}dx.
+$$
+\end{definition}
+
+\newpage
+\subsection{全微分}
+
+\begin{definition}
+\rm 设函数$z=f(x,y)$在点$P_0(x_0,y_0)$的某一邻域内有定义，则函数$z$增量
+$$
+\Delta z = \Delta f(x_0,y_0) = f(x_0+\Delta x, y_0+\Delta y)
+$$
+称为\redt{全增量}.
+\end{definition}
+
+\begin{theorem}
+\rm 若偏导数$f_x'(x,y),f_y'(x,y)$不仅在点$(x_0,y_0)$处存在且连续，并在它的某一个邻域内也存在，则
+$$
+\Delta z = \Delta f(x_0,y_0) = f_x'(x_0,y_0)\cdot \Delta x + f_y'(x_0,y_0) \cdot \Delta y + \alpha\cdot\Delta x + \beta \cdot \Delta y. 
+$$
+其中$\alpha,\beta$随着$\Delta x, \Delta y$而变，且与它们同时趋于0.
+\end{theorem}
+
+\begin{proof}
+可以将全增量$\Delta z$改写为
+$$
+\Delta z = \left[f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0,y_0 + \Delta y) \right]+ \left[f(x_0, y_0 + \Delta y) - f(x_0,y_0) \right]. 
+$$
+其中每个方括号里面的都是关于一个变元的增量. 因为$f(x,y)$的偏导数在$(x_0,y_0)$的一个邻域都是存在，所以当$\Delta x,\Delta y$充分小的时候，我们应用一下一元函数的中值定理，即有
+$$
+\Delta u = f_x'(x_0 + \theta\Delta x, y_0 + \Delta y)\Delta x + f_y'(x_0,y_0 + \theta_1 \Delta y)\Delta y,\, 0\leq \theta \leq 1,0\leq \theta_1 \leq 1
+$$
+我们记$\alpha = f_x'(x_0 + \theta\Delta x, y_0 + \Delta y) - f_x'(x_0, y_0),\beta = f(x_0, y_0 + \theta_1\Delta y)- f_y'(x_0, y_0)$，由于$z=f(x,y)$的偏导数在$(x_0,y_0)$这点都是连续，所以当$\Delta x \to 0,\Delta y = 0$时，$\alpha$与$\beta$都是趋于$0$的. 最终就得到了命题中的等式. 
+\end{proof}
+
+
 
 \newpage
 \section{Preliminary}
