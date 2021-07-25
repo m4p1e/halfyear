@@ -50,6 +50,9 @@
 \newtheorem{exercise}{Exercise}[section]
 \newtheorem{annotation}[theorem]{Annotation}
 
+\counterwithin*{equation}{section} %equation重新编号
+\counterwithin*{equation}{subsection}
+
 \newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
 \newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
 
@@ -3112,11 +3115,11 @@ $$
 \end{definition}
 
 \begin{theorem}
-\rm 若偏导数$f_x'(x,y),f_y'(x,y)$不仅在点$(x_0,y_0)$处存在且连续，并在它的某一个邻域内也存在，则
-$$
-\Delta z = \Delta f(x_0,y_0) = f_x'(x_0,y_0)\cdot \Delta x + f_y'(x_0,y_0) \cdot \Delta y + \alpha\cdot\Delta x + \beta \cdot \Delta y. 
-$$
-其中$\alpha,\beta$随着$\Delta x, \Delta y$而变，且与它们同时趋于0.
+\rm \redt{一元函数的增量推广} 若偏导数$f_x'(x,y),f_y'(x,y)$不仅在点$(x_0,y_0)$处存在且连续，并在它的某一个邻域内也存在，则
+\begin{equation}
+\Delta z = \Delta f(x_0,y_0) = f_x'(x_0,y_0)\cdot \Delta x + f_y'(x_0,y_0) \cdot \Delta y + \alpha\cdot\Delta x + \beta \cdot \Delta y.
+\end{equation} 
+其中$\alpha,\beta$随着$\Delta x, \Delta y$而变，且与它们同时趋于0. \bluet{前述条件也可以推出$f(x,y)$在$(x_0,y_0)$连续}. 
 \end{theorem}
 
 \begin{proof}
@@ -3131,7 +3134,32 @@ $$
 我们记$\alpha = f_x'(x_0 + \theta\Delta x, y_0 + \Delta y) - f_x'(x_0, y_0),\beta = f(x_0, y_0 + \theta_1\Delta y)- f_y'(x_0, y_0)$，由于$z=f(x,y)$的偏导数在$(x_0,y_0)$这点都是连续，所以当$\Delta x \to 0,\Delta y = 0$时，$\alpha$与$\beta$都是趋于$0$的. 最终就得到了命题中的等式. 
 \end{proof}
 
+\begin{annotation}
+\rm \redt{若引入两点距离的表示}，对于$(x_0,y_0,z_0)$和$(x_0+\Delta x,y_0 +\Delta y, z_0 + \Delta z)$它们距离为
+$$
+\rho = \sqrt{\Delta x^2 + \Delta y^2 +\Delta z^2}.
+$$
+于是
+$$
+\alpha\cdot\Delta x + \beta \cdot \Delta y = (\alpha\cdot\frac{\Delta x}{\rho} + \beta\cdot\frac{\Delta y}{\rho})\cdot \rho.
+$$
+记$\varepsilon = \alpha\cdot\frac{\Delta x}{\rho} + \beta\cdot\frac{\Delta y}{\rho}$，当$\rho \to 0$时$\varepsilon$也是趋于0. 因此(1)式可以写作
+\begin{equation}
+\Delta z = \Delta f(x_0,y_0) = f_x'(x_0,y_0)\cdot \Delta x + f_y'(x_0,y_0) \cdot \Delta y + \varepsilon \rho.
+\end{equation}
+\end{annotation}
 
+\begin{definition}
+\rm 如果函数$z=f(x,y)$在$(x_0,y_0)$处的全增量可以表示为
+$$
+\Delta z = A\Delta x + B\Delta x + o(\rho).
+$$
+其中$A,B$是两个常数与$\Delta x,\Delta y$无关，$\rho=\sqrt{\Delta x^2 + \Delta y^2}$. 则我们就称函数$z=f(x,y)$在$(x_0,y_0)$\redt{可微}，而$A\Delta x + B\Delta x$称为函数$z=f(x,y)$在$(x_0,y_0)$处的\redt{全微分}.
+\end{definition}
+
+\begin{proposition}
+\rm 
+\end{proposition}
 
 \newpage
 \section{Preliminary}
