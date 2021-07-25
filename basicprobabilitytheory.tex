@@ -1227,7 +1227,7 @@ $$
 \end{definition}
 
 \begin{definition}
-\rm 如果二维连续随机变量$(X,Y)$的概率密度为
+\rm  如果二维连续随机变量$(X,Y)$的概率密度为
 $$
 f(x,y) = \left\{\begin{array}{ll}
 \frac{1}{S}, & (x,y) \in G\\
@@ -1236,6 +1236,37 @@ f(x,y) = \left\{\begin{array}{ll}
 $$
 其中$S$是$\mathbb{R}^2$上有限区域$G$的面积，则称$(X,Y)$服从区域$G$上的\redt{均匀分布}.
 \end{definition}
+
+\begin{example}
+\rm \redt{以原点为圆心的单位圆上的均匀分布} 设二维随机变量$(X,Y)$在区域$D$上服从均匀分布，其中
+$$
+D=\Set{(x,y)}{x^2 + y ^2 \leq 1}.
+$$
+那么$(X,Y)$的概率密度为
+$$
+f(x,y)=\left\{\begin{array}{ll}
+\frac{1}{\pi}, & x^2 + y^2 \leq 1 \\
+0, & ~\text{other}
+\end{array}\right. 
+$$
+$X$的边缘密度为
+$$
+f_X(x) = \int_{-\infty}^{+\infty} f(x,y)dy = \left\{ \begin{array}{ll}
+\int_{-\sqrt{1-x^2}}^{+\sqrt{1-x^2}} \frac{1}{\pi}dy, & -1 \leq x \leq 1\\
+0, & ~\text{other} 
+\end{array} \right. = \left\{\begin{array}{ll}
+\frac{2\sqrt{1-x^2}}{\pi},& -1 \leq x \leq 1 \\
+0, & ~\text{other}
+\end{array} \right.
+$$
+条件概率密度$f_{Y|X}(y|x) = \frac{f(x,y)}{f_X(x)}, f_X(x) > 0$，即$-1 \leq x \leq 1$. 因此当$-1<x<1$时有
+$$
+f_{Y|X}(y|x) = \left\{\begin{array}{ll}
+\frac{1}{2\sqrt{1-x^2}}, &  -\sqrt{1-x^2} \leq y \leq \sqrt{1-x^2} \\
+0, & \text{other}
+\end{array}\right.
+$$
+\end{example}
 
 \begin{definition}
 \rm 如果二维连续随机变量$(X,Y)$的概率密度为
@@ -1904,7 +1935,7 @@ $$
 \end{proposition}
 
 \begin{proof}
-
+\rm 
 \end{proof}
 
 
