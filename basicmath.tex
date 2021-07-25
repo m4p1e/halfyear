@@ -3114,7 +3114,7 @@ $$
 称为\redt{全增量}.
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{total-derivative: sufficient-cond}
 \rm \redt{一元函数的增量推广} 若偏导数$f_x'(x,y),f_y'(x,y)$不仅在点$(x_0,y_0)$处存在且连续，并在它的某一个邻域内也存在，则
 \begin{equation}
 \Delta z = \Delta f(x_0,y_0) = f_x'(x_0,y_0)\cdot \Delta x + f_y'(x_0,y_0) \cdot \Delta y + \alpha\cdot\Delta x + \beta \cdot \Delta y.
@@ -3158,8 +3158,135 @@ $$
 \end{definition}
 
 \begin{proposition}
-\rm 
+\rm \redt{全微分存在的必要条件} 若$f(x,y)$在$(x_0,y_0)$处全微分存在，即有
+$$
+\Delta f(x_0,y_0) = A\Delta x + B \Delta y + o(\rho).
+$$
+那么$A = f_x'(x_0,y_0),B = f_y'(x_0,y_0)$.
 \end{proposition}
+
+\begin{proof}
+显然我们让$\Delta y = 0$时，上式即有
+$$
+\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x} = A + \frac{o(|\Delta x|)}{\Delta}.
+$$
+由此必有
+$$
+f_x(x_0,y_0) = \lim\limits_{\Delta x \to 0} \frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x} = A.
+$$
+同理也可推出$f_y(x_0,y_0) = \lim\limits_{\Delta y \to 0} \frac{f(x_0,y_0+\Delta y)-f(x_0,y_0)}{\Delta y} = B $
+\end{proof}
+
+\begin{proposition}
+\rm \redt{全微分存在的充分条件} Theorem \ref{total-derivative: sufficient-cond}.
+\end{proposition}
+
+\subsection{复合函数的导数}
+
+\begin{definition}
+\rm 设函数$z = f(x,y)$定义在区域$\mathcal{D}$内，而且每一个变元$x,y$又各位变动于某一区域关于$t,v$的函数
+$$
+x = \varphi(t,v),\, y = \psi(t,v).
+$$
+此外，设在$t$变动时点$(x,y)$不越出$\mathcal{D}$的范围. 则得到复合函数$z=f(\varphi(t,v),\psi(t,v))$. 同时我们假定$z$有关于$x,y$的连续偏导数$z_x',z_y'$，且$\varphi(t,v)$及$\psi(t,v)$关于$t$及$v$的偏导数都存在. 那么复合函数$z=f(\varphi(t,v),\psi(t,v))$关于$t$及$V$的偏导数存在，为
+$$
+\begin{array}{ll}
+\frac{\partial z}{\partial t} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial t} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial t} \\
+\frac{\partial z}{\partial v} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial v} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial v}
+\end{array}
+$$
+\end{definition}
+
+\subsection{全微分的性质}
+
+\begin{theorem}
+\rm \redt{中值定理的推广} 设函数$f(x,y)$在凸集$\mathcal{D}$上连续，并在这区域内部上可微. 给定$\mathcal{D}$中两点
+$$
+M_0 = (x_0,y_0), M_1(x_0+\Delta x,y_0 + \Delta y).
+$$
+则有
+$$
+\Delta f(x_0,y_0) = f(x_0+\Delta x, y_0 + \Delta y) - f(x_0,y_0) = f_x'(x_0+\theta\Delta x, y_0 + \theta\Delta y)\Delta x + f_x'(x_0+\theta\Delta x, y_0 + \theta\Delta y)\Delta y.
+$$
+\end{theorem}
+
+\begin{proof}
+还是将其尽可能变成一元函数的情形. 令
+$$
+x = x_0 + t\Delta x, y = y_0 + t\Delta y ,\, 0 \leq t \leq 1 .
+$$
+于是关于$t$的复合函数为
+$$
+F(t) = F(x_0 + t\Delta x,y_0 + t\Delta y).
+$$
+我们来考虑$F(t)$，实际上就是在直线$M_0M_1$考虑$f(x,y)$($\mathcal{D}$是凸的就已经给出了这条直线的存在性). 显然$F(t)$是连续的，且它也是可微的. 于是$F(t)$的导数为
+$$
+F'(t) = f_x(x_0 + t\Delta x,y_0 + t\Delta y)\frac{dx}{dt} + f_y(x_0 + t\Delta x,y_0 + t\Delta y)\frac{dx}{dt}. 
+$$
+按照一元函数的中值定理，我们有
+$$
+F(1)-F(0) = F'(\theta), 0 \leq \theta \leq 1.
+$$
+最后按照$F(t)$的定义，我们有
+$$
+F(1)-F(0) = f(x_0+\Delta x, y_0 + \Delta y) - f(x_0,y_0) = f_x(x_0 + \theta\Delta x,y_0 + t\Delta y)\Delta x + f_y(x_0 + \theta\Delta x,y_0 + t\Delta y)\Delta y,
+$$
+其中$\frac{dx}{dt} = \Delta x, \frac{dy}{dt} = \Delta y$. 
+\end{proof}
+
+\begin{proposition}
+\rm \redt{一阶微分形式不变性的推广} 设$z= f(x,z)$可微，且有
+$$
+x = \varphi(t,v),\, y = \psi(t,v).
+$$
+它们也都是可微的，则有复合函数$z=f(\varphi(t,v),\psi(t,v))$全微分为
+$$
+dz= z_x'(x_t'dt + x_v'dv) + z_y'(y_t'dt+y_v'dv) = z_x'dx = z_y'dy, 
+$$
+其中$dx = x_t'dt + x_v'dv,dy = y_t'dt+y_v'dv$
+\end{proposition}
+
+\begin{proposition}
+\rm 当$x$及$y$是任意个变元的函数时，也有下面公式成立
+\begin{enumerate}
+	\item $d(cx)=c\cdot dx$;
+	\item $d(x\pm y)=dx \pm dy$;
+	\item $d(xy) = y\cdot dx + x\cdot dy$;
+	\item $d(\frac{x}{y}) = \frac{y\cdot dx - x\cdot dy}{y^2}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+上述公式都是由于一阶微分形式不变性导致的. 例如把$y,x$均当做自变量，计算
+$$
+d(\frac{x}{y}) = \frac{1}{y}dx - \frac{-x}{y^2}dy = \frac{y\cdot dx - x\cdot dy}{y^2}.
+$$
+\end{proof}
+
+
+\subsection{方向梯度}
+
+\subsection{高阶导数}
+
+\begin{definition}
+\rm 若函数$z=f(x,y)$在区域$\mathcal{D}$上的偏导数$\frac{\partial z}{\partial x},\frac{\partial z}{\partial y}$仍然存在偏导数，则称之为$f(x,y)$的\redt{二阶导}. 若一阶导数是关于$x$取的，则它二阶导关于$x,y$的导数分别记为
+$$
+\frac{\partial^2z}{\partial^2 x} = \frac{\partial^2 f(x,y)}{\partial^2 x},\, \frac{\partial^2z}{\partial x \partial y} = \frac{\partial^2 f(x,y)}{\partial x \partial y}.  
+$$
+其中关于不同变元的高阶导数称为\redt{混合偏导}.
+\end{definition}
+
+\begin{theorem}
+\rm 设函数$f(x,y)$定义于区域$D$中. 若二阶导$f_{xy}''$及$f_{yx}''$存在且在$(x_0,y_0)$处连续，那么在一点
+$$
+f_{xy}''(x_0,y_0) = f_{yx}''(x_0,y_0).
+$$
+\end{theorem}
+
+
+\subsection{高阶微分}
+
+\subsection{多元函数的极值}
 
 \newpage
 \section{Preliminary}
