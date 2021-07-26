@@ -3269,24 +3269,284 @@ $$
 \subsection{高阶导数}
 
 \begin{definition}
-\rm 若函数$z=f(x,y)$在区域$\mathcal{D}$上的偏导数$\frac{\partial z}{\partial x},\frac{\partial z}{\partial y}$仍然存在偏导数，则称之为$f(x,y)$的\redt{二阶导}. 若一阶导数是关于$x$取的，则它二阶导关于$x,y$的导数分别记为
+\rm 若函数$z=f(x,y)$在区域$\mathcal{D}$上的偏导数$\frac{\partial z}{\partial x},\frac{\partial z}{\partial y}$仍然存在偏导数，则称之为$f(x,y)$的\redt{二阶偏导}. 若一阶导数是关于$x$取的，则它二阶导关于$x,y$的导数分别记为
 $$
 \frac{\partial^2z}{\partial^2 x} = \frac{\partial^2 f(x,y)}{\partial^2 x},\, \frac{\partial^2z}{\partial x \partial y} = \frac{\partial^2 f(x,y)}{\partial x \partial y}.  
 $$
 其中关于不同变元的高阶导数称为\redt{混合偏导}.
 \end{definition}
 
-\begin{theorem}
-\rm 设函数$f(x,y)$定义于区域$D$中. 若二阶导$f_{xy}''$及$f_{yx}''$存在且在$(x_0,y_0)$处连续，那么在一点
+\begin{theorem}\label{mixed-derivatives: exchange-order}
+\rm 设函数$f(x,y)$定义于区域$D$中. 若二阶偏导$f_{xy}''$及$f_{yx}''$存在且在$(x_0,y_0)$处连续，那么在一点
 $$
 f_{xy}''(x_0,y_0) = f_{yx}''(x_0,y_0).
 $$
 \end{theorem}
 
+\begin{theorem}
+\rm \redt{\ref{mixed-derivatives: exchange-order}加强版} 若$f(x)$一阶偏导都存在，二阶偏导$f_{xy}''(x,y)$存在. 其次，存在着有限极限
+$$
+\lim\limits_{x \rightarrow x_0 \atop y \rightarrow x_0} = A.
+$$
+则在$(x_0,y_0)$这点的两个二阶混合导数存在且相等.
+\end{theorem}
+
+\begin{theorem}
+\rm \redt{更一般的情况} 在需要用到的各偏导数都连续的条件下，关于不同变元的微分步骤的次序是可以交换的. 
+\end{theorem}
+
 
 \subsection{高阶微分}
 
+\begin{definition}
+\rm 设函数$z=f(x,y)$在区域$\mathcal{D}$上. 若函数$z$有二阶连续偏导，则一阶微分的全微分称为$u$的二阶微分，记为$d^2 u = d(du)$，即
+$$
+d^2 u = d(du) = d(\frac{\partial u}{\partial x}dx + \frac{\partial u}{\partial y}dy) = d\left(\frac{\partial u}{\partial x}\right)\cdot dx + d\left(\frac{\partial u}{\partial y}\right)\cdot dy.
+$$
+其中$dx,dy$被看成一个常数与$x,y$无关. 
+\end{definition}
+
+\subsection{多元函数的泰勒公式}
+
+\begin{theorem}
+\rm 若$f(x,y)$在$(x_0,y_0)$的邻域内有直到$(n+1)$阶为止的一切阶的连续偏导数. 分别给定$x_0$及$y_0$以增量$\Delta x$及$\Delta y$，且两端为$(x_0,y_0)$和$(x_0+\Delta x , y_0 + \Delta y)$的直线段不越处前述领域之外. 则有下面等式成立
+$$
+\begin{array}{ll}
+\Delta f(x_0,y_0) &= f(x_0 + \Delta x, y_0 + \Delta y)-f(x_0,y_0) \\
+&= df(x_0,y_0) + \frac{1}{2!}d^2f(x_0,y_0) + \cdots + \frac{1}{n!}d^nf(x_0,y_0) + \frac{1}{(n+1)!}d^{n+1}f(x_0+\theta\Delta x, y_0 + \theta\Delta y),
+\end{array}
+$$
+其中$0 \leq \theta \leq 1$. 
+\end{theorem}
+
 \subsection{多元函数的极值}
+
+\begin{definition}
+\rm 设函数$z=f(x,y)$定义在$P(x_0,y_0)$的某个邻域上，使对于其中一切点都有不等式
+$$
+f(x,y) \leq (\geq) f(x_0,y_0)
+$$
+成立，则称$f(x_0,y_0)$在点$(x_0,y_0)$处有\redt{极大值}(\redt{极小值}).
+\end{definition}
+
+\begin{proposition}
+\rm \redt{极值存在的必要条件} 若$f(x,y)$在$(x_0,y_0)$处有极值，且其在这点偏导数存在，则
+$$
+f_x(x_0,y_0) = 0, \, f_y(x_0,y_0) = 0.
+$$
+\end{proposition}
+
+\begin{proof}
+分别固定一变元，让另外一个变元变动，退化到一元的情况，则和证明费马定理一样.
+\end{proof}
+
+\begin{proposition}
+\rm \redt{极值存在的充分条件} 若$z=f(x,y)$在$P(x_0,y_0)$的邻域上有二阶连续偏导数，且有$f_x(x_0,y_0) = 0 ,\,f_y(x_0,y_0) = 0$. 记
+$$
+a_{11} = f_{xx}''(x_0,y_0)\,, a_{12}'' = f_{xy}''(x_0,y_0)\, , a_{22} = f_{yy}''(x_0,y_0).
+$$
+则有以下结论
+\begin{enumerate}
+	\item 若$a_{11}a_{22} - a_{12}^2 > 0$. 此时若$a_{11} > 0$，则$f(x,y)$在$(x_0,y_0)$有极小值; 若$a_{11} < 0$，则$f(x,y)$在$(x_0,y_0)$处有极大值.
+	\item 若$a_{11}a_{22} - a_{12}^2 < 0$. 此时$f(x,y)$在$(x_0,y_0)$处没有极值.
+	\item 若$a_{11}a_{22} - a_{12}^2 = 0$. 此时$f(x,y)$可能在$(x_0,y_0)$处有极值，也可能没有极值. 
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\rm 
+\end{proof}
+
+\newpage
+\section{二重积分}
+
+\subsection{二重积分的定义}
+\begin{definition}
+\rm 设函数$z=f(x,y)$定义在有界闭区域$\mathcal{D}$上，将区域$\mathcal{D}$任意分成$n$个小闭区域
+$$
+\Delta\sigma_1,\Delta\sigma_2,\cdots,\Delta\sigma_n.
+$$
+用$\Delta\sigma_i$表示第$i$小区域，也表示它的面积. 在每个$\Delta\sigma_i$上任取一点$(\xi_i,\eta_i)$，将在这一点处的函数值$f(\xi_1,\eta_i)$乘上对应区域的面积$\Delta\sigma_i$，并将所有类似的乘积相加所得的和
+$$
+\sigma = \sum\limits_{i=1}^n f(\xi_i,\eta_i)\Delta\sigma_i
+$$
+称为函数$f(x,y)$在区域$\mathcal{D}$上的\redt{积分和}. 以$\lambda$表示$n$个小区域中的最大直径. 若当$\lambda \to 0$时积分和$\sigma$有一确定的有限极限
+$$
+I = \lim\limits_{\lambda \to 0}\sigma,
+$$
+既与区域$\mathcal{D}$分为$n$小区域的分法无关，又与在每一个小区域上点$(\xi_i,\eta_i)$选法也无关. 则称这一极限为函数$f(x,y)$在区域$\mathcal{D}$上的\redt{二重积分}并记做
+$$
+I = \int\int_{\mathcal{D}}f(x,y)d\mathcal{\sigma}
+$$
+\end{definition}
+
+\begin{annotation}
+\rm 一点集中任意两点距离的上确界称为该点集的直径. 
+\end{annotation}
+
+\begin{proposition}
+\rm 可积函数必须是有界的.
+\end{proposition}
+
+\newpage
+\section{曲线积分}
+
+\subsection{第一类曲线积分}
+\begin{definition}
+\rm 设函数$f(x,y)$定义在光滑的可求长的平面曲线$L$上，将$L$分为有限段弧
+$\sigma_1,\sigma_2,\cdots,\sigma_n$. 用$\sigma_i$表示第$i$段弧，也表示其弧长. 在每一$\sigma_i$上任取一点$(\xi_i,\eta_i)$，做积分和
+$$
+\sigma = \sum\limits_{i = 1}^n f(\xi_i,\eta_i)\sigma_i.
+$$
+用$\lambda$表示$\sigma_1,\sigma_2,\cdots,\sigma_n$中最长的弧长. 当$\lambda \to 0$时，积分和$\sigma$有一确定的有限极限$I$，即与曲线$L$的细分方法无法，由于弧$\sigma$上点$(\xi_i,\eta_i)$的选择无关，则称这一极限为函数$f(x,y)$沿曲线或者道路$L$上所取的\redt{第一类曲线积分}，记为
+$$
+I = \int_L f(x,y)ds. 
+$$
+其中$s$表示曲线的弧长，$ds$象征弧元长度$\sigma_i$.
+\end{definition}
+
+\begin{proposition}
+\rm 第一类曲线积分与路径的方法无关
+$$
+\int_{L_{AB}} f(x,y)ds = \int_{L_{BA}} f(x,y)ds
+$$
+\end{proposition}
+
+\subsection{二重积分的性质}
+
+\begin{annotation}
+\rm 常规性质与一重积分相符.
+\end{annotation}
+
+\begin{proposition}
+\rm 设可积函数$f(x,y)$定义在有界闭区域$\mathcal{D}$上，若沿着一在$\mathcal{D}$中的光滑曲线改变$f(x,y)$的函数值. 则只要不破坏$f(x,y)$有界性，且改变后的$f(x,y)$依然可积，且它的积分等于$f(x,y)$的积分
+\end{proposition}
+
+\begin{annotation}
+\rm 类别一重定积分中改变有限多个点的函数值不改变整体的积分值.
+\end{annotation}
+
+\begin{theorem}
+\rm \redt{推广的中值定理} 若可积函数$f(x,y)$在区域$\mathcal{D}$上满足
+$$
+m \leq f(x,y) \leq M.
+$$
+则
+$$
+m\sigma \leq \int\int_{\mathcal{D}}f(x,y)d\sigma \leq M\sigma.
+$$
+特别地，若$f(x,y)$在$\mathcal{D}$上连续，则$\mathcal{D}$上存在一点$(\xi,\eta)$使得
+$$
+\int\int_{\mathcal{D}}f(x,y)d\sigma = f(\xi,\eta)\sigma.
+$$
+\end{theorem}
+
+\subsection{二重积分的计算}
+
+\begin{theorem}
+\rm \redt{在矩形区域的情况下化为二重积分为逐次积分} 如对定义于矩形$\mathcal{D}[a,b;c,d]$上的一函数$f(x,y)$二重积分存在，且对每一个$[a,b]$上的常数值$x$，单积分
+$$
+I(x) = \int_c^d f(x,y)dy (a \leq x \leq b)
+$$
+也存在，则逐次积分
+$$
+\int_a^b dx \int_c^d f(x,y)dy
+$$
+同样存在，且等式
+$$
+\int\int_{\mathcal{D}}f(x,y)d\sigma = \int_a^b dx \int_c^d f(x,y)dy
+$$
+也成立. 若单积分
+$$
+I'(x)\int_a^b f(x,y)dx.
+$$
+也存在，那么
+$$
+\int_a^b dx \int_c^d f(x,y)dy = \int_c^d dy \int_a^b f(x,y)dx
+$$
+\end{theorem}
+
+\begin{annotation}
+\rm 特别地$f(x,y)$是连续的，则一定有上面的定理成立.
+\end{annotation}
+
+\begin{theorem}
+\rm \redt{在曲边区域的情况下化二重积分为逐次积分} 如果$f(x,y)$定义于由上下两条曲边$\varphi_2(x),\varphi_1(x)$围成的区域$\mathcal{D}$时，且$f(x,y)$在$\mathcal{D}$上的二重积分存在，又对$[a,b]$中每一个固定值$x$单积分
+$$
+I(x) = \int_{\varphi_1(x)}^{\varphi_2(x)}
+$$ 
+也存在. 则逐次积分
+$$
+\int_a^b dx \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y)dy
+$$
+也同样存在，且等式
+$$
+\int\int_{\mathcal{D}}f(x,y)d\sigma = \int_a^b dx \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y)dy
+$$
+也存在. 
+\end{theorem}
+
+\begin{annotation}
+\rm \bluet{这里有一个需要注意的地方，曲边$\varphi_2(x),\varphi_1(x)$和平行于纵坐标直线需要只有两个交点. 这个很重要！不然你就需要考虑换积分次序了}.
+\end{annotation}
+
+\newpage
+\section{三重积分}
+
+\subsection{三重积分定义}
+\begin{definition}
+\rm 设函数$f(x,y,z)$定义在有界闭的区域$\mathcal{V}$上，将$\mathcal{V}$分成有限个部分区域
+$$
+v_1,v_2,\cdots,v_n.
+$$
+用$\Delta v_i$表示第$i$个部分区域，也表示它的体积. 在每个$\Delta v_i$上任取一点$(\xi_i,\eta_i,\zeta_i)$，将这一点处的函数值$f(\xi_i,\eta_i,\zeta_i)$乘上对应区域的体积$v_i$，并做积分和
+$$
+\sigma = \sum\limits_{i = 1}^nf(\xi_i,\eta_i,\zeta_i)v_i.
+$$
+以$d$表示$n$个部分区域的最大直径. 若当$d \to 0$时积分和$\sigma$有一确定的有限极限$I$，则称$I$是$f(x,y,z)$在$\mathcal{V}$上的三重积分，记为
+$$
+I = \int\int\int_{\mathcal{V}} f(x,y,z)d\sigma.
+$$
+\end{definition}
+
+\subsection{三重积分的性质}
+
+\begin{definition}
+\rm 常规性质和二重积分相符.
+\end{definition}
+
+\begin{proposition}
+\rm 三重积分的存在及大小与函数在光滑曲面上的取值无关. 
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{中值定理的推广}
+\end{proposition}
+
+\subsection{三重积分的计算}
+
+\begin{theorem}
+\rm \redt{平行六面体的三重积分计算} 若对函数$f(x,y,z)$在$\mathcal{V}[a,b;c,d;e,f]$上的三重积分存在，且若对$[a,b]$中每一固定的$x$，二重积分
+$$
+I(x) = \int\int_{R}f(x,y,z)d\sigma_1
+$$
+存在，则逐次积分
+$$
+\int_a^b dx \int\int_{R}f(x,y,z)d\sigma_1
+$$
+也存在，且等式
+$$
+\int\int\int_{\mathcal{V}} f(x,y,z)d\sigma = \int_a^b dx \int\int_{R_{yz}}f(x,y,z)d\sigma_1.
+$$
+同样若单重极限
+$$
+\int_e^f f(x,y,z)dz
+$$
+存在，则
+$$
+\int\int\int_{\mathcal{V}} f(x,y,z)d\sigma = \int\int_{R_{xy}}\int_e^f f(x,y,z)dz.
+$$
+\end{theorem}
 
 \newpage
 \section{Preliminary}
