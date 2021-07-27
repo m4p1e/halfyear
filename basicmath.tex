@@ -3511,6 +3511,57 @@ $$
 \end{proposition}
 
 \newpage
+\subsection{曲线积分与道路无关的条件}
+
+\begin{annotation}
+\rm 曲线积分$\int_L Pdx + Qdy$与\redt{道路无关}是指这个积分只与曲线$L$的起点和终点有关，与其两点的路径形状无关. 
+\end{annotation}
+
+\begin{theorem}
+\rm 设在一个单连通域$D$上有两个连续函数$P(x,y),Q(x,y)$. 给定$D$上任意一个光滑曲线，曲线积分$\int_L Pdx + Qdy$结果与\redt{道路无关}的充分必要条件是: $Pdx+Qdy$是某一个二元函数的全微分. 
+\end{theorem}
+
+\begin{proof}
+\rm \emph{必要性}\ 若曲线积分$\int_L Pdx + Qdy$在$D$上与道路无关，给定两点$D$上两点$A(x_0,y_0),B(x_1,y_1)$，那么此时我们可以用记号
+$$
+\int_{(x_0,x_0)}^{(x_1,y_1)} Pdx+Qdy
+$$
+来表示原曲线积分. 现在我们固定点$A$，用$M$表示$D$中任意一点$(x,y)$，我们来考虑辅助函数
+$$
+F(x,y) = \int_{(x_0,y_0)}^{(x,y)} Pdx+Qdy.
+$$
+那么当$M=B$时，我们有
+$$
+F(x_1,x_2) = \int_{(x_0,x_0)}^{(x_1,y_1)} Pdx+Qdy.
+$$
+现在在点$B$的基础上给$x_1$一增量$\Delta x$是它变成点$C(x_1+\Delta x,y_1)$，在$\Delta x$充分小的时候，直线段$BC$也在$D$中. 于是对应函数增量为
+$$
+F(x_1+\Delta x ,y_1)-F(x_1,y_1) = \int_{\overline{AB}}Pdx+ Qdy = \int_{\overline{AB}} Pdx,
+$$ 
+其中因为$BC$垂直于$y$轴的，所以$Qdy$的积分为零. 因为$P(x,y)$连续，所以我们可以用一下中值定理有
+$$
+F(x_1+\Delta x ,y_1)-F(x_1,y_1) = \Delta x P(x_1+\theta \Delta x,y_1),  0 \leq \theta \leq 1.
+$$
+于是我们有
+$$
+\frac{F(x_1+\Delta x ,y_1)-F(x_1,y_1)}{\Delta x} = P(x_1+\theta \Delta x, y_1).
+$$
+还是由于$P(x,y)$的连续性，当$\Delta x \to 0$时，上述等式的右边趋于$P(x_1,y_1)$，而左边是$F(x,y)$关于$x$的偏导数定义. 因此我们有
+$$
+\frac{\partial F(x_1,y_1)}{\partial x} = P(x_1,y_1). 
+$$
+同理我们可得
+$$
+\frac{\partial F(x_1,y_1)}{\partial y} = Q(x_1,y_1). 
+$$
+故$F(x,y)$有两个连续偏导，因此最终
+$$
+dF = \frac{\partial F(x_1,y_1)}{\partial x}dx + \frac{\partial F(x_1,y_1)}{\partial y}dy = Pdx +Qdy.
+$$
+\emph{充分性} 
+\end{proof}
+
+\newpage
 \section{二重积分}
 
 \subsection{二重积分的定义}
