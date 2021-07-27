@@ -3358,6 +3358,159 @@ $$
 \end{proof}
 
 \newpage
+\section{微分学在几何上的应用}
+
+\subsection{弧长定义}
+
+\begin{definition}
+\rm 光滑曲线$\widehat{AB}$上的可能的内接折线周长$p$构成的集合的上确界$S$，叫做$\widehat{AB}$的长，即
+$$
+S = \sup\{p\}.
+$$
+如果这个数$S$有限，则曲线叫做\redt{可求长}.
+\end{definition}
+
+\begin{proposition}
+\rm 若曲线$\widehat{AB}$可以用参数方程
+$$
+x = \varphi(t), \, y = \psi(t) 
+$$
+表示. 其中$\varphi(t),\psi(t)$都有连续导数. 在$\widehat{AB}$上一点$M$，则$\widehat{AM}$的弧长可以用参变量为$t$的可微分函数$s = s(t)$表示，它的导数为
+$$
+s'(t) = \lim\limits_{\Delta t}\frac{\Delta s}{\Delta t} = \sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}.
+$$
+或者，简单地
+$$
+s_t' = \sqrt{x_t'^2 + y_t'^2}. 
+$$
+\end{proposition}
+
+\newpage
+\section{曲线积分}
+
+\subsection{第一类曲线积分}
+\begin{definition}
+\rm 设函数$f(x,y)$定义在光滑的可求长的平面曲线$L$上，将$L$分为有限段弧
+$\sigma_1,\sigma_2,\cdots,\sigma_n$. 用$\sigma_i$表示第$i$段弧，也表示其弧长. 在每一$\sigma_i$上任取一点$(\xi_i,\eta_i)$，做积分和
+$$
+\sigma = \sum\limits_{i = 1}^n f(\xi_i,\eta_i)\sigma_i.
+$$
+用$\lambda$表示$\sigma_1,\sigma_2,\cdots,\sigma_n$中最长的弧长. 当$\lambda \to 0$时，积分和$\sigma$有一确定的有限极限$I$，即与曲线$L$的细分方法无法，由于弧$\sigma$上点$(\xi_i,\eta_i)$的选择无关，则称这一极限为函数$f(x,y)$沿曲线或者道路$L$上所取的\redt{第一类曲线积分}，记为
+$$
+I = \int_L f(x,y)ds. 
+$$
+其中$s$表示曲线的弧长，$ds$象征弧元长度$\sigma_i$.
+\end{definition}
+
+\begin{proposition}
+\rm 第一类曲线积分与路径的方法无关
+$$
+\int_{L_{AB}} f(x,y)ds = \int_{L_{BA}} f(x,y)ds
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{化为普通一元定积分} 若平面曲线$L$用$\widehat{AB}$表示，且$\widehat{AB}$上任意一点$M$的位置也由$\widehat{AM}$的弧长来唯一确定，那么$L$可由参数方程
+$$
+x = \varphi(s), \, y = \psi(s) ~ (0 \leq s \leq S).
+$$
+则
+$$
+\int_L f(x,y)ds = \int_{0}^S f(\varphi(s),\psi(s))ds.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{参数方程下弧长可微分} 若平面曲线$L$可由参数方程
+$$
+x = \varphi(t), \, y = \psi(t) (\alpha \leq t \leq \beta)
+$$
+表示，其中$\varphi(t),\psi(t)$都有连续导数. 且弧长$s = \widehat{AM} = s(t)$的增加对应于参数$t$的增加，则
+$$
+s_t' = \sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}.
+$$
+那么有
+$$
+\int_L f(x,y)ds = \int_\alpha^\beta f(\varphi(t),\psi(t))\sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}dt. 
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{特殊的参数方程} 若曲线$L$由连续可导函数
+$$
+y=y(x) ~ (a \leq x \leq b)
+$$
+给出，其中$y(x)$有连续导数. 那么
+$$
+\int_L f(x,y)ds = \int_a^b f(x,y(x))\sqrt{1+ [y'(x)]^2}dx. 
+$$
+\end{proposition}
+
+\subsection{第二类曲线积分}
+
+\begin{definition}
+\rm 将第一类曲线积分的积分变量换成部分弧长$\sigma_1$的在$x$轴或者$y$上的投影$\Delta x_i$或者$\Delta y_i$，于是得到了\redt{第二类曲线积分}
+$$
+I_x = \int_L f(x,y)dx,\, I_y = \int_L f(x,y)dy.
+$$
+若沿曲线$L$定义两个函数$P(x,y)$和$Q(x,y)$，且积分
+$$
+\int_L P(x,y)dx , \int_L Q(x,y)dy 
+$$
+都存在，则它们的和就称为\redt{一般形状的曲线积分}，记为
+$$
+\int_L P(x,y)dx + Q(x,y)dy.
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 第二类曲线积分和曲线方向有关
+$$
+\int_{L_{AB}} f(x,y)dx = -\int_{L_{BA}} f(x,y)dx
+$$
+同样，
+$$
+\int_{L_{AB}} f(x,y)dy = -\int_{L_{BA}} f(x,y)dy
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{给定参数方程下的第二类曲线积分的计算} 若平面曲线$L=\widehat{AB}$可由参数方程
+$$
+x = \varphi(t), \, y = \psi(t) (\alpha \leq t \leq \beta)
+$$
+表示，其中$\varphi(t),\psi(t)$都是连续的，且导数$\varphi't(t)$存在且连续，又当参数$t$自$\alpha$变到$\beta$时所确定的点在曲线$L$上以$A$到$B$的方向移动. 则有等式
+$$
+\int_{L_{AB}}f(x,y)dx = \int_\alpha^\beta f(\varphi(t),\psi(t))\varphi'(t)dt. 
+$$
+成立. 若导数$\psi't(t)$也存在且连续，给定两个连续函数$P(x,y)$及$Q(x,y)$，则有
+$$
+\int_{L_{AB}} Pdx + Qdy = \int_\alpha^\beta [P(\varphi(t),\psi(t))\varphi'(t) + Q(\varphi(t),\psi(t))\psi'(t)]dt.
+$$
+\end{proposition}
+
+\subsection{两种不同类型曲线积分之间的联系}
+
+\begin{proposition}
+\rm 给定一光滑曲线$L=\widehat{AB}$，取$L$上任意一点$M$，以其弧长为参数$s=\widehat{AM}$，则可以用参数方程
+$$
+x=x(s),y=y(s) ~ (0 \leq s \leq S)
+$$
+表示$L$. 若以$\alpha$表示弧的增加方向的切线与$x$轴间的夹角. 即有
+$$
+\cos \alpha = x'(s), \, \sin \alpha = y'(s).
+$$
+因此我们有
+$$
+\int_{L_{AB}} f(x,y)dx = \int_0^S f(x(s),y(s))x'(s)ds = \int_{L_{AB}} f(x,y)\cos \alpha ds.
+$$
+同理考虑第二类曲线积分的一般形式则有
+$$
+\int_{L_{AB}}Pdx+Qdy = \int_{L_{AB}} (P\cos\alpha +Q\sin\alpha)ds.
+$$
+\end{proposition}
+
+\newpage
 \section{二重积分}
 
 \subsection{二重积分的定义}
@@ -3386,30 +3539,6 @@ $$
 
 \begin{proposition}
 \rm 可积函数必须是有界的.
-\end{proposition}
-
-\newpage
-\section{曲线积分}
-
-\subsection{第一类曲线积分}
-\begin{definition}
-\rm 设函数$f(x,y)$定义在光滑的可求长的平面曲线$L$上，将$L$分为有限段弧
-$\sigma_1,\sigma_2,\cdots,\sigma_n$. 用$\sigma_i$表示第$i$段弧，也表示其弧长. 在每一$\sigma_i$上任取一点$(\xi_i,\eta_i)$，做积分和
-$$
-\sigma = \sum\limits_{i = 1}^n f(\xi_i,\eta_i)\sigma_i.
-$$
-用$\lambda$表示$\sigma_1,\sigma_2,\cdots,\sigma_n$中最长的弧长. 当$\lambda \to 0$时，积分和$\sigma$有一确定的有限极限$I$，即与曲线$L$的细分方法无法，由于弧$\sigma$上点$(\xi_i,\eta_i)$的选择无关，则称这一极限为函数$f(x,y)$沿曲线或者道路$L$上所取的\redt{第一类曲线积分}，记为
-$$
-I = \int_L f(x,y)ds. 
-$$
-其中$s$表示曲线的弧长，$ds$象征弧元长度$\sigma_i$.
-\end{definition}
-
-\begin{proposition}
-\rm 第一类曲线积分与路径的方法无关
-$$
-\int_{L_{AB}} f(x,y)ds = \int_{L_{BA}} f(x,y)ds
-$$
 \end{proposition}
 
 \subsection{二重积分的性质}
