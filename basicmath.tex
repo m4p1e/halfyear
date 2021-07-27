@@ -3536,7 +3536,7 @@ F(x_1,x_2) = \int_{(x_0,x_0)}^{(x_1,y_1)} Pdx+Qdy.
 $$
 现在在点$B$的基础上给$x_1$一增量$\Delta x$是它变成点$C(x_1+\Delta x,y_1)$，在$\Delta x$充分小的时候，直线段$BC$也在$D$中. 于是对应函数增量为
 $$
-F(x_1+\Delta x ,y_1)-F(x_1,y_1) = \int_{\overline{AB}}Pdx+ Qdy = \int_{\overline{AB}} Pdx,
+F(x_1+\Delta x ,y_1)-F(x_1,y_1) = \int_{\overline{BC}}Pdx+ Qdy = \int_{\overline{BC}} Pdx,
 $$ 
 其中因为$BC$垂直于$y$轴的，所以$Qdy$的积分为零. 因为$P(x,y)$连续，所以我们可以用一下中值定理有
 $$
@@ -3558,7 +3558,30 @@ $$
 $$
 dF = \frac{\partial F(x_1,y_1)}{\partial x}dx + \frac{\partial F(x_1,y_1)}{\partial y}dy = Pdx +Qdy.
 $$
-\emph{充分性} 
+\emph{充分性}\ 若$P=\frac{\partial \Phi}{\partial x},\,Q=\frac{\partial \Phi}{\partial y}$. 给定两点$D$上两点$A(x_0,y_0),B(x_1,y_1)$，设任意一条光滑的曲线$\widehat{AB}$对应的参数方程表示为
+$$
+x = \varphi(t),\, y = \psi(t).
+$$
+对应$A,B$两点的参数表示为
+$$
+x_0 = \varphi(\alpha),y_0 =\psi(\alpha);\; x_1 =\varphi(\beta), y_1 = \psi(\beta).
+$$
+我们还需要假定当$t$从$\alpha$变动到$\beta$时，对应的点在曲线上从$A$变动到$B$. 现在沿曲线$\widehat{AB}$来计算积分，则有
+$$
+\int_{\widehat{AB}}Pdx+ Qdy = \int_\alpha^\beta \{P(\varphi(t),\psi(t))\varphi'(t) + Q(\varphi(t),\psi(t))\psi'(t)\}dt
+$$
+那么实际上根据复合多元函数的规则，设$u = \Phi(\varphi(t),\psi(t)) $有
+$$
+du = \frac{\partial u}{\partial x}\varphi'(t)dt + \frac{\partial u}{\partial y}\psi'(t)dt.
+$$
+因此我们有
+$$
+\int_\alpha^\beta \{P(\varphi(t),\psi(t))\varphi'(t) + Q(\varphi(t),\psi(t))\psi'(t)\}dt = \int_\alpha^\beta \frac{d}{dt} \Phi(\varphi(t),\psi(t)).
+$$
+最后
+$$
+\int_{\widehat{AB}}Pdx+ Qdy = \Phi(x_1,y_1)-\Phi(x_0,y_0). 
+$$
 \end{proof}
 
 \newpage
