@@ -3517,7 +3517,7 @@ $$
 \rm 曲线积分$\int_L Pdx + Qdy$与\redt{道路无关}是指这个积分只与曲线$L$的起点和终点有关，与其两点的路径形状无关. 
 \end{annotation}
 
-\begin{theorem}
+\begin{theorem}\label{line-integral: path-independent}
 \rm 设在一个单连通域$D$上有两个连续函数$P(x,y),Q(x,y)$. 给定$D$上任意一个光滑曲线，曲线积分$\int_L Pdx + Qdy$结果与\redt{道路无关}的充分必要条件是: $Pdx+Qdy$是某一个二元函数的全微分. 
 \end{theorem}
 
@@ -3583,6 +3583,58 @@ $$
 \int_{\widehat{AB}}Pdx+ Qdy = \Phi(x_1,y_1)-\Phi(x_0,y_0). 
 $$
 \end{proof}
+
+\begin{proposition}
+\rm \redt{\ref{line-integral: path-independent} 判别方法} 设在一个单连通域$D$上有两个连续函数$P(x,y),Q(x,y)$，且它们具有\redt{一阶连续偏导}. 则$Pdx + Qdy$是一个二元函数的全微分的充分必要条件为
+$$
+\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}
+$$
+在$D$上恒成立. 
+\end{proposition}
+
+\begin{proof}
+\rm \emph{必要性}\ 若$P = \frac{\partial \Phi}{\partial x},
+\,Q = \frac{\partial \Phi}{\partial y}$. 于是
+$$
+\frac{\partial P}{\partial y} = \frac{\partial^2\Phi}{\partial x\partial y},\,\frac{\partial Q}{\partial x} = \frac{\partial^2\Phi}{\partial y\partial x}.
+$$
+因为$P$及$Q$都有一阶连续偏导，由\ref{mixed-derivatives: exchange-order}，所以有$\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$.
+
+\emph{充分性}\ 若$\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$，我们来求原函数，是它满足
+$$
+\frac{\partial \Phi}{\partial x} = P,
+\, \frac{\partial \Phi}{\partial y} = Q.
+$$
+因为$P$及$Q$是连续的，我们来对它们分别积分. 我们在$D$中选取两点$x,x_0$，固定一个$y$. 再对$P(x,y)$做关于$x$从$x_0$到$x$的积分，即有
+$$
+\Phi(x,y) - \Phi(x_0,y) = \int_{x_0}^{x} P(t,y)dt. 
+$$
+再选取$y_0$，对$Q(x_0,y)$做关于$y$从$y_0$到$y$的积分，就有
+$$
+\Phi(x_0,y)-\Phi(x_0,y_0) = \int_{y_0}^{y} Q(x_0,t)dt. 
+$$
+综上于是有
+$$
+\Phi(x,y) = \int_{x_0}^{x} P(t,y)dt + \int_{y_0}^{y} Q(x_0,t)dt + \Phi(x_0,y_0).
+$$
+其中$\Phi(x_0,y_0)$为确定的任意常数. 我们需要来验证一下$\Phi(x,y)$是否符合我们的要求，分别来对它取偏导数. 对$x$取偏导时，等式后面两项与$x$无关的，所以很容易得到$\frac{\partial \Phi}{\partial x} = P(x,y)$; 对$y$取偏导时，第二项可以容易得到$Q(x_0,y)$，第一项需要应用一下\redt{莱布尼茨法则}(fz509)，有
+$$
+\int_{x_0}^{x}P(t,y)dt = \int_{x_0}^{x} \frac{\partial P(t,y)}{\partial y}dt.
+$$ 
+根据条件可以将$\frac{\partial P(t,y)}{\partial y}$替换成$\frac{\partial Q(t,y)}{\partial x}$，于是最终上面这个积分的结果就是
+$Q(x,y)-Q(x_0,y)$，所以也有$\frac{\partial \Phi}{\partial y} = Q(x,y)$.
+
+\end{proof}
+
+\subsection{闭路积分}
+
+\begin{lemma}
+\rm 若积分$\int_L Pdx+Qdy$取在沿不论怎样的简单(即不自身相交)闭路上永远等于零，则它即使区在任何自身相交的闭路上也将为零.
+\end{lemma}
+
+\begin{theorem}
+\rm 曲线积分$\int_{\widehat{AB}} Pdx+Qdy$与道路无关当且仅当闭路积分$\int_L Pdx+Qdy$沿任何闭路都等于零. 
+\end{theorem}
 
 \newpage
 \section{二重积分}
@@ -3693,6 +3745,32 @@ $$
 \rm \bluet{这里有一个需要注意的地方，曲边$\varphi_2(x),\varphi_1(x)$和平行于纵坐标直线需要只有两个交点. 这个很重要！不然你就需要考虑换积分次序了}.
 \end{annotation}
 
+\subsection{格林公式}
+
+\begin{definition}
+\rm 在平面的右手定向的情况下，我们规定一闭路的方向如下: 当观察者沿闭路的一方向行走时，若闭路围成的区域考虑观察者的左手，我们就称这一方向是\redt{正的}; 反之就是负的. 
+\end{definition}
+
+\begin{theorem}
+\rm \redt{格林公式} 设闭区域$D$由分段光滑的曲线$L$围成，若函数$P(x,y)$及$Q(x,y)$在$D$上具有一阶连续偏导数,则由
+$$
+\int\int_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial x} \right) = \int_L Pdx+Qdy.
+$$
+其中$L$是$D$的取正向的边界曲线. 
+\end{theorem}
+
+\begin{annotation}
+\rm 当下我们可以配合格林公式来证明沿闭路曲线积分为零的充要条件
+$$
+\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}.
+$$
+充分性是显然的，函数值为$0$的积分结果肯定还是$0$. 证必要性可以假设在区域$D$上某一点$M$使得
+$$
+\frac{\partial P}{\partial y} \neq \frac{\partial Q}{\partial x}.
+$$
+不妨设$\frac{\partial P}{\partial y} - \frac{\partial Q}{\partial x} > \eta$，由于$\frac{\partial P}{\partial y} ,\frac{\partial Q}{\partial x}$都是连续的，所以可以找到一个$M$的充分小的邻域使得$\frac{\partial P}{\partial y} - \frac{\partial Q}{\partial x} > \frac{\eta}{2}$，显然在这个邻域里面取一条闭路曲线沿着它积分的结果肯定是不可能为零的. 
+\end{annotation}
+
 \newpage
 \section{三重积分}
 
@@ -3750,6 +3828,47 @@ $$
 \int\int\int_{\mathcal{V}} f(x,y,z)d\sigma = \int\int_{R_{xy}}\int_e^f f(x,y,z)dz.
 $$
 \end{theorem}
+
+\newpage
+\section{常数项无穷级数}
+
+\subsection{无穷级数的基本概念}
+
+\begin{definition}
+\rm 设给定某一无穷序列
+\begin{equation}
+a_1,a_2,\cdots,a_n,\cdots.
+\end{equation}
+由这些数所做的符号
+\begin{equation}
+a_1 + a_2 + \cdots + a_n + \cdots
+\end{equation}
+叫做\redt{(常数项)无穷级数}，而$(1)$中各数叫做级数的项. 利用累加符号可将(2)记为
+$$
+\sum\limits_{n=1}^\infty a_n.
+$$
+(1)的前$n$项和
+$$
+s_n = a_1+a_2+\cdots+a_n
+$$
+称为(1)的\redt{部分和}.
+\end{definition}
+
+\begin{definition}
+\rm 若级数$\sum\limits_{n=1}^\infty a_n$的部分和构成的数列$(s_n)$有有限极限$s$，即
+$$
+\lim\limits_{n \to \infty} s_n = S,
+$$
+那么就称无穷级数$\sum\limits_{n=1}^\infty a_n$\redt{收敛}，这时$S$叫做这级数的和，即
+$$
+\sum\limits_{n=1}^\infty a_n = \lim\limits_{n \to \infty} s_n = S.
+$$
+反之若$(s_n)$没有有限极限，无穷级数$\sum\limits_{n=1}^\infty a_n$\redt{发散}.
+\end{definition}
+
+\subsection{收敛级数的基本性质}
+
+
 
 \newpage
 \section{Preliminary}
