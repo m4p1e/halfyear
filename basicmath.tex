@@ -3868,7 +3868,81 @@ $$
 
 \subsection{收敛级数的基本性质}
 
+\begin{definition}
+\rm 如果舍弃级数$\sum\limits_{n=1}^\infty a_n$前面的$m$个项，得到级数
+$$
+a_{m+1} + a_{m+2} + \cdots + a_{m+k} + \cdots = \sum\limits_{n=m+1}^\infty a_n,
+$$
+称其为级数$\sum\limits_{n=1}^\infty a_n$的第$m$项后的\redt{余式}. 
+\end{definition}
 
+\begin{proposition}
+\rm \redt{余式收敛性} 如果级数$\sum\limits_{n=1}^\infty a_n$收敛，则它的任何一个余式$\sum\limits_{n=m+1}^\infty a_n$也收敛; 反之，从余式的收敛性可推出原来级数$\sum\limits_{n=1}^\infty a_n$的收敛性. \bluet{换句话说，丢弃级数前面的有限个项或者在级数前面加进若干新的项，并不影响级数的收敛性}.
+\end{proposition}
+
+\begin{proof}
+\rm 固定$m$，用$s_k'$表示余式$\sum\limits_{n=m+1}^\infty a_n$的部分和. 于是
+\begin{equation}
+s_k' = s_{m+k} - s_m.
+\end{equation}
+若级数$\sum\limits_{n=1}^\infty a_n$收敛，那么有
+$$
+\lim\limits_{k \to \infty}s_k' = S-s_m = S',
+$$
+即级数$\sum\limits_{n=m+1}^\infty a_n$也收敛. 
+
+反之若级数$\sum\limits_{n=m+1}^\infty a_n$收敛于$S'$，将(1)式的$k=n-m$得到
+$$
+s_n = s_m + s_{n-m}'.
+$$
+再取两边取极限，则有
+$$
+\lim\limits_{n \to \infty} s_n  = s_m + S',
+$$
+即级数$\sum\limits_{n=1}^\infty a_n$也是收敛的. 
+\end{proof}
+
+\begin{proposition}
+\rm \redt{余式和} 设级数$\sum\limits_{n=1}^\infty a_n$第$m$项后的余式的和为$r_n$，若级数$\sum\limits_{n=1}^\infty a_n$收敛，则$r_n$随着$m$的增大而趋于$0$.
+\end{proposition}
+
+\begin{proof}
+若$\sum\limits_{n=1}^\infty a_n$收敛于$S$，于是
+$$
+r_m = S - s_m,
+$$
+因此$m$增大的时候$s_m$也在增大且趋于$S$，所以$r_m$随之减少至$0$.
+\end{proof}
+
+\begin{proposition}
+\rm 如果级数$\sum\limits_{n=1}^\infty a_n$收敛$S$，那么级数$\sum\limits_{n=1}^\infty ca_n$也收敛，且其和为$cS$. 
+\end{proposition}
+
+
+\begin{proposition}
+\rm 若两个级数$\sum\limits_{n=1}^\infty a_n$及$\sum\limits_{n=1}^\infty b_n$分布收敛于$S_a$和$S_b$，那么级数$\sum\limits_{n=1}^\infty (a_n \pm b_n)$也收敛，且其和为$S_a \pm S_b$.
+\end{proposition}
+
+\begin{proposition}
+\rm 若级数$\sum\limits_{n=1}^\infty a_n$收敛，那么对这级数的项任意加括号之后所成的级数仍收敛，其和不变.
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{级数收敛的必要条件} 若级数$\sum\limits_{n=1}^\infty a_n$收敛，那么其通项$a_n$趋于$0$. 
+\end{proposition}
+
+\begin{proof}
+显然有
+$$
+a_n = s_n - s_{n-1}.
+$$
+\end{proof}
+
+\subsection{正项级数的收敛性}
+
+\begin{definition}
+\rm 
+\end{definition}
 
 \newpage
 \section{Preliminary}
