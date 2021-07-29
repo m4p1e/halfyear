@@ -3941,8 +3941,82 @@ $$
 \subsection{正项级数的收敛性}
 
 \begin{definition}
-\rm 
+\rm 若级数的每一项都是非负的，称其为\redt{正项级数}. 
 \end{definition}
+
+\begin{theorem}
+\rm \redt{正项级数收敛的基本定理} 如果正向级数的部分和上有界，则其收敛; 反之则发散. \bluet{类似于数列极限中的单调有界数列必有极限}.
+\end{theorem}
+
+
+\begin{theorem}
+\rm 若给定两个正向级数$\sum\limits_{n=1}^\infty a_n$和$\sum\limits_{n=1}^\infty b_n$. 若从某项其$n > N$，恒有$a_n \leq b_n$成立，那么若级数$\sum\limits_{n=1}^\infty b_n$收敛，则$\sum\limits_{n=1}^\infty a_n$也收敛; 若级数$\sum\limits_{n=1}^\infty a_n$发散，则$\sum\limits_{n=1}^\infty b_n$也发散.
+\end{theorem}
+
+
+\begin{theorem}\label{positive-series: compare-convergence}
+\rm 如果极限
+$$
+\frac{a_n}{b_k} = K
+$$
+存在，则级数$\sum\limits_{n=1}^\infty a_n$和$\sum\limits_{n=1}^\infty b_n$同时收敛或者同时发散.
+\end{theorem}
+
+\begin{theorem}
+\rm 如果从某项起$n > N$，恒有
+$$
+\frac{a_{n+1}}{a_n} \leq \frac{b_{n+1}}{b_n}
+$$
+成立，那么若级数$\sum\limits_{n=1}^\infty b_n$收敛，则$\sum\limits_{n=1}^\infty a_n$也收敛; 若级数$\sum\limits_{n=1}^\infty a_n$发散，则$\sum\limits_{n=1}^\infty b_n$发散. 
+\end{theorem}
+
+\begin{proof}
+在不失一般性的情况下，可以认为命题给出的条件在所有$n=1,2,3,\cdots$都是成立的，即
+$$
+\frac{a_2}{a_1} \leq \frac{b_2}{b_1},\frac{a_3}{a_2} \leq \frac{b_3}{b_2}, \cdots, \frac{a_{n}}{a_{n-1}} \leq \frac{b_{n}}{b_{n-1}}.
+$$
+逐项将这些不等式相乘，我们可以得到
+$$
+\frac{a_{n}}{a_1} \leq \frac{b_{n}}{b_1},
+$$
+移项即得
+$$
+a_n \leq \frac{a_1}{b_1}\cdot b_n. 
+$$
+而级数$\sum\limits_{n=1}^\infty \frac{a_1}{b_1}\cdot b_n$和$\sum\limits_{n=1}^\infty b_n$收敛性相同，类似\ref{positive-series: compare-convergence}.
+\end{proof}
+
+\begin{proposition}
+\rm \redt{柯西判别法} 若当$n$充分大的时候有
+$$
+\sqrt[n]{a_n} \leq q
+$$
+成立，其中$0 < q <1$，则级数$\sum\limits_{n=1}^\infty a_n$收敛; 如果从某处开始有
+$$
+\sqrt[n]{a_n} \geq 1,
+$$
+则级数发散.
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{达朗贝尔判别法} 若当$n$充分大的时候有
+$$
+\frac{a_{n+1}}{a_n} \leq q
+$$
+成立，其中$0 < q <1$，则级数$\sum\limits_{n=1}^\infty a_n$收敛; 如果从某处开始有
+$$
+\frac{a_{n+1}}{a_n} \leq 1,
+$$
+则级数发散. 
+\end{proposition}
+
+\begin{annotation}
+\rm \bluet{柯西判别法和达朗贝尔都是以几何级数为标准而导出的比较审敛法}.
+\end{annotation}
+
+\begin{theorem}
+\rm 
+\end{theorem}
 
 \newpage
 \section{Preliminary}
