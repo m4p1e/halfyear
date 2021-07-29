@@ -3995,7 +3995,10 @@ $$
 $$
 \sqrt[n]{a_n} \geq 1,
 $$
-则级数发散.
+则级数发散. 前提条件可以用极限语言表示为
+$$
+\lim\limits_{n \to \infty} \sqrt[n]{a_n} = q.
+$$
 \end{proposition}
 
 \begin{proposition}
@@ -4005,9 +4008,12 @@ $$
 $$
 成立，其中$0 < q <1$，则级数$\sum\limits_{n=1}^\infty a_n$收敛; 如果从某处开始有
 $$
-\frac{a_{n+1}}{a_n} \leq 1,
+\frac{a_{n+1}}{a_n} \geq 1,
 $$
-则级数发散. 
+则级数发散. 前提条件可以用极限语言表示为
+$$
+\lim\limits_{n \to \infty} \frac{a_{n+1}}{a_n} = q.
+$$
 \end{proposition}
 
 \begin{annotation}
@@ -4015,8 +4021,163 @@ $$
 \end{annotation}
 
 \begin{theorem}
-\rm 
+\rm \redt{拉阿伯判别法} 若当$n$充分大的时候有
+$$
+n\left( \frac{a_n}{a_{n+1}} - 1\right) \geq r
+$$
+成立，其中$r > 1$，则级数$\sum\limits_{n=1}^\infty a_n$收敛; 若从某项起
+$$
+n\left( \frac{a_n}{a_{n+1}} - 1\right) \leq 1
+$$
+则级数发散. 
 \end{theorem}
+
+\begin{proof}
+设在$n$充分大的时候，有
+$$
+\frac{a_n}{a_{n+1}} \geq  1 + \frac{r}{n}.
+$$
+取$1< s < r$，我们有
+$$
+\lim\limits_{n \to \infty} \frac{(1+\frac{1}{n})^s-1}{\frac{1}{n}} = s.
+$$
+于是在$n$充分大的时候，有
+$$
+(1+\frac{1}{n})^s \leq 1+\frac{r}{n}. 
+$$
+因此
+$$
+\frac{a_n}{a_{n+1}} \geq (1+\frac{1}{n})^s,
+$$
+故
+$$
+\frac{a_{n+1}}{a_n} \leq \frac{\frac{1}{(1+n)^s}}{\frac{1}{(n)^s}}.
+$$
+\end{proof}
+
+\begin{annotation}
+\rm \bluet{拉阿伯判断法是以调和级数为标准而导出的比较审敛法}.
+\end{annotation}
+
+\begin{proposition}
+\rm \redt{积分判别法} 若
+$$
+\sum\limits_{n=1}^\infty a_n \equiv \sum\limits_{n=1}^\infty f(n).
+$$
+其中$f(x)$是连续的，正的单调递减函数. 级数$\sum\limits_{n=1}^\infty a_n$的收敛，取决于函数
+$$
+F(x) = \int f(x)dx
+$$
+当$x \to +\infty$时是否有有限极限. 
+\end{proposition}
+
+\begin{proof}
+其中$F(x)$是$f(x)$的一个原函数，由于$f(x) > 0$，所以$F(x)$也是一个单调增函数，我们考虑这样一个级数
+\begin{equation}
+\sum\limits_{n \to \infty}\left[F(n+1)-F(n)\right].
+\end{equation}
+由中值定理，有
+$$
+F(n+1)-F(n) = f(n+\theta),\, 0 < \theta < 1.
+$$
+于是
+$$
+a_{n+1} = f(n+1) < F(n+1)-F(n) < f(n)=a_n. 
+$$
+因此级数(1)收敛，那么$\sum\limits_{n=1}^{\infty}f(n+1)$也是收敛的，从而$\sum\limits_{n=1}^{\infty}f(n)$也是收敛的. 
+\end{proof}
+
+
+\newpage
+\subsection{任意项级数的收敛性}
+
+\begin{theorem}
+\rm \redt{柯西收敛原理的推广} 级数$\sum\limits_{n=1}^{\infty}a_n$收敛的充要条件为: 对任意的数$\varepsilon > 0$，存在自然数$n$，使得当$n > N$时，对任意的$m=1,2,3,\cdots$都有
+$$
+|a_{n+1}+a_{n+2}+\cdots+a_{n+m}| \leq \varepsilon.
+$$
+特别地，当$m=1$时，就得到了级数收敛的必要条件. 
+\end{theorem}
+
+\begin{theorem}
+\rm \redt{绝对收敛} 设给定级数$\sum\limits_{n=1}^{\infty}a_n$. 若由这个级数的项的绝对值所组成的级数$\sum\limits_{n=1}^{\infty}|a_n|$收敛，则给定级数也收敛.
+\end{theorem}
+
+\begin{theorem}
+\rm 若级数$\sum\limits_{n=1}^{\infty}a_n$和它的绝对值级数$\sum\limits_{n=1}^{\infty}|a_n|$同时收敛，则称级数$\sum\limits_{n=1}^{\infty}a_n$\redt{绝对收敛}. 若级数$\sum\limits_{n=1}^{\infty}a_n$收敛，而其绝对值级数$\sum\limits_{n=1}^{\infty}|a_n|$不收敛，则称级数$\sum\limits_{n=1}^{\infty}a_n$\redt{非绝对收敛}.
+\end{theorem}
+
+\begin{annotation}
+\rm 注意绝对值级数发散，但是其原级数是可能收敛的. 但是使用柯西判别法和达朗贝尔办法在这里依然有效，即在这种情况判别绝对值级数发散，那么原级数一定也是发散的. 
+\end{annotation}
+
+\subsection{幂级数}
+
+\begin{definition}
+\rm 形如
+$$
+\sum\limits_{n=0}^{\infty}a_nx^n =  a_0 + a_1x+ a_2x^2 + \cdots + a_nx^n + \cdots
+$$
+的级数，被称为\redt{幂级数}.
+\end{definition}
+
+\begin{theorem}
+\rm 若对于异于$0$的值$x=\bar{x}$使得级数$\sum\limits_{n=0}^{\infty}a_nx^n$收敛，则对于任意的$|x| < |\bar{x}|$的，都可以使得级数$\sum\limits_{n=0}^{\infty}a_nx^n$绝对收敛.
+\end{theorem}
+
+\begin{proof}
+若级数$\sum\limits_{n=0}^{\infty}a_n\bar{x}^n$收敛，那么其通项有界，即
+$$
+|a_n\bar{x}^n| \leq M, n = 0,1,2,\cdots.
+$$
+现在任取$x$使得$|x| < |\bar{x}|$，考虑级数$\sum\limits_{n=0}^{\infty}|a_nx^n|$的收敛性. 我们有
+$$
+|a_nx^n| = |a_n\bar{x}^n|\cdot \left|\frac{x}{\bar{x}}\right|^n \leq M\cdot\left|\frac{x}{\bar{x}}\right|^n,
+$$
+显然级数$\sum\limits_{n=0}^{\infty} M\cdot\left|\frac{x}{\bar{x}}\right|^n$是一个收敛的几何级数，因此$\sum\limits_{n=0}^{\infty}|a_nx^n|$收敛. 
+\end{proof}
+
+
+\begin{definition}
+\rm 若存在一些使得级数$\sum\limits_{n=0}^{\infty}a_nx^n$收敛而异于$0$的$x = \bar{x}$，若所有这样的点构成的集合$\{\bar{x}\}$上有界，而$R$是它的上界，则称$R$是级数$\sum\limits_{n=0}^{\infty}a_nx^n$的\redt{收敛半径}. 当$|x| < R$时，级数$\sum\limits_{n=0}^{\infty}a_nx^n$决定收敛; 当$|x| > R$时，级数$\sum\limits_{n=0}^{\infty}a_nx^n$发散. 
+\end{definition}
+
+\begin{theorem}
+\rm \redt{用系数表示收敛半径} 给定幂级数$\sum\limits_{n=0}^{\infty}a_nx^n$. 若
+$$
+\lim\limits_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right| = \rho,
+$$
+那么这幂级数的收敛半径为
+$$
+R = \left\{ \begin{array}{ll}
+\frac{1}{\rho}, & \rho \neq 0 \\
++\infty, & \rho = 0 \\
+0, & \rho = +\infty
+\end{array}\right.
+$$
+\end{theorem}
+
+\begin{proof}
+\rm 当$\rho=0$时，对任意$x \neq 0$，都有
+$$
+\lim\limits_{n \to \infty}\frac{|a_{n+1}x^{n+1}}{|a_{n}x^n|} = \left|\frac{a_{n+1}}{a_n}\right|\cdot |x| = 0.
+$$
+由达朗贝尔判别可以知$\sum\limits_{n=0}^{\infty}a_nx^n$收敛. 因此$R = +\infty$ 
+
+当$\rho = +\infty$时，同理对任意$x \neq 0$，都有
+$$
+\lim\limits_{n \to \infty}\frac{|a_{n+1}x^{n+1}}{|a_{n}x^n|} = \left|\frac{a_{n+1}}{a_n}\right|\cdot |x| = \infty.
+$$
+可知$\sum\limits_{n=0}^{\infty}a_nx^n$发散. 因此$R = 0$.
+
+当$0 < \rho < +\infty$时，对任意$x \neq 0$，都有
+$$
+\lim\limits_{n \to \infty}\frac{|a_{n+1}x^{n+1}}{|a_{n}x^n|} = \left|\frac{a_{n+1}}{a_n}\right|\cdot|x|  = \rho x.
+$$
+因此我们让$\rho x < 1$即可，即$x < \frac{1}{\rho}$. 
+\end{proof}
+
+\subsection{交错级数}
 
 \newpage
 \section{Preliminary}
