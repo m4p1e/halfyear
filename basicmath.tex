@@ -3263,8 +3263,42 @@ d(\frac{x}{y}) = \frac{1}{y}dx - \frac{-x}{y^2}dy = \frac{y\cdot dx - x\cdot dy}
 $$
 \end{proof}
 
-
 \subsection{方向梯度}
+
+\begin{definition}
+\rm 设函数$f(x,y,z)$定义在区域$D$上，给定过区域$D$上点$M_0(x_0,y_0,z_0)$的有向直线$l$，设$M(x,y,z)$是这直线上的一点，$M_0M$是$M_0$与$M$之间的线段的长，这个长度是带符号的，即$M_0M$的方向与直线$l$的方向一致，就带正号，在相反的情形下就带负号. 当$M$从沿直线$l$趋近于$M_0$，极限
+$$
+\lim\limits_{M \to M_0} \frac{f(M)-f(M_0)}{M_0M}
+$$
+就称为函数$f(x_0,y_0,z_0)$沿方向$l$的导数，记为
+$$
+\frac{\partial f(x_0,y_0,z_0)}{\partial l}.
+$$
+\bluet{这导数就表征着函数在点$M_0$沿方向$l$的变化率}.
+\end{definition}
+
+\begin{theorem}
+\rm 设函数$f(x,y,z)$在区域$D$有上连续的偏导数，并设过$M_0(x_0,y_0,z_0)$有向直线和xyz轴所成的夹角为$\alpha,\beta,\gamma$. 则沿方向$l$的导数存在且为
+$$
+\frac{\partial f(x_0,y_0,z_0)}{\partial l} = \frac{\partial f}{\partial x}\cdot\cos \alpha + \frac{\partial f}{\partial y}\cdot\cos \beta + \frac{\partial f}{\partial z}\cdot\cos \gamma. 
+$$
+\end{theorem}
+
+\begin{proof}
+\rm 令$M_0M=t$，则有
+$$
+x-x_0 = t\cos \alpha, ~y-y_0 = t\cos \beta , ~z-z_0 = t\cos\gamma.
+$$
+那么这里就有
+$$
+\lim\limits_{t \to 0} \frac{f(x_0+t\cos\alpha,y_0+t\cos\beta, z_0 + t\cos\gamma)-f(x_0,y_0,z_0)}{t} = \frac{df(x_0+t\cos\alpha,y_0+t\cos\beta, z_0 + t\cos\gamma)}{dt}
+$$
+因此看成以自变量为$t$的复合函数求导，即
+$$
+\frac{df(x_0+t\cos\alpha,y_0+t\cos\beta, z_0 + t\cos\gamma)}{dt} = \frac{\partial f}{\partial x}\cdot\cos \alpha + \frac{\partial f}{\partial y}\cdot\cos \beta + \frac{\partial f}{\partial z}\cdot\cos \gamma. 
+$$
+\end{proof}
+
 
 \subsection{高阶导数}
 
@@ -3353,9 +3387,17 @@ $$
 \end{enumerate}
 \end{proposition}
 
+
 \begin{proof}
 \rm 
 \end{proof}
+
+
+\newpage
+\section{向量和空间解析几何}
+
+
+%http://kjwy.5any.com/gdsx22/content/ch02/gdsx080502.htm  曲面的切平面与法线
 
 \newpage
 \section{微分学在几何上的应用}
@@ -3772,6 +3814,41 @@ $$
 \end{annotation}
 
 \newpage
+\section{曲面积分}
+
+\subsection{双侧曲面}
+
+\begin{definition}
+\rm 在光滑曲面$S$上任取一点 ，过点$M_0$的法线有两个方向，如果选定法线的某个方向为指定的方向，当点在曲面上连续移动时，法线也连续变动、当动点从$M_0$出发沿着曲面上任意一条不越过曲面边界的封闭曲线又回到原位置$M_0$时，法线的指向保持不变，称这种曲面为\redt{双侧曲面}，否则称其为\redt{单侧曲面}.
+\end{definition}
+
+\begin{annotation}
+\rm 什么叫法线方向的确定详细理解看菲砖.
+\end{annotation}
+
+\subsection{曲面面积}
+
+\begin{definition}
+\rm 设给定一个闭光滑曲面$S$. 将曲面$S$分成$n$个部分曲面
+$$
+S_1, S_2,\cdots,S_n,
+$$
+$S_i$同时也代表第$i$个部分曲面的面积. 并在每个部分曲面$S_i$内任意地选取一点$M_i(i=1,2,\cdots,n)$，把$S_i$垂直地投影到曲面在点$M_i$处的切面上，得到在投影面积记为$T_i$. 这些面积$T_i$的和在个部分曲面$S_i$的直径趋于$0$时的极限$L$称为曲面$S$的面积. 若用$\lambda$表示所有部分曲面$S_i$中的直径最大值，即有
+$$
+\lim\limits_{\lambda \to 0}\sum\limits_{i=1}^n T_i = L.
+$$
+\end{definition}
+
+\subsection{第一类曲面积分}
+
+\begin{definition}
+\rm 设曲面$S$是光滑且闭的，函数$f(x,y,z)$在$S$上有界. 把$S$任意分成$n$个部分曲面$S_i(i=1,2,\cdots,n)$，$S_i$同时也表示第$i$块部分曲面的面积. 设$M_i(\xi_i,\eta_i,\zeta_i)$是$S_i$上任意取定的一点，做乘积$f(\xi_i,\eta_i,\zeta_i)S_i(i=1,2,\cdots,n)$，并做和$\sum\limits_{i=1}^n f(\xi_i,\eta_i,\zeta_i)S_i$，如果当各部分曲面的直径的最大值$\lambda \to 0$时，这和的极限总存在，且不依赖曲面$S$的分法和点$M_i$的选择，则这极限叫做函数$f(x,y,z)$沿曲面$S$的第一类曲面积分，记为
+$$
+I = \int\int_{S} f(x,y,z)dS = \lim\limits_{\lambda \to 0}\sum\limits_{i=1}^n f(\xi_i,\eta_i,\zeta_i)S_i.
+$$
+\end{definition}
+
+\newpage
 \section{三重积分}
 
 \subsection{三重积分定义}
@@ -3876,7 +3953,7 @@ $$
 称其为级数$\sum\limits_{n=1}^\infty a_n$的第$m$项后的\redt{余式}. 
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{series-convergence: remnant-convergence}
 \rm \redt{余式收敛性} 如果级数$\sum\limits_{n=1}^\infty a_n$收敛，则它的任何一个余式$\sum\limits_{n=m+1}^\infty a_n$也收敛; 反之，从余式的收敛性可推出原来级数$\sum\limits_{n=1}^\infty a_n$的收敛性. \bluet{换句话说，丢弃级数前面的有限个项或者在级数前面加进若干新的项，并不影响级数的收敛性}.
 \end{proposition}
 
@@ -3924,7 +4001,7 @@ $$
 \end{proposition}
 
 \begin{proposition}
-\rm 若级数$\sum\limits_{n=1}^\infty a_n$收敛，那么对这级数的项任意加括号之后所成的级数仍收敛，其和不变.
+\rm \redt{可结合性} 若级数$\sum\limits_{n=1}^\infty a_n$收敛，那么对这级数的项任意加括号之后所成的级数仍收敛，其和不变.
 \end{proposition}
 
 \begin{proposition}
@@ -4104,11 +4181,27 @@ $$
 \end{theorem}
 
 \begin{theorem}
-\rm 若级数$\sum\limits_{n=1}^{\infty}a_n$和它的绝对值级数$\sum\limits_{n=1}^{\infty}|a_n|$同时收敛，则称级数$\sum\limits_{n=1}^{\infty}a_n$\redt{绝对收敛}. 若级数$\sum\limits_{n=1}^{\infty}a_n$收敛，而其绝对值级数$\sum\limits_{n=1}^{\infty}|a_n|$不收敛，则称级数$\sum\limits_{n=1}^{\infty}a_n$\redt{非绝对收敛}.
+\rm 若级数$\sum\limits_{n=1}^{\infty}a_n$和它的绝对值级数$\sum\limits_{n=1}^{\infty}|a_n|$同时收敛，则称级数$\sum\limits_{n=1}^{\infty}a_n$\redt{绝对收敛}. 若级数$\sum\limits_{n=1}^{\infty}a_n$收敛，而其绝对值级数$\sum\limits_{n=1}^{\infty}|a_n|$不收敛，则称级数$\sum\limits_{n=1}^{\infty}a_n$\redt{非绝对收敛}(条件收敛).
 \end{theorem}
 
 \begin{annotation}
 \rm 注意绝对值级数发散，但是其原级数是可能收敛的. 但是使用柯西判别法和达朗贝尔办法在这里依然有效，即在这种情况判别绝对值级数发散，那么原级数一定也是发散的. 
+\end{annotation}
+
+\begin{proposition}
+\rm \redt{绝对收敛级数的可交换性} 若级数$\sum\limits_{n=1}^{\infty}a_n$绝对收敛，则把它的项重新排列后得到的级数$\sum\limits_{k=1}^{\infty}a_k'$也收敛并且具有与原级数相同的和. 
+\end{proposition}
+
+\begin{proof}
+先证正项级数重排不影响原级数的和，说明重排之后绝对收敛的性质不变. 再证在绝对收敛的情况下，级数的和可以表示成级数中正项的和减去负项绝对值的和，说明原级数的和不变.  
+\end{proof}
+
+\begin{theorem}
+\rm \redt{黎曼定理} 若级数$\sum\limits_{n=1}^{\infty}a_n$条件收敛，则无论预选取怎样的数$A$，都可以重排这级数中的项，使得得到的新级数的和为$A$. \bluet{Amazing}!
+\end{theorem}
+
+\begin{annotation}
+\rm \bluet{条件收敛这是由于正项和负项的相互抵消才能实现}. 
 \end{annotation}
 
 \subsection{幂级数}
@@ -4178,6 +4271,102 @@ $$
 \end{proof}
 
 \subsection{交错级数}
+
+\begin{definition}
+\rm 形如
+$$
+c_1 - c_2 + c_3 - c_4 + \cdots + (-1)^{n-1}c_n + \cdots,
+$$
+其中$c_n > 0,n=1,2,\cdots$，这样的级数称为\redt{交错级数}.
+\end{definition}
+
+\begin{theorem}
+\rm \redt{莱布尼茨定理} 若交错级数的项的绝对值单调递减，即
+$$
+c_{n+1} \leq c_n
+$$
+并趋于$0$，则级数收敛.
+\end{theorem}
+
+\begin{proof}
+考察偶数项个的部分和$C_{2m}$，即
+$$
+C_{2m} = (c_1-c_2) + (c_3 - c_4) + \cdots + (c_{2m-1}-c_{2m}).
+$$
+其中每一项都是正的，所以$C_{2m}$是随着$m$的增大而增大. 另一方面上述的部分和还可以写成
+$$
+C_{2m} = c_1 - (c2-c_3) - (c_4-c_5) - \cdots - (c_{2m-2}-c_{2m-1}) - c_{2m},
+$$
+因此$C_{2m} \leq c_1$，即$C_{2m}$上有界的. 结合前述结论，可知当$m \to \infty$时$C_{2m}$有有限极限. 而奇数项的部分和可以写成
+$$
+C_{2m-1} = C_{2m} + c_{2m}, 
+$$
+等式两边取极限，可得$\lim\limits_{m \to \infty} C_{2m-1}=C_{2m}$.   因此所有部分都有有限极限. 
+\end{proof}
+
+\subsection{两个数列依次相乘组成的级数}
+
+
+\newpage
+\subsection{初等函数的展开}
+
+\begin{theorem}
+\rm 设函数$f(x)$在点$x_0$的某一邻域$U(x_0)$内具有任意阶的导数，则$f(x)$在该邻域内能展开成泰勒级数的充分必要条件是在该邻域内$f(x)$的泰勒公式中的余项$R_n(x)$当$n \to \infty$时的极限为零，即
+$$
+\lim\limits_{n \to \infty} R_n(x) = 0, x \in U(x_0).
+$$
+\end{theorem}
+
+\begin{proof}
+由\ref{series-convergence: remnant-convergence}可知. 
+\end{proof}
+
+\begin{theorem}
+\rm \redt{泰勒级数展开的判定} 设函数$f(x)$在点$x_0$的某一邻域$[0,H]$内具有任意阶的导数，并且在给定区间上变化时，所有这些导数的绝对值有上界，即
+$$
+|f^{(n)}(x)| \leq L,
+$$
+其中$L$不依赖$n$，则$f(x)$在该邻域上能被展开成泰勒级数. 
+\end{theorem}
+
+\begin{proof}
+假定在$x=0$处展开，取拉格朗日余项$R_n(x)$，我们有
+$$
+|R_n(x)| = \frac{|f^{(n+1)}(\theta x)|}{(n+1)!}|x|^{n+1} \leq L \cdot \frac{|H|^{n+1}}{(n+1)!}.
+$$
+当$n \to \infty$时，$\frac{|H|^{n+1}}{(n+1)!}$是趋于零的，从收敛级数$\sum\limits_{n=0}^{\infty} \frac{|H|^{n+1}}{(n+1)!}$的必要性是可知的. 
+\end{proof}
+
+
+\begin{proposition}
+\rm 下述函数在$x=0$处的泰勒展开对任意$x$都收敛:
+\begin{enumerate}
+	\item $e^x = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \cdots + \frac{x^n}{n!} + \cdots$;
+	\item $\sin x = {x} - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots + (-1)^{k-1}\frac{x^{2k-1}}{(2k-1)!} + \cdots,k =1,2,\cdots$;
+	\item $\cos x = 1 - \frac{x^2}{2!} +  \frac{x^4}{4!} - \cdots + (-1)^{k-1}\frac{2^{2k-2}}{(2k-2)!} + \cdots , k=1,2,\cdots$;
+	\item $\text{sh} x = x + \frac{x^3}{3!} + \frac{x^5}{5!}+ \cdots + \frac{x^{2k-1}}{(2k-1)!}, k = 1,2,\cdots$;
+	\item $\text{ch} x = 1 + \frac{x^2}{2!} + \frac{x^4}{4!}+ \cdots + \frac{x^{2k}}{(2k)!}, k =0,1,\cdots$;
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm 
+$$
+\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \cdots + (-1)^{k-1}\frac{x^{2k-1}}{2k-1} + \cdots,k=1,2,\cdots.
+$$
+仅在区间$[-1,1]$上收敛. 
+\end{proposition}
+
+\begin{proposition}
+\rm 
+$$
+\ln (1+x) = x-\frac{x^2}{2} + \frac{x^3}{3}- \cdots + (-1)^{k-1}\frac{x^k}{k},k=1,2,\cdots,
+$$
+仅在区间$(0,1]$上收敛. 
+\end{proposition}
+
+
+
 
 \newpage
 \section{Preliminary}
