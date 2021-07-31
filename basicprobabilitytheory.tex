@@ -1939,5 +1939,75 @@ $$
 \end{proof}
 
 
+\newpage
+\section{参数估计}
+
+\subsection{点估计}
+
+\begin{definition}
+\rm 设有一个总体$X$，以$f(x,\theta_1,\cdots,\theta_k)$记其概率密度函数(若总体分布为连续型)或者概率函数(若总体分为为离散型)，其中$\theta_1,\cdots,\theta_k$表示总体分布包含的$k$个未知参数，用样本$X_1,\cdots,X_n$构造的统计量$\widehat{\theta}_i(X_1,\cdots,X_n)$来估计未知参数$\theta_i$称为\redt{点估计}，统计量$\widehat{\theta}_i(X_1,\cdots,X_n)$来估计未知参数称为\redt{估计量}.
+\end{definition}
+
+\subsection{矩估计}
+
+\begin{definition}
+\rm 设总体$X$的分布有未知参数$\theta_1,\cdots,\theta_k$，设其有$l$阶原点矩$a_l$存在，设样本的$l$阶原点矩为$A_l = \frac{1}{n}\sum\limits_{i = 1}^nX_i^l$. 于是
+$$
+a_l=a_l(\theta_1,\cdots,\theta_k) = A_l,
+$$
+取$l=1,2,\cdots,k$，就得到一个方程组，解此方程组，得其根为
+$$
+\widehat{\theta_i} = \widehat{\theta_i}(X_1,\cdots,X_n),i=1,2,\cdots,k.
+$$
+以$\widehat{\theta_i}$作为$\theta_i$的一个估计，这样的估计量叫做\redt{矩估计}.
+\end{definition}
+
+\subsection{极大似然估计}
+
+\begin{definition}
+\rm 设总体$X$有分布$f(X;\theta_1,\cdots,\theta_k)$(即概率密度或者概率分布)，给定样本$X_1,\cdots,X_n$，则样本$(X_1,\cdots,X_n)$的分布为
+$$
+f(X_1;\theta_1,\cdots,\theta_k)f(X_2;\theta_1,\cdots,\theta_k)\cdots f(X_3;\theta_1,\cdots,\theta_k),
+$$
+记为$L(X_1,\cdots,X_n;\theta_1,\cdots,\theta)$，称其为\redt{似然函数}. 这函数对不同的$(\theta_1,\cdots,\theta_k)$的取值，反映了在观察结果$(X_1,\cdots,X_n)$已知的条件下，$(\theta_1,\cdots,\theta_k)$的各种值的似然程度. 应用似然程度最大的那个$(\widehat{\theta_1},\cdots,\widehat{\theta_k})$作为$(\theta_1,\cdots,\theta_k)$的估计值. 这个估计$(\widehat{\theta_1},\cdots,\widehat{\theta_k})$j就叫做$(\theta_1,\cdots,\theta_k)$的极大似然估计. 
+\end{definition}
+
+\begin{annotation}
+\rm \bluet{多元函数求极值的场景}.
+\end{annotation}
+
+\begin{example}
+\rm 设$X_1,\cdots,X_n$是从正态总体$N(\mu,\sigma^2)$中抽出的样本，则似然函数为
+$$
+L = \left(\frac{1}{\sqrt{2\pi}\sigma}\right)^ne^{\frac{-1}{2\sigma^2}\sum\limits_{i =1}^n (X_i-\mu)^2}.
+$$
+等式两边取对数有
+$$
+\ln L =-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln(\sigma^2) - \frac{1}{2\sigma^2}\sum\limits_{i =1}^n (X_i-\mu)^2.
+$$
+于是
+$$
+\left\{
+\begin{array}{ll}
+\frac{\partial L}{\partial \mu} = \frac{1}{\sigma^2}\sum\limits_{i =1}^n (X_i-\mu) = 0 \\
+\frac{\partial L}{\partial \sigma^2} = - \frac{n}{2\sigma^2} +\frac{1}{2(\sigma^2)^2} \sum\limits_{i =1}^n (X_i-\mu)^2 = 0
+\end{array}\right.
+$$
+显然有$\widehat{\mu} = \bar{X} = \frac{\sum\limits_{i =1}^n X_i}{n}$，$\widehat{\sigma^2} = \frac{1}{n}\sum\limits_{i =1}^n (X_i-\bar{X})^2$. 我们还需要判定其是不是最大值，其二阶导分别为
+$$
+\left\{
+\begin{array}{ll}
+\frac{\partial^2L}{\partial \mu\partial \mu} = -\frac{n}{\sigma^2} \\
+\frac{\partial^2L}{\partial \mu \partial \sigma^2} =  -\frac{1}{(\sigma^2)^2}\sum\limits_{i =1}^n (X_i-\mu) \\
+\frac{\partial^2L}{\partial \sigma^2 \partial \mu} = -\frac{1}{(\sigma^2)^2}\sum\limits_{i =1}^n (X_i-\mu) \\
+\frac{\partial^2L}{\partial \sigma^2 \partial \sigma^2} =  \frac{n}{2(\sigma^2)^2} - \frac{1}{(\sigma^2)^3}\sum\limits_{i =1}^n (X_i-\mu)^2
+\end{array}\right.
+$$
+故$L$有二阶连续偏导，根据极值判定法则
+$$
+L_{\mu\mu}''(\widehat{\mu},\widehat{\sigma^2})\cdot L_{\sigma^2\sigma^2}''(\widehat{\mu},\widehat{\sigma^2}) - \left[L_{\mu\sigma^2}''(\widehat{\mu},\widehat{\sigma^2})\right]^2 = \frac{-n}{\widehat{\sigma^2}}\cdot\frac{-n}{2(\widehat{\sigma^2})^2} > 0.
+$$
+确实在$(\widehat{\mu},\widehat{\sigma^2})$取得最大值.
+\end{example}
 
 \end{document}

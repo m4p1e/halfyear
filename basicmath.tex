@@ -3877,7 +3877,27 @@ $$
 $$
 \end{definition}
 
+\begin{proposition}
+\rm 设曲面$S$由方程
+$$
+z=f(x,y)
+$$
+给出，其中$(x,y)$在$xOy$平面上的区域$D$内变动，函数$f(x,y)$在$D$上有一阶连续偏导. 则曲面$S$的面积为
+$$
+A = \int\int_D\sqrt{1+f_x^2(x,y),f_y^2(x,y)}dxdy.
+$$
+有
+$$
+dA = \frac{d\sigma}{\cos \gamma}.
+$$
+其中$\cos\gamma$表示$f(x,y)$法向量和$z$轴的夹角余弦值. 
+\end{proposition}
+
 \subsection{第一类曲面积分}
+
+\begin{annotation}
+\rm 对面积的积分.
+\end{annotation}
 
 \begin{definition}
 \rm 设曲面$S$是光滑且闭的，函数$f(x,y,z)$在$S$上有界. 把$S$任意分成$n$个部分曲面$S_i(i=1,2,\cdots,n)$，$S_i$同时也表示第$i$块部分曲面的面积. 设$M_i(\xi_i,\eta_i,\zeta_i)$是$S_i$上任意取定的一点，做乘积$f(\xi_i,\eta_i,\zeta_i)S_i(i=1,2,\cdots,n)$，并做和$\sum\limits_{i=1}^n f(\xi_i,\eta_i,\zeta_i)S_i$，如果当各部分曲面的直径的最大值$\lambda \to 0$时，这和的极限总存在，且不依赖曲面$S$的分法和点$M_i$的选择，则这极限叫做函数$f(x,y,z)$沿曲面$S$的第一类曲面积分，记为
@@ -3885,6 +3905,50 @@ $$
 I = \int\int_{S} f(x,y,z)dS = \lim\limits_{\lambda \to 0}\sum\limits_{i=1}^n f(\xi_i,\eta_i,\zeta_i)S_i.
 $$
 \end{definition}
+
+\begin{proposition}
+\rm \redt{化为二重积分的计算方法} 设曲面$S$由方程$z=f(x,y)$给出，其中$(x,y)$在$xOy$平面的区域$D$变动，函数$f(x,y)$在$D$上有连续偏导. 则有
+$$
+\int\int_S f(x,y,z)dS = \int\int_D f(x,y,f(x,y))\sqrt{1+f_x^2(x,y)+f_y^2(x,y)}dxdy. 
+$$
+其中$dS = \sqrt{1+f_x^2(x,y)+f_y^2(x,y)}dxdy$
+\end{proposition}
+
+\subsection{第二类曲面积分}
+
+\begin{annotation}
+\rm 对有向面积的积分.
+\end{annotation}
+
+\begin{definition}
+\rm \redt{第二类曲面积分}定义与第一类曲面积分定义形式上相似，即
+$$
+I = \int\int_{S} f(x,y,z)d\sigma_{xy} =\int\int_{S} f(x,y,z)dxdy= \lim\limits_{\lambda \to 0}\sum\limits_{i=1}^n f(\xi_i,\eta_i,\zeta_i)\sigma_{xy_i}.
+$$
+其中$\sigma_i$表示$S_i$在平面$xOy$的投影，那么即有
+$$
+S_i = \frac{\sigma_i}{\cos \gamma},
+$$
+其中$\gamma$表示当且确定方向的法向量与$z$轴的夹角，所以其余弦值是有正有负的. 类似地，在其他两个平面$xOz$及$yOz$上也有
+$$
+I = \int\int_{S} f(x,y,z)d\sigma_{xz} =\int\int_{S} f(x,y,z)dxdz= \lim\limits_{\lambda \to 0}\sum\limits_{i=1}^n f(\xi_i,\eta_i,\zeta_i)\sigma_{xz_i}.
+$$
+及
+$$
+I = \int\int_{S} f(x,y,z)d\sigma_{yz} =\int\int_{S} f(x,y,z)dydz= \lim\limits_{\lambda \to 0}\sum\limits_{i=1}^n f(\xi_i,\eta_i,\zeta_i)\sigma_{yz_i}.
+$$
+那么一般形式为
+$$
+\int\int_{S} P(x,y,z)dydz + Q(x,y,z)dzdx + R(x,y,z)dxdy.  
+$$
+\end{definition}
+
+\begin{proposition}
+\rm  \redt{第二类曲面积分化二重积分} 若曲面由方程$z=f(x,y)$确定，其$(x,y)$在平面$xOy$上的区域$D_{xy}$变动，函数$f(x,y)$在$D$上有连续偏导. 取$S$为上侧，则每点法向量与$z$轴的夹角余弦值为正，则有
+$$
+\int\int_{S} f(x,y,z)dxdy = \int\int_{D_{xy}} f(x,y,f(x,y))dxdy.
+$$
+\end{proposition}
 
 \newpage
 \section{三重积分}
