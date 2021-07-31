@@ -3279,9 +3279,9 @@ $$
 
 \begin{theorem}
 \rm 设函数$f(x,y,z)$在区域$D$有上连续的偏导数，并设过$M_0(x_0,y_0,z_0)$有向直线和xyz轴所成的夹角为$\alpha,\beta,\gamma$. 则沿方向$l$的导数存在且为
-$$
+\begin{equation}
 \frac{\partial f(x_0,y_0,z_0)}{\partial l} = \frac{\partial f}{\partial x}\cdot\cos \alpha + \frac{\partial f}{\partial y}\cdot\cos \beta + \frac{\partial f}{\partial z}\cdot\cos \gamma. 
-$$
+\end{equation}
 \end{theorem}
 
 \begin{proof}
@@ -3299,6 +3299,44 @@ $$
 $$
 \end{proof}
 
+\begin{annotation}
+\rm \redt{函数在一给定点沿什么方向增大的最快？} 换句话说开始在什么方向下可以取到最大的导数？ 设
+$$
+a = \frac{\partial f}{\partial x},\,b = \frac{\partial f}{\partial y},\,a = \frac{\partial f}{\partial z}.
+$$ 
+那么(1)式可以改写为
+$$
+a\cos\alpha + b\cos\beta + c\cos\gamma  = \sqrt{a^2+b^2+c^2}\left(\frac{a}{\sqrt{a^2+b^2+c^2}}\cos\alpha + \frac{b}{\sqrt{a^2+b^2+c^2}}\cos\beta + \frac{c}{\sqrt{a^2+b^2+c^2}}\cos\gamma \right). 
+$$
+括号里面的分数刚好又可以看做一方向的直线$g$，即
+$$
+\frac{a}{\sqrt{a^2+b^2+c^2}}\cos\alpha = \cos \lambda, \frac{b}{\sqrt{a^2+b^2+c^2}}\cos\beta = \cos \mu,
+\frac{c}{\sqrt{a^2+b^2+c^2}}\cos\gamma = \cos v.
+$$
+于是我们有
+$$
+\sqrt{a^2+b^2+c^2}(\cos\lambda\cos\alpha+\cos\mu\cos\beta+\cos v\cos\gamma).
+$$
+上面括号里面里面内容实际上就是$l$和$g$夹角的余弦值，即得
+\begin{equation}
+\frac{\partial f}{\partial l} = \sqrt{a^2+b^2+c^2}\cdot \cos(l,g).
+\end{equation}
+那么现在就很显然了，只有当$l$和$g$共线时，这导数有最大值
+$$
+\frac{\partial f}{\partial g} = \sqrt{a^2+b^2+c^2} = \sqrt{\left(\frac{\partial f}{\partial x}\right)^2 +\left(\frac{\partial f}{\partial y}\right)^2  + \left(\frac{\partial f}{\partial z}\right)^2 }.
+$$
+\end{annotation}
+
+\begin{definition}
+\rm 设函数$f(x,y,z)$在区域$D$上有一阶连续偏导，给定$D$上任意一点$(x,y,z)$. 设$\vec{e_1},\vec{e_2},\vec{e_3}$表示$xyz$轴方向上的单位向量，则向量
+$$
+f_x'\vec{e_1} + f_y' \vec{e_2} +f_z'\vec{e_3},
+$$
+表示函数$f(x,y,z)$的\redt{梯度}. 将上述向量记为$\vec{g}$，则(2)式可以改写为
+$$
+\frac{\partial f}{\partial l} = |\vec{g}|\cos(\vec{g},l).
+$$
+\end{definition}
 
 \subsection{高阶导数}
 
