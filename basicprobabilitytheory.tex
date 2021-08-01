@@ -1842,7 +1842,7 @@ $$
 
 
 \begin{annotation}
-\rm 注意$\frac{1}{\sqrt{n}\sigma}(\sum\limits_{i=0}^nX_i - n\mu)$的期望为$0$方差为$1$，这个操作称为$X_1 + X_2 +\cdots + x_n$的标准化，即与$N(0,1)$的期望和方差符号. 
+\rm 注意$\frac{1}{\sqrt{n}\sigma}(\sum\limits_{i=0}^nX_i - n\mu)$的期望为$0$方差为$1$，这个操作称为$X_1 + X_2 +\cdots + X_n$的标准化，即与$N(0,1)$的期望和方差符号. 
 \end{annotation}
 
 \begin{theorem}
@@ -2009,5 +2009,30 @@ L_{\mu\mu}''(\widehat{\mu},\widehat{\sigma^2})\cdot L_{\sigma^2\sigma^2}''(\wide
 $$
 确实在$(\widehat{\mu},\widehat{\sigma^2})$取得最大值.
 \end{example}
+
+\subsection{无偏估计}
+
+\begin{definition}
+\rm 设$\widehat{\theta} = \widehat{\theta}(X_1,\cdots,X_n)$为$\theta$的估计量，若有
+$$
+E(\widehat{\theta}) = \theta
+$$
+则称$\widehat{\theta}$是$\theta$的\redt{无偏估计}.
+\end{definition}
+
+
+\begin{proposition}
+\rm 样本均值$\bar{X}$是总体分布均值的无偏估计; 样本方差$S^2$，是总体分布方差的无偏估计.
+\end{proposition}
+
+\subsection{区间估计}
+
+\begin{definition}
+\rm 设$\theta$是总体分布$X$的未知参数，$X_1,\cdots,X_n$是来自总体$X$的样本，对于给定$\alpha$，如果两个统计量$\widehat{\theta_1},\widehat{\theta_2}$满足
+$$
+P\{\widehat{\theta_1} < \theta < \widehat{\theta_2}\} = 1-\alpha,
+$$
+则称随机区间$(\widehat{\theta_1},\widehat{\theta_2})$为参数$\theta$的\redt{置信水平}为$1-\alpha$的\redt{置信区间(区间估计)}，其中$\widehat{\theta_1}$及$\widehat{\theta_2}$分别被称为\redt{置信下限}及\redt{置信下限}. 
+\end{definition}
 
 \end{document}
