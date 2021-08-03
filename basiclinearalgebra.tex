@@ -1422,8 +1422,17 @@ $$
 \end{theorem}
 
 \begin{corollary}
-\rm 齐次线性方程组有非零解的条件是其系数矩阵的秩小于未知数的个数.
+\rm \redt{齐次线性方程组}有非零解的条件是其系数矩阵的秩小于未知数的个数.
 \end{corollary}
+
+
+\begin{proposition}
+\rm \redt{非齐次线性方程组}无解当且仅当系数矩阵的秩的增广矩阵的秩减$1$，即
+$$
+\rank{\mbf{A}} + 1 = \rank{\bar{\mbf{A}}}.
+$$ 
+其中$\bar{\mbf{A}}$表示原方程组的增广矩阵. 
+\end{proposition}
 
 \subsection{齐次方程组解集结构}
 
@@ -1511,10 +1520,10 @@ $$
 -b_{2n}\\
 \vdots\\
 -b_{rn}\\
-1 \\
+0 \\
 0 \\
 \vdots \\
-0
+1
 \end{pmatrix}.
 $$
 上面两步是求一个基础解系的方法. 下面需要证明$\eta_1,\eta_2,\cdots,\eta_{n-r}$可以线性表出原线性方程组的所有解.
@@ -1538,6 +1547,17 @@ $$
 其中$u_0$是取定$U$中的一个特解，$W$是原非齐次线性方程的导出组的解集. 
 \end{proposition}
 
+\begin{annotation}
+\rm \redt{求非齐次线性方程组的解集的步骤}如下
+\begin{enumerate}
+	\item 求出非齐次线性方程组的一般解. 让自由未知量都取$0$，得到一个特解$\mbf{\gamma}_0$;
+	\item 求导出组的一个基础解系$\mbf{\eta}_1,\cdots,\mbf{\eta}_t$;
+	\item 写出非齐次线性方程组的解集$U$
+	$$
+	U = \Set{\mbf{\gamma}_0+k_1\mbf{\eta}_1+\cdots+k_t\mbf{\eta}_t}{k_1,\cdots,k_t \in F}.
+	$$
+\end{enumerate}
+\end{annotation}
 \newpage
 \section{矩阵运算}
 
@@ -1645,6 +1665,10 @@ $$
 把$i$取遍$1,2,\cdots,n$，就得到了$\mbf{A} = 0$.
 \end{proof}
 
+\begin{annotation}
+\rm $\mbf{AB}=\mbf{0}$并不能确定$\mbf{A}=\mbf{0}$或者$\mbf{B}=\mbf{A}$. 但若$\mbf{A}$是可逆的，则可推出$\mbf{B}=\mbf{0}$. 
+\end{annotation}
+
 \subsection{矩阵乘法中的线性组合}
 
 \begin{proposition}\label{combination-in-matrix-multiplication: clomun-vector}
@@ -1687,25 +1711,25 @@ $$
 \end{proposition}
 
 \begin{proposition}\label{matrix-mul: rank}
-\rm 设$\mbf{A}=(a_{ij})_{m\times n},\mbf{B} = (b_{ij})_{m\times n}$，则
+\rm \redt{乘积矩阵的秩的重要上界} 设$\mbf{A}=(a_{ij})_{m\times n},\mbf{B} = (b_{ij})_{m\times n}$，则
 $$
 \rank{\mbf{A}\mbf{B}} \leq \min\{\rank{\mbf{A}}, \rank{\mbf{B}}\}.
 $$
 \end{proposition}
 
 \begin{proof}
-由\ref{combination-in-matrix-multiplication: clomun-vector}和\ref{combination-in-matrix-multiplication: row-vector}，我们$\mbf{AB}$的列向量组可以由$\mbf{A}$的列向量组线性表出，$\mbf{AB}$的行向量组可以由$\mbf{A}$的列向量线性表出，自然地就得到了命题的结论. 
+由\ref{combination-in-matrix-multiplication: clomun-vector}和\ref{combination-in-matrix-multiplication: row-vector}，我们$\mbf{AB}$的列向量组可以由$\mbf{A}$的列向量组线性表出，$\mbf{AB}$的行向量组可以由$\mbf{B}$的列向量线性表出，自然地就得到了命题的结论. 
 \end{proof}
 
 
 \subsection{特殊矩阵}
 
 \begin{definition}
-\rm 只有一个元素是$1$，其余元素均为$0$的矩阵我们称为基本矩阵. $(i,j)$元为$1$的基本矩阵记为$\mbf{E}_{ij}$
+\rm 只有一个元素是$1$，其余元素均为$0$的矩阵我们称为\redt{基本矩阵}. $(i,j)$元为$1$的基本矩阵记为$\mbf{E}_{ij}$
 \end{definition}
 
 \begin{definition}
-\rm 除对主角线以外的元素均为0的方阵称为对角矩阵.
+\rm 除对主角线以外的元素均为0的方阵称为\redt{对角矩阵}.
 $$
 \begin{pmatrix}
 d_1 & 0 & \cdots & 0 \\
@@ -1718,7 +1742,7 @@ $$
 \end{definition}
 
 \begin{definition}
-\rm 主对角线均为$\lambda$的对角矩阵称为数量矩阵.
+\rm 主对角线均为$\lambda$的对角矩阵称为\redt{数量矩阵}.
 $$
 \begin{pmatrix}
 \lambda & 0 & \cdots & 0 \\
@@ -1731,7 +1755,7 @@ $$
 \end{definition}
 
 \begin{definition}
-\rm  主对角线以下(上)均为$0$的方阵称为上(下)三角矩阵. 
+\rm  主对角线以下(上)均为$0$的方阵称为\redt{上(下)三角矩阵}. 
 $$
 \begin{pmatrix}
 a_{11} & a_{12} & \cdots & a_{1n} \\
@@ -1743,7 +1767,7 @@ $$
 \end{definition}
 
 \begin{definition}
-\rm 由单位矩阵经过一次初等行(列)变换得到的矩阵称为初等矩阵，其对应3种初等变换如下(箭头之上表示初等行变换，箭头之下表示初等列变换)
+\rm 由单位矩阵经过一次初等行(列)变换得到的矩阵称为\redt{初等矩阵}，其对应3种初等变换如下(箭头之上表示初等行变换，箭头之下表示初等列变换)
 \begin{enumerate}
 	\item $\mbf{I}\xrightarrow{\tiny\textcircled{j} + k\tiny\textcircled{i}} P(j,i(k))$ 或者  $\mbf{I}\xrightarrow[\tiny\textcircled{i} + k\tiny\textcircled{j}]{} P(j,i(k))$,
 	$$
@@ -1821,8 +1845,59 @@ $$
 其余两种变换都比较显然.
 \end{proof}
 
+\begin{example}
+\rm 
+$$
+\begin{pmatrix}
+a_1 & 0 & 0\\
+0 & a_2 & 0 \\
+0& 0 & a_3 
+\end{pmatrix}
+\begin{pmatrix}
+b_1 & 0 & 0\\
+0 & b_2 & 0 \\
+0& 0 & b_3 
+\end{pmatrix} = \begin{pmatrix}
+a_1b_1 & 0 & 0\\
+0 & a_2b_1 & 0 \\
+0& 0 & a_3b_3 
+\end{pmatrix}
+$$
+\end{example}
+
+\begin{example}
+\rm 
+$$
+\begin{pmatrix}
+a_1 & 0 & 0\\
+0 & a_2 & 0 \\
+0& 0 & a_3 
+\end{pmatrix}^n = 
+\begin{pmatrix}
+a_1^n & 0 & 0\\
+0 & a_2^n & 0 \\
+0& 0 & a_3^n 
+\end{pmatrix}
+$$
+\end{example}
+
+\begin{example}
+\rm 
+$$
+\begin{pmatrix}
+a_1 & 0 & 0\\
+0 & a_2 & 0 \\
+0& 0 & a_3 
+\end{pmatrix}^{-1} = \begin{pmatrix}
+\frac{1}{a_1} & 0 & 0\\
+0 & \frac{1}{a_2} & 0 \\
+0& 0 & \frac{1}{a_3} 
+\end{pmatrix}
+$$
+\end{example}
+
 \begin{definition}
-\rm 一个矩阵$\mbf{A}$如果满足$\mbf{A}^T = \mbf{A}$，那么就称$\mbf{A}$是对称矩阵. 
+\rm 一个矩阵$\mbf{A}$如果满足$\mbf{A}^T = \mbf{A}$，那么就称$\mbf{A}$是\redt{对称矩阵}. 
 \end{definition}
 
 \begin{proposition}
@@ -1868,11 +1943,12 @@ $$
 $$
 \mbf{A}\mbf{B} = \mbf{B}\mbf{A} = \mbf{I},
 $$
-那么称$\mbf{A}$是一个可逆矩阵(非奇异矩阵). 若$\mbf{A}$是一个可逆矩阵，满足上式的$\mbf{B}$记为$\mbf{A}^{-1}$.
+那么称$\mbf{A}$是一个\redt{可逆矩阵}(非奇异矩阵). 若$\mbf{A}$是一个可逆矩阵，满足上式的$\mbf{B}$记为$\mbf{A}^{-1}$.
 \end{definition}
 
+%https://math.stackexchange.com/questions/346400/why-is-only-a-square-matrix-invertible
 \begin{proposition}
-\rm 可逆矩阵一定是方阵.
+\rm 可逆矩阵一定是方阵. \bluet{这里的意思是上面的$\mbf{I}$是同一个}. 
 \end{proposition}
 
 \begin{proposition}\label{invertible: cond}
@@ -1919,7 +1995,7 @@ A_{12} & A_{22} & \cdots & A_{n2} \\
 A_{1n} & A_{2n} & \cdots & A_{nn}
 \end{pmatrix}
 $$
-被称为$\mbf{A}$的伴随矩阵，记为$\mbf{A}^*$. 即有
+被称为$\mbf{A}$的\redt{伴随矩阵}，记为$\mbf{A}^*$. 即有
 $$
 \mbf{A}\mbf{A}^* = |\mbf{A}|\mbf{I}~\text{和}~\mbf{A}^*\mbf{A} = |\mbf{A}|\mbf{I}.
 $$
@@ -1929,12 +2005,79 @@ $$
 $$
 \end{definition}
 
+\begin{proposition}
+\rm 伴随矩阵相关性质如下
+\begin{enumerate}
+	\item $\mbf{A}\mbf{A}^*=|\mbf{A}|\mbf{I}$;
+	\item 若$|\mbf{A}| \neq 0$，则$(\mbf{A}^*)^{-1}=\frac{\mbf{A}}{|\mbf{A}|}$;
+	\item $(k\mbf{A})^* = k^{n-1}\mbf{A}^*$;
+	\item $(\mbf{A}^*)^T = (\mbf{A}^T)^*$;
+	\item $|\mbf{A}^*|=|\mbf{A}|^{n-1}$;
+	\item $(\mbf{A}^*)^* = |\mbf{A}|^{n-2}\mbf{A},\, n \geq 2$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\rm \bluet{(3)} 
+$$
+\begin{pmatrix}
+ka_{11} & ka_{12} & \cdots & ka_{1n} \\
+ka_{21} & ka_{22} & \cdots & ka_{2n} \\
+\vdots & \vdots &&\vdots \\
+ka_{n1} & ka_{n2} & \cdots & ka_{nn} 
+\end{pmatrix}
+\begin{pmatrix}
+k^{n-1}A_{11} & k^{n-1}A_{21} & \cdots & k^{n-1}A_{n1} \\
+k^{n-1}A_{12} & k^{n-1}A_{22} & \cdots & k^{n-1}A_{n2} \\
+\vdots & \vdots &&\vdots \\
+k^{n-1}A_{1n} & k^{n-1}A_{2n} & \cdots & k^{n-1}A_{nn}
+\end{pmatrix}
+=\begin{pmatrix}
+k^n|\mbf{A}| & 0 & \cdots & 0\\
+0 & k^n|\mbf{A}| & \cdots & 0\\
+\vdots & \vdots &  & \vdots\\
+0 & 0 & \cdots & k^n|\mbf{A}|\\
+\end{pmatrix}
+$$
+
+\bluet{(4)} 
+$$
+\begin{pmatrix}
+A_{11} & A_{21} & \cdots & A_{n1} \\
+A_{12} & A_{22} & \cdots & A_{n2} \\
+\vdots & \vdots &&\vdots \\
+A_{1n} & A_{2n} & \cdots & A_{nn}
+\end{pmatrix}^T = \begin{pmatrix}
+A_{11} & A_{12} & \cdots & A_{1n} \\
+A_{21} & A_{22} & \cdots & A_{2n} \\
+\vdots & \vdots &&\vdots \\
+A_{n1} & A_{2n} & \cdots & A_{nn} 
+\end{pmatrix}
+$$
+\end{proof}
+
+\bluet{(5)}
+$$
+|\mbf{A}\mbf{A}^*| = |\mbf{A}||\mbf{A}^*| = |\mbf{A}|^{n}.
+$$
+
+\bluet{(6)}
+
+$$
+\mbf{A}\mbf{A}^*(\mbf{A}^*)^* = |\mbf{A}|(\mbf{A}^*)^*= \mbf{A} \begin{pmatrix}
+|\mbf{A}|^{n-1} & 0 & \cdots & 0\\
+0 & |\mbf{A}|^{n-1} & \cdots & 0\\
+\vdots & \vdots &  & \vdots\\
+0 & 0 & \cdots & |\mbf{A}|^{n-1}\\
+\end{pmatrix},
+$$
+因此$(\mbf{A}^*)^* = |\mbf{A}|^{n-2}\mbf{A}$.
 \begin{proposition}\label{invertible: prop1}
 \rm 设$\mbf{A}$与$\mbf{B}$都是$n$级矩阵，若满足
 $$
 \mbf{A} \mbf{B} = \mbf{I},
 $$
-则$\mbf{A}$和$\mbf{B}$互为逆矩阵.
+则$\mbf{A}$和$\mbf{B}$互为逆矩阵. \bluet{这个命题告诉我们判定$n$阶方阵的只需要判定一个条件即可}. 
 \end{proposition}
 
 \begin{proof}
@@ -1974,7 +2117,7 @@ $$
 \end{proposition}
 
 \begin{lemma}\label{invertible: 2id}
-\rm 可逆矩阵经过初等矩阵行变换成的简化梯形矩阵一定是单位矩阵.
+\rm \redt{重要的变换性质} 可逆矩阵经过初等矩阵行变换成的简化梯形矩阵一定是单位矩阵.
 \end{lemma}
 
 \begin{proof}
@@ -1999,7 +2142,7 @@ $$
 \end{proof}
 
 \begin{proposition}\label{invertible: mul-rank-no-change}
-\rm 用一个可逆矩阵左(右)乘一个矩阵$\mbf{A}$，不改变$\mbf{A}$的秩.
+\rm \redt{重要的变换性质} 用一个可逆矩阵左(右)乘一个矩阵$\mbf{A}$，不改变$\mbf{A}$的秩.
 \end{proposition}
 
 \begin{proof}
@@ -2135,6 +2278,48 @@ A_{u}B_1 & A_{u}B_{2} & \cdots & A_{u}B_{v} \\
 $$
 相对来要所要比直接证明一般的分部矩阵乘法要稍微简单一点. 
 \end{proof}
+
+\begin{example}
+\rm 
+$$
+\begin{pmatrix}
+\mbf{A} & \mbf{B} \\
+\mbf{C} & \mbf{D} 
+\end{pmatrix}^T =
+\begin{pmatrix}
+\mbf{A}^T & \mbf{B}^T \\
+\mbf{C}^T & \mbf{D}^T
+\end{pmatrix}
+$$
+\end{example}
+
+\begin{example}
+\rm 
+$$
+\begin{pmatrix}
+\mbf{B} & \mbf{0} \\
+\mbf{0} & \mbf{C} 
+\end{pmatrix}^{-1} = 
+\begin{pmatrix}
+\mbf{B}^{-1} & \mbf{0} \\
+\mbf{0} & \mbf{C}^{-1}
+\end{pmatrix}
+$$
+\end{example}
+
+\begin{example}
+\rm
+$$
+\begin{pmatrix}
+\mbf{0} & \mbf{B} \\
+\mbf{C} & \mbf{0}
+\end{pmatrix}^{-1} = 
+\begin{pmatrix}
+\mbf{0} & \mbf{C}^{-1} \\
+\mbf{B}^{-1} & \mbf{0}
+\end{pmatrix}
+$$
+\end{example}
 
 \newpage
 \subsection{分块矩阵的初等变换}
@@ -2381,7 +2566,7 @@ $$
 \end{proof}
 
 \begin{theorem}
-\rm 分块矩阵的初等行(列)变换不改变矩阵的秩.
+\rm \redt{重要变换性质} 分块矩阵的初等行(列)变换不改变矩阵的秩.
 \end{theorem}
 
 \begin{proof}
@@ -2981,6 +3166,30 @@ $$
 \begin{proof}
 由proposition \ref{characteristic: subspace-prop1}，可以清晰的感觉到不同特征值的特征子空间是distinct的，那么当前这个命题就很显然了. 
 \end{proof}
+
+\newpage
+\subsection{等价矩阵}
+
+\begin{definition}
+\rm 对于数域$F$上的两个$m\times n$矩阵$\mbf{A}$和$\mbf{B}$，若从$\mbf{A}$经过一系列初等行变换和初等列变换能成$\mbf{B}$，那么称$\mbf{A}$与$\mbf{B}$是等价的(相抵的)，记为$\mbf{A} \sim \mbf{B}$.
+\end{definition}
+
+\begin{theorem}
+\rm 设$m\times n$矩阵$\mbf{A}$的秩为$r$. 若$r > 0$，那么$\mbf{A}$等价于下述形式的矩阵
+$$
+\begin{pmatrix}
+\mbf{I}_r & \mbf{0} \\
+\mbf{0} & \mbf{0} \\
+\end{pmatrix},
+$$
+称上述矩阵是$\mbf{A}$的等价标准形; 若$r=0$，则$\mbf{A}$等于于零矩阵.
+\end{theorem}
+
+\begin{theorem}
+\rm 设两个$m\times n$矩阵$\mbf{A}$和$\mbf{B}$，若它们等价当且仅当它们的秩相同.
+\end{theorem}
+
+
 
 \newpage
 \subsection{相似矩阵}
