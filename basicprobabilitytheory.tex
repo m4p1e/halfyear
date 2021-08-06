@@ -1206,6 +1206,20 @@ $$
 因此$y \sim N(a\mu+b,a^2\sigma^2)$.
 \end{example}
 
+\begin{example}
+\rm 若$Y=X^2$.
+
+因$Y \geq 0$，那么$P\{Y \leq 0\} = 0$. 当$y > 0$时，则有
+$$
+P\{Y \leq y\} = P\{X^2 \leq y\} = P{-\sqrt{Y} \leq X \leq -\sqrt{Y}} = \int\limits_{-\sqrt{y}}^{\sqrt{y}} f(t)dt.
+$$
+对$y$求导数，得$Y$的密度函数为
+$$
+f_y(y) = [F_x(\sqrt{y})-F_x(-\sqrt{y})]' = \frac{1}{2\sqrt{y}}[f(\sqrt{y}) + f(-\sqrt{y})].
+$$
+当$y \leq 0$时，$f_y(y)=0$. 
+\end{example}
+
 
 \newpage
 \section{多维随机变量及其分布}
