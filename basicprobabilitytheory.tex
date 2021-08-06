@@ -179,7 +179,7 @@ $$
 \begin{definition}
 \rm {\color{red} 排列数公式} 从$n$个元素中取$m$个元素出来进行排列，则不同排列的总数为
 $$
-P^m_n = \frac{n!}{(n-m)!} = n\times(n-1)\times\cdots(n-k+1).
+P^m_n = \frac{n!}{(n-m)!} = n\times(n-1)\times\cdots(n-m+1).
 $$
 特别地，若$m=n$时，$P^n_n = n!$其被称为{\color{red}全排列}；若有放回的取，则不同的排列总数为$n^n$；
 \end{definition}
@@ -330,7 +330,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm 概率加法公式
+\rm \redt{概率加法公式}
 $$
 P(A \cup B) = P(A) + P(B) - P(AB) 
 $$
@@ -348,21 +348,21 @@ $$
 \end{proof}
 
 \begin{corollary}
-\rm 布尔不等式
+\rm \redt{布尔不等式}
 $$
 P(A \cup B) \leq P(A) \cup P(B).
 $$
 \end{corollary}
 
 \begin{corollary}
-\rm Bonferroni不等式
+\rm \redt{Bonferroni不等式}
 $$
 P(AB) \geq P(A) + P(B) -1.
 $$
 \end{corollary}
 
 \begin{proposition}
-\rm 一般加法公式
+\rm \redt{一般加法公式}
 $$
 P(A_1 \cup A_2 \cup \cdots \cup A_n) = \sum\limits_{1,\cdots,n} P(A_i) - \sum\limits_{i < j \atop i,j = 1,\cdots,n}P(A_iA_j) +  \sum\limits_{i < j < k \atop i,j,k = 1,\cdots,n}P(A_iA_jA_k) - \cdots + (-1)^{n-1}P(A_1A_2\cdots A_n). 
 $$
@@ -373,14 +373,14 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm 概率减法公式 
+\rm \redt{概率减法公式} 
 $$
 P(A - B) = P(A) - P(AB).
 $$
 \end{proposition}
 
 \begin{proof}
-因$A = A(B \cup \bar{B}) = AB \cup A\bar{B} = AB \cup (A-B)$，且$AB \cap (A-B) = \emptyset$，于是
+因$A = A\cap (B \cup \bar{B}) = AB \cup A\bar{B} = AB \cup (A-B)$，且$AB \cap (A-B) = \emptyset$，于是
 $$
 P(A) = P(AB \cup (A-B)) = P(AB) \cup P(A-B). 
 $$
@@ -391,6 +391,29 @@ $$
 \rm 在科尔莫戈洛夫的概率论公理化结构中，称三元组总体$(\Omega,\mathscr{F}, P)$为{\color{red}概率空间}，其中$\Omega$是样本空间，$\mathscr{F}$是事件域，$P$是概率. 
 \end{definition}
 
+
+\begin{proposition}\label{probability-axiom: lemma1}
+\rm 若给定$A_1 \supset A_2 \cdots A_bn \supset \cdots$，则
+$$
+P(\lim\limits_{n \to \infty} A_n) = \lim\limits_{n \to \infty} P(A_n). 
+$$
+\bluet{能把极限符号提出来这个性质非常有用}. 
+\end{proposition}
+
+\begin{proof}
+设$B_n = A_n - A_{n+1}$，显然$B_n$之间是互斥的，那么有
+$$
+P(\bigcup\limits_{n=1}^\infty B_n) = \sum\limits_{n=1}^{\infty} P(B_n),
+$$
+于是
+$$
+\begin{array}{rl}
+P(A_1-\lim\limits_{n \to \infty} A_n) &=  \sum\limits_{n=1}^{+\infty} \left[P(A_n)-P(A_{n+1})\right] \\
+P(A_1)- P(\lim\limits_{n \to \infty} A_n) &= P(A_1) - \lim\limits_{n \to \infty} A_n \\
+P(\lim\limits_{n \to \infty} A_n) &= \lim\limits_{n \to \infty} A_n
+\end{array}
+$$
+\end{proof}
 
 
 \newpage
@@ -405,7 +428,7 @@ $$
 \end{definition}
 
 \begin{proposition}
-\rm 乘法公式(今后出现条件概率$P(B|A)$时，都假定$P(A) > 0$)
+\rm \redt{乘法公式}(今后出现条件概率$P(B|A)$时，都假定$P(A) > 0$)
 $$
 P(AB) = P(A)P(B|A);
 $$
@@ -437,7 +460,7 @@ $$
 \begin{proposition}
 \rm 乘法公式可以推广到$n$个事件之交
 $$
-P(A_1A_2\cdots A_n) = P(A_1)P(A_2|A_1)P(A_3|A_1A_2)]\cdots P(A_n|A_1A_2\cdots A_{n-1}).
+P(A_1A_2\cdots A_n) = P(A_1)P(A_2|A_1)P(A_3|A_1A_2)\cdots P(A_n|A_1A_2\cdots A_{n-1}).
 $$
 这里要求$P(A_1A_2\cdots A_{n-1}) > 0$. 
 \end{proposition}
@@ -599,12 +622,16 @@ $$
 $$
 P(AB) = P(A)P(B). 
 $$
-你可能总想深究其更本质的含义，可能你会联想到当事件$A$和$B$独立时，那么$A$和$B$之间有什么关系呢？ 实际上并{\color{blue}不能确定$A$和$B$有什么特别地确切的关系}，所以你把上述等式理解为在描述一个代数结构就好了，从这个代数结构可以引发一些有趣的性质i.e. 例如化简某些运算{\color{blue}条件概率}，所以就特别地把这个代数结构提出来了. 但是当$P(A)>0, P(B) > 0$时，有这样一种关系: {\color{red} 互斥不独立，独立不互斥}，证明也是很显然的.
+你可能总想深究其更本质的含义，可能你会联想到当事件$A$和$B$独立时，那么$A$和$B$之间有什么关系呢？ 当$P(A)>0, P(B) > 0$时，有这样一种关系: {\color{red} 互斥不独立，独立不互斥}，证明也是很显然的. 举个例子两个人都在扔色子，事件$A$表示第一个人扔出$6$，事件$B$表示第二个人扔出$6$，那么$A$和$B$是独立的，即它们发生是互不影响的; 若事件$A$表示扔出第一个人$6$，事件$B$表示第一个人扔不出$6$，那么$A$和$B$是互斥的，显然$A$发生$B$就不会发生，反之依然.
 \end{annotation}
 
 \begin{annotation}
 \rm {\color{red} 当$P(A) = 0$时，如何计算$P(AB)$？}条件概率的定义中特别指明了$P(A) > 0$，那么$P(A)$等于$0$时候，条件概率$P(B|A)$是未定义的. 那么此时如果我们要计算$P(AB)$应该怎么办呢？ 肯定不能使用乘法公式了. 我们可以利用$P$的{\color{blue}单调性}，因为$AB \subseteq A$，所以$P(AB) \leq P(A)$，所以$P(AB)=0$.
 \end{annotation}
+
+$$
+AB ~\text{和} \bar{A} \bar{B}
+$$
 
 \begin{annotation}
 \rm {\color{red} 取部分对立事件不影响独立性} 若$P(AB) = P(A)P(B)$，有下面等式成立
@@ -687,7 +714,7 @@ $$
 $$
 F(x) = P\{X \leq x\},\,-\infty < x < +\infty,
 $$
-称为随机变量$X$的分布函数(累积分布函数或者cumulative distribution function). 
+称为随机变量$X$的\redt{分布函数}(累积分布函数或者cumulative distribution function). 
 \end{definition}
 
 \begin{proposition}
@@ -745,9 +772,14 @@ F(x_1) - F(x_0) =  P\{x_0 < X \leq x_1\} =  P\left[\bigcup\limits_{i=1}^\infty\{
 = \sum\limits_{i=1}^\infty \left[F(x_i) - F(x_{i+1})\right] =  F(x_1) - \lim\limits_{i \to \infty} F(x_{i+1}),
 \end{array}
 $$
-因此有$F(x_0) = \lim\limits_{i \to \infty} F(x_{i+1}) = F(x+0)$. 注意第二个等号使用了一个重要的极限
+因此有$F(x_0) = \lim\limits_{i \to \infty} F(x_{i+1}) = F(x_0+0)$. 注意第二个等号使用了一个重要的极限
 $$
 \{x_0 < X \leq x_1\} = \lim\limits_{n \rightarrow \infty}\bigcup\limits_{i=1}^n\{x_{i+1} < X \leq x_{i}\}
+$$
+
+这里我们可以用\ref{probability-axiom: lemma1}来证，我们让$A_n = \{X \leq x_0 + x_n\}$，其中$x_n$是一个单调递减的极限为$0$数列. 于是
+$$
+P(\lim\limits_{n \to \infty}A_n) = P\{X \leq x_0\} =  F(x_0) = \lim\limits_{n \to \infty} P(A_n) = \lim\limits_{n\to \infty}F(x_0+x_n) = F(x_0 + 0). 
 $$
 
 {\color{red}(4)} 这里因为无法保证是右连续的，所以减去$x$除的右极限的跃度就是这$x$这一点的概率.
@@ -934,7 +966,7 @@ $$
 $$
 P\{X=k\} = \frac{C_M^kC_{N-M}^{n-k}}{C_{N}^n}, k=l_1,\cdots,l_2,
 $$
-其中$l_1 = \max(0,n-N+M), l_2 = \min(M,n)$，则称随机变量$X$服从参数$n,N,M$的超几何分布.
+其中$l_1 = \max(0,n-N+M), l_2 = \min(M,n)$，则称随机变量$X$服从参数$n,N,M$的\redt{超几何分布}.
 \end{definition}
 
 \begin{annotation}
@@ -946,7 +978,7 @@ $$
 $$
 P\{X=k\} = \frac{\lambda^k}{k!}e^{-\lambda}, k = 0,1,2,\cdots,
 $$
-其中$\lambda > 0$为常数，则称随机变量$X$服从参数为$\lambda$的泊松分布，记为$X \sim \P(\lambda)$. 
+其中$\lambda > 0$为常数，则称随机变量$X$服从参数为$\lambda$的泊松分布，记为$X \sim P(\lambda)$. 
 \end{definition}
 
 \begin{annotation}
@@ -973,7 +1005,7 @@ $$
 \end{annotation}
 
 \begin{proposition}
-\rm 若我们关注的随机变量$X$是表示某个事件$A$发生的次数$k$且$X~P(\lambda)$，假定它具有有下面三个性质
+\rm 若我们关注的随机变量$X$是表示某个事件$A$发生的次数$k$且$X\sim P(\lambda)$，假定它具有有下面三个性质
 \begin{enumerate}
 	\item {\color{red}平稳性} 在$[t_0,t_0+t)$中$A$发生个数只与时间间隔长度有关而与时间起点$t_0$无关. 若以$P_k(t)$表示在长度为$t$的时间区间中$A$发生的$k$次的概率，那么对任意的$t$有
 	$$
@@ -1077,7 +1109,7 @@ P\{Z \leq x\} = P\{\frac{X-\mu}{\sigma} \leq x\} = P\{X \leq \mu + \sigma x\} = 
 $$
 令$u = \frac{t-\mu}{\sigma}$，那么$t = \sigma u + \mu$，于是
 $$
-P\{Z \leq x\} = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x} e^{\frac{u^2}{2}}du = \Phi(x). 
+P\{Z \leq x\} = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x} e^{-\frac{u^2}{2}}du = \Phi(x). 
 $$
 由此$Z \sim N(0,1)$.
 \end{proof}
@@ -1090,7 +1122,7 @@ $$
 \end{corollary}
 
 \begin{proposition}
-\rm 设$X~N(\mu,\sigma^2)$，其分布函数为$F(x)$，则
+\rm 设$X \sim N(\mu,\sigma^2)$，其分布函数为$F(x)$，则
 \begin{enumerate}
 	\item $P\{a < x \leq b\} = \Phi(\frac{b-\mu}{\sigma}) - \Phi(\frac{a-\mu}{\sigma})$;
 	\item 概率函数$f(x)$关于$x=\mu$对称，$\varphi(x)$是偶函数;
@@ -1120,6 +1152,18 @@ $$
 \rm $y=f(x)$实际上是一个可测函数. 
 \end{definition}
 
+\begin{annotation}
+\rm 若随机变量$X$为离散型变量，把$Y=g(X)$可以取的不同值找出来，把与某个值相应的全部$X$值的概率加起来，即得$Y$取这个值的概率.
+\end{annotation}
+
+\begin{annotation}
+\rm 若随机变量$Y$为连续性变量，把$Y=g(x)$可以取的不同值找出来，对应某个$y$值而言，求$F(y) = P\{Y \leq y\}$，就是把对应全部的$X$的概率积出来，即
+$$
+\int\limits_{g(x) \leq y} f_X(t)dt.
+$$
+注意其中$f_(X)$可能是分段函数，对不同范围的$x$要分别积分再加起来. 
+\end{annotation}
+
 \begin{theorem}
 \rm 设随机变量$X$具有概率密度$f_X(x)$对任意实数都有定义. 若给定$g(x)$是严格单调的，其反函数$g^{-1}(x)$有\redt{连续导数}(有可能怕破坏$f_X(x)$的连续性？). 则$Y = g(X)$是连续型随机变量，其概率密度为
 $$
@@ -1132,17 +1176,17 @@ $$
 \end{theorem}
 
 \begin{proof}
-若$g(x)$是严格单调增大，且其反函数$g^{-1}(x)$是有连续导数. 给定任意实数$a \in (\alpha,\beta)$，那么
+若$g(x)$是严格单调增大，且其反函数$g^{-1}(x)$是有连续导数. 给定任意实数$y \in (\alpha,\beta)$，那么
 $$
-F_Y(y) = P\{Y \leq a \} = P\{X \leq g^{-1}(x)\} = F_X(g^{-1}(x))
+F_Y(y) = P\{Y \leq y \} = P\{X \leq g^{-1}(y)\} = F_X(g^{-1}(y))
 $$
-对$F_Y(y)$关于$y$求导，即有$f_Y(y) = f_X\left[ g^{-1}(y) \right]\left[g^{-1}(y)\right]'$. 若给定实数$a \leq \alpha$，那么显然有$F_Y(a) = 0$; 当$a \geq \beta$，有$F_Y(a) = 1$.
+对$F_Y(y)$关于$y$求导，即有$f_Y(y) = f_X\left[ g^{-1}(y) \right]\left[g^{-1}(y)\right]'$. 若给定实数$y \leq \alpha$，那么显然有$F_Y(a) = 0$; 当$y \geq \beta$，有$F_Y(a) = 1$.
 
-同理若$g(x)$是严格单调递减，若给定任意实数$a \in (\alpha,\beta)$，那么
+同理若$g(x)$是严格单调递减，若给定任意实数$y \in (\alpha,\beta)$，那么
 $$
-F_Y(y) = P\{Y \leq a \} = P\{X \geq g^{-1}(a)\} = 1-F_Y(g^{-1}(a)), 
+F_Y(y) = P\{Y \leq y \} = P\{X \geq g^{-1}(y)\} = 1-F_Y(g^{-1}(y)), 
 $$
-对$F_Y(y)$关于$y$求导，即有$f_Y(y) = -f_X\left[ g^{-1}(y) \right]\left[g^{-1}(y)\right]'$. 综合两式便得命题中的概率密度函数. 
+对$F_Y(y)$关于$y$求导，即有$f_Y(y) = -f_X\left[ g^{-1}(y) \right]\left[g^{-1}(y)\right]'$，当$g(x)$是严格单调递减时，$g^{-1}(y)$也是严格单调递减的，因此$\left[g^{-1}(y)\right]' < 0$，所以这里有$f_X\left[ g^{-1}(y) \right]|\left[g^{-1}(y)\right]'|$. 综合两式便得命题中的概率密度函数. 
 \end{proof}
 
 \begin{corollary}
@@ -1151,6 +1195,16 @@ $$
 f_Y(y) = \sum\limits_{i}f_X\left[h_i(y)\right]|h_i'(y)|. 
 $$
 \end{corollary}
+
+\begin{example}
+\rm 若$X \sim N(\sigma^2,\mu)$，$Y=aX+b,a\neq 0$. 
+
+那么$g^{-1}(y) = \frac{y-b}{a}$，则$Y$的密度函数为
+$$
+f_y(y) = \frac{f_x(\frac{y-b}{a})}{|a|} = \frac{1}{\sqrt{2\pi}\sigma|a|}e^{-\frac{(\frac{y-b}{a}-\mu)^2}{2\sigma^2}} = \frac{1}{\sqrt{2\pi}\sigma|a|}e^{-\frac{(y-(b+a\mu))^2}{2\sigma^2a^2}}.
+$$
+因此$y \sim N(a\mu+b,a^2\sigma^2)$.
+\end{example}
 
 
 \newpage
