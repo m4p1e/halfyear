@@ -3605,7 +3605,7 @@ $$
 \subsection{二次型及其标准型}
 
 \begin{definition}
-\rm 数域$F$上的一个$n$元二次型是系数在$F$中$n$个变量的二次齐次多项式，它的一般形式是
+\rm 数域$F$上的一个$n$元\redt{二次型}是系数在$F$中$n$个变量的二次齐次多项式，它的一般形式是
 \begin{equation}
 \begin{array}{rlll}
 f(x_1,x_2,\cdots,x_n) = a_{11}x_1^2 + 2a_{12}x_1x_2 &+ 2a_{13}x_1x_3 &+ \cdots &+ 2a_{1n}x_1x_n \\
@@ -3639,7 +3639,7 @@ a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nn}x_n
 a_{11} & a_{12} & \cdots & a_{1n} \\
 a_{21} & a_{22} & \cdots & a_{2n} \\
 \vdots & \vdots & 		 & \vdots \\
-a_{n1} & a_{n2} & \cdots & a_{nn}x_n
+a_{n1} & a_{n2} & \cdots & a_{nn}
 \end{pmatrix}
 \begin{pmatrix}
 x_1 \\
@@ -3664,7 +3664,7 @@ a_{n1} & a_{n2} & \cdots & a_{nn}x_n
 $$
 f(x_1,x_2,\cdots,x_n)=\mbf{X}^T\mbf{A}\mbf{X}.
 $$
-此时，称$\mbf{A}$是二次型$f(x_1,x_2,\cdots,x_n)$的矩阵，它是对称矩阵. 显然$\mbf{A}$是唯一的: 它的主对角线元素依次是$x_1^2,x_2^2,\cdots,x_n^2$的系数; 它的$(i,j)$元素是$x_ix_j$的系数的一半，其中$i<j$. 
+此时，称\redt{$\mbf{A}$是二次型$f(x_1,x_2,\cdots,x_n)$的矩阵}，它是对称矩阵. 显然$\mbf{A}$是唯一的: 它的主对角线元素依次是$x_1^2,x_2^2,\cdots,x_n^2$的系数; 它的$(i,j)$元素是$x_ix_j$的系数的一半，其中$i<j$. 
 \end{definition}
 
 \begin{definition}
@@ -3689,7 +3689,11 @@ $$
 \end{annotation}
 
 \begin{definition}
-\rm 给定两个$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$和$\mbf{Y}^T\mbf{B}\mbf{Y}$，若存在一个非退化线性替换$\mbf{X} = C\mbf{Y}$可以把$\mbf{X}^T\mbf{A}\mbf{X}$变换成$\mbf{Y}^T\mbf{B}\mbf{Y}$，那么就称二次型$\mbf{X}^T\mbf{A}\mbf{X}$和$\mbf{Y}^T\mbf{B}\mbf{Y}$等价，记为$\mbf{X}^T\mbf{A}\mbf{X} \cong \mbf{Y}^T\mbf{B}\mbf{Y}$. 
+\rm 给定两个$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$和$\mbf{Y}^T\mbf{B}\mbf{Y}$，若存在一个非退化线性替换$\mbf{X} = C\mbf{Y}$可以把$\mbf{X}^T\mbf{A}\mbf{X}$变换成$\mbf{Y}^T\mbf{B}\mbf{Y}$，那么就称二次型$\mbf{X}^T\mbf{A}\mbf{X}$和$\mbf{Y}^T\mbf{B}\mbf{Y}$\redt{等价}，记为$\mbf{X}^T\mbf{A}\mbf{X} \cong \mbf{Y}^T\mbf{B}\mbf{Y}$. 
+\end{definition}
+
+\begin{definition}
+\rm 上述二次型等价中的把$\mbf{X}^T\mbf{A}\mbf{X}$变换成$\mbf{Y}^T\mbf{B}\mbf{Y}$中的变成如何理解？ 也就是指上面annotation的过程，即存在一个非退化线性替换$\mbf{X} = C\mbf{Y}$使得$\mbf{B} = C^T\mbf{A}C$.
 \end{definition}
 
 \begin{definition}
@@ -3697,8 +3701,12 @@ $$
 $$
 C^T\mbf{A}C = \mbf{B},
 $$
-那么就称$\mbf{A}$与$\mbf{B}$ {\color{red}合同}，记为$\mbf{A} \simeq \mbf{B}$.
+那么就称$\mbf{A}$与$\mbf{B}$ {\color{red}合同}，记为$\mbf{A} \simeq \mbf{B}$. 如果对称矩阵$\mbf{A}$合同于一个对角矩阵，那么这个对角矩阵称为$\mbf{A}$的一个\redt{合同标准型}. 
 \end{definition}
+
+\begin{annotation}
+\rm 矩阵合同是一个等价关系. 
+\end{annotation}
 
 \begin{proposition}
 \rm 若两个$n$阶矩阵$\mbf{A}$与$\mbf{B}$合同，则满足下述简单性质
@@ -3722,19 +3730,75 @@ $$
 $$
 \lambda_1y_1^2 + \lambda_2y^2 + \cdots + \lambda_n y^2,
 $$
-其中$\lambda_1,\lambda_2,\cdots,\lambda_n$是$\mbf{A}$的全部特征值. 
+其中$\lambda_1,\lambda_2,\cdots,\lambda_n$是$\mbf{A}$的全部特征值. 如果$\mbf{T}$是正交矩阵，那么$\mbf{X} = \mbf{T}\mbf{Y}$称为\redt{正交变换}.
 \end{proposition}
 
 \begin{proof}
-由theorem \ref{symmetry: theorem2}. 
+由theorem \ref{symmetry: theorem2}可知存在$n$阶正交矩阵$\mbf{T}$，使得
+$$
+\mbf{T}^T\mbf{A}\mbf{T}^T = \text{diag}(\lambda_1,\cdots,\lambda_n)
+$$
+因此$\mbf{A}$合同于$\text{diag}(\lambda_1,\cdots,\lambda_n)$，那么有非线性退化$\mbf{X} = \mbf{T}\mbf{Y}$使得$\mbf{X}^T\mbf{A}\mbf{X}$化成$\lambda_1y_1^2 + \lambda_2y^2 + \cdots + \lambda_n y^2$. 
 \end{proof}
 
 \begin{annotation}
-\rm {\color{red}配方法}
+\rm  \bluet{注意正交变换只能化二次型为标准二次型，平方项的系数即特征值}.
 \end{annotation}
 
+\begin{annotation}
+\rm {\color{red}配方法} 将二次型$f(x_1,x_2,x_3)=x_1^2 +2x_2 ^2 -x_3^2 + 4x_1x_2 - 4x_1x_3-4x_2x_3$化为标准型
+$$
+\begin{array}{ll}
+f(x_1,x_2,x_3) &= x_1 ^2 + 4x_1(x_2 - x_3) + [2(x_2 - x_3)]^2 - [2(x_2 - x_3)]^2 + 2x_2^2 - x_3^2-4x_2x_3\\
+&= (x_1 + 2x_2 - 2x_3)^2 - (4x_2^2 - 8x_2x_3 + 4x_3^2) + 2x_2^2 - x_3^2 -4x_2x_3 \\ 
+&= (x_1 + 2x_2 - 2x_3)^2 - 2x_2^2 + 4x_2x_3 -5x_3^2 \\
+&= (x_1 + 2x_2 - 2x_3)^2 - 2(x_2^2 -2x_2x_3 + x_3^2) -3x_3^2 \\
+&= (x_1 + 2x_2 - 2x_3)^2 - 2(x_2-x_3)^2 - 3x_3^2
+\end{array}
+$$
+令
+$$
+\left\{ \begin{array}{ll}
+y_1 = x_1 + 2x_2 - 2x_3 \\
+y_2 = x_2 -x_3\\
+y_3 = x_3 \\
+\end{array}\right.
+$$
+则$f(x_1,x_2,x_3) = y_1^2 - 2y_2^2 - 3y_3^2$，其做的非退化线性替换为
+$$
+\left\{
+\begin{array}{ll}
+x_1 = y_1-2y_2 \\
+x_2 = y_2 + y_3\\
+x_3 = y_3
+\end{array}\right.
+$$
+即
+$$
+\begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+\end{pmatrix} = 
+\begin{pmatrix}
+1 & -2 & 0\\
+0 & 1 & 1\\
+0 & 0 & 1 
+\end{pmatrix}
+\begin{pmatrix}
+y_1 \\
+y_2 \\
+y_3 \\
+\end{pmatrix}
+$$
+\end{annotation}
+
+\begin{example}
+\rm 将二次型$f(x_1,x_2,x_3) = x_1x_2 +x_1x_3 - 3x_2x_3$化为标准二次型
+\end{example}
+
 \begin{proposition}
-\rm 
+\rm 三种初等变换的转置的性质: 
 $$
 \begin{array}{ll}
 P(j,i(k))^T = P(i,j(k)) \\
@@ -3751,7 +3815,7 @@ $$
 $$
 那么称$\mbf{B}$是$\mbf{A}$通过一个{\color{red}成对初等行列变换}得到的. 用自然语言描述成对初等行列变换三种类型的操作如下
 \begin{enumerate}
-	\item $P(i,j(k))\mbf{A}P(j,i{k})$ 先将$\mbf{A}$第$j$行的$k$倍加到$i$行，再将第$j$列的$k$倍加到$i$列.
+	\item $P(i,j(k))\mbf{A}P(j,i(k))$ 先将$\mbf{A}$第$j$行的$k$倍加到$i$行，再将第$j$列的$k$倍加到$i$列.
 	\item $P(i,j)\mbf{A}P(i,j)$ 先将$\mbf{A}$的第$i,j$行交换，再将第$i,j$列交换.
 	\item $P(i(b))\mbf{A}P(i(b))$ 先将$\mbf{A}$的第$i$行乘上非零数$b$，再将第$i$列乘上非零数$b$.
 \end{enumerate}
@@ -3784,7 +3848,7 @@ a_{11} & \mbf{\alpha}\\
 \end{pmatrix}.
 $$
 
-\emph{情形}2 若$a_11 \neq 0$.
+\emph{情形}2 若$a_{11} \neq 0$.
 
 首先对其做一个成对初等行列操作，将$\mbf{\alpha}$和$\mbf{\alpha}^T$变为$\mbf{0}$得到$\mbf{A_2}$，即
 $$
@@ -3849,13 +3913,13 @@ $$
 \end{proof}
 
 \begin{annotation}
-\rm 结合lemma \ref{congruent: lemma1}，这里就有一种求二次型的标准型的办法: 对于$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$,
+\rm 结合lemma \ref{congruent: lemma1}，这里就有一种\redt{求二次型的标准型的办法}: 对于$n$元二次型$\mbf{X}^T\mbf{A}\mbf{X}$,
 $$
 \begin{pmatrix}
 \mbf{A} \\
 \mbf{I}
 \end{pmatrix}
-\xrightarrow[\text{对$\mbf{A}$只做其中的初等列变换}]{\text{对$\mbf{A}$做成对初等行列变换}}
+\xrightarrow[\text{对$\mbf{A}$只做其中的初等列变换}]{\text{对$\mbf{I}$做成对初等行列变换}}
 \begin{pmatrix}
 \mbf{D} \\
 C
@@ -3952,11 +4016,15 @@ $$
 \end{theorem}
 
 \begin{proof}
-\rm \emph{必要性}\ 若$\mbf{X}^T\mbf{A}\mbf{X}$是正定的，作非退化线性替换$\mbf{X}=C\mbf{Y}$，化为规范形
+\rm \emph{必要性}\ 若$\mbf{X}^T\mbf{A}\mbf{X}$是正定的，作非退化线性替换$\mbf{X}=C\mbf{Y}$，化为规范形$\mbf{Y}^T\mbf{B}\mbf{Y}$
 $$
 y_1 ^2 + y_2^2 + \cdots + y_p^2 - y_{p+1}^2 -\cdots -y_r^2.
 $$
-假设$p < n$，那么$y_n^2$的系数可能为$-1$或者$0$，因此当$\mbf{Y}$取值$\mbf{\beta} = (0,\cdots,0,1)^T$时，令$\mbf{\alpha} = C\mbf{\beta}$，那么$\mbf{\alpha}\mbf{A}\mbf{\alpha} = \mbf{Y}^T(C^T\mbf{A}C)\mbf{Y}=-1$或者$0$，这就矛盾了. 因此$p \geq  n$，所以$p = n$.
+其中$\mbf{B}$就是上述的规范形的系数构成的对角矩阵. 假设$p < n$，那么$y_n^2$的系数$b_{nn}$可能为$-1$或者$0$，因此当$\mbf{Y}$取值$\mbf{\beta} = (0,\cdots,0,1)^T$时，令$\mbf{\alpha} = C\mbf{\beta}$，有
+$$
+\mbf{\alpha}^T\mbf{A}\mbf{\alpha} = \mbf{\beta}^T\mbf{B}\mbf{\beta} = (0,\cdots,0,1) \mbf{B} (0,\cdots,0,1)^T = b_{nn} \leq 0. 
+$$
+这就矛盾了，因此$p \geq  n$，所以$p = n$.
 
 \emph{充分性} 若$\mbf{X}^T\mbf{A}\mbf{X}$的正惯性指数等于$n$，于是经过非退化线性替换$\mbf{X} = C\mbf{Y}$，化为规范形
 $$
@@ -3964,7 +4032,7 @@ y_1^2 + y_2^2 + \cdots + y_n^2.
 $$
 因此当$\mbf{Y}$取值非零$\mbf{\beta}=(k_1,k_2,\cdots,k_n)$时(这里有一个小问题你要保证所有$\mbf{X}$的取值能完全被$C\mbf{Y}$盖住才行，这是显然，因为对任意的$\mbf{X}$取值，让$\mbf{Y}=C^{-1}\mbf{X} $即可)，有
 $$
-\mbf{Y}^T(C^T\mbf{A}C)\mbf{Y} = k_1^2 + k_2^2 + \cdots + k_n^2 \geq 0.
+\mbf{Y}^T\mbf{B}\mbf{Y} = k_1^2 + k_2^2 + \cdots + k_n^2 \geq 0.
 $$
 所以$\mbf{X}^T\mbf{A}\mbf{X}$是正定的. 
 \end{proof}
@@ -3989,7 +4057,7 @@ $$
 \end{corollary}
 
 \begin{proof}
-\rm 设$\mbf{A}$是正定的，存在$C$使得$C^T\mbf{A}C =\mbf{B}$，那么
+\rm 设$\mbf{A}$是正定的，且存在$C$使得$C^T\mbf{A}C =\mbf{B}$，那么
 $$
 \mbf{\alpha}^T\mbf{B}\mbf{\alpha} = \mbf{\alpha}^TC^T\mbf{A}C\mbf{\alpha} = (C\mbf{\alpha})^T \mbf{A} (C\mbf{\alpha}) > 0.
 $$
