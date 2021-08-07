@@ -1211,7 +1211,7 @@ $$
 
 因$Y \geq 0$，那么$P\{Y \leq 0\} = 0$. 当$y > 0$时，则有
 $$
-P\{Y \leq y\} = P\{X^2 \leq y\} = P{-\sqrt{Y} \leq X \leq -\sqrt{Y}} = \int\limits_{-\sqrt{y}}^{\sqrt{y}} f(t)dt.
+P\{Y \leq y\} = P\{X^2 \leq y\} = P\{-\sqrt{Y} \leq X \leq -\sqrt{Y}\} = \int_{-\sqrt{y}}^{\sqrt{y}} f(t)dt.
 $$
 对$y$求导数，得$Y$的密度函数为
 $$
@@ -1348,13 +1348,28 @@ $$
 \rm 若$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$，则
 $$
 \begin{array}{ll}
-f_X(x) = \frac{1}{2\pi\sigma_1}e^{-\frac{(x-\mu_1)}{2\sigma_1^2}}, \\
-f_Y(y) = \frac{1}{2\pi\sigma_2}e^{-\frac{(y-\mu_2)}{2\sigma_2^2}}
+f_X(x) = \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}}, \\
+f_Y(y) = \frac{1}{\sqrt{2\pi}\sigma_2}e^{-\frac{(y-\mu_2)^2}{2\sigma_2^2}}
 \end{array}
 $$
 即$X \sim N(\mu_1,\sigma_1^2),Y \sim N(\mu_2,\sigma_2^2)$
 \end{proposition}
 
+\begin{proof}
+\rm 关于$X$的边缘密度为
+$$
+f_X(x) = \int_{-\infty}^{+\infty} f(x,y)dy = \int_{-\infty}^{+\infty} {\frac {1}{2\pi \sigma _{1}\sigma _{2}{\sqrt {1-\rho ^{2}}}}} \exp\left( -\frac{1}{2(1-\rho^2)}\left[\frac{(1-\rho^2)(x-\mu_1)^2}{\sigma_1^2} - \left({\frac {y-\mu _{2}}{\sigma _{2}}}-{\rho\left(\frac {x-\mu _{1}}{\sigma _{1}}\right)}\right)^2\right]\right).
+$$
+因此
+$$
+f_X(x) = \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}} \frac{1}{\sqrt{2\pi}\sigma_2\sqrt{1-\rho^2}} \int_{-\infty}^{+\infty} e^{-\frac{\left[y-\left(\frac{\rho\sigma_2(x-\mu_1)}{\sigma_1}++\mu_2\right)\right]}{2(1-\rho^2)\sigma_2^2}} = \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}}
+$$
+同理也可得关于$Y$的边缘密度$f_Y(y)$.
+\end{proof}
+
+\begin{proposition}
+\rm 若$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$，则$X$与$Y$独立当且仅当$\rho = 0$.
+\end{proposition}
 
 \subsection{边缘分布}
 
@@ -1401,11 +1416,11 @@ $$
 \begin{definition}
 \rm 设$(X,Y)$为二维离散型随机变量，其全部的可能取值为$(x_i,y_j), i,j=1,2,\cdots$. $(X,Y)$的联合分布律为$P\{X=x_i,Y=y_j\}=p_{ij}$ . 若给定事件$\{Y=y_j\}$，其概率$P\{Y=y_j\} > 0$，则称
 $$
-P\{X=x_i | Y=y_i\} = \frac{P\{X=x_i,Y=y_j\}}{P\{Y=y_j\}} = \frac{p_{ij}}{\sum\limits_{i=1}^{+\infty} p_ij}, \, i=1,2,\cdots 
+P\{X=x_i | Y=y_j\} = \frac{P\{X=x_i,Y=y_j\}}{P\{Y=y_j\}} = \frac{p_{ij}}{\sum\limits_{i=1}^{+\infty} p_{ij}}, \, i=1,2,\cdots 
 $$
-为在给定$Y=y_j$的条件下$X$的\redt{条件分布律}(概率函数). 类似的，若$P\{X_i\}>0$，则称
+为在给定$Y=y_j$的条件下$X$的\redt{条件分布律}(概率函数). 类似的，若$P\{X=X_i\}>0$，则称
 $$
-P(Y=y_k|X=x_i) = \frac{P\{X=x_i,Y=y_j\}}{P\{X=x_i\}} = \frac{p_{ij}}{\sum\limits_{j=1}^{+\infty} p_ij}, \, j=1,2,\cdots
+P(Y=y_k|X=x_i) = \frac{P\{X=x_i,Y=y_j\}}{P\{X=x_i\}} = \frac{p_{ij}}{\sum\limits_{j=1}^{+\infty} p_{ij}}, \, j=1,2,\cdots
 $$
 为在给定条件$X=x_i$下$Y$的\redt{条件分布律}. 
 \end{definition}
@@ -1475,6 +1490,31 @@ P\{Y < y\} = \underset{g(x_1,x_2,\cdots,x_n) < y}{\int\int\cdots\int}f(x_1,x_2,\
 $$
 \end{proposition}
 
+\begin{example}
+\rm 设$(X,Y)$的联合密度为$f(x,y)$，要求$Z=X+Y$.
+
+按照分布函数的定义有
+$$
+F_Z(z)=P\{Z \leq z\} = P\{X+Y \leq z\}.
+$$
+实际上我们要考虑平面坐标上$x+y=z$直线下方区域$B$，就是一个二重积分，自然地将其化成累次积分的来计算，即
+$$
+\int_{B} f(x,y)dxdy = \int_{-\infty}^{+\infty}\left[ \int_{-\infty}^{z-x} f(x,y)dy \right] dx
+$$
+对$z$求导，即得$Z$的概率密度
+$$
+f_Z(z) = \int_{-\infty}^{+\infty} f(x,z-x)dx.
+$$
+若设$t=z-x$，也可得
+$$
+\int_{-\infty}^{+\infty} f(z-x,x)dx.
+$$.
+若$X,Y$独立，则$f(x,y)=f_X(x)f_Y(y)$，这时即有
+$$
+f_Z(z) = \int_{-\infty}^{+\infty} f_X(x)f_Y(z-x)dx = \int_{-\infty}^{+\infty} f_X(z-x)f_Y(x)dx,
+$$
+称其为连续卷积公式. 
+\end{example}
 
 \section{随机变量的数字特征}
 
