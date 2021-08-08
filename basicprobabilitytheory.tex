@@ -1338,9 +1338,9 @@ $$
 
 \begin{definition}
 \rm 如果二维连续随机变量$(X,Y)$的概率密度为
-$$
+\begin{equation}
 f(x,y)={\frac {1}{2\pi \sigma _{1}\sigma _{1}{\sqrt {1-\rho ^{2}}}}}\mathrm \exp\left({-{\frac {1}{2(1-\rho ^{2})}}\left[\left({\frac {x-\mu _{1}}{\sigma _{1}}}\right)^{2}-2\rho \left({\frac {x-\mu _{1}}{\sigma _{1}}}\right)\left({\frac {y-\mu _{2}}{\sigma _{2}}}\right)+\left({\frac {y-\mu _{2}}{\sigma _{2}}}\right)^{2}\right]}\right),
-$$
+\end{equation}
 其中$\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$均为常数，$\sigma_1 > 0,\sigma_2 > 0, |\rho| < 1$，则称$(X,Y)$服从参数为$\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$的二项分布，记为$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$. 
 \end{definition}
 
@@ -1362,14 +1362,55 @@ f_X(x) = \int_{-\infty}^{+\infty} f(x,y)dy = \int_{-\infty}^{+\infty} {\frac {1}
 $$
 因此
 $$
-f_X(x) = \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}} \frac{1}{\sqrt{2\pi}\sigma_2\sqrt{1-\rho^2}} \int_{-\infty}^{+\infty} e^{-\frac{\left[y-\left(\frac{\rho\sigma_2(x-\mu_1)}{\sigma_1}++\mu_2\right)\right]}{2(1-\rho^2)\sigma_2^2}} = \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}}
+f_X(x) = \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}} \frac{1}{\sqrt{2\pi}\sigma_2\sqrt{1-\rho^2}} \int_{-\infty}^{+\infty} e^{-\frac{\left[y-\left(\frac{\rho\sigma_2(x-\mu_1)}{\sigma_1}+\mu_2\right)\right]}{2(1-\rho^2)\sigma_2^2}}dy = \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}}
 $$
-同理也可得关于$Y$的边缘密度$f_Y(y)$.
+同理也可得关于$Y$的边缘密度$f_Y(y)$. 这推导也间接说明了$\int_{-\infty}^{+\infty} f(x,y)dxdy = 1$. 
 \end{proof}
 
 \begin{proposition}
-\rm 若$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$，则$X$与$Y$独立当且仅当$\rho = 0$.
+\rm 设$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$，则$X$与$Y$独立当且仅当$\rho = 0$.
 \end{proposition}
+
+\begin{proof}
+\rm \emph{充分性}\ 是显然.
+
+\emph{必要性} 若$X,Y$独立则$f(x,y) = f_X(x)f_Y(y)$，即
+$$
+f_X(x)f_Y(y) = {\frac {1}{2\pi \sigma _{1}\sigma _{1}}} \exp\left(-\frac{1}{2}\left[ \left(\frac {x-\mu _{1}}{\sigma _{1}}\right)^{2} +\left( \frac {y-\mu _{2}}{\sigma _{2}}\right)^{2}  \right] \right)
+$$ 
+(1)式和上式在当前前提条件都是$(X,Y)$的概率密度，这个两个概率密度都是连续的，它们应当处处相等，特别地应有
+$$
+f(\mu_1,\mu_2) = f_X(\mu_1)f_Y(\mu_2),
+$$
+即
+$$
+{\frac {1}{2\pi \sigma _{1}\sigma _{1}{\sqrt {1-\rho ^{2}}}}} = {\frac {1}{2\pi \sigma _{1}\sigma _{1}}}.
+$$
+因此$\rho = 0$. 
+\end{proof}
+
+\begin{proposition}
+\rm 设$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$，则$aX+bY \sim N(a\mu_1 + b\mu_2, a^2\sigma_1^2+2ab\sigma_1\sigma_2\rho+b^2\sigma_2^2)$
+\end{proposition}
+
+\begin{proof}
+设$Z=aX+bY$，则$Z$的分布函数为
+$$
+F_Z(z) = P\{Z \leq z\} = P\{aX+bY \leq z\},
+$$
+那么我们需要考虑平面上直线$ax+by=z$下方的区域$B$，即
+$$
+F(z) = \int_{B} f(x,y)dxdy = \int_{-\infty}^{+\infty}dx  \int_{-\infty}^{\frac{z-ax}{b}} f(x,y)dy = 
+$$
+\end{proof}
+
+\begin{proposition}
+\rm 设$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$，若$\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix} \neq 0$，则$(aX+bY,cX+dY)$也是服从二维正态分布. 
+\end{proposition}
+
 
 \subsection{边缘分布}
 
@@ -1501,7 +1542,11 @@ $$
 $$
 \int_{B} f(x,y)dxdy = \int_{-\infty}^{+\infty}\left[ \int_{-\infty}^{z-x} f(x,y)dy \right] dx
 $$
-对$z$求导，即得$Z$的概率密度
+设$u = y+x$，即有
+$$
+\int_{B} f(x,y)dxdy = \int_{-\infty}^{+\infty}\left[ \int_{-\infty}^{z} f(x,u-x)du \right] dx = \int_{-\infty}^{z} \left[ \int_{-\infty}^{+\infty} f(x,u-x)dx \right] du, 
+$$
+即得$Z$的概率密度
 $$
 f_Z(z) = \int_{-\infty}^{+\infty} f(x,z-x)dx.
 $$
@@ -1513,9 +1558,10 @@ $$.
 $$
 f_Z(z) = \int_{-\infty}^{+\infty} f_X(x)f_Y(z-x)dx = \int_{-\infty}^{+\infty} f_X(z-x)f_Y(x)dx,
 $$
-称其为连续卷积公式. 
+称其为\redt{连续卷积公式}. 
 \end{example}
 
+\newpage
 \section{随机变量的数字特征}
 
 \subsection{数学期望}
@@ -1525,7 +1571,7 @@ $$
 $$
 P\{X=x_i\} = p_i, i= 1,2,\cdots.
 $$
-如果级数$\sum\limits_{i=1}^{+\infty}x_ip_i$绝对收敛，则称此级数为随机变量$X$的\redt{数学期望}，记做$E(X)$，即$E(x) = \sum\limits_{i=1}^{+\infty}x_ip_i$. 若$\sum\limits_{i=1}^{+\infty}x_ip_i$发散，则称$X$的数学期望不存在. 
+如果级数$\sum\limits_{i=1}^{+\infty}x_ip_i$绝对收敛，则称此级数为随机变量$X$的\redt{数学期望}或\redt{均值}，记做$E(X)$，即$E(x) = \sum\limits_{i=1}^{+\infty}x_ip_i$. 若$\sum\limits_{i=1}^{+\infty}x_ip_i$发散，则称$X$的数学期望不存在. 
 \end{definition}
 
 \begin{annotation}
