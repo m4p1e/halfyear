@@ -42,6 +42,9 @@
 \titleformat{\subsection}[hang]{\color{red}\Large\bfseries}{}{0em}{}
 %\setcounter{secnumdepth}{1} %section 序号
 
+\counterwithin*{equation}{section} %equation重新编号
+\counterwithin*{equation}{subsection}
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -978,7 +981,7 @@ $$
 $$
 P\{X=k\} = \frac{\lambda^k}{k!}e^{-\lambda}, k = 0,1,2,\cdots,
 $$
-其中$\lambda > 0$为常数，则称随机变量$X$服从参数为$\lambda$的泊松分布，记为$X \sim P(\lambda)$. 
+其中$\lambda > 0$为常数，则称随机变量$X$服从参数为$\lambda$的\redt{泊松分布}，记为$X \sim P(\lambda)$. 
 \end{definition}
 
 \begin{annotation}
@@ -1194,6 +1197,10 @@ $$
 $$
 f_Y(y) = \sum\limits_{i}f_X\left[h_i(y)\right]|h_i'(y)|. 
 $$
+\end{corollary}
+
+\begin{corollary}
+\rm 随机变量$X$的概率密度$f(x)$，则$Y=X+b$的密度函数为$f(y-b)$.
 \end{corollary}
 
 \begin{example}
@@ -1602,7 +1609,7 @@ $$
 \begin{enumerate}
 	\item 若$X$是一常数$c$，则$E(c) = c$;
 	\item 任意给定常数$c$，则$E(cX) = cE(X)$;
-	\item $E(X\pm Y) = E(X)\pm E(Y)$;
+	\item $E(aX \pm bY) = aE(X)\pm bE(Y)$;
 	\item 若$X \geq 0$，则$E(X) \geq 0$;
 \end{enumerate}
 \end{proposition}
@@ -1611,9 +1618,9 @@ $$
 \bluet{(3)} 若二维随机变量$(X,Y)$的概率密度为$f(x,y)$，其边缘的概率密度分布为$f_X(x),f_Y(y)$，则
 $$
 \begin{array}{ll}
-E(X+Y)&=\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}(x+y)f(x,y)dxdy \\
-&= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}xf(x,y)dydx + \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}yf(x,y)dxdy \\
-&= E(X) + E(Y).
+E(X+Y)&=\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}(ax+by)f(x,y)dxdy \\
+&= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}axf(x,y)dydx + \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}byf(x,y)dxdy \\
+&= aE(X) + bE(Y).
 \end{array}
 $$
 \end{proof}
@@ -1669,6 +1676,7 @@ $$
 $$
 E(g(X)) = \int_{-\infty}^{+\infty}g(x)f(x)dx,\, \left(\int_{-\infty}^{+\infty}g(x)f(x)dx < \infty\right).
 $$
+\bluet{这样的公式避免了求$Y=f(X)$的分布}.
 \end{theorem}
 
 \newpage
@@ -1689,7 +1697,7 @@ D(X) = \sum\limits_{i = 0}^{+\infty} \left[ x_i - E(X) \right]^2 p_i.
 $$
 对连续型随机变量$X$有
 $$
-D(X) = \int_{-\infty}^{+\infty}\left[x-E(X)\right]^2dx.
+D(X) = \int_{-\infty}^{+\infty}\left[x-E(X)\right]^2f(x)dx.
 $$
 \end{definition}
 
@@ -1708,15 +1716,53 @@ $$
 	\item $D(c) = 0$;
 	\item $D(X+c) = D(X)$;
 	\item $D(cX) = c^2D(X)$;
-	\item $D(X+Y) = D(X)+D(Y)+2E\left[(X-E(X))(Y-E(Y))\right]$;
+	\item $D(X+Y) = D(X)+D(Y)+2E(XY)-2E(X)E(Y)$;
 	\item $D(X) = 0$当且仅当$P(X=c) = 1$，其中$c=E(x)$.
-	\item 对任意常数$c$有，$D(X) \leq E^2(X-c)$，其中等号成立当且仅当$c = E(X)$.
+	\item 对任意常数$c$有，$D(X) \leq E[(X-c)^2]$，其中等号成立当且仅当$c = E(X)$.
 	\item 如果$X$和$Y$相互独立，$a,b$为常数. 则$D(aX+bY)=a^2D(X)+b^2D(Y)$.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
 \rm 
+
+(2) 
+$$
+D(X+c) = E\{[X+c - E(X+c)]^2\} = E\{[X+c - E(X)+c]^2\} = D(X).
+$$
+
+(3) 
+$$
+D(cX) = E\{[cX - E(cX)]^2\} = E\{[cX - cE(X)]^2\} = c^2D(X).
+$$
+
+(4) 
+$$
+D(X+Y) = E\{[X+Y - E(X+Y)]^2\} = E\{[X-E(X)+Y-E(Y)]^2\} = D(X)+D(Y)+2E(XY)-2E(X)E(Y). 
+$$
+
+(5) 充分性是显然的. 来证必要性，若$D(X) = 0$，设$X$是连续型随机变量，其概率密度为$f(x)$. 由定义
+$$
+D(X) = \int_{-\infty}^{+\infty} [x-E(X)]^2 f(x)dx,
+$$
+$f(x)$在$(-\infty,+\infty)$上肯定不全为$0$，那么存在一些$x_i$使得$x_i - E(X) = 0$，显然有$x_1 = x_2 = \cdots = x_i = \cdots$. 因此$P{X=x_i} = 1$.  
+
+(6)
+$$
+\begin{array}{rl}
+E(X^2)-E^2(X) &\leq E(X^2)-2cE(X)+c^2 \\
+0 &\leq [E(x)-c]^2
+\end{array}
+$$
+
+(7)
+$$
+\begin{array}{ll}
+D(aX+bY) &= E\{[aX+bY-E(aX+bY)]^2\} \\
+&=E\{[aX-aE(X)]^2\} + E\{[bY-bE(Y)]^2\} + 2[abE(XY)-abE(X)E(Y)]\\
+&=a^2D(X)+b^2D(Y)
+\end{array} 
+$$
 \end{proof}
 
 
@@ -1795,7 +1841,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm 若随机变量$X,Y$独立，则$\text{Cov}(X,Y)=0$.
+\rm 若随机变量$X,Y$独立，则$\text{Cov}(X,Y)=0$. 反之则不一定. 
 \end{proposition}
 
 \begin{proof}
@@ -1823,7 +1869,7 @@ E\left[t(X-E(X)) + (Y-E(Y))\right]^2 = \sigma_1^2t^2 + 2\text{Cov}(X,Y)t + \sigm
 $$
 E\left[t_0(X-E(X_1)) + (Y-E(Y))\right]^2 = 0.
 $$
-这里需要使用一个事实，当随机变量$Z$只能取非负值时，若$E(Z) = 0$，则$Z=0$. 证明它可以假设$Z \neq 0$，则必有$Z$必有取大于$0$值时的概率大于$0$，这将导致$E(Z) > 0$. 于是这里有
+这里需要使用一个事实，\bluet{当随机变量$Z$只能取非负值时，若$E(Z) = 0$，则$Z=0$}. 证明它可以假设$Z \neq 0$，则必有$Z$必有取大于$0$值时的概率大于$0$，这将导致$E(Z) > 0$. 于是这里有
 $$
 t_0(X-E(X_1)) + (Y-E(Y)) = 0,
 $$
