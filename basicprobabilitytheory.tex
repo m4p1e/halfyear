@@ -2181,34 +2181,60 @@ $$
 \begin{theorem}
 \rm \redt{(大数定理)} 设$X_1,X_2,\cdots,X_n,\cdots$是独立同分布的随机变量，即$E(X_i) = \mu,i=1,2,\cdots$. 则对任意数$\varepsilon > 0$有
 $$
-\lim\limits_{n \rightarrow \infty}P\{|\bar{X}_n -\mu| \geq \varepsilon\} = 0,
+\lim\limits_{n \rightarrow \infty}P\{|\overline{X}_n -\mu| \geq \varepsilon\} = 0,
 $$ 
-其中$\bar{X}_n = \frac{\sum\limits_{i=1}^n X_i}{n}$. 
+其中$\overline{X}_n = \frac{\sum\limits_{i=1}^n X_i}{n}$. 
 \end{theorem}
 
 \begin{proof}
 设$D(X_i) = \sigma^2, i =1,2,\cdots$. 由切比雪夫不等式有
 $$
-P\{|\bar{X}_n -\mu| \geq \varepsilon\} \leq \frac{D(\bar{X})}{\varepsilon} = \frac{n\frac{\sigma^2}{n^2}}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}. 
+P\{|\overline{X}_n -\mu| \geq \varepsilon\} \leq \frac{D(\overline{X}_n)}{\varepsilon} = \frac{n\frac{\sigma^2}{n^2}}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}. 
 $$
 因此
 $$
-\lim\limits_{n \rightarrow \infty} P\{|\bar{X}_n -\mu| \geq \varepsilon\} = \lim\limits_{n \rightarrow \infty} \frac{\sigma^2}{n\varepsilon^2} = 0.
+\lim\limits_{n \rightarrow \infty} P\{|\overline{X}_n -\mu| \geq \varepsilon\} = \lim\limits_{n \rightarrow \infty} \frac{\sigma^2}{n\varepsilon^2} = 0.
 $$
 \end{proof}
 
+\begin{proposition}
+\rm \redt{大数定理的特例} 若随机变量$S_n \sim B(n,p)(n=1,2,\cdots)$，则对于任意$\varepsilon > 0$，有
+$$
+\lim\limits_{n \rightarrow \infty}P\left\{\left|\frac{S_n}{n} -p\right| \geq \varepsilon\right\} = 0.
+$$
+其中$S_n = X_1+X_2+\cdots+X_n$. \bluet{频率趋于概率}. 
+\end{proposition}
+
+\begin{proof}
+\rm 上述命题描述的是随机变量$X_1,X_2,\cdots,X_n$是相互独立且条件相同的试验，设一次试验下$A$发生的概率为$p$，那么可以理解为
+$$
+X_i = \left\{  \begin{array}{ll}
+1 & \text{第$i$试验时$A$发生}\\
+0 & \text{第$i$试验时$A$不发生}\\
+\end{array}  \right.
+$$ 
+所以实际上$X_1,X_2,\cdots,X_n$就是一个$n$重伯努利试验，记为$S_n \sim B(n,p)$. 对任意一次试验的期望为$E(X_i) = p$，由大数定理最终有
+$$
+\lim\limits_{n \rightarrow \infty}P\left\{\left|\frac{S_n}{n} -p\right| \geq \varepsilon\right\} = 0.
+$$ 
+\end{proof}
+
 \begin{definition}
-\rm \redt{大数定理的特例} 若随机变量$X_n \sim B(n,p)(n=1,2,\cdots)$，则对于任意$\varepsilon > 0$，有
+\rm 设$\xi_n, n = 1,2,\cdots$为随机变量序列，$\xi$为随机变量(可以为常数)，若$\forall \varepsilon > 0$，有
 $$
-\lim\limits_{n \rightarrow \infty}P\{|\frac{X_n}{n} -p| \geq \varepsilon\} = 0.
+\lim\limits_{n \to \infty} P\{ |\xi_n -\xi| > \varepsilon \} = 0
 $$
-\bluet{频率趋于概率}. 
+成立，则称$\xi_n$\redt{依概率收敛}到$\xi$，记做
+$$
+\xi_n \xrightarrow{\text{Pr}} \xi.
+$$
 \end{definition}
+
 
 \begin{theorem}
 \rm \redt{中心极限定理} 设$X_1,X_2,\cdots,X_n,\cdots$为独立同分布的随机变量，$E(X_i)=\mu,D(X_i)=\sigma^2,i=1,2,\cdots$. 则对任意实数$x$，有
 $$
-\lim\limits_{n \rightarrow \infty}P\{\frac{1}{\sqrt{n}\sigma}(\sum\limits_{i=0}^nX_i - n\mu) \leq x\} = \Phi(x)
+\lim\limits_{n \rightarrow \infty}P\left\{\frac{1}{\sqrt{n}\sigma}\left(\sum\limits_{i=0}^nX_i - n\mu \right) \leq x\right\} = \Phi(x)
 $$
 这里$\Phi(x)$是标准正态分布$N(0,1)$的分布函数. 
 \end{theorem}
@@ -2220,10 +2246,11 @@ $$
 \end{annotation}
 
 \begin{theorem}
-\rm \redt{中心极限定理的一个特例} 设随机变量$X_n \sim B(n,p)(n=1,2,\cdots)$，则对于任意的实数$x$，有
+\rm \redt{中心极限定理的一个特例} 设随机变量$S_n \sim B(n,p)(n=1,2,\cdots)$，则对于任意的实数$x$，有
 $$
-\lim\limits_{n \rightarrow \infty}P\{\frac{1}{\sqrt{np(1-p)}}(X_n - np) \leq x\} = \Phi(x)
+\lim\limits_{n \rightarrow \infty}P\left\{\frac{1}{\sqrt{np(1-p)}}(S_n - np) \leq x\right\} = \Phi(x),
 $$
+其中$S_n = X_1+X_2+\cdots + X_n$. 
 \end{theorem}
 
 
