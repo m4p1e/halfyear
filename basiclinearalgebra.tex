@@ -2867,6 +2867,23 @@ $$
 $$
 \end{proof}
 
+\begin{proposition}
+\rm \redt{计算$n$次幂的时候有奇效} 给定$m \times n$矩阵$\mbf{A}$，若$\rank{\mbf{A}}=1$当且仅当$\mbf{A}$等于两个向量的乘积，即$\mbf{A} = \mbf{v}\mbf{w}^T$，其中列向量$\mbf{v} \in \mathbb{R}^{m},\mbf{w} \in \mathbb{R}^n$.  
+\end{proposition}
+
+\begin{proof}
+\emph{充分性}\ 若$\mbf{A}=\mbf{v}\mbf{w}^T$，那么由\ref{matrix-mul: rank}可知$\rank{\mbf{A}} = 1$. 
+
+\emph{必要性}\ 若$\rank{\mbf{A}}=1$，那么就是指$\mbf{A}$可以表示为
+$$
+\mbf{A} = (w_1 \mbf{v},w_2 \mbf{v},\cdots, w_n \mbf{v}),
+$$
+其中$\mbf{v}$表示由$\mbf{A}$的列向量组确定的向量空间中任一向量. 设$\mbf{w} = (w_1,w_2,\cdots,w_n)^T$，因此
+$$
+\mbf{A} = \mbf{v}\mbf{w}^T.
+$$
+\end{proof}
+
 
 \newpage
 \section{矩阵相似及二次型}

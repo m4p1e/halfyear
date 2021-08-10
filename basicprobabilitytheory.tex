@@ -1921,7 +1921,7 @@ $$
 \end{definition}
 
 \begin{annotation}
-\rm 形式上可以把相关系数视为“标准尺度下的协方差”. 协方差作为$[X-E(X)][Y-E(Y)]$的均值，依赖于$X,Y$的度量单位，选择适当单位使得$X,Y$的方差都为$1$，则协方差就是相关系数. 这样就能更好的反应$X,Y$之间的关系，不受所用单位的影响. 设$D(X)=\sigma_1^2$与$D(Y)=\sigma_2(X)$.
+\rm 形式上可以把相关系数视为“\bluet{标准尺度下的协方差}”. 协方差作为$[X-E(X)][Y-E(Y)]$的均值，依赖于$X,Y$的度量单位，选择适当单位使得$X,Y$的方差都为$1$，则协方差就是相关系数. 这样就能更好的反应$X,Y$之间的关系，不受所用单位的影响. 设$D(X)=\sigma_1^2$与$D(Y)=\sigma_2(X)$.
 $$
 \rho_{XY}=\frac{\text{Cov}(X,Y)}{\sigma_1\sigma_2} = \text{Cov}(\frac{X}{\sigma_1},\frac{Y}{\sigma_2}).
 $$
@@ -2121,7 +2121,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm 设\redt{$X \sim N(\mu,\sigma^2)$}，则$X$的期望为$\mu$，方差为$\sigma^2$
+\rm 设\redt{$X \sim N(\mu,\sigma^2)$}，则$X$的期望为$\mu$，方差为$\sigma^2$，二阶原点矩为$\sigma^2+\mu^2$.
 \end{proposition}
 
 \begin{proof}
@@ -2133,7 +2133,13 @@ D(X) &= \int_{-\infty}^{+\infty} (x-\mu)^2 \cdot \frac{1}{\sqrt{2\pi}\sigma} e^{
 &=\sigma^2
 \end{array}
 $$
+其二阶原点阶为
+$$
+E(X^2) = D(X)+E^2(X) =  \sigma^2 + \mu^2.
+$$
 \end{proof}
+
+
 
 %regular_distribution_characterize.jpg
 \includegraphics[scale=0.2]{images/regular_distribution_characterize.jpg}
@@ -2219,6 +2225,13 @@ $$
 $$ 
 \end{proof}
 
+\begin{theorem}
+\rm \redt{更一般的大数定理} 设$X_1,X_2,\cdots,X_n,\cdots$为随机变量序列，则对任意的$\varepsilon > 0$，都有
+$$
+\lim\limits_{n \to \infty} P\left\{ \left| \frac{1}{n} \sum\limits_{i=1}^n X_i - \frac{1}{n} \sum\limits_{i=1}^n E(X_i) \right| \geq \varepsilon \right\} = 0. 
+$$
+\end{theorem}
+
 \begin{definition}
 \rm 设$\xi_n, n = 1,2,\cdots$为随机变量序列，$\xi$为随机变量(可以为常数)，若$\forall \varepsilon > 0$，有
 $$
@@ -2250,7 +2263,7 @@ $$
 $$
 \lim\limits_{n \rightarrow \infty}P\left\{\frac{1}{\sqrt{np(1-p)}}(S_n - np) \leq x\right\} = \Phi(x),
 $$
-其中$S_n = X_1+X_2+\cdots + X_n$. 
+其中$S_n = X_1+X_2+\cdots + X_n$. \bluet{在$n$充分大的时候，将$S_n$标准化之后其分布近似等于标准正态分布}. 
 \end{theorem}
 
 
@@ -2272,26 +2285,26 @@ $$
 \end{definition}
 
 \begin{definition}
-\rm 若用$X$表示所研究对象的某一指标，则总体即为$X$(的分布). 从总体中抽取的$n$个随机变量$X_1,\cdots,X_n$称为\redt{样本}，$n$称为\redt{样本容量}，而样本$X_1,\cdots,X_n$的值$x_1,\cdots,x_n$称为样本的\redt{观察值}. 当$X_1,\cdots,X_n$独立同分布时，称为$X_1,\cdots,X_n$为\redt{简单样本}(后面若无特殊说明，所说的样本都是指简单样本).
+\rm 若用$X$表示所研究对象的某一指标随机变量，则总体即为$X$(的分布). 从总体中抽取的$n$个个体$X_1,\cdots,X_n$组成一个\redt{样本}，$n$称为这个样本的\redt{样本容量}，而样本$X_1,\cdots,X_n$的值$x_1,\cdots,x_n$称为样本的\redt{观察值}. 由于$X_1,X_2,\cdots,X_n$是从总体$X$随机抽取出来的可能结果，可以看成$n$个随机变量. 当$X_1,\cdots,X_n$独立同分布时，称为$X_1,\cdots,X_n$为\redt{简单样本}(后面若无特殊说明，所说的样本都是指简单样本).
 \end{definition}
 
 \begin{proposition}
-\rm 若总体$X$的分布为$F(x)$，则样本$X_1,\cdots,X_n$的联合分布为
+\rm 若总体$X$的分布为$F(x)$，则样本$(X_1,\cdots,X_n)$的联合分布为
 $$
 F(x_1,\cdots,x_n) = \prod\limits_{i=1}^n F(x_i).
 $$
-若$X$是离散型随机变量，那么其概率分布为
+若$X$是离散型随机变量，那么$(X_1,\cdots,X_n)$的联合概率分布为
 $$
 P\{X_1 = x_1 ,\cdots , X_n = x_n\} = \prod\limits_{i=1}^n P\{X=x_i\}.
 $$
-若$X$是连续随机变量，那么其概率密度为
+若$X$是连续随机变量，那么其$(X_1,\cdots,X_n)$的联合概率密度为
 $$
 f(x_1,\cdots,x_n) = \prod\limits_{i=1}^n f(x_i).
 $$
 \end{proposition}
 
 \begin{definition}
-\rm 关于样本$X_1,\cdots,X_n$的不含未知参数的函数$T=T(X_1,\cdots,X_n)$称为\redt{统计量}. \bluet{也就是只依赖样本的量称为统计量}.
+\rm 关于样本$X_1,\cdots,X_n$的不含未知参数的函数$T=T(X_1,\cdots,X_n)$称为\redt{统计量}. \bluet{也就是只依赖样本的量称为统计量}. 统计量是随机函数，其分布叫做抽样分布. 
 \end{definition}
 
 \begin{definition}
@@ -2304,6 +2317,23 @@ $$
 	\item 样本$k$阶中心矩$B_k = \frac{1}{n}\sum\limits_{i=1}^n {X_i-\bar{X}}^k$，反映了总体$k$阶中心矩的信息. 特别地$B_2 = \frac{n-1}{n}S^2$.
 \end{enumerate}
 \end{definition}
+
+\begin{proposition}
+\rm 
+$$
+\sum\limits_{i = 1}^n (x_i - \overline{x})^2 = \sum\limits_{i = 1}^n x_i^2 -  n\overline{x}^2 
+$$
+\end{proposition}
+
+\begin{proof}
+$$
+\begin{array}{ll}
+\sum\limits_{i = 1}^n (x_i - \overline{x})^2 &= \sum\limits_{i = 1}^n (x_i^2 - 2x_i\overline{x} + \overline{x}^2)  \\
+&=  \sum\limits_{i = 1}^n x_i^2 - 2\overline{x} \sum\limits_{i = 1}^n x_i + n\overline{x}^2 \\
+&= \sum\limits_{i = 1}^n x_i^2  - n\overline{x}^2\\
+\end{array}
+$$
+\end{proof}
 
 \begin{definition}
 \rm 将样本$X_1,\cdots,X_n$的观测值$x_1,\cdots,x_n$按大小排序，得到$x_{(1)} \leq \cdots x_{(n)}$，则称
@@ -2354,7 +2384,7 @@ $$
 \begin{definition}
 \rm 设总体$X$的分布有未知参数$\theta_1,\cdots,\theta_k$，设其有$l$阶原点矩$a_l$存在，设样本的$l$阶原点矩为$A_l = \frac{1}{n}\sum\limits_{i = 1}^nX_i^l$. 于是
 $$
-a_l=a_l(\theta_1,\cdots,\theta_k) = A_l,
+a_l = a_l(\theta_1,\cdots,\theta_k) \approx A_l,
 $$
 取$l=1,2,\cdots,k$，就得到一个方程组，解此方程组，得其根为
 $$
@@ -2363,14 +2393,38 @@ $$
 以$\widehat{\theta_i}$作为$\theta_i$的一个估计，这样的估计量叫做\redt{矩估计}.
 \end{definition}
 
-\subsection{极大似然估计}
+\begin{example}
+\rm 设$X \sim N(u,\sigma^2)$，抽取样本$X_1,X_2,\cdots,X_n$的观测值为$x_1,x_2,\cdots,x_n$. 那么$X$的一阶原点矩和二阶原点矩为
+$$
+\begin{array}{ll}
+E(X) = \mu \\
+E(X^2) = \sigma^2 + \mu^2
+\end{array}
+$$
+则构造的矩估计的方程组为
+$$
+\begin{array}{ll}
+\mu = \frac{1}{n}\sum\limits_{i = 1}^n x_i \\
+\sigma^2 + \mu^2 = \frac{1}{n}\sum\limits_{i = 1}^n x_i^2 
+\end{array}
+$$
+解得
+$$
+\begin{array}{ll}
+\widehat{\mu} = \frac{1}{n}\sum\limits_{i = 1}^n x_i =\overline{x} \\
+\widehat{\sigma}^2 = \frac{1}{n}\left[\sum\limits_{i = 1}^n x_i^2 - n\overline{x}^2 \right] = \frac{1}{n}  \sum\limits_{i = 1}^n (x_i - \overline{x})^2
+\end{array}
+$$
+\end{example}
+
+\subsection{最大似然估计}
 
 \begin{definition}
-\rm 设总体$X$有分布$f(X;\theta_1,\cdots,\theta_k)$(即概率密度或者概率分布)，给定样本$X_1,\cdots,X_n$，则样本$(X_1,\cdots,X_n)$的分布为
+\rm 设总体$X$有分布$f(x;\theta_1,\cdots,\theta_k)$(即概率密度或者概率分布)，给定样本$X_1,\cdots,X_n$的观察值$x_1,x_2,\cdots,x_n$，令
 $$
-f(X_1;\theta_1,\cdots,\theta_k)f(X_2;\theta_1,\cdots,\theta_k)\cdots f(X_3;\theta_1,\cdots,\theta_k),
+L_n(x_1,x_2,\cdots,x_n;\theta_1,\cdots,\theta_k) = f(x_1;\theta_1,\cdots,\theta_k)f(x_2;\theta_1,\cdots,\theta_k)\cdots f(x_3;\theta_1,\cdots,\theta_k),
 $$
-记为$L(X_1,\cdots,X_n;\theta_1,\cdots,\theta)$，称其为\redt{似然函数}. 这函数对不同的$(\theta_1,\cdots,\theta_k)$的取值，反映了在观察结果$(X_1,\cdots,X_n)$已知的条件下，$(\theta_1,\cdots,\theta_k)$的各种值的似然程度. 应用似然程度最大的那个$(\widehat{\theta_1},\cdots,\widehat{\theta_k})$作为$(\theta_1,\cdots,\theta_k)$的估计值. 这个估计$(\widehat{\theta_1},\cdots,\widehat{\theta_k})$j就叫做$(\theta_1,\cdots,\theta_k)$的极大似然估计. 
+称其为\redt{似然函数}(likelihood). 这函数对不同的$(\theta_1,\cdots,\theta_k)$的取值，反映了在观察结果$(x_1,\cdots,x_n)$已知的条件下，$(\theta_1,\cdots,\theta_k)$的各种值的似然程度. 应用似然程度最大$\max{L_n}$的那个$(\widehat{\theta_1},\cdots,\widehat{\theta_k})$作为$(\theta_1,\cdots,\theta_k)$的估计值. 这个估计$(\widehat{\theta_1},\cdots,\widehat{\theta_k})$就叫做$(\theta_1,\cdots,\theta_k)$的最大似然估计. 
 \end{definition}
 
 \begin{annotation}
@@ -2409,6 +2463,22 @@ $$
 L_{\mu\mu}''(\widehat{\mu},\widehat{\sigma^2})\cdot L_{\sigma^2\sigma^2}''(\widehat{\mu},\widehat{\sigma^2}) - \left[L_{\mu\sigma^2}''(\widehat{\mu},\widehat{\sigma^2})\right]^2 = \frac{-n}{\widehat{\sigma^2}}\cdot\frac{-n}{2(\widehat{\sigma^2})^2} > 0.
 $$
 确实在$(\widehat{\mu},\widehat{\sigma^2})$取得最大值.
+\end{example}
+
+\begin{example}
+\rm 设$X_1,\cdots,X_n$是从指数分布$E(\lambda)$中抽出的样本，则似然函数为
+$$
+L(x_1,\cdots,x_n;\lambda) = \lambda^n e^{-\lambda\sum\limits_{i=1}^{n} x_i}. 
+$$
+等式两边取对数则有
+$$
+\ln L = n\ln\lambda - \left(\lambda\sum\limits_{i=1}^{n} x_i\right). 
+$$
+于是
+$$
+\frac{dL}{d\lambda} = \frac{n}{\lambda} - \sum\limits_{i=1}^{n} x_i. 
+$$
+当$\lambda = \frac{n}{\sum\limits_{i=1}^{n} x_i}$时，$L$有最大值. 
 \end{example}
 
 \subsection{无偏估计}
