@@ -2379,6 +2379,10 @@ $$
 \rm 设有一个总体$X$，以$f(x,\theta_1,\cdots,\theta_k)$记其概率密度函数(若总体分布为连续型)或者概率函数(若总体分为为离散型)，其中$\theta_1,\cdots,\theta_k$表示总体分布包含的$k$个未知参数，用样本$X_1,\cdots,X_n$构造的统计量$\widehat{\theta}_i(X_1,\cdots,X_n)$来估计未知参数$\theta_i$称为\redt{点估计}，统计量$\widehat{\theta}_i(X_1,\cdots,X_n)$来估计未知参数称为\redt{估计量}.
 \end{definition}
 
+\begin{annotation}
+\rm 前面的样本期望，方差和原点矩等等统计量都是点估计. 
+\end{annotation}
+
 \subsection{矩估计}
 
 \begin{definition}
@@ -2412,7 +2416,7 @@ $$
 $$
 \begin{array}{ll}
 \widehat{\mu} = \frac{1}{n}\sum\limits_{i = 1}^n x_i =\overline{x} \\
-\widehat{\sigma}^2 = \frac{1}{n}\left[\sum\limits_{i = 1}^n x_i^2 - n\overline{x}^2 \right] = \frac{1}{n}  \sum\limits_{i = 1}^n (x_i - \overline{x})^2
+\widehat{\sigma}^2 = \frac{1}{n}\left(\sum\limits_{i = 1}^n x_i^2 - n\overline{x}^2 \right] = \frac{1}{n}  \sum\limits_{i = 1}^n (x_i - \overline{x})^2
 \end{array}
 $$
 \end{example}
@@ -2505,5 +2509,33 @@ P\{\widehat{\theta_1} < \theta < \widehat{\theta_2}\} = 1-\alpha,
 $$
 则称随机区间$(\widehat{\theta_1},\widehat{\theta_2})$为参数$\theta$的\redt{置信水平}为$1-\alpha$的\redt{置信区间(区间估计)}，其中$\widehat{\theta_1}$及$\widehat{\theta_2}$分别被称为\redt{置信下限}及\redt{置信下限}. 
 \end{definition}
+
+\begin{annotation}
+\rm \redt{如何理解置信水平} 注意当我们通过一个样本计算出来的$1-\alpha$的置信区间$[\widehat{\theta_1},\widehat{\theta_2}]$，不能说$\theta$在这个区间的概率为$1-\alpha$，因为这个$\theta$是一个定值而不是一个随机变量，对于这个按照一定方法计算出来的区间，$\theta$可能在里面也可能不在里面. 那么对于$1-\alpha$我们可以这样理解，因为$[\widehat{\theta_1},\widehat{\theta_2}]$是一个随机区间，那么相当于通过$100$个样本计算出来的$100$个置信区间，可能有$95$个置信区间包含$\theta$. 
+\end{annotation}
+
+\begin{annotation}
+\rm \redt{方差已知下对$E(X)$的区间估计} 设总体$X$服从$N(\mu,\sigma^2)$分布，则
+$$
+\overline{X} \sim \left(\mu, \frac{\sigma^2}{n}\right) = N\left(E(X),\frac{D(X)}{n}\right),
+$$
+其中$\overline{X}= \frac{1}{n}\sum\limits_{i=1}^n X_i$. 于是
+$$
+\eta = \frac{\overline{X}-E(X)}{\sqrt{\frac{D(X)}{n}}} \sim N(0,1). 
+$$
+根据标准正态分布的经验规则，若有
+$$
+P\left(|\eta| < \xi\right) = 1-\alpha.   
+$$
+那么
+$$
+P\left( |\overline{X}-E(X)| \leq \xi \sqrt{\frac{D(X)}{n}}   \right) \leq 1-\alpha.
+$$
+那么即有置信水平为$1-\alpha$的置信区间为
+$$
+\overline{X} - \xi \sqrt{\frac{D(X)}{n}} \leq E(X) \leq  \overline{X} + \xi \sqrt{\frac{D(X)}{n}}
+$$
+\bluet{由此可以看出$n$越大，置信区间越短; 置信度越高，置信区间越长}. 
+\end{annotation}
 
 \end{document}
