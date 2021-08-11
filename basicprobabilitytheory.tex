@@ -1141,9 +1141,52 @@ I(a)=\int_0^{\infty}e^{-ax^2}dx =\frac12 \sqrt{\frac{\pi}{a}}
 $$
 \end{proof}
 
+\begin{definition}
+\rm 如果连续型随机变量$X$的概率密度为
+$$
+f(x) = \left\{ \begin{array}{ll}
+\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x} &  x > 0 \\
+0 & x \leq 0 
+\end{array} \right.
+$$
+其中$\alpha,\beta$，则称$X$服从\redt{伽马分布}，记为$X \sim \Gamma(\alpha,\beta)$.
+\end{definition}
+
+\begin{annotation}
+\rm 由伽马函数
+$$
+\Gamma(\alpha) = \int_{0}^{+\infty} x^{\alpha-1}e^{-x}dx.
+$$
+令$x = \beta t$，那么则有
+$$
+\Gamma(\alpha,\beta) = \beta^\alpha \int_{0}^{+\infty} t^{\alpha-1} e^{-\beta t} dt. 
+$$
+因此
+$$
+\frac{\beta^\alpha}{\Gamma(\alpha,\beta)}\int_{0}^{+\infty} t^{\alpha-1} e^{-\beta t} dt = 1. 
+$$
+\end{annotation}
+
+\begin{proposition}
+\rm 设$X \sim \Gamma(\alpha,\beta)$，则下面性质成立
+\begin{enumerate}
+	\item $\Gamma(1,\beta) \sim E(\beta)$;
+	\item $\Gamma(\alpha,1)$叫做标准伽马分布;
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}\label{gamma-distribution-additivity}
+\rm \redt{$\Gamma$分布的可加性} 设随机变量$X_1,X_2,\cdots,X_n$相互独立，且$X_i \sim \Gamma(\alpha_i,\beta),i=1,\cdots,n$，则
+$$
+\sum\limits_{i=1}^n X_i \sim \Gamma(\sum\limits_{i=1}^n \alpha_i,\beta).
+$$
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
 \subsection{随机变量的函数的分布}
-
-
 \begin{annotation}
 \rm ??? CDF的导数是否等于PDF?
 $$
@@ -1225,6 +1268,16 @@ $$
 f_y(y) = [F_x(\sqrt{y})-F_x(-\sqrt{y})]' = \frac{1}{2\sqrt{y}}[f(\sqrt{y}) + f(-\sqrt{y})].
 $$
 当$y \leq 0$时，$f_y(y)=0$. 
+\end{example}
+
+\begin{example}
+\rm 若$X \sim N(0,1)$，求$Y=X^2$.
+
+那么在$y > 0$时，有
+$$
+f_y(y) = \frac{1}{2\sqrt{y}}\left[ \frac{1}{\sqrt{2\pi}} e^{-\frac{y}{2}} + \frac{1}{\sqrt{2\pi}} e^{-\frac{y}{2}} \right] = \frac{1}{\sqrt{2\pi}}y^{-\frac{1}{2}}e^{-\frac{y}{2}}. 
+$$
+在$y=0$，有$f_y(y) = 0$. 
 \end{example}
 
 
@@ -1678,6 +1731,40 @@ E(g(X)) = \int_{-\infty}^{+\infty}g(x)f(x)dx,\, \left(\int_{-\infty}^{+\infty}g(
 $$
 \bluet{这样的公式避免了求$Y=f(X)$的分布}.
 \end{theorem}
+
+\begin{proposition}
+\rm \redt{标准正态分布$n$次幂的期望} 设$X \sim N(0,1)$，则
+$$
+E(X^n) = \left\{  \begin{array}{ll}
+(n-1)!! & n\text{是偶数} \\
+0	& n\text{是奇数} 
+\end{array} \right.
+$$
+\end{proposition}
+
+\begin{proof}
+$X^n$的期望为
+$$
+E(X^n) = \int_{-\infty}^{+\infty} x^n \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx,
+$$
+若$n$是奇数，显然$E(X^n)$是一个奇函数，那么$E(X^n)=0$; 若$n$是一个偶数，令$x=\sqrt{2t}$，则有
+$$
+E(X^n) = \frac{2}{\sqrt{2\pi}} \int_{0}^{+\infty} 2^{\frac{n-1}{2}}t^{\frac{n-1}{2}}e^{-t}dt = \frac{2^{\frac{n+1}{2}}}{\sqrt{2\pi}} \Gamma(\frac{n+1}{2}),
+$$
+由$\Gamma(\alpha+1) = \alpha \Gamma(\alpha)$，则
+$$
+\Gamma(\frac{n+1}{2}) = \frac{n-1}{2}\Gamma(\frac{n-1}{2}).
+$$
+因此
+$$
+\Gamma(\frac{n+1}{2}) = \frac{n-1}{2} \frac{n-3}{2} \cdots \Gamma(\frac{1}{2}). 
+$$
+最终
+$$
+E(X^n) = (n-1)!!
+$$
+\end{proof}
+
 
 \newpage
 \subsection{方差、协方差和矩}
@@ -2319,6 +2406,13 @@ $$
 \end{definition}
 
 \begin{proposition}
+\rm 样本均值$\overline{X}$的期望和方差为 
+$$
+E(\overline{X}) = E(X), D(\overline{X})=\frac{D(X)}{n}.
+$$
+\end{proposition}
+
+\begin{proposition}
 \rm 
 $$
 \sum\limits_{i = 1}^n (x_i - \overline{x})^2 = \sum\limits_{i = 1}^n x_i^2 -  n\overline{x}^2 
@@ -2334,6 +2428,13 @@ $$
 \end{array}
 $$
 \end{proof}
+
+\begin{proposition}\label{sample-mean-distribution}
+\rm 设$X_1,X_2,\cdots,X_n$相互独立，且服从$N(\mu,\sigma^2)$，则
+$$
+\overline{X} \sim N(\mu,\frac{\sigma^2}{n}).
+$$
+\end{proposition}
 
 \begin{definition}
 \rm 将样本$X_1,\cdots,X_n$的观测值$x_1,\cdots,x_n$按大小排序，得到$x_{(1)} \leq \cdots x_{(n)}$，则称
@@ -2351,8 +2452,23 @@ $$
 \subsection{统计三大分布}
 
 \begin{definition}
-\rm 设$X_1,\cdots,X_n$为相互独立且具有共同分布$N(0,1)$的随机变量，则称$X=\sum\limits_{i=1}^n X_i^2$的分布服从自由度为$n$的$\chi ^2$分布，记为$X \sim \chi_n^2$.
+\rm 设$X_1,\cdots,X_n$为相互独立且具有共同分布$N(0,1)$的随机变量，则称$X=\sum\limits_{i=1}^n X_i^2$的分布服从\redt{自由度为$n$的$\chi ^2$分布}(卡方分布)，记为$X \sim \chi_n^2$.
 \end{definition}
+
+\begin{definition}
+\rm 对于给定正数$\alpha, 0 <\alpha <1$，满足条件
+$$
+P\{\chi^2 > \chi_\alpha^2(n)\} = \int_{\chi_\alpha^2(n)}^{+\infty} = \alpha
+$$
+的点$\chi_\alpha^2(n)$称为$\chi^2(n)$分布上的\redt{$\alpha$分位点}. 
+\end{definition}
+
+\begin{lemma}\label{for-chi-proof}
+设$X \sim N(0,1)$，则
+$$
+X^2 \sim \Gamma(\frac{1}{2},\frac{1}{2}). 
+$$
+\end{lemma}
 
 \begin{proposition}
 \rm $\chi_n^2$分布的概率密度为
@@ -2366,9 +2482,109 @@ $$
 \end{proposition}
 
 \begin{proof}
-\rm 
+由\ref{for-chi-proof}配合$\Gamma$分布的可加性\ref{gamma-distribution-additivity}，则有$\chi^2 \sim \Gamma(\frac{n}{2},\frac{1}{2})$. 
 \end{proof}
 
+\begin{proposition}
+\rm \redt{$\chi^2$分布的可加性} 设$\chi_1^2 \sim \chi^2(n_1),\chi_2^2 \sim \chi^2(n_2)$，且$\chi_1^2$和$\chi_2^2$相互独立，则
+$$
+\chi_1^2 + \chi_2^2 = \chi^2(n_1 + n_2). 
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{$\chi^2$的数学期望和方差} 设$\chi_1^2 \sim \chi^2(n_1)$，则
+$$
+E(\chi^2) = n, D(\chi^2) = 2n
+$$
+\end{proposition}
+
+\begin{proof}
+先计算$X_i^2$的期望和方差
+$$
+\begin{array}{ll}
+E(X_i^2) = E^2(X_i) + D(X_i) = 1 \\
+D(X_i^2) = E(X_i^4) - E^2(X_i^2) = 3-1 = 2
+\end{array}
+$$
+因此
+$$
+\begin{array}{ll}
+E(\chi^2) = E(\sum\limits_{i=1}^n X_i^2) =\sum\limits_{i=1}^n E(X_i^2) = n \\
+D(\chi^2) = D(\sum\limits_{i=1}^n X_i^2) =\sum\limits_{i=1}^n D(X_i^2) = 2n 
+\end{array}
+$$
+\end{proof}
+
+
+\begin{proposition}\label{sample-variance-and-variance}
+\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
+$$
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1). 
+$$
+\end{proposition}
+
+
+\begin{definition}
+\rm 设随机变量$X$和$Y$相互独立，且$X \sim N(0,1), Y \sim \chi^2(n)$，则称随机变量
+$$
+T = \frac{X}{\sqrt{\frac{Y}{n}}}
+$$
+服从\redt{自由度为$n$的$t$分布}，记做$T\sim t(n)$.
+\end{definition}
+
+\begin{proposition}
+\rm $t(n)$分布的概率密度为
+$$
+h(t) =\frac{\Gamma(\frac{n+1}{2})}{\Gamma(\frac{n}{2})\cdot \sqrt{n\pi}}\left(1+\frac{t^2}{n}\right)^{-\frac{n+1}{2}}.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 
+$$
+\lim\limits_{n \to \infty} h(t) = \phi(t),
+$$
+其中$\phi(t)$是正态分布的概率密度. 
+\end{proposition}
+
+\begin{proposition}\label{sample-variance-replace-variance}
+\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
+$$
+\frac{\overline{X} - E(X_i)}{\sqrt{\frac{S^2}{n}}} \sim t(n-1). 
+$$
+\end{proposition}
+
+\begin{proof}
+由\ref{sample-mean-distribution}和\ref{sample-variance-and-variance}可知
+$$
+\frac{\overline{X}-E(X_i)}{\sqrt{\frac{\sigma^2}{n}}} \sim N(\mu,\frac{\sigma^2}{n}),\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1).
+$$
+再由$t$分布的定义可知
+$$
+\left. \frac{\overline{X}-E(X_i)}{\sqrt{\frac{\sigma^2}{n}}} \right/ \sqrt{\frac{(n-1)S^2}{(n-1)\sigma^2}} \sim t(n-1).
+$$
+\end{proof}
+
+\begin{definition}
+\rm 设随机变量$X$和$Y$相互独立，且$X \sim \chi^2(n_1), Y \sim \chi^2(n_2)$，则称随机变量
+$$
+F = \frac{\frac{X}{n_1}}{\frac{Y}{n_2}}
+$$
+服从\redt{自由度为$(n_1,n_2)$的$F$分布}，记做$F \sim F(n_1,n_2)$，其中$n_1$和$n_2$称为第一自由度和第二自由度. 
+\end{definition}
+
+\begin{proposition}
+\rm $F(n_1,n_2)$分布的概率密度为
+%TODO
+\end{proposition}
+
+\begin{proposition}
+\rm 设$X_1,X_2,\cdots,X_n$与$Y_1,Y_2,\cdots,Y_n$分别来自正态总体分布$N(\mu_1,\sigma_1^2)$及$N(\mu_2,\sigma_2^2)$，且这两个样本相互独立. 则有
+$$
+\frac{S_1^2/S_2^2}{\sigma_1^2 / \sigma_2^2} \sim F(n_1 -1,n_2 -1). 
+$$
+\end{proposition}
 
 \newpage
 \section{参数估计}
@@ -2535,7 +2751,31 @@ $$
 $$
 \overline{X} - \xi \sqrt{\frac{D(X)}{n}} \leq E(X) \leq  \overline{X} + \xi \sqrt{\frac{D(X)}{n}}
 $$
-\bluet{由此可以看出$n$越大，置信区间越短; 置信度越高，置信区间越长}. 
+\bluet{由此可以看出$n$越大，置信区间越短; 置信度越高，置信区间越长}. \redt{若$X$不是服从正态分布}，根据中心极限定理，当$n$充分大的时候
+$$
+\eta = \frac{\overline{X}-E(X)}{\sqrt{\frac{D(X)}{n}}}
+$$
+近似服从标准正态分布. 
 \end{annotation}
+
+\begin{annotation}
+\rm \redt{方差未知下对$E(X)$的区间估计}，设总体$X$服从$N(\mu,\sigma^2)$，我们用样本方差$S^2$来代替$D(X)$. 这时由\ref{sample-variance-replace-variance}有
+$$
+T=\frac{\overline{X}-E(X)}{\sqrt{\frac{S^2}{n}}} \sim t(n-1).
+$$
+设$t(n-1)$的概率密度为$h(t)$，可以找到$\lambda$使得
+$$
+\int_{-\lambda}^{\lambda} h(t)dt = 1-\alpha.
+$$
+即有
+$$
+P\{|T| \leq \lambda \} = P\left\{ \overline{X} - \lambda \sqrt{\frac{S^2}{n}} \leq E(X) \leq  \overline{X} + \lambda \sqrt{\frac{S^2}{n}} \right\} \leq 1-\alpha.
+$$
+于是$E(X)$的置信水平为$1-\alpha$的置信区间为
+$$
+\left[ \overline{X} - \lambda \sqrt{\frac{S^2}{n}} ,  \overline{X} + \lambda \sqrt{\frac{S^2}{n}} \right]
+$$
+\end{annotation}
+
 
 \end{document}
