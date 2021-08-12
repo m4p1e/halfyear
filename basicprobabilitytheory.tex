@@ -1450,7 +1450,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm 设$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$，则$aX+bY \sim N(a\mu_1 + b\mu_2, a^2\sigma_1^2+2ab\sigma_1\sigma_2\rho+b^2\sigma_2^2)$
+\rm \redt{正态分布的线性性质} 设$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$，则$aX+bY \sim N(a\mu_1 + b\mu_2, a^2\sigma_1^2+2ab\sigma_1\sigma_2\rho+b^2\sigma_2^2)$
 \end{proposition}
 
 \begin{proof}
@@ -2408,7 +2408,7 @@ $$
 \begin{proposition}
 \rm 样本均值$\overline{X}$的期望和方差为 
 $$
-E(\overline{X}) = E(X), D(\overline{X})=\frac{D(X)}{n}.
+E(\overline{X}) = E(X), D(\overline{X})=\frac{D(X)}{n}.z
 $$
 \end{proposition}
 
@@ -2464,7 +2464,7 @@ $$
 \end{definition}
 
 \begin{lemma}\label{for-chi-proof}
-设$X \sim N(0,1)$，则
+\rm 设$X \sim N(0,1)$，则
 $$
 X^2 \sim \Gamma(\frac{1}{2},\frac{1}{2}). 
 $$
@@ -2517,14 +2517,6 @@ $$
 \end{proof}
 
 
-\begin{proposition}\label{sample-variance-and-variance}
-\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
-$$
-\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1). 
-$$
-\end{proposition}
-
-
 \begin{definition}
 \rm 设随机变量$X$和$Y$相互独立，且$X \sim N(0,1), Y \sim \chi^2(n)$，则称随机变量
 $$
@@ -2541,30 +2533,19 @@ $$
 \end{proposition}
 
 \begin{proposition}
+\rm $t$分布的概率密度$h(t)$是偶函数，即
+$$
+h(t)=h(-t).
+$$
+\end{proposition}
+
+\begin{proposition}
 \rm 
 $$
 \lim\limits_{n \to \infty} h(t) = \phi(t),
 $$
 其中$\phi(t)$是正态分布的概率密度. 
 \end{proposition}
-
-\begin{proposition}\label{sample-variance-replace-variance}
-\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
-$$
-\frac{\overline{X} - E(X_i)}{\sqrt{\frac{S^2}{n}}} \sim t(n-1). 
-$$
-\end{proposition}
-
-\begin{proof}
-由\ref{sample-mean-distribution}和\ref{sample-variance-and-variance}可知
-$$
-\frac{\overline{X}-E(X_i)}{\sqrt{\frac{\sigma^2}{n}}} \sim N(\mu,\frac{\sigma^2}{n}),\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1).
-$$
-再由$t$分布的定义可知
-$$
-\left. \frac{\overline{X}-E(X_i)}{\sqrt{\frac{\sigma^2}{n}}} \right/ \sqrt{\frac{(n-1)S^2}{(n-1)\sigma^2}} \sim t(n-1).
-$$
-\end{proof}
 
 \begin{definition}
 \rm 设随机变量$X$和$Y$相互独立，且$X \sim \chi^2(n_1), Y \sim \chi^2(n_2)$，则称随机变量
@@ -2580,11 +2561,101 @@ $$
 \end{proposition}
 
 \begin{proposition}
-\rm 设$X_1,X_2,\cdots,X_n$与$Y_1,Y_2,\cdots,Y_n$分别来自正态总体分布$N(\mu_1,\sigma_1^2)$及$N(\mu_2,\sigma_2^2)$，且这两个样本相互独立. 则有
+\rm 设随机变量$X \sim t(n)$，则
+$$
+X^2 \sim F(1,n). 
+$$
+\end{proposition}
+
+\subsection{三大分布的重要性质}
+
+\begin{proposition}\label{sample-means-normalization}
+\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
+$$
+\frac{\overline{X} - E(X_i)}{\sqrt{\frac{D(X)}{n}}} \sim N(0,1).
+$$
+\end{proposition}
+
+\begin{proof}
+\rm 由\ref{sample-mean-distribution}可知.
+\end{proof}
+
+\begin{proposition}\label{sample-variance-replace-variance}
+\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
+$$
+\frac{\overline{X} - E(X_i)}{\sqrt{\frac{S^2}{n}}} \sim t(n-1). 
+$$
+\end{proposition}
+
+\begin{proof}
+由\ref{sample-means-normalization}和\ref{sample-variance-and-variance}可知
+$$
+\frac{\overline{X}-E(X_i)}{\sqrt{\frac{\sigma^2}{n}}} \sim N(\mu,\frac{\sigma^2}{n}),\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1).
+$$
+再由$t$分布的定义可知
+$$
+\left. \frac{\overline{X}-E(X_i)}{\sqrt{\frac{\sigma^2}{n}}} \right/ \sqrt{\frac{(n-1)S^2}{(n-1)\sigma^2}} \sim t(n-1).
+$$
+\end{proof}
+
+\begin{proposition}
+\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则$\overline{X}$和$S^2$相互独立. 
+\end{proposition}
+
+\begin{proposition}\label{sample-variance-and-variance}
+\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
+$$
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1). 
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 设$X_1,X_2,\cdots,X_{n_1}$与$Y_1,Y_2,\cdots,Y_{n_2}$分别来自正态总体分布$N(\mu_1,\sigma_1^2)$及$N(\mu_2,\sigma_2^2)$，且这两个样本相互独立. 则有
 $$
 \frac{S_1^2/S_2^2}{\sigma_1^2 / \sigma_2^2} \sim F(n_1 -1,n_2 -1). 
 $$
 \end{proposition}
+
+\begin{proof}
+由\ref{sample-variance-and-variance}和$F$分布定义可知
+$$
+\left. \frac{(n_1-1)S^2}{(n_1-1)\sigma_1^2} \right / \frac{(n_2-1)S^2}{(n_2-1)\sigma_2^2} \sim F(n_1-1,n_2-1).
+$$
+\end{proof}
+
+\begin{proposition}\label{two-sample-mean-difference}
+\rm 设$X_1,X_2,\cdots,X_{n_1}$与$Y_1,Y_2,\cdots,Y_{n_2}$分别来自正态总体分布$N(\mu_1,\sigma_1^2)$及$N(\mu_2,\sigma_2^2)$，且这两个样本相互独立. 则有
+$$
+\overline{X} - \overline{Y} \sim N(\mu_1 -\mu_2, \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}).
+$$
+上式经过标准化之后则有
+$$
+\frac{(\overline{X} - \overline{Y})-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n} + \frac{\sigma_2^2}{n}}} \sim N(0,1).
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 设$X_1,X_2,\cdots,X_{n_1}$与$Y_1,Y_2,\cdots,Y_{n_2}$分别来自正态总体分布$N(\mu_1,\sigma_1^2)$及$N(\mu_2,\sigma_2^2)$，且这两个样本相互独立，且有$\sigma_1^2 = \sigma_2^2$，则有
+$$
+\frac{(\overline{X} - \overline{Y})-(\mu_1-\mu_2)}{S_\omega\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}\sim t(n_1+n_2-2),
+$$
+其中$S_\omega^2 = \frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}$. 
+\end{proposition}
+
+\begin{proof}
+设$\sigma_1^2 = \sigma_2^2 = \sigma^2$，由\ref{two-sample-mean-difference}有
+$$
+U = \frac{(\overline{X} - \overline{Y})-(\mu_1-\mu_2)}{\sigma\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \sim N(0,1).
+$$
+由\ref{sample-variance-and-variance}和$\chi^2$分布的可加性有
+$$
+V = \frac{(n_1-1)S_1^2}{\sigma^2} + \frac{(n_2-1)S_2^2}{\sigma^2} = \frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{\sigma^2} \sim \chi^2(n_1+n_2-2).   
+$$
+再结合$t$分布的定义，最终有
+$$
+\frac{U}{\sqrt{\frac{V}{n_1+n_2-2}}} = \frac{(\overline{X} - \overline{Y})-(\mu_1-\mu_2)}{S_\omega\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \sim t(n_1+n_2-2). 
+$$
+\end{proof}
 
 \newpage
 \section{参数估计}
@@ -2701,6 +2772,20 @@ $$
 当$\lambda = \frac{n}{\sum\limits_{i=1}^{n} x_i}$时，$L$有最大值. 
 \end{example}
 
+\begin{example}
+\rm 设总体$X \sim U[-\theta,\theta]$($\theta >0$)，$X_1,X_2,\cdots,X_n$是来自总体$X$的简单随机样本. 则似然函数为
+$$
+L(\theta) = \prod_{i=1}^{n} = \left\{ \begin{array}{ll}
+\frac{1}{(2\theta)^n} & -\theta \leq x_1,x_2,\cdots,x_n \leq \theta \\
+0 & \text{其他}
+\end{array} \right.
+$$
+显然，当$\theta$越小$L(\theta)$就越大，但是需要注意的是$[-\theta,\theta]$必须把样本中所有的点盖住. 因此我们应该选取$[-\theta,\theta]$盖住样本点的基础上，使得$\theta$尽可能的小，因此
+$$
+\widehat{\theta} = \max\{|x_1|,|x_2|,\cdots,|x_n|\}. 
+$$
+\end{example}
+
 \subsection{无偏估计}
 
 \begin{definition}
@@ -2715,6 +2800,22 @@ $$
 \begin{proposition}
 \rm 样本均值$\bar{X}$是总体分布均值的无偏估计; 样本方差$S^2$，是总体分布方差的无偏估计.
 \end{proposition}
+
+\begin{definition}
+\rm 设$\widehat{\theta}_1$和$\widehat{\theta}_2$都是$\theta$的无偏估计量，若满足
+$$
+E[(\widehat{\theta}_1-\theta)^2] \leq E[(\widehat{\theta}_2-\theta)^2],
+$$
+则称$\widehat{\theta}_1$比$\widehat{\theta}_1$\redt{更有效}. 
+\end{definition}
+
+\begin{definition}
+\rm 设$\widehat{\theta}(X_1,X_2,\cdots,X_n)$是$\theta$的估计，若对任意$\varepsilon > 0$，都有
+$$
+\lim\limits_{n \to \infty} P\{|\widehat{\theta}(X_1,X_2,\cdots,X_n)-\theta| > \varepsilon \} = 0,
+$$
+则称$\widehat{\theta}(X_1,X_2,\cdots,X_n)$为$\theta$的\redt{一致估计量}. 
+\end{definition}
 
 \subsection{区间估计}
 
@@ -2759,7 +2860,7 @@ $$
 \end{annotation}
 
 \begin{annotation}
-\rm \redt{方差未知下对$E(X)$的区间估计}，设总体$X$服从$N(\mu,\sigma^2)$，我们用样本方差$S^2$来代替$D(X)$. 这时由\ref{sample-variance-replace-variance}有
+\rm \redt{方差未知下对$E(X)$的区间估计} 设总体$X$服从$N(\mu,\sigma^2)$，我们用样本方差$S^2$来代替$D(X)$. 这时由\ref{sample-variance-replace-variance}有
 $$
 T=\frac{\overline{X}-E(X)}{\sqrt{\frac{S^2}{n}}} \sim t(n-1).
 $$
@@ -2777,5 +2878,30 @@ $$
 $$
 \end{annotation}
 
+\begin{annotation}
+\rm \redt{对方差的区间估计} 设总体$X$服从$N(\mu,\sigma^2)$，由\ref{sample-variance-and-variance}可知
+$$
+\eta = \frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1).
+$$
+$\eta$分布可知，可以取$\lambda_1,\lambda_2~(0 < \lambda_1 < \lambda_2)$，使得
+$$
+P(\lambda_1 \leq \eta \leq \lambda_2) = 0.95.
+$$
+一般选
+$$
+\begin{array}{ll}
+\int_{0}^{\lambda_1} f(x)dx = 0.025 \\
+\int_{\lambda_2}^{+\infty} f(x)dx = 0.025
+\end{array}
+$$
+于是我们有
+$$
+\lambda_1 \leq \frac{(n-1)S^2}{\sigma^2} \leq \lambda_2
+$$
+终有
+$$
+\frac{(n-1)S^2}{\lambda_2} \leq \sigma^2 \leq \frac{(n-1)S^2}{\lambda_1}. 
+$$
+\end{annotation}
 
 \end{document}
