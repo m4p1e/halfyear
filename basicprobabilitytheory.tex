@@ -2955,11 +2955,37 @@ $$
 \end{annotation}
 
 \begin{annotation}
-\rm \redt{设总体$X \sim N(\mu,\sigma^2)$，检验$H_0: \mu \leq \mu_0$}. 此时对已知$\sigma^2$和未知$\sigma^2$两个情况下选择统计量与检验假设$H_0: \mu = \mu_0$相同. 此时最主要弄清拒绝域的形式，直觉上样本均值$\overline{X}$越小越与原假设相符合，即统计量$U$或$T$越小越符合原假设，因此取$\lambda$使
+\rm \redt{设总体$X \sim N(\mu,\sigma^2)$，检验$H_0: \mu \leq \mu_0$}. 若已知$\sigma^2$，使用统计量
 $$
-P\{U \geq \lambda_1\} = \alpha ~\text{或}~P\{T \geq \lambda_2\} =\alpha.
+U = \frac{\overline{X}-\mu}{\sqrt{\frac{\sigma^2}{n}}} \sim N(0,1)
 $$
-当计算出来的$U$或者$T$分别大于$\lambda_1$或者$\lambda_2$时，则拒绝$H_0$，否则接受$H_0$.
+此时$U$的分布依赖于$\mu$. 直观上样本均值$\overline{X}$越小越与原假设相符合，即统计量$U$越小越符合原假设，当$U$比较大时则违背原假设. 因此取$\lambda$使
+$$
+P\{U \geq \lambda\} = \alpha
+$$
+其中$\alpha$作为检验水平，即认为$\{U \geq \lambda\}$是一个小概率事件. 当$\mu = u_0$时，显然有
+$$
+Y = \frac{\overline{X}-\mu_0}{\sqrt{\frac{\sigma^2}{n}}} \leq U, \mu \leq \mu_0 ~(\text{在$H_0$成立时}).
+$$
+于是
+$$
+P\{Y \geq \lambda \} = P\left\{\overline{X} \geq \mu_0 + \lambda\sqrt{\frac{\sigma^2}{n}}\right\} \leq P\left\{ \overline{X} \geq \mu + \lambda\sqrt{\frac{\sigma^2}{n}} \right\} = P\{U \geq \lambda\} = \alpha.
+$$ 
+\bluet{上述不等式成立条件是在同参数$\overline{X}$下而言的}，因此$\{Y \geq \lambda\}$也是一个小概率事件，使得我们可以直接来计算$Y$来检验$H_0$. 当计算出来的$Y \geq \lambda$时，则拒绝$H_0$，否则接受$H_0$. 
+
+同理，\redt{检验$H_0: \mu \geq \mu_0$}，直观上样本均值$\overline{X}$越大越与原假设相符合，即统计量$U$越大越符合假设，当$U$比较小时则违背原假设. 因此取$\lambda$使
+$$
+P\{U \leq \lambda \} = \alpha.
+$$
+其中$\alpha$作为检验水平，即认为$\{U \leq \lambda\}$是一个小概率事件. 当$\mu=\mu_0$时，显然有
+$$
+Y = \frac{\overline{X}-\mu_0}{\sqrt{\frac{\sigma^2}{n}}} \geq U , \mu \geq \mu_0  ~(\text{在$H_0$成立时}).
+$$
+于是
+$$
+P\{Y \leq \lambda \} \leq P\{U \leq \lambda\} = \alpha
+$$
+因此${Y \leq \lambda}$也是一个小概率事件. 当计算出来的$Y \leq \lambda$时，则拒绝$H_0$，否则接受$H_0$.
 \end{annotation}
 
 \begin{annotation}
