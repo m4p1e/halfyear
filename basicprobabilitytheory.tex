@@ -2904,4 +2904,74 @@ $$
 $$
 \end{annotation}
 
+
+\newpage
+\section{假设检验}
+
+\begin{definition}
+\rm \redt{假设}是指关于总体的论断或命题，常用$H$表示，假设分为\redt{基本假设}$H_0$(或原假设，零假设)和\redt{备选假设}(或对立假设). 还可以将假设分为\redt{参数假设}和\redt{非参数假设}，参数假设是指已知总体分布函数形式，对其中位置参数的假设，其他的假设就是非参数假设. 也将假设分为\redt{简单假设}和\redt{复合假设}，若完全决定总体分布的假设为简单假设，否则就称复合假设.
+\end{definition}
+
+\begin{annotation}
+\rm 为了检验一个假设，先假定这个假设是成立的，如果实际从样本中观察到的情况在这个假设不合理，就认为原来的假设是不正确的，拒绝原来的假设。由于依据样本来检验总体，接受一个假设并不意味着确信它是真的，拒绝一个假设也并不意味着确信它是假的. 
+\end{annotation}
+
+\begin{example}
+\rm 设总体$X \sim N(\mu,\sigma^2)$，关于一个正态总体有4种假设检验问题
+\begin{enumerate}
+	\item 已知方差$\sigma^2$，检验假设$H_0: \mu = \mu_0$;
+	\item 未知方差$\sigma^2$，检验假设$H_0: \mu = \mu_0$;
+	\item 已知期望$\mu$，检验假设$H_0: \sigma^2 = \sigma_0^2$;
+	\item 未知期望$\mu$，检验假设$H_0: \sigma^2 \leq \sigma_0^2$.
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+\rm 拒绝实际真的假设$H_0$称为\redt{第一类错误}; 接受实际不真的假设$H_0$称为\redt{第二类错误}.
+\end{definition}
+
+\begin{definition}
+\rm 在假设$H_0$成立时，仍有$\alpha$的概率会拒绝$H_0$，这个$\alpha$称为\redt{检验水平}. 一般$\alpha$取$0.1,0.05,0.01,0.001$. 
+\end{definition}
+
+\begin{definition}
+\rm 只控制第一类错误概率$\alpha$的统计检验，称为\redt{显著性检验}.
+\end{definition}
+
+\begin{annotation}
+\rm \redt{设总体$X \sim N(\mu,\sigma^2)$，检验$H_0: \mu=\mu_0$}. 如果已知$\sigma^2$，则使用统计量为
+$$
+U = \frac{\overline{X}-\mu_0}{\sqrt{\frac{\sigma^2}{n}}} \sim N(0,1).
+$$
+如果未知$\sigma^2$，则使用统计量为
+$$
+T = \frac{\overline{X}-\mu_0}{\sqrt{\frac{S^2}{n}}} \sim t(n-1).
+$$
+再选择对应的检验水平，即
+$$
+P\{|U| \geq \lambda_1 \} = \alpha~\text{或} ~ P\{|T| \geq \lambda_2 \} = \alpha.
+$$
+当计算出来的$|U|$或者$|T|$分别大于$\lambda_1$或者$\lambda_2$时，则拒绝$H_0$，否则接受$H_0$.
+\end{annotation}
+
+\begin{annotation}
+\rm \redt{设总体$X \sim N(\mu,\sigma^2)$，检验$H_0: \mu \leq \mu_0$}. 此时对已知$\sigma^2$和未知$\sigma^2$两个情况下选择统计量与检验假设$H_0: \mu = \mu_0$相同. 此时最主要弄清拒绝域的形式，直觉上样本均值$\overline{X}$越小越与原假设相符合，即统计量$U$或$T$越小越符合原假设，因此取$\lambda$使
+$$
+P\{U \geq \lambda_1\} = \alpha ~\text{或}~P\{T \geq \lambda_2\} =\alpha.
+$$
+当计算出来的$U$或者$T$分别大于$\lambda_1$或者$\lambda_2$时，则拒绝$H_0$，否则接受$H_0$.
+\end{annotation}
+
+\begin{annotation}
+\rm \redt{一般检验步骤}
+\begin{enumerate}
+	\item 提出待检验的假设$H_0$;
+	\item 给出检验水平$\alpha$ ($0 < \alpha < 1$);
+	\item 确定检验使用的统计量$U$及拒绝域$W$的形式;
+	\item 根据样本计算出统计量$u$和按$\alpha$求出拒绝域$w$
+	\item 比较统计量是否在拒绝域中，若在$u \in w $，则拒绝原假设$H_0$，否则接受$H_0$.
+\end{enumerate}
+\end{annotation}
+
+
 \end{document}
