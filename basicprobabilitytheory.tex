@@ -2951,6 +2951,11 @@ $$
 $$
 P\{|U| \geq \lambda_1 \} = \alpha~\text{或} ~ P\{|T| \geq \lambda_2 \} = \alpha.
 $$
+这样选择的目的是$H_0$成立情况下，样本均值$\overline{X}$应接近$\mu_0$，若给定一个范围即是$|\overline{X} - \mu_0| \leq k$，在这个范围内则接受原假设$H_0$. 为了方便在已知分布下上述问题，我们转而考察
+$$
+U = \frac{|\overline{X} - \mu_0|}{\sqrt{\frac{\sigma^2}{n}}} \leq \lambda
+$$
+因此我们给定一个小概率发生事件的$\{|U|=\lambda\}$作为否定原假设的条件. 
 当计算出来的$|U|$或者$|T|$分别大于$\lambda_1$或者$\lambda_2$时，则拒绝$H_0$，否则接受$H_0$.
 \end{annotation}
 
