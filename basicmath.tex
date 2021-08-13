@@ -476,7 +476,7 @@ $$
 
 在全体实数域下构造一个划分. 对于任何实数$\alpha$，若$x_n$从某项其满足不等式\[x_n > \alpha,\]则取这种实数$\alpha$归入下组$A$，其余的(即不落在$A$里面的)一起实数归入上组$A'$.
 
-首先我们来说明这样确实产生了一个实数上的划分. 由前提条件，对于任意数$\varepsilon>0$及其对应的$N$. 若$n > N$及$n' > N$，则下面不等式成立\[x_{n'} - \varepsilon < x_n < x_{n'}+\varepsilon.\]现在我们可以看到每一个数$x_{n'} - \varepsilon$都是小于$x_n$的，所以它归入下组$A$. 另一方面$x_{n'}+\varepsilon$都大于$x_n$，所以$x_{n'}+\varepsilon$放不进去$A$，那它只能归入$A'$了,所以$A$和$A'$都是非空的. 我们的划分方式对于每一个数$\alpha$和确定序列$x_n$，要么它属于$A$或者属于$A'$. 同时$A$中实数都小于$A'$的实数. 可以来验证一下，若$\alpha > \alpha', \alpha \in A , \alpha' \in A'$，则$x_n$从某一项其也都大于$\alpha$那么显然也是大于$\alpha'$，这样就产生矛盾了. 因此的确产生了一个实数上的划分.
+首先我们来说明这样确实产生了一个实数上的划分. 由前提条件，对于任意数$\varepsilon>0$及其对应的$N$. 若$n > N$及$n' > N$，则下面不等式成立\[x_{n'} - \varepsilon < x_n < x_{n'}+\varepsilon.\]现在我们可以看到每一个数$x_{n'} - \varepsilon$都是小于$x_n$的，所以它归入下组$A$. 另一方面$x_{n'}+\varepsilon$都大于$x_n$，所以$x_{n'}+\varepsilon$放不进去$A$，那它只能归入$A'$了,所以$A$和$A'$都是非空的. 我们的划分方式对于每一个数$\alpha$和确定序列$x_n$，要么它属于$A$或者属于$A'$. 同时$A$中实数都小于$A'$的实数. 可以来验证一下，若$\alpha > \alpha', \alpha \in A , \alpha' \in A'$，则$x_n$从某一项其也都大于$\alpha$那么显然也是大于$\alpha'$，那么$\alpha'$也应该在$A$中，这样就产生矛盾了. 因此的确产生了一个实数上的划分.
 
 根据戴德金基本定理，有实数$a$存在它是$A$和$A'$的界数，即\[\alpha \leq a \leq \alpha', \; \alpha \in A,\alpha' \in A'.\]我们注意到当$n > N$时，$x_{n'} - \varepsilon$是一个$\alpha$,而$x_{n'} +\varepsilon$是一个$\alpha'$. 所以我们有\[x_{n'} - \varepsilon \leq a \leq x_{n'} + \varepsilon.\]即$|x_{n'}-a| \leq \varepsilon$，所以$\lim x_n = a$.
 
@@ -590,7 +590,7 @@ $$
 \begin{proof}
 \rm 首先是如何构造一组趋于$x_0$的极限$(x_n)$. 在给定一趋于零的数列${\delta_n}$之后，由$x_0$是$\mathcal{X}$的聚点，那么恒能选出$x = x_n$使得$|x_n - x_0| < \delta_n$，因此$\lim x_n = x_0$. 
 
-\emph{必要性}\ 若$f(x)$在$x_0$存在有限极限$A$. 则对任意的$\varepsilon > 0$，存在$\delta > 0$，使得当$|x-x_0| < \delta$时满足$|f(x)-A| < \varepsilon$. 在充分大$n$时，亦有$|x_n - x_0| < \delta$，因此也有$|f(x_n)-A| < \varepsilon$，即当数列$(f{x_n})$的极限也等于$A$. 
+\emph{必要性}\ 若$f(x)$在$x_0$存在有限极限$A$. 则对任意的$\varepsilon > 0$，存在$\delta > 0$，使得当$|x-x_0| < \delta$时满足$|f(x)-A| < \varepsilon$. 在充分大$n$时，亦有$|x_n - x_0| < \delta$，因此也有$|f(x_n)-A| < \varepsilon$，即数列$(f(x_n))$的极限也等于$A$. 
 
 \emph{充分性}\ 若任意选自$\mathcal{X}$上以$x_0$为极限的数列$(x_n)$，其对应函数值的数列$\{f(x_n)\}$极限均存在且等于$A$. 若假设$A$不是$f(x)$在$x_0$处的极限，那么存在$\varepsilon > 0$，使得对任意的$\delta > 0$满足当$|x-x_0| < \delta$时，都有$|f(x)-A| \geq \varepsilon$. 因此取一趋于零的$(\delta_n)$，对任意一$\delta = \delta_n$，我们都可以挑一个$x_n$使得$|x_n' -x_0| < \delta_n$，这样我们就得到的${x_n'}$同样是以$x_0$为极限，但是此刻数列$(f(x_n))$的极限并不等于$A$，因此与前提矛盾. 即$A$是$f(x)$在$x_0$处的极限.  
 \end{proof}
@@ -697,9 +697,9 @@ $$
 %保号性
 %有界性
 \begin{proposition}
-\rm 若$\lim\limits_{x \rightarrow a} = A$，则对于充分接近$a$的$x$的函数值是有界的
+\rm 若$\lim\limits_{x \rightarrow a} f(x) = A$，则对于充分接近$a$的$x$的函数值是有界的
 $$
-|f(x)| \leq M ,\; |x-a| < \delta.
+|f(x)-A| \leq M ,\; |x-a| < \delta.
 $$
 即在$x_0$某个去心邻域有界. {\color{blue} 注意这里和序列极限$\lim x_n = b$，而导致整个$(x_n)$有界是区别的，因为这里当$x-a < -\delta$或者$x-a > \delta$可能有无限多个函数值的，它们是否有界是无法确定的}. {\color{red} 命题反过来不一定正确，即有界不一定收敛}.
 \end{proposition}
@@ -752,7 +752,7 @@ $$
 \subsection{单调函数的极限}
 
 \begin{theorem}
-\rm 若单调增大函数$f(x)$在区域$\mathcal{X}$内变动着. 区域$\mathcal{X}$以大于一切$x$值的数$a$(它可以是有限的数，或者等于$+\infty$)作为聚点，若在这时函数$f(x)$在$\mathcal{X}$上有上界
+\rm \redt{单调有界则收敛} 若单调增大函数$f(x)$在区域$\mathcal{X}$内变动着. 区域$\mathcal{X}$以大于一切$x$值的数$a$(它可以是有限的数，或者等于$+\infty$)作为聚点，若在这时函数$f(x)$在$\mathcal{X}$上有上界
 $$
 \forall x \in \mathcal{X},\;f(x) \leq M.
 $$
@@ -770,17 +770,14 @@ $$
 \end{proof}
 
 \begin{corollary}
-\rm 若单调增大函数$f(x)$在区域$\mathcal{X}$内变动着. 区域$\mathcal{X}$以大于一切$x$值的数$a$(它可以是有限的数，或者等于$+\infty$)作为聚点，且在这时函数$f(x)$在$\mathcal{X}$上有上界. 那么任意以取自$\mathcal{X}$上以$a$的单调增大数列$(x_n)$，它的极限等于$f(x)$在$a$点处的极限. 
+\rm \redt{数列的语言应用} 若单调增大函数$f(x)$在区域$\mathcal{X}$内变动着. 区域$\mathcal{X}$以大于一切$x$值的数$a$(它可以是有限的数，或者等于$+\infty$)作为聚点，且在这时函数$f(x)$在$\mathcal{X}$上有上界. 那么任意以取自$\mathcal{X}$上以$a$的单调增大数列$(x_n)$，它的极限等于$f(x)$在$a$点处的极限. 
 \end{corollary}
 
-\begin{proof}
-\rm 
-\end{proof}
 
 \subsection{函数收敛的判定方法}
 
 \begin{theorem}
-\rm 函数$f(x)$当$x$趋于$a$时有一有限极限的充分必要条件为，对于任意$\varepsilon > 0$必存在着$\delta > 0$，只需要满足
+\rm \redt{柯西判别} 函数$f(x)$当$x$趋于$a$时有一有限极限的充分必要条件为，对于任意$\varepsilon > 0$必存在着$\delta > 0$，只需要满足
 $$
 |x-a| < \delta,\; |x'-a| < \delta.
 $$
@@ -872,7 +869,7 @@ $$
 $$
 加法证明，设$\gamma_1 = \frac{\alpha_1}{\beta_1} - 1,\gamma_2 = \frac{\alpha_2}{\beta_2} - 1$，则
 $$
-\lim\limits_{x \rightarrow x_0} \frac{\alpha_1+\alpha_2}{\beta_1 + \beta_2} = \lim\limits_{x \rightarrow x_0} \frac{\beta_1(1+\gamma_1) + \beta_2(1+\gamma_2)}{\beta_1 + \beta_2} = \lim\limits_{x \rightarrow x_0} \left( \frac{1+\gamma_1}{1+\frac{\beta_2}{\beta_1}} + \frac{1+\gamma_2}{1+\frac{\beta_2}{\beta_1}} \right) = 1. 
+\lim\limits_{x \rightarrow x_0} \frac{\alpha_1+\alpha_2}{\beta_1 + \beta_2} = \lim\limits_{x \rightarrow x_0} \frac{\beta_1(1+\gamma_1) + \beta_2(1+\gamma_2)}{\beta_1 + \beta_2} = \lim\limits_{x \rightarrow x_0} \left( \frac{1+\gamma_1}{1+\frac{\beta_2}{\beta_1}} + \frac{1+\gamma_2}{1+\frac{\beta_1}{\beta_2}} \right) = 1. 
 $$
 \end{proof}
 
@@ -881,9 +878,18 @@ $$
 \begin{enumerate}
 	\item 当$x \rightarrow +\infty$时
 	$$
-		\ln^\alpha x \ll x^\beta \ll a^x, \;\alpha > 0 ,\beta > 0,\alpha > 1 
+		\ln^\alpha x \ll x^\beta \ll a^x, \;\alpha > 0 ,\beta > 0,a > 1 
 	$$
 \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm 当$x \to 0$时的常用等价无穷小
+$$
+\begin{array}{ll}
+x \sim \sin x \sim \tan x \sim \arcsin x \sim \arctan x \sim e^x-1 \sim \ln(1+x) \\
+\end{array}
+$$
 \end{proposition}
 
 \subsection{洛必达法则}
@@ -974,7 +980,7 @@ $$
 $$
 \lim\limits_{x \rightarrow t} f(x) = \lim\limits_{n \to \infty} f(g(a_n)) = f(\lim\limits_{n \to \infty}g(a_n)) = f(\lim\limits_{x \rightarrow x_0}g(x)).
 $$
-由于$(a_n)$是任意，那么实际上式就保证了$\lim\limits_{x \rightarrow x_0}(f \circ g) (x)$极限存在，且$\lim\limits_{n \to \infty} f(g(a_n)) = \lim\limits_{x \rightarrow 0}(f \circ g) (x)$. 综上证闭.	
+由于$(a_n)$是任意，那么实际上式就保证了$\lim\limits_{x \rightarrow x_0}(f \circ g) (x)$极限存在，且$\lim\limits_{n \to \infty} f(g(a_n)) = \lim\limits_{x \rightarrow x_0}f(g(x))$. 综上证闭.	
 \end{proof}
 
 \begin{annotation}
@@ -1053,7 +1059,7 @@ $$
 \subsection{连续函数的复合}
 
 \begin{theorem}
-若函数$\varphi(y)$定义在区间$\mathcal{Y}$上，而函数$f(x)$定义于区间$\mathcal{X}$上，且其对应的函数值含于$\mathcal{Y}$. 若$f(x)$在$\mathcal{X}$中的一点$x_0$连续，又$\varphi(y)$在$y_0 = f(x_0)$这一点也是连续的，则复合函数$\varphi(f(x))$在点$x_0$处亦是连续的.
+\rm 若函数$\varphi(y)$定义在区间$\mathcal{Y}$上，而函数$f(x)$定义于区间$\mathcal{X}$上，且其对应的函数值含于$\mathcal{Y}$. 若$f(x)$在$\mathcal{X}$中的一点$x_0$连续，又$\varphi(y)$在$y_0 = f(x_0)$这一点也是连续的，则复合函数$\varphi(f(x))$在点$x_0$处亦是连续的.
 \end{theorem}
 
 \subsection{一致性连续}
@@ -1554,6 +1560,10 @@ $$
 	\item 若{\color{red}$f(x) = \arcsin x$},
 	$$
 	\arcsin x = x + \frac{x^3}{6} + o(x^3).
+	$$
+	\item 若{\color{red}$f(x) = \arccos x$},
+	$$
+	\arccos x = \frac{\pi}{2} - \arcsin x = \frac{\pi}{2} - x -\frac{x^3}{6} + o(x^3). 
 	$$
 \end{enumerate}
 \end{proposition}
@@ -4566,7 +4576,7 @@ $$
 $$
 \begin{array}{ll}
 \sin 2\alpha = 2\sin \alpha \cos \alpha = \frac{2\tan \alpha}{1 + \tan^2 \alpha}\\
-\cos 2\alpha = 2\cos \alpha = \cos^2 \alpha - \sin^2 \alpha =  2cos^2\alpha - 1 = 1 - 2\sin^2 \alpha  = \frac{1-\tan^2 \alpha}{1 + \tan^2\alpha}\\
+\cos 2\alpha = \cos^2 \alpha - \sin^2 \alpha =  2\cos^2\alpha - 1 = 1 - 2\sin^2 \alpha  = \frac{1-\tan^2 \alpha}{1 + \tan^2\alpha}\\
 \tan 2\alpha = \frac{2\tan\alpha}{1-\tan^\alpha}
 \end{array}
 $$
@@ -4578,7 +4588,7 @@ $$
 \begin{array}{ll}
 \sin\frac{\alpha}{2} = \pm \sqrt{\frac{1-\cos \alpha}{2}} \\
 \cos\frac{\alpha}{2} = \pm \sqrt{\frac{1+\cos \alpha}{2}} \\
-\tan\frac{\alpha}{2} = \sqrt{\frac{1-\cos \alpha}{1+\cos \alpha}} = \frac{1+\cos \alpha}{\sin \alpha} = \frac{\sin \alpha}{1+\cos \alpha}\\
+\tan\frac{\alpha}{2} = \sqrt{\frac{1-\cos \alpha}{1+\cos \alpha}} = \frac{1-\cos \alpha}{\sin \alpha} = \frac{\sin \alpha}{1+\cos \alpha}\\
 \end{array}
 $$
 \end{proposition}
