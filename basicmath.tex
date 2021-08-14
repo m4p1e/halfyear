@@ -1027,7 +1027,7 @@ $$
 \begin{definition}
 \rm 函数$f(x)$可能在$x_0$处存在两类间断点
 \begin{enumerate}
-	\item $x_0$处单侧极限存在但是不等于$f(x_0)$，则$f(x)$在$x_0$处有间断点，称其为{\color{red}普通间断点}或者{\color{red}第一类间断点}，通常说在$f(x)$在$x_0$处有{\color{red}跃度}.
+	\item $x_0$处单侧极限存在但是不等于$f(x_0)$，则$f(x)$在$x_0$处有间断点，称其为{\color{red}普通间断点}或者{\color{red}第一类间断点}. 若左右极限存在且相等，则称其为\redt{可去间断点}; 若左右极限存在且不相等，通常说在$f(x)$在$x_0$处有{\color{red}跃度}. 
 	\item $x_0$处单侧极限是无穷或者根本不存在，则$f(x)$在$x_0$处有间断点，称其为{\color{red} 第二类间断点}.
 \end{enumerate}
 \end{definition}
@@ -1111,6 +1111,22 @@ $$
 
 \subsection{函数左右导数}
 
+\begin{definition}
+\rm 设函数$y=f(x)$在点$x_0$及其某个左邻域内有定义，若左极限
+$$
+\lim\limits_{\Delta \to 0^{-}} \frac{\Delta}{\Delta x} \lim\limits_{\Delta \to 0^{-}} \frac{f(x_0 + \Delta)-f(x_0)}{\Delta x} = \lim\limits_{x \to 0^{-}} \frac{f(x)-f(x_0)}{x-x_0} 
+$$
+存在时，则称该极限值为$f(x)$在点$x_0$处的\redt{左导数}，记为$f'_{-}(x_0)$. 类似的，函数$y=f(x)$在点$x_0$及其某个右邻域内有定义，若右极限
+$$
+\lim\limits_{\Delta \to 0^{+}} \frac{\Delta}{\Delta x} \lim\limits_{\Delta \to 0^{+}} \frac{f(x_0 + \Delta)-f(x_0)}{\Delta x} = \lim\limits_{x \to 0^{+}} \frac{f(x)-f(x_0)}{x-x_0} 
+$$
+存在时，则称该极限值为$f(x)$在点$x_0$处的\redt{右导数}，记为$f'_{+}(x_0)$.
+\end{definition}
+
+\begin{annotation}
+\rm \redt{注意在考察左右导数的时候，第一是要考察是不是左连续或者右连续的}. 
+\end{annotation}
+
 \newpage
 \subsection{初等函数导数表}
 
@@ -1167,7 +1183,7 @@ $$
 \end{proposition}
 
 \begin{proof}
-由导数的定义，当$\Delta x \rightarrow 0$，有$(f(x_0 + \Delta x) - f(x_0)) \rightarrow 0$，即给定$\varepsilon > 0$， 可以找到$|\Delta x| = |\Delta x + x_0-x_0| < \delta$，使得$|f(x_0 + \Delta x) - f(x_0)| < \varepsilon$，把$\Delta x+ x_0$用$x$替换，即得到极限的定义.
+由导数的定义，分子$\Delta x \to 0$，若可导即极限存在，那么分子也必须随着$\Delta x \to 0$而趋于零，即$f(x)$在这一点连续. 
 \end{proof}
 
 \subsection{求导法则}
@@ -1251,6 +1267,42 @@ $$
 $$
 \end{proof}
 
+\subsection{反函数的导数}
+
+\begin{definition}
+\rm 若$y=f(x)$在某个区间内可导，且$f'(x) \neq 0$，则其反函数$x = \varphi(y)$在对应的区间内也可导，且
+$$
+\varphi'(y) = \frac{1}{f'(x)},
+$$
+即
+$$
+\frac{dx}{dy} = \frac{1}{\frac{dy}{dx}}. 
+$$
+\end{definition}
+
+\begin{proof}
+设$y_0=f(x_0)$，在点$y=y_0$给任意的增量$\Delta y$，则函数$x=\varphi(y)$亦将获得对应的增量$\varphi(y+\Delta)-\varphi(y)$. $f$有反函数则说法$f$是一个双射，当$\Delta y \neq 0$，那么亦有$\Delta x \neq 0$，实际这是单调性决定的. 就有
+$$
+\frac{\Delta x}{\Delta y} = \frac{1}{\frac{\Delta y}{\Delta x}},
+$$
+对上式两边取$\Delta y \to 0$的极限，等式左边的极限等于$\frac{1}{f'(x_0)}$，那么等式右边的极限自然存在并等于它. 
+\end{proof}
+
+\subsection{导数的几何意义}
+
+\begin{proposition}
+\rm 导数$f'(x_0)$在几何上表示曲线$y=f(x)$在点$(x_0,f(x_0))$处切线的斜率. 其切线方程为
+$$
+y-f(x_0) = f'(x_0)(x-x_0).
+$$
+法线方程为
+$$
+y-f(x_0) = -\frac{1}{f'(x_0)}(x-x_0).
+$$
+\end{proposition}
+
+
+
 \newpage
 \section{函数微分}
 
@@ -1311,13 +1363,16 @@ $$
 \end{proposition}
 
 \begin{proof}
-{\color{blue}根据对应的导数运算法则可以很快的推导}.
+{\color{blue}根据对应的导数运算法则可以很快的推导}. 举个例子3的证明
+$$
+d(uv) = (uv)'\Delta x = (uv'+vu')\Delta x = udv + vdu.
+$$
 \end{proof}
 
 \subsection{微分不变性}
 
 \begin{definition}
-\rm 给定两个函数$y = f(x)$和$x = \varphi(t)$，可以它们组成复合函数$y = f(\varepsilon(t))$. 若导数$y_x'$和$x_t'$存在，则复合函数亦存在着导数
+\rm 给定两个函数$y = f(x)$和$x = \varphi(t)$，可以它们组成复合函数$y = f(\varphi(t))$. 若导数$y_x'$和$x_t'$存在，则复合函数亦存在着导数
 $$
 y_t' = y_x' \cdot x_t'
 $$
@@ -1325,11 +1380,11 @@ $$
 $$
 dy = {\color{red}y_t' \cdot dt} = y_x' \cdot x_t' \cdot dt = {\color{red}y_x' \cdot dx}
 $$
-又回到原来的微分形式. 这种微分形式即使在原来的自变量换成新的自变量以后仍可以保持着的性质称为{\color{red}微分形式不变性}. {\color{blue}要注意的是上面式子中$dx$并不是表示$\Delta x$，而是$x=\varphi(t)$的微分}.
+又回到原来的微分形式. 这种微分形式即使在原来的自变量换成新的自变量以后仍可以保持着的性质称为{\color{red}微分形式不变性}. {\color{blue}要注意的是上面式子中$dx$并不是表示$\Delta x$，而是$x=\varphi(t)$关于$t$的微分}.
 \end{definition}
 
 \begin{example}
-\rm 当$y$对于$x$的关系不是直接给定，而是由$x$及$y$两者对于第三方辅助变量(参变量)的关系所给定时
+\rm \redt{参数方程求导} 当$y$对于$x$的关系不是直接给定，而是由$x$及$y$两者对于第三方辅助变量(参变量)的关系所给定时
 $$
 x = \varphi(t), \; y=\psi(t).
 $$
@@ -1342,7 +1397,14 @@ $$
 y_x' = \frac{dy}{dx} = \frac{y_t' \cdot dt}{x_t' \cdot dt} = \frac{y_t'}{x_t'} = \frac{\varphi'(t)
 }{\psi'(t)}. 
 $$
+特别地，若$\varphi(t)$和$\psi(t)$二阶可导，则有
+$$
+y_x'' = \frac{d^2y}{dx^2}  = \frac{d\left(\frac{y_t'}{x_t'}\right)}{dx} = \frac{\left(\frac{\varphi'(t)
+}{\psi'(t)}\right)'dt}{\psi(t)'dt} = \frac{\varphi''(t)\psi'(t)-\psi''(t)\varphi'(t)}{[\psi(t)']^3}.
+$$
 \end{example}
+
+
 
 \subsection{近似计算}
 
@@ -1384,7 +1446,7 @@ $$
 	\item $\left[(b+cx)^a\right]^{(n)} = a(a-1)\cdots(a-n+1)b!(bx+c)^{a-n}$.
 	\item $\left(\frac{1}{a+bx}\right)^{(n)} = \frac{(-1)^n n!b!}{(ax+b)^{n+1}}$.
 	\item $(\ln x)^{(x)} = \frac{(-1)^{n-1}(n-1)!}{x^n}$.
-	\item $(a^x)^{(n)} = a^x\cdot (\ln a)^2$.
+	\item $(a^x)^{(n)} = a^x\cdot (\ln a)^n$.
 	\item $(\sin x)^{(n)} = \sin (x+n\cdot\frac{\pi}{2})$.
 	\item $(\cos x)^{(n)} = \cos (x+n\cdot\frac{\pi}{2})$.
 	\item $(\arctan x)^{(n)} = (n-1)!\cos^n y\cdot\sin n(y+\frac{\pi}{2})$，其中$y = \arctan x$.
@@ -1677,6 +1739,10 @@ $$
 	\item 若$f^{''}(x_0) < 0$，则在$x_0$处有极大值.
 \end{enumerate}
 \end{proposition}
+
+\begin{proof}
+配合证明费马引理的小lemma. 
+\end{proof}
 
 \begin{proposition}
 \rm {\color{red} (当$f'(x_0) = 0,\; f^{''}(x_0) = 0$时极值判定推广)} 给定给定函数$f(x)$，$f(x)$在$x_0$处$n$阶可导，且一阶导数到$(n-1)$阶导数全为$0$，即
@@ -3444,11 +3510,44 @@ $$
 \newpage
 \section{向量和空间解析几何}
 
+\subsection{极坐标}
+
+\begin{definition}
+\rm 给定极坐标曲线$\rho$，转换成标准直角坐标为
+$$
+\left\{
+\begin{array}{ll}
+x = \rho \cos \theta \\
+y = \rho \sin \theta \\
+\end{array} \right.
+$$
+\end{definition}
 
 %http://kjwy.5any.com/gdsx22/content/ch02/gdsx080502.htm  曲面的切平面与法线
 
 \newpage
 \section{微分学在几何上的应用}
+
+\subsection{曲线的渐进线}
+
+\begin{definition}
+\rm 若点$M$沿曲线$y=f(x)$无限远离原点时，它与某条直线$L$之间的就看将趋于零，则称直线$L$为曲线$y=f(x)$的一条\redt{渐进线}. 若直线$L$与$x$轴平行，则称$L$为曲线$y=f(x)$的\redt{水平渐近线}; 若直线$L$与$y$轴平行，则称$L$为曲线$y=f(x)$的\redt{垂直渐近线}; 若直线$L$既不平行$x$轴，也不平行$y$轴，则称$L$为曲线$y=f(x)$的\redt{斜渐近线}. 
+\end{definition}
+
+\begin{proposition}
+\rm $y=b$是曲线$y=f(x)$的水平渐近线的充要条件是
+$$
+\lim\limits_{x \to \infty} f(x)= b.
+$$
+$x=a$是曲线$y=f(x)$的垂直渐进线的充要条件是
+$$
+\lim\limits_{x \to a} f(x) = \infty.
+$$
+$y=ax+b$是曲线$y=f(x)$的斜渐近线的充要条件是
+$$
+\lim\limits_{x \to \infty} \frac{f(x)}{x} = a ~\text{且}~ \lim\limits_{x \to  \infty} [f(x)-ax ] =b.
+$$
+\end{proposition}
 
 \subsection{弧长定义}
 
@@ -3474,6 +3573,20 @@ $$
 s_t' = \sqrt{x_t'^2 + y_t'^2}. 
 $$
 \end{proposition}
+
+\subsection{弧长微分}
+
+\subsection{曲率}
+
+\subsection{坐标轴下的体积}
+
+\begin{definition}
+\rm 圆锥体积的公式
+$$
+V = \frac{1}{3}sh,
+$$
+其中$s$是圆锥底面面积，$h$是圆锥的高.
+\end{definition}
 
 \newpage
 \section{曲线积分}

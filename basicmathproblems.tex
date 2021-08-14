@@ -349,6 +349,43 @@ $$
 
 \subsection{等价无穷小的替换}
 
+
+\subsection{中值定理}
+
+\begin{example}
+\rm 求极限
+$$
+\lim\limits_{x \to +\infty} \frac{1}{2}x^2[\ln\arctan(x+1) - \ln\arctan x]. 
+$$
+\hints\ 对连续函数$\ln\arctan x$应用中值定理
+$$
+\lim\limits_{x \to +\infty} \frac{1}{2}x^2 \frac{1}{[1+(\theta+x)^2]\arctan (\theta+x)},
+$$
+其中$0 < \theta < 1$. 那么即有
+$$
+\lim\limits_{x \to +\infty} \frac{1}{2} \frac{x^2}{1+(\theta+x)^2} \frac{1}{\arctan (\theta+x)} = \frac{1}{\pi}.
+$$
+\end{example}
+
+\section{导数}
+
+\subsection{导数定义相关的}
+
+\begin{example}
+\rm 已知$f'(x_0) = -1$，求
+$$
+\lim\limits_{x \to 0} \frac{x}{f(x_0-2x)-f(x_0-x)}.
+$$
+\hints 直觉上就是想办法凑导数的定义出来
+$$
+\begin{array}{ll}
+\lim\limits_{x \to 0} \frac{f(x_0-2x)-f(x_0)}{-2x} = -1 \\
+\lim\limits_{x \to 0} \frac{f(x_0-x)-f(x_0)}{-x} = -1\\
+\end{array}
+$$
+求出需要$\lim\limits_{x \to 0} \frac{f(x_0-2x)-f(x_0)}{x}$和$\lim\limits_{x \to 0} \frac{f(x_0-x)-f(x_0)}{x}$，两项相减再取倒. 
+\end{example}
+
 \newpage
 \section{tricks}
 
