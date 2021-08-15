@@ -386,6 +386,86 @@ $$
 求出需要$\lim\limits_{x \to 0} \frac{f(x_0-2x)-f(x_0)}{x}$和$\lim\limits_{x \to 0} \frac{f(x_0-x)-f(x_0)}{x}$，两项相减再取倒. 
 \end{example}
 
+\section{不定积分}
+
+\subsection{多项式分式}
+
+\begin{example}
+\rm 求
+$$
+\int \frac{x^4-x^2}{1+x^2}dx.
+$$
+\hints\ 还是得部分分式
+$$
+\frac{x^4-x^2}{1+x^2} = \frac{(x^4-1) -(x^2+1) + 2 }{1+x^2}
+= x^2 + \frac{2}{1+x^2}-2.
+$$
+因此原函数为
+$$
+\frac{x^3}{3} + 2\arctan x - 2x + C,
+$$ 
+\end{example}
+
+\subsection{分母带根号}
+
+\begin{example}
+\rm 求
+$$
+\int \frac{dx}{\sqrt{x(4-x)}}.
+$$
+\hints 根号下凑平方
+$$
+\int \frac{1}{\sqrt{4-(x-2)^2}}d(x-2) = \arcsin \frac{x-2}{2} +C
+$$
+\end{example}
+
+\begin{example}
+\rm 求
+$$
+\int \frac{2-x}{\sqrt{3+2x-x^2}}dx.
+$$
+\hints\ 先分式把分子变成常数$1$
+$$
+\int \frac{2-x}{\sqrt{3+2x-x^2}}dx = \int \frac{1-x}{\sqrt{3+2x-x^2}} dx + \int \frac{1}{\sqrt{3+2x-x^2}} dx = \frac{1}{2}\int \frac{1}{\sqrt{3+2x-x^2}} d(3+2x-x^2) +  \int \frac{1}{\sqrt{4-(x-1)^2}} dx,
+$$
+因此原函数为
+$$
+\sqrt{3+2x-x^2} + \arcsin \frac{x-1}{2} + C
+$$
+\end{example}
+
+\begin{example}
+\rm 求
+$$
+\int \frac{x^2}{\sqrt{a^2 - x^2}}dx 
+$$
+\hints\ 考虑第二类换元，令$x=a\sin t$，则
+$$
+\int \frac{a^2\sin^2 t}{a\cos t} \cdot a\cos t dt = \frac{a^2}{2}\int 1-\cos 2t dt = \frac{a^2 t}{2} - \frac{a^2}{4}\sin 2t.
+$$
+把$t$变成$x$也有一点技巧，第二项可以变成$\frac{1}{2}(a\sin t)(a \cos t)$，其中$a\sin t = x, a\cos t = \sqrt{a^2 - x^2}$，这样会方便一点
+$$
+\frac{a^2\arcsin \frac{x}{a}}{2} - \frac{x}{2}\sqrt{a^2 - x^2}+C
+$$
+\end{example}
+
+\subsection{换元法}
+
+\begin{example}
+\rm 求
+$$
+\int \sqrt{1+e^x} dx
+$$
+\hints 考虑第二类换元，令$x = \ln (t^2-1)$，则
+$$
+\int t \cdot \frac{2t}{t^2-1} dt = 2 \int 1 + \frac{1}{t^2-1}dt =2t + \ln |\frac{t-1}{t+1}| + C
+$$
+带入$t=\sqrt{e^x +1}$，即得
+$$
+2\sqrt{e^x +1} + \ln \frac{\sqrt{e^x +1}-1}{\sqrt{e^x +1}+1} +C
+$$
+\end{example}
+
 \newpage
 \section{tricks}
 

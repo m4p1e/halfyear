@@ -1955,8 +1955,48 @@ $$
 \end{enumerate}
 \end{proposition}
 
+\begin{theorem}
+\rm \redt{原函数的存在性} 在给定区间上的每个连续函数$f(x)$都有在这区间上的原函数.
+\end{theorem}
 
+\begin{theorem}
+\rm 若$f(x)$在给定区间上有第一类间断点，则$f(x)$没有原函数. 若有第二类间断点，可能有原函数也可能没有.  
+\end{theorem}
+
+\begin{proof}
+有第一类间断点意味着在那一点左右导数不一样的，这个地方就是不可导的. 
+\end{proof}
+
+\newpage
 \subsection{基本积分表}
+
+\begin{proposition}
+\rm \
+\begin{enumerate}
+	\item $\int 0dx = C$
+ 	\item $\int x^{\alpha}dx = \frac{1}{\alpha+1}x^{\alpha+1}~(\alpha \neq 0)$ 
+	\item $\int \frac{1}{x} dx = \ln x + C$
+	\item $\int a^{x}dx = \frac{a^x}{\ln a} + C$
+	\item $\int e^x dx = e^x + C$
+	\item $\int \sin x dx = -\cos x + C$
+	\item $\int \cos x dx = \sin x + C$
+	\item $\int \sec^2 x dx = \tan x +C$
+	\item $\int \csc^2 x dx = -\cot x + C$
+	\item $\int \sec x\tan x dx = \sec x +C$
+	\item $\int \csc x\cot x dx = -\csc x + C$
+	\item $\int \frac{1}{\sqrt{1-x^2}}dx = \arcsin x+C$
+	\item $\int \frac{1}{1+x^2}dx = \arctan x + C$
+	\item $\int \frac{1}{\sqrt{a^2 -x^2}} = \arcsin \frac{x}{a} + C$
+	\item $\int \frac{1}{a^2 + x^2}dx = \frac{1}{a}\arctan \frac{x}{a} + C$
+	\item $\int \frac{1}{x^2 - a^2} =\frac{1}{2a} \ln \left| \frac{x-a}{x+a}\right|+C$
+	\item $\int \frac{1}{\sqrt{x^2 + a^2}}dx = \ln(x+\sqrt{x^2 + a^2})+C$
+	\item $\int \frac{1}{\sqrt{x^2 - a^2}}dx = \ln \left| x+ \sqrt{x^2 - a^2}\right|+C$
+	\item $\int \sec x dx = \ln |\sec x + \tan x|+C$
+	\item $\int \csc x dx = -\ln|\csc x + \cos x|+C$
+\end{enumerate}
+\end{proposition}
+
+
 
 \subsection{简单积分法则}
 
@@ -1988,7 +2028,7 @@ $$
 \begin{proposition}
 \rm 如果已知
 $$
-\int g(x)dx = G(t)+C,
+\int g(t)dt = G(t)+C,
 $$
 即有
 $$
@@ -1998,7 +2038,7 @@ $$
 
 \begin{proof}
 $$
-\frac{d}{dx}G(\omega(x)) = G'(\omega(x))w'(x) = g(\omega(x))\omega'(x).
+\frac{d}{dx}G(\omega(x)) = G'(\omega(x))\omega'(x) = g(\omega(x))\omega'(x).
 $$
 \end{proof}
 
@@ -2011,10 +2051,7 @@ $$
 $$
 f(x)dx = g(\omega(x))\omega'(x)dx,
 $$
-那么说明其原函数可以表示$G(\omega(x))$，这样我们尝试先求出$G(t)$，现在我们让$t=\omega(x)$，上式就变成了$\int g(t)dt$，{\color{blue}最重要是需要它是可以稍微容易求解的形式，不然换元就没什么意义}. 那么把它积出来之后等于$G(t)+C$，之后我们只需要把$t$用$\omega(x)$替换即可，因此可以简单的写成
-$$
-\int f(x)dx = \int g(x)dx.
-$$
+那么说明其原函数可以表示$G(\omega(x))$，这样我们尝试先求出$G(t)$，现在我们让$t=\omega(x)$，上式就变成了$\int g(t)dt$，{\color{blue}最重要是需要它是可以稍微容易求解原函数的$g(t)$形式，不然换元就没什么意义}. 那么把它积出来之后等于$G(t)+C$，之后我们只需要把$t$用$\omega(x)$替换即可.
 \end{annotation}
 
 \begin{example}
@@ -2028,6 +2065,54 @@ $$
 $$
 最后$t$替换为$\sin x$即可.
 \end{example}
+
+\begin{proposition}
+\rm 已知$f(x)$的原函数凑微分常用手法
+\begin{enumerate}
+	\item $\int f(ax+b)dx = \frac{1}{a} \int f(ax+b)d(ax+b)$
+	\item $\int x^m f(ax^{m+1}+b)dx = \frac{1}{(m+1)a}\int f(ax^{m+1}+b)d(ax^{m+1}+b)$
+	\item $\int \frac{f(\sqrt{x})}{\sqrt{x}}dx = 2 \int f(\sqrt{x})d\sqrt{x}$
+	\item $\int f(e^x)e^xdx = \int f(e^x)de^x$
+	\item $\int \frac{f(\ln x)}{x}dx = \int f(\ln x)d\ln x$
+	\item $\int f(\sin x)\cos x dx = \int f(\sin x)d\sin x$
+	\item $\int f(\cos x)\sin x dx = -\int f(\cos x)d\cos x$
+	\item $\int \frac{f(\tan x)}{\cos^2 x}dx = \int f(\tan x)d \tan x$
+	\item $\int \frac{\arcsin x}{\sqrt{1-x^2}}dx = \int f(\arcsin x)d\arcsin x$
+	\item $\int \frac{\arctan x}{1+x^2}dx = \int f(\arctan x) d\arctan $
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{第二类换元法} 设$x = \varphi(t)$是单调的，可导的函数，并且$\varphi'(t) \neq 0$. 若
+$$
+\int f[\varphi(t)]\varphi'(t)dt = F(t)+C,
+$$
+则
+$$
+\int f(x)dx = \int f[\varphi(t)]\varphi'(t)dt = F(t) + C = F[\varphi^{-1}(x)]+C,
+$$
+其中$\varphi^{-1}(x)$是$x=\varphi(t)$的反函数. 
+\end{proposition}
+
+\begin{example}
+\rm 求积分
+$$
+\int \frac{1}{\sqrt{x}(1+\sqrt[3]{x})}dx
+$$
+这里令$x=t^3$，那么原式就变成了
+$$
+\int \frac{6t^5}{t^3(1+t^2)}dt = 6\int \left[ 1-\frac{1}{1+t^2} \right] = 6t-6\arctan t + C = 6\sqrt[6]{x}-6\arctan \sqrt[6]{x} + C
+$$
+\end{example}
+
+\begin{proposition}
+\rm 常见$x$用$\varphi(t)$做变量代换
+\begin{enumerate}
+	\item 被积函数含有$\sqrt{a^2-x^2}$，令$x=a\sin t$或者$x=a\cos t$.
+	\item 被积函数含有$\sqrt{a^2 + x^2}$，令$x=a\tan t$.
+	\item 被积函数含有$\sqrt{x^2-a^2}$，令$x=a\sec t$. 
+\end{enumerate}
+\end{proposition}
 
 \subsection{分部积分法}
 
@@ -3549,6 +3634,27 @@ $$
 $$
 \end{proposition}
 
+\begin{proof}
+来证明一下斜渐近线的充要条件，假设曲线$y=f(x)$在正$x$轴这一边有斜渐近线$Y=ax+b$. 如图
+%asymptotic_line.jpg
+\begin{center}
+\includegraphics[width=5cm, height=4cm]{images/asymptotic_line.jpg}
+\end{center}
+它们之间的距离$\delta$和纵坐标的差$|y-Y|$的比值是一个常数，即$Y=ax+b$和$x$轴夹角的余弦值，因此在$x \to +\infty$，这差也随着$\delta$而趋于零，即
+$$
+\lim\limits_{x \to \infty} (y-ax-b) = 0,
+$$
+这式子就立马给定了
+$$
+\lim\limits_{x \to \infty} (y-ax) =b;
+$$
+再除以$x$，就得
+$$
+\lim\limits_{x \to \infty} \frac{y}{x} = a;
+$$
+反过来这两个极限就确定$Y=ax+b$的系数. 
+\end{proof}
+
 \subsection{弧长定义}
 
 \begin{definition}
@@ -3585,7 +3691,7 @@ $$
 $$
 V = \frac{1}{3}sh,
 $$
-其中$s$是圆锥底面面积，$h$是圆锥的高.
+其中$s$是圆锥底面面积，$h$是圆锥的高. 
 \end{definition}
 
 \newpage

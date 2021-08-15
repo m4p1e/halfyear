@@ -2935,7 +2935,7 @@ $$
 \begin{definition}
 \rm 在欧几里得空间$\mathbb{R}^n$中，两个非零向量$\mbf{\alpha}$和$\mbf{\beta}$的夹角规定为
 $$
-\frac{\inp{\mbf{\alpha}}{\mbf{\beta}}}{\norm{\mbf{\alpha}}\norm{\mbf{\beta}}}.
+cos \theta = \frac{\inp{\mbf{\alpha}}{\mbf{\beta}}}{\norm{\mbf{\alpha}}\norm{\mbf{\beta}}}.
 $$
 \end{definition}
 
@@ -3422,7 +3422,7 @@ $$
 
 
 \begin{corollary}
-\rm 若$n$阶矩阵$\mbf{A}$的$n$个特征值互不相等，则$\mbf{A}$与对角矩阵相似.
+\rm \redt{相似的充分条件} 若$n$阶矩阵$\mbf{A}$的$n$个特征值互不相等，则$\mbf{A}$与对角矩阵相似.
 \end{corollary}
 
 \subsection{矩阵对角化的条件}
@@ -3753,7 +3753,7 @@ $$
 \begin{proof}
 由theorem \ref{symmetry: theorem2}可知存在$n$阶正交矩阵$\mbf{T}$，使得
 $$
-\mbf{T}^T\mbf{A}\mbf{T}^T = \text{diag}(\lambda_1,\cdots,\lambda_n)
+\mbf{T}^T\mbf{A}\mbf{T} = \text{diag}(\lambda_1,\cdots,\lambda_n)
 $$
 因此$\mbf{A}$合同于$\text{diag}(\lambda_1,\cdots,\lambda_n)$，那么有非线性退化$\mbf{X} = \mbf{T}\mbf{Y}$使得$\mbf{X}^T\mbf{A}\mbf{X}$化成$\lambda_1y_1^2 + \lambda_2y^2 + \cdots + \lambda_n y^2$. 
 \end{proof}
@@ -4049,7 +4049,7 @@ y_1^2 + y_2^2 + \cdots + y_n^2.
 $$
 因此当$\mbf{Y}$取值非零$\mbf{\beta}=(k_1,k_2,\cdots,k_n)$时(这里有一个小问题你要保证所有$\mbf{X}$的取值能完全被$C\mbf{Y}$盖住才行，这是显然，因为对任意的$\mbf{X}$取值，让$\mbf{Y}=C^{-1}\mbf{X} $即可)，有
 $$
-\mbf{Y}^T\mbf{B}\mbf{Y} = k_1^2 + k_2^2 + \cdots + k_n^2 \geq 0.
+\mbf{Y}^T\mbf{B}\mbf{Y} = k_1^2 + k_2^2 + \cdots + k_n^2 > 0.
 $$
 所以$\mbf{X}^T\mbf{A}\mbf{X}$是正定的. 
 \end{proof}
@@ -4060,7 +4060,7 @@ $$
 
 
 \begin{proposition}
-\rm 若$n$阶对称矩阵$\mbf{A}$是正定的，那么有如下性质
+\rm \redt{正定性的判定手法} 若$n$阶对称矩阵$\mbf{A}$是正定的，那么有如下性质
 \begin{enumerate}
 	\item $\mbf{A}$的正惯性指数等于$n$;
 	\item $\mbf{A} \simeq \mbf{I}$;
