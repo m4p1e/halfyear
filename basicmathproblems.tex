@@ -406,6 +406,32 @@ $$
 $$ 
 \end{example}
 
+\begin{example}
+\rm 求
+$$
+\int \frac{x+5}{x^2-6x+13}dx.
+$$
+\hints 观察分子多项式次数小于分母的，且只小一次，所以我们考虑这样部分分式
+$$
+\frac{1}{2}\int \frac{2x-6}{x^2-6x+13}dx + 8\int \frac{1}{x^2-6x+13}dx = \frac{1}{2}\int \frac{1}{x^2-6x+13}d(x^2-6x+13) + 8\int \frac{1}{4+(x-3)^2}dx,
+$$
+因此原函数为
+$$
+\frac{1}{2}\ln(x^2-6x+13) +  4\arctan \frac{x-3}{2} +C.
+$$
+\end{example}
+
+\begin{example}
+\rm 求
+$$
+\int \frac{x}{x^4+2x^2+5}dx 
+$$
+\hints\ 观察分子多项式次数小于分母，且小两次，所以我们考虑这样部分分式
+$$
+\int \frac{x}{4+(x^2+1)^2}dx = \frac{1}{2}\int \frac{1}{4+(x^2+1)^2}d(x^2+1) = \frac{1}{4}\arctan \frac{x^2+1}{2} + C
+$$
+\end{example}
+
 \subsection{分母带根号}
 
 \begin{example}
@@ -465,6 +491,11 @@ $$
 2\sqrt{e^x +1} + \ln \frac{\sqrt{e^x +1}-1}{\sqrt{e^x +1}+1} +C
 $$
 \end{example}
+
+\subsection{高次}
+
+
+\subsection{分部积分}
 
 \newpage
 \section{tricks}

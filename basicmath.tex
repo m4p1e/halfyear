@@ -2155,6 +2155,23 @@ $$
 $$
 \end{example}
 
+\begin{proposition}
+\rm 常用部分积分法中$u,v$的选取
+\begin{enumerate}
+	\item 把多项式以外的函数凑集微分符号里面
+	$$
+	\int p_n(x)e^{ax}dx, \int p_n(x)\sin \alpha xdx,\int p_n\cos xdx.
+	$$
+	\item 把指数函数凑进微分符号
+	$$
+	\int e^{\alpha x}\sin\beta x dx, \int e^{\alpha x}\cos \beta x dx.
+	$$
+	\item 把多项式凑进微分符号
+	$$
+	\int p_n(x)\ln x dx, \int p_n(x)\arctan x dx, \int p_n(x)\arcsin x dx. 
+	$$
+\end{enumerate}
+\end{proposition}
 
 \begin{proposition}
 \rm {\color{red} (分部积分的推广公式)} 若$u$和$v$在所考虑的区间上有直到$(n+1)$阶的各阶连续导数，那么可以用$v^{(n)}$替换前式中的$v$，则
@@ -2361,6 +2378,128 @@ $$
 \frac{2x^2+2x+13}{(x-2)(x^2+1)^2} = \frac{1}{x-2} + \frac{-x-2}{x^2+1} + \frac{-3x-4}{(x^2+1)^2}.
 $$
 \end{example}
+
+\subsection{三角有理式}
+
+\begin{proposition}
+\rm \redt{万能公式} 令$t = \tan \frac{x}{2}$,
+$$
+\int R(\sin x , \cos x)dx = \int R\left(\frac{2t}{1+t^2},\frac{1-t^2}{1+t^2}\right)\frac{2}{1+t^2}dt,
+$$
+其中$R(\sin x , \cos x)$表示自变量为$\sin x,\cos x$的有理函数.
+\end{proposition}
+
+\begin{proof}
+根据三角函数中的万能公式
+$$
+\begin{array}{ll}
+\sin x = \frac{2\tan \frac{x}{2}}{1+\tan^2\frac{x}{2}} = \frac{2t}{1+t^2} \\
+\cos x = \frac{1-\tan^2 \frac{x}{2}}{1+\tan^2\frac{x}{2}} = \frac{1-t^2}{1+t^2} \\
+\end{array}
+$$
+而$x = 2\arctan t$，所以$dx = \frac{2}{1+t^2}dt$. 
+\end{proof}
+
+\begin{proposition}
+\rm 给定多项式$p_n(x)=a_0 + a_1x^1 + \cdots a_{n}x^n$，若$p_n(x) = p_n(-x)$，则
+$$
+p_n(x) = p_n^*(x^2).
+$$
+\end{proposition}
+
+\begin{proof}
+若$p_n(x) = p_n(-x)$，则
+$$
+p_n(x) - p_n(-x) = 2a_1x + \cdots + 2a_{2m-1}x^{2m-1} = 0.
+$$
+因此
+$$
+q_{n-m}(x) = a_1x + \cdots + a_{2m-1}x^{2m-1} = 0,
+$$
+那么
+$$
+p_n(x) = a_0 + a_2x^{2} + \cdots + a_{2m}x^{2m}  + q_{n-m}(x)
+$$
+显然$p_n(x) = p_n^*(x^2)$. 
+\end{proof}
+
+\begin{proposition}
+\rm $p_n(x)=a_0 + a_1x + \cdots a_{n}x^n$，若$p_n(x) = -p_n(-x)$，则
+$$
+p_n(x) = p_n^{**}(x^2)x.
+$$
+\end{proposition}
+
+\begin{proof}
+若$p_n(x) = -p_n(-x)$，那么
+$$
+p_n(x) + p_n(-x) = 2a_0 + 2a_2x^{2} +\cdots + 2a_{2m}x^{2m} = 0.
+$$
+因此
+$$
+q_{n-m-1}(x) = a_0 + a_2x^2 + \cdots +a_{2m}x^{2m}=0.
+$$
+于是
+$$
+p_n(x) = a_1x + \cdots + a_{2m-1}x^{2m-1} + q_{n-m-1}(x).  
+$$
+显然
+$$
+p_n(x) = p_n^{**}(x^2)x
+$$
+\end{proof}
+
+\begin{corollary}
+\rm 如果
+$$
+R(-u,v) = R(u,v),
+$$
+则这个有理函数可以化为只含$u$的偶次幂的形状
+$$
+R(u,v) = R_1(u^2,v).
+$$
+如果
+$$
+R(-u,v) = -R(u,v),
+$$
+则这个有理函数可以化为
+$$
+R(u,v) = R_2(u^2,v)u.
+$$
+\end{corollary}
+
+\begin{corollary}
+\rm 如果
+$$
+R(-u,-v) = R(u,v),
+$$
+则
+$$
+R(u,v) = R_3(\frac{u}{v},v^2).
+$$
+\end{corollary}
+
+\begin{proposition}
+\rm 特殊凑微分方法
+\begin{enumerate}
+	\item 若$R(-\sin x,\cos x) = - R(\sin x, \cos x)$，此时
+	$$
+	R(\sin x,\cos x)dx = R_2(\sin^2 x, \cos x)\sin x dx = -R_0(1-\cos^2x,\cos x)d\cos x.
+	$$
+	\item 若$R(\sin x,-\cos x) = - R(\sin x, -\cos x)$，此时
+	$$
+	R(\sin x,\cos x)dx = R_2^*(\sin x, \cos^2x )\cos x dx = -R_0^*(\sin x , 1-\sin^2 x)dsinx.
+	$$
+	\item 若$R(-\sin x, -\cos x) = R(\sin x ,\cos x)$ 
+	$$
+	R(\sin x, \cos x)dx = R_3(\tan x,\cos^2 x) = R(\tan x, \frac{1}{1+\tan^2 x})dx,
+	$$
+	令$t = \tan x$，则有
+	$$
+	R(\sin x, \cos x)dx = R\left(t,\frac{1}{1+t^2}\right)\frac{1}{1+t^2}dt. 
+	$$
+\end{enumerate}
+\end{proposition}
 
 \newpage
 \section{定积分}
