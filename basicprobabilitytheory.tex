@@ -403,7 +403,7 @@ $$
 
 
 \begin{proposition}\label{probability-axiom: lemma1}
-\rm 若给定$A_1 \supset A_2 \cdots A_bn \supset \cdots$，则
+\rm 若给定$A_1 \supset A_2 \supset \cdots \supset A_n \supset \cdots$，则
 $$
 P(\lim\limits_{n \to \infty} A_n) = \lim\limits_{n \to \infty} P(A_n). 
 $$
@@ -419,7 +419,7 @@ $$
 $$
 \begin{array}{rl}
 P(A_1-\lim\limits_{n \to \infty} A_n) &=  \sum\limits_{n=1}^{+\infty} \left[P(A_n)-P(A_{n+1})\right] \\
-P(A_1)- P(\lim\limits_{n \to \infty} A_n) &= P(A_1) - \lim\limits_{n \to \infty} A_n \\
+P(A_1)- P(\lim\limits_{n \to \infty} A_n) &= P(A_1) - \lim\limits_{n \to \infty} P(A_n) \\
 P(\lim\limits_{n \to \infty} A_n) &= \lim\limits_{n \to \infty} A_n
 \end{array}
 $$
