@@ -1975,7 +1975,7 @@ $$
 \begin{enumerate}
 	\item $\int 0dx = C$
  	\item $\int x^{\alpha}dx = \frac{1}{\alpha+1}x^{\alpha+1}~(\alpha \neq 0)$ 
-	\item $\int \frac{1}{x} dx = \ln x + C$
+	\item $\int \frac{1}{x} dx = \ln |x| + C$
 	\item $\int a^{x}dx = \frac{a^x}{\ln a} + C$
 	\item $\int e^x dx = e^x + C$
 	\item $\int \sin x dx = -\cos x + C$
@@ -1992,7 +1992,7 @@ $$
 	\item $\int \frac{1}{\sqrt{x^2 + a^2}}dx = \ln(x+\sqrt{x^2 + a^2})+C$
 	\item $\int \frac{1}{\sqrt{x^2 - a^2}}dx = \ln \left| x+ \sqrt{x^2 - a^2}\right|+C$
 	\item $\int \sec x dx = \ln |\sec x + \tan x|+C$
-	\item $\int \csc x dx = -\ln|\csc x + \cos x|+C$
+	\item $\int \csc x dx = -\ln|\csc x + \cot x|+C$
 \end{enumerate}
 \end{proposition}
 
@@ -2034,6 +2034,7 @@ $$
 $$
 \int g(\omega(x))\omega'(x)dx = G(\omega(x)) + C'.
 $$
+其中$\omega(x)$有连续的导函数. 
 \end{proposition}
 
 \begin{proof}
@@ -2492,7 +2493,7 @@ $$
 	$$
 	\item 若$R(-\sin x, -\cos x) = R(\sin x ,\cos x)$ 
 	$$
-	R(\sin x, \cos x)dx = R_3(\tan x,\cos^2 x) = R(\tan x, \frac{1}{1+\tan^2 x})dx,
+	R(\sin x, \cos x)dx = R_3(\tan x,\cos^2 x)dx = R_3(\tan x, \frac{1}{1+\tan^2 x})dx,
 	$$
 	令$t = \tan x$，则有
 	$$
@@ -2500,6 +2501,31 @@ $$
 	$$
 \end{enumerate}
 \end{proposition}
+
+\subsection{根式有理式}
+
+\begin{proposition}
+\rm \redt{根式有理化} 形如
+$$
+\int R(x,\sqrt[n]{\frac{ax+b}{cx+d}})
+$$
+的积分，令$t = \sqrt[n]{\frac{ax+b}{cx+d}}$，那么$x = \varphi(t) = \frac{b-t^nd}{t^nc -a}$，则
+$$
+\int R(\varphi(t),t)\varphi'(t)dt
+$$
+就变成了有理函数的形状. 
+\end{proposition}
+
+\begin{example}
+\rm 求
+$$
+\int \frac{1}{x} \sqrt{\frac{x+1}{x}}dx.
+$$
+令$t = \sqrt{\frac{x+1}{x}}$，那么$x=\frac{1}{t^2-1}, dx = \frac{-2t}{(t^2-1)^2}$，于是
+$$
+\int (t^2 - 1) t \frac{-2t}{(t^2-1)^2} dt = -2\int \frac{t^2}{(t^2-1)}dt = -2 \int 1  + \frac{1}{t^2-1}dt = -2(t  + \frac{1}{2}\ln \left| \frac{t-1}{t+1} \right|) + C. 
+$$
+\end{example}
 
 \newpage
 \section{定积分}

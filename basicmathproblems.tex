@@ -60,6 +60,10 @@
 \newcommand{\vect}[1]{\mathbf{#1}} % vector
 \newcommand{\hints}{{\color{blue} \text{hints}}}
 
+\DeclareMathOperator{\arcsec}{arcsec}%反三角函数
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
 \begin{document}
 \title{考研高数习题集}
 \author{枫聆}
@@ -496,6 +500,79 @@ $$
 
 
 \subsection{分部积分}
+
+\subsection{三角有理式}
+
+\begin{example}
+\rm 求
+$$
+\int \frac{dx}{\cos x(1+\sin x)}.
+$$
+\hints 这里有一个非常巧妙的第二类换元，令$x=\arcsin u$，则
+$$
+\int \frac{1}{\sqrt{1-u^2}(1+u)} \frac{1}{\sqrt{1-u^2}}du = \int \frac{1}{(1+u)(1-u^2)}du .
+$$
+再把有理式拆开，这过程使用待定系数的方法
+$$
+\int \frac{1}{(1+u)(1-u^2)}du = \frac{1}{2}\int \frac{1}{1-u^2} + \frac{1}{(1+u)^2}du  = -\frac{1}{4} \ln \left| \frac{1-u}{1+u} \right| -\frac{1}{2}\frac{1}{(1+u)}. 
+$$
+最后即有
+$$
+-\frac{1}{4} \ln \left|\frac{1-\sin x}{1+\sin x}\right| - \frac{1}{2}\frac{1}{1+\sin x}+C. 
+$$
+\end{example}
+
+\begin{example}
+\rm 求
+$$
+\int \frac{dx}{\sin x(\sin x + \cos x)}.
+$$
+\hints 考虑第二类换元，令$x = \arccot u$，则有
+$$
+- \int \frac{1}{\frac{1}{\sqrt{1+u^2}}(\frac{1}{\sqrt{1+u^2}} + \frac{u}{\sqrt{1+u^2}})} \frac{1}{1+u^2} du = - \int \frac{1}{1+u}du = - \ln |u| + C = -\ln|1+\cot x| + C .
+$$
+
+\end{example}
+
+\subsection{被积函数含不常见函数形式}
+
+\begin{example}
+\rm 求
+$$
+\int \frac{\arcsin e^x}{e^x}dx. 
+$$
+\hints\ 必须得想办法吧$\arcsin e^x$提出来，因为我们没有已知原函数导数为反三角的，这里自然地就要使用部分积分了
+$$
+-\int \arcsin e^x d(e^{-x}) = -\frac{\arcsin e^x}{e^x} + \int e^{-x} \frac{e^x}{\sqrt{1-e^{2x}}}dx = \int \frac{1}{\sqrt{1-e^{2x}}}dx . 
+$$
+这里令$t=\sqrt{1-e^{2x}}$，那么$x = \frac{\ln(1-t^2)}{2},dx = \frac{-t}{1-t^2}dt$，于是
+$$
+\int \frac{1}{t} \frac{-t}{1-t^2}dt = \int\frac{1}{t^2-1}dt =  \frac{1}{2}\ln \left| \frac{t-1}{t+1} \right| + C = \frac{1}{2}\ln  \frac{\sqrt{1-e^{2x}}-1}{\sqrt{1-e^{2x}}+1}  + C.  
+$$
+因此
+$$
+\int \frac{\arcsin e^x}{e^x}dx = -\frac{\arcsin e^x}{e^x} + \frac{1}{2}\ln  \frac{\sqrt{1-e^{2x}}-1}{\sqrt{1-e^{2x}}+1}  + C  
+$$
+\end{example}
+
+\begin{example}
+\rm 求
+$$
+\int \ln\left( 1+\sqrt{\frac{1+x}{x}} \right)dx, x>0
+$$
+\hints 首选分部积分，但是为了为了能部分积分，我们必须先第一类换元，令$t = \sqrt{\frac{1+x}{x}}$，那么$x =\frac{1}{t^2-1}$，于是
+$$
+\int \ln(1+t)d\left(\frac{1}{t^2-1}\right) = \frac{\ln(1+t)}{{t^2-1}}- \int \frac{1}{(1+t)^2(t-1)},
+$$
+其中
+$$
+\int \frac{1}{(1+t)^2(t-1)} = \frac{1}{2}\int \frac{(t+1)-(t-1)}{(1+t)^2(t-1)} = \frac{1}{2} \int \frac{1}{t^2-1} - \frac{1}{(1+t)^2} = \frac{1}{4}\ln\left|\frac{t-1}{t+1} \right| + \frac{1}{2(1+t)} + C. 
+$$
+因此
+$$
+\int \ln\left( 1+\sqrt{\frac{1+x}{x}} \right)dx = \frac{\ln(1+t)}{{t^2-1}} + \frac{1}{4}\ln\left|\frac{t-1}{t+1} \right| + \frac{1}{2(1+t)} + C. 
+$$
+\end{example}
 
 \newpage
 \section{tricks}
