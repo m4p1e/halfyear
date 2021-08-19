@@ -59,6 +59,9 @@
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert} % 范数
 \newcommand{\vect}[1]{\mathbf{#1}} % vector
 \newcommand{\hints}{{\color{blue} \text{hints}}}
+\newcommand{\mbf}[1]{\bm{#1}} 
+\newcommand{\rank}[1]{\text{rank}\left(#1\right)} % rank
+\newcommand\inp[2]{\langle #1, #2 \rangle} %inner product
 
 \begin{document}
 \title{考研高数习题集}
@@ -68,6 +71,21 @@
 
 \section{行列式}
 
+\section{矩阵相似}
+
+\subsection{相似判定}
+
+\begin{proposition}
+\rm 常用判定矩阵相似的方法，遇题依次向下使用下述方法.
+\begin{enumerate}
+	\item 必要条件:相似必行列值相等;
+	\item 必要条件:特征值相等;
+	\item 充分条件: 对于都可对角化的矩阵，判定其特征值是否相同;
+	\item 否命题的充分条件: 一个可对角化，一个不可对角化，则它们不相似;
+	\item 对于都不可对角的矩阵，同一个特征值的特征子空间的维数相同;	
+	\item 对于都不可对角的矩阵，则对应的特征向量满足: 若$\mbf{B}$对应$\lambda$的特征向量$\lambda$，则$\mbf{A}$对应$\lambda$的特征向量为$P\alpha$. 这里需要求出可逆矩阵$P$
+\end{enumerate}
+\end{proposition}
 
 \section{二次型}
 

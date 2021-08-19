@@ -508,7 +508,7 @@ $$
 $$
 \int \frac{dx}{\cos x(1+\sin x)}.
 $$
-\hints 这里有一个非常巧妙的第二类换元，令$x=\arcsin u$，则
+\hints\ 这里有一个非常巧妙的第二类换元，令$x=\arcsin u$，则
 $$
 \int \frac{1}{\sqrt{1-u^2}(1+u)} \frac{1}{\sqrt{1-u^2}}du = \int \frac{1}{(1+u)(1-u^2)}du .
 $$
@@ -527,7 +527,7 @@ $$
 $$
 \int \frac{dx}{\sin x(\sin x + \cos x)}.
 $$
-\hints 考虑第二类换元，令$x = \arccot u$，则有
+\hints\ 考虑第二类换元，令$x = \arccot u$，则有
 $$
 - \int \frac{1}{\frac{1}{\sqrt{1+u^2}}(\frac{1}{\sqrt{1+u^2}} + \frac{u}{\sqrt{1+u^2}})} \frac{1}{1+u^2} du = - \int \frac{1}{1+u}du = - \ln |u| + C = -\ln|1+\cot x| + C .
 $$
@@ -571,6 +571,20 @@ $$
 因此
 $$
 \int \ln\left( 1+\sqrt{\frac{1+x}{x}} \right)dx = \frac{\ln(1+t)}{{t^2-1}} + \frac{1}{4}\ln\left|\frac{t-1}{t+1} \right| + \frac{1}{2(1+t)} + C. 
+$$
+\end{example}
+
+\newpage
+\section{定积分}
+
+\subsection{奇怪的定积分}
+
+\begin{example}
+\rm 设$f(x)=\int_0^{\pi} \frac{\sin t}{\pi-t}dt$，求$\int_0^{\pi}f(x)dx$.
+
+\hints\ 可以用分部积分
+$$
+\int_0^{\pi}f(x)dx =  xf(x)\big\vert_0^{\pi} - \int_{0}^{\pi} xf'(x)dx =  \pi\int_{0}^{\pi} \frac{\sin x}{\pi-x}dx - \int_{0}^{\pi} \frac{\sin x}{\pi-x}dx = \int_{0}^{\pi} \sin x dx = 2. 
 $$
 \end{example}
 
