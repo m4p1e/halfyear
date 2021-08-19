@@ -1769,7 +1769,7 @@ $$
 \rm 给定有限闭区间$[a,b]$上函数$f(x)$，其上所有极大值中最大值(极小值中的最小值)为$f(x)$在$[a,b]$上的{\color{red}最大值(最小值)}.
 \end{definition}
 
-\subsection{凹凸性}
+r3\subsection{凹凸性}
 
 \begin{definition}
 \rm 给定在区间$\mathcal{X}$上定义着的连续函数$f(x)$，若对$\mathcal{X}$上任意两点$x_1,x_2$均满足不等式
@@ -2640,7 +2640,7 @@ $$
 \begin{proof}
 由函数在闭区间上连续，可知$f(x)$在$[a,b]$上一致连续，由其推论可知，给定任意$\varepsilon > 0$，能找到$\delta > 0$，使得把$[a,b]$分隔若干长度$\Delta x_i$小于$\delta$的小区间，则小区间上函数值的振幅小于$\varepsilon$，其用语言描述就是
 $$
-\sum\limits_{i=0}^{n-1} \omega_i \Delta x_i  \sum\limits_{i=0}^{n-1} \varepsilon \Delta x_i = \varepsilon(b-a).
+\sum\limits_{i=0}^{n-1} \omega_i \Delta x_i =  \sum\limits_{i=0}^{n-1} \varepsilon \Delta x_i = \varepsilon(b-a).
 $$
 最后需要回顾极限的定义上，这里只有$\lambda < \delta$，我们再需要说明一下当满足前面条件的同时$\lambda \rightarrow 0$，积分和保持是小于$\sum\limits_{i=0}^{n-1} \varepsilon \Delta x_i$，这是显然的，使用在证明lemma 10.4中的手法说明即可.
 \end{proof}
@@ -2668,7 +2668,7 @@ $$
 $$
 使得$f(b)\neq f(a)$，不然常函数肯定可积. 再让$\lambda < \delta$，即$\Delta x_i < \delta$，那么
 $$
-\sum\limits_{i=0}^{n-1}\omega_i\Delta x_i < \sum\limits_{i=0}^{n-1}\left[f(x_{i+1})-f(x_{i})\right] \delta = \delta\left[ f(b)-f(a) \right] 
+\sum\limits_{i=0}^{n-1}\omega_i\Delta x_i < \sum\limits_{i=0}^{n-1}\left[f(x_{i+1})-f(x_{i})\right] \delta = \varepsilon\left[ f(b)-f(a) \right] 
 $$
 由此可推导$f(x)$可积.
 \end{proof}
@@ -2747,7 +2747,7 @@ $$
 $$
 \frac{1}{b-a}\int_a^b f(x)dx = u,
 $$
-即马上可以得到命题中的结论.
+移项即马上可以得到命题中的结论.
 \end{proof}
 
 \begin{theorem}
@@ -2770,8 +2770,43 @@ $$
 即$u = \frac{\int_a^b f(x)g(x)dx}{\int_a^b g(x)dx}$. 自然地若$f(x)$连续，根据介值定理就可以找到一点$c \in [a,b]$使得$f(c) = u$.
 \end{proof}
 
+\subsection{积分放缩与凹凸性}
 
+\begin{proposition}
+\rm 若$f$是区间$[a,b]$上的凸函数，那么有
+$$
+f\left(\frac{a+b}{2}\right) \leq \frac{\int_a^b f(x)dx}{b-a} \leq \frac{f(a)+f(b)}{2}.
+$$
+即\bluet{中点处函数值$\leq$积分平均值$\leq$函数值中点}.
+\end{proposition}
 
+\begin{proof}
+\rm 先证右侧不等式，若$f$在$[a,b]$上是凸函数，则
+$$
+f(x) \leq f(x)\leq \frac {x-a}{b-a}f(b)+\frac {b-x}{b-a}f(a),\forall x\in [a,b].
+$$
+两边同时积分得到
+$$
+\int_a^b f(x)dx \leq \frac{f(b)}{b-a}(\frac {x^2}{2}-ax)\bigg|_a^b+\frac{f(a)}{b-a}(bx-\frac {x^2}{2})\bigg|_a^b,
+$$
+即
+$$
+\int_a^b f(x)dx \leq (b-a)\left(\frac{f(a)+f(b)}2\right).
+$$
+
+再证左侧不等式，若$f$在$[a,b]$上是凸函数，则
+$$
+\frac{1}{2}f\left(\frac{a+b}{2}+h\right) + \frac{1}{2}f\left(\frac{a+b}{2}-h\right) \geq f\left(\frac{a+b}{2}\right). 
+$$
+两边同时积分得到
+$$
+\int_{0}^{\frac{b-a}{2}} f\left(\frac{a+b}{2}+h\right) + f\left(\frac{a+b}{2}-h\right) \geq f\left(\frac{a+b}{2}\right)(b-a) 
+$$
+左边这个积分拆开换元即有
+$$
+\int_{\frac{a+b}{2}}^{b}f(x)dx + \int_{a}^{\frac{a+b}{2}}f(x)dx  \geq f\left(\frac{a+b}{2}\right)(b-a). 
+$$
+\end{proof}
 
 \subsection{积分上限函数}
 

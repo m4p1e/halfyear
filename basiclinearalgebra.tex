@@ -3283,6 +3283,11 @@ $$
 由proposition \ref{characteristic: subspace-prop1}，可以清晰的感觉到\bluet{不同特征值的特征子空间是distinct的}，那么当前这个命题就很显然了. 
 \end{proof}
 
+\begin{proposition}
+\rm 设$\mbf{A}$和$\mbf{B}$都为$n$阶方阵，则$\mbf{AB}$和$\mbf{BA}$有相同的特征值(特征多项式).
+\end{proposition}
+
+
 \newpage
 \subsection{等价矩阵}
 
@@ -3349,6 +3354,8 @@ $$
 \begin{enumerate}
 	\item $\mbf{A}^n \sim \mbf{B}^n$;
 	\item $\mbf{A}+k\mbf{I} \sim  \mbf{B}+k\mbf{I}$;
+	\item $\mbf{A}^T \sim \mbf{B}^T$;
+	\item 若$\mbf{A}$可逆，则$\mbf{AB} \sim \mbf{BA}$;
 	\item 若$\mbf{A}$可逆，则$\mbf{A}^{-1} \sim \mbf{B}^{-1}$;
 \end{enumerate}
 \end{proposition}
@@ -3364,7 +3371,17 @@ $$
 \mbf{P}^{-1}(\mbf{A}+k\mbf{I})\mbf{P} = \mbf{P}^{-1}\mbf{A}\mbf{P} + k\mbf{P}^{-1}\mbf{I}\mbf{P} = \mbf{B} + k\mbf{I}.
 $$
 
-(3) 由于$\mbf{A}$可逆，所以$\mbf{B}$可逆，那么
+(3)
+$$
+(\mbf{P}^{-1}\mbf{A}\mbf{P})^T =\mbf{P}^{T}\mbf{A}(\mbf{P}^T)^{-1} = \mbf{B}^T.  
+$$ 
+
+(4) 
+$$
+\mbf{A}^{-1}\mbf{AB}\mbf{A} = \mbf{BA}. 
+$$
+
+(5) 由于$\mbf{A}$可逆，所以$\mbf{B}$可逆，那么
 $$
 \mbf{B}^{-1} =(\mbf{P^{-1}}\mbf{A}\mbf{P})^{-1} = \mbf{P}^{-1}\mbf{A}^{-1}\mbf{P}.  
 $$
