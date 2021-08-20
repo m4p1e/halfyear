@@ -2934,8 +2934,6 @@ $$
 \end{proof}
 
 \subsection{定积分的分部积分和换元积分}
-
-
 \begin{proposition}
 \rm {\color{red}定积分的分部积分公式}
 $$
@@ -2972,6 +2970,77 @@ $$
 \int_a^b f(x)dx = F(b)-F(a) = F(\varphi(\beta))-F(\varphi(\alpha)) = \int_\alpha^{\beta} f(\varphi(t))\varphi'(t)dt.
 $$
 \end{proof}
+
+\subsection{参数积分}
+
+\begin{definition}
+\rm 设$f(x,y)$定义在一个矩形区域上$[a,b;c,d]$，若对于每一$y \in [c,d]$, $f(x,y)$在区间$[a,b]$上都可积，则积分
+$$
+I(y) = \int_a^b f(x,y)dx
+$$
+显然是参数为$y$的函数. 
+\end{definition}
+
+\begin{definition}
+\rm 设$f(x,y)$定义在一个矩形区域上$[a,b;c,d]$，取$y_0 \in [c,d]$，若对于函数$f(x,y)$当$y \to y_0$时，有极限
+$$
+\lim\limits_{y \to y_0} f(x,y) = \varphi(x)
+$$
+存在，及对于任意$\varepsilon > 0$，可以找出一个不依赖于$x$的数$\sigma > 0$，当$|y-y_0|< \sigma$时，满足对于任意的$x \in [a,b]$都有
+$$
+|f(x,y)-\varphi(x)|\leq \varepsilon,
+$$
+则称函数$f(x,y)$对于任意$x \in [a,b]$，为\redt{一致趋向于}极限函数$\varphi(x)$. 
+\end{definition}
+
+\begin{theorem}
+\rm 若函数$f(x,y)$当$y$为一常量时对于$[a,b]$上的$x$值可积，并且在$y \to y_0$时对于$x$一致趋于极限函数$\varphi(x)$，则等式
+$$
+\lim\limits_{y \to y_0} I(y) = \lim\limits_{y \to y_0}\int_a^{b} f(x,y)dx = \lim\limits_{y \to y_0} \varphi(x)dx 
+$$
+成立.
+\end{theorem}
+
+\begin{theorem}
+\rm 若函数$f(x,y)$在矩形$[a,b;c,d]$上是确定，且连续的，则积分
+$$
+I(y) = \int_a^b f(x,y)dy
+$$
+在区间$[c,d]$是参数为$y$的连续函数. 
+\end{theorem}
+
+\begin{theorem}
+\rm \redt{第一类参数积分的求导} 设$f(x,y)$定义在一个矩形区域上$[a,b;c,d]$，当固定$y \in [c,d]$时，$f(x,y)$是连续的. 其次假定在矩形区域上偏导数$f_y'(x,y)$存在，同时把$f_y'(x,y)$看成二元函数是，它是连续的，则当$y$在$[c,d]$上为任意值时，有
+$$
+I'(y) = \int_a^b f_y'(x,y)dx.
+$$
+\end{theorem}
+
+\begin{theorem}
+\rm \redt{交换积分次序的条件} 若函数$f(x,y)$在矩形区域$[a,b;c,d]$上连续，则有
+$$
+\int_c^d dy \int_a^b f(x,y)dx = \int_a^b dx \int_c^d f(x,y)dy. 
+$$
+\end{theorem}
+
+\begin{theorem}
+\rm 若函数$f(x,y)$在矩形区域$[a,b;c,d]$上连续，并设曲线
+$$
+x=\alpha(y),y=\beta(y) ~ [c \leq y \leq d]
+$$
+是连续的; 而且它没有落在矩形的界限以外，则积分
+$$
+I(y) = \int_{\alpha(y)}^{\beta(y)} f(x,y)dx
+$$
+是参数$y$在$[c,d]$的连续函数. 
+\end{theorem}
+
+\begin{theorem}
+\rm \redt{第二类参数积分的导数} 若函数$f(x,y)$在矩形区域$[a,b;c,d]$上连续，且有连续偏导数$f_y'(x,y)$，同时导数$\alpha'(y)$与$\beta'(y)$都存在，则$I(y) = \int_{\alpha(y)}^{\beta(y)} f(x,y)dx$的导数为
+$$
+I'(y) = \int_{\alpha(y)}^{\beta(y)} f'_y(x,y)dx + \beta'(y)\cdot f(\beta(y),y)-\alpha'(y)\cdot f(\alpha(y),y). 
+$$
+\end{theorem}
 
 \newpage
 \section{反常积分}
