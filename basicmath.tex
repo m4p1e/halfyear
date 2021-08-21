@@ -3042,6 +3042,45 @@ I'(y) = \int_{\alpha(y)}^{\beta(y)} f'_y(x,y)dx + \beta'(y)\cdot f(\beta(y),y)-\
 $$
 \end{theorem}
 
+\subsection{定积分的应用}
+
+\begin{proposition}
+\rm \redt{由两条光滑曲线围成区域的面积计算} 若平面区域$D$由曲线$y=f(x),y=g(x)(f(x)\geq g(x)),x=a,x=b(a < b$所围成，则平面区域面积为
+$$
+S = \int_a^b [f(x)-g(x)]dx.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{极坐标下的扇形面积计算} 若平面区域$D$由曲线$\rho=\rho(\theta), \theta=\alpha,\theta = \beta$所围成的，则其面积为
+$$
+S = \int_a^b \frac{1}{2}\rho^2(\theta)d\theta 
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{旋转体体积计算} 若区域$D$由曲线$y=f(x)(f(x) \geq 0)$和直线$x=a,x=b$及$x$轴所围成的，则
+\begin{enumerate}
+	\item 区域$D$绕$x$轴旋转一周所得到的旋转体积为
+	$$
+	V_x = \int_{a}^b \pi f(x)^2dx.
+	$$
+	\item 区域$D$绕$y$轴旋转一周所得到的旋转体积为
+	$$
+	V_y = \int_{a}^b 2\pi xf(x)dx. 
+	$$
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{旋转体侧面积计算} 若区域$D$由曲线$y=f(x)(f(x) \geq 0)$和直线$x=a,x=b$及$x$轴所围成的，区域$D$绕$x$轴旋转所得旋转体的侧面积为
+$$
+S = \int_a^b 2\pi f(x)ds = \int_a^b 2\pi f(x) \sqrt{1+{f'}^2(x)}dx.
+$$
+\end{proposition}
+
+
+
 \newpage
 \section{反常积分}
 
@@ -3086,7 +3125,7 @@ $$
 \begin{theorem}
 \rm \rm {\color{red} (正函数相互审敛法2)} 设函数$f(x),g(x)$在区间$[a,+\infty)$上连续，且$f(x)\geq 0,\; g(x) \geq 0$. 若极限
 $$
-\lim\limits_{x \rightarrow + \infty} \frac{f(x)}{g(x)} = K~(0 \leq K \leq +\infty)
+\lim\limits_{x \rightarrow + \infty} \frac{f(x)}{g(x)} = K~(0 <  K <  +\infty)
 $$
 存在，则$\int_a^{+\infty} g(x)dx$和$\int_a^{+\infty} f(x)dx$同时收敛或者同时发散. 
 \end{theorem}
@@ -3108,7 +3147,7 @@ $$
 $$
 f(x) = \frac{\varphi(x)}{x^\lambda}~(\lambda > 0),
 $$
-若$\lambda > 1$，而$\varphi(x) \leq c$($c$是一个非负常数)，则$\int_a^{+\infty}f(x)dx$收敛; 若$\lambda \leq 1$，而$\varphi(x) \geq c \geq 0$，则$\int_a^{+\infty}f(x)dx$发散.
+若$\lambda > 1$，而$\varphi(x) \leq c < + \infty$($c$是一个非负常数)，则$\int_a^{+\infty}f(x)dx$收敛; 若$\lambda \leq 1$，而$\varphi(x) \geq c >  0$，则$\int_a^{+\infty}f(x)dx$发散.
 \end{proposition}
 
 \begin{proof}
@@ -3191,11 +3230,11 @@ $$
 \subsection{无界函数的反常积分收敛判定}
 
 \begin{proposition}
-\rm {\color{red} 柯西判别法} 设定义在$[a,b)$上的无界正函数$f(x)$在任一$[a,A]$区间上都可积，点$b$是它一个奇点. 现在要使$g(x)=(x-b)^\lambda$，若对于充分大的$x$，函数$f(x)$具有如下形式
+\rm {\color{red} 柯西判别法} 设定义在$[a,b)$上的无界正函数$f(x)$在任一$[a,A]$区间上都可积，点$b$是它一个奇点. 现在使$g(x)=(x-b)^\lambda$，若对于充分大接近$b$，函数$f(x)$具有如下形式
 $$
 f(x) = \frac{\varphi(x)}{(x-b)^\lambda}~(\lambda > 0).
 $$
-若$\lambda < 1$，且$\varphi \leq c$($c$是一个常数)，则积分$\int_a^b f(x)dx$收敛; 若$\lambda \geq 1$，且$\varphi \geq c > 0$，则积分$\int_a^b f(x)dx$发散.
+若$\lambda < 1$，且$\varphi \leq c < +\infty$($c$是一个常数)，则积分$\int_a^b f(x)dx$收敛; 若$\lambda \geq 1$，且$\varphi \geq c > 0$，则积分$\int_a^b f(x)dx$发散.
 \end{proposition}
 
 \begin{proof}
@@ -3205,7 +3244,14 @@ $$
 \frac{-1}{\lambda-1}\frac{1}{(x-b)^{\lambda-1}} & \text{if}~\lambda \neq 1
 \end{array} \right.
 $$
-当$\lambda < 1$时，$\lim\limits_{x \rightarrow b} \frac{-1}{\lambda-1}\frac{1}{(x-b)^{\lambda-1}} = 0$，当$\lambda \geq 1$时，$\lim\limits_{x \rightarrow b} \frac{-1}{\lambda-1}\frac{1}{(x-b)^{\lambda-1}} = \infty$.
+当$\lambda < 1$时，
+$$
+\lim\limits_{x \rightarrow b} \frac{-1}{\lambda-1}\frac{1}{(x-b)^{\lambda-1}} = \lim\limits_{x \rightarrow b} \frac{-1}{\lambda-1}{(x-b)^{1-\lambda}} = 0. 
+$$
+当$\lambda \geq 1$时，
+$$
+\lim\limits_{x \rightarrow b} \frac{-1}{\lambda-1}\left(\frac{1}{x-b}\right)^{\lambda-1} = \infty
+$$.
 \end{proof}
 
 \subsection{Gamma函数}
@@ -3935,7 +3981,7 @@ $$
 \end{definition}
 
 \begin{proposition}
-\rm 若曲线$\widehat{AB}$可以用参数方程
+\rm \redt{曲线参数方程表示} 若曲线$\widehat{AB}$可以用参数方程
 $$
 x = \varphi(t), \, y = \psi(t) 
 $$
@@ -3949,7 +3995,62 @@ s_t' = \sqrt{x_t'^2 + y_t'^2}.
 $$
 \end{proposition}
 
+\begin{proposition}
+\rm \redt{曲线的函数表示} 若曲线$\widehat{AB}$可以用方程$y=y(x)$表示，$f(t)$有连续导数. 在$\widehat{AB}$上一点$M$，则$\widehat{AM}$的弧长可以用参变量为$t$的可微分函数$s = s(t)$表示，它的导数为
+$$
+s'(t) = \sqrt{1+y'^2(t)}. 
+$$
+或者，简单地
+$$
+s_t' = \sqrt{1+y'^2}.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{曲线的极坐标表示} 若曲线$\widehat{AB}$可以用极坐标方程
+$$
+\rho = \rho(\theta)
+$$
+表示，在$\widehat{AB}$上一点$M$，则$\widehat{AM}$的弧长可以用参变量为$t$的可微分函数$s = s(t)$表示，它的导数为
+$$
+s_t' = \sqrt{\rho^2(\theta) + \rho'^2(\theta)}.
+$$
+或者，简单地
+$$
+s_t' = \sqrt{\rho^2 + \rho'^2}. 
+$$
+\end{proposition}
+
 \subsection{弧长微分}
+
+\begin{proposition}
+\rm 若曲线$\widehat{AB}$可以用参数方程
+$$
+x = \varphi(t), \, y = \psi(t) 
+$$
+表示. 那么弧长微分为
+$$
+ds = \sqrt{x_t'^2 + y_t'^2}dt
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm  若曲线$\widehat{AB}$可以用方程$y=y(x)$表示. 那么弧长微分为
+$$
+ds = \sqrt{1+y'^2} dx. 
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 若曲线$\widehat{AB}$可以用极坐标方程
+$$
+\rho = \rho(\theta)
+$$
+表示. 那么弧长微分为
+$$
+ds = \sqrt{\rho^2+\rho'^2}d\theta
+$$
+\end{proposition}
 
 \subsection{曲率}
 

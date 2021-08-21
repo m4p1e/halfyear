@@ -371,6 +371,24 @@ $$
 $$
 \end{example}
 
+\subsection{含积分的极限}
+
+%https://math.stackexchange.com/questions/4228847/how-to-calculate-lim-x-to-0-frac-int-0x-sqrtx-tetdt-sqrtx3
+\begin{example}
+\rm 求极限
+$$
+\lim _{x\to 0^+} \frac{\int _0^x\sqrt{x-t}e^tdt}{\sqrt{x^3}}
+$$
+\hints\ 这样的含参数积分最好的办法就是洛必达，但是这里首先需要换元一下，令$u = x-t$，则
+$$
+\int _0^x\sqrt{x-t}e^tdt = \int_{0}^x \sqrt{u}e^{x-u}du = e^x \sqrt{u}e^{-u}du.
+$$
+再用洛必达
+$$
+\lim _{x\to 0^+} = \frac{e^x \sqrt{u}e^{-u}du}{x^{\frac{3}{2}}}  = \lim _{x\to 0^+} \frac{( \int_{0}^x \sqrt{u}e^{-u}du)'}{(x^{\frac{3}{2}})'} = \frac{x^{\frac{1}{2}}e^{-x}}{\frac{3}{2}x^{\frac{1}{2}}} = \frac{2}{3}.
+$$
+\end{example}
+
 \section{导数}
 
 \subsection{导数定义相关的}
@@ -577,6 +595,25 @@ $$
 \newpage
 \section{定积分}
 
+
+
+\subsection{参数积分求导}
+
+\begin{example}
+\rm 设$f(x)$连续，求
+$$
+\frac{d}{dx}\int_0^x tf(x^2-t^2)dt.
+$$
+\hints\ 对于这种第二类的参数积分，对于有比较简洁的结果的，首先应该换元试试，令$u = x^2 - t^2$，那么即有
+$$
+-\frac{1}{2}\int_{x^2}^{0} f(u)du = \frac{1}{2}\int_{0}^{x^2} f(u)du 
+$$
+因此
+$$
+\frac{1}{2}\frac{d}{dx}\int_{0}^{x^2} f(u)du = xf(x^2). 
+$$
+\end{example}
+
 \subsection{奇怪的定积分}
 
 \begin{example}
@@ -586,6 +623,62 @@ $$
 $$
 \int_0^{\pi}f(x)dx =  xf(x)\big\vert_0^{\pi} - \int_{0}^{\pi} xf'(x)dx =  \pi\int_{0}^{\pi} \frac{\sin x}{\pi-x}dx - \int_{0}^{\pi} \frac{\sin x}{\pi-x}dx = \int_{0}^{\pi} \sin x dx = 2. 
 $$
+\end{example}
+
+\newpage
+\section{反常积分}
+
+\subsection{含有$e^x$的被积函数}
+
+\begin{example}
+\rm 讨论下述积分的收敛性
+$$
+\int_a^{+\infty} x^\mu e^{-ax}dx ~ (\mu,a > 0).
+$$
+\hints 比较审敛法，取任意的$\lambda > 1$，即$\frac{1}{x^\lambda}$是收敛的，于是
+$$
+\lim\limits_{x \to +\infty} \frac{x^\mu e^{-ax}}{\frac{1}{x^\lambda}} = \frac{x^{u+\lambda}}{e^{ax}} = 0,
+$$
+因此原无穷积分也是收敛的. 
+\end{example}
+
+\begin{example}
+\rm 讨论下述积分的收敛性
+$$
+\int_0^{+\infty} \frac{xdx}{\sqrt{e^{2x}-1}}.
+$$
+\hints 这里需要注意两个上下积分限都需要考察，我们可以将上述积分划分为
+$$
+\int_0^{+\infty} \frac{xdx}{\sqrt{e^{2x}-1}} = \int_0^{A} \frac{xdx}{\sqrt{e^{2x}-1}} + \int_A^{+\infty} \frac{xdx}{\sqrt{e^{2x}-1}},
+$$
+其中$A \in (0,+\infty)$. 当$x \to 0$时，取$0 < \lambda < 1$，于是
+$$
+\lim\limits_{x \to 0} \frac{\frac{x}{\sqrt{e^{2x}-1}}}{\frac{1}{x}^\lambda} = \frac{x^{1+\lambda}}{\sqrt{e^{2x}-1}} = 0,
+$$
+即积分$\int_0^{A} \frac{xdx}{\sqrt{e^{2x}-1}}$是收敛的. 当$x \to \infty$时，取$\lambda > 1$，于是
+$$
+\lim\limits_{x \to \infty} \frac{\frac{x}{\sqrt{e^{2x}-1}}}{\frac{1}{x}^\lambda} =  \frac{1}{\sqrt{e^{2x}\cdot x^{-(2\lambda+2)-x^{-(2\lambda+2)}}}} = 0,
+$$
+\end{example}
+
+\subsection{待定参数}
+
+\begin{example}
+\rm 反常积分
+$$
+\int_0^{+\infty} \frac{1}{x^a(1+x)^b}dx
+$$
+收敛，求$a,b$.
+
+\hints\ 这道题还是用柯西审敛法，注意要同时考虑积分上下限. 当$x \to +\infty$，那么就要和$\frac{1}{x^{\lambda}}(\lambda >1)$比较， 于是有
+$$
+\lim\limits_{x \to \infty} \frac{\frac{1}{x^a(1+x)^b}}{\frac{1}{x^{\lambda}}} = \frac{x^{\lambda-(a+b)}}{(\frac{1}{x}+1)^b},
+$$
+其中分母是趋于$0$，为保证分子不趋于无穷，则需要$\lambda < (a+b)$，即$a+b > 1$. 当$x \to 0$时，那么就要和$\frac{1}{x^{\lambda}}(\lambda < 1)$比较， 于是有
+$$
+\lim\limits_{x \to \infty} \frac{\frac{1}{x^a(1+x)^b}}{\frac{1}{x^{\lambda}}} = \frac{1}{x^{a-\lambda}(1+x)^b},
+$$
+其中$(1+x)^b \to 0$，则$a < \lambda$，即$a < 1$.
 \end{example}
 
 \newpage
