@@ -1529,6 +1529,49 @@ $$
 上面两步是求一个基础解系的方法. 下面需要证明$\eta_1,\eta_2,\cdots,\eta_{n-r}$可以线性表出原线性方程组的所有解.
 \end{proof}
 
+\begin{example}
+\rm \redt{已知基础解系求原方程组} 设$\mbf{A}=(\mbf{\alpha}_1,\mbf{\alpha}_2,\mbf{\alpha}_3,\mbf{\alpha}_4)$，给定$\mbf{A}\mbf{x} = 0$的基础解系为$\mbf{\xi}_1 = [1,0,2,3]^T, \mbf{\xi}_2=[0,1,-1,1]^T$. 
+
+\begin{enumerate}
+	\item 首先确定原系数矩阵的秩为$2$，即$\mbf{\alpha}_1,\mbf{\alpha}_2,\mbf{\alpha}_3,\mbf{\alpha}_4$的向量组的秩为$2$.
+	\item 确定一个$\mbf{\alpha}_1,\mbf{\alpha}_2,\mbf{\alpha}_3,\mbf{\alpha}_4$的极大线性无关组. 由$\mbf{A}\mbf{\xi}_1 = \mbf{0}$和$\mbf{A}\mbf{\xi}_2=\mbf{0}$可知
+	$$
+	\left \{
+	\begin{array}{ll}
+	\mbf{\alpha}_1 + 2\mbf{\alpha}_3 + 3\mbf{\alpha}_4 = \mbf{0} \\
+	\mbf{\alpha}_2 - \mbf{\alpha}_3 + \mbf{\alpha}_4 = \mbf{0}
+	\end{array} \right .
+	\Rightarrow \left \{
+	\begin{array}{ll}
+	\mbf{\alpha}_1  =  -2\mbf{\alpha}_3 - 3\mbf{\alpha}_4 \\
+	\mbf{\alpha}_2 = \mbf{\alpha}_3 - \mbf{\alpha}_4 
+	\end{array} \right .
+	$$
+	即$\mbf{\alpha}_3,\mbf{\alpha}_4$是一个极大线性无关组.
+	\item 设$\mbf{\alpha}_3 = (1,0,0,0),\mbf{\alpha}_4 = (0,1,0,0)$，注意这里我们假设$\mbf{A}$被化成了最简行阶梯形. 于是
+	$$
+	\mbf{\alpha}_1 = (-2,-3,0,0), \mbf{\alpha}_2 = (1,-1,0,0).
+	$$
+	因此得到的最简行阶梯形系数矩阵为
+	$$
+	\begin{pmatrix}
+	-2 & 1 & 1 & 0 \\
+	-3 & -1 & 0 & 1 \\
+	0 & 0 & 0 & 0 \\
+	0 & 0 & 0 & 0 
+	\end{pmatrix}
+	$$
+	即原方程组为
+	$$
+	\left \{
+	\begin{array}{ll}
+	-2x_1 + x_2 + x_3 = 0 \\
+	-3x_2 -x_2 + x_4 = 0
+	\end{array} \right.
+	$$ 
+\end{enumerate}
+\end{example}
+
 \subsection{非齐次线性方程组解集结构}
 
 \begin{lemma}
