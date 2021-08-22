@@ -3080,6 +3080,16 @@ $$
 \end{proposition}
 
 
+\begin{proposition}
+\rm 物理知识补充
+\begin{enumerate}
+	\item 变力做功 $W=Fx$.
+	\item 重力做功公式 $W=mgh$;
+	\item 压强公式 $P = \rho gh, F = PS$; 液体在容器内对各个方向的压强相同，压强随深度成正比为$P = \rho gh$. 
+	\item 引力公式 $F = G \frac{m_1m_2}{r^2}$;	
+\end{enumerate}
+\end{proposition}
+
 
 \newpage
 \section{反常积分}
@@ -3313,6 +3323,151 @@ $$
 $$
 \end{proposition}
 
+\newpage
+\section{微分方程和隐函数}
+
+\subsection{隐函数}
+
+\begin{definition}
+\rm 若函数$y=f(x)$是由方程
+$$
+F(x,y) = 0
+$$
+所给定的，则称$y=f(x)$为一元隐函数. 
+\end{definition}
+
+\begin{definition}
+\rm \redt{单值隐函数} 在矩形$[a,b;c,d]$内方程$F(x,y)=0$确定$y$为$x$的单值函数，如果对于区间$(a,b)$内的$x$的每一值，在区间$(c,d)$内其方程有且仅有一个根$y$. 
+\end{definition}
+
+\begin{theorem}
+\rm \redt{单值连续隐函数存在的条件}
+\begin{enumerate}
+	\item 假定函数$F(x,y)$在以点$(x_0,y_0)$为中心的某一邻域中有定义而且连续; 
+	\item $F(x,y)$在这点等于零，即$F(x_0,y_0)=0$;
+	\item 当$x$为常数时，函数$F(x,y)$随着$y$的增大而单调增大(或者单调减少).
+\end{enumerate}
+那么在点$(x_0,y_0)$的某一邻域内，方程$F(x,y)=0$确定$y$为$x$的单值函数$y=f(x)$， 当$x=x_0$时这函数具有数值$y_0 = f(x_0)$，且$f(x)$是连续函数. 
+\end{theorem}
+
+\subsection{微分方程基本概念}
+
+\begin{definition}
+\rm 含有未知函数的导数或者微分的方程称为\redt{微分方程}，简称方程.
+\end{definition}
+
+\begin{definition}
+\rm 微分方程中所出现的未知函数最高阶导数的阶数，称为微分方程的\redt{阶}.
+\end{definition}
+
+\begin{definition}
+\rm 满足微分方程的函数，称为该方程的\redt{解}.
+\end{definition}
+
+\begin{definition}
+\rm 如果微分方程的解中含有任意常数，且任意常数的个数与微分方程的阶数相同，则称之为微分方程的\redt{通解}.
+\end{definition}
+
+\begin{definition}
+\rm 微分方程的不含任意常数的解，称之为\redt{特解}.
+\end{definition}
+
+\begin{definition}
+\rm 用于确定特解的一组常数称为\redt{初始条件}. 
+\end{definition}
+
+\begin{definition}
+\rm 方程的一个解在平面上对应一条曲线，称为该微分方程的\redt{积分曲线}. 
+\end{definition}
+
+\subsection{一阶微分方程}
+
+\begin{definition}
+\rm 形如
+$$
+y'=f(x,y)
+$$
+的微分方程，称为一阶微分方程. 也可以写作
+$$
+\frac{dy}{dx} = f(x,y).
+$$
+\end{definition}
+
+\begin{definition}
+\rm \redt{可分离变量的方程} 若一阶方程可以写作
+$$
+g(y)dy = f(x)dx,
+$$
+则原方程称为可分离变量的微分方程. 若$g(y),f(x)$，此时两边同时积分，原方程的解与$G(Y)=F(x)+C$同解，这个方程对应的隐函数就是原方程的解.
+\end{definition}
+
+\begin{definition}
+\rm \redt{齐次方程} 形如
+$$
+\frac{dy}{dx} = \varphi(\frac{y}{x})
+$$
+的微分方程，称为齐次微分方程. 此时令$u = \frac{y}{x}$，则$y' = u+xu'$，从而原方程化为
+$$
+xu' = \varphi(u) - u,
+$$
+此方程为可分离变量的方程. 
+\end{definition}
+
+\begin{definition}
+\rm \redt{一阶线性方程} 形如
+$$
+y'+P(x)y = Q(x)
+$$
+的微分方程，称为一阶线性微分方程. 其通解为
+$$
+y= Ce^{-\int P(x)dx } + e^{-\int P(x)dx }\int Q(x)e^{\int P(x)dx}. 
+$$
+其中$Ce^{-\int P(x)dx }$是齐次线性方程$y'+P(x)y=0$的通解，而$e^{-\int P(x)dx }\int Q(x)e^{\int P(x)dx}$是$y'+P(x)y=Q(x)$的一个特解. 
+\end{definition}
+
+
+\begin{definition}
+\rm 形如
+$$
+y' +p(x)y=Q(x)y^n
+$$
+\end{definition}
+
+\begin{annotation}
+\rm \redt{常微分方程是否加绝对值} 例如方程$\frac{dy}{dx} = \frac{y}{x}$, 我们有
+$$
+\int \frac{dy}{y} = \int \frac{dx}{x} \Rightarrow \ln |y| = \ln |x| + C_1. 
+$$
+我们可以来分情况讨论$x$和$y$的取值，即
+\begin{enumerate}
+	\item 当$x > 0, y > 0$时，我们有
+	$$
+	\ln y = \ln x + C_1 \Rightarrow y = C_2 x.
+	$$
+	\item 当$x < 0, y > 0$时，我们有
+	$$
+	\ln y = \ln -x + C_1 \Rightarrow y = C_3 x.
+	$$
+	\item 当$x > 0 , y < 0$时，我们有
+	$$
+	\ln -y = \ln x + C_1 \Rightarrow y= C_4 x.
+	$$
+	\item 当$x < 0, y < 0$时，我们有
+	$$
+	\ln -y = \ln -1x + C_1 \Rightarrow y = C_5 x.
+	$$
+	\item 当$y = 0$时，我们有
+	$$
+	y = 0 \Rightarrow y = 0 \cdot x.
+	$$
+\end{enumerate}
+因此所有情况的解函数都可以写成$y = Cx$，相当于这个常数$C$把绝对值抵消掉了. 
+\end{annotation}
+
+\subsection{高阶微分方程}
+
+
+\newpage
 \section{多元函数微分}
 
 \subsection{多元函数的极限}
@@ -4052,6 +4207,38 @@ ds = \sqrt{\rho^2+\rho'^2}d\theta
 $$
 \end{proposition}
 
+\subsection{质心和形心}
+
+\begin{proposition}
+\rm 设平面曲线$L$, 其密度函数为$f(x,y)$，则曲线的质心$(\overline{x},\overline{y})$为
+$$
+\overline{x} = \frac{\int_L xf(x,y)ds}{\int_L f(x,y)ds}, \overline{y} = \frac{\int_L yf(x,y)ds}{\int_L f(x,y)ds}.
+$$
+类似地，可以推广到空间曲线
+$$
+\overline{x} = \frac{\int_L xf(x,y,z)ds}{\int_L f(x,y,z)ds}, \overline{y} = \frac{\int_L yf(x,y,z)ds}{\int_L f(x,y,z)ds},
+\overline{y} = \frac{\int_L zf(x,y,z)ds}{\int_L f(x,y,z)ds}.
+$$
+若密度函数是一个常数，即密度是均匀的，则$L$的形心为
+$$
+\overline{x} = \frac{\int_L xds}{\int_L f(x,y,z)ds}, \overline{y} = \frac{\int_L yds}{\int_L f(x,y,z)ds},
+\overline{y} = \frac{\int_L zds}{\int_L f(x,y,z)ds}.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 设封闭区域$D$，其密度函数为$f(x,y)$，则区域的质心为$(\overline{x},\overline{y})$为
+$$
+\overline{x} = \frac{\int\int_D xf(x,y)d\sigma}{\int\int_D f(x,y)d\sigma}, \overline{y} = \frac{\int\int_D yf(x,y)d\sigma}{\int\int_D f(x,y)d\sigma}.
+$$
+类似地，可以推广到空间区域$V$，则$V$的质心为
+$$
+\overline{x} = \frac{\int\int\int_V xf(x,y,z)d\sigma}{\int\int_D f(x,y)d\sigma}, 
+\overline{y} = \frac{\int\int\int_V yf(x,y,z)d\sigma}{\int\int_D f(x,y)d\sigma},
+\overline{z} = \frac{\int\int\int_V zf(x,y,z)d\sigma}{\int\int_D f(x,y,z)d\sigma}.
+$$
+\end{proposition}
+
 \subsection{曲率}
 
 \subsection{坐标轴下的体积}
@@ -4087,6 +4274,7 @@ $$
 \int_{L_{AB}} f(x,y)ds = \int_{L_{BA}} f(x,y)ds
 $$
 \end{proposition}
+
 
 \begin{proposition}
 \rm \redt{化为普通一元定积分} 若平面曲线$L$用$\widehat{AB}$表示，且$\widehat{AB}$上任意一点$M$的位置也由$\widehat{AM}$的弧长来唯一确定，那么$L$可由参数方程
