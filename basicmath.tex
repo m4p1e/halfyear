@@ -3422,19 +3422,32 @@ $$
 $$
 y= Ce^{-\int P(x)dx } + e^{-\int P(x)dx }\int Q(x)e^{\int P(x)dx}. 
 $$
-其中$Ce^{-\int P(x)dx }$是齐次线性方程$y'+P(x)y=0$的通解，而$e^{-\int P(x)dx }\int Q(x)e^{\int P(x)dx}$是$y'+P(x)y=Q(x)$的一个特解. 
-\end{definition}
-
-
-\begin{definition}
-\rm 形如
-$$
-y' +p(x)y=Q(x)y^n
-$$
+其中$Ce^{-\int P(x)dx }$是齐次线性方程$y'+P(x)y=0$的通解，而$e^{-\int P(x)dx }\int Q(x)e^{\int P(x)dx}$是$y'+P(x)y=Q(x)$的一个特解. \bluet{使用通解时需要注意确定$P(x)$和$Q(x)$!}
 \end{definition}
 
 \begin{annotation}
-\rm \redt{常微分方程是否加绝对值} 例如方程$\frac{dy}{dx} = \frac{y}{x}$, 我们有
+\rm \redt{一阶线性方程通项绝对值是否去掉} 若$-\int P(x)dx = |g(x,y)|$，这里能否去掉绝对值取决于$P(x)$中的常数系数$a$. 若$a$是无理数，或者$a$是$\pm \frac{1}{2},\pm \frac{1}{4},\cdots$等偶分母分数时，绝对值是不可以去掉的. 反之其余情况可以去掉. 
+\end{annotation}
+
+
+\begin{definition}
+\rm \redt{伯努利方程} 形如
+$$
+y' +p(x)y=Q(x)y^n
+$$
+的微分方程，称为伯努利微分方程. 将方程两端除以$y^n$，有
+$$
+y^{-n} \frac{dy}{dx} + P(x)y^{1-n} = Q(x).
+$$
+此时令$u = y^{1-n}$，则有
+$$
+\frac{du}{dx} + (1-n)P(x)u = (1-n)Q(x).
+$$
+从而化为一阶线性方程. 
+\end{definition}
+
+\begin{annotation}
+\rm \redt{一般情况下常微分方程是否加绝对值} 例如方程$\frac{dy}{dx} = \frac{y}{x}$, 我们有
 $$
 \int \frac{dy}{y} = \int \frac{dx}{x} \Rightarrow \ln |y| = \ln |x| + C_1. 
 $$
@@ -3462,6 +3475,12 @@ $$
 	$$
 \end{enumerate}
 因此所有情况的解函数都可以写成$y = Cx$，相当于这个常数$C$把绝对值抵消掉了. 
+
+例如$2\frac{dy}{dx} = \frac{y}{x}$，其可以化为
+$$
+y^2 = C|X|,
+$$
+当$x > 0, y > 0$时，有$y = C_1\sqrt{X}$; 当$x < 0, y >0$时，有$y=C_1\sqrt{-X}$. 显然两者的区别并不是一个常数因子. 
 \end{annotation}
 
 \subsection{高阶微分方程}
