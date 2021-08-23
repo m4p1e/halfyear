@@ -3365,7 +3365,7 @@ $$
 \end{definition}
 
 \begin{definition}
-\rm 如果微分方程的解中含有任意常数，且任意常数的个数与微分方程的阶数相同，则称之为微分方程的\redt{通解}.
+\rm 如果微分方程的解中含有任意常数，且任意常数的个数与微分方程的阶数相同，则称之为微分方程的\redt{通解}. 
 \end{definition}
 
 \begin{definition}
@@ -3484,6 +3484,240 @@ $$
 \end{annotation}
 
 \subsection{高阶微分方程}
+
+
+\begin{proposition}
+\rm \redt{可降阶的高阶微分方程} 形如
+$$
+y^{(n)}=f(x)
+$$
+的微分方程，将$y^{(n-1)}$作为未知函数，就化为了一阶微分方程. 此时只需要两边同时$n$次积分，即可得带有$n$个任意常数的通解.  
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{可降阶的高阶微分方程} 形如
+$$
+y'' = f(x,y')
+$$
+的微分方程. 此时令$p=y'$，则有
+$$
+p' = f(x,p),
+$$
+就化为了一个一阶微分方程. 
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{可降阶的高阶微分方程} 形如
+$$
+y'' = f(y,y')
+$$
+的微分方程，此时令$p = y', p \frac{dp}{dy} = y''$ ，则有
+$$
+p \frac{dp}{dy} = f(y,p),
+$$
+这是一个关于$y,p$的一阶微方程. 
+\end{proposition}
+
+\subsection{线性方程解的结构}
+
+\begin{definition}
+\rm 形如
+$$
+y''+P(x)y'+Q(x)y = 0
+$$
+的微分方程，则称为\redt{二阶齐次线性微分方程}.
+\end{definition}
+
+\begin{proposition}
+\rm 若函数$y_1(x)$与$y_2(x)$是二阶齐次线性微分方程的两个解，那么
+$$
+y = C_1y_1(x) + C_2y_2(x)
+$$
+也是方程的解，其中$C_1,C_2$是任意常数. 
+\end{proposition}
+
+\begin{definition}
+\rm 设$y_1(x),y_2(x),\cdots,y_n(x)$为定义在区间$I$上的$n$个函数，如果存在$n$个不全为零的常数$k_1,k_2,\cdots,k_n$，使得当$x \in I$时恒有
+$$
+k_1 y_1 + k_2y_2 +\cdots + k_ny_n \equiv 0
+$$
+成立，那么称这$n$个函数在区间$I$上\redt{线性相关}; 否则\redt{线性无关}. 
+\end{definition}
+
+\begin{proposition}
+\rm 两个函数之比不为常数则它们是线性无关的. 
+\end{proposition}
+
+\begin{proposition}
+\rm 如果$y_1(x)$与$y_2(x)$是二阶齐次线性微分方程的两个线性无关的特解，那么
+$$
+y = C_1y_1(x) + C_2y_2(x)
+$$
+就是方程的通解. 
+\end{proposition}
+
+\begin{corollary}
+\rm \redt{齐次线性方程的通解} 如果$y_1(x),y_2(x),\cdots,y_n(x)$是$n$阶齐次线性方程
+$$
+y^{(n)} + a_1(x)y^{(n-1)} + \cdots + a_{n-1}y' + a_n(x)y = 0
+$$
+的$n$个线性无关的解，那么，此方程的通解为
+$$
+y = C_1y_1(x) + C_2y_2(x) + \cdots + C_ny_n(x),
+$$
+其中$C_1,C_2,\cdots,C_n$为任意常数. 
+\end{corollary}
+
+\begin{proposition}
+\rm \redt{非齐次线性方程的通解} 设$y^*(x)$是二阶非齐次线性方程组
+$$
+y'' + P(x)y' + Q(x)y = f(x)
+$$
+的一个特解. $Y(x)$是其导出二阶齐次线性方程组的通解，则
+$$
+y = Y(x) + y^*(x)
+$$
+是二阶非齐次线性微分方程的通解. 
+\end{proposition}
+
+
+\begin{proposition}
+\rm \redt{叠加原理} 设非齐次线性方程的右端$f(x)$是两个函数之和，即
+$$
+y'' + P(x)y' + Q(x)y = f_1(x) + f_2(x),
+$$
+而$y^*_1(x)$与$y^*_2(x)$分别是方程
+$$
+y'' + P(x)y' + Q(x)y = f_1(x)
+$$
+与
+$$
+y'' + P(x)y' + Q(x)y = f_2(x) 
+$$
+的特解，则$y^*_1(x)+y^*_2(x)$就是原方程的特解. 
+\end{proposition}
+
+\begin{definition}
+\rm 在二阶齐次线性微分方程
+$$
+y'' + P(x)y' + Q(x)y = 0
+$$
+中，如果$y',y$的系数$P(x),Q(x)$均为常数，即
+$$
+y'' + py' + qy =0,
+$$
+其中$p,q$均为常数，那么称为\redt{二阶常系数齐次微分方程}. 如果$p,q$不全为常数，称为\redt{二阶变系数齐次线性微分方程}.   
+\end{definition}
+
+\begin{definition}
+\rm 设$y=e^{rx}$，其中$r$为常数. 将$y$带入二阶常系数齐次微分方程，有
+$$
+(r^2+pr+q)e^{rx} = 0.
+$$
+若$r$满足方程$r^2+pr+q$，则$e^{rx}$就是微分方程的解，我们称方程$r^2+pr+q$叫做原微分方程的\redt{特征方程}.
+\end{definition}
+
+\begin{proposition}
+\rm \redt{特征方程的解与原微分方程通解的关系}如下
+\begin{enumerate}
+	\item 若$r_1 \neq r_2$，则通解为$y = C_1e^{r_1x}+C_2e^{r_2x}$.
+	\item 若$r_1 = r_2$，则通解为$y = (C_1 + C_2x)e^{r_1x}$.
+	\item 若$r_1 = \alpha + \beta i , r_2 = \alpha - \beta i$，则通解为$y = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+\rm $n$阶常系数齐次线性微分方程，不同根对应的解如下
+\begin{enumerate}
+	\item 单个实根$r$ : 给出一项$Ce^{rx}$;
+	\item 一对单复根$r_{1,2} = \alpha \pm \beta i$ : 给出两项$e^{\alpha x}(C_1\cos \beta x + C_2\sin \beta x)$;
+	\item $k$重实根$r$ : 给出$k$项$e^{rx}(C_1 + C_2x + \cdots + C_kx^{k-1})$;
+	\item 一对$k$重复根$r_{1,2} = \alpha \pm \beta i$ : 给出$2k$项$e^{\alpha x}[(C_1+C_2 +\cdots +C_kx^{k-1})\cos \beta x + (D_1+D_2 +\cdots +D_kx^{k-1})\sin \beta x]$
+\end{enumerate}
+\end{corollary}
+
+\begin{definition}
+\rm \redt{二阶常系数非齐次线性微分方程}的一般形式是
+$$
+y''+py' +qy = f(x),
+$$
+其中$p,q$均为常数. 
+\end{definition}
+
+\begin{proposition}
+\rm \redt{待定系数法} 形如
+$$
+y''+py' +qy = e^{\lambda x}P_m(x)
+$$
+的方程，其中$\lambda$为常数. 设$y^* = R(x)e^{\lambda x}$，求${y^*}'$及${y^*}''$带入原方程，则有
+$$
+R''(X) + (2\lambda + p)R'(x) + (\lambda^2 + p\lambda +q)R(x) = P_m(x).
+$$
+分三种情况讨论
+\begin{enumerate}
+	\item 若$\lambda$不是特征方程$r^2+pr+q$的根，要是两端相等则$R(x) = R_m(x)$，即
+	$$
+	R_m(x) = b_0 x^{m} + \cdots + b_{m-1}x+ bm,
+	$$ 
+	带入上式，比较等式两端相同幂系数的项系数，就可以得到一个$m+1$个方程组，从而求得一个特解$y^* = R_m(x)e^{\lambda x}$. 
+	\item 若$\lambda$是特征方程$r^2 + pr+ q$的单根，即$\lambda^2 + p\lambda +q =0$，但$2\lambda+p \neq 0$，此时要使原方程两端相等，则$R'(x)$必须是$m$次多项式，此时有
+	$$
+	R(x) = xR_m(x).
+	$$
+	\item 若$\lambda$是特征方程$r^2 + pr + q$的重根，此时要使原方程两端相等，则$R''(x)$必须是$m$次多项式，此时有
+	$$
+	R(x) = x^2R_m(x).
+	$$
+\end{enumerate}
+综上原方程具有形如
+$$
+y^* = x^kR_m(x)e^{\lambda x}.
+$$
+的特解，其中$k$是按$\lambda$不是特征方程的根，是特征方程的单根或者特征方程的重根依次取$0,1,2$. 
+\end{proposition}
+
+
+\begin{proposition}
+\rm \redt{待定系数法} 形如
+$$
+y''+py' +qy = e^{\lambda x}[P_l(x)\cos \omega x + Q_n(x)\sin \omega x]
+$$
+的方程，其中$\lambda,\omega$均为常数，$\omega \neq 0$，且$P_l(x),Q_n(x)$不全为零. 则原方程的特解可设为
+$$
+y^* = x^ke^{\lambda x}[R_m^{(1)}(x)\cos\omega x + R_m^{(2)}(x)\sin\omega x],
+$$
+其中$R_m^{(1)}(x),R_m^{(2)}(x)$是$m$次多项式，$m=\max\{l,n\}$，而$k$按$\lambda + i\omega$(或者$\lambda-i\omega$)不是特征方程的根，或是特征的单根依次取$0$和$1$. 
+\end{proposition}
+
+\begin{definition}
+\rm 形如
+$$
+x^ny^{(n)} + p_1x^{(n-1)}y^{(n-1)} + \cdots + p_{n-1}xy' + p_ny =f(x).
+$$
+的方程，其中$p_1,p_2,\cdots,p_n$均为常数，叫做\redt{欧拉方程}. 
+\end{definition}
+
+\begin{annotation}
+\rm 作变换$x=e^t$或者$t = ln x$(与$x < 0$时所得结果一致)，则有
+$$
+\begin{array}{ll}
+\frac{dy}{dx} = \frac{dy}{dt}\frac{dt}{dx} = \frac{1}{x} \frac{dy}{dt} \\
+\frac{d^2y}{dx^2} = \frac{d}{dx}\left(\frac{1}{x}\frac{dy}{dt}\right) =  -\frac{1}{x^2} \frac{dy}{dt} + \frac{1}{x}\frac{d(\frac{dy}{dx})}{dt} \frac{dt}{dx} = \frac{1}{x^2}(\frac{d^2y}{dx^2}-\frac{dy}{dt}). \\
+\frac{d^3y}{dx^3} = \frac{1}{x^3}(\frac{d^3y}{dt^3} - 3 \frac{d^2y}{dt^2} + 2\frac{dy}{dt}).
+\end{array}
+$$
+采用记号$D$表示对$t$求导的运算$\frac{d}{dt}$，于是有
+$$
+\begin{array}{ll}
+xy' = Dy \\
+xy'' = D^2y - Dy = D(D-1)y \\
+xy''' = D^3y - 3D^2y + 2Dy  = D(D-1)(D-2)y \\
+\cdots \\
+x^ky^{(k)} = D(D-1)\cdots D(D-k+1)y.
+\end{array}
+$$
+将它们带入欧拉方程，便得到一个以$t$为自变量的常系数线性微分方程. 在求出一个方程的解后，把$t$换成$\ln x$，即可得到原方程的解. 
+\end{annotation}
 
 
 \newpage
