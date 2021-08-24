@@ -64,6 +64,9 @@
 \DeclareMathOperator{\arccot}{arccot}
 \DeclareMathOperator{\arccsc}{arccsc}
 
+\newcommand{\redt}[1]{\textcolor{red}{#1}}
+\newcommand{\bluet}[1]{\textcolor{blue}{#1}}
+
 \begin{document}
 \title{考研高数习题集}
 \author{枫聆}
@@ -679,6 +682,52 @@ $$
 \lim\limits_{x \to \infty} \frac{\frac{1}{x^a(1+x)^b}}{\frac{1}{x^{\lambda}}} = \frac{1}{x^{a-\lambda}(1+x)^b},
 $$
 其中$(1+x)^b \to 0$，则$a < \lambda$，即$a < 1$.
+\end{example}
+
+
+\newpage
+\section{微分方程}
+
+\subsection{线性微分方程解的结构}
+
+\begin{example}
+\rm 已知$y_1 = e^{3x}-xe^{2x},y_2 = e^x - xe^{2x},y_3 = -xe^{2x}$是某二阶常系数非齐次线性微分方程的$3$个解，求该方程的通解.
+
+\hints\ 这题考察线性微分方程解结构的一个非常典型的题，这里用到两个非齐次方程的解的差是齐次方程的解，则
+$$
+y_2  - y_3 = e^x , y_1 - y_3 = e^{3x}.
+$$
+它们是两个线性无关的解，因此它们是原方程导出的齐次方程的通解，我们再求一个特解即可，即$y_1-e^{3x} = -xe^{2x}$，则原方程的通解为
+$$
+y=C_1e^x + C_2e^{3x}-xe^{2x}. 
+$$
+\end{example}
+
+\subsection{带积分的微分方程}
+
+\begin{example}
+\rm 设函数$f(x)$连续，且满足
+$$
+\int_0^x f(x-t)dt = \int_0^x (x-t)f(t)dt +e^{-x}-1
+$$
+求$f(x)$.
+
+\hints\ 尝试去掉积分符号，去导前做一些变换,
+$$
+\begin{array}{rl}
+\int_0^x f(u)du &= x\int_0^x f(t)dt - \int_0^x tf(t)dt + e^{-x}-1 \\
+f(x) &= \int_0^x f(t)dt + xf(x)-xf(x)-e^{-x} \\
+\end{array}
+$$
+\bluet{注意这里有$f(0)=-1$}(要善于发现这样的条件)，设$y = \int_0^x f(t)dt$，于是
+$$
+y'-y = -e^{-x},
+$$
+根据一阶线性方程的通解我们有
+$$
+y = Ce^x + \frac{e^{-x}}{2},
+$$
+则$f(x) = Ce^x -\frac{e^{-x}}{2}$. 由于$f(0)=-1$，因此$C=-\frac{1}{2}$，最终$f(x)= -\frac{e^{x}+e^{-x}}{2}$. 
 \end{example}
 
 \newpage

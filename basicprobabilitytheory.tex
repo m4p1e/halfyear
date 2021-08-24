@@ -301,7 +301,7 @@ $$
 	\item 概率具有有限可加性;
 	\item $P(\bar{A}) = 1 - P(A)$;
 	\item 若$A \subset B$，则$P(B-A) = P(B) - P(A)$;
-	\item 若$A\subset B$，则$P(A) \leq P(B)$; (单调性)
+	\item 若$A\subset B$，则$P(A) \leq P(B)$;
 	\item $0 \leq P(A) \leq 1$;
 \end{enumerate}
 \end{proposition}
@@ -507,7 +507,7 @@ $$
 	$$
 		P(B_j | A) = \frac{P(B_j)P(A|B_j)}{\sum\limits_{i=1}^n P(B_i)P(A|B_i)},\; j = 1,2,\cdots,n.
 	$$
-前提条件可以换成“若事件$A$能且只能与两两互不相容的事件$B_1,B_2,\cdots,B_n$之一同时发生”，这个条件实际上更有实际意义. 其中$P(B_i)$称为先验概率，条件概率$P(B_i | A)$称为后验概率. 
+前提条件可以换成“若事件$A$能且只能与两两互不相容的事件$B_1,B_2,\cdots,B_n$之一同时发生”，这个条件实际上更有实际意义. 其中$P(B_i)$称为\redt{先验概率}，条件概率$P(B_i | A)$称为\redt{后验概率}. 
 \end{definition}
 
 \begin{proof}
@@ -857,7 +857,7 @@ $$
 \begin{proposition}
 \rm 若$X$是连续型随机变量，则
 $$
-P\{x_1 < X \leq x_2\} = P\{x_1 \leq  < x_2\} = P\{x_1 < X < x_2\} = P\{x_1 \leq  X \leq x_2\}.
+P\{x_1 < X \leq x_2\} = P\{x_1 \leq X  < x_2\} = P\{x_1 < X < x_2\} = P\{x_1 \leq  X \leq x_2\}.
 $$
 \end{proposition}
 
@@ -1258,7 +1258,7 @@ $$
 
 那么$g^{-1}(y) = \frac{y-b}{a}$，则$Y$的密度函数为
 $$
-f_y(y) = \frac{f_x(\frac{y-b}{a})}{|a|} = \frac{1}{\sqrt{2\pi}\sigma|a|}e^{-\frac{(\frac{y-b}{a}-\mu)^2}{2\sigma^2}} = \frac{1}{\sqrt{2\pi}\sigma|a|}e^{-\frac{(y-(b+a\mu))^2}{2\sigma^2a^2}}.
+f_y(y) = f_x[g^{-1}(y)]|[g^{-1}(y)]'|= \frac{f_x(\frac{y-b}{a})}{|a|} = \frac{1}{\sqrt{2\pi}\sigma|a|}e^{-\frac{(\frac{y-b}{a}-\mu)^2}{2\sigma^2}} = \frac{1}{\sqrt{2\pi}\sigma|a|}e^{-\frac{(y-(b+a\mu))^2}{2\sigma^2a^2}}.
 $$
 因此$y \sim N(a\mu+b,a^2\sigma^2)$.
 \end{example}
@@ -1284,7 +1284,7 @@ $$
 $$
 f_y(y) = \frac{1}{2\sqrt{y}}\left[ \frac{1}{\sqrt{2\pi}} e^{-\frac{y}{2}} + \frac{1}{\sqrt{2\pi}} e^{-\frac{y}{2}} \right] = \frac{1}{\sqrt{2\pi}}y^{-\frac{1}{2}}e^{-\frac{y}{2}}. 
 $$
-在$y=0$，有$f_y(y) = 0$. 
+在$y=0$，有$f_y(y) = 0$. \bluet{这里有$Y~\Gamma(\frac{1}{2},\frac{1}{2})$}.
 \end{example}
 
 
@@ -1627,6 +1627,16 @@ f_Z(z) = \int_{-\infty}^{+\infty} f_X(x)f_Y(z-x)dx = \int_{-\infty}^{+\infty} f_
 $$
 称其为\redt{连续卷积公式}. 
 \end{example}
+
+\begin{proposition}
+\rm 若随机变量$X$与$Y$相互独立，则
+\begin{enumerate}
+	\item $P\{\max(X,Y) < z\} = P\{X < z\}P\{Y < z\}$.
+	\item $P\{\max(X,Y) > z\} = 1-  P\{X < z\}P\{Y < z\}$
+	\item $P\{\min(X,Y) > z\} = P\{X>z\}P\{Y>z\}$.  
+	\item $P\{\min(X,Y) < z\} = 1-P\{X>z\}P\{Y>z\}$.
+\end{enumerate}
+\end{proposition}
 
 \newpage
 \section{随机变量的数字特征}

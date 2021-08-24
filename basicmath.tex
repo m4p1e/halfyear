@@ -3404,7 +3404,7 @@ $$
 \begin{definition}
 \rm \redt{齐次方程} 形如
 $$
-\frac{dy}{dx} = \varphi(\frac{y}{x})
+\frac{dy}{dx} = \varphi\left(\frac{y}{x}\right)
 $$
 的微分方程，称为齐次微分方程. 此时令$u = \frac{y}{x}$，则$y' = u+xu'$，从而原方程化为
 $$
@@ -3420,7 +3420,7 @@ y'+P(x)y = Q(x)
 $$
 的微分方程，称为一阶线性微分方程. 其通解为
 $$
-y= Ce^{-\int P(x)dx } + e^{-\int P(x)dx }\int Q(x)e^{\int P(x)dx}. 
+y= Ce^{-\int P(x)dx } + e^{-\int P(x)dx }\int Q(x)e^{\int P(x)dx}dx. 
 $$
 其中$Ce^{-\int P(x)dx }$是齐次线性方程$y'+P(x)y=0$的通解，而$e^{-\int P(x)dx }\int Q(x)e^{\int P(x)dx}$是$y'+P(x)y=Q(x)$的一个特解. \bluet{使用通解时需要注意确定$P(x)$和$Q(x)$!}
 \end{definition}
@@ -3444,6 +3444,21 @@ $$
 \frac{du}{dx} + (1-n)P(x)u = (1-n)Q(x).
 $$
 从而化为一阶线性方程. 
+\end{definition}
+
+\begin{definition}
+\rm 如果方程
+$$
+P(x,y)dx + Q(x,y)dy = 0
+$$
+的左端是某个函数$u(x,y)$的全微分
+$$
+du(x,y) = P(x,y)dx + Q(x,y)dy,
+$$
+则称该方程为\redt{全微分方程}. 此方程的通解为
+$$
+u(x,y) = C. 
+$$
 \end{definition}
 
 \begin{annotation}
@@ -3657,7 +3672,7 @@ $$
 \begin{enumerate}
 	\item 若$\lambda$不是特征方程$r^2+pr+q$的根，要是两端相等则$R(x) = R_m(x)$，即
 	$$
-	R_m(x) = b_0 x^{m} + \cdots + b_{m-1}x+ bm,
+	R_m(x) = b_0 x^{m} + \cdots + b_{m-1}x+ b_m,
 	$$ 
 	带入上式，比较等式两端相同幂系数的项系数，就可以得到一个$m+1$个方程组，从而求得一个特解$y^* = R_m(x)e^{\lambda x}$. 
 	\item 若$\lambda$是特征方程$r^2 + pr+ q$的单根，即$\lambda^2 + p\lambda +q =0$，但$2\lambda+p \neq 0$，此时要使原方程两端相等，则$R'(x)$必须是$m$次多项式，此时有
@@ -3756,7 +3771,7 @@ $$
 \subsection{累次极限}
 
 \begin{annotation}
-\rm 前面在讨论多元函数极限的时候，都是自变量同时趋于各自的极限所得到的，这样的继续我们称为{\color{red}$n$重极限}. 除此之外，还有一种极限，它是由各自变量以某种次序相继地趋于各自极限而得到的.
+\rm 前面在讨论多元函数极限的时候，都是自变量同时趋于各自的极限所得到的，这样的极限我们称为{\color{red}$n$重极限}. 除此之外，还有一种极限，它是由各自变量以某种次序相继地趋于各自极限而得到的.
 \end{annotation}
 
 \begin{definition}
@@ -3844,7 +3859,7 @@ $$
 成立，就说函数$f(x_1,\cdots,x_n)$在点$(a_1,\cdots,a_n)$处是连续的; 否则，就说函数就这点间断. 
 \end{definition}
 
-\begin{annotation}
+\begin{corollary}
 \rm 若函数$f(x_1,\cdots,x_n)$在$(a_1,\cdots,a_n)$处连续，那么同时有
 $$
 \begin{array}{ll}
@@ -3852,7 +3867,7 @@ $$
 \lim\limits_{(x_1,x_2) \to (a_1,a_2)}f(x_1,x_2,a_3,\cdots,a_n) = f(a_1,\cdots,a_n)
 \end{array}
 $$
-\end{annotation}
+\end{corollary}
 
 \begin{definition}
 \rm 若函数$f(x_1,\cdots,x_n)$定义于$n$维空间的某一点集$\mathcal{M}$且$\mathcal{M}$的每一个聚点都是连续的，我们就说，函数$f$在$\mathcal{M}$中是连续的. 
@@ -3964,7 +3979,7 @@ $$
 \begin{definition}
 \rm 设函数$f(x,y)$在点$P_0(x_0,y_0)$的某一邻域内有定义，如果极限
 $$
-\lim\limits_{\Delta x \to 0} \frac{f(x_0 + \Delta x,y_0)}{\Delta}
+\lim\limits_{\Delta x \to 0} \frac{f(x_0 + \Delta x,y_0)}{\Delta x}
 $$
 存在，则称这个极限值为函数$z = f(x,y)$在点$P_0(x_0,y_0)$处对$x$的\redt{偏导数}，记为
 $$
@@ -3979,7 +3994,7 @@ $$
 \begin{definition}
 \rm 偏导数$\frac{\partial z}{\partial x}$乘以任意增量$\Delta x$的积称为函数$z$关于$x$的\redt{偏微分}，记为
 $$
-d_x u =\frac{\partial z}{\partial x}\Delta x.
+d_x z =\frac{\partial z}{\partial x}\Delta x.
 $$
 若在此处把自变量$x$的微分理解为$dx$，则前面公式可以写作
 $$
@@ -4015,7 +4030,14 @@ $$
 $$
 \Delta u = f_x'(x_0 + \theta\Delta x, y_0 + \Delta y)\Delta x + f_y'(x_0,y_0 + \theta_1 \Delta y)\Delta y,\, 0\leq \theta \leq 1,0\leq \theta_1 \leq 1
 $$
-我们记$\alpha = f_x'(x_0 + \theta\Delta x, y_0 + \Delta y) - f_x'(x_0, y_0),\beta = f(x_0, y_0 + \theta_1\Delta y)- f_y'(x_0, y_0)$，由于$z=f(x,y)$的偏导数在$(x_0,y_0)$这点都是连续，所以当$\Delta x \to 0,\Delta y = 0$时，$\alpha$与$\beta$都是趋于$0$的. 最终就得到了命题中的等式. 
+在此处令
+$$
+\begin{array}{rl}
+f_x'(x_0 + \theta\Delta x, y_0 + \Delta y) &=  f_x'(x_0, y_0) + \alpha \\
+f_y'(x_0, y_0 + \theta_1\Delta y) &= f_y'(x_0, y_0)+\beta
+\end{array}
+$$
+便得到了$(1)$. 当$\Delta x \to 0,\Delta y \to 0$，上述等式左端的导数的变元趋于$x_0,y_0$. 因此，这些导数本身，由于假定它们在$(x_0,y_0)$处连续，就趋于右端导数，而$\alpha,\beta$则都趋于零. 最终证毕. 
 \end{proof}
 
 \begin{annotation}
@@ -4027,7 +4049,7 @@ $$
 $$
 \alpha\cdot\Delta x + \beta \cdot \Delta y = (\alpha\cdot\frac{\Delta x}{\rho} + \beta\cdot\frac{\Delta y}{\rho})\cdot \rho.
 $$
-记$\varepsilon = \alpha\cdot\frac{\Delta x}{\rho} + \beta\cdot\frac{\Delta y}{\rho}$，当$\rho \to 0$时$\varepsilon$也是趋于0. 因此(1)式可以写作
+记$\varepsilon = \alpha\cdot\frac{\Delta x}{\rho} + \beta\cdot\frac{\Delta y}{\rho}$，当$\rho \to 0$($\Delta x \to 0, \Delta y \to 0$)时$\varepsilon$也是趋于0. 因此(1)式可以写作
 \begin{equation}
 \Delta z = \Delta f(x_0,y_0) = f_x'(x_0,y_0)\cdot \Delta x + f_y'(x_0,y_0) \cdot \Delta y + \varepsilon \rho.
 \end{equation}
@@ -4036,7 +4058,7 @@ $$
 \begin{definition}
 \rm 如果函数$z=f(x,y)$在$(x_0,y_0)$处的全增量可以表示为
 $$
-\Delta z = A\Delta x + B\Delta x + o(\rho).
+\Delta z = A\Delta x + B\Delta y + o(\rho).
 $$
 其中$A,B$是两个常数与$\Delta x,\Delta y$无关，$\rho=\sqrt{\Delta x^2 + \Delta y^2}$. 则我们就称函数$z=f(x,y)$在$(x_0,y_0)$\redt{可微}，而$A\Delta x + B\Delta x$称为函数$z=f(x,y)$在$(x_0,y_0)$处的\redt{全微分}.
 \end{definition}
@@ -4064,6 +4086,19 @@ $$
 \begin{proposition}
 \rm \redt{全微分存在的充分条件} Theorem \ref{total-derivative: sufficient-cond}.
 \end{proposition}
+
+
+\begin{annotation}
+\rm 用定义判定$z=f(x,y)$在点$(x_0,y_0)$的可微性
+\begin{enumerate}
+	\item 判断$f_x'(x_0,y_0)$和$f_y'(x_0,y_0)$是否存在;
+	\item 判断
+	$$
+	\lim\limits_{\Delta x \rightarrow 0 \atop \Delta y \rightarrow 0 } \frac{\Delta z-f_x'(x_0,y_0)\Delta x -f_y'(x_0,y_0)\Delta y}{\sqrt{(\Delta x)^2 + (\Delta y)^2}} = 0,
+	$$
+	其中$\Delta z = f(x_0 + \Delta x,y_0 + \Delta y)-f(x_0,y_0)$. 
+\end{enumerate}
+\end{annotation}
 
 \subsection{复合函数的导数}
 
