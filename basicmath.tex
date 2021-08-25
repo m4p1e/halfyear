@@ -3350,6 +3350,51 @@ $$
 那么在点$(x_0,y_0)$的某一邻域内，方程$F(x,y)=0$确定$y$为$x$的单值函数$y=f(x)$， 当$x=x_0$时这函数具有数值$y_0 = f(x_0)$，且$f(x)$是连续函数. 
 \end{theorem}
 
+\begin{theorem}
+\rm \redt{隐函数的可微性} (1若函数$F(x,y)$在以点$(x_0,y_0)$为中心的矩形中有定义且连续; (2 在这个邻域中偏导数$F_x'$及$F_y'$存在且连续; (3 $F(x,y)$在点$(x_0,y_0)$在点$(x_0,y_0)$等于零; (4 导数$F_y'(x_0,y_0)$. 则由方程$F(x,y)=0$确定的隐函数$f(x)$有连续导数，且
+$$
+f'(x) = -\frac{F_x'}{F_y'}.
+$$ 
+\end{theorem}
+
+\begin{corollary}
+\rm \redt{多元的隐函数} 若函数$F(x,y,z)$在点$P(x_0,y_0,z_0)$的某一邻域内有连续偏导，且$F(x_0,y_0,z_0)=0$，$F_z'(x_0,y_0,z_0)\neq 0$，则方程$F(x,y,z)=0$在点$(x_0,y_0,z_0)$的某邻域可唯一确定一个有连续偏导数的函数$z=f(x,y)$，并有
+$$
+\frac{\partial z}{\partial x} = -\frac{F_x'}{F_z'}, \frac{\partial z}{\partial y} = -\frac{F_y'}{F_z'}.
+$$
+\end{corollary}
+
+
+\begin{proposition}
+\rm \redt{方程组确定的多个隐函数} 若函数$F_1(x,y,u,v)$及$F_2(x,y,u,v)$在$P(x_0,y_0,u_0,v_0)$的某一个邻域内有连续偏导，且满足方程组
+$$
+\left \{
+\begin{array}{ll}
+F_1(x_0,y_0,u_0,v_0) = 0 \\
+F_2(x_0,y_0,u_0,v_0) = 0
+\end{array} \right.
+$$
+并且满足下列行列式不为零
+$$
+\begin{vmatrix}
+\frac{\partial F_1}{\partial u} & \frac{\partial F_1}{\partial v} \\
+\frac{\partial F_2}{\partial u} & \frac{\partial F_2}{\partial v}
+\end{vmatrix}
+$$
+则方程组
+$$
+\left \{
+\begin{array}{ll}
+F_1(x,y,u,v) = 0 \\
+F_2(x,y,u,v) = 0
+\end{array} \right.
+$$
+在点$(x_0,y_0,u_0,v_0)$的某邻域内唯一确定两个有连续偏导的函数$u = u(x,y)$和$v=v(x,y)$. 
+
+欲求$\frac{\partial u}{\partial x},\frac{\partial u}{\partial y},\frac{\partial v}{\partial x},\frac{\partial v}{\partial y}$，可以将每个方程分别对$x$求偏导，得出以$\frac{\partial u}{\partial x},\frac{\partial v}{\partial x}$为变量的方程，可解得$\frac{\partial u}{\partial x},\frac{\partial v}{\partial x}$; 同样，将每个方程分别对$y$求偏导数，可以得出$\frac{\partial u}{\partial y},\frac{\partial v}{\partial y}$为变量的方程组，解之可得$\frac{\partial u}{\partial y},\frac{\partial v}{\partial y}$.  
+\end{proposition}
+
+
 \subsection{微分方程基本概念}
 
 \begin{definition}
