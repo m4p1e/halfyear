@@ -3364,6 +3364,10 @@ $$
 $$
 \end{corollary}
 
+\begin{annotation}
+\rm 求$F(x,y,z)=0$，确定的$z=f(x,y)$的$dz$时，可以等式两边求微分，即左边是$dF$，可以直接解得$dz$. 
+\end{annotation}
+
 
 \begin{proposition}
 \rm \redt{方程组确定的多个隐函数} 若函数$F_1(x,y,u,v)$及$F_2(x,y,u,v)$在$P(x_0,y_0,u_0,v_0)$的某一个邻域内有连续偏导，且满足方程组
@@ -4345,7 +4349,7 @@ $$
 \subsection{多元函数的泰勒公式}
 
 \begin{theorem}
-\rm 若$f(x,y)$在$(x_0,y_0)$的邻域内有直到$(n+1)$阶为止的一切阶的连续偏导数. 分别给定$x_0$及$y_0$以增量$\Delta x$及$\Delta y$，且两端为$(x_0,y_0)$和$(x_0+\Delta x , y_0 + \Delta y)$的直线段不越处前述领域之外. 则有下面等式成立
+\rm 若$f(x,y)$在$(x_0,y_0)$的邻域内有直到$(n+1)$阶为止的一切阶的连续偏导数. 分别给定$x_0$及$y_0$以增量$\Delta x$及$\Delta y$，且两端为$(x_0,y_0)$和$(x_0+\Delta x , y_0 + \Delta y)$的直线段不越处前述邻域之外. 则有下面等式成立
 $$
 \begin{array}{ll}
 \Delta f(x_0,y_0) &= f(x_0 + \Delta x, y_0 + \Delta y)-f(x_0,y_0) \\
@@ -4354,6 +4358,39 @@ $$
 $$
 其中$0 \leq \theta \leq 1$. 
 \end{theorem}
+
+\begin{proposition}
+\rm \redt{条件极值} 可微函数$z=f(x,y)$在$\varphi(x,y)=0$(确定的隐函数可微)下的条件极值与函数
+$$
+L(x,y,r) = f(x,y)+r\varphi(x,y)
+$$
+的极值点等价. 
+\end{proposition}
+
+\begin{proof}
+\rm 函数$L(x,y)$的全微分为
+$$
+dL = [f_x'(x,y) + r\varphi_x'(x,y)]dx + [f_y'(x,y) + r\varphi_y'(x,y)]dy + \varphi(x,y)dr.
+$$
+因此它极值点必要条件是
+$$
+\left \{
+\begin{array}{ll}
+f_x'(x,y) + r\varphi_x'(x,y) = 0 \\
+f_y'(x,y) + r\varphi_y'(x,y) = 0 \\
+\varphi(x,y) = 0
+\end{array} \right.
+$$
+在$\varphi(x,y)=0$的条件下，有$L=f$. 因此$L$的极值点就是$f$的极值点. 
+\end{proof}
+
+\begin{corollary}
+\rm \redt{多条件极值} 对于$n$元函数$f(x_1,\cdots,x_n)$在$m$个约束条件$\varphi_1(x_1,\cdots,x_n) = 0,\cdots,\varphi_m(x_1,\cdots,x_n) = 0$的极值点与函数
+$$
+L(x_1,\cdots,x_n,r_1,\cdots,r_m) = f + r_1\varphi_1 + \cdots + r_m\varphi_m
+$$
+的极值点等价. 
+\end{corollary}
 
 \subsection{多元函数的极值}
 
