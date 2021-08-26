@@ -1996,7 +1996,17 @@ $$
 \end{enumerate}
 \end{proposition}
 
+\subsection{高次积分}
 
+\begin{proposition}
+\rm 常用的高次积分降次公式
+\begin{enumerate}
+	\item $\int \cos ^{n}(x)\,dx={\frac  {1}{n}}\cos ^{{n-1}}(x)\sin(x)+{\frac  {n-1}{n}}\int \cos ^{{n-2}}(x)\,dx$;
+	\item $\int \sin ^{n}(x)\,dx=-{\frac  {1}{n}}\sin ^{{n-1}}(x)\cos(x)+{\frac  {n-1}{n}}\int \sin ^{{n-2}}(x)\,dx$;
+	\item $\int \tan ^{n}(x)\,dx={\frac  {1}{n-1}}\tan ^{{n-1}}(x)-\int \tan ^{{n-2}}(x)\,dx$;
+	\item $\int (\ln(x))^{n}\,dx=x(\ln(x))^{n}-n\int (\ln(x))^{{n-1}}\,dx$.
+\end{enumerate}
+\end{proposition}
 
 \subsection{简单积分法则}
 
@@ -3326,6 +3336,31 @@ $$
 \newpage
 \section{微分方程和隐函数}
 
+\subsection{雅克比行列式}
+
+\begin{definition}
+\rm 设给定$n$个变元的$n$个函数
+$$
+\left \{
+\begin{array}{ll}
+y_1 = f_1(x_1,\cdots,x_n)\\
+y_2 = f_2(x_1,\cdots,x_n)\\
+\cdots \\
+y_n = f_n(x_1,\cdots,x_n)\\
+\end{array} \right.
+$$
+它们均定义在某$n$维区域$D$中，且在这区域中有关于一切变元的连续偏导，将行列式
+$$
+\begin{vmatrix}
+\frac{\partial y_1}{\partial x_1} & \frac{\partial y_1}{\partial x_2} &\cdots &\frac{\partial y_1}{\partial x_n} \\
+\frac{\partial y_2}{\partial x_1} & \frac{\partial y_2}{\partial x_2} &\cdots & \frac{\partial y_2}{\partial x_n} \\
+\vdots &  \vdots & &\vdots \\
+\frac{\partial y_n}{\partial x_1} & \frac{\partial y_n}{\partial x_2} &\cdots &\frac{\partial y_n}{\partial x_n} \\
+\end{vmatrix}
+$$
+称为\redt{雅克比行列式}.
+\end{definition}
+
 \subsection{隐函数}
 
 \begin{definition}
@@ -4431,6 +4466,8 @@ $$
 \rm 
 \end{proof}
 
+%http://www.fen.bilkent.edu.tr/~otekman/calc2/2nddertest.pdf AC=B^2 时如何判定
+
 \begin{annotation}
 \rm \bluet{需要注意的几点}
 \begin{enumerate}
@@ -4520,7 +4557,7 @@ x = \varphi(t), \, y = \psi(t)
 $$
 表示. 其中$\varphi(t),\psi(t)$都有连续导数. 在$\widehat{AB}$上一点$M$，则$\widehat{AM}$的弧长可以用参变量为$t$的可微分函数$s = s(t)$表示，它的导数为
 $$
-s'(t) = \lim\limits_{\Delta t}\frac{\Delta s}{\Delta t} = \sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}.
+s'(t) = \lim\limits_{\Delta t \to 0}\frac{\Delta s}{\Delta t} = \sqrt{[\varphi'(t)]^2+[\psi'(t)]^2}.
 $$
 或者，简单地
 $$
@@ -4912,6 +4949,10 @@ $$
 \rm 可积函数必须是有界的.
 \end{proposition}
 
+\begin{annotation}
+\rm \redt{几何意义} 当$f(x,y) \geq 0$时，二重积分$\int\int_D f(x,y)d\sigma$等于以区域$D$为底，曲面$z=f(x,y)$的为曲顶的曲顶柱体的体积. 
+\end{annotation}
+
 \subsection{二重积分的性质}
 
 \begin{annotation}
@@ -4973,7 +5014,7 @@ $$
 \begin{theorem}
 \rm \redt{在曲边区域的情况下化二重积分为逐次积分} 如果$f(x,y)$定义于由上下两条曲边$\varphi_2(x),\varphi_1(x)$围成的区域$\mathcal{D}$时，且$f(x,y)$在$\mathcal{D}$上的二重积分存在，又对$[a,b]$中每一个固定值$x$单积分
 $$
-I(x) = \int_{\varphi_1(x)}^{\varphi_2(x)}
+I(x) = \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y)dy
 $$ 
 也存在. 则逐次积分
 $$
@@ -4990,10 +5031,60 @@ $$
 \rm \bluet{这里有一个需要注意的地方，曲边$\varphi_2(x),\varphi_1(x)$和平行于纵坐标直线需要只有两个交点. 这个很重要！不然你就需要考虑换积分次序了}.
 \end{annotation}
 
+\begin{proposition}
+\rm \redt{变量代换} 设$f(x,y)$是定义在区域$D$上的连续函数，变换
+$$
+\left \{
+\begin{array}{ll}
+x = x(u,v)\\
+y = y(u,v)
+\end{array}
+\right.
+$$
+定义在$D'$上，把$D'$一一映射到$D$上，且$x(u,v),y(u,v)$有一阶连续偏导，其雅克比行列式
+$$
+\frac{D(x,y)}{D(u,v)} \neq 0.
+$$
+则有
+$$
+\int\int_D f(x,y)dxdy = \int\int_D' f(x(u,v),y(u,v))\left| \frac{D(x,y)}{D(u,v)} \right| dudv
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{在极坐标下计算二重积分} 设区域$D$的参数方程为
+$$
+\left \{
+\begin{array}{ll}
+x = \rho \cos \theta \\
+y = \rho \sin \theta 
+\end{array} \right.
+$$
+其中$(\rho,\theta)$满足$D = \Set{(\rho,\theta)}{\varphi_1(\theta) \leq \rho \leq \varphi_2(\theta), \alpha \leq \theta \leq \beta}$. 则
+$$
+\int\int_D f(x,y)d\sigma = \int_\alpha^\beta d\theta \int_{\varphi_1(\theta)}^{\varphi_2(\theta)} f(\rho\cos \theta,\rho\sin\theta)\rho d\rho.
+$$
+其中
+$$
+\left|\frac{D(x,y)}{D(\rho,\theta)}\right| = \begin{vmatrix}
+\cos\theta &-\rho\sin\theta \\
+\sin\theta & \rho\cos\theta 
+\end{vmatrix} = \rho.
+$$
+\end{proposition}
+
+\begin{annotation}
+\rm 适合用极坐标计算的二重积分的特征
+\begin{enumerate}
+	\item 被积函数: $f(\sqrt{x^2+y^2}),f(\frac{y}{x}),f(\frac{x}{y})$.
+	\item 积分域: $x^2+y^2 \leq R, r^2 \leq x^2+y^2 \leq R, x^2+y^2 \leq 2ax, x^2+y^2 \leq 2bx$. 
+\end{enumerate}
+\end{annotation}
+
 \subsection{格林公式}
 
 \begin{definition}
-\rm 在平面的右手定向的情况下，我们规定一闭路的方向如下: 当观察者沿闭路的一方向行走时，若闭路围成的区域考虑观察者的左手，我们就称这一方向是\redt{正的}; 反之就是负的. 
+\rm \redt{闭路方向} 在平面的右手定向的情况下，我们规定一闭路的方向如下: 当观察者沿闭路的一方向行走时，若闭路围成的区域考虑观察者的左手，我们就称这一方向是\redt{正的}; 反之就是负的. 
 \end{definition}
 
 \begin{theorem}
