@@ -1349,9 +1349,21 @@ $$
 \end{enumerate}
 \end{proposition}
 
-\begin{example}
-\rm 多项分布
-\end{example}
+\begin{definition}
+\rm 若$n$维离散型随机变量$(X_1,\cdots,X_n)$的分布律为
+$$
+P\{X_1 = m_1, \cdots , X_n = m_n\} = \frac{m!}{m_1!\cdots m_n!} p_1^{m_1}\cdots p_n^{m_n},
+$$
+其中$p_1 + \cdots + p_n = 1$，则称$(X_1,\cdots,X_n)$服从参数为$m,p_1,\cdots,p_n$的\redt{多项分布}，记为$(X_1,\cdots,X_n)\sim M_n(m;p_1,\cdots,p_n)$
+\end{definition}
+
+\begin{proposition}
+\rm \redt{多项分布的边缘分布} 多项分布$M_n(m;p_1,\cdots,p_n)$的一维边缘分布是二项分布，其中第$k$个一维边缘分布是$B(m,p_k)$. 
+\end{proposition}
+
+\begin{proposition}
+\rm 
+\end{proposition}
 
 \begin{definition}
 \rm 若对$n$维随机变量$X = (X_1,\cdots, X_n)$的分布函数存在$\mathbb{R}^n$上的非负函数$f(x_1,x_2,\cdots,x_n)$，对任意的实数$x_1,x_2,\cdots,x_n$，都有
@@ -1404,15 +1416,15 @@ $$
 \end{example}
 
 \begin{definition}
-\rm 如果二维连续随机变量$(X,Y)$的概率密度为
+\rm  如果二维连续随机变量$(X,Y)$的概率密度为
 \begin{equation}
 f(x,y)={\frac {1}{2\pi \sigma _{1}\sigma _{1}{\sqrt {1-\rho ^{2}}}}}\mathrm \exp\left({-{\frac {1}{2(1-\rho ^{2})}}\left[\left({\frac {x-\mu _{1}}{\sigma _{1}}}\right)^{2}-2\rho \left({\frac {x-\mu _{1}}{\sigma _{1}}}\right)\left({\frac {y-\mu _{2}}{\sigma _{2}}}\right)+\left({\frac {y-\mu _{2}}{\sigma _{2}}}\right)^{2}\right]}\right),
 \end{equation}
-其中$\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$均为常数，$\sigma_1 > 0,\sigma_2 > 0, |\rho| < 1$，则称$(X,Y)$服从参数为$\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$的二项分布，记为$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$. 
+其中$\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$均为常数，$\sigma_1 > 0,\sigma_2 > 0, |\rho| < 1$，则称$(X,Y)$服从参数为$\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$的\redt{二维正态分布}，记为$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$. 
 \end{definition}
 
 \begin{proposition}
-\rm 若$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$，则
+\rm \redt{二维正态分的边缘密度} 若$(X,Y) \sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2; \rho)$，则
 $$
 \begin{array}{ll}
 f_X(x) = \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(x-\mu_1)^2}{2\sigma_1^2}}, \\
@@ -1593,6 +1605,21 @@ $$
 P\{\xi+\eta = n\} = \sum\limits_{k=0}^n a_kb_{n-k}. 
 $$
 称此公式为\redt{离散卷积公式}.
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{二项分布的卷积封闭性} 设$X\sim B(n,p),Y\sim B(m,p)$，且$X,Y$相互独立，则$X+Y \sim B(n+m,p)$.
+\end{proposition}
+
+\begin{proof}
+\rm 由离散卷积公式有
+$$
+P\{X+Y = k\} = \sum\limits_{i=0}^k a_ib_{k-i} = \sum\limits_{i=0}^k C_n^i p^iq^{n-i} \cdot C_m^{k-i}p^{k-i}q^{m-k+i} = p^{k}q^{m+n-k} \sum\limits_{i=0}^k C_n^i C_m^{k-i} = C_{m+n}^k p^{k}q^{m+n-k}. 
+$$
+\end{proof}
+
+\begin{proposition}
+\rm \redt{泊松分布的卷积封闭性} 设$X \sim P(\lambda_1),Y \sim P(\lambda_2)$，且$X,Y$相互独立，则$X+Y \sim P(\lambda_1 + \lambda_2)$. 
 \end{proposition}
 
 \begin{proposition}

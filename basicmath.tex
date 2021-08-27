@@ -5301,6 +5301,46 @@ $$
 反之若$(s_n)$没有有限极限，无穷级数$\sum\limits_{n=1}^\infty a_n$\redt{发散}.
 \end{definition}
 
+\begin{example}
+\rm \redt{几何级数的收敛性} 讨论$\sum\limits_{n=0}^{+\infty}aq^n$的收敛性.
+
+由几何级数的求和公式有
+$$
+s_n  =  \left \{
+\begin{array}{ll}
+\frac{a(q^{n}-1)}{q-1} & q\neq 1\\
+na & q = 1
+\end{array} \right.
+$$
+
+当$|q| < 1$，则有$\lim\limits_{n \to \infty} \frac{a(q^{n}-1)}{q-1} = \frac{a}{q-1}$，则级数收敛.
+
+当$|q| > 1$，则有$\lim\limits_{n \to \infty} \frac{a(q^{n}-1)}{q-1} = \infty$，则级数发散.
+
+当$q = 1$，显然级数是发散的; 当$q = -1$时，$n$为偶数时，$s_n =0$，$n$为奇数时，$s_n=a$，则级数发散. 
+
+综上，当$|q| < 1$时，几何级数收敛; 当$|q| \geq 1$时，几何级数发散.   
+\end{example}
+
+\begin{example}
+\rm \redt{调和级数的收敛性} 讨论$\sum\limits_{n=1}^{\infty} \frac{1}{n^p}$的收敛性.
+
+当$p \leq 1$时，熟知最通常的调和级数$s_n = \sum\limits_{n=1}^{\infty} \frac{1}{n}$是发散的，当$p <1$时级数中的各项是大于$p=1$的级数各项，所以$p < 1$时也是发散的. 综上$p \leq 1$时，调和级数发散. 
+
+当$p > 1$时，这里借助一个不等式
+$$
+\frac{1}{(n+1)^p} + \frac{1}{(n+2)^p} + \cdots + \frac{1}{(2n)^p} < n \cdot \frac{1}{n^p}.  
+$$
+记$\sigma = p-1$，因此分组
+$$
+\underbrace{1+\frac{1}{2^p}},\underbrace{\frac{1}{3^p}+\frac{1}{4^p}}_{\frac{1}{2^\sigma}},\underbrace{\frac{1}{5^p}+\frac{1}{6^p}+\frac{1}{7^p}+\frac{1}{8^p}}_{\frac{1}{4^\sigma}},\cdots
+$$
+于是
+$$
+s_n <  1 + \frac{1}{2^p} + \frac{\frac{1}{2^\sigma}}{1-\frac{1}{2^\sigma}}. 
+$$
+所以当$p > 1$时调和级数收敛. 
+\end{example}
 \subsection{收敛级数的基本性质}
 
 \begin{definition}
@@ -5338,7 +5378,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm \redt{余式和} 设级数$\sum\limits_{n=1}^\infty a_n$第$m$项后的余式的和为$r_n$，若级数$\sum\limits_{n=1}^\infty a_n$收敛，则$r_n$随着$m$的增大而趋于$0$.
+\rm \redt{收敛则余式趋于零} 设级数$\sum\limits_{n=1}^\infty a_n$第$m$项后的余式的和为$r_n$，若级数$\sum\limits_{n=1}^\infty a_n$收敛，则$r_n$随着$m$的增大而趋于$0$.
 \end{proposition}
 
 \begin{proof}
@@ -5355,7 +5395,7 @@ $$
 
 
 \begin{proposition}
-\rm 若两个级数$\sum\limits_{n=1}^\infty a_n$及$\sum\limits_{n=1}^\infty b_n$分布收敛于$S_a$和$S_b$，那么级数$\sum\limits_{n=1}^\infty (a_n \pm b_n)$也收敛，且其和为$S_a \pm S_b$.
+\rm \redt{可加性} 若两个级数$\sum\limits_{n=1}^\infty a_n$及$\sum\limits_{n=1}^\infty b_n$分布收敛于$S_a$和$S_b$，那么级数$\sum\limits_{n=1}^\infty (a_n \pm b_n)$也收敛，且其和为$S_a \pm S_b$.
 \end{proposition}
 
 \begin{proposition}
@@ -5385,14 +5425,14 @@ $$
 
 
 \begin{theorem}
-\rm 若给定两个正向级数$\sum\limits_{n=1}^\infty a_n$和$\sum\limits_{n=1}^\infty b_n$. 若从某项其$n > N$，恒有$a_n \leq b_n$成立，那么若级数$\sum\limits_{n=1}^\infty b_n$收敛，则$\sum\limits_{n=1}^\infty a_n$也收敛; 若级数$\sum\limits_{n=1}^\infty a_n$发散，则$\sum\limits_{n=1}^\infty b_n$也发散.
+\rm \redt{最基础的比较审敛法}  若给定两个正向级数$\sum\limits_{n=1}^\infty a_n$和$\sum\limits_{n=1}^\infty b_n$. 若从某项其$n > N$，恒有$a_n \leq b_n$成立，那么若级数$\sum\limits_{n=1}^\infty b_n$收敛，则$\sum\limits_{n=1}^\infty a_n$也收敛; 若级数$\sum\limits_{n=1}^\infty a_n$发散，则$\sum\limits_{n=1}^\infty b_n$也发散.
 \end{theorem}
 
 
 \begin{theorem}\label{positive-series: compare-convergence}
 \rm 如果极限
 $$
-\frac{a_n}{b_k} = K
+\frac{a_n}{b_n} = K
 $$
 存在，则级数$\sum\limits_{n=1}^\infty a_n$和$\sum\limits_{n=1}^\infty b_n$同时收敛或者同时发散.
 \end{theorem}
@@ -5424,16 +5464,17 @@ $$
 \begin{proposition}
 \rm \redt{柯西判别法} 若当$n$充分大的时候有
 $$
-\sqrt[n]{a_n} \leq q
+\sqrt[n]{a_n} \leq q \Leftrightarrow a_n \leq q^n
 $$
 成立，其中$0 < q <1$，则级数$\sum\limits_{n=1}^\infty a_n$收敛; 如果从某处开始有
 $$
 \sqrt[n]{a_n} \geq 1,
 $$
-则级数发散. 前提条件可以用极限语言表示为
+则级数发散. 前提条件可以用数列极限语言表示为
 $$
-\lim\limits_{n \to \infty} \sqrt[n]{a_n} = q.
+\lim\limits_{n \to \infty} \sqrt[n]{a_n} = q,
 $$
+当$0 < q <1$时级数收敛，而当$q >1$时级数发散. \bluet{当$q=1$时无法判定}. 
 \end{proposition}
 
 \begin{proposition}
@@ -5509,7 +5550,7 @@ $$
 \begin{proof}
 其中$F(x)$是$f(x)$的一个原函数，由于$f(x) > 0$，所以$F(x)$也是一个单调增函数，我们考虑这样一个级数
 \begin{equation}
-\sum\limits_{n \to \infty}\left[F(n+1)-F(n)\right].
+\sum\limits_{n=1}^{\infty} \left[F(n+1)-F(n)\right].
 \end{equation}
 由中值定理，有
 $$
@@ -5519,7 +5560,7 @@ $$
 $$
 a_{n+1} = f(n+1) < F(n+1)-F(n) < f(n)=a_n. 
 $$
-因此级数(1)收敛，那么$\sum\limits_{n=1}^{\infty}f(n+1)$也是收敛的，从而$\sum\limits_{n=1}^{\infty}f(n)$也是收敛的. 
+因此若级数(1)收敛，那么$\sum\limits_{n=1}^{\infty}f(n+1)$也是收敛的，从而$\sum\limits_{n=1}^{\infty}f(n)$也是收敛的. 
 \end{proof}
 
 
@@ -5527,7 +5568,7 @@ $$
 \subsection{任意项级数的收敛性}
 
 \begin{theorem}
-\rm \redt{柯西收敛原理的推广} 级数$\sum\limits_{n=1}^{\infty}a_n$收敛的充要条件为: 对任意的数$\varepsilon > 0$，存在自然数$n$，使得当$n > N$时，对任意的$m=1,2,3,\cdots$都有
+\rm \redt{数列柯西收敛原理的推广} 级数$\sum\limits_{n=1}^{\infty}a_n$收敛的充要条件为: 对任意的数$\varepsilon > 0$，存在自然数$n$，使得当$n > N$时，对任意的$m=1,2,3,\cdots$都有
 $$
 |a_{n+1}+a_{n+2}+\cdots+a_{n+m}| \leq \varepsilon.
 $$
@@ -5543,7 +5584,7 @@ $$
 \end{theorem}
 
 \begin{annotation}
-\rm 注意绝对值级数发散，但是其原级数是可能收敛的. 但是使用柯西判别法和达朗贝尔办法在这里依然有效，即在这种情况判别绝对值级数发散，那么原级数一定也是发散的. 
+\rm 注意绝对值级数发散，但是其原级数是可能收敛的. \bluet{但是使用柯西判别法和达朗贝尔办法在这里依然有效，即在这种情况判别绝对值级数发散，那么原级数一定也是发散的}. 
 \end{annotation}
 
 \begin{proposition}
@@ -5611,22 +5652,56 @@ $$
 \begin{proof}
 \rm 当$\rho=0$时，对任意$x \neq 0$，都有
 $$
-\lim\limits_{n \to \infty}\frac{|a_{n+1}x^{n+1}}{|a_{n}x^n|} = \left|\frac{a_{n+1}}{a_n}\right|\cdot |x| = 0.
+\lim\limits_{n \to \infty}\frac{|a_{n+1}x^{n+1}|}{|a_{n}x^n|} = \left|\frac{a_{n+1}}{a_n}\right|\cdot |x| = 0.
 $$
 由达朗贝尔判别可以知$\sum\limits_{n=0}^{\infty}a_nx^n$收敛. 因此$R = +\infty$ 
 
 当$\rho = +\infty$时，同理对任意$x \neq 0$，都有
 $$
-\lim\limits_{n \to \infty}\frac{|a_{n+1}x^{n+1}}{|a_{n}x^n|} = \left|\frac{a_{n+1}}{a_n}\right|\cdot |x| = \infty.
+\lim\limits_{n \to \infty}\frac{|a_{n+1}x^{n+1}|}{|a_{n}x^n|} = \left|\frac{a_{n+1}}{a_n}\right|\cdot |x| = \infty.
 $$
 可知$\sum\limits_{n=0}^{\infty}a_nx^n$发散. 因此$R = 0$.
 
 当$0 < \rho < +\infty$时，对任意$x \neq 0$，都有
 $$
-\lim\limits_{n \to \infty}\frac{|a_{n+1}x^{n+1}}{|a_{n}x^n|} = \left|\frac{a_{n+1}}{a_n}\right|\cdot|x|  = \rho x.
+\lim\limits_{n \to \infty}\frac{|a_{n+1}x^{n+1}|}{|a_{n}x^n|} = \left|\frac{a_{n+1}}{a_n}\right|\cdot|x|  = \rho x.
 $$
 因此我们让$\rho x < 1$即可，即$x < \frac{1}{\rho}$. 
 \end{proof}
+
+\begin{theorem}
+\rm \redt{幂级数的有理运算} 设幂级数$\sum\limits_{n=0}^{\infty}a_nx^n$的收敛半径为$R_1$，$\sum\limits_{n=0}^{\infty}a_nx^n$的收敛半径为$R_2$，则$\sum\limits_{n=0}^{\infty}a_nx^n$和$\sum\limits_{n=0}^{\infty}a_nx^n$都在$|x| < min(R_1,R_2)$上收敛. 对应的有理运算
+$$
+\begin{array}{ll}
+\sum\limits_{n=0}^{\infty}a_nx^n \pm \sum\limits_{n=0}^{\infty}a_nx^n = \sum\limits_{n=0}^{\infty}(a_n,b_n)x^n \\ 
+\left(\sum\limits_{n=0}^{\infty}a_nx^n \right) \cdot \left( \sum\limits_{n=0}^{\infty}b_nx^n \right) = a_0b_0  + (a_0b_1+a_1b_0)x + \cdots + (a_0b_n + \cdots a_nb_0)x^n +\cdots \\
+\frac{\sum\limits_{n=0}^{\infty}a_nx^n}{\sum\limits_{n=0}^{\infty}b_nx^n} = \sum\limits_{n=0}^{\infty}c_nx^n, \sum\limits_{n=0}^{\infty}a_nx^n  =  \sum\limits_{n=0}^{\infty}b_nx^n \cdot \sum\limits_{n=0}^{\infty}c_nx^n
+\end{array}
+$$
+也在$|x| < min(R_1,R_2)$上收敛. 
+\end{theorem}
+
+\begin{proposition}
+\rm 设幂级数$\sum\limits_{n=0}^{\infty}a_nx^n$的收敛半径为$R$，函数$S(x) = \sum\limits_{n=0}^{\infty}a_nx^n$. 则函数$S(x)$在$(-R,R)$上连续.
+\end{proposition}
+
+\begin{proposition}
+\rm 设幂级数$\sum\limits_{n=0}^{\infty}a_nx^n$的收敛半径为$R$，函数$S(x) = \sum\limits_{n=0}^{\infty}a_nx^n$. 则函数$S(x)$在$(-R,R)$上可导，且可逐项可导，即
+$$
+S'(x) = \sum\limits_{n=1}^{\infty}na_nx^{n-1},
+$$
+其对应的幂级数与原幂级数有相同的收敛半径. \bluet{但其收敛域可能变大}.
+\end{proposition}
+
+\begin{proposition}
+\rm 设幂级数$\sum\limits_{n=0}^{\infty}a_nx^n$的收敛半径为$R$，函数$S(x) = \sum\limits_{n=0}^{\infty}a_nx^n$. 则函数$S(x)$在$(-R,R)$上可积，且可逐项可积，即
+$$
+\int_0^x S(t)dt  = \sum\limits_{n=0}^{\infty} \frac{a_n}{n+1}x^{n+1}.
+$$
+其对应的幂级数与原幂级数有相同的收敛半径. \bluet{但其收敛域可能变大}.
+\end{proposition}
+
+
 
 \subsection{交错级数}
 
@@ -5664,6 +5739,14 @@ $$
 
 \subsection{两个数列依次相乘组成的级数}
 
+
+\begin{theorem}
+\rm \redt{阿贝尔判定法} 若级数$\sum\limits_{n=1}^{+\infty}a_n$收敛，而数列$b_n$单调有界，则级数$\sum\limits_{n=1}^{+\infty}a_nb_n$收敛. 
+\end{theorem}
+
+\begin{theorem}
+\rm \redt{狄利克雷判定法} 若级数$\sum\limits_{n=1}^{+\infty} a_n$部分和总是有界，而数列$b_n$单调有界，则级数$\sum\limits_{n=1}^{+\infty} a_nb_n$收敛. 
+\end{theorem}
 
 \newpage
 \subsection{初等函数的展开}
@@ -5708,6 +5791,15 @@ $$
 \end{proposition}
 
 \begin{proposition}
+\rm 下述函数在$x=0$处的泰勒展开在$(-1,1)$上收敛
+\begin{enumerate}
+	\item $\frac{1}{1-x} = 1+x+x^2+\cdots+x^n + \cdots$;
+	\item $\frac{1}{1+x} = 1-x+x^2+\cdots+(-1)^nx^n + \cdots$.
+	\item $(1+x)^\alpha = 1 + \alpha x+ \frac{\alpha(\alpha-1)}{2!}x^2 +  \cdots + \frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}x^n+\cdots$，两个端点处是否收敛取决于$\alpha$的取值. 
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
 \rm 
 $$
 \arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \cdots + (-1)^{k-1}\frac{x^{2k-1}}{2k-1} + \cdots,k=1,2,\cdots.
@@ -5720,7 +5812,7 @@ $$
 $$
 \ln (1+x) = x-\frac{x^2}{2} + \frac{x^3}{3}- \cdots + (-1)^{k-1}\frac{x^k}{k},k=1,2,\cdots,
 $$
-仅在区间$(0,1]$上收敛. 
+仅在区间$(-1,1]$上收敛. 
 \end{proposition}
 
 
