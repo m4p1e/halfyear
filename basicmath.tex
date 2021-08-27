@@ -5631,7 +5631,7 @@ $$
 
 
 \begin{definition}
-\rm 若存在一些使得级数$\sum\limits_{n=0}^{\infty}a_nx^n$收敛而异于$0$的$x = \bar{x}$，若所有这样的点构成的集合$\{\bar{x}\}$上有界，而$R$是它的上界，则称$R$是级数$\sum\limits_{n=0}^{\infty}a_nx^n$的\redt{收敛半径}. 当$|x| < R$时，级数$\sum\limits_{n=0}^{\infty}a_nx^n$决定收敛; 当$|x| > R$时，级数$\sum\limits_{n=0}^{\infty}a_nx^n$发散. 
+\rm 若存在一些使得级数$\sum\limits_{n=0}^{\infty}a_nx^n$收敛而异于$0$的$x = \bar{x}$，若所有这样的点构成的集合$\{\bar{x}\}$上有界，而$R$是它的上确界，则称$R$是级数$\sum\limits_{n=0}^{\infty}a_nx^n$的\redt{收敛半径}. 当$|x| < R$时，级数$\sum\limits_{n=0}^{\infty}a_nx^n$决定收敛; 当$|x| > R$时，级数$\sum\limits_{n=0}^{\infty}a_nx^n$发散. 
 \end{definition}
 
 \begin{theorem}
@@ -5701,7 +5701,45 @@ $$
 其对应的幂级数与原幂级数有相同的收敛半径. \bluet{但其收敛域可能变大}.
 \end{proposition}
 
+\begin{example}
+\rm \redt{利用分析求和函数} 求幂级数$\sum\limits_{n=1}^{\infty} \frac{x^n}{n(n+1)}$的和函数. 
 
+由于
+$$
+\lim\limits_{n \to \infty} \frac{\frac{1}{(n+1)(n+2)}}{\frac{1}{n(n+1)}} = 1,
+$$
+所以$S(x)$的收敛半径为$1$. 这里有
+$$
+(xS(x))' = \sum\limits_{n=1}^{\infty} \frac{x^n}{n}.
+$$
+再求导一次有
+$$
+(xS(x))'' = \sum\limits_{n=1}^{\infty} x^{n-1} = \frac{1}{1-x}. 
+$$
+再反过来积分
+$$
+(xS(x))'  = \int_0^{x} \frac{1}{1-x}dx = -\ln (1-x) + C,
+$$
+由前面可知$(xS(x))'|_{x=0} = 0$，这里$C  = 0$. 再积分
+$$
+xS(x)  = \int_0^{x} -\ln(1-x)dx = (1-x)\ln(1-x)+x.
+$$
+那么即有
+$$
+S(x) = \left\{\begin{array}{ll}
+\frac{(1-x)\ln (1-x)}{x} + 1, x \in (-1,1), x \neq 0 \\
+0, x = 0
+\end{array} \right.
+$$
+注意明显原级数在$\pm = 1$是收敛的，终有
+$$
+S(x) = \left\{\begin{array}{ll}
+\frac{(1-x)\ln (1-x)}{x} + 1, x \in [-1,1), x \neq 0 \\
+0, x = 0 \\
+1, x = 1 
+\end{array} \right.
+$$
+\end{example}
 
 \subsection{交错级数}
 
@@ -5815,7 +5853,23 @@ $$
 仅在区间$(-1,1]$上收敛. 
 \end{proposition}
 
+\begin{example}
+\rm 求$\arctan x$的$x$的泰勒展开级数.
 
+\rm 由于
+$$
+\frac{1}{1+x} = \sum\limits_{n=1}^{\infty} (-1)^{n-1}x^{n-1}, x \in (-1,1), 
+$$
+于是
+$$
+\frac{1}{1+x^2} = \sum\limits_{n=1}^{\infty} (-1)^{n-1}x^{2n-2}, x \in (-1,1). 
+$$
+对上式两边积分，则有
+$$
+\arctan x = \sum\limits_{n=1}^{\infty} \int_0^{x} (-1)^{n-1}x^{2n-2}  =   \sum\limits_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n-1}}{2n-1} = x - \frac{x^3}{3} + \frac{x^5}{3} + \cdots,
+$$
+显然$\sum\limits_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n-1}}{2n-1}$在$x = \pm 1$也收敛，即该级数在$x \in [-1,1]$上收敛. 
+\end{example}
 
 
 \newpage
