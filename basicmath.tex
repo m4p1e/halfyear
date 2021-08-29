@@ -4694,13 +4694,13 @@ $$
 \end{proposition}
 
 \begin{proposition}
-\rm \redt{曲线的函数表示} 若曲线$\widehat{AB}$可以用方程$y=y(x)$表示，$f(t)$有连续导数. 在$\widehat{AB}$上一点$M$，则$\widehat{AM}$的弧长可以用参变量为$t$的可微分函数$s = s(t)$表示，它的导数为
+\rm \redt{曲线的函数表示} 若曲线$\widehat{AB}$可以用方程$y=y(x)$表示，$f(t)$有连续导数. 在$\widehat{AB}$上一点$M$，则$\widehat{AM}$的弧长可以用参变量为$x$的可微分函数$s = s(x)$表示，它的导数为
 $$
-s'(t) = \sqrt{1+y'^2(t)}. 
+s'(x) = \sqrt{1+y'^2(x)}. 
 $$
 或者，简单地
 $$
-s_t' = \sqrt{1+y'^2}.
+s_x' = \sqrt{1+y'^2}.
 $$
 \end{proposition}
 
@@ -4709,13 +4709,21 @@ $$
 $$
 \rho = \rho(\theta)
 $$
-表示，在$\widehat{AB}$上一点$M$，则$\widehat{AM}$的弧长可以用参变量为$t$的可微分函数$s = s(t)$表示，它的导数为
+表示，那么对应的参数方程为
 $$
-s_t' = \sqrt{\rho^2(\theta) + \rho'^2(\theta)}.
+\left \{
+\begin{array}{ll}
+x = \rho\cos\theta \\
+y = \rho\sin\theta
+\end{array} \right.
+$$
+在$\widehat{AB}$上一点$M$，则$\widehat{AM}$的弧长可以用参变量为$\theta$的可微分函数$s = s(\theta)$表示，它的导数为
+$$
+s_\theta' = \sqrt{(p'\cos\theta-p\sin\theta)^2 +(p'\sin\theta+p\cos\theta)^2} = \sqrt{\rho^2(\theta) + \rho'^2(\theta)}.
 $$
 或者，简单地
 $$
-s_t' = \sqrt{\rho^2 + \rho'^2}. 
+s_\theta' = \sqrt{\rho^2 + \rho'^2}. 
 $$
 \end{proposition}
 
@@ -4804,7 +4812,8 @@ $\sigma_1,\sigma_2,\cdots,\sigma_n$. 用$\sigma_i$表示第$i$段弧，也表示
 $$
 \sigma = \sum\limits_{i = 1}^n f(\xi_i,\eta_i)\sigma_i.
 $$
-用$\lambda$表示$\sigma_1,\sigma_2,\cdots,\sigma_n$中最长的弧长. 当$\lambda \to 0$时，积分和$\sigma$有一确定的有限极限$I$，即与曲线$L$的细分方法无法，由于弧$\sigma$上点$(\xi_i,\eta_i)$的选择无关，则称这一极限为函数$f(x,y)$沿曲线或者道路$L$上所取的\redt{第一类曲线积分}，记为
+用$\lambda$表示$\sigma_1,\sigma_2,\cdots,\sigma_n$中最长的弧长. 当$\lambda \to 0$时，积分和$\sigma$有一确定的有限极限$I$，即与曲线$L$的细分方法无法，由于弧$\sigma$上点$(\xi_i,\eta_i)$的选择无关，则称这一极限为函数$f(x,y)$沿曲线或者道路$L$上所取的\redt{第一类曲线积分}
+(对弧长的积分)，记为
 $$
 I = \int_L f(x,y)ds. 
 $$
@@ -4853,6 +4862,17 @@ $$
 给出，其中$y(x)$有连续导数. 那么
 $$
 \int_L f(x,y)ds = \int_a^b f(x,y(x))\sqrt{1+ [y'(x)]^2}dx. 
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{极坐标下对弧长积分} 若曲线$L$由连续可导函数
+$$
+\rho = \rho(\theta) ~ (\alpha \leq \theta \leq \beta).
+$$
+则
+$$
+\int_L f(x,y)ds = \int_\alpha^\beta f(\rho\cos\theta,\rho\sin\theta)\sqrt{\rho^2+\rho'^2}d\theta
 $$
 \end{proposition}
 
@@ -5010,7 +5030,7 @@ $$
 $$
 因为$P$及$Q$都有一阶连续偏导，由\ref{mixed-derivatives: exchange-order}，所以有$\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$.
 
-\emph{充分性}\ 若$\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$，我们来求原函数，是它满足
+\emph{充分性}\ 若$\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$，我们来求原函数，它要满足
 $$
 \frac{\partial \Phi}{\partial x} = P,
 \, \frac{\partial \Phi}{\partial y} = Q.
@@ -5035,6 +5055,18 @@ $$
 $Q(x,y)-Q(x_0,y)$，所以也有$\frac{\partial \Phi}{\partial y} = Q(x,y)$.
 
 \end{proof}
+
+\begin{proposition}
+\rm \redt{道路无关下第二类曲线积分的计算} 若曲线积分$\int_L P(x,y)dx + Q(x,y)dy$与道路无关，则有
+$$
+\int_{(x_1,x_2)}^{(y_1,y_2)} Pdx + Qdy = \int_{x_1}^{x_2} P(x,y_1)dx + \int_{y_1}^{y_2} Q(x_2,y)dx. 
+$$ 
+及
+$$
+\int_{(x_1,x_2)}^{(y_1,y_2)} Pdx + Qdy = \int_{y_1}^{y_2} P(x_1,y)dy + \int_{x_1}^{2_2} Q(x,y_2)dx. 
+$$
+\bluet{变成了两个平行于坐标轴的直线的积分}.
+\end{proposition}
 
 \subsection{闭路积分}
 
@@ -5216,11 +5248,11 @@ $$
 \end{definition}
 
 \begin{theorem}
-\rm \redt{格林公式} 设闭区域$D$由分段光滑的曲线$L$围成，若函数$P(x,y)$及$Q(x,y)$在$D$上具有一阶连续偏导数,则由
+\rm \redt{格林公式} 设闭区域$D$由分段光滑的曲线$L$围成，若函数$P(x,y)$及$Q(x,y)$在$D$上具有一阶连续偏导数,则有
 $$
 \int\int_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial x} \right) = \int_L Pdx+Qdy.
 $$
-其中$L$是$D$的取正向的边界曲线. 
+其中$L$是$D$的取正向的边界曲线. \bluet{它可以将二重积分转换成对闭路曲线的积分，同样反过来可以把对闭路曲线的积分转换称对区域的二重积分}. 
 \end{theorem}
 
 \begin{annotation}
@@ -5428,6 +5460,24 @@ $$
 \frac{D(x,y,z)}{D(r,\varphi,\theta)} =  \begin{pmatrix}\sin \varphi \cos \theta &r\cos \varphi \cos \theta &-r\sin \varphi \sin \theta \\ \:\:\sin \varphi \sin \theta &r\cos \varphi \sin \theta &r\sin \varphi \cos \theta \\ \:\:\cos \varphi &-r\sin \varphi &0\end{pmatrix} = r^2\sin\varphi.
 $$
 \end{proposition}
+
+\subsection{斯托克斯公式}
+
+\begin{theorem}
+\rm 设$L$为空间分段光滑的有向闭曲线，$\sum$是以$L$为边界的分片光滑曲面$L$，$L$的方向与$\sum$的法方向符合右手法则，函数$P,Q,R$在$\sum$上具有一阶连续偏导数，则有
+$$
+\begin{array}{ll}
+\int_L P(x,y,z)dx + Q(x,y,z)dy + R(x,y,z)dz &= 
+\int\int_\sum
+\begin{vmatrix}
+\cos \alpha & \cos \beta & \cos \gamma \\
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial x} \\
+P & Q & R
+\end{vmatrix} dS \\
+&= \int\int_\sum (\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z})dydz + (\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x})dzdx + (\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy
+\end{array}
+$$
+\end{theorem}
 
 \newpage
 \section{常数项无穷级数}
