@@ -4876,6 +4876,22 @@ $$
 $$
 \end{proposition}
 
+\begin{proposition}
+\rm \redt{空间曲线的第一类积分计算} 若曲线$L$由方程
+$$
+\left\{
+\begin{array}{ll}
+x = x(t)\\
+y = y(t)\\
+z = z(t) 
+\end{array} \right.
+$$
+其中$\alpha \leq t \leq \beta$，则
+$$
+\int_L f(x,y,z)ds = \int_\alpha^{\beta} f(x(t),y(t),z(t))\sqrt{x'^2 + y'^2 + z'^2}dt.
+$$
+\end{proposition}
+
 \subsection{第二类曲线积分}
 
 \begin{definition}
@@ -4918,6 +4934,38 @@ $$
 \int_{L_{AB}} Pdx + Qdy = \int_\alpha^\beta [P(\varphi(t),\psi(t))\varphi'(t) + Q(\varphi(t),\psi(t))\psi'(t)]dt.
 $$
 \end{proposition}
+
+\begin{proposition}
+\rm \redt{空间曲线的第二类积分计算} 若曲线$L$由方程
+$$
+\left\{
+\begin{array}{ll}
+x = x(t)\\
+y = y(t)\\
+z = z(t) 
+\end{array} \right.
+$$
+其中$\alpha \leq t \leq \beta$，则
+$$
+\int_L P(x,y,z)dx + Q(x,y,z)dy + R(x,y,z)dz = \int_\alpha^{\beta} P[x(t),y(t),z(t)]x'(t) + Q[x(t),y(t),z(t)]y'(t) + R[x(t),y(t),z(t)]z'(t)dt.
+$$
+\end{proposition}
+
+\begin{theorem}
+\rm \redt{斯托克斯公式} 设$L$为空间分段光滑的有向闭曲线，$\sum$是以$L$为边界的分片光滑曲面$L$，$L$的方向与$\sum$的法线方向符合右手法则，函数$P,Q,R$在$\sum$上具有一阶连续偏导数，则有
+$$
+\begin{array}{ll}
+\int_L P(x,y,z)dx + Q(x,y,z)dy + R(x,y,z)dz &= 
+\int\int_\sum
+\begin{vmatrix}
+\cos \alpha & \cos \beta & \cos \gamma \\
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial x} \\
+P & Q & R
+\end{vmatrix} dS \\
+&= \int\int_\sum (\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z})dydz + (\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x})dzdx + (\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy
+\end{array}
+$$
+\end{theorem}
 
 \subsection{两种不同类型曲线积分之间的联系}
 
@@ -5244,13 +5292,13 @@ $$
 \subsection{格林公式}
 
 \begin{definition}
-\rm \redt{闭路方向} 在平面的右手定向的情况下，我们规定一闭路的方向如下: 当观察者沿闭路的一方向行走时，若闭路围成的区域考虑观察者的左手，我们就称这一方向是\redt{正的}; 反之就是负的. 
+\rm \redt{闭路方向} 在平面的右手定向的情况下，我们规定一闭路的方向如下: 当观察者沿闭路的一方向行走时，若闭路围成的区域在观察者的左手，我们就称这一方向是\redt{正的}; 反之就是负的. 
 \end{definition}
 
 \begin{theorem}
 \rm \redt{格林公式} 设闭区域$D$由分段光滑的曲线$L$围成，若函数$P(x,y)$及$Q(x,y)$在$D$上具有一阶连续偏导数,则有
 $$
-\int\int_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial x} \right) = \int_L Pdx+Qdy.
+\int\int_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right)d\sigma = \int_L Pdx+Qdy.
 $$
 其中$L$是$D$的取正向的边界曲线. \bluet{它可以将二重积分转换成对闭路曲线的积分，同样反过来可以把对闭路曲线的积分转换称对区域的二重积分}. 
 \end{theorem}
@@ -5330,10 +5378,40 @@ $$
 其中$dS = \sqrt{1+f_x^2(x,y)+f_y^2(x,y)}dxdy$
 \end{proposition}
 
+\begin{proposition}
+\rm 设曲面$S$由方程
+$$
+\begin{array}{ll}
+x = x(u,v) \\
+y = y(u,v) \\
+z = z(u,v) \\
+\end{array}
+$$
+其中$(u,v)$在$uv$平面上一个由光滑分段的边界围成的区域$D$上变化着. 则曲面$S$的面积为
+$$
+A = \int\int_D \sqrt{A^2 + B^2 + C^2}dudv
+$$
+其中
+$$
+A = \begin{vmatrix}
+y_u' & z_u' \\
+y_v' & z_v'
+\end{vmatrix},
+B = \begin{vmatrix}
+z_u' & x_u' \\
+z_v' & x_v'
+\end{vmatrix},
+C = \begin{vmatrix}
+x_u' & y_u' \\
+x_v' & y_v'
+\end{vmatrix}
+$$
+\end{proposition}
+
 \subsection{第二类曲面积分}
 
 \begin{annotation}
-\rm 对有向面积的积分.
+\rm 对有向面积的积分. \bluet{对于曲面的定向我们采用右手法则，即曲面边界方向和曲面法线方向遵守右手法则，只有确定了其中一个方向，就唯一的确定了另外一个方向}.
 \end{annotation}
 
 \begin{definition}
@@ -5460,24 +5538,6 @@ $$
 \frac{D(x,y,z)}{D(r,\varphi,\theta)} =  \begin{pmatrix}\sin \varphi \cos \theta &r\cos \varphi \cos \theta &-r\sin \varphi \sin \theta \\ \:\:\sin \varphi \sin \theta &r\cos \varphi \sin \theta &r\sin \varphi \cos \theta \\ \:\:\cos \varphi &-r\sin \varphi &0\end{pmatrix} = r^2\sin\varphi.
 $$
 \end{proposition}
-
-\subsection{斯托克斯公式}
-
-\begin{theorem}
-\rm 设$L$为空间分段光滑的有向闭曲线，$\sum$是以$L$为边界的分片光滑曲面$L$，$L$的方向与$\sum$的法方向符合右手法则，函数$P,Q,R$在$\sum$上具有一阶连续偏导数，则有
-$$
-\begin{array}{ll}
-\int_L P(x,y,z)dx + Q(x,y,z)dy + R(x,y,z)dz &= 
-\int\int_\sum
-\begin{vmatrix}
-\cos \alpha & \cos \beta & \cos \gamma \\
-\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial x} \\
-P & Q & R
-\end{vmatrix} dS \\
-&= \int\int_\sum (\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z})dydz + (\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x})dzdx + (\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy
-\end{array}
-$$
-\end{theorem}
 
 \newpage
 \section{常数项无穷级数}
