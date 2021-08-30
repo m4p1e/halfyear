@@ -4315,8 +4315,8 @@ a\cos\alpha + b\cos\beta + c\cos\gamma  = \sqrt{a^2+b^2+c^2}\left(\frac{a}{\sqrt
 $$
 括号里面的分数刚好又可以看做一方向的直线$g$，即
 $$
-\frac{a}{\sqrt{a^2+b^2+c^2}}\cos\alpha = \cos \lambda, \frac{b}{\sqrt{a^2+b^2+c^2}}\cos\beta = \cos \mu,
-\frac{c}{\sqrt{a^2+b^2+c^2}}\cos\gamma = \cos v.
+\frac{a}{\sqrt{a^2+b^2+c^2}} = \cos \lambda, \frac{b}{\sqrt{a^2+b^2+c^2}} = \cos \mu,
+\frac{c}{\sqrt{a^2+b^2+c^2}} = \cos v.
 $$
 于是我们有
 $$
@@ -4330,12 +4330,16 @@ $$
 $$
 \frac{\partial f}{\partial g} = \sqrt{a^2+b^2+c^2} = \sqrt{\left(\frac{\partial f}{\partial x}\right)^2 +\left(\frac{\partial f}{\partial y}\right)^2  + \left(\frac{\partial f}{\partial z}\right)^2 }.
 $$
+此时$l$的方向为
+$$
+(\cos \lambda, \cos \mu,\cos v) = (f_x', f_x', f_z'). 
+$$
 \end{annotation}
 
 \begin{definition}
 \rm 设函数$f(x,y,z)$在区域$D$上有一阶连续偏导，给定$D$上任意一点$(x,y,z)$. 设$\vec{e_1},\vec{e_2},\vec{e_3}$表示$xyz$轴方向上的单位向量，则向量
 $$
-f_x'\vec{e_1} + f_y' \vec{e_2} +f_z'\vec{e_3},
+\nabla f(x,y,z) =  f_x'\vec{e_1} + f_y' \vec{e_2} +f_z'\vec{e_3},
 $$
 表示函数$f(x,y,z)$的\redt{梯度}. 将上述向量记为$\vec{g}$，则(2)式可以改写为
 $$
@@ -4604,7 +4608,88 @@ $$
 
 \subsection{曲面与空间曲线}
 
+\begin{definition}
+\rm 一般曲面方程
+\begin{enumerate}
+	\item $F(x,y,z) = 0$;
+	\item $z = f(x,y)$.
+\end{enumerate}
+\end{definition}
 
+\begin{definition}
+\rm 常见曲线方程
+\begin{enumerate}
+	\item 参数式 $x = x(t),y = y(t),z = z(t)$;
+	\item 一般式 $F(x,y,z) = 0, G(x,y,z) = 0$. 
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+\rm \redt{旋转面} 设$L$是$yOz$平面上一条曲线，其方程是
+$$
+\begin{array}{ll}
+f(y,z) = 0 \\
+x= 0
+\end{array}
+$$
+则
+\begin{enumerate}
+	\item $L$绕$y$轴旋转所得旋转面方程为$f(y,\pm \sqrt{x^2+z^2}) = 0$;
+	\item $L$绕$z$轴旋转所得旋转面方程为$f(\pm \sqrt{x^2 + y^2},z) = 0$. 
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+\rm \redt{柱面} 平行于定直线并沿定曲线$\Gamma$移动的直线$L$形成的轨迹称为柱面. 柱面上与$L$平行直线都称为\redt{母线}，柱面上一条曲线与所以母线都相交，则称这条曲线为柱面的准线. 常见柱面方程为
+\begin{enumerate}
+	\item 准线为$\Gamma \left\{ \begin{array}{ll} f(x,y) = 0 \\ z = 0 = 0 \end{array} \right.$，母线平行于$z$轴的柱面方程为$f(x,y) = 0$;
+	\item 准线为$\Gamma \left\{\begin{array}{ll} F(x,y,z) = 0 \\ G(x,y,z) = 0 \end{array}\right.$，母线平行于$z$轴的柱面方程为$F(x,y,z)$和$G(x,y,z)$联立消去$z$所得的二元方程. 
+\end{enumerate}
+\end{definition}
+
+%https://www.geogebra.org/3d/dm87nrzk
+\begin{definition}
+\rm \redt{二次曲面} 常见二次曲面
+\begin{enumerate}
+	\item 椭圆锥面 ${x^{2} \over a^{2}}+{y^{2} \over b^{2}}-{z^{2} \over c^{2}}=0$，特别地，圆锥面 $x^2 + y^2 = z^2$;
+	\item 椭圆面 ${x^{2} \over a^{2}}+{y^{2} \over b^{2}}+{z^{2} \over c^{2}}=1$，特别地，球面$x^2+y^2+z^2 = R^2$;
+	\item 单叶双曲面 ${x^{2} \over a^{2}}+{y^{2} \over b^{2}}-{z^{2} \over c^{2}}=1$;
+	\item 双叶双曲面 ${x^{2} \over a^{2}}+{y^{2} \over b^{2}}-{z^{2} \over c^{2}}=-1$;
+	\item 椭圆抛物面 ${x^{2} \over a^{2}}+{y^{2} \over b^{2}}-z=0$;
+	\item 双曲抛物面 ${x^{2} \over a^{2}}-{y^{2} \over b^{2}}-z=0$;
+\end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+\rm \redt{空间曲线投影} 曲线$\Gamma \left\{\begin{array}{ll} F(x,y,z) = 0 \\ G(x,y,z) = 0 \end{array}\right.$，消去$z$得到关于$xOy$面的投影柱面$H(x,y)=0$. 曲线$\Gamma$在$xOy$面上的投影曲线方程为
+$$
+\left \{
+\begin{array}{ll}
+H(x,y) = 0\\
+z = 0
+\end{array} \right. 
+$$
+\end{proposition}
+
+
+\subsection{切线和法线}
+
+\begin{proposition}
+\rm 一般曲面的法线和切平面
+\begin{enumerate}
+	\item 曲面$F(x,y,z) = 0$，其法向量为$(F_x',F_y',F_z')$，其切平面为$F_x'(x_0,y_0,z_0)(x-x_0) + F_y'(x_0,y_0,z_0)(x-x_0) + F_z'(x_0,y_0,z_0)(z-z_0)= 0$;
+	\item 曲面$z=f(x,y)$，其法向量为$(f_x',f_y',-1)$，其切平面与上面类似;
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm 一般曲线的切线和法平面
+\begin{enumerate}
+	\item 曲线$\left\{ \begin{array}{ll} x=x(t) \\ y=y(t) \\ z=z(t) \end{array}	 \right.$，其切向量为$(x'(t_0),y'(t_0),z'(t_0))$，其法平面$x'(t_0)(x-x_0)+y'(t_0)(y-y_0) + z'(t_0)(z-z_0) = 0$; 
+	\item 曲线$\left\{ \begin{array}{ll} F(x,y,z) = 0 \\ G(x,y,z) = 0 \end{array} \right.$，其切向量为$(F_x',F_y',F_z') \times (G_x',G_y',G_z')$. 
+\end{enumerate}
+\end{proposition}
 
 \subsection{极坐标}
 
@@ -4624,7 +4709,7 @@ $$
 %http://kjwy.5any.com/gdsx22/content/ch02/gdsx080502.htm  曲面的切平面与法线
 
 \newpage
-\section{微分学在几何上的应用}
+\section{微分学在几何和物理学上的应用}
 
 \subsection{曲线的渐进线}
 
@@ -4790,6 +4875,20 @@ $$
 $$
 \end{proposition}
 
+\subsection{转动惯量}
+
+\begin{definition}
+\rm 设平面区域$D$，其密度函数为$f(x,y)$，其绕$x$轴的转动惯量为
+$$
+I_x = \int\int_D y^2 f(x,y)d\sigma.
+$$
+同理可推广至空间区域$\Omega$，其概率密度为$f(x,y,z)$，绕$x$轴的转动惯量为
+$$
+I_x = \int\int\int_\Omega (y^2+z^2) f(x,y,z)dv.
+$$
+类似的还可以推广至空间曲线和空间曲面. 
+\end{definition}
+
 \subsection{曲率}
 
 \subsection{坐标轴下的体积}
@@ -4800,6 +4899,48 @@ $$
 V = \frac{1}{3}sh,
 $$
 其中$s$是圆锥底面面积，$h$是圆锥的高. 
+\end{definition}
+
+\subsection{变力做功}
+
+\begin{proposition}
+\rm 若对物体沿曲线$\widehat{AB}$施加的变力方程为$F = P\mbf{i}+Q\mbf{j}+R\mbf{k}$，则其沿曲线$\widehat{AB}$的做的功为
+$$
+W = \int_{\widehat{AB}}  Pdx+Qdy+Rdz. 
+$$
+\end{proposition}
+
+\subsection{通量}
+
+\begin{proposition}
+\rm 若给定空间区域$\omega$的向量场函数为$\mbf{U}(x,u,y)=P\mbf{i}+Q\mbf{j}+R\mbf{k}$，则$\omega$中一曲面$\sum$的通量为
+$$
+\Psi = \int\int_\sum \mbf{U} ds= \int\int_\sum P\cos\alpha+Q\cos\beta+R\cos\gamma ds  = \int\int_\sum Pdydz + Qdzdx + Rdxdy
+$$
+其中$\mbf{n}$是曲面$\sum$的法向量. 
+\end{proposition}
+
+\subsection{散度}
+
+\begin{definition}
+\rm 设有向量场函数为$\mbf{U}(x,u,y)=P\mbf{i}+Q\mbf{j}+R\mbf{k}$，其中$P,Q,R$均具有一阶偏导数，则
+$$
+\text{div} \mbf{U} = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}.
+$$
+\end{definition}
+
+\subsection{旋度}
+
+\begin{definition}
+\rm 设有向量场函数为$\mbf{U}(x,u,y)=P\mbf{i}+Q\mbf{j}+R\mbf{k}$，其中$P,Q,R$均具有一阶偏导数，则
+$$
+\textbf{rot}\mbf{A} = \begin{vmatrix}
+\mbf{i} & \mbf{j} & \mbf{k} \\
+\frac{\partial }{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
+P & Q & Q
+\end{vmatrix}
+$$
+\bluet{按第一行展开就行，就有类似}. 
 \end{definition}
 
 \newpage
