@@ -5348,13 +5348,13 @@ z=f(x,y)
 $$
 给出，其中$(x,y)$在$xOy$平面上的区域$D$内变动，函数$f(x,y)$在$D$上有一阶连续偏导. 则曲面$S$的面积为
 $$
-A = \int\int_D\sqrt{1+f_x^2(x,y),f_y^2(x,y)}dxdy.
+\int\int_\sum f(x,y,z)dS = \int\int_D\sqrt{1+f_x^2(x,y),f_y^2(x,y)}dxdy.
 $$
 有
 $$
-dA = \frac{d\sigma}{\cos \gamma}.
+dS = \frac{dxdy}{\cos \gamma}.
 $$
-其中$\cos\gamma$表示$f(x,y)$法向量和$z$轴的夹角余弦值. 
+其中$\cos\gamma = \frac{1}{\sqrt{1+f_x^2(x,y),f_y^2(x,y)}}$表示$f(x,y)$法向量和$z$轴的夹角余弦值. 
 \end{proposition}
 
 \subsection{第一类曲面积分}
@@ -5438,10 +5438,44 @@ $$
 \end{definition}
 
 \begin{proposition}
-\rm  \redt{第二类曲面积分化二重积分} 若曲面由方程$z=f(x,y)$确定，其$(x,y)$在平面$xOy$上的区域$D_{xy}$变动，函数$f(x,y)$在$D$上有连续偏导. 取$S$为上侧，则每点法向量与$z$轴的夹角余弦值为正，则有
+\rm  \redt{第二类曲面积分化二重积分} 若曲面由方程$z=f(x,y)$确定，其$(x,y)$在平面$xOy$上的区域$D_{xy}$变动，函数$f(x,y)$在$D$上有连续偏导. 取$S$为曲面上侧，则每点法向量与$z$轴的夹角余弦值为正，则有
 $$
-\int\int_{S} f(x,y,z)dxdy = \int\int_{D_{xy}} f(x,y,f(x,y))dxdy.
+\int\int_{S} f(x,y,z)dxdy = \int\int_{S} f(x,y,z)\cos\gamma dS =  \int\int_{D_{xy}} f(x,y,f(x,y))dxdy.
 $$
+其中$dS = \frac{dxdy}{\cos\gamma}$.
+\end{proposition}
+
+
+\begin{theorem}
+\rm \redt{高斯公式} 设空间闭区域$\Omega$由分片光滑比曲面$\sum$所围成，函数$P,Q,R$在$\Omega$上具有一阶连续偏导，则有
+$$
+\int\int_\sum Pdydz + Qdzdx + Rdxdy = \int\int\int_\Omega (\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dv.
+$$
+其中$\sum$的法向量向外. 
+\end{theorem}
+
+\begin{proposition}
+\rm \redt{两类曲面积分的联系}
+$$
+\int\int_{\sum} (P\cos\alpha + Q\cos\beta + R\cos\gamma)dS = \int\int_{\sum} (Pdydz + Qdzdx + Rdxdy). 
+$$
+其中$\alpha,\beta,\gamma$是$\sum$的法向量与$x,y,z$的夹角. 
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{第二类曲面积分的一般公式}  若给定曲面方程$z=f(x,y)$，则
+$$
+\int\int_\sum Pdydz + Qdzdx + Rdxdy = \int\int_{\sum} (P\cos\alpha + Q\cos\beta + R\cos\gamma)dS = \int\int_{D_{xy}} PA + QB + RCdxdy.
+$$
+其中
+$$
+\cos\alpha = \frac{A}{\sqrt{A^2+B^2+C^2}},\cos\beta = \frac{B}{\sqrt{A^2+B^2+C^2}},\cos\gamma = \frac{C}{\sqrt{A^2+B^2+C^2}}
+$$
+这里$A = -f_x'(x,y),B = -f_y'(x,y),C = 1$，即有
+$$
+\int\int_\sum Pdydz + Qdzdx + Rdxdy = \int\int_{D_{xy}} -P(x,y,f(x,y))f_x'(x,y) - Q(x,y,f(x,y))f_y'(x,y) + R(x,y,f(x,y))dxdy.
+$$
+注意这里取的是与$z$轴成锐角的法线方向. 
 \end{proposition}
 
 \newpage
