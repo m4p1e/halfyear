@@ -781,6 +781,87 @@ $$
 \end{example}
 
 \newpage
+\section{三重积分}
+
+\subsection{直角坐标}
+
+\subsection{柱坐标}
+
+\subsection{球坐标}
+
+
+\newpage
+\section{多元积分的应用}
+
+\subsection{第一类曲线积分}
+
+\begin{annotation}
+\rm 第一类曲线积分的一般解决方法:
+\begin{enumerate}
+	\item 确定是平面曲线还是空间曲线;
+	\item 确定曲线方程的给定形式和自变量的变换范围, 注意无论怎样的曲线方程都是可以看做参数方程的;
+	\item 确定是否为特殊曲线做简化计算的操作，例如关于坐标轴等价，在曲线上的自变量等价;
+	\item 若是曲线积分化定积分. 这一过程要注意弧长微分替换积分变量的过程，而提到的参数方程的弧长微分为$\sqrt{x'^2 + y'^2 + z'^2}dt$.  
+\end{enumerate}
+\end{annotation}
+
+\subsection{第二类曲线积分}
+
+\begin{annotation}
+\rm 第二类曲线积分的一般解决方法:
+\begin{enumerate}
+	\item 确定是平面曲线还是空间曲线;
+	\item 确定曲线方向;
+	\item 确定曲线方程的给定形式和自变量的变换范围, 注意无论怎样的曲线方程都是可以看做参数方程的;
+	\item 确定\redt{平面曲线}积分是否与路径无关，常见判定手法(1 $Pdx+Qdy$是否是某个二元函数的全微分 (2 $\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$. 若与路径无关考虑， (1 利用原函数直接计算 (2 化简单积分路线，例如平行于坐标轴，就化为两个定积分. 
+	\item 确定是否为光滑的\redt{平面闭曲线}，若为光滑曲线考虑使用格林公式化二重积分，注意曲线方向和其围成的区域$D$要遵守左手法则，即绕着曲线的方向绕一圈，区域$D$总是在观察者的左手边. 还需要注意被积函数$P,Q$在$D$上要有连续的一阶偏导;
+	\item 确定若不是\redt{平面闭曲线}，可以考虑做补线让其变成一个闭曲线，再使用格林公式，可能可以简化计算. 
+	\item 确定是否为\redt{空间闭曲线}，若是空间闭曲线，考虑使用斯托克斯公式，注意曲线方向和曲面的法向量要遵守右手法则. 
+	$$
+	\int_L P(x,y,z)dx + Q(x,y,z)dy + R(x,y,z)dz = \int\int_\sum (\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z})dydz + (\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x})dzdx + (\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy
+	$$
+	\item 直接计算，使用公式
+	$$
+	\int_L P(x,y,z)dx + Q(x,y,z)dy + R(x,y,z)dz = \int_\alpha^{\beta} P[x(t),y(t),z(t)]x'(t) + Q[x(t),y(t),z(t)]y'(t) + R[x(t),y(t),z(t)]z'(t)dt.
+	$$ 
+\end{enumerate}
+\end{annotation}
+
+\subsection{第一类曲面积分}
+
+\begin{annotation}
+\rm 第一类曲面积分的一般计算方法
+\begin{enumerate}
+	\item 确定曲面方程，实际上只有一种$z=f(x,y)$，并没有复杂的参数方程，和其自变量变化范围; 
+	\item 确定是否为特殊的曲面做简化计算，例如关于坐标轴平面对称，在曲面上的自变量等价;
+	\item 直接计算，使用曲面微分的变量替换，需要注意$x,y$的区域$D$的确定
+	$$
+\int\int_\sum f(x,y,z)dS = \int\int_D\sqrt{1+f_x^2(x,y),f_y^2(x,y)}dxdy.
+$$
+\end{enumerate}
+\end{annotation}
+
+\subsection{第二类曲面积分}
+
+\begin{annotation}
+\rm 第二类曲面积分的一般计算方法
+\begin{enumerate}
+	\item 确定曲面方程，实际上只有一种$z=f(x,y)$，并没有复杂的参数方程，和其自变量变化范围; 
+	\item 确定曲面的方向;
+	\item 确定曲面是否可以围成一个闭区域，考虑使用高斯公式
+	$$
+	\int\int_\sum Pdydz + Qdzdx + Rdxdy = \int\int\int_\Omega (\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dv.
+	$$
+	这里曲面需要取外侧方向，如果当且曲面是内侧方向则需要加负号，也需要确定$P,Q,R$是否具有一阶连续偏导. 
+	\item 直接计算，上述给定是$z$关于$x,y$方程，那么曲线方向决定了曲面法线和$z$轴的夹角余弦值，若余弦值是负的，则需要在下式积分号就带负号
+	$$
+	\int\int_{S} f(x,y,z)dxdy = \pm \int\int_{D_{xy}} f(x,y,f(x,y))dxdy.
+	$$
+	这里要注意若给定是$y$关于$x,z$的方程，这里的余弦值则是看曲面法向量和$y$轴的夹角. 
+\end{enumerate}
+\end{annotation}
+
+\newpage
 \section{级数}
 
 \subsection{不标准的幂级数}
