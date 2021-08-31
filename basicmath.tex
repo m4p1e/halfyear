@@ -6328,7 +6328,7 @@ $$
 
 \newpage
 \section{傅里叶级数}
-
+%http://geckkd.ac.in/wp-content/uploads/2015/03/Notes_on_Fourier_series.pdf 比较好的note
 \subsection{在$-\pi$和$\pi$上的展开}
 \begin{definition}
 \rm 设函数$f(x)$是周期为$2\pi$的周期函数，且在$[-\pi,\pi]$上可积，则称
@@ -6350,7 +6350,7 @@ $$
 \end{definition}
 
 \begin{proposition}
-\rm \redt{奇偶性的加入} 若$f(x)$为$[-\pi,\pi]$上的周期为$2\pi$的奇函数，则其傅里叶系数为
+\rm \redt{奇偶性的加入} 若$f(x)$为周期为$2\pi$的奇函数，则其傅里叶系数为
 $$
 \left\{
 \begin{array}{ll}
@@ -6358,7 +6358,7 @@ a_n = 0, n =  0,1,2\cdots \\
 b_n = \frac{2}{\pi} \int_{-\pi}^{\pi} f(x)\sin nxdx, n = 1,2,\cdots.
 \end{array} \right.
 $$
-若$f(x)$为偶函数，则其傅里叶系数为
+若$f(x)$为周期为$2\pi$的偶函数，则其傅里叶系数为
 $$
 \left\{
 \begin{array}{ll}
@@ -6369,13 +6369,13 @@ $$
 \end{proposition}
 
 \begin{proposition}
-\rm \redt{仅在$[0,\pi]$上展开} 若$f(x)$在$[0,\pi]$上满足$f(0)=f(\pi)$，则其对应的正弦展开系数为
+\rm \redt{仅在$[0,\pi]$上展开} 若$f(x)$定义在$[0,\pi]$，则其对应的仅含周期为$2\pi$正弦展开系数为
 $$
-b_n = \frac{2}{\pi} \int_{-\pi}^{\pi} f(x)\sin nx dx,n = 1,2,\cdots.
+f(x) = \sum\limits_{m=1}^{+\infty}b_n\sin nx \Rightarrow b_n = \frac{2}{\pi} \int_{0}^{\pi} f(x)\sin nx dx,n = 1,2,\cdots.
 $$
-若$f(x)$在$[0,\pi]$上满足$f(0)=-f(\pi)$，则其对应的余弦展开系数为
+其对应的仅含周期为$2\pi$余弦展开系数为
 $$
-a_n = \frac{2}{\pi} \int_{-\pi}^{\pi} f(x)\cos nx dx, n = 0,1,2\cdots. 
+f(x) = \sum\limits_{m=0}^{+\infty}a_n\cos nx \Rightarrow a_n = \frac{2}{\pi} \int_{0}^{\pi} f(x)\cos nx dx, n = 0,1,2\cdots. 
 $$
 \end{proposition}
 
@@ -6383,10 +6383,22 @@ $$
 \rm \redt{狄利克雷收敛判定} 设$f(x)$在$[-\pi,\pi]$上连续或只有有限多个第一类间断点，且最多只有有限多个极值点(分段单调)，则$f(x)$的傅里叶级数在$[-\pi,\pi]$在每个连续点处收敛于$f(x_0)$，在每个不连续点处收敛于$\frac{f(x_0 + 0) + f(x_0-0)}{2}$. 
 \end{theorem}
 
-\subsection{在任意区间上的展开}
+\subsection{周期为$2l$在任意区间上的展开}
 
 \begin{proposition}
-\rm 若$f(x)$是定义在$[-l,l]$上周期为$2l$的函数，则其在$[-l,l]$展开为傅里叶级数的系数为
+\rm 设函数$f(x)$是周期为$2\pi$的周期函数，且在$[-\pi,\pi]$上可积，则其在$[-\pi,\pi]$上的傅里叶系数为
+$$
+\left\{
+\begin{array}{ll}
+a_n = \frac{1}{\pi} \int_{c}^{c+2\pi} f(x)\cos nxdx, n =  0,1,2\cdots \\
+b_n = \frac{1}{\pi} \int_{c}^{c+2\pi} f(x)\sin nxdx, n = 1,2,\cdots.
+\end{array} \right.
+$$
+\bluet{即可以用任意一段长度为$2\pi$的区间来计算系数}.
+\end{proposition}
+
+\begin{proposition}
+\rm 若$f(x)$是周期为$2l$的函数，则其在$[-l,l]$上展开为傅里叶级数的系数为
 $$
 \left\{
 \begin{array}{ll}
@@ -6394,10 +6406,11 @@ a_n = \frac{1}{l} \int_{-l}^{l} f(x)\cos \frac{n\pi x}{l}dx, n =  0,1,2 \cdots \
 b_n = \frac{1}{l} \int_{-l}^{l} f(x)\sin \frac{n\pi x}{l}dx, n = 1,2,\cdots.
 \end{array} \right.
 $$
+\bluet{同样这里可以用一段任意长度为$2l$的区间来替换}
 \end{proposition}
 
 \begin{proof}
-\rm 这里令$x=\frac{ly}{\pi}$，那么这里就有$y \in [-\pi,\pi]$. 因此这里可以把$f(\frac{ly}{\pi})$用欧拉-傅里叶公式展开，
+\rm 这里令$x=\frac{ly}{\pi}$，那么这里就有$y \in [-\pi,\pi]$. 因此$f(\frac{ly}{\pi})$就是周期为$2\pi$的函数，可以用欧拉-傅里叶公式展开
 $$
 f\left(\frac{ly}{\pi}\right) = \frac{a_0}{2} + \sum\limits_{n=1}^{+\infty}(a_n\cos ny + b_n \sin ny).  
 $$
@@ -6410,6 +6423,66 @@ b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f\left(\frac{ly}{\pi}\right)\sin nydy, n =
 \end{array} \right.
 $$
 再回到$y = \frac{\pi x}{l}$，即有命题中的式子. 
+\end{proof}
+
+\begin{proposition}
+\rm 若$f(x)$是周期为$2l$的函数，且是奇函数，则它在$[-l,l]$上的展开为
+$$
+f(x) \sim \sum\limits_{m=1}^{+\infty} b_n \sin \frac{n\pi x}{l},
+$$
+其中
+$$
+b_n = \frac{2}{l} \int_{-l}^{l} f(x)\sin \frac{n\pi x}{l}dx, n = 1,2,\cdots.
+$$
+若$f(x)$是偶函数，则它在$[-l,l]$上的展开为
+$$
+f(x) \sum \sim \sum\limits_{m=1}^{+\infty} a_n \cos \frac{n\pi x}{l},
+$$
+其中
+$$
+a_n = \frac{2}{l} \int_{-l}^{l} f(x)\cos \frac{n\pi x}{l}dx, n = 1,2,\cdots.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 若$f(x)$是周期为$2l$的函数，则其对应的仅含周期为$2l$正弦展开系数为
+$$
+f(x) = \sum\limits_{m=1}^{+\infty}b_n\sin \frac{n\pi x}{l} \Rightarrow b_n = \frac{2}{l} \int_{-l}^{l} f(x)\sin \frac{n\pi x}{l} dx,n = 1,2,\cdots.
+$$
+其对应的仅含周期为$2l$余弦展开系数为
+$$
+f(x) = \sum\limits_{m=0}^{+\infty}a_n\cos\frac{n\pi x}{l} \Rightarrow a_n = \frac{2}{l} \int_{-l}^{l} f(x)\cos \frac{n\pi x}{l} dx, n = 0,1,2\cdots. 
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 若$f(x)$是周期为$2l$的函数，则其在$[0,2l]$上展开为傅里叶级数的系数为
+$$
+\left\{
+\begin{array}{ll}
+a_n = \frac{(-1)^n}{l} \int_{0}^{2l} f(x)\cos \frac{n\pi x}{l}dx, n =  0,1,2 \cdots \\
+b_n = \frac{(-1)^n}{l} \int_{0}^{2l} f(x)\sin \frac{n\pi x}{l}dx, n = 1,2,\cdots.
+\end{array} \right.
+$$
+\end{proposition}
+
+\begin{proof}
+这里令$x=y+l$，此时$-l \leq y \leq l$. 现在可以将$f(y+l)$在$[-l,l]$上展开，即有
+$$
+\left\{
+\begin{array}{ll}
+a_n = \frac{1}{l} \int_{-l}^{l} f\left(y+l\right)\cos \frac{n\pi y}{l}dy, n =  0,1,2\cdots \\
+b_n = \frac{1}{l} \int_{-l}^{l} f\left(y+l\right)\sin \frac{n\pi y}{l}dy, n = 1,2,\cdots.
+\end{array} \right.
+$$
+再回到$y = x-l$，即有
+$$
+\left\{
+\begin{array}{ll}
+a_n = \frac{1}{l} \int_{0}^{2l} f(x) \cos (\frac{n\pi x}{l}-n\pi) dx, n =  0,1,2\cdots \\
+b_n = \frac{1}{l} \int_{0}^{2l} f(x) \sin (\frac{n\pi x}{l}-n\pi) dx, n = 1,2,\cdots.
+\end{array} \right.
+$$
 \end{proof}
 
 \subsection{常见函数的三角级数展开}
