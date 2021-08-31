@@ -1277,14 +1277,14 @@ $$
 当$y \leq 0$时，$f_y(y)=0$. 
 \end{example}
 
-\begin{example}
+\begin{example}\label{normal-distribution-square}
 \rm 若$X \sim N(0,1)$，求$Y=X^2$.
 
 那么在$y > 0$时，有
 $$
 f_y(y) = \frac{1}{2\sqrt{y}}\left[ \frac{1}{\sqrt{2\pi}} e^{-\frac{y}{2}} + \frac{1}{\sqrt{2\pi}} e^{-\frac{y}{2}} \right] = \frac{1}{\sqrt{2\pi}}y^{-\frac{1}{2}}e^{-\frac{y}{2}}. 
 $$
-在$y=0$，有$f_y(y) = 0$. \bluet{这里有$Y~\Gamma(\frac{1}{2},\frac{1}{2})$}.
+在$y=0$，有$f_y(y) = 0$. \bluet{这里有$Y \sim \Gamma(\frac{1}{2},\frac{1}{2})$}.
 \end{example}
 
 
@@ -1931,7 +1931,7 @@ $$
 $$
 E(Y) = \int_{-\infty}^{+\infty}(x-a)^3f(x)dx = \int_{-\infty}^a (x-a)^3f(x) + \int_{a}^{+\infty} (x-a)^3f(2a-x)dx
 $$
-令$t=2a-x$，则
+其中因为关于$x=a$对称，则有$f(x) = f(2a-x)$. 令$t=2a-x$，则
 $$
 \int_{-\infty}^a (x-a)^3f(x) + \int_{-\infty}^{a} (t-a)^3f(t)dt = 0.
 $$
@@ -2449,32 +2449,44 @@ $$
 	%https://www.zhihu.com/question/20099757 为什么样本方差（sample variance）的分母是 n-1？
 	\item 样本方差 $S^2 = \frac{1}{n-1}\sum\limits_{i=1}^n(X_i-\bar{X})^2$，反映了总体方差的信息.
 	\item 样本$k$阶原点矩$A_k = \frac{1}{n}\sum\limits_{i=1}^n X_i^k$，反映了总体$k$阶原点矩的信息.
-	\item 样本$k$阶中心矩$B_k = \frac{1}{n}\sum\limits_{i=1}^n {X_i-\bar{X}}^k$，反映了总体$k$阶中心矩的信息. 特别地$B_2 = \frac{n-1}{n}S^2$.
+	\item 样本$k$阶中心矩$B_k = \frac{1}{n}\sum\limits_{i=1}^n (X_i-\bar{X})^k$，反映了总体$k$阶中心矩的信息. 特别地$B_2 = \frac{n-1}{n}S^2$.
 \end{enumerate}
 \end{definition}
 
 \begin{proposition}
 \rm 样本均值$\overline{X}$的期望和方差为 
 $$
-E(\overline{X}) = E(X), D(\overline{X})=\frac{D(X)}{n}.z
+E(\overline{X}) = E(X), D(\overline{X})=\frac{D(X)}{n}.
 $$
 \end{proposition}
 
-\begin{proposition}
+\begin{proposition}\label{sample-variance-expand}
 \rm 
 $$
-\sum\limits_{i = 1}^n (x_i - \overline{x})^2 = \sum\limits_{i = 1}^n x_i^2 -  n\overline{x}^2 
+\sum\limits_{i = 1}^n (X_i - \overline{X})^2 = \sum\limits_{i = 1}^n X_i^2 -  n\overline{X}^2 
 $$
+\bluet{样本方差的一个展开式，再对其求期望你会发现很简单}. 
 \end{proposition}
 
 \begin{proof}
 $$
 \begin{array}{ll}
-\sum\limits_{i = 1}^n (x_i - \overline{x})^2 &= \sum\limits_{i = 1}^n (x_i^2 - 2x_i\overline{x} + \overline{x}^2)  \\
-&=  \sum\limits_{i = 1}^n x_i^2 - 2\overline{x} \sum\limits_{i = 1}^n x_i + n\overline{x}^2 \\
-&= \sum\limits_{i = 1}^n x_i^2  - n\overline{x}^2\\
+\sum\limits_{i = 1}^n (X_i - \overline{X})^2 &= \sum\limits_{i = 1}^n (X_i^2 - 2X_i\overline{X} + \overline{X}^2)  \\
+&=  \sum\limits_{i = 1}^n X_i^2 - 2\overline{X} \sum\limits_{i = 1}^n X_i + n\overline{X}^2 \\
+&= \sum\limits_{i = 1}^n X_i^2  - n\overline{X}^2\\
 \end{array}
 $$
+\end{proof}
+
+\begin{proposition}
+\rm 
+$$
+E\left[ \sum\limits_{i = 1}^n  (X_i - \overline{X})^2 \right] = (n-1)D(X).
+$$
+\end{proposition}
+
+\begin{proof}
+\rm 直接用\ref{sample-variance-expand}的结论可以求. 
 \end{proof}
 
 \begin{proposition}\label{sample-mean-distribution}
@@ -2518,6 +2530,10 @@ X^2 \sim \Gamma(\frac{1}{2},\frac{1}{2}).
 $$
 \end{lemma}
 
+\begin{proof}
+见\ref{normal-distribution-square}. 
+\end{proof}
+
 \begin{proposition}
 \rm $\chi_n^2$分布的概率密度为
 $$
@@ -2541,7 +2557,7 @@ $$
 \end{proposition}
 
 \begin{proposition}
-\rm \redt{$\chi^2$的数学期望和方差} 设$\chi_1^2 \sim \chi^2(n_1)$，则
+\rm \redt{$\chi^2$的数学期望和方差} 设$\chi^2 \sim \chi^2(n)$，则
 $$
 E(\chi^2) = n, D(\chi^2) = 2n
 $$
@@ -2588,11 +2604,11 @@ $$
 \end{proposition}
 
 \begin{proposition}
-\rm 
+\rm \redt{$t$分布在$n$很大时接近标准正态分布}
 $$
-\lim\limits_{n \to \infty} h(t) = \phi(t),
+\lim\limits_{n \to \infty} h(t) = \Phi(t),
 $$
-其中$\phi(t)$是正态分布的概率密度. 
+其中$\Phi(t)$是标准正态分布的概率密度. 
 \end{proposition}
 
 \begin{definition}
@@ -2609,7 +2625,7 @@ $$
 \end{proposition}
 
 \begin{proposition}
-\rm 设随机变量$X \sim t(n)$，则
+\rm \redt{$t$分布和$F$分布的联系} 设随机变量$X \sim t(n)$，则
 $$
 X^2 \sim F(1,n). 
 $$
@@ -2618,9 +2634,9 @@ $$
 \subsection{三大分布的重要性质}
 
 \begin{proposition}\label{sample-means-normalization}
-\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
+\rm \redt{标准化} 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
 $$
-\frac{\overline{X} - E(X_i)}{\sqrt{\frac{D(X)}{n}}} \sim N(0,1).
+\frac{\overline{X} - E(X_i)}{\sqrt{\frac{D(X_i)}{n}}} \sim N(0,1).
 $$
 \end{proposition}
 
@@ -2629,7 +2645,7 @@ $$
 \end{proof}
 
 \begin{proposition}\label{sample-variance-replace-variance}
-\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
+\rm \redt{未知总体分布方差的情况下对期望估计的重要手段} 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
 $$
 \frac{\overline{X} - E(X_i)}{\sqrt{\frac{S^2}{n}}} \sim t(n-1). 
 $$
@@ -2651,14 +2667,14 @@ $$
 \end{proposition}
 
 \begin{proposition}\label{sample-variance-and-variance}
-\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
+\rm \redt{对方差的估计的重要手段} 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则有
 $$
 \frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1). 
 $$
 \end{proposition}
 
 \begin{proposition}
-\rm 设$X_1,X_2,\cdots,X_{n_1}$与$Y_1,Y_2,\cdots,Y_{n_2}$分别来自正态总体分布$N(\mu_1,\sigma_1^2)$及$N(\mu_2,\sigma_2^2)$，且这两个样本相互独立. 则有
+\rm \redt{对两个总体的方差之比估计的重要手段} 设$X_1,X_2,\cdots,X_{n_1}$与$Y_1,Y_2,\cdots,Y_{n_2}$分别来自正态总体分布$N(\mu_1,\sigma_1^2)$及$N(\mu_2,\sigma_2^2)$，且这两个样本相互独立. 则有
 $$
 \frac{S_1^2/S_2^2}{\sigma_1^2 / \sigma_2^2} \sim F(n_1 -1,n_2 -1). 
 $$
@@ -2683,7 +2699,7 @@ $$
 \end{proposition}
 
 \begin{proposition}
-\rm 设$X_1,X_2,\cdots,X_{n_1}$与$Y_1,Y_2,\cdots,Y_{n_2}$分别来自正态总体分布$N(\mu_1,\sigma_1^2)$及$N(\mu_2,\sigma_2^2)$，且这两个样本相互独立，且有$\sigma_1^2 = \sigma_2^2$，则有
+\rm \redt{对两个总体的期望之差估计的重要手段} 设$X_1,X_2,\cdots,X_{n_1}$与$Y_1,Y_2,\cdots,Y_{n_2}$分别来自正态总体分布$N(\mu_1,\sigma_1^2)$及$N(\mu_2,\sigma_2^2)$，且这两个样本相互独立，且有$\sigma_1^2 = \sigma_2^2$，则有
 $$
 \frac{(\overline{X} - \overline{Y})-(\mu_1-\mu_2)}{S_\omega\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}\sim t(n_1+n_2-2),
 $$

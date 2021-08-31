@@ -555,6 +555,31 @@ $$
 
 \end{example}
 
+\subsection{递归式}
+
+\begin{example}
+\rm 求
+$$
+\int e^{ax}\cos nx dx.
+$$
+\hints 分部积分2次回到原积分
+$$
+\begin{array}{ll}
+\int e^{ax}\cos nx dx = \frac{1}{a}\int \cos nx d e^{ax}  &= \frac{1}{a}\left(e^{ax}\cos nx + n \int e^{ax}\sin nx dx \right) \\
+&= \frac{1}{a}\left[ e^{ax}\cos nx + \frac{n}{a} \left( e^{ax}\sin nx - n\int e^{ax}\cos nxdx \right) \right]
+\end{array}
+$$
+整理两边即得
+$$
+\frac{n^2 + a^2}{a^2} \int e^{ax}\cos nx dx = \frac{ae^{ax}\cos nx + ne^{ax}\sin nx}{a^2} \Rightarrow \int e^{ax}\cos nx dx = \frac{ae^{ax}\cos nx + ne^{ax}\sin nx}{a^2+n^2}
+$$
+类似的有
+$$
+\int e^{ax}\sin nx dx = \frac{ae^{ax}\sin nx - ne^{ax}\cos nx}{a^2+n^2}
+$$
+\end{example}
+
+
 \subsection{被积函数含不常见函数形式}
 
 \begin{example}

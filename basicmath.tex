@@ -6327,6 +6327,117 @@ $$
 
 
 \newpage
+\section{傅里叶级数}
+
+\subsection{在$-\pi$和$\pi$上的展开}
+\begin{definition}
+\rm 设函数$f(x)$是周期为$2\pi$的周期函数，且在$[-\pi,\pi]$上可积，则称
+$$
+\left\{
+\begin{array}{ll}
+a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\cos nxdx, n =  0,1,2\cdots \\
+b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\sin nxdx, n = 1,2,\cdots.
+\end{array} \right.
+$$
+为$f(x)$的\redt{傅里叶系数}，称级数
+$$
+\frac{a_0}{2} + \sum\limits_{n=1}^{+\infty}(a_n\cos nx + b_n \sin nx)
+$$
+为$f(x)$以$2\pi$为周期的傅里叶级数，记做
+$$
+f(x) \sim \frac{a_0}{2} +  \sum\limits_{n=1}^{+\infty}(a_n\cos nx + b_n \sin nx).
+$$
+\end{definition}
+
+\begin{proposition}
+\rm \redt{奇偶性的加入} 若$f(x)$为$[-\pi,\pi]$上的周期为$2\pi$的奇函数，则其傅里叶系数为
+$$
+\left\{
+\begin{array}{ll}
+a_n = 0, n =  0,1,2\cdots \\
+b_n = \frac{2}{\pi} \int_{-\pi}^{\pi} f(x)\sin nxdx, n = 1,2,\cdots.
+\end{array} \right.
+$$
+若$f(x)$为偶函数，则其傅里叶系数为
+$$
+\left\{
+\begin{array}{ll}
+a_n = \frac{2}{\pi} \int_{-\pi}^{\pi} f(x)\cos nxdx, n =  0,1,2\cdots \\
+b_n = 0 , n = 1,2,\cdots.
+\end{array} \right.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{仅在$[0,\pi]$上展开} 若$f(x)$在$[0,\pi]$上满足$f(0)=f(\pi)$，则其对应的正弦展开系数为
+$$
+b_n = \frac{2}{\pi} \int_{-\pi}^{\pi} f(x)\sin nx dx,n = 1,2,\cdots.
+$$
+若$f(x)$在$[0,\pi]$上满足$f(0)=-f(\pi)$，则其对应的余弦展开系数为
+$$
+a_n = \frac{2}{\pi} \int_{-\pi}^{\pi} f(x)\cos nx dx, n = 0,1,2\cdots. 
+$$
+\end{proposition}
+
+\begin{theorem}
+\rm \redt{狄利克雷收敛判定} 设$f(x)$在$[-\pi,\pi]$上连续或只有有限多个第一类间断点，且最多只有有限多个极值点(分段单调)，则$f(x)$的傅里叶级数在$[-\pi,\pi]$在每个连续点处收敛于$f(x_0)$，在每个不连续点处收敛于$\frac{f(x_0 + 0) + f(x_0-0)}{2}$. 
+\end{theorem}
+
+\subsection{在任意区间上的展开}
+
+\begin{proposition}
+\rm 若$f(x)$是定义在$[-l,l]$上周期为$2l$的函数，则其在$[-l,l]$展开为傅里叶级数的系数为
+$$
+\left\{
+\begin{array}{ll}
+a_n = \frac{1}{l} \int_{-l}^{l} f(x)\cos \frac{n\pi x}{l}dx, n =  0,1,2 \cdots \\
+b_n = \frac{1}{l} \int_{-l}^{l} f(x)\sin \frac{n\pi x}{l}dx, n = 1,2,\cdots.
+\end{array} \right.
+$$
+\end{proposition}
+
+\begin{proof}
+\rm 这里令$x=\frac{ly}{\pi}$，那么这里就有$y \in [-\pi,\pi]$. 因此这里可以把$f(\frac{ly}{\pi})$用欧拉-傅里叶公式展开，
+$$
+f\left(\frac{ly}{\pi}\right) = \frac{a_0}{2} + \sum\limits_{n=1}^{+\infty}(a_n\cos ny + b_n \sin ny).  
+$$
+这里对应的傅里叶系数为
+$$
+\left\{
+\begin{array}{ll}
+a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f\left(\frac{ly}{\pi}\right)\cos nydy, n =  0,1,2\cdots \\
+b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f\left(\frac{ly}{\pi}\right)\sin nydy, n = 1,2,\cdots.
+\end{array} \right.
+$$
+再回到$y = \frac{\pi x}{l}$，即有命题中的式子. 
+\end{proof}
+
+\subsection{常见函数的三角级数展开}
+
+\begin{example}
+\rm 在区间$[-\pi,\pi]$内展开函数
+$$
+f(x) = e^{ax}, a\neq 0.
+$$
+根据傅里叶展开公式，常数为
+$$
+a_0  = \frac{1}{\pi} \int_{-\pi}^{\pi} e^{ax}dx = \frac{e^{\pi a}-e^{-\pi a}}{\pi a}
+$$
+正弦系数为
+$$
+a_n  = \frac{1}{\pi} \int_{-\pi}^{\pi} e^{ax}\cos nxdx = \left. \frac{a\cos nx  + n\sin nx}{\pi(a^2+n^2)}e^{ax} \right|_{-\pi}^{+\pi} = \frac{2a\cos n\pi (e^{\pi a}-e^{-\pi a})}{\pi(a^2+n^2)}. 
+$$
+余弦系数为
+$$
+b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} e^{ax}\sin nxdx  = \left. \frac{a\sin nx  - n\cos nx}{\pi(a^2+n^2)}e^{ax} \right|_{-\pi}^{+\pi} = \frac{-2n\cos n\pi (e^{\pi a}-e^{-\pi a})}{\pi(a^2+n^2)}
+$$
+因此其傅里叶数为
+$$
+e^{ax} = \frac{e^{\pi a}-e^{-\pi a}}{2\pi a} + \sum\limits_{m=1}^{+\infty} \frac{2\cos n\pi}{\pi(a^2+n^2)}(a\cos nx - n\sin nx). 
+$$
+\end{example}
+
+\newpage
 \section{Preliminary}
 
 \subsection{三角函数相关}
