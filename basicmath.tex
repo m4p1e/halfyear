@@ -1371,7 +1371,7 @@ d(uv) = (uv)'\Delta x = (uv'+vu')\Delta x = udv + vdu.
 $$
 \end{proof}
 
-\subsection{微分不变性}
+\subsection{一阶微分不变性}
 
 \begin{definition}
 \rm 给定两个函数$y = f(x)$和$x = \varphi(t)$，可以它们组成复合函数$y = f(\varphi(t))$. 若导数$y_x'$和$x_t'$存在，则复合函数亦存在着导数
@@ -3486,6 +3486,14 @@ g(y)dy = f(x)dx,
 $$
 则原方程称为可分离变量的微分方程. 若$g(y),f(x)$，此时两边同时积分，原方程的解与$G(Y)=F(x)+C$同解，这个方程对应的隐函数就是原方程的解.
 \end{definition}
+
+\begin{annotation}
+\rm 为什么上述等式两边不同的微分变量却可以同时微分？ 其中假定了$g(y)$和$f(x)$是连续的，设$y = \varphi(x)$是方程的一个解，那么
+$$
+ g(\varphi(x))\varphi'(x)dx = f(x)dx \Rightarrow \int g(y)dy = \int f(x)dx.  
+$$
+
+\end{annotation}
 
 \begin{definition}
 \rm \redt{齐次方程} 形如
