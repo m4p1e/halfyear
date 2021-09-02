@@ -3527,7 +3527,7 @@ $$
 \begin{definition}
 \rm \redt{伯努利方程} 形如
 $$
-y' +p(x)y=Q(x)y^n
+y' +P(x)y=Q(x)y^n
 $$
 的微分方程，称为伯努利微分方程. 将方程两端除以$y^n$，有
 $$
@@ -3598,7 +3598,7 @@ $$
 \begin{proposition}
 \rm \redt{可降阶的高阶微分方程} 形如
 $$
-y^{(n)}=f(x)
+y^{(n)}=f(x,y)
 $$
 的微分方程，将$y^{(n-1)}$作为未知函数，就化为了一阶微分方程. 此时只需要两边同时$n$次积分，即可得带有$n$个任意常数的通解.  
 \end{proposition}
@@ -3654,7 +3654,7 @@ $$
 \end{definition}
 
 \begin{proposition}
-\rm 两个函数之比不为常数则它们是线性无关的. 
+\rm \redt{如何判定两个函数是不是线性的} 两个函数之比不为常数则它们是线性无关的. 
 \end{proposition}
 
 \begin{proposition}
@@ -3741,7 +3741,7 @@ $$
 	\item 单个实根$r$ : 给出一项$Ce^{rx}$;
 	\item 一对单复根$r_{1,2} = \alpha \pm \beta i$ : 给出两项$e^{\alpha x}(C_1\cos \beta x + C_2\sin \beta x)$;
 	\item $k$重实根$r$ : 给出$k$项$e^{rx}(C_1 + C_2x + \cdots + C_kx^{k-1})$;
-	\item 一对$k$重复根$r_{1,2} = \alpha \pm \beta i$ : 给出$2k$项$e^{\alpha x}[(C_1+C_2 +\cdots +C_kx^{k-1})\cos \beta x + (D_1+D_2 +\cdots +D_kx^{k-1})\sin \beta x]$
+	\item 一对$k$重复根$r_{1,2} = \alpha \pm \beta i$ : 给出$2k$项$e^{\alpha x}[(C_1+C_2x +\cdots +C_kx^{k-1})\cos \beta x + (D_1+D_2x +\cdots +D_kx^{k-1})\sin \beta x]$
 \end{enumerate}
 \end{corollary}
 
@@ -3783,6 +3783,8 @@ $$
 y^* = x^kR_m(x)e^{\lambda x}.
 $$
 的特解，其中$k$是按$\lambda$不是特征方程的根，是特征方程的单根或者特征方程的重根依次取$0,1,2$. 
+
+\bluet{若推广至$n$阶常系数微分方程，那么$\lambda$若不是特征方程的解，那么$k$还是取零; 若$\lambda$是特征方程的$s$重根，这里的$k$就取$s$}. 
 \end{proposition}
 
 
@@ -3795,7 +3797,9 @@ $$
 $$
 y^* = x^ke^{\lambda x}[R_m^{(1)}(x)\cos\omega x + R_m^{(2)}(x)\sin\omega x],
 $$
-其中$R_m^{(1)}(x),R_m^{(2)}(x)$是$m$次多项式，$m=\max\{l,n\}$，而$k$按$\lambda + i\omega$(或者$\lambda-i\omega$)不是特征方程的根，或是特征的单根依次取$0$和$1$. 
+其中$R_m^{(1)}(x),R_m^{(2)}(x)$是$m$次多项式，$m=\max\{l,n\}$，而$k$按$\lambda + i\omega$(或者$\lambda-i\omega$)不是特征方程的根，或是特征方程的单根依次取$0$和$1$. 
+
+\bluet{若推广至$n$阶常系数微分方程，那么$\lambda+i\omega$若不是特征方程的解，那么$k$还是取零; 若$\lambda+i\omega$是特征方程的根，且$s$是它的重复个数，则这里的$k$就取$s$}. 
 \end{proposition}
 
 \begin{definition}

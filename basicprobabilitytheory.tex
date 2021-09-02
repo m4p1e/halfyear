@@ -2654,7 +2654,7 @@ $$
 \begin{proof}
 由\ref{sample-means-normalization}和\ref{sample-variance-and-variance}可知
 $$
-\frac{\overline{X}-E(X_i)}{\sqrt{\frac{\sigma^2}{n}}} \sim N(\mu,\frac{\sigma^2}{n}),\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1).
+\frac{\overline{X}-E(X_i)}{\sqrt{\frac{\sigma^2}{n}}} \sim N(0,1),\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1).
 $$
 再由$t$分布的定义可知
 $$
@@ -2663,7 +2663,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则$\overline{X}$和$S^2$相互独立. 
+\rm 设$X_1,X_2,\cdots,X_n$相互独立，且都服从$N(\mu,\sigma^2)$，则$\overline{X}$和$S^2$相互独立. \bluet{这个结论是服务于\ref{sample-variance-replace-variance}}
 \end{proposition}
 
 \begin{proposition}\label{sample-variance-and-variance}
@@ -2672,6 +2672,18 @@ $$
 \frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1). 
 $$
 \end{proposition}
+
+\begin{proof}
+\rm 其中
+$$
+(n-1)S^2 = \sum\limits_{i=1}^n (X_i-\overline{X})^2 = \sum\limits_{i=2}^n \xi_i^2 
+$$
+其中$\xi_i \sim N(0,\sigma^2)$. 这是一个比较有趣的结论，因此
+$$
+\frac{\xi_i^2}{\sigma^2} = \left(\frac{\xi_i}{\sigma}\right)^2,
+$$
+其中$\frac{\xi_i}{\sigma} \sim N(0,1)$. 
+\end{proof}
 
 \begin{proposition}
 \rm \redt{对两个总体的方差之比估计的重要手段} 设$X_1,X_2,\cdots,X_{n_1}$与$Y_1,Y_2,\cdots,Y_{n_2}$分别来自正态总体分布$N(\mu_1,\sigma_1^2)$及$N(\mu_2,\sigma_2^2)$，且这两个样本相互独立. 则有
@@ -2767,7 +2779,7 @@ $$
 $$
 \begin{array}{ll}
 \widehat{\mu} = \frac{1}{n}\sum\limits_{i = 1}^n x_i =\overline{x} \\
-\widehat{\sigma}^2 = \frac{1}{n}\left(\sum\limits_{i = 1}^n x_i^2 - n\overline{x}^2 \right] = \frac{1}{n}  \sum\limits_{i = 1}^n (x_i - \overline{x})^2
+\widehat{\sigma}^2 = \frac{1}{n}\left(\sum\limits_{i = 1}^n x_i^2 - n\overline{x}^2 \right) = \frac{1}{n}  \sum\limits_{i = 1}^n (x_i - \overline{x})^2
 \end{array}
 $$
 \end{example}
@@ -2892,7 +2904,13 @@ $$
 \end{definition}
 
 \begin{annotation}
-\rm \redt{如何理解置信水平} 注意当我们通过一个样本计算出来的$1-\alpha$的置信区间$[\widehat{\theta_1},\widehat{\theta_2}]$，不能说$\theta$在这个区间的概率为$1-\alpha$，因为这个$\theta$是一个定值而不是一个随机变量，对于这个按照一定方法计算出来的区间，$\theta$可能在里面也可能不在里面. 那么对于$1-\alpha$我们可以这样理解，因为$[\widehat{\theta_1},\widehat{\theta_2}]$是一个随机区间，那么相当于通过$100$个样本计算出来的$100$个置信区间，可能有$95$个置信区间包含$\theta$. 
+\rm \redt{如何理解置信水平} 注意当我们通过一个样本计算出来的$1-\alpha$的置信区间$[\widehat{\theta_1},\widehat{\theta_2}]$，不能说$\theta$在这个区间的概率为$1-\alpha$，因为这个$\theta$是一个定值而不是一个随机变量，因此对于这个按照一定方法计算出来的区间，$\theta$只可能在里面也可能不在里面两种情况. 那么对于$1-\alpha$我们可以这样简单理解，因为$[\widehat{\theta_1},\widehat{\theta_2}]$是一个随机区间，那么相当于通过$100$个样本计算出来的$100$个置信区间，可能有$95$个置信区间包含$\theta$. 
+
+也可以这样思考，在未取样本之前，我们对总体的了解仅限于所给的已知条件，但这些条件还不足以完全确定一个总体，例如总体中的$\theta_1$这个参数还是是未知的. 于是在取样之前，我们如果可以通过计算构造出参数$\theta$的分布，其中可能包含某个样本统计量在其中，例如
+$$
+\frac{\overline{X}-E(X)}{\sqrt{\frac{D(X)}{n}}} \sim N(0,1)
+$$
+其中$\theta = E(X)$，在这个基础我们构造出来的$\%95$置信区间$[\widehat{\theta_1},\widehat{\theta_2}]$，现在是可以说$\theta$有$\%95$的概率落在里面. 但是一旦我们取了样本之后，样本里面所含的信息就已经确定总体了，由此计算样本统计量带入形式化置信区间$[\widehat{\theta_1},\widehat{\theta_2}]$，我们就得到了一个实数上的区间，这个区间对于$\theta$而言，可能被盖住了也可能没有盖住，仅此而已. 
 \end{annotation}
 
 \begin{annotation}
@@ -2916,7 +2934,7 @@ $$
 $$
 \overline{X} - \xi \sqrt{\frac{D(X)}{n}} \leq E(X) \leq  \overline{X} + \xi \sqrt{\frac{D(X)}{n}}
 $$
-\bluet{由此可以看出$n$越大，置信区间越短; 置信度越高，置信区间越长}. \redt{若$X$不是服从正态分布}，根据中心极限定理，当$n$充分大的时候
+\bluet{由此可以看出$n$越大，置信区间越短; 置信水平越高，置信区间越长}. \redt{若$X$不是服从正态分布}，根据中心极限定理，当$n$充分大的时候
 $$
 \eta = \frac{\overline{X}-E(X)}{\sqrt{\frac{D(X)}{n}}}
 $$
@@ -3015,7 +3033,7 @@ $$
 $$
 P\{|U| \geq \lambda_1 \} = \alpha~\text{或} ~ P\{|T| \geq \lambda_2 \} = \alpha.
 $$
-这样选择的目的是$H_0$成立情况下，样本均值$\overline{X}$应接近$\mu_0$，若给定一个范围即是$|\overline{X} - \mu_0| \leq k$，在这个范围内则接受原假设$H_0$. 为了方便在已知分布下上述问题，我们转而考察
+这样选择的目的是$H_0$成立情况下，样本均值$\overline{X}$应接近$\mu_0$，若给定一个范围即是$|\overline{X} - \mu_0| \leq k$，在这个范围内则接受原假设$H_0$. 为了方便在已知分布下谈论上述问题，我们转而考察
 $$
 U = \frac{|\overline{X} - \mu_0|}{\sqrt{\frac{\sigma^2}{n}}} \leq \lambda
 $$
@@ -3032,9 +3050,9 @@ $$
 $$
 P\{U \geq \lambda\} = \alpha
 $$
-其中$\alpha$作为检验水平，即认为$\{U \geq \lambda\}$是一个小概率事件. 当$\mu = u_0$时，显然有
+其中$\alpha$作为检验水平，即认为$\{U \geq \lambda\}$是一个小概率事件. 在$H_0$成立时，当$\mu = u_0$时，显然有
 $$
-Y = \frac{\overline{X}-\mu_0}{\sqrt{\frac{\sigma^2}{n}}} \leq U, \mu \leq \mu_0 ~(\text{在$H_0$成立时}).
+Y = \frac{\overline{X}-\mu_0}{\sqrt{\frac{\sigma^2}{n}}} \leq U
 $$
 于是
 $$
@@ -3068,5 +3086,8 @@ $$
 \end{enumerate}
 \end{annotation}
 
+\begin{annotation}
+\rm \redt{区间估计和假设检验的关系} 对于任意的区间估计及假设检验问题，置信水平为$1-\alpha$和的区间估计和显著性水平为$\alpha$的统计推断等价。
+\end{annotation}
 
 \end{document}
