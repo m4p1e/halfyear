@@ -313,6 +313,17 @@ $$
 当$n \rightarrow \infty$时，$h \rightarrow 0$，即$\sqrt[n]{n}-1 \rightarrow 0$，所以$\lim \sqrt[n]{n} = 1$.
 \end{example}
 
+\begin{example}
+\rm 求极限
+$$
+\lim\limits_{x\to +\infty} (\sqrt[6]{x^6 + x^5}-\sqrt[6]{x^6 - x^5})
+$$
+\hints\ 考虑把根式里面变成$(1+\alpha(x))$的形式，因此考虑提出一个因子$x$
+$$
+\lim\limits_{x\to +\infty} x(\sqrt[6]{1+\frac{1}{x}}-\sqrt[6]{1-\frac{1}{x}}) = \lim\limits_{x\to +\infty} \left(  \frac{\sqrt[6]{1+\frac{1}{x}}}{\frac{1}{x}} - \frac{\sqrt[6]{1-\frac{1}{x}}}{\frac{1}{x}} \right) = \frac{1}{3}.
+$$
+\end{example}
+
 \newpage
 \subsection{换元取极限}
 

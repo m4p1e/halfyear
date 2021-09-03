@@ -2749,7 +2749,7 @@ $$
 \subsection{矩估计}
 
 \begin{definition}
-\rm 设总体$X$的分布有未知参数$\theta_1,\cdots,\theta_k$，设其有$l$阶原点矩$a_l$存在，设样本的$l$阶原点矩为$A_l = \frac{1}{n}\sum\limits_{i = 1}^nX_i^l$. 于是
+\rm 设总体$X$的分布有未知参数$\theta_1,\cdots,\theta_k$，抽取样本$X_1,\cdots,X_n$的观测值为$x_1,\cdots,x_2$. 设其有$l$阶原点矩$a_l$存在，设样本的$l$阶原点矩为$A_l = \frac{1}{n}\sum\limits_{i = 1}^n x_i ^l$. 于是
 $$
 a_l = a_l(\theta_1,\cdots,\theta_k) \approx A_l,
 $$
@@ -2757,7 +2757,7 @@ $$
 $$
 \widehat{\theta_i} = \widehat{\theta_i}(X_1,\cdots,X_n),i=1,2,\cdots,k.
 $$
-以$\widehat{\theta_i}$作为$\theta_i$的一个估计，这样的估计量叫做\redt{矩估计}.
+以$\widehat{\theta_i}$作为$\theta_i$的一个估计，这样的估计量叫做\redt{矩估计}. \bluet{即仅使用样本矩的点估计来构造方程}. 
 \end{definition}
 
 \begin{example}
@@ -2799,30 +2799,30 @@ $$
 \end{annotation}
 
 \begin{example}
-\rm 设$X_1,\cdots,X_n$是从正态总体$N(\mu,\sigma^2)$中抽出的样本，则似然函数为
+\rm 设$X_1,\cdots,X_n$是从正态总体$N(\mu,\sigma^2)$中抽出的样本，其观测值为$x_1,\cdots,x_n$，则似然函数为
 $$
-L = \left(\frac{1}{\sqrt{2\pi}\sigma}\right)^ne^{\frac{-1}{2\sigma^2}\sum\limits_{i =1}^n (X_i-\mu)^2}.
+L = \left(\frac{1}{\sqrt{2\pi}\sigma}\right)^ne^{\frac{-1}{2\sigma^2}\sum\limits_{i =1}^n (x_i-\mu)^2}.
 $$
 等式两边取对数有
 $$
-\ln L =-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln(\sigma^2) - \frac{1}{2\sigma^2}\sum\limits_{i =1}^n (X_i-\mu)^2.
+\ln L =-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln(\sigma^2) - \frac{1}{2\sigma^2}\sum\limits_{i =1}^n (x_i-\mu)^2.
 $$
 于是
 $$
 \left\{
 \begin{array}{ll}
-\frac{\partial L}{\partial \mu} = \frac{1}{\sigma^2}\sum\limits_{i =1}^n (X_i-\mu) = 0 \\
-\frac{\partial L}{\partial \sigma^2} = - \frac{n}{2\sigma^2} +\frac{1}{2(\sigma^2)^2} \sum\limits_{i =1}^n (X_i-\mu)^2 = 0
+\frac{\partial L}{\partial \mu} = \frac{1}{\sigma^2}\sum\limits_{i =1}^n (x_i-\mu) = 0 \\
+\frac{\partial L}{\partial \sigma^2} = - \frac{n}{2\sigma^2} +\frac{1}{2(\sigma^2)^2} \sum\limits_{i =1}^n (x_i-\mu)^2 = 0
 \end{array}\right.
 $$
-显然有$\widehat{\mu} = \bar{X} = \frac{\sum\limits_{i =1}^n X_i}{n}$，$\widehat{\sigma^2} = \frac{1}{n}\sum\limits_{i =1}^n (X_i-\bar{X})^2$. 我们还需要判定其是不是最大值，其二阶导分别为
+显然有$\widehat{\mu} = \bar{X} = \frac{\sum\limits_{i =1}^n x_i}{n}$，$\widehat{\sigma^2} = \frac{1}{n}\sum\limits_{i =1}^n (x_i-\bar{x})^2$. 我们还需要判定其是不是最大值，其二阶导分别为
 $$
 \left\{
 \begin{array}{ll}
 \frac{\partial^2L}{\partial \mu\partial \mu} = -\frac{n}{\sigma^2} \\
-\frac{\partial^2L}{\partial \mu \partial \sigma^2} =  -\frac{1}{(\sigma^2)^2}\sum\limits_{i =1}^n (X_i-\mu) \\
-\frac{\partial^2L}{\partial \sigma^2 \partial \mu} = -\frac{1}{(\sigma^2)^2}\sum\limits_{i =1}^n (X_i-\mu) \\
-\frac{\partial^2L}{\partial \sigma^2 \partial \sigma^2} =  \frac{n}{2(\sigma^2)^2} - \frac{1}{(\sigma^2)^3}\sum\limits_{i =1}^n (X_i-\mu)^2
+\frac{\partial^2L}{\partial \mu \partial \sigma^2} =  -\frac{1}{(\sigma^2)^2}\sum\limits_{i =1}^n (x_i-\mu) \\
+\frac{\partial^2L}{\partial \sigma^2 \partial \mu} = -\frac{1}{(\sigma^2)^2}\sum\limits_{i =1}^n (x_i-\mu) \\
+\frac{\partial^2L}{\partial \sigma^2 \partial \sigma^2} =  \frac{n}{2(\sigma^2)^2} - \frac{1}{(\sigma^2)^3}\sum\limits_{i =1}^n (x_i-\mu)^2
 \end{array}\right.
 $$
 故$L$有二阶连续偏导，根据极值判定法则
@@ -2988,7 +2988,7 @@ $$
 
 
 \newpage
-\section{假设检验}
+ \section{假设检验}
 
 \begin{definition}
 \rm \redt{假设}是指关于总体的论断或命题，常用$H$表示，假设分为\redt{基本假设}$H_0$(或原假设，零假设)和\redt{备选假设}(或对立假设). 还可以将假设分为\redt{参数假设}和\redt{非参数假设}，参数假设是指已知总体分布函数形式，对其中位置参数的假设，其他的假设就是非参数假设. 也将假设分为\redt{简单假设}和\redt{复合假设}，若完全决定总体分布的假设为简单假设，否则就称复合假设.
@@ -3019,6 +3019,14 @@ $$
 \begin{definition}
 \rm 只控制第一类错误概率$\alpha$的统计检验，称为\redt{显著性检验}.
 \end{definition}
+
+\begin{definition}
+\rm 在给定检验水平情况下，不可能出现的样本的范围，称之为\redt{拒绝域}，即如果一旦出现这个范围里面的样本，则拒绝当前假设. 
+\end{definition}
+
+\begin{proposition}
+\rm 检验水平越小，则拒绝域也越小. 
+\end{proposition}
 
 \begin{annotation}
 \rm \redt{设总体$X \sim N(\mu,\sigma^2)$，检验$H_0: \mu=\mu_0$}. 如果已知$\sigma^2$，则使用统计量为
