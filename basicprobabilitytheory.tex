@@ -2627,8 +2627,14 @@ $$
 \end{definition}
 
 \begin{proposition}
-\rm $F(n_1,n_2)$分布的概率密度为
-%TODO
+\rm $F(m,n)$分布的概率密度为
+$$
+f_{m,n} = m^{\frac{m}{2}} n^{\frac{n}{2}} \frac{\Gamma(\frac{m+n}{2})}{\Gamma(\frac{m}{2})\Gamma(\frac{m}{2})}x^{\frac{m}{2}-1}(mx+n)^{-\frac{m+n}{2}}, ~ x> 0.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 若$X \sim F(n_1,n_2)$，则$X^{-1} \sim F(n_2,n_1)$. 
 \end{proposition}
 
 \begin{proposition}
