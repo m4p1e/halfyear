@@ -1396,13 +1396,13 @@ y = \psi(\theta(x)).
 $$
 它也有导数存在. 我们可以不必重新建立上面这个关系来求$y_x'$，可以通过下面方法来完成
 $$
-y_x' = \frac{dy}{dx} = \frac{y_t' \cdot dt}{x_t' \cdot dt} = \frac{y_t'}{x_t'} = \frac{\varphi'(t)
-}{\psi'(t)}. 
+y_x' = \frac{dy}{dx} = \frac{y_t' \cdot dt}{x_t' \cdot dt} = \frac{y_t'}{x_t'} = \frac{\psi'(t)
+}{\varphi'(t)}. 
 $$
 特别地，若$\varphi(t)$和$\psi(t)$二阶可导，则有
 $$
-y_x'' = \frac{d^2y}{dx^2}  = \frac{d\left(\frac{y_t'}{x_t'}\right)}{dx} = \frac{\left(\frac{\varphi'(t)
-}{\psi'(t)}\right)'dt}{\psi(t)'dt} = \frac{\varphi''(t)\psi'(t)-\psi''(t)\varphi'(t)}{[\psi(t)']^3}.
+y_x'' = \frac{d^2y}{dx^2}  = \frac{d\left(\frac{y_t'}{x_t'}\right)}{dx} = \frac{\left(\frac{\psi'(t)
+}{\varphi'(t)}\right)'dt}{\varphi(t)'dt} = \frac{\psi''(t)\varphi'(t)-\varphi''(t)\psi'(t)}{[\varphi(t)']^3}.
 $$
 \end{example}
 
@@ -1781,7 +1781,7 @@ $$
 \rm 给定有限闭区间$[a,b]$上函数$f(x)$，其上所有极大值中最大值(极小值中的最小值)为$f(x)$在$[a,b]$上的{\color{red}最大值(最小值)}.
 \end{definition}
 
-r3\subsection{凹凸性}
+\subsection{凹凸性}
 
 \begin{definition}
 \rm 给定在区间$\mathcal{X}$上定义着的连续函数$f(x)$，若对$\mathcal{X}$上任意两点$x_1,x_2$均满足不等式
@@ -4865,6 +4865,41 @@ ds = \sqrt{\rho^2+\rho'^2}d\theta
 $$
 \end{proposition}
 
+\subsection{曲率}
+
+\begin{definition}
+\rm 单位弧长上的切线转过的角度称为\redt{平均曲率}. 
+\end{definition}
+
+\begin{definition}
+\rm 若给定曲线$L$，设$M,M_1$为曲线上两点，固定$M_1$. 若当$M$沿曲线趋于$M_1$时，弧$\widehat{MM_1}$的平均曲率趋于一极限，这极限称为曲线在点$M$的\redt{曲率}，即$k$表示$L$在给定某点的曲率，那么有
+$$
+k =  \lim\limits_{\Delta s \to 0} \frac{\Delta \alpha}{\Delta s} = \frac{d\alpha}{ds}.
+$$ 
+\end{definition}
+
+\begin{proposition}
+\rm 给定曲线$L$的参数方程为
+$$
+\begin{array}{ll}
+x = x(t) \\
+y = y(t) \\
+\end{array}
+$$
+假定$x(t)$及$y(t)$同时具有一阶和二阶导数. 则$L$在任意一点的曲率为
+$$
+k = \frac{|y_t''x_t'-x_t''y_t'|}{(x_t'^2 + y_t'^2)^{\frac{3}{2}}}.
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 给定曲线$L$的参数方程为$y=y(x)$，且$y$二阶可导. 则$L$在任意一点的曲率为
+$$
+k = \frac{y''}{\sqrt{1+y'^2}^{\frac{3}{2}}}.
+$$
+\end{proposition}
+
+
 \subsection{质心和形心}
 
 \begin{proposition}
@@ -4910,8 +4945,6 @@ I_x = \int\int\int_\Omega (y^2+z^2) f(x,y,z)dv.
 $$
 类似的还可以推广至空间曲线和空间曲面. 
 \end{definition}
-
-\subsection{曲率}
 
 \subsection{坐标轴下的体积}
 

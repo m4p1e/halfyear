@@ -403,6 +403,19 @@ $$
 $$
 \end{example}
 
+\subsection{没有具体的函数表达式}
+
+\begin{example}
+\rm 设$f(x)$在$x=a$处二阶导数存在，求
+$$
+L = \lim\limits_{h \to 0}\frac{\frac{f(a+h)-f(a)}{h}-f'(a)}{h}. 
+$$
+\hints\ 直觉告诉它的结果和二阶导有关，但是任何初等方法都化不出来二阶导的定义，这个时候可以考虑用一下洛必达
+$$
+L = \lim\limits_{h \to 0} \frac{f(a+h)-f(a)-hf'(a)}{h^2} = \lim\limits_{h \to 0} \frac{f'(a+h)-f'(a)}{2h} = \frac{1}{2}f''(a). 
+$$
+\end{example}
+
 \section{导数}
 
 \subsection{导数定义相关的}
