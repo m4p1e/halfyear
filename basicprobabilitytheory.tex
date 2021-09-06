@@ -2131,6 +2131,10 @@ E\left\{\left[Y-(aX+b) \right]^2\right\} = \sigma_2^2 + \frac{[\text{Cov}(X,Y)]^
 $$
 \end{proof}
 
+\begin{proposition}
+\rm \redt{线性变换不影响相关系数} 若随机$X$和$Y$的相关系数为$\rho_{XY} \neq 0$，那么$Y$和$aX+b$的相关系数等于$\frac{a}{|a|}\rho_{XY}$，其中$a \neq 0$. 
+\end{proposition}
+
 \subsection{常用分布的数字特征}
 
 \begin{proposition}
@@ -2327,7 +2331,7 @@ $$
 \end{proof}
 
 \begin{theorem}
-\rm \redt{(大数定理)} 设$X_1,X_2,\cdots,X_n,\cdots$是独立同分布的随机变量，即$E(X_i) = \mu,i=1,2,\cdots$. 则对任意数$\varepsilon > 0$有
+\rm \redt{(辛钦大数定理)} 设$X_1,X_2,\cdots,X_n,\cdots$是独立同分布的随机变量，即$E(X_i) = \mu,i=1,2,\cdots$. 则对任意数$\varepsilon > 0$有
 $$
 \lim\limits_{n \rightarrow \infty}P\{|\overline{X}_n -\mu| \geq \varepsilon\} = 0,
 $$ 
@@ -2346,7 +2350,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm \redt{大数定理的特例} 若随机变量$S_n \sim B(n,p)(n=1,2,\cdots)$，则对于任意$\varepsilon > 0$，有
+\rm \redt{伯努利大数定理} 若随机变量$S_n \sim B(n,p)(n=1,2,\cdots)$，则对于任意$\varepsilon > 0$，有
 $$
 \lim\limits_{n \rightarrow \infty}P\left\{\left|\frac{S_n}{n} -p\right| \geq \varepsilon\right\} = 0.
 $$
@@ -2368,7 +2372,7 @@ $$
 \end{proof}
 
 \begin{theorem}
-\rm \redt{更一般的大数定理} 设$X_1,X_2,\cdots,X_n,\cdots$为随机变量序列，则对任意的$\varepsilon > 0$，都有
+\rm \redt{更一般的切比雪夫大数定理} 设$X_1,X_2,\cdots,X_n,\cdots$为相互独立的随机变量，它们的期望$E(X_i)$和方差$D(X_i)$都存在，而且方差上有界，即$D(X_i) \leq L, i = 1,2,\cdots$. 则对任意的$\varepsilon > 0$，都有
 $$
 \lim\limits_{n \to \infty} P\left\{ \left| \frac{1}{n} \sum\limits_{i=1}^n X_i - \frac{1}{n} \sum\limits_{i=1}^n E(X_i) \right| \geq \varepsilon \right\} = 0. 
 $$
