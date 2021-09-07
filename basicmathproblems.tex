@@ -435,6 +435,51 @@ $$
 求出需要$\lim\limits_{x \to 0} \frac{f(x_0-2x)-f(x_0)}{x}$和$\lim\limits_{x \to 0} \frac{f(x_0-x)-f(x_0)}{x}$，两项相减再取倒. 
 \end{example}
 
+\subsection{泰勒公式求高阶导数}
+
+\subsection{递归法求高阶导数}
+
+%通项推导 https://math.stackexchange.com/questions/549028/deriving-maclaurin-series-for-frac-arcsin-x-sqrt1-x2
+\begin{example}
+\rm 设
+$$
+f(x) = \frac{\arcsin x}{\sqrt{1-x^2}},
+$$
+求$f^{(n)}(0)$.
+
+\hints\ 这道题你想求它的麦克劳林级数其实不太好求(\url{https://math.stackexchange.com/questions/549028/deriving-maclaurin-series-for-frac-arcsin-x-sqrt1-x2})，实际上也不用求出通项，因为只需要求$x=0$的情况，这里有比较trick的利用递归式的手法. 先求它的一阶导
+$$
+f'(x) = \frac{1 + \frac{x}{\sqrt{1-x^2}}\arcsin x}{1-x^2} = \frac{x}{(1-x)^{3/2}}\arcsin x + \frac{1}{1-x^2}.  
+$$
+这里构造一个微分方程
+$$
+(1-x^2)f'(x)-xf(x)-1 = 0
+$$ 
+两边求$n$次，根据$n$的莱布尼茨公式有
+$$
+(1-x^2)f^{(n+1)}(x) - (2n+1)xf^{n}(x)-n^2f^{(n-1)}(x) = 0. 
+$$
+带入$x=0$，这里就可能消掉$f^{(n)}$的项，得到一个递归式
+$$
+f^{(n+1)}(0) - n^2f^{(n-1)}(0). 
+$$
+这里我们让$n=n+1$，则有
+$$
+f^{(n+2)}(0) =  n^2f^{(n)}(0). 
+$$
+我们可以求出最前面的两项$f'(0) = 1$和$f''(0) = 0$， 于是这里有
+$$
+f^{n}(0) = \left\{ \begin{array}{ll}
+0 & n=\text{奇数} \\
+(n-1)^2\times(n-2)!\times\cdots\times 2! &   n=\text{偶数}
+\end{array} \right.
+$$
+奇数下的情况可以化简为$2^{n-1}((\frac{n-1}{2})!)^2$
+\end{example}
+
+
+
+\newpage
 \section{不定积分}
 
 \subsection{多项式分式}
