@@ -2424,7 +2424,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm 给定多项式$p_n(x)=a_0 + a_1x^1 + \cdots a_{n}x^n$，若$p_n(x) = p_n(-x)$，则
+\rm \redt{有理式的性质} 给定多项式$p_n(x)=a_0 + a_1x^1 + \cdots a_{n}x^n$，若$p_n(x) = p_n(-x)$，则
 $$
 p_n(x) = p_n^*(x^2).
 $$
@@ -2447,7 +2447,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm $p_n(x)=a_0 + a_1x + \cdots a_{n}x^n$，若$p_n(x) = -p_n(-x)$，则
+\rm  \redt{有理式的性质} $p_n(x)=a_0 + a_1x + \cdots a_{n}x^n$，若$p_n(x) = -p_n(-x)$，则
 $$
 p_n(x) = p_n^{**}(x^2)x.
 $$
@@ -2502,16 +2502,31 @@ R(u,v) = R_3(\frac{u}{v},v^2).
 $$
 \end{corollary}
 
+\begin{proof}
+令$u = \frac{u}{v}v$，有
+$$
+R(u,v) = R(\frac{u}{v}v,v) = R^*(\frac{u}{v},v).
+$$
+因此当$u,v$同时变号时，$\frac{u}{v}$的符号保持不变，即
+$$
+R^*(\frac{u}{v},v) = R^*{\frac{u}{v},-v},
+$$
+根据前面的推论我们有
+$$
+R^*(\frac{u}{v},v) = R_1^*(\frac{u}{v},v^2).  
+$$
+\end{proof}
+
 \begin{proposition}
-\rm 特殊凑微分方法
+\rm \redt{利用有理式的性质简化计算} 特殊凑微分方法
 \begin{enumerate}
 	\item 若$R(-\sin x,\cos x) = - R(\sin x, \cos x)$，此时
 	$$
-	R(\sin x,\cos x)dx = R_2(\sin^2 x, \cos x)\sin x dx = -R_0(1-\cos^2x,\cos x)d\cos x.
+	R(\sin x,\cos x)dx = R_2(\sin^2 x, \cos x)\sin x dx = -R_2(1-\cos^2x,\cos x)d\cos x.
 	$$
 	\item 若$R(\sin x,-\cos x) = - R(\sin x, -\cos x)$，此时
 	$$
-	R(\sin x,\cos x)dx = R_2^*(\sin x, \cos^2x )\cos x dx = -R_0^*(\sin x , 1-\sin^2 x)dsinx.
+	R(\sin x,\cos x)dx = R_2^*(\sin x, \cos^2x )\cos x dx = R_2(\sin x , 1-\sin^2 x)d\sin x.
 	$$
 	\item 若$R(-\sin x, -\cos x) = R(\sin x ,\cos x)$ 
 	$$
@@ -3321,7 +3336,7 @@ domain = 0:5] {sqrt(2*pi)*x^(x-0.5)*exp(-x)*exp(1/(12*x))};
 
 \begin{proposition}
 \rm 阶乘通项
-$$
+$$		
 \Gamma(s) = (s-1)!. 
 $$
 \end{proposition}

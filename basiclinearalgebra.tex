@@ -3063,6 +3063,69 @@ $$
 所以$\mbf{\beta}_{k+1}$和$\mbf{\beta}_{j}$均正交. 观察(1)式可知$\mbf{\beta}_{k+1}$是由$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_t$线性表出的，并且$\mbf{\alpha}_k$的系数为1，所以$\mbf{\beta}_{k+1}$不为$\mbf{0}$. 于是$\mbf{\beta}_{1},\cdots,\mbf{\beta}_{k},\mbf{\beta}_{k+1}$为正交向量组. 还是由(1)式$\mbf{\beta}_{1},\cdots,\mbf{\beta}_{k},\mbf{\beta}_{k+1}$和$\mbf{\alpha}_{1},\cdots,\mbf{\alpha}_{k},\mbf{\alpha}_{k+1}$显然是等价.
 \end{proof}
 
+\subsection{坐标变换}
+
+\begin{proposition}
+\rm 给定线性空间$F^n$上一个$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$，则对任意的$\mbf{v} \in F^n$都有唯一的表示
+$$
+v = k_1\mbf{\alpha}_1+\cdots+k_n\mbf{\alpha}_n.
+$$
+称$(k_1,\cdots,k_2)^T$在$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$的\redt{坐标表示}. 
+\end{proposition}
+
+\begin{definition}
+\rm 给定线性空间$F^n$上两个基$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$及$\mbf{\beta}_1,\cdots,\mbf{\beta}_n$，且满足方程组
+$$
+\left\{
+\begin{array}{rl}
+\mbf{\beta}_1  &= a_{11}\mbf{\alpha}_1 + \cdots + a_{1n}\mbf{\alpha}_n \\
+&\cdots  \\
+\mbf{\beta}_n  &= a_{n1}\mbf{\alpha}_1 + \cdots + a_{nn}\mbf{\alpha}_n
+\end{array} \right.
+$$
+则称矩阵
+$$
+\mbf{A}=
+\begin{pmatrix}
+a_{11} & \cdots & a_{n1}\\
+\vdots & & \vdots \\
+a_{1n} & \cdots & a_{nn}
+\end{pmatrix}
+$$
+为$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$到$\mbf{\beta}_1,\cdots,\mbf{\beta}_n$的\redt{过渡矩阵}，即满足
+$$
+(\mbf{\beta}_1,\cdots,\mbf{\beta}_n) = (\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n)\mbf{A}. 
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 过渡矩阵是可逆的. 
+\end{proposition}
+
+\begin{proposition}
+\rm \redt{坐标变换和过渡矩阵的关系} 给定线性空间$F^n$上两个基$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$及$\mbf{\beta}_1,\cdots,\mbf{\beta}_n$，设$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$到$\mbf{\beta}_1,\cdots,\mbf{\beta}_n$过渡矩阵为$\mbf{A}$. 则对于任意的$\mbf{v} \in V$，若它在$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$的坐标表示为$(a_1,\cdots,a_2)^T$，则它在$\mbf{\beta}_1,\cdots,\mbf{\beta}_n$的坐标表示为
+$$
+(b_1,\cdots,b_n) = \mbf{A}^{-1}(a_1,\cdots,a_2)^T
+$$
+\end{proposition}
+
+\begin{proof}
+设$v$在$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$的坐标表示为$\mbf{v}_{1}  = (a_1,\cdots,a_2)^T$，那么即有
+$$
+v = a_1\mbf{\alpha}_1 + \cdots + a_n\mbf{\alpha}_n = (\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n)\mbf{v}_1. 
+$$
+由过渡矩阵我们有
+$$
+(\mbf{\beta}_1,\cdots,\mbf{\beta}_n)\mbf{A}^{-1} = (\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n).
+$$
+因此
+$$
+v = (\mbf{\beta}_1,\cdots,\mbf{\beta}_n)\mbf{A}^{-1}\mbf{v}_1 = b_1\mbf{\beta}_1 + \cdots + b_n\mbf{\beta}_n 
+$$
+所以$(b_1,\cdots,b_n) = \mbf{A}^{-1}(a_1,\cdots,a_2)^T$. 
+\end{proof}
+
+
 
 \subsection{正交矩阵}
 
