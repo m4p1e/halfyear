@@ -544,7 +544,7 @@ $$
 $$
 \int \frac{2-x}{\sqrt{3+2x-x^2}}dx.
 $$
-\hints\ 先分式把分子变成常数$1$
+\hints\ 先分式把分子根号里面的微分
 $$
 \int \frac{2-x}{\sqrt{3+2x-x^2}}dx = \int \frac{1-x}{\sqrt{3+2x-x^2}} dx + \int \frac{1}{\sqrt{3+2x-x^2}} dx = \frac{1}{2}\int \frac{1}{\sqrt{3+2x-x^2}} d(3+2x-x^2) +  \int \frac{1}{\sqrt{4-(x-1)^2}} dx,
 $$
@@ -567,6 +567,22 @@ $$
 $$
 \frac{a^2\arcsin \frac{x}{a}}{2} - \frac{x}{2}\sqrt{a^2 - x^2}+C
 $$
+\end{example}
+
+\begin{example}
+\rm 求
+$$
+\frac{dx}{x\sqrt{x^4+1}}.
+$$
+\hints 这里还是要凑根号下的微分，有比较多的凑法，这里提及一种凑微分再配合三角换元的，
+$$
+\frac{dx}{x\sqrt{x^4+1}} = \int \frac{1}{2} \frac{dx^2}{x^2 \sqrt{(x^2)^2 + 1}},
+$$
+令$x^2 = \tan u$， 于是得到
+$$
+\frac{1}{2}\int \frac{1}{\sin u}du = \frac{1}{2} \ln |\csc u + \cot u|. 
+$$
+再带回$x$即可. 
 \end{example}
 
 \subsection{换元法}
@@ -621,7 +637,14 @@ $$
 $$
 - \int \frac{1}{\frac{1}{\sqrt{1+u^2}}(\frac{1}{\sqrt{1+u^2}} + \frac{u}{\sqrt{1+u^2}})} \frac{1}{1+u^2} du = - \int \frac{1}{1+u}du = - \ln |u| + C = -\ln|1+\cot x| + C .
 $$
+\end{example}
 
+\begin{example}
+\rm 求
+$$
+\int \frac{\sin x}{\sin x + \cos x}dx
+$$
+\hints\ 这种情况可以考虑先化简一下分子，即上下乘以$(\cos x - \sin x)$，这样之后就可以考虑部分分式. 
 \end{example}
 
 \subsection{递归式}
