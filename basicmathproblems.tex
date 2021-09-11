@@ -801,6 +801,48 @@ $$
 其中$(1+x)^b \to 0$，则$a < \lambda$，即$a < 1$.
 \end{example}
 
+\subsection{分离积分}
+
+\begin{example}
+\rm 讨论下述积分的收敛性
+$$
+\int_0^{+\infty} \frac{\sin x}{x^2}dx  = \int_0^{\frac{\pi}{2}} \frac{\sin x}{x^2}dx + \int_{\frac{\pi}{2}}^{+\infty} \frac{\sin x}{x^2}dx
+$$
+\hints 其中后面这个积分在柯西判别法很容易确定是收敛的(实际上可以用狄利克雷判别法)，因为总是满足
+$$
+f(x) \leq  \frac{1}{x^2}
+$$
+那么前面这个积分可以做一下变换
+$$
+\int_0^{\frac{\pi}{2}} \frac{\sin x}{x^2}dx =  \int_0^{\frac{\pi}{2}}  \frac{1}{x} \cdot \frac{\sin x}{x}dx \geq \frac{2}{\pi} \int_0^{\frac{\pi}{2}}  \frac{1}{x}
+$$
+这是因为$\frac{\sin x}{x}$在$(0,\frac{\pi}{2}]$上是单调减的，这一点求两次导即可知道，所以前面这个积分是发散的. 因此整个积分是发散的.  
+\end{example}
+
+\subsection{求值}
+
+\begin{example}
+\rm 求
+$$
+I = \int_0^{+\infty} \frac{dx}{1+x^4}.
+$$
+\hints 设$u = \frac{1}{x}$，则有
+$$
+I = \int_0^{+\infty} \frac{u^2}{1+u^4}du
+$$
+把这个积分和原积分加起来
+$$
+2I = \int_0^{+\infty} \frac{1+x^2}{1+x^4}dx = \int_0^{+\infty} \frac{1+\frac{1}{x^2}}{\frac{1}{x^2}+x^2}dx = \int_0^{+\infty} \frac{1+\frac{1}{x^2}}{(x-\frac{1}{x})^2+2}dx
+$$
+这里设$t = x-\frac{1}{x}$，有
+$$
+\int_{-\infty}^{+\infty} \frac{1}{t^2+2}dt = \left. \frac{1}{\sqrt{2}}\arctan \frac{t}{\sqrt{2}}\right|_{-\infty}
+^{+\infty} = \frac{\pi}{\sqrt{2}}
+$$
+因此$I = \frac{\pi}{2\sqrt{2}}$.
+\end{example}
+
+
 
 \newpage
 \section{微分方程}
