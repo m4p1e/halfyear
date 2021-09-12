@@ -379,8 +379,12 @@ $$
 
 主要步骤:
 
-1. 正常地向二叉搜索树插入一个元素.
-2. 再对这个元素所在的叶子结点进行平衡二叉树的修复. 
+1. 正常地向二叉搜索树插入一个元素$x$.
+2. 若该插入过程破坏了平衡树，那么只可能破坏了包含$x$的子树的平衡性质.  因此我们考虑$x$到根结点这条路径上的所有$x$祖先结点. 
+3. 插入一个元素可能会使得某些结点的平衡因子在$[-2,2]$变动.  
+4. 如果一个结点的平衡因子变成了0，那么以该节点为根结点的子树高度不变，此时退出fixup过程;
+5. 如果一个结点的平衡因子变成了$\pm1$，那么以该结点为根结点的子树高度增加了，但是平衡性质不变，继续考虑下一结点.
+6. 如果一个结点的平衡因此变成了$\pm 2$，那么此时平衡性质被破坏，我们需要做适当的旋转操作，可以使得该子树高度被还原（因为平衡因子会归0）. 
 
 ```python
 init(T)
@@ -389,22 +393,37 @@ init(T)
     T.root.left = T.nil
     T.root.right = T.nil
 
-insert(T,x)
-	z = T.root
+insert(T,z)
+	x = T.root
     y = T.nil
-	while z != T.nil #正常的二叉树插入
-    	y = z
-    	if z.key > x.key
-        	z = z.left
-            z.bf = z.bf+1 #维护平衡因子
+	while x != T.nil #正常的二叉树插入
+    	y = x
+    	if x.key > z.key
+        	x = x.left
         else
-        	z = z.right
-            z.bf = z.bf-1
-    x.p = y
-    x.bf = 0
-    x.left = T.nil
-    x.right = T.nil
-	fixup(T,x)
+        	x = x.right
+    z.p = y
+    z.bf = 0
+    z.left = T.nil
+    z.right = T.nil
+
+insert_fixup(T,z)
+	x = z.p
+    while x! = nil #x.bp = 0
+    	if z == x.left #z是x的左孩子
+        	if x.bf > 0 # 此时该节点的平衡因子变为了2
+            	if(z.bf < 0)
+            		right_rotate(z)
+            else
+                
+          
+    	else #z是x的右孩子
+        	#操作和上面if是对称的.
+        
+        z = x
+    	x = x.p
+        
+	
 ```
 
 
@@ -426,24 +445,24 @@ tansplant(T,u,v) #用子树v替换子树u
     	u.p.right = v
     v.p = u.p
     
-delete(T,x)
-	if x.left = T.nil
-    	transplant(T,x,x.right)
+delete(T,z)
+	if z.left = T.nil
+    	transplant(T,z,z.right)
     elseif x.right = T.nil
-    	transplant(T,x,x.left)
+    	transplant(T,z,z.left)
     else
-    	y = tree_minimum(x.right) #找后继
-       	if y.p = x #这里不需要删除y原先的位置
+    	y = tree_minimum(z.right) #找后继
+       	if y.p = z #这里不需要删除y原先的位置
         	#nothing to do?
         else
         	if y.right != nil #若y有右孩子，用孩子替换y
         		transplant(T,y,y.right)
             else 
             	y.p.left = T.nil #若y没有做右孩子，用nil替换y.   
-            y.right = x.right #移动x.right到y.right
+            y.right = z.right #移动x.right到y.right
             y.right.p = y
-        transplant(T,x,y) # y子树替换x        
-        y.left = x.left #移动x.left到y.left 
+        transplant(T,z,y) # y子树替换x        
+        y.left = z.left #移动x.left到y.left 
         y.left.p = y
         
 ```
