@@ -94,6 +94,17 @@
 1.  树的根结点为$A[1]$
 2.  任意给定一个下标$i$，其父节点为$\lfloor i/2 \rfloor$，其左孩子为$2i$，右孩子为$2i+1$. 
 
+```python
+parent(i)
+	return A[floor(i/2)]
+
+left_child(i)
+	return A[2i]
+	
+right_child(i)
+	return A[2i+1]
+```
+
 
 
 **维护堆max-heapify**
@@ -129,12 +140,60 @@
 就是让堆变成一个搜索二叉树，手法比较巧妙
 
 1. 我们可以知道是最大堆的根结点$r$是整棵树中最大的，我们每次把根取出来，用一个叶子$l$结点代替. 
-2. 用$l$替换是不会影响$r$的左右孩子的堆性质，而$l$可能是小于$r$的左右孩子的某个结点，因此我们对此时新的$r$调用$max-heapify$，恢复最大堆的性质.
+2. 用$l$替换是不会影响$r$的左右孩子的堆性质，而$l$可能是小于$r$的左右孩子，因此我们对此时新的$r$调用max-heapify(r)，恢复最大堆的性质.
 3. 重复1,2直到堆空. 
 
 
 
+**优先队列**
+
+一个最大优先队列支持:
+
+1. insert(S,x)  把元素$x$插入集合$S$.
+2. maximum(S) 返回$S$中最大的元素.
+3. extract-max(S) 返回$S$中最大的元素，并在$S$中删除它.
+4. increase-key(S,x,k) 将元素$x$的值改变至$k$，且$k$不小于$x$原本的值.
+
+
+
+基于最大堆(数组表示)的最大优先队列实现:
+
+```python
+heap_maximum(A)
+	return A[1] #最大堆的最大元素为根结点
+
+heap_extract_max(A)
+	if A.heap_size < 1
+    	print error
+    max = A[1] #take 根结点
+    A[1] = A[A.heap_size] #用叶子结点替换. 
+    A.heap_size = A.heap_size-1
+    max_heapify(A,1)# 修复最大堆的性质
+    return max
+    
+heap_increase_key(A,i,key)
+	if(i > A.heap_size)
+    	print error
+    if key < A[i] 
+    	print error
+    A[i] = key
+    while i > 1 and A[parent(i)] < A[i] #向上推
+    	exchange A[i] with A[parent(i)]
+        i = parent(i)
+heap_insert(A,key)
+	A.heap_size++
+	A[A.heap_size] = min_double #放到最后一个叶子结点. 
+    heap_increase_key(A,A.heap_size,key)
+    
+```
+
+
+
 ### 0x02 红黑树
+
+红黑树和AVL树都是平衡二叉搜索树，对一个结点$x$，$x$的左右子树的高度之差至多为1. 
+
+
 
 一颗红黑树是满足下面==红黑性质==的二叉搜索树
 
@@ -284,7 +343,125 @@
 
 
 
-### 0x03 平衡二叉树
+### 0x03 AVL树
+
+红黑树和AVL树都是平衡二叉搜索树，对一个结点$x$，$x$的左右子树的高度之差至多为1.
+
+
+
+**Lemma** 高度为$h$的平衡二叉搜索树至少含有$F_h$个结点，其中${F_n}$为$F_0 = 1, F_1 = 1$的fibnacci number. 
+
+*Proof.*  用数学归纳法，当$h=0$时和$h=1$时显然是成立. 假设$h = n-2$和$h=n-1$时也成立 ，那么当$h=n$时，其中一个子树的高度必为$n-1$，而另外一个子树的高度，根据平衡二叉搜索树的性质，肯定不小于$n-2$且不大于$n-1$，根据假设最少含有
+$$
+F(n-1)+F(n-2) = F(n)
+$$
+因此假设成立. 
+
+**Proposition** 有$n$个结点平衡二叉搜索树的其高度为$O(\ln n)$. 
+
+*Proof.* 根据前面的lemma，则有$F_h \leq n$，这里用一下$F_h$的解析式，即有
+$$
+F_{n}={\frac {\varphi ^{h}-\psi ^{h}}{\varphi -\psi }}={\frac {\varphi ^{h}-\psi ^{h}}{\sqrt {5}}} \leq n
+$$
+其中$\varphi = \frac{1+\sqrt{5}}{2},\psi = \frac{\sqrt{5}-1}{2}$.  这里好像不行，这里得用一下放缩
+$$
+\left|{\frac {\psi ^{h}}{\sqrt {5}}}\right|<{\frac {1}{2}} \Rightarrow {\frac {\varphi ^{h}}{\sqrt {5}}} \leq n +\frac{1}{2}  \Rightarrow   h \leq \log_{\varphi} \left( \sqrt{5}n+\frac{\sqrt{5}}{2} \right)
+$$
+
+
+**Definition** 在二叉搜索树中定义某个结点$x$的==平衡因子==$bf(x)$为左右子树的高度差$h(x.left)-h(x.right)$. 
+
+平衡因子的引入是为了避免显式的维护每个结点的高度，显然在平衡二叉搜索树中平衡因子只可能为-1,0,1. 
+
+
+
+**插入结点**
+
+主要步骤:
+
+1. 正常地向二叉搜索树插入一个元素.
+2. 再对这个元素所在的叶子结点进行平衡二叉树的修复. 
+
+```python
+init(T)
+	T.root.p = T.nil
+    T.root.bf = 0
+    T.root.left = T.nil
+    T.root.right = T.nil
+
+insert(T,x)
+	z = T.root
+    y = T.nil
+	while z != T.nil #正常的二叉树插入
+    	y = z
+    	if z.key > x.key
+        	z = z.left
+            z.bf = z.bf+1 #维护平衡因子
+        else
+        	z = z.right
+            z.bf = z.bf-1
+    x.p = y
+    x.bf = 0
+    x.left = T.nil
+    x.right = T.nil
+	fixup(T,x)
+```
+
+
+
+**删除结点**
+
+主要步骤:
+
+1. 正常地在二叉搜索树上删除某个元素，再用它的后继替换它. 
+2. 实际上只有在删除后继元素那个地方可能会破坏平衡二叉树的性质，要对此进行修复. 
+
+```python
+tansplant(T,u,v) #用子树v替换子树u
+	if u.p = T.nil
+    	T.root = v
+    elseif  u == u.p.left
+    	u.p.left = v
+    else
+    	u.p.right = v
+    v.p = u.p
+    
+delete(T,x)
+	if x.left = T.nil
+    	transplant(T,x,x.right)
+    elseif x.right = T.nil
+    	transplant(T,x,x.left)
+    else
+    	y = tree_minimum(x.right) #找后继
+       	if y.p = x #这里不需要删除y原先的位置
+        	#nothing to do?
+        else
+        	if y.right != nil #若y有右孩子，用孩子替换y
+        		transplant(T,y,y.right)
+            else 
+            	y.p.left = T.nil #若y没有做右孩子，用nil替换y.   
+            y.right = x.right #移动x.right到y.right
+            y.right.p = y
+        transplant(T,x,y) # y子树替换x        
+        y.left = x.left #移动x.left到y.left 
+        y.left.p = y
+        
+```
+
+
+
+**修复步骤**
+
+破坏平衡搜索树性质的情况:
+
+1. 插入一个结点$x$，会导致$x$所在的子树高度增加. 
+2. 删除一个结点$x$，或导致$x$所在的子树高度减少. 
+
+
+
+
+
+### 0x04 哈夫曼树
 
 
 

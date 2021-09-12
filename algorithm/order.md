@@ -148,7 +148,9 @@ void merge_order (int *A, int start, int end) {
 
 ### 0x03 堆排序
 
+见二叉树中堆.   
 
+时间复杂度为$O(n\ln n)$. 
 
 
 
