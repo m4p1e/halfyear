@@ -826,7 +826,7 @@ $$
 $$
 I = \int_0^{+\infty} \frac{dx}{1+x^4}.
 $$
-\hints 设$u = \frac{1}{x}$，则有
+\hints\ \redt{方法1} 设$u = \frac{1}{x}$，则有
 $$
 I = \int_0^{+\infty} \frac{u^2}{1+u^4}du
 $$
@@ -839,7 +839,40 @@ $$
 \int_{-\infty}^{+\infty} \frac{1}{t^2+2}dt = \left. \frac{1}{\sqrt{2}}\arctan \frac{t}{\sqrt{2}}\right|_{-\infty}
 ^{+\infty} = \frac{\pi}{\sqrt{2}}
 $$
-因此$I = \frac{\pi}{2\sqrt{2}}$.
+因此$I = \frac{\pi}{2\sqrt{2}}$. 
+
+\redt{方法2} 可以考虑直接部分分式即，其中分母可以分解为
+$$
+1+x^4 = 1+2x^2+x^4 - 2x^2 = (1+x^2)^2 - 2x^2 = (x^2+\sqrt{2}x+1)(x^2-\sqrt{2}x+1).   
+$$
+因此
+$$
+\frac{1}{1+x^2} = \frac{Ax+B}{x^2+\sqrt{2}x+1} + \frac{Cx+D}{x^2-\sqrt{2}x+1} = \frac{\frac{1}{2\sqrt{2}}x+\frac{1}{2}}{x^2+\sqrt{2}x+1} + \frac{-\frac{1}{2\sqrt{2}}x+\frac{1}{2}}{x^2-\sqrt{2}x+1}
+$$
+即
+$$
+\frac{2\sqrt{2}}{1+x^2} = \frac{x+\sqrt{2}}{x^2+\sqrt{2}x+1} - \frac{x-\sqrt{2}}{x^2-\sqrt{2}x+1}
+$$
+原积分可以写作
+$$
+I = \frac{1}{2\sqrt{2}} \int_0^{+\infty} \frac{x+\sqrt{2}}{x^2+\sqrt{2}x+1} - \frac{x-\sqrt{2}}{x^2-\sqrt{2}x+1} dx = \frac{1}{2\sqrt{2}} \int_0^{+\infty} \frac{x+\sqrt{2}}{(x+\frac{\sqrt{2}}{2})^2+\frac{1}{2}} - \frac{x-\sqrt{2}}{(x-\frac{\sqrt{2}}{2})^2+\frac{1}{2}} dx
+$$
+再继续拆
+$$
+I = \frac{1}{2\sqrt{2}} \int_0^{+\infty} \frac{x+\frac{\sqrt{2}}{2}}{(x+\frac{\sqrt{2}}{2})^2+\frac{1}{2}} + \frac{\frac{\sqrt{2}}{2}}{(x+\frac{\sqrt{2}}{2})^2+\frac{1}{2}} - \frac{x-\frac{\sqrt{2}}{2}}{(x-\frac{\sqrt{2}}{2})^2+\frac{1}{2}} + \frac{\frac{\sqrt{2}}{2}}{(x-\frac{\sqrt{2}}{2})^2+\frac{1}{2}} dx
+$$
+第一项和第三项需要换元一下，令$u = x+\frac{\sqrt{2}}{2}$
+$$
+I = \frac{1}{2\sqrt{2}} \left[ \int_{\frac{\sqrt{2}}{2}}^{+\infty} \frac{u}{u^2+\frac{1}{2}}du  + \arctan \sqrt{2}\left.\left(x+\frac{\sqrt{2}}{2}\right)\right|_0^{+\infty}-\int_{-\frac{\sqrt{2}}{2}}^{+\infty} \frac{u}{u^2+\frac{1}{2}}du + \arctan \sqrt{2}\left.\left(x-\frac{\sqrt{2}}{2}\right)\right|_0^{+\infty}\right]
+$$
+其中
+$$
+\int_{\frac{\sqrt{2}}{2}}^{+\infty} \frac{u}{u^2+\frac{1}{2}}du - \int_{-\frac{\sqrt{2}}{2}}^{+\infty} \frac{u}{u^2+\frac{1}{2}}du =  - \int_{-\frac{\sqrt{2}}{2}}^{+\frac{\sqrt{2}}{2}} \frac{u}{u^2+\frac{1}{2}}du = 0. 
+$$
+因此
+$$
+I = \frac{1}{2\sqrt{2}}\left(\frac{\pi}{2}-\frac{\pi}{4} + \frac{\pi}{2}+\frac{\pi}{4}\right) = \frac{\pi}{2\sqrt{2}}
+$$
 \end{example}
 
 
