@@ -745,6 +745,30 @@ $$
 $$
 \end{example}
 
+\subsection{不太好积的带三角函数的积分}
+
+\begin{example}
+\rm 求
+$$
+I = \int_0^{\pi} \frac{x\sin x}{1+\cos^2 x}.
+$$
+\hints\ 如果不能一眼看出来
+$$
+I =  - \int_0^{\pi} x d\arctan\cos x = -\left. x\arctan\cos x\right|_0^\pi  + \int_0^{\pi} \arctan\cos x.  
+$$
+后面这个积分，令$u = \pi - x$，则可以得到
+$$
+\int_0^{\pi} \arctan\cos x = -\int_0^{\pi} \arctan\cos x,
+$$
+即它是等于零的. 
+
+\redt{尝试方法} 我们要充分利用三角函数的性质，一开始我们令$u = \pi-x $，则有
+$$
+I = \int_0^\pi \frac{(\pi-u)\sin u}{1+\cos^u} \rightarrow 2I = \pi \int_0^{\pi} \frac{\sin x}{1+\cos^2x}dx = -\pi \left. \arctan\cos x\right|_0^\pi  = \frac{\pi^2}{2}
+$$
+
+\end{example}
+
 \newpage
 \section{反常积分}
 
