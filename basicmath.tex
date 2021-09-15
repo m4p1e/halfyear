@@ -1980,7 +1980,7 @@ $$
 \end{proof}
 
 \newpage
-\subsection{基本积分表}
+d\subsection{基本积分表}
 
 \begin{proposition}
 \rm \
@@ -4670,6 +4670,20 @@ $$
 \end{definition}
 
 \begin{definition}
+\rm 常见曲线
+\begin{enumerate}
+	\item 转动圆的半径为$2a$的摆线方程为
+	$$
+		\left\{
+		\begin{array}{ll}
+		x = a(\theta-\sin\theta) \\
+		y = a(1-\cos \theta)
+		\end{array} \right.
+	$$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
 \rm \redt{旋转面} 设$L$是$yOz$平面上一条曲线，其方程是
 $$
 \begin{array}{ll}
@@ -4849,7 +4863,7 @@ y = \rho\sin\theta
 $$
 在$\widehat{AB}$上一点$M$，则$\widehat{AM}$的弧长可以用参变量为$\theta$的可微分函数$s = s(\theta)$表示，它的导数为
 $$
-s_\theta' = \sqrt{(p'\cos\theta-p\sin\theta)^2 +(p'\sin\theta+p\cos\theta)^2} = \sqrt{\rho^2(\theta) + \rho'^2(\theta)}.
+s_\theta' = \sqrt{(\rho'\cos\theta-\rho\sin\theta)^2 +(\rho'\sin\theta+\rho\cos\theta)^2} = \sqrt{\rho^2(\theta) + \rho'^2(\theta)}.
 $$
 或者，简单地
 $$
@@ -4918,7 +4932,7 @@ $$
 \begin{proposition}
 \rm 给定曲线$L$的参数方程为$y=y(x)$，且$y$二阶可导. 则$L$在任意一点的曲率为
 $$
-k = \frac{y''}{\sqrt{1+y'^2}^{\frac{3}{2}}}.
+k = \frac{|y''|}{\sqrt{1+y'^2}^{\frac{3}{2}}}.
 $$
 \end{proposition}
 
@@ -4937,8 +4951,8 @@ $$
 $$
 若密度函数是一个常数，即密度是均匀的，则$L$的形心为
 $$
-\overline{x} = \frac{\int_L xds}{\int_L f(x,y,z)ds}, \overline{y} = \frac{\int_L yds}{\int_L f(x,y,z)ds},
-\overline{y} = \frac{\int_L zds}{\int_L f(x,y,z)ds}.
+\overline{x} = \frac{\int_L xds}{\int_L ds}, \overline{y} = \frac{\int_L yds}{\int_L ds},
+\overline{y} = \frac{\int_L zds}{\int_L ds}.
 $$
 \end{proposition}
 
