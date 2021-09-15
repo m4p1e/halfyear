@@ -766,7 +766,45 @@ $$
 $$
 I = \int_0^\pi \frac{(\pi-u)\sin u}{1+\cos^u} \rightarrow 2I = \pi \int_0^{\pi} \frac{\sin x}{1+\cos^2x}dx = -\pi \left. \arctan\cos x\right|_0^\pi  = \frac{\pi^2}{2}
 $$
+\end{example}
 
+\subsection{待定系数收敛反常积分}
+
+\begin{example}
+\rm 求满足下式的$a,b$
+$$
+\int_1^{+\infty} \left[ \frac{2x^2 + bx + a}{x(2x+a)} - 1\right]dx = 1
+$$
+\hints\ 首先化简一下
+$$
+\int_1^{+\infty} \frac{(b-a)x+a}{2x^2 + ax} dx
+$$
+若上述积分收敛，则$b=a$. 于是
+$$
+\int_1^{+\infty} \frac{a}{2x^2 + ax} dx = \int_1^{+\infty} \frac{1}{x} - \frac{2}{2x+a}dx = \left. \ln \frac{x}{2x+a} \right|_1^{+\infty} = \ln \frac{1}{2} - \ln \frac{1}{2+a} = 1 \Rightarrow a = 2e -2. 
+$$
+\end{example}
+
+\subsection{化为极限形式}
+
+\begin{example}
+\rm 求
+$$
+\int_0^{+\infty} \frac{xe^{-x}}{(1+e^{-x})^2}dx 
+$$
+\hints\ 考虑部分分式
+$$
+\int_0^{+\infty} \frac{xe^{-x}}{(1+e^{-x})^2}dx = \int_0^{+\infty}x d\frac{1}{1+e^{-x}} = \left. \frac{x}{1+e^{-x}} \right|_0^{+\infty} - \int_0^{+\infty} \frac{1}{1+e^{-x}}
+$$
+你会发现第一个积分是发散的，这里我们考虑把它转换为极限的形式
+$$
+\lim\limits_{a \to +\infty} \left[ \left. \frac{x}{1+e^{-x}} \right|_0^{a} - \int_0^{a} \frac{1}{1+e^{-x}}dx \right] = \lim\limits_{a \to +\infty} \left[ \frac{a}{1+e^{-a}}- \int_0^{a} \frac{e^x}{1+e^x}dx \right] = \lim\limits_{a \to +\infty} \left[ \frac{a}{1+e^{-a}}-\ln(1+e^a)+\ln 2 \right] 
+$$
+其中
+$$
+\lim\limits_{a \to +\infty} \left[ \frac{a}{1+e^{-a}}-\ln{1+e^a}\right] = \lim\limits_{a \to +\infty} \frac{1}{1+e^{-a}}(a-(1+e^{-a})\ln(1+e^a)) = \lim\limits_{a \to +\infty} \ln e^a - \ln(1+e^a) - \frac{\ln (1+e^a)}{e^a} = 0
+$$
+因此原积分等于$\ln 2$. 
 \end{example}
 
 \newpage

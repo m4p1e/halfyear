@@ -73,11 +73,68 @@
 
 \subsection{定义}
 
+\begin{annotation}
+\rm 这类题主要是给定某个具体的行列式值的基础上，通过行列式的性质来计算行列式.
+\end{annotation}
+
 \subsection{化行阶梯形}
+
+\begin{annotation}
+\rm 不是特殊矩阵的第一选择.
+\end{annotation}
 
 \subsection{按一行展开}
 
+\begin{annotation}
+\rm 若是可以将某一行或者某一列消去，只留下一个非零元素，按行和按列展开是不错的选择. 
+\end{annotation}
+
+\begin{example}
+\rm 计算
+$$
+|\mbf{A}| = \begin{vmatrix}
+1 & 2 & 3 & \cdots & n-1 & n \\
+1 & -1 & 0 & \cdots & 0 & 0 \\
+0 & 2 & -2 & \cdots & 0 & 0 \\
+\vdots & \vdots & \vdots &  & \vdots & \vdots \\
+0 & 0 & 0 & \cdots & n-1 & 1-n \\
+\end{vmatrix}
+$$
+\hints 可以考虑把所有列都加到第一列，再按第一列展开
+$$
+|\mbf{A}| = \begin{vmatrix}
+\frac{(1+n)n}{2} & 2 & 3 & \cdots & n-1 & n \\
+0 & -1 & 0 & \cdots & 0 & 0 \\
+0 & 2 & -2 & \cdots & 0 & 0 \\
+\vdots & \vdots & \vdots &  & \vdots & \vdots \\
+0 & 0 & 0 & \cdots & n-1 & n-1 \\
+\end{vmatrix} = \frac{(1+n)n}{2} \begin{vmatrix}
+ -1 & 0 & \cdots & 0 & 0 \\
+2 & -2 & \cdots & 0 & 0 \\
+ \vdots & \vdots &  & \vdots & \vdots \\
+  0 & 0 & \cdots & n-1 & n-1 \\
+\end{vmatrix} 
+$$
+同样上述矩阵也是所有列加到第一列，最终有$|\mbf{A}| = (-1)^{n-1}\frac{(n+1)!}{2}$.
+\end{example}
+
 \subsection{按多行展开}
+
+\begin{annotation}
+\rm 好像没有直接使用拉普拉斯定理的习惯，比较特殊的分块矩阵可以考虑. 
+\end{annotation}
+
+\subsection{特殊矩阵}
+
+
+
+\begin{annotation}
+\rm 常见的特殊矩阵\url{https://www.bilibili.com/read/cv266516}
+\begin{enumerate}
+	\item 范德蒙德行列式
+	\item 爪型行列式	
+\end{enumerate}
+\end{annotation}
 
 \subsection{数学归纳法}
 
