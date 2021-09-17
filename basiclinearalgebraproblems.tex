@@ -74,8 +74,34 @@
 \subsection{定义}
 
 \begin{annotation}
-\rm 这类题主要是给定某个具体的行列式值的基础上，通过行列式的性质来计算行列式.
+\rm 这类题特征
+\begin{enumerate}
+	\item 按照行列式的完全展开式来计算某种特殊的矩阵
+	\item 给定某个具体的行列式值的基础上，通过行列式的性质来计算行列式. 
+\end{enumerate}
 \end{annotation}
+
+\begin{example}
+\rm 证明: 如果在$n$阶行列式中，第$i_1,i_2,\cdots,i_k$行分别与第$j_1,j_2,\cdots,j_l$列交叉位置的元素都是$0$，并且$k+l > n$，那么这个行列式的值等于$0$.
+\begin{proof}
+按照行列式的完全展开式，每一项都必须要包含第$i_1,i_2,\cdots,i_k$行中位于不用列的元素，则有$k$个元素. 由已知的条件，第$i_1,i_2,\cdots,i_k$行只与$j_1,j_2,\cdots,j_l$之外的$n-l$元素可能不为零，但是$k > n-l$，说明每一项必取到0，因此行列式为$0$. 
+\end{proof}
+\end{example}
+
+\begin{example}
+\rm 证明
+$$
+\begin{vmatrix}
+a_1 + c_1 &  b_1 + a_1 & c_1+b_1 \\
+a_2 + c_2 &  b_2 + a_2 & c_2+b_2 \\
+a_3 + c_3 &  b_3 + a_3 & c_3+b_3 \\
+\end{vmatrix} = 2 \begin{vmatrix}
+a_1 & b_1 & c_1 \\
+a_2 & b_2 & c_2 \\
+a_3 & b_3 & c_3 	
+\end{vmatrix}
+$$
+\end{example}
 
 \subsection{化行阶梯形}
 
@@ -137,6 +163,63 @@ $$
 \end{annotation}
 
 \subsection{数学归纳法}
+
+\begin{annotation}
+\rm 通常证明手法也是按行或者列展开.
+\end{annotation}
+
+\begin{example}
+\rm 计算$n$阶行列式
+$$
+\mbf{D}_n = \begin{vmatrix}
+x & 0 & 0  & \cdots & 0 & 0 & a_0 \\
+-1 & x & 0  & \cdots & 0 & 0 & a_1 \\
+0 & -1 & x  & \cdots & 0 & 0 & a_2 \\
+\vdots & \vdots & \vdots  & \cdots & \vdots & \vdots & \vdots \\
+0 & 0 & 0  & \cdots & -1 & x & a_{n-2} \\
+0 & 0 & 0  & \cdots & 0 & -1 & x+a_{n-1} \\
+\end{vmatrix}
+$$
+\begin{proof}
+当$n=2$时，有
+$$
+\mbf{D}_2 = \begin{vmatrix}
+x & a_0 \\
+-1 & x+a_1 
+\end{vmatrix} = x^2 + a_1x+ a_0
+$$
+假设对于上述形式的$n-1$阶行列式，有
+$$
+\begin{vmatrix}
+x & 0 & 0  & \cdots & 0 & 0 & a_0 \\
+-1 & x & 0  & \cdots & 0 & 0 & a_1 \\
+0 & -1 & x  & \cdots & 0 & 0 & a_2 \\
+\vdots & \vdots & \vdots  & \cdots & \vdots & \vdots & \vdots \\
+0 & 0 & 0  & \cdots & 0 & -1 & x+a_{n-2} \\
+\end{vmatrix} = x^{n-1} + a_{n-2}x^{n-2} + \cdots + a_1x + a_0
+$$
+那么$n$阶行列式，把它按第一行展开，有
+$$
+\begin{array}{ll}
+\mbf{D}_n &= x\begin{vmatrix}
+ x & 0  & \cdots & 0 & 0 & a_1 \\
+ -1 & x  & \cdots & 0 & 0 & a_2 \\
+ \vdots & \vdots  & \cdots & \vdots & \vdots & \vdots \\
+ 0 & 0  & \cdots & -1 & x & a_{n-2} \\
+ 0 & 0  & \cdots & 0 & -1 & x+a_{n-1} \\
+\end{vmatrix}+ (-1)^{1+n}a_0 \begin{vmatrix}
+-1 & x & 0  & \cdots & 0 & 0  \\
+0 & -1 & x  & \cdots & 0 & 0 \\
+\vdots & \vdots & \vdots  & \cdots & \vdots & \vdots  \\
+0 & 0 & 0  & \cdots & -1 & x  \\
+0 & 0 & 0  & \cdots & 0 & -1  \\
+\end{vmatrix}  \\
+&=x(x^{n-1} + a_{n-1}x^{n-2} + \cdots + a_2x + a_1) + (-1)^{1+n}a_0(-1)^{n-1} \\
+&=  x^n + a_{n-1}x^{n-1} + a_{n-2}x^{n-2} + \cdots + a_1x + a_0
+\end{array}
+$$
+\end{proof}
+\end{example}
 
 
 \section{矩阵相似}

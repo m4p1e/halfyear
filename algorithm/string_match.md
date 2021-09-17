@@ -85,7 +85,100 @@ $$
 
 ### 0x03 有限自动机算法
 
+一个有限自动机$M$是一个5元组$(Q,q_0,A,\sum,\var)$，其中
+
+- $Q$表示状态集合
+- $q_0\in Q$是初始状态
+- $A \subseteq Q$表示一个接受状态集合
+- $\sum$ 是有限输入字母表
+- $\var$表示函数$Q \times \sum \to Q$，称为转移函数. 
+
+为了方便说明问题，可以递归定义一个终态函数$\phi(w) : \sum^* \to Q$，就是指$M$接受了字符串$w$之后最终落入了哪个状态，其递归定义为
+$$
+\phi(\varepsilon) = q_0, \\
+\phi(wa) = \var(\phi(w),a)
+$$
+
+
+**Definition** 若字符串$w$是$x$的前缀，则记为$w \sqsubset x $，反之若$w$是$x$的后缀，则记为$w \sqsupset x$.
+
+定义函数$\sigma_P(w) : w \to \{1,2,\cdots,m\}$表示$w$的后缀中蕴含$P$的最长子串的长度，即
+$$
+\sigma_P(w) = \max\{k: P_k \sqsupset x\}
+$$
+例如设$P=ab$，则$\sigma_P(\varepsilon)= 0,\sigma_P(ccaca) = 1,\sigma_P(ccab) = 1$.
+
+
+
+**Proposition** 对于一个长度为$m$的模式$P$，$\sigma_P(w) = m$当且仅当$P \sqsupset w$. 
+
+
+
+最主要是如何从对一个模式$P$生成一个字符串匹配自动机?
+
+对于给定模式$P=[1\cdots m]$
+
+1. 状态集合为$\{1,2,\cdots,m\}$. 开始状态$q_0 = 0$，并且状态$m$是唯一接受的状态.
+
+2. 对于任意的状态$q$和字符$a$，转移函数定义为$\var(q,a) = \sigma_P(P_qa)$. 
+
+
+ 
+
+**Lemma** 对任意的字符串$w$和字符$a$，有$\sigma_P(wa) \leq \sigma_P(w) +1$.
+
+**Lemma** 对任意的字符串$w$和字符$a$，若$q=\sigma_P(w)$，则$\sigma_P(wa) = \sigma_P(P_qa)$. 
+
+**Proposition** 上述定义的自动机，有等式$\phi(T_i) = \sigma_P(T_i)$成立，其中$T_i$表示$T$的一个子串. 
+
+
+
+生成转移函数的代码
+
+```python
+generate_transfer_function(P,C)
+	m = P.length
+	for q = 0 to m
+		for a in C 
+        	k = min(m+1,q+2) #这样做的目的是考虑最大的可能的P子串，+2是后面会首先减1. 我们考虑的最长子串只能是P本身. 
+            repeat
+            	k=k-1
+            until P_k is longest suffix string of P_qa
+            transfer_func(q,a) = k
+    return transfer_func        
+```
+
+
+
+需要$O(m|\sum|)$的预处理时间和$O(n)$的匹配时间. 
+
 
 
 ### 0x04 KMP
+
+这个算法比较神奇，不需要转移函数，也能实现$O(n)$的匹配时间.  其关键在于在失败匹配之后，我们根据某些信息跳过一些字符串
+
+![image-20210917174022467](/home/maple/halfyear/images/image-20210917174022467.png)
+
+上面利用了$P_3$是$P_5$的最长后缀子串.  这些信息我们都是可以提前计算出来，我们可以用一个$\pi$数组来记录，例如这里可以使得$\pi[5]=3$，那么在$P_6$匹配失败之后，也就是已经成功匹配了$P_5$，我们将匹配的指针往后移动$5-\pi[5]$.
+
+
+
+那么如何设计这个$\pi$呢？ 也就是说当已经成功匹配了$P_q$之后，紧着失败了，那么最小的偏移应该是多少？最小的偏移等价于找到最长的后缀子串.  形式化地可以解释为给定子串$P_q$，求满足$P_k \sqsubset P_q$的$k$的最大值.  即
+$$
+\pi[q] = \max\{k : P_k \sqsubset P_q\}
+$$
+这个算法是比较好设计的，只需要从$k$的最大值$q-1$开始来尝试.  
+
+
+
+
+
+
+
+
+
+
+
+
 

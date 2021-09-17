@@ -362,7 +362,7 @@ minimum_spannning_tree_kruskal(G)
 
 **关于有向图上的负权重的边**
 
-负权重和正权重一样做加法就行，没有有什么区别. 
+负权重和正权重一样做加法就行，没有有什么区别.  只要不出现权重为负值的环路，就可以确保每个源结点可达的结点都有最短路径. 
 
 
 
@@ -419,11 +419,46 @@ relax(u,v,w)
 
 **Bellman-ford算法**
 
+根据前面路径松弛的性质，要求一对结点$(v_0,v_k)$最短路径，若它们之间存在最短路径，那么只要按照这个最短路径的依次做松弛操作.  显然我们是不可能提前预知那一条是最短路径，因此考虑对$G$上所有边都做$|G.V|-1$（简单路径上最多有$|G.V|$个结点，因此最多有$|G.V|-1$条边）次relax操作，这样对每一对可达的结点而言，总有一个松弛序列对应它们的最短路径.  
+
+它的优势是可以处理带负值的有向图.   
+
+时间复杂度为$O(VE)$.
+
+```python
+bellman_ford(G,w,s)
+	init(G,s)
+	for i = 1 to |G.v|-1
+		for each (u,v) in G.E
+			relax(u,v,w)
+	for each (u,v) in G.E #有结点的v.d可以任意小，代表有负权重的环
+    	if v.d > u.d + w(u,v)
+    		return false
+    return true		
+```
+
+
+
+**DAG**算法
+
+这个算法是针对==有向无环图==的改进.    其主要思想如果$u,v$之间存在一条简单路径，那么在拓扑序中$u$应位于$v$的前面，因此我们可以只需要按照拓扑序的来一次relax操作，就可以计算出源节点到所有可达结点的最短路径. 
+
+
+
+```python
+dag(G,w,s)
+	linear_order = topologically_sort_graph(G)
+    init(G,s)
+	for each v in linear_order
+    	for each u in v.adj
+        	relax(v,u,w)            
+```
+
 
 
 **Dijkstra算法**
 
-此时要求是有向图上所有的边的权重都是非负的.  Dijkstra算法本质是一个贪心算法，这里我们要对所有结点$v.d$维护一个最小队列.
+此时要求是有向图上所有的边的权重都是==非负的==.  Dijkstra算法本质是一个贪心算法，这里我们要对所有结点$v.d$维护一个最小队列.
 
 主要步骤:
 
@@ -433,7 +468,9 @@ relax(u,v,w)
 4.  更新$v$的所有邻接的结点的$v.d$和$v.p$，同时维护$Q$
 5.  重复34操作知道$Q$为空，得到$S$就是所有从$s$可达的结点$v$，其$v.d$表示$s$到$v$的最短路径. 
 
+时间复杂度为$O(V^2 + E)$
 
+Dijkstra算法依赖最小队列的实现，因此需要看一下关于改进最小队列的实现. 
 
 ```python
 dijkstra(G,w,s)
@@ -441,9 +478,9 @@ dijkstra(G,w,s)
 	S = {}
 	Q = build_minimum_queue(G.V)
 	while Q != empty
-		u = extract_min(Q)
+		u = extract_min(Q) #此时最小队列extract_min操作时间我们可以理解为O(V), 而insert和delete_key认为是O(1)
 		add(S,u)
-		for each v in u.adj
+		for each v in u.adj #这里总共花费的时间，可以理解为整张邻接链表. 
 			relax(u,v,w)
 ```
 
