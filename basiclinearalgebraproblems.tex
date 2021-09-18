@@ -221,6 +221,79 @@ $$
 \end{proof}
 \end{example}
 
+\subsection{递推式}
+
+
+\begin{example}
+\rm 计算$n$阶行列式
+$$
+\mbf{D}_n = \begin{vmatrix}
+2 & -1 & 0 & 0 & \cdots & 0 & 0 & 0\\
+-1 & 2 & -1 & 0 & \cdots & 0 & 0 & 0\\
+0 & -1 & 2 & -1 & \cdots & 0 & 0 & 0\\
+\vdots & \vdots & \vdots & \vdots & & \vdots & \vdots & \vdots\\
+0 & 0 & 0 & 0 & \cdots & -1 & 2 & -1\\
+0 & 0 & 0 & 0 & \cdots & 0 & -1 & 2\\
+\end{vmatrix}
+$$
+\hints\ 显然$\mbf{D}_1 = 2$. 将$\mbf{D}_n$按第一列展开，则有
+$$
+\mbf{D}_n = 2\mbf{D}_{n-1}+
+\begin{vmatrix}
+ -1 & 0 & 0 & \cdots & 0 & 0 & 0\\
+ -1 & 2 & -1 & \cdots & 0 & 0 & 0\\
+ \vdots & \vdots & \vdots & & \vdots & \vdots & \vdots\\
+ 0 & 0 & 0 & \cdots & -1 & 2 & -1\\
+ 0 & 0 & 0 & \cdots & 0 & -1 & 2\\
+\end{vmatrix} = 2\mbf{D}_{n-1} - \mbf{D}_{n-2}
+$$
+这也意味着$\mbf{D}_n - \mbf{D}_{n-1} = \mbf{D}_{n-1}-\mbf{D}_{n-2}$，可以马上推出$\mbf{D}_n - \mbf{D}_{n-1} = \mbf{D}_2-\mbf{D}_1 = 1$，即该行列式是一个等差数列$D_n = 2+(n-1) = n+1$. 
+\end{example}
+
+
+\begin{example}
+\rm 计算$n$阶行列式
+$$
+\mbf{D}_n = \begin{vmatrix}
+a+b & ab & 0 & 0 & \cdots & 0 & 0 & 0\\
+1 & a+b & ab & 0 & \cdots & 0 & 0 & 0\\
+0 & 1 & a+b & ab & \cdots & 0 & 0 & 0\\
+\vdots & \vdots & \vdots & \vdots & & \vdots & \vdots & \vdots\\
+0 & 0 & 0 & 0 & \cdots & 1 & a+b & ab\\
+0 & 0 & 0 & 0 & \cdots & 0 & 1 & a+b\\
+\end{vmatrix}
+$$
+其中$a \neq b$.
+
+\hints\ 还是按第一列展开
+$$
+\mbf{D}_n = (a+b)\mbf{D}_{n-1}-\begin{vmatrix}
+ ab & 0 & 0 & \cdots & 0 & 0 & 0\\
+ 1 & a+b & ab & \cdots & 0 & 0 & 0\\
+ \vdots & \vdots & \vdots & & \vdots & \vdots & \vdots\\
+ 0 & 0 & 0 & \cdots & 1 & a+b & ab\\
+ 0 & 0 & 0 & \cdots & 0 & 1 & a+b\\ 
+\end{vmatrix} = (a+b)\mbf{D}_{n-1} -ab\mbf{D}_{n-2}. 
+$$
+注意其上最后一个等式成立的条件是$a \neq 0$和$b \neq 0$，那么推出
+$$
+\begin{array}{ll}
+\mbf{D}_n - a\mbf{D}_{n-1} = b(\mbf{D}_{n-1}-a\mbf{D}_{n-2}) \Rightarrow \mbf{D}_n -a\mbf{D}_{n-1} = (\mbf{D}_2 - a\mbf{D}_1)b^{n-2}  \\
+\mbf{D}_n - b\mbf{D}_{n-1} = a(\mbf{D}_{n-1}-b\mbf{D}_{n-2}) \Rightarrow \mbf{D}_n -b\mbf{D}_{n-1} = (\mbf{D}_2 - b\mbf{D}_1)a^{n-2}
+\end{array}
+$$
+而$\mbf{D}_1 = a+b$，$\mbf{D}_2 = a^2 + ab + b^2$. 因此
+$$
+\begin{array}{ll}
+\mbf{D}_n -a\mbf{D}_{n-1}  = b^n \\
+\mbf{D}_n -b\mbf{D}_{n-1}  = a^n
+\end{array}
+$$
+所以$D_n  = \frac{b^{n+1}-a^{n+1}}{b-a}$. 
+
+当$a = 0$时，$\mbf{D}_n = b^n$; 当$b=0$时，$\mbf{D}_n=a^n$. 
+\end{example}
+
 
 \section{矩阵相似}
 

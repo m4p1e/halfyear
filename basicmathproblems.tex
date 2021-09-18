@@ -1134,23 +1134,26 @@ $$
 \newpage
 \section{级数}
 
-\subsection{不标准的幂级数}
+\subsection{参数收敛}
 
 \begin{example}
-\rm 求幂级数
+\rm 讨论下列级数收敛性
 $$
-\sum\limits_{n=1}^\infty \frac{n}{2^n + (-3)^n}x^{2n-1}
+\sum\limits_{n=1}^{\infty} \frac{\ln (n!)}{n^\alpha}
 $$
-的收敛半径. 
-\hints 这是一个不标准的幂级数，无法直接用结论. 所以先化标准的形式$a_nx^n$. 先考虑积分，消掉指数的常数，即有
+\hints\ 展开$\ln n!$，有
 $$
-\sum\limits_{n=1}^\infty \int_0^{x} \frac{n}{2^n + (-3)^n}x^{2n-1} = \sum\limits_{n=1}^\infty \frac{1}{2(2^n + (-3)^n)}x^{2n}.
+\ln n! = \ln 1 + \ln 2 + \cdots \ln n < n\ln n < n^{1+\beta},
 $$
-再令$u = x^2$，求$ \sum\limits_{n=1}^\infty \frac{1}{2(2^n + (-3)^n)}u^{n}$的收敛半径，根据结论有
+在$n$足够大的时候，对任何$\beta > 0$都是成立. 因此
 $$
-\lim\limits_{n \to \infty} \left| \frac{2^n+(-3)^n}{2^{n+1}+(-3)^{n+1}}\right| = \frac{1}{3},
+\frac{\ln (n!)}{n^\alpha} < \frac{n^{1+\beta}}{n^\alpha} = n^{1+\beta - \alpha},
 $$
-因此其收敛半径为$3$，所以$|x| <\sqrt{3}$，即原级数的收敛半径为$\sqrt{3}$. 
+因此取$\alpha > 2$时，存在$\beta$使得
+$$
+\frac{\ln (n!)}{n^\alpha} < \frac{1}{n} < \frac{n^{1+\beta}}{n^\alpha}. 
+$$
+即原级数在$a > 2$是收敛的. 同理若$\alpha \leq 2$时，是存在$\beta$使得$1+\beta-\alpha > -1$的，此时是无法判定其是否收敛的。 
 \end{example}
 
 \subsection{带-1的幂次}
@@ -1166,6 +1169,26 @@ $$
 这个级数显然是发散的，因为在$n$足够大时$\frac{2}{\ln 2n} \geq \frac{1}{n}$.
 \end{example}
 
+\subsection{不标准的幂级数}
+\begin{example}
+\rm 求幂级数
+$$
+\sum\limits_{n=1}^\infty \frac{n}{2^n + (-3)^n}x^{2n-1}
+$$
+的收敛半径. 
+
+\hints 这是一个不标准的幂级数，无法直接用结论. 所以先化标准的形式$a_nx^n$. 先考虑积分，消掉指数的常数，即有
+$$
+\sum\limits_{n=1}^\infty \int_0^{x} \frac{n}{2^n + (-3)^n}x^{2n-1} = \sum\limits_{n=1}^\infty \frac{1}{2(2^n + (-3)^n)}x^{2n}.
+$$
+再令$u = x^2$，求$ \sum\limits_{n=1}^\infty \frac{1}{2(2^n + (-3)^n)}u^{n}$的收敛半径，根据结论有
+$$
+\lim\limits_{n \to \infty} \left| \frac{2^n+(-3)^n}{2^{n+1}+(-3)^{n+1}}\right| = \frac{1}{3},
+$$
+因此其收敛半径为$3$，所以$|x| <\sqrt{3}$，即原级数的收敛半径为$\sqrt{3}$. 
+\end{example}
+
+
 \newpage
 \section{tricks}
 
@@ -1180,6 +1203,16 @@ $$
 (1+x)^n \leq 1 + nx, \; n \geq 0, x \leq -1.
 $$
 使得$(1+x) = a^{\frac{1}{n}}$，即可得到上式.
+\end{proposition}
+
+\subsection{Stirling公式}
+
+\begin{proposition}
+\rm 
+$$
+\ln(n!) = n\ln n-n+O(\ln n). 
+$$
+\bluet{经常用于拆解$\ln n!$有奇效}. 
 \end{proposition}
 
 \end{document}

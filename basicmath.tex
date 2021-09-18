@@ -6423,6 +6423,34 @@ $$
 \section{傅里叶级数}
 %http://geckkd.ac.in/wp-content/uploads/2015/03/Notes_on_Fourier_series.pdf 比较好的note
 \subsection{在$-\pi$和$\pi$上的展开}
+
+
+\begin{definition}
+\rm 用于判定一个函数$f(x)$是否可以展开成傅里叶级数的充分条件，称为\redt{狄利克雷条件}，其包含
+\begin{enumerate}
+	\item $f$是定义在$\mathbb{R}$上的周期函数;
+	\item $f$在一个周期上绝对可积;
+	\item $f$只有有限个第一间断点;
+	\item $f$只有有限个极大值和极小值. 
+\end{enumerate}
+\end{definition}
+
+
+\begin{lemma}
+\rm 用于证明傅里叶系数的前提结论
+\begin{enumerate}
+	\item 对任意的整数$m,n$，有$\int_{-\pi}^{\pi} \sin mx\cos nx = 0$;
+	\item 对于满足$m \neq n$的整数，有$\int_{-\pi}^{\pi} \sin mx\sin nx = 0$;
+	\item 对于满足$m \neq n$的整数，有$\int_{-\pi}^{\pi} \cos mx\cos nx = 0$;
+	\item 对于满足$m = n \neq 0$的整数，有$\int_{-\pi}^{\pi} \sin mx\sin nx = \pi$;
+	\item 对于满足$m = n \neq 0$的整数，有$\int_{-\pi}^{\pi} \cos mx\cos nx = \pi$;
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\rm (1)可以直接把$\cos nx$提到微分符号里面. 其余的利用积化和差的公式即可. 
+\end{proof}
+
 \begin{definition}
 \rm 设函数$f(x)$是周期为$2\pi$的周期函数，且在$[-\pi,\pi]$上可积，则称
 $$
@@ -6441,6 +6469,29 @@ $$
 f(x) \sim \frac{a_0}{2} +  \sum\limits_{n=1}^{+\infty}(a_n\cos nx + b_n \sin nx).
 $$
 \end{definition}
+
+\begin{proof}
+\rm 问题的提出是一个在周期为$2\pi$的函数，在$[-\pi,\pi]$上可积，那么它是否可以展开为
+$$
+f(x) =\sum\limits_{n=0}^{+\infty}a_n\cos nx + \sum\limits_{n=1}^{+\infty}b_n\sin nx
+$$
+我们假设上述命题成立，我们来求$a_n$和$b_n$. 上述等式两边同乘$\cos nx$，再积分可以得到$a_n$，即
+$$
+\int_{-\pi}^{+\pi} f(x) \cos nxdx = \int_{-\pi}^{+\pi} a_n\cos nx\cos nx dx,
+$$
+注意$n=0$时，
+$$
+a_0 = \frac{1}{2\pi} \int_{-\pi}^{+\pi} f(x) \cos 0xdx,
+$$
+这也是为什么单独有个$\frac{a_0}{2}$. 在$n \neq 0$，有
+$$
+a_= \frac{1}{\pi} \int_{-\pi}^{+\pi} f(x) \cos nx dx.
+$$
+同理两边乘上$\sin nx$，即可得到$b_n$
+$$
+b_n = \frac{1}{\pi} \int_{-\pi}^{+\pi} f(x) \sin nx dx.
+$$
+\end{proof}
 
 \begin{proposition}
 \rm \redt{奇偶性的加入} 若$f(x)$为周期为$2\pi$的奇函数，则其傅里叶系数为
@@ -6470,6 +6521,7 @@ $$
 $$
 f(x) = \sum\limits_{m=0}^{+\infty}a_n\cos nx \Rightarrow a_n = \frac{2}{\pi} \int_{0}^{\pi} f(x)\cos nx dx, n = 0,1,2\cdots. 
 $$
+\bluet{它是和三角函数的奇偶性是保持一致的}.
 \end{proposition}
 
 \begin{theorem}

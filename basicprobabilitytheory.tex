@@ -1253,6 +1253,8 @@ $$
 \rm 随机变量$X$的概率密度$f(x)$，则$Y=X+b$的密度函数为$f(y-b)$.
 \end{corollary}
 
+\subsection{常见}
+
 \begin{example}
 \rm 若$X \sim N(\sigma^2,\mu)$，$Y=aX+b,a\neq 0$. 
 
@@ -1630,7 +1632,7 @@ $$
 \end{proposition}
 
 \begin{example}
-\rm 设$(X,Y)$的联合密度为$f(x,y)$，要求$Z=X+Y$.
+\rm \redt{求两个连续型随机变量之和的概率密度的一般方法} 设$(X,Y)$的联合密度为$f(x,y)$，要求$Z=X+Y$.
 
 按照分布函数的定义有
 $$
@@ -2257,14 +2259,18 @@ E(X) = \int_{0}^{+\infty} x\cdot \lambda e^{-\lambda x} dx = \frac{1}{\lambda}\i
 $$
 其方差为
 $$
-D(X) = E(X^2) - E^2(X) = \left[\int_{0}^{+\infty} x^2 \cdot \lambda e^{-\lambda x} dx \right] - \frac{1}{\lambda^2} = \left[ \frac{1}{\lambda^2} \int_{0}^{+\infty} \lambda^2 x^2 e^{-\lambda x}\right]-\frac{1}{\lambda},
+D(X) = E(X^2) - E^2(X) = \left[\int_{0}^{+\infty} x^2 \cdot \lambda e^{-\lambda x} dx \right] - \frac{1}{\lambda} = \left[ \frac{1}{\lambda^2} \int_{0}^{+\infty} \lambda^2 x^2 e^{-\lambda x}dx \right]-\frac{1}{\lambda^2},
 $$
-令$t = \lambda x$
+其中，令$t = \lambda x$
 $$
-\frac{1}{\lambda^2} \int_{0}^{+\infty} \lambda^2 x^2 e^{-\lambda x}dx = \frac{1}{\lambda^2} \int_{0}^{+\infty} t^2e^{-t} = \frac{1}{\lambda^2} \Gamma(3) =\frac{2}{\lambda^2}.
+\frac{1}{\lambda} \int_{0}^{+\infty} \lambda^2 x^2 e^{-\lambda x}dx = \frac{1}{\lambda^2} \int_{0}^{+\infty} t^2e^{-t}dt = \frac{1}{\lambda^2} \Gamma(3) =\frac{2}{\lambda^2}.
 $$
 故$D(X)=\frac{1}{\lambda^2}$
 \end{proof}
+
+\begin{corollary}
+\rm 设$X \sim E(\lambda)$，则$E(X^n) = \frac{n!}{\lambda^n}$.
+\end{corollary}
 
 \begin{proposition}
 \rm 设\redt{$X \sim N(\mu,\sigma^2)$}，则$X$的期望为$\mu$，方差为$\sigma^2$，二阶原点矩为$\sigma^2+\mu^2$.
