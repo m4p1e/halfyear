@@ -1060,6 +1060,7 @@ P\{c\leq x \leq d\} = \frac{d-c}{b-a}.
 $$
 \end{proposition}
 
+%https://en.wikipedia.org/wiki/Exponential_distribution
 \begin{definition}
 \rm 如果连续型随机变量$X$的概率密度为
 $$
@@ -1253,7 +1254,7 @@ $$
 \rm 随机变量$X$的概率密度$f(x)$，则$Y=X+b$的密度函数为$f(y-b)$.
 \end{corollary}
 
-\subsection{常见}
+\subsection{常见随机变量的函数分布}
 
 \begin{example}
 \rm 若$X \sim N(\sigma^2,\mu)$，$Y=aX+b,a\neq 0$. 
@@ -1631,6 +1632,9 @@ P\{Y < y\} = \underset{g(x_1,x_2,\cdots,x_n) < y}{\int\int\cdots\int}f(x_1,x_2,\
 $$
 \end{proposition}
 
+
+\subsection{常见多元随机变量的函数分布}
+
 \begin{example}
 \rm \redt{求两个连续型随机变量之和的概率密度的一般方法} 设$(X,Y)$的联合密度为$f(x,y)$，要求$Z=X+Y$.
 
@@ -1661,6 +1665,22 @@ $$
 称其为\redt{连续卷积公式}. 
 \end{example}
 
+\begin{example}
+\rm 设随机变量$X_1 \sim E(\lambda_1),X_2 \sim E(\lambda_2)$相互独立，求$Z = X_1 + X_2$的概率密度. 
+
+根据连续卷积公式有
+$$
+f_Z(z) = \int_0^{z} \lambda_1 e^{-\lambda_1x}\lambda_2 e^{-\lambda_2(z-x)}dx = \lambda_1\lambda_2 e^{-\lambda_2z} \int_0^{z} e^{(\lambda_2 - \lambda_1)x}dx,   
+$$
+这里需要分情况考虑
+$$
+f_Z(z) = \left \{ \begin{array}{ll}
+\lambda^2 ze^{-\lambda z} & \text{if}~\lambda_1 = \lambda_2 = \lambda \\
+\dfrac {\lambda _{1}\lambda _{2}}{\lambda _{2}-\lambda _{1}}\left(e^{-\lambda _{1}z}-e^{-\lambda _{2}z}\right) & \text{if}~\lambda_1 \neq \lambda_2
+\end{array} \right.
+$$
+\end{example}
+
 \begin{proposition}
 \rm 若随机变量$X$与$Y$相互独立，则
 \begin{enumerate}
@@ -1669,6 +1689,10 @@ $$
 	\item $P\{\min(X,Y) > z\} = P\{X>z\}P\{Y>z\}$.  
 	\item $P\{\min(X,Y) < z\} = 1-P\{X>z\}P\{Y>z\}$.
 \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm 设随机变量$X_1 \sim E(\lambda_1),\cdots,X_n \sim E(\lambda_n)$相互独立，则$Y = \min\{X_1,\cdots,X_2\} \sim E(\lambda_1 +\cdots +\lambda_n)$
 \end{proposition}
 
 \newpage

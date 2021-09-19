@@ -1188,6 +1188,24 @@ $$
 因此其收敛半径为$3$，所以$|x| <\sqrt{3}$，即原级数的收敛半径为$\sqrt{3}$. 
 \end{example}
 
+\subsection{利用傅里叶公式求和}
+
+\begin{example}
+\rm 求下列级数的和
+$$
+\sum\limits_{n = 1}^{+\infty} \frac{(-1)^n \sin n}{n}
+$$
+\hints\ 考虑$s(x) = \frac{x}{\pi}$在$(-\pi,pi)$上的傅里叶级数，它是一个奇函数因此
+$$
+s(x) = \sum\limits_{n=1}^{+\infty} b_n \sin nx = \sum\limits_{n=1}^{+\infty} \left(\frac{2}{\pi}\int_{0}^{\pi} \frac{x}{\pi} \sin nx dx  \sin nx \right) =  \sum\limits_{n=1}^{+\infty} -\frac{2}{\pi}\frac{(-1)^{n}\sin nx}{n}.
+$$
+显然有
+$$
+s(1) = -\frac{2}{\pi} \sum\limits_{n = 1}^{+\infty} \frac{(-1)^n \sin n}{n} = \frac{1}{\pi},
+$$
+因此$\sum\limits_{n = 1}^{+\infty} \frac{(-1)^n \sin n}{n} = -\frac{1}{2}$. 
+\end{example}
+
 
 \newpage
 \section{tricks}
