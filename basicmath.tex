@@ -3488,6 +3488,10 @@ $$
 \rm 如果微分方程的解中含有任意常数，且任意常数的个数与微分方程的阶数相同，则称之为微分方程的\redt{通解}. 
 \end{definition}
 
+\begin{annotation}
+\rm \redt{常微分方程的通解并不包含所有的解}. 
+\end{annotation}
+
 \begin{definition}
 \rm 微分方程的不含任意常数的解，称之为\redt{特解}.
 \end{definition}
@@ -3541,6 +3545,11 @@ $$
 此方程为可分离变量的方程. 
 \end{definition}
 
+
+\begin{annotation}
+\rm 可分离变量的方程中出现无理数的因子，切不可直接去绝对值. 
+\end{annotation}
+
 \begin{definition}
 \rm \redt{一阶线性方程} 形如
 $$
@@ -3553,10 +3562,11 @@ $$
 其中$Ce^{-\int P(x)dx }$是齐次线性方程$y'+P(x)y=0$的通解，而$e^{-\int P(x)dx }\int Q(x)e^{\int P(x)dx}$是$y'+P(x)y=Q(x)$的一个特解. \bluet{使用通解时需要注意确定$P(x)$和$Q(x)$!}
 \end{definition}
 
-\begin{annotation}
-\rm \redt{一阶线性方程通项绝对值是否去掉} 若$-\int P(x)dx = |g(x,y)|$，这里能否去掉绝对值取决于$P(x)$中的常数系数$a$. 若$a$是无理数，或者$a$是$\pm \frac{1}{2},\pm \frac{1}{4},\cdots$等偶分母分数时，绝对值是不可以去掉的. 反之其余情况可以去掉. 
-\end{annotation}
 
+%https://www.bilibili.com/s/video/BV1t5411t7tB
+\begin{annotation}
+\rm \redt{一阶线性方程通项绝对值是否去掉} 若$-\int P(x)dx = |g(x,y)|$，这里能否去掉绝对值取决于$P(x)$中的常数系数$a$. 若$a$是无理数，或者$a$是$\pm \frac{1}{2},\pm \frac{1}{4},\cdots$等偶分母分数时，积分结果出现了$\ln$时，可以直接不写绝对值.  
+\end{annotation}
 
 \begin{definition}
 \rm \redt{伯努利方程} 形如

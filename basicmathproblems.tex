@@ -858,6 +858,30 @@ $$
 $$
 \end{example}
 
+\subsection{定积分的应用}
+
+%universal_gravitation.png
+\begin{example}
+\rm 设无穷长直线$L$的线密度为$1$，引力常数为$k$，则$L$对距直接为$a$的单位质点.
+
+\hints\ 首先得知道万有引用公式$F = k \frac{Mn}{r^2}$. 再考虑直线上某个点对给定单位质点的引力，然后考虑这些引力的合成. 示意图为
+\begin{center}
+\includegraphics[scale=0.6]{images/universal_gravitation.png}
+\end{center}
+设$L$所在的直线为$x$轴，$y$轴过给定的单位质点. 由示意图这些力的合成一定是在$y$轴上的，关于$F_y$的微分为
+$$
+dF_y = k \frac{kdx}{a^2 + x^2} \cos b = \frac{kadx}{(a^2+k^2)^{\frac{3}{2}}}
+$$
+因此
+$$
+F_y = \int_{-\infty}^{+\infty} \frac{kadx}{(a^2+k^2)^{\frac{3}{2}}} = 2ka \int_{0}^{+\infty} \frac{dx}{(a^2+k^2)^{\frac{3}{2}}}
+$$
+令$x = a\tan u$，则有
+$$
+F_y = 2ka \int_{0}^{\frac{\pi}{2}} \frac{a\sec^2 u}{a^3\sec^3}du = \frac{2k}{a} \int_{0}^{\frac{\pi}{2}} \cos x dx = \frac{2k}{a}
+$$
+\end{example}
+
 \subsection{待定参数}
 
 \begin{example}
@@ -997,6 +1021,56 @@ $$
 y = Ce^x + \frac{e^{-x}}{2},
 $$
 则$f(x) = Ce^x -\frac{e^{-x}}{2}$. 由于$f(0)=-1$，因此$C=-\frac{1}{2}$，最终$f(x)= -\frac{e^{x}+e^{-x}}{2}$. 
+\end{example}
+
+\newpage
+\subsection{该死的绝对值}
+
+\begin{annotation}
+\rm 有时候的积分结果带$\ln|f(x)|$，这个时候在考虑要不要去绝对值的时候，可以采取的下述的手法
+\begin{enumerate}
+	\item 如果提供了某个点$(x_0,y_0)$，那么这个时候我们可以考虑去掉绝对值保留$x_0$所在的定义域，因为通解不需要表示全部的解，只要保证我们最终我们可以根据这个特殊的点确定某个特解即可！
+	\item 如果没有提供某个点，那么这个时候我们可以有条件的去掉绝对值
+	\begin{enumerate}
+		\item 若是可分离变量方程，且里面没有无理数因子，我们可以把绝对值去掉
+		\item 若是一阶线性方程，在对$P(x)$积分结果中出现$\ln|f(x)|$，根据$P(x)$中的是否有无理数因子或者分母为偶数的因子，如果有，那么这个绝对值不要去掉，最后分类讨论; 若没有，可以直接去绝对值. 
+	\end{enumerate}
+	\item 拿不准的时候，就彻底不去，直接开讨论就行. 
+\end{enumerate}	
+\end{annotation}
+
+\begin{example}
+\rm 求$y(1)=0$，且满足下述方程的$y$
+$$
+y'  = 1+\frac{y}{x} + \left( \frac{y}{x} \right)^2
+$$
+\hints\ 显然这个是一个齐次微分方程，令$u = \frac{y}{x}$，于是有
+$$
+\frac{du}{1+u^2} = \frac{dx}{x} \Rightarrow \arctan u = \ln |x|+C
+$$
+题目中已经给定了一个点$(1,0)$，那么此时我们可以去掉绝对值，只考虑$x > 0$的情况，即有
+$$
+u = \tan (\ln x + C) \Rightarrow y = x\tan (\ln x + C).
+$$
+最后带入特殊点，得到$C = 0$，最终有$y = x\tan (\ln x + C)$
+\end{example}
+
+
+\subsection{改变自变量}
+
+\begin{example}
+\rm 求下述方程的通解
+$$
+\frac{dy}{dx} = \frac{y}{x+y^4}
+$$
+\hints\ 当且形式根本找不到方法求，那么我们考虑求以$y$为自变量的$x=f(x)$形式的函数，于是有
+$$
+\frac{dx}{dy} = \frac{x+y^4}{y}  \Rightarrow \frac{dx}{dy} - \frac{x}{y} = y^3
+$$
+即是关于自变量$y$一个线性方程. 此时就可以直接用通项公式有
+$$
+x= y(\frac{1}{3}y^3 + C)
+$$
 \end{example}
 
 \newpage
