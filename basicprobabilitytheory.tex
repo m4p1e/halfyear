@@ -747,7 +747,7 @@ $$
 \begin{proposition}
 \rm 分布函数性质如下
 \begin{enumerate}
-	\item $F(x)$是单调函数，即当$x_1 < x_2$时，$F(x_1) \leq F(x_2)$ ({\color{red}分部函数充要条件之一});
+	\item $F(x)$是非减函数，即当$x_1 < x_2$时，$F(x_1) \leq F(x_2)$ ({\color{red}分部函数充要条件之一});
 	\item $0 \leq F(x) \leq 1$; $\lim\limits_{x \rightarrow -\infty}F(x) =F(-\infty) = 0$; $\lim\limits_{x \rightarrow +\infty}F(x) =F(+\infty)= 1$ ({\color{red}分部函数充要条件之一});
 	\item $F(x)$是右连续的，即$F(x+0) = F(x)$ ({\color{red}分部函数充要条件之一}); 
 	\item 对任意的$x$，有$P\{X = x\} = F(x) - F(x-0)$;  
@@ -1091,7 +1091,7 @@ $$
 $$
 f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},
 $$
-其中$\mu,\sigma$为常数且$\sigma > 0$，则称$X$服从参数为$\mu,\sigma$的\redt{正态分布}，记做$X~N(\mu,\sigma^2)$. 当$\mu=0,\sigma^2 =1$时，即$X~N(0,1)$，称$X$服从\redt{标准正态分布}，此时用$\varphi(x)$表示$X$的概率密度，即
+其中$\mu,\sigma$为常数且$\sigma > 0$，则称$X$服从参数为$\mu,\sigma$的\redt{正态分布}，记做$X~N(\mu,\sigma^2)$. 当$\mu=0,\sigma^2 =1$时，即$X \sim N(0,1)$，称$X$服从\redt{标准正态分布}，此时用$\varphi(x)$表示$X$的概率密度，即
 $$
 \varphi(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}.
 $$

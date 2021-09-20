@@ -9,6 +9,7 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{mathdots} %iddots
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
@@ -101,6 +102,67 @@ a_2 & b_2 & c_2 \\
 a_3 & b_3 & c_3 	
 \end{vmatrix}
 $$
+\end{example}
+
+\begin{example}
+\rm 求元素为$1$和$0$的三阶行列式可取的最大值.
+
+\hints\ 从完全展开式我们应使得带正号的项尽可能的都是1，而带负号项尽可能是0
+\begin{enumerate}
+	\item 若3个正项都是1，那么此时行列式等于0;
+	\item 若2个正项是1，此时任取一个2个项是正的行列式其行列式均等于2，且其他负项也都是0，例如
+	$$
+	\begin{vmatrix}
+	0 & 1 & 1\\
+	1 & 0 & 1\\
+	1 & 1 & 0\\
+	\end{vmatrix}
+	$$
+\end{enumerate}
+综上最大值肯定就是$2$. 
+\end{example}
+
+\begin{example}
+\rm 设$n \geq 2$，证明: 如果$n$阶矩阵$\mbf{A}$的元素为$1$或者$-1$，则$|A|$闭为偶数. 
+\hints\ 这个证明按行展开可能更简单
+$$
+|\mbf{A}| = a_{11}A_{11} + a_{12}A_{12} +a_{13}A_{13},
+$$
+其中三个代数余子式都是二阶行列式的正值或者负值，那么我们来看一下元素为$1$或者$-1$的二阶行列式
+$$
+\begin{vmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22} \\
+\end{vmatrix}  = b_{11}b_{22} - b_{12}b{21}
+$$
+这里一共有4种可能的取值，由$b_{11}b_{22} = \pm 1, b_{12}b{21} = 、\pm 1$决定，经过计算该二阶行列式取值可能为$0,2$，因此$|A|$是由3个偶数相加得到的，那么$|A|$也一定是偶数. 
+\end{example}
+
+\begin{example}
+\rm 求元素为$1$或者$-1$的三阶行列式的最大值. 
+\hints\ 从完全展开式出发，三阶行列式有6项，其中每一项只可能为$-1$和$1$. 再有前面证明，我们知道这样的三阶行列式的值只能是偶数，那么最大的偶数就是6项全为1加起来为6，即
+$$
+\begin{array}{ll}
+a_{11}a_{22}a_{33} = 1, a_{12}a_{23}a_{31} = 1, a_{13}a_{21}a_{32} = 1 \\
+-a_{13}a_{22}a_{31} = 1, -a_{12}a_{21}a_{33} = 1, -a_{11}a_{23}a_{32} = 1 
+\end{array}
+$$
+由此得出
+$$
+\begin{array}{ll}
+a_{11}a_{22}a_{33}a_{12}a_{23}a_{31}a_{13}a_{21}a_{32} = 1 \\
+a_{13}a_{22}a_{31}a_{12}a_{21}a_{33}a_{11}a_{23}a_{32} = -1 
+\end{array}
+$$
+这是矛盾的. 因此我们再考虑行列式最大值为$4$的可能，可以找到
+$$
+\begin{vmatrix}
+1 & -1 & -1\\
+-1 & 1 & -1 \\
+1 & 1 & 1 
+\end{vmatrix} = 1 + 1 + 1 + 1 - 1 + 1 = 4
+$$
+那么这样的行列式的最大值为$4$. 
 \end{example}
 
 \subsection{化行阶梯形}
@@ -294,6 +356,40 @@ $$
 当$a = 0$时，$\mbf{D}_n = b^n$; 当$b=0$时，$\mbf{D}_n=a^n$. 
 \end{example}
 
+\subsection{Laplace展开}
+
+\begin{example}
+\rm 计算下述$2n$阶行列式
+$$
+\mbf{D}_{2n} = \begin{vmatrix}
+a  & & & &  & b \\
+   & \ddots & & & \iddots \\
+  & & a & b &  &  \\
+  & & b & a &  & \\
+  &  \iddots & & &  \ddots \\
+  b& & & &  &a\\
+\end{vmatrix}
+$$
+\hints\ 尝试从第一行和最后一行展开，于是得到
+$$
+\begin{array}{ll}
+\mbf{D}_{2n} &= \begin{vmatrix}
+a & b \\
+b & a 
+\end{vmatrix}\cdot (-1)^{(1+2n)+(1+2n)}\cdot \mbf{D}_{2n-2} \\
+&=(a^2-b^2)\mbf{D}_{2n-2}
+\end{array} 
+$$
+而$\mbf{D}_2=a^2 - b^2$，因此$\mbf{D}_{2n} = (a^2-b^2)^{n}$ 
+\end{example}
+
+
+\section{方程组的解}
+
+\subsection{给定方程组解的情况}
+
+
+\subsection{带参数的方程组解的情况}
 
 \section{矩阵相似}
 
