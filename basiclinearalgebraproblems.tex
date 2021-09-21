@@ -128,6 +128,7 @@ $$
 
 \begin{example}
 \rm 设$n \geq 2$，证明: 如果$n$阶矩阵$\mbf{A}$的元素为$1$或者$-1$，则$|A|$闭为偶数. 
+
 \hints\ 这个证明按行展开可能更简单
 $$
 |\mbf{A}| = a_{11}A_{11} + a_{12}A_{12} +a_{13}A_{13},
@@ -144,6 +145,7 @@ $$
 
 \begin{example}
 \rm 求元素为$1$或者$-1$的三阶行列式的最大值. 
+
 \hints\ 从完全展开式出发，三阶行列式有6项，其中每一项只可能为$-1$和$1$. 再有前面证明，我们知道这样的三阶行列式的值只能是偶数，那么最大的偶数就是6项全为1加起来为6，即
 $$
 \begin{array}{ll}
@@ -168,6 +170,34 @@ $$
 $$
 那么这样的行列式的最大值为$4$. 
 \end{example}
+
+\begin{example}
+\rm 设$n \leq 3$，证明: 元素为$1$或者$-1$的$n$阶行列式的绝对值不超过$(n-1)!(n-1)$.
+
+\hints\ 借助前面的例子做归纳. 
+\end{example}
+
+\begin{example}
+\rm 设$n \geq 2$，证明: 元素为$1$或$-1$的$n$阶行列式的值能被$2^{n-1}$整除. 
+
+\hints\ 设$|\mbf{A}|$是这样的行列式，首先将第一列上的$(-1)$所在行都提一个$-1$出来
+$$
+|\mbf{A}| = (-1)^m \begin{vmatrix}
+1 & b_{12} & \cdots & b_{1n} \\
+1 & b_{22} & \cdots & b_{2n} \\
+\vdots & \vdots & \cdots & \vdots \\
+1 & b_{n2} & \cdots & b_{nn} \\
+\end{vmatrix} = (-1)^m \begin{vmatrix} 
+1 & b_{12} & \cdots & b_{1n} \\
+0 & c_{22} & \cdots & c_{2n} \\
+\vdots & \vdots & \cdots & \vdots \\
+0 & c_{n2} & \cdots & c_{nn} \\
+\end{vmatrix}
+$$
+其中$c_{ij}$值可能为$2,-2,0$，因此从第$2$列到第$n$列都是可以提一个因子$2$出来，最终就可以凑成$2^{n-1}$. 
+\end{example}
+
+
 
 \subsection{化行阶梯形}
 
@@ -388,7 +418,77 @@ $$
 \end{example}
 
 
+
+\newpage
+\section{向量空间}
+
+\subsection{向量运算下的线性性质判定}
+
+\begin{example}
+\rm 证明: 如果向量组$\mbf{\alpha}_1,\mbf{\alpha}_2,\mbf{\alpha}_3$线性无关，那么向量组$3\mbf{\alpha}_1-\mbf{\alpha}_2,5\mbf{\alpha}_2 + 2\mbf{\alpha}_3, 4\mbf{\alpha}_3-7\mbf{\alpha}_1$
+\hints\ 直接用线性无关的定义，即
+$$
+k_1(3\mbf{\alpha}_1-\mbf{\alpha}_2) + k_2(5\mbf{\alpha}_2 + 2\mbf{\alpha}_3)+ k_3(4\mbf{\alpha}_3-7\mbf{\alpha}_1) = \mbf{0}
+$$
+此时需要证明$k_1 = k_2 = k_3$，展开上式
+$$
+(3k_1-7k_3)\mbf{\alpha}_1 + (5k_2 - k_1)\mbf{\alpha}_2 + (2k_2 +4k_3)\mbf{\alpha}_3 = 0. 
+$$
+根据已知条件，于是得到下述方程组
+$$
+\left \{
+\begin{array}{ll}
+3k_1-7k_3  = 0 \\
+5k_2 - k_1 = 0 \\
+2k_2 +4k_3 = 0
+\end{array} \right.
+$$
+由此构造系数矩阵，最后系数矩阵的行列式不为零，即原方程只有零解，命题得证. 
+\end{example}
+
+
+
+
+\newpage
 \section{方程组的解}
+
+\subsection{方程组性质}
+
+\begin{example}
+\rm 证明: 给定$s$个$n$线性方程组成的线性方程组，如果该方程组的增广矩阵的第$i$个行向量$\mbf{\alpha}_i$可以由其余行向量线性表出，即
+$$
+\mbf{\alpha}_i = k_1\mbf{\alpha}_1 + k_{i-1}\mbf{\alpha}_{i-1} + k_{i+1}\mbf{\alpha}_{k+1} + \cdots + k_s\mbf{\alpha}_s 
+$$
+那么将第$i$个方程去掉之后得到的方程组与原方程组通解. 
+\end{example}
+
+\begin{example}
+\rm 设一个$m \times n$矩阵$H$的列向量组为$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$. 证明: $H$的任意$s$列都线性无关当且仅当，齐次线性方程组
+$$
+x_1 \mbf{\alpha}_1 + \cdots + x_n \mbf{\alpha}_n = \mbf{0}
+$$
+的任一非零解的非零分量的数目大于$s$. 
+
+\hints\ \emph{必要性}\ 若$H$的任意$s$列都线性无关. 假设上述线性方程存在一个非零解为
+$$
+\eta = (0,\cdots,c_{i_1},\cdots,c_{i_j},\cdots)^{T}. 
+$$
+其中$c_{i_1},\cdots,c_{i_j}$均不为零，且$ l \leq s$. 则
+$$
+c_{i_1}\mbf{\alpha}_{i_1}+\cdots+c_{i_j}\mbf{\alpha}_{i_j} = \mbf{0},
+$$
+这意味着存在$l$列线性相关，与前提数矛盾，因此任一非零解的非零分量的数目大于$s$
+
+\emph{充分性}\ 若$H$的任一非零向量的非零分量的数目大于$s$. 假设有$l\leq s$个列向量线性相关
+$$
+k_{i_1}\mbf{\alpha}_{i_1}+\cdots+k_{i_j}\mbf{\alpha}_{i_j} = \mbf{0},
+$$
+那么存在一个非零解，即
+$$
+\eta = (0,\cdots,k_{i_1},\cdots,k_{i_j},\cdots)^{T}. 
+$$
+就是将其他分量扩充为0即可，这样和前提是矛盾的. 因此$H$的任意$s$列都线性无关. 
+\end{example}
 
 \subsection{给定方程组解的情况}
 

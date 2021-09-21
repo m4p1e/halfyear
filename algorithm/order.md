@@ -142,7 +142,7 @@ void merge_order (int *A, int start, int end) {
 详细分析
 
 - 时间复杂度$O(n\lg n)$
-- 算法特点: 将原序列拆成两个分开排序，最后把排好序的部分序列在组合起来.  最主要是merge这个操作如何在$O(n)$下实现. 
+- 算法特点: 选择一个位置将原序列拆成两个子序列分开排序（通常我们选择一份为2，或者随机选择），最后把排好序的部分序列在组合起来.  最主要是merge这个操作如何在$O(n)$下实现. 
 
 
 
@@ -151,6 +151,65 @@ void merge_order (int *A, int start, int end) {
 见二叉树中堆.   
 
 时间复杂度为$O(n\ln n)$. 
+
+
+
+### 0x04 快排
+
+```c
+int better_partition(int *A, int start, int end){
+    int r,i,j,t;
+
+    r = A[end];
+    i = start-1; // i是用来记录那些比r小的元素中下标最大的，
+    j = start; // j就是一个普通的index, 用于变量A[start-end].
+
+
+    //这里会维持几个循环不变量: 
+    //1. A[start,i] 都是小于等于r的
+    //2. A[i+1，j-1] 都是大于r的
+    while(j < end){
+        if(A[j] <= r){ // A[i+1]和A[j]安全的替换
+            i = i + 1;
+            t = A[j];
+            A[j] = A[i];
+            A[i] = t;            
+        }
+        j++;
+    }
+
+    A[end] = A[i+1]; //这个替换是安全的
+    A[i+1] = r;
+
+    return i+1;
+    
+}
+
+void quicksort(int *A, int start, int end){
+    int mid;
+    if(end > start){
+        mid = better_partition(A,start,end);
+        printf("mid = %d\n",mid);
+        quicksort(A,start,mid-1);
+        quicksort(A,mid+1,end);
+    }
+}   
+
+
+int main(){
+    setbuf(stdout,NULL);
+    int A[]={2,5,3,1,6,4,5,9,1,3,5};
+    quicksort(A, 0 , sizeof(A)/sizeof(int) - 1);
+    return 0;
+}
+```
+
+详细分析
+
+- 时间复杂度$O(n\ln n)$
+- 原址排序
+- 实际排序应用最好的选择
+- 算法特点:  选择序列中的一个数$r$，将比$r$小的归入数组$A$，将比$r$大的归入数组$B$，再分别排序$A,B$.  如此递归.  相比并排排序，它在解决子问题之前就做了一次排序，所以排完之后不需要再merge. 
 
 
 
