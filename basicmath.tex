@@ -1067,7 +1067,7 @@ $$
 \subsection{一致性连续}
 
 \begin{annotation}
-\rm 在函数连续的定义中，$\delta$的选择可能不仅仅依赖$\varepsilon$，可能同样依赖于$x_0$的选择，因为函数在每个某个点上变动情况可能不一样，变动的越剧烈，$\delta$的选择可能更小，那么是否存在一种连续性$\delta$的选择只依赖$\varepsilon$呢？一致连续就运营而生了.
+\rm 在函数连续的定义中，$\delta$的选择可能不仅仅依赖$\varepsilon$，可能同样依赖于$x_0$的选择，因为函数在每个某个点上变动情况可能不一样，变动的越剧烈，$\delta$的选择可能更小，那么是否存在所有点$\delta$的选择只依赖$\varepsilon$呢？一致连续就运营而生了.
 \end{annotation}
 
 \begin{definition}
@@ -3779,6 +3779,32 @@ $$
 \end{enumerate}
 \end{proposition}
 
+\begin{proof}
+\rm 当$r_1 \neq r_2$，那么$e^{r_1x}$和$e^{r_2x}$是原方程的两个线性无关的解，根据齐次线性方程解集的组成，因此$C_1e^{r_1x}+C_2e^{r_2x}$是它的一个通解. 
+
+当$r_1 = r_2$时，我们设另一个线性无关的解为$f(x)e^{r_1x}$，其中$f(x)$不为常数，带入到原方程中有
+$$
+e^{r_1x}(f''(x) + (2r_1+p)f'(x) + (r_1^2 + pr_1 + q)f(x)) = 0 \Rightarrow e^{r_1x}f''(x) = 0
+$$
+因此我们只需要让取$f''(x) = 0$的$f(x)$即可，这里取$f(x)=x$. 最终原方程组的一个通解为$(C_1 +C_2x)e^{r_1x}$. 
+
+当$r_1 = \alpha+\beta i, r_2 = \alpha - \beta i$时. 此时应当是可以根据第一种情况确定原方程的通解为$C_1e^{(\alpha+\beta i)x} + C_2e^{(\alpha - \beta i)x}$，但是为了结果不带复数，我们通过欧拉公式做一些变换. 由欧拉公式有
+$$
+\begin{array}{ll}
+e^{\alpha x+\beta xi} = e^{ax}(\cos \beta x + i\sin \beta x)\\
+e^{\alpha x-\beta xi} = e^{ax}(\cos \beta x - i\sin \beta x)\
+\end{array}
+$$
+这样我们可以通过对这两个等式做线性的变换导出两个新的线性无关的解
+$$
+\begin{array}{ll}
+y = e^{ax}\cos \beta x \\
+y = e^{ax}\sin \beta x
+\end{array}
+$$
+因此原方程的通解为$e^{ax}(C_1\cos \beta x +C_2 \sin \beta x)$. 这里可能有一点小疑问在我们在取第二个解的时候，需要除或者乘上$i$，这个$i$在复数域上我们默认是常数. 
+\end{proof}
+
 \begin{corollary}
 \rm $n$阶常系数齐次线性微分方程，不同根对应的解如下
 \begin{enumerate}
@@ -3804,7 +3830,7 @@ y''+py' +qy = e^{\lambda x}P_m(x)
 $$
 的方程，其中$\lambda$为常数. 设$y^* = R(x)e^{\lambda x}$，求${y^*}'$及${y^*}''$带入原方程，则有
 $$
-R''(X) + (2\lambda + p)R'(x) + (\lambda^2 + p\lambda +q)R(x) = P_m(x).
+R''(x) + (2\lambda + p)R'(x) + (\lambda^2 + p\lambda +q)R(x) = P_m(x).
 $$
 分三种情况讨论
 \begin{enumerate}
@@ -4063,9 +4089,9 @@ $$
 \begin{proof}
 我们使其变成一元函数的情形来证明. 由于$M_0$和$M_1$处于连通域$D$中，所以可以用一条$D$中的折线把它们连接起来，折线是由多个直线端组成. 我们假设$f(x_0,y_0) > 0,f(x_1,y_1) < 0$，我们从$M_0$出发，我们来依次考虑这些直线段的端点，设$M_0M_2$为第一个直线段，其中$M_2=(x_2,y_2)$. 分三种情况: 若$f(x_2,y_2) = 0$，那么我们证明就直接结束了; 若$f(x_2,y_2) < 0$，那么在直线段$M_0M_2$就可以用方程
 $$
-x = x_0  + t(x_2 - x_0), y = y + t(y_2-y_0)
+x = x_0  + t(x_2 - x_0), y_0 = y + t(y_2-y_0)
 $$
-表示. 若点$M(x,y)$沿着$M_0M_2$一定，则我们原来的函数$f(x,y)$就变成了一个变量$t$的复合函数
+表示. 若点$M(x,y)$沿着$M_0M_2$移动，则我们原来的函数$f(x,y)$就变成了一个变量$t$的复合函数
 $$
 F(t) = f(x_0  + t(x_2 - x_0),y + t(y_2-y_0)), \, 0 \leq t \leq 1.
 $$

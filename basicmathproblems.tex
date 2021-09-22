@@ -1090,6 +1090,26 @@ $$
 \end{example}
 
 
+\subsection{可微定义}
+
+\begin{example}
+\rm 设连续函数$z = f(x,y)$满足
+$$
+\lim\limits_{x \to 0 \atop y \to 1} \frac{f(x,y)-2x+y-2}{\sqrt{x^2 + (y-1)^2}} = 0,
+$$
+求$dz|_{(0,1)}$.
+
+\hints\ 显然要从定义出发，目标是整理出来定义的形式，先求$f(0,1)$，由上式极限存在，可以得到
+$$
+\lim\limits_{x \to 0 \atop y \to 1} f(x,y) = 2x - y + 2,
+$$
+再由$f(x,y)$连续，上述等式左边就等于$f(0,1)$，等式右边是个有限极限，即$f(0,1)=1$. 我们再重新整理一下
+$$
+\lim\limits_{x \to 0 \atop y \to 1} \frac{f(x,y)-f(0,1)-2x+(y-1)}{\sqrt{x^2 + (y-1)^2}} = 0,
+$$
+这就是$f(x)$在点$(0,1)$处可微定义，即$dz|_{(0,1)} = 2dx - dy$. 
+\end{example}
+
 \newpage
 \section{二重积分}
 

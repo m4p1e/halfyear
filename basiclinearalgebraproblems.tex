@@ -447,7 +447,40 @@ $$
 \end{example}
 
 
+\newpage
+\section{秩}
 
+\subsection{特殊矩阵的秩}
+
+\begin{example}
+\rm 设$n$阶矩阵$\mbf{A}$，满足
+$$
+|a_{ii}| >  \sum\limits_{j = 1 \atop j \neq i}^{n} |a_{ij}|, \, i = 1,2,\cdots,n.
+$$
+证明$\mbf{A}$的秩等于$n$. 这样的矩阵称为\redt{主对角占优矩阵}. 
+
+\hints\  设$\mbf{A}$的列向量为$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$，那么只需证明$\mbf{A}$的列向量都是线性无关的. 假设$\mbf{A}$的列向量是线性相关的，则存在
+$$
+k_1\mbf{\alpha}_1 + k_2\mbf{\alpha}_2 + \cdots + k_n\mbf{\alpha}_n = \mbf{0},
+$$
+其中$k_1,k_2,\cdots,k_n$不全为$0$. 取
+$$
+|k_l| = \max\{|k_1|,|k_2|,\cdots,|k_n|\}. 
+$$
+然后我们列向量的第$l$个分量有
+$$
+k_1a_{l1} + k_1a_{l2} + \cdots + k_na_{ln} = 0,
+$$
+等式两边除以$k_l$，得到
+$$
+a_{ll} = - \frac{k_1}{k_l}a_{l1} - \frac{k_2}{k_l}a_{l2} - \cdots - - \frac{k_n}{k_l}a_{ln} =  -\sum\limits_{j = 1 \atop j \neq l}^{n} \frac{k_j}{k_l}|a_{lj}|.
+$$
+因此有
+$$
+|a_{ll}| \leq \sum\limits_{j = 1 \atop j \neq l}^{n} |a_{lj}|,
+$$
+与前提条件矛盾. 从而$\mbf{A}$等于$n$. 
+\end{example}
 
 \newpage
 \section{方程组的解}
