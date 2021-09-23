@@ -217,6 +217,6 @@ int main(){
 
 
 
-**Theorem** 在最坏情况下，任何比较排序算法都需要做$\Omega(n \ln n)$次比较. 
+**Theorem** 在最坏情况下，任何比较排序算法都需要做$\Omega(n \ln n)$次比较.  
 
  
