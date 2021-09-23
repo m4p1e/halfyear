@@ -446,6 +446,16 @@ $$
 由此构造系数矩阵，最后系数矩阵的行列式不为零，即原方程只有零解，命题得证. 
 \end{example}
 
+\subsection{向量组的极大线性无关组}
+
+\begin{annotation}
+\rm 若给定$n$个列向量$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$，操作步骤为
+\begin{enumerate}
+	\item 写出对应矩阵的形式$\mbf{A}$，做初等行变换化行阶梯型矩阵$\mbf{D}$.
+	\item 观察行列式不为零最大子式所在的列，它们构成一个极大线性无关组. 
+\end{enumerate}
+\end{annotation}
+
 
 \newpage
 \section{秩}
@@ -528,6 +538,78 @@ $$
 
 \subsection{带参数的方程组解的情况}
 
+
+\subsection{线性方程充要条件}
+
+\begin{annotation}
+\rm \redt{系数矩阵的秩和增广矩阵的秩相同}!
+\end{annotation}
+
+\begin{example}
+\rm 证明: 线性方程组
+$$
+\left\{
+\begin{array}{l}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1, \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2, \\
+\cdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m, \\
+\end{array} \right.
+$$
+有解的当且仅当下述线性方程
+$$
+\left\{
+\begin{array}{l}
+a_{11}x_1 + a_{21}x_2 + \cdots + a_{s1}x_m = 0, \\
+a_{12}x_1 + a_{22}x_2 + \cdots + a_{s2}x_m = 0, \\
+\cdots \\
+a_{1m}x_1 + a_{2m}x_2 + \cdots +a_{sm}x_m = 0, \\
+b_{1}x_1 + b_{2}x_2 + \cdots+ b_{m}x_m = 1, \\
+\end{array} \right.
+$$
+
+\hints\ 设第一个方程组的系数矩阵为$\mbf{A}$，增广矩阵为$\tilde{\mbf{A}}$. 那么第二个方程组的系数矩阵及增广矩阵分别为
+$$
+\begin{array}{ll}
+\mbf{B} = \tilde{\mbf{A}}^T \\
+\tilde{\mbf{B}}= \begin{pmatrix}
+\mbf{A}^T & \mbf{0} \\\
+\mbf{\beta} & 1
+\end{pmatrix}
+\end{array}
+$$
+其中$\mbf{\beta} = (b_1,\cdots,b_m)$. 这里存在一些等式
+$$
+\begin{array}{ll}
+\rank{\mbf{B}} = \rank{\tilde{\mbf{A}}} \\
+\rank{\tilde{\mbf{B}}} = \rank{\mbf{A}} + 1.
+\end{array}
+$$
+
+当$\rank{\mbf{A}} = \rank{\tilde{\mbf{A}}}$时，有$\rank{\mbf{B}} < \rank{\tilde{\mbf{B}}}$. 
+
+当$\rank{\mbf{B}} < \rank{\tilde{\mbf{B}}}$时，有$\rank{\tilde{\mbf{A}}} + 1 = \rank{\mbf{A}} + 1$. \bluet{这里能得到这个结果是因为增广矩阵的秩那么等于系数矩阵的秩，那么等于系数矩阵的秩加1}. 
+\end{example}
+
+\subsection{齐次线性方程组的性质}
+
+\begin{example}
+\rm 设$n$个的方程的$n$元齐次线性方程组的系数矩阵$\mbf{A}$的行列式等于$0$，且$\mbf{A}$的$(k,l)$元的代数余子式$A_{kl} \neq 0$. 证明$\mbf{\eta}=(A_{k1},A_{k2},\cdots,A_{kn})^T$是原齐次线性方程组的一个基础解系. 
+
+\hints\ 证明的要求暗示了解空间是一维的. 这是因为由$A_{kl} \neq 0$，意味着$\mbf{A}$存在一个$n-1$阶的子式行列式不为0，而$|\mbf{A}| = 0$，因此$\rank{\mbf{A}} = n-1$. 
+
+将该$\mbf{\eta}$带入原方程，当$i = k$时
+$$
+a_{i1}A_{k1} + a_{i1}A_{k1} +\cdots +a_{in}A_{kn} = |\mbf{A}| = 0; 
+$$
+当$i \neq k$时，显然有
+$$
+a_{i1}A_{k1} + a_{i1}A_{k1} +\cdots +a_{in}A_{kn} = 0.
+$$
+因此$\mbf{\eta}$的确是原方程组的一个解，其中第$k$个分量$A_{kl} \neq 0$，结合解空间是一维的，从而$\mbf{\eta}$是一个基础解系. 
+\end{example}
+
+\newpage
 \section{矩阵相似}
 
 \subsection{相似判定}
