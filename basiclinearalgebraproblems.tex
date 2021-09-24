@@ -609,6 +609,24 @@ $$
 因此$\mbf{\eta}$的确是原方程组的一个解，其中第$k$个分量$A_{kl} \neq 0$，结合解空间是一维的，从而$\mbf{\eta}$是一个基础解系. 
 \end{example}
 
+\subsection{非齐次线性方程组的性质}
+
+\begin{example}
+\rm 给定$n$元非齐次线性方程组
+$$
+x_1\mbf{\alpha}_1 + x_2\mbf{\alpha}_2 + \cdots + x_n\mbf{\alpha}_n = \mbf{\beta},
+$$
+它的一个特解为$\mbf{\gamma}_0$和基础解系为$\mbf{\eta}_1,\mbf{\eta}_2,\cdots,\mbf{\eta}_t$. 令
+$$
+\mbf{\gamma}_1 = \mbf{\gamma}_0 + \mbf{\eta}_1, \mbf{\gamma}_2 = \mbf{\gamma}_0 + \mbf{\eta}_2,\cdots,\mbf{\gamma}_n = \mbf{\gamma}_0 + \mbf{\eta}_t.
+$$
+那么该非齐次线性方程的解集可以表示为
+$$
+U = \Set{k_0\mbf{\gamma}_0+k_1\mbf{\gamma}_1+\cdots+k_t\mbf{\gamma}_t}{k_0 + k_1 + \cdots + k_t = 1, k_i \in \mathbb{R},i =0,2,\cdots,t}
+$$
+\bluet{这个例子表明非齐次线性方程组也可以用有限个线性无关的解向量来表示解空间，但是系数上是有限制的}.
+\end{example}
+
 \newpage
 \section{矩阵相似}
 

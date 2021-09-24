@@ -1067,7 +1067,7 @@ $$
 \subsection{一致性连续}
 
 \begin{annotation}
-\rm 在函数连续的定义中，$\delta$的选择可能不仅仅依赖$\varepsilon$，可能同样依赖于$x_0$的选择，因为函数在每个某个点上变动情况可能不一样，变动的越剧烈，$\delta$的选择可能更小，那么是否存在所有点$\delta$的选择只依赖$\varepsilon$呢？一致连续就运营而生了.
+\rm 在函数连续的定义中，$\delta$的选择可能不仅仅依赖$\varepsilon$，可能同样依赖于$x_0$的选择，因为函数在每个某个点上变动情况可能不一样，变动的越剧烈，$\delta$的选择可能更小，那么是否存在所有点处$\delta$的选择只依赖$\varepsilon$呢？一致连续就运营而生了.
 \end{annotation}
 
 \begin{definition}
@@ -4580,6 +4580,7 @@ $$
 \end{enumerate}
 \end{definition}
 
+%https://zh.wikipedia.org/wiki/%E5%8F%89%E7%A7%AF
 \begin{definition}
 \rm \redt{向量积}(外积)$\mbf{a}\times \mbf{b}$表示与向量$\mbf{a}$和$\mbf{b}$都垂直的向量$\mbf{c}$. 其方向由右手定则决定，模长等于以向量$\mbf{a}$和$\mbf{b}$为边长的平行四边形的面积，即
 $$
@@ -4593,7 +4594,12 @@ a_x & a_y & a_z \\
 b_x & b_y & b_z 
 \end{vmatrix}
 $$
-向量积满足$\mbf{a} \times \mbf{b} = - (\mbf{b} \times \mbf{a})$和分配律$\mbf{a} \times (\mbf{b}+\mbf{c}) = \mbf{a}\times\mbf{b} \mbf{a}\times\mbf{c}$
+向量积满足
+\begin{enumerate}
+\item $\mbf{a} \times \mbf{b} = - (\mbf{b} \times \mbf{a})$
+\item 分配律 $\mbf{a} \times (\mbf{b}+\mbf{c}) = \mbf{a}\times\mbf{b} +  \mbf{a}\times\mbf{c}$
+\end{enumerate}
+
 \end{definition}
 
 \begin{proposition}
@@ -4674,7 +4680,7 @@ $$
 \end{proposition}
 
 \begin{proof}
-设平面上一点$Q=(x_1,y_1,z_1)$，则点$P=(x_0,y_0,z_0)$到平面的距离就是$\vert{PQ}$在法向量上的投影的绝对值，即
+设平面上一点$Q=(x_1,y_1,z_1)$，则点$P=(x_0,y_0,z_0)$到平面的距离就是$\vec{•}{PQ}$在法向量上的投影的绝对值，即
 $$
 d = \frac{|A(x_0-y_1) + B(y_0-y_1) + C(z_0-z_1)|}{\sqrt{A^2 + B^2 + C^2}}
 $$
@@ -4736,9 +4742,9 @@ $$
 \end{definition}
 
 \begin{definition}
-\rm \redt{柱面} 平行于定直线并沿定曲线$\Gamma$移动的直线$L$形成的轨迹称为柱面. 柱面上与$L$平行直线都称为\redt{母线}，柱面上一条曲线与所以母线都相交，则称这条曲线为柱面的准线. 常见柱面方程为
+\rm 平行于定直线$L_0$并沿定曲线$\Gamma$平行移动的直线$L$形成的轨迹称为\redt{柱面}. 柱面上与$L$平行直线都称为\redt{母线}，柱面上一条曲线与所有母线都相交，则称这条曲线为柱面的\redt{准线}，常见柱面方程为
 \begin{enumerate}
-	\item 准线为$\Gamma \left\{ \begin{array}{ll} f(x,y) = 0 \\ z = 0 = 0 \end{array} \right.$，母线平行于$z$轴的柱面方程为$f(x,y) = 0$;
+	\item 准线为$\Gamma \left\{ \begin{array}{ll} f(x,y) = 0 \\ z = 0 \end{array} \right.$，母线平行于$z$轴的柱面方程为$f(x,y) = 0$;
 	\item 准线为$\Gamma \left\{\begin{array}{ll} F(x,y,z) = 0 \\ G(x,y,z) = 0 \end{array}\right.$，母线平行于$z$轴的柱面方程为$F(x,y,z)$和$G(x,y,z)$联立消去$z$所得的二元方程. 
 \end{enumerate}
 \end{definition}
