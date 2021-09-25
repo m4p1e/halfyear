@@ -2807,9 +2807,12 @@ $$
 $$
 \rank{\mbf{R}\mbf{R}^T} = \rank{\mbf{R}}.
 $$
-我们来证明这个结论. 若$\mbf{R}$是满秩的，上面这个结论是显然的; 若$\mbf{R}$不是满秩的，设$\mbf{R}^T = (\mbf{R_1}^T, \mbf{0})$，其中$\mbf{R_1}^T$是满秩的. 那么显然
+我们来证明这个结论. 若$\mbf{R}$是满秩的，上面这个结论是显然的; 若$\mbf{R}$不是满秩的，设$\mbf{R} = \begin{pmatrix}
+\mbf{R}_1 \\
+\mbf{0} 
+\end{pmatrix}$，那么$\mbf{R}^T = (\mbf{R_1}^T, \mbf{0})$，其中$\mbf{R_1}$是满秩的. 那么显然
 $$
-\rank{\mbf{R}\mbf{R}^T} = \rank{\mbf{R_1}\mbf{R}^T} = \rank{\mbf{R_1}} = \rank{\mbf{R}}.
+\rank{\mbf{R}\mbf{R}^T} = \rank{\mbf{R_1}\mbf{R}_1^T} = \rank{\mbf{R_1}} = \rank{\mbf{R}}.
 $$
 因此最终我们有
 $$

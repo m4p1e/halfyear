@@ -5072,10 +5072,10 @@ $$
 \textbf{rot}\mbf{A} = \begin{vmatrix}
 \mbf{i} & \mbf{j} & \mbf{k} \\
 \frac{\partial }{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
-P & Q & Q
+P & Q & R
 \end{vmatrix}
 $$
-\bluet{按第一行展开就行，就有类似}. 
+\bluet{在实际计算时，按第一行展开就行}. 
 \end{definition}
 
 \newpage
@@ -5467,6 +5467,14 @@ $$
 \end{theorem}
 
 \subsection{二重积分的计算}
+
+\begin{annotation}
+\rm 二重积分可以转换成逐次积分计算需要满足Fubini's theorem，即需要满足
+$$
+\int_{X\times Y} |f(x,y)|\,\text{d}(x,y)<\infty,
+$$
+$f(x)$在区域$X \times Y$上绝对可积. 
+\end{annotation}
 
 \begin{theorem}
 \rm \redt{在矩形区域的情况下化为二重积分为逐次积分} 如对定义于矩形$\mathcal{D}[a,b;c,d]$上的一函数$f(x,y)$二重积分存在，且对每一个$[a,b]$上的常数值$x$，单积分
