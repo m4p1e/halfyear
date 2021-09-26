@@ -1128,6 +1128,21 @@ $$
 $$
 \end{example}
 
+
+\begin{example}
+\rm 设$f(x)$为连续函数，定义
+$$
+F(x) = \int_1^x dv \int_v^x f(u)du , x > 1,
+$$
+求$F'(x)$.
+
+\hints 二重积分求导，这显然直接求不了. 考虑先计算这个二重积分，现在的积分次序导致我们无法对$\int f(u)du$处理，所以先交换次序. 有
+$$
+F(x) = \int_1^x du \int_1^u f(u)dv = \int_1^x (u-1)f(u)du.
+$$
+被积函数是连续函数的变上限积分，它的导数为$(x-1)f(x)$. 
+\end{example}
+
 \subsection{化极坐标}
 
 \begin{example}

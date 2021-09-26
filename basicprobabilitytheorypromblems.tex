@@ -1,0 +1,97 @@
+\documentclass{article}
+
+\usepackage{ctex}
+\usepackage{tikz}
+\usetikzlibrary{cd}
+%\usetikzlibrary{paths.ortho} % path折线
+%\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{calc}
+\usetikzlibrary{graphs, graphs.standard, quotes}% quotes library is for the [""] edges
+\usetikzlibrary{positioning} %right of 描述位置的
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} %花写
+
+%\usepackage{unicode-math}
+
+\usepackage{enumitem}
+
+\usepackage[textwidth=18cm]{geometry} % 设置页宽=18
+
+\usepackage{blindtext}
+\usepackage{bm}
+\parindent=0pt
+\setlength{\parindent}{2em} 
+\usepackage{indentfirst}
+\usepackage{hyperref} %url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
+\titleformat{\subsection}[hang]{\color{red}\Large\bfseries}{}{0em}{}
+%\setcounter{secnumdepth}{1} %section 序号
+
+\counterwithin*{equation}{section} %equation重新编号
+\counterwithin*{equation}{subsection}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{annotation}[theorem]{Annotation}
+
+\newcommand*{\xfunc}[4]{{#2}\colon{#3}{#1}{#4}}
+\newcommand*{\func}[3]{\xfunc{\to}{#1}{#2}{#3}}
+
+\newcommand\Set[2]{\{\,#1\mid#2\,\}} %集合
+\newcommand\SET[2]{\Set{#1}{\text{#2}}} %
+
+\newcommand{\redt}[1]{\textcolor{red}{#1}}
+\newcommand{\bluet}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\hints}{{\color{blue} \text{hints}}}
+
+\begin{document}
+\title{考研概率论}
+\author{枫聆}
+\maketitle
+
+\tableofcontents
+
+\newpage
+\section{概率运算}
+
+\newpage
+\section{期望和方差}
+
+\subsection{复杂随机变量函数}
+
+\begin{example}
+\rm 相互独立的随机变量$X_1$和$X_2$均服从正态分布$N(0,\frac{1}{2})$，求$D(|X_1 - X_2|)$. 
+
+\hints\ 这里求期望不需要计算出$|X_1-X_2|$的概率分布，只需要确定$X_1 - X_2$概率分布即可，设$Z= X_1 - X_2$，那么显然有$Z \sim N(0,1)$. 首先求$E(|X_1-X_2|)$
+$$
+E(|X_1-X_2|) = \int_{-\infty}^{+\infty} |z|f_z(z)dz = 2\int_0^{+\infty} z\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} = \frac{\sqrt{2}}{\sqrt{\pi}}.
+$$
+再来求$D(|X_1 - X_2|)$
+$$
+D(|X_1 - X_2|) = D(|Z|) = E(Z^2) - E^2(|Z|) = 1-\frac{2}{\pi}.
+$$
+\end{example}
+
+\end{document}

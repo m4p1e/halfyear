@@ -1441,7 +1441,7 @@ $$
 \begin{proof}
 \rm 关于$X$的边缘密度为
 $$
-f_X(x) = \int_{-\infty}^{+\infty} f(x,y)dy = \int_{-\infty}^{+\infty} {\frac {1}{2\pi \sigma _{1}\sigma _{2}{\sqrt {1-\rho ^{2}}}}} \exp\left( -\frac{1}{2(1-\rho^2)}\left[\frac{(1-\rho^2)(x-\mu_1)^2}{\sigma_1^2} - \left({\frac {y-\mu _{2}}{\sigma _{2}}}-{\rho\left(\frac {x-\mu _{1}}{\sigma _{1}}\right)}\right)^2\right]\right).
+f_X(x) = \int_{-\infty}^{+\infty} f(x,y)dy = \int_{-\infty}^{+\infty} {\frac {1}{2\pi \sigma _{1}\sigma _{2}{\sqrt {1-\rho ^{2}}}}} \exp\left( -\frac{1}{2(1-\rho^2)}\left[\frac{(1-\rho^2)(x-\mu_1)^2}{\sigma_1^2} - \left({\frac {y-\mu _{2}}{\sigma _{2}}}-{\rho\left(\frac {x-\mu _{1}}{\sigma _{1}}\right)}\right)^2\right]\right)dy.
 $$
 因此
 $$
@@ -2372,7 +2372,7 @@ $$
 \begin{proof}
 设$D(X_i) = \sigma^2, i =1,2,\cdots$. 由切比雪夫不等式有
 $$
-P\{|\overline{X}_n -\mu| \geq \varepsilon\} \leq \frac{D(\overline{X}_n)}{\varepsilon} = \frac{n\frac{\sigma^2}{n^2}}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}. 
+P\{|\overline{X}_n -\mu| \geq \varepsilon\} \leq \frac{D(\overline{X}_n)}{\varepsilon^2} = \frac{n\frac{\sigma^2}{n^2}}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}. 
 $$
 因此
 $$
@@ -2528,7 +2528,10 @@ $$
 \end{proposition}
 
 \begin{proof}
-\rm 直接用\ref{sample-variance-expand}的结论可以求. 
+\rm 直接用\ref{sample-variance-expand}的结论可以求，即
+$$
+E(\sum\limits_{i = 1}^n X_i^2  - n\overline{X}^2) = n\left[E^2(X) + D(X)\right]- n\left[\frac{D(X)}{n} + E(X)\right] = (n-1)D(X). 
+$$
 \end{proof}
 
 \begin{proposition}\label{sample-mean-distribution}
