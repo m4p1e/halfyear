@@ -694,6 +694,49 @@ $$
 a & c \\
 0 & b
 \end{pmatrix}$，求$\mbf{A}^m$. 
+
+
+\hints 这里是不能用二项式展开的，因为不确定$\begin{vmatrix}
+a & 0 \\
+0 & b\\
+\end{vmatrix}$和$\begin{vmatrix}
+0 & c \\
+0 & 0
+\end{vmatrix}$是否交换. 可以先写出前几项，猜结果用数学归纳法来证. 
+$$
+\begin{array}{ll}
+\mbf{A}^2 = \begin{vmatrix}
+a & c \\
+0 & b\\
+\end{vmatrix}\begin{vmatrix}
+a & c \\
+0 & b\\
+\end{vmatrix} = \begin{vmatrix}
+a^2 & c(a+b) \\
+0 & b^2 
+\end{vmatrix} \\
+ \mbf{A}^3 = \begin{vmatrix}
+a^2 & c(a+b) \\
+0 & b^2 
+\end{vmatrix}\begin{vmatrix}
+a & c \\
+0 & b\\
+\end{vmatrix} = \begin{vmatrix}
+a^3 & c(a^2 + ab + b^2) \\
+0 & b^3  
+\end{vmatrix} \\
+ \mbf{A}^3 = \begin{vmatrix}
+a^3 & c(a^2 + ab + b^2) \\
+0 & b^3  
+\end{vmatrix}\begin{vmatrix}
+a & c \\
+0 & b\\
+\end{vmatrix} = \begin{vmatrix}
+a^4 & c(a^3 + a^2b + ab^2 + b^3) \\
+0 & b^4  
+\end{vmatrix}
+\end{array} 
+$$
 \end{example}
 
 
