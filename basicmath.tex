@@ -696,15 +696,29 @@ $$
 \subsection{函数极限的基本性质}
 
 %局部性
+\begin{proposition}
+\rm \redt{局部性} 若$\lim\limits_{x \rightarrow a} f(x) = A$，则存在一个$A' \leq A$，使得充分接近$a$的函数值有$f(x) > A'$. 
+\end{proposition}
+
 %保号性
+\begin{proposition}
+\rm \redt{保号性} 若$\lim\limits_{x \rightarrow a} f(x) = A$，若$A > 0$，则对应充分接近$a$的函数值有$f(x) > 0$
+\end{proposition}
+
 %有界性
 \begin{proposition}
-\rm 若$\lim\limits_{x \rightarrow a} f(x) = A$，则对于充分接近$a$的$x$的函数值是有界的
+\rm \redt{有界性} 若$\lim\limits_{x \rightarrow a} f(x) = A$，则对于充分接近$a$的$x$的函数值是有界的
 $$
 |f(x)-A| \leq M ,\; |x-a| < \delta.
 $$
 即在$x_0$某个去心邻域有界. {\color{blue} 注意这里和序列极限$\lim x_n = b$，而导致整个$(x_n)$有界是区别的，因为这里当$x-a < -\delta$或者$x-a > \delta$可能有无限多个函数值的，它们是否有界是无法确定的}. {\color{red} 命题反过来不一定正确，即有界不一定收敛}.
 \end{proposition}
+
+
+\begin{proposition}
+\rm \redt{不等式性质} 若$\lim\limits_{x \rightarrow a} f(x) >  \lim\limits_{x \rightarrow a} g(x)$(说明二者极限都是存在的)，则存在$\xi > 0$，使得当$|x-a| < \xi$时，有$f(x) > g(x)$. 
+\end{proposition}
+
 
 \subsection{函数极限运算}
 
@@ -5201,7 +5215,7 @@ $$
 $$
 x = \varphi(t), \, y = \psi(t) (\alpha \leq t \leq \beta)
 $$
-表示，其中$\varphi(t),\psi(t)$都是连续的，且导数$\varphi't(t)$存在且连续，又当参数$t$自$\alpha$变到$\beta$时所确定的点在曲线$L$上以$A$到$B$的方向移动. 则有等式
+表示，其中$\varphi(t),\psi(t)$都是连续的，且导数$\varphi'(t)$存在且连续，又当参数$t$自$\alpha$变到$\beta$时所确定的点在曲线$L$上以$A$到$B$的方向移动. 则有等式
 $$
 \int_{L_{AB}}f(x,y)dx = \int_\alpha^\beta f(\varphi(t),\psi(t))\varphi'(t)dt. 
 $$

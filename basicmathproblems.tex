@@ -477,6 +477,36 @@ $$
 奇数下的情况可以化简为$2^{n-1}((\frac{n-1}{2})!)^2$
 \end{example}
 
+\newpage
+\section{函数性质}
+
+\subsection{求零点}
+
+\begin{example}
+\rm 设$f(x)$在$[a,b]$可导，$f'_+(a) > 0, f'_-(b) > 0, f(a) \geq f(b)$. 则$f'(x)$在$[a,b]$上有两个零点. 
+
+\hints\ $f'(x)$有两个零点，也就是有两个极值点. 这样的题目最好还是构造相应的函数，用罗尔定理来做. 设$g(x) = f(x)-f(a)$和$h(x)=f(x)-f(b)$，我们思路是确定$g(x)$和$h(x)$的一个零点，那么就可以用罗尔定理来确定两个$f'(x)$的零点. 确定$g(x)$和$h(x)$零点，我们要用零点定理来做. 由于$f'_+(a) > 0$，根据导数的定义有
+$$
+\lim\limits_{x \to 0^+} \frac{f(a+x)-f(a)}{x} > 0 \Rightarrow f(a + \xi_1) > f(a),\xi_1 > 0
+$$  
+同理，由于$f'_-(b) > 0$，我们可以得到
+$$
+\lim\limits_{x \to 0^+} \frac{f(b-x)-f(b)}{-x} > 0 \Rightarrow f(b - \xi_2) < f(b), \xi_2 > 0.
+$$
+注意这里的$\Rightarrow$用到的是极限的保号性. 于是这里由零点定理有
+$$
+g(a + \xi_1) > 0, g(b-\xi_1) \leq 0 \Rightarrow g(\theta_1) = 0, \,a+\xi_1 < \theta_1 < b-\xi_1
+$$
+因此存在$f(\theta_1) = f(a)$. 同理有
+$$
+h(a+\xi_1) > 0, h(b-\xi_2) < 0 \Rightarrow g(\theta_2) = 0, \,a+\xi_1 < \theta_2 < b-\xi_1
+$$
+因此存在$f(\theta_2) = f(b)$.  
+
+现在需要分类讨论一下，若$\theta_1  \leq \theta_2$，则根据罗尔定理我们可以在$(a,\theta_1)$及$(\theta_2,b)$上各找到一个零点. 若$\theta_1 > \theta_2$，此时由$g(a+\xi_1) > 0, g(\theta_2) \leq 0$，存在一点$\theta_3$使得$f(\theta_3) = 0$，同理由$g(\theta_1) \geq 0, g(b-\xi_2) < 0$，可以找到一点$\theta_4$使得$f(\theta_4) = 0$，这样$\theta_3 < \theta_4$，回到了前面一种情况. 证闭！
+
+
+\end{example}
 
 
 \newpage

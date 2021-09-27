@@ -696,49 +696,168 @@ a & c \\
 \end{pmatrix}$，求$\mbf{A}^m$. 
 
 
-\hints 这里是不能用二项式展开的，因为不确定$\begin{vmatrix}
+\hints\ 这里是不能用二项式展开的，因为不确定$\begin{pmatrix}
 a & 0 \\
 0 & b\\
-\end{vmatrix}$和$\begin{vmatrix}
+\end{pmatrix}$和$\begin{pmatrix}
 0 & c \\
 0 & 0
-\end{vmatrix}$是否交换. 可以先写出前几项，猜结果用数学归纳法来证. 
+\end{pmatrix}$是否交换. 可以先写出前几项，猜结果用数学归纳法来证. 
 $$
 \begin{array}{ll}
-\mbf{A}^2 = \begin{vmatrix}
+\mbf{A}^2 = \begin{pmatrix}
 a & c \\
 0 & b\\
-\end{vmatrix}\begin{vmatrix}
+\end{pmatrix}\begin{pmatrix}
 a & c \\
 0 & b\\
-\end{vmatrix} = \begin{vmatrix}
+\end{pmatrix} = \begin{pmatrix}
 a^2 & c(a+b) \\
 0 & b^2 
-\end{vmatrix} \\
- \mbf{A}^3 = \begin{vmatrix}
+\end{pmatrix} \\
+ \mbf{A}^3 = \begin{pmatrix}
 a^2 & c(a+b) \\
 0 & b^2 
-\end{vmatrix}\begin{vmatrix}
+\end{pmatrix}\begin{pmatrix}
 a & c \\
 0 & b\\
-\end{vmatrix} = \begin{vmatrix}
+\end{pmatrix} = \begin{pmatrix}
 a^3 & c(a^2 + ab + b^2) \\
 0 & b^3  
-\end{vmatrix} \\
- \mbf{A}^3 = \begin{vmatrix}
+\end{pmatrix} \\
+ \mbf{A}^4 = \begin{pmatrix}
 a^3 & c(a^2 + ab + b^2) \\
 0 & b^3  
-\end{vmatrix}\begin{vmatrix}
+\end{pmatrix}\begin{pmatrix}
 a & c \\
 0 & b\\
-\end{vmatrix} = \begin{vmatrix}
+\end{pmatrix} = \begin{pmatrix}
 a^4 & c(a^3 + a^2b + ab^2 + b^3) \\
 0 & b^4  
-\end{vmatrix}
+\end{pmatrix}
 \end{array} 
+$$
+因此我们猜测其通项为
+$$
+\mbf{A}^m = \begin{pmatrix}
+a^m & c(a^{m-1} + a^{m-2}b + \cdots + ab^{m-2}+b^{m-1}) \\
+0 & b^m
+\end{pmatrix}
+$$
+当$m = 2$时，显然是满足. 假设$m = k-1$时满足，考虑$m = k$时. 根据幂运算，有
+$$
+\begin{array}{ll}
+\mbf{A}^k = \mbf{A}^{k-1} \mbf{A} = \mbf{A}^m &= \begin{pmatrix}
+a^{k-1} & c(a^{k-2} + a^{k-3}b + \cdots + ab^{k-3}+b^{k-2}) \\
+0 & b^{k-1}
+\end{pmatrix}\begin{pmatrix}
+a & c \\
+0 & b\\
+\end{pmatrix} \\
+&= \begin{pmatrix}
+a^{k} & c(a^{k-1} + a^{k-2}b + \cdots + ab^{k-2}+b^{k-1}) \\
+0 & b^{k}
+\end{pmatrix}
+\end{array}
 $$
 \end{example}
 
+\subsection{矩阵交换性}
+
+\begin{example}
+\rm 求与矩阵$\mbf{A}$交换的所有矩阵，设
+$$
+\mbf{A} = \begin{pmatrix}
+3 & 1 & 0 \\
+0 & 3 & 1 \\
+0 & 0 & 3
+\end{pmatrix}
+$$
+
+\hints\ 首先拆一下$\mbf{A}$，即
+$$
+\mbf{A} = \begin{pmatrix}
+3 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & 3
+\end{pmatrix} + \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0
+\end{pmatrix} = 3\mbf{I} + \mbf{B}
+$$
+其中$I$与任意矩阵都是可交换，于是
+$$
+\mbf{A}\mbf{X} = \mbf{X}\mbf{A} \Leftrightarrow \mbf{B}\mbf{X} = \mbf{X}\mbf{B}
+$$
+因此有等式
+$$
+\begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0
+\end{pmatrix} \begin{pmatrix}
+x_{11} & x_{12} & x_{13} \\
+x_{21} & x_{22} & x_{23} \\
+x_{31} & x_{32} & x_{33}
+\end{pmatrix}  = \begin{pmatrix}
+x_{11} & x_{12} & x_{13} \\
+x_{21} & x_{22} & x_{23} \\
+x_{31} & x_{32} & x_{33}
+\end{pmatrix} \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0
+\end{pmatrix} 
+$$
+可以得到
+$$
+\begin{pmatrix}
+x_{21} & x_{22} & x_{23} \\
+x_{31} & x_{32} & x_{33} \\
+0 & 0 & 0
+\end{pmatrix} = 
+\begin{pmatrix}
+0 & x_{11} & x_{12} \\
+0 & x_{21} & x_{22} \\
+0 & x_{31} & x_{32}
+\end{pmatrix}
+$$
+整理一下
+$$
+\left\{
+\begin{array}{ll}
+x_{21} = x_{31} = x_{32} = 0 \\
+x_{22} = x_{11} = x_{33} \\
+x_{23} = x_{12} \\
+\end{array} \right.
+$$
+因此
+$$
+\mbf{X} = \begin{vmatrix}
+x_{11} & x_{12} & x_{13} \\
+0 & x_{11} & x_{12} \\
+0 & 0 & x_{11}
+\end{vmatrix}
+$$
+其中$x_{11},x_{12},x_{13} \in \mathbb{R}$. 
+\end{example}
+
+\begin{example}
+\rm 设$\mbf{D}$为主对角线两两不相等的对角矩阵，那么与$\mbf{D}$可交换的矩阵一定是对角矩阵. 
+\end{example}
+
+\begin{example}
+\rm 设$\mbf{A}$与所有$n$阶矩阵都可交换，则$\mbf{A}$必为数量矩阵. 
+\end{example}
+
+\subsection{矩阵表示}
+
+\begin{example}
+\rm 任一$n$阶矩阵都可以表示成一个对称矩阵和斜对称矩阵之和，并且表法唯一.
+
+\hints\ 设$\mbf{A} = \mbf{A}_1 + \mbf{A}_2$，其中$\mbf{A}_1$为对称矩阵，$\mbf{A}_2$为斜对称矩阵. 等式两边取转置，得到$\mbf{A}^T = \mbf{A}_1 - \mbf{A}_2$. 联立两个方程得到$\mbf{A}_1 = \frac{\mbf{A} + \mbf{A}^T}{2}$和$\mbf{A}_2 = \frac{\mbf{A} - \mbf{A}^T}{2}$. 
+\end{example}
 
 \newpage
 \section{矩阵等价}
