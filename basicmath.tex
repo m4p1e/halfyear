@@ -6109,17 +6109,17 @@ $$
 \end{proposition}
 
 \begin{annotation}
-\rm \bluet{柯西判别法和达朗贝尔都是以几何级数为标准而导出的比较审敛法}.
+\rm \bluet{柯西判别法和达朗贝尔都是以几何级数为标准而导出的比较审敛法}. 
 \end{annotation}
 
 \begin{theorem}
 \rm \redt{拉阿伯判别法} 若当$n$充分大的时候有
 $$
-n\left( \frac{a_n}{a_{n+1}} - 1\right) \geq r
+n\left( \left| \frac{a_n}{a_{n+1}} \right| - 1\right) \geq r
 $$
 成立，其中$r > 1$，则级数$\sum\limits_{n=1}^\infty a_n$收敛; 若从某项起
 $$
-n\left( \frac{a_n}{a_{n+1}} - 1\right) \leq 1
+n\left( \left| \frac{a_n}{a_{n+1}} \right| - 1\right) \leq 1
 $$
 则级数发散. 
 \end{theorem}
@@ -6131,24 +6131,33 @@ $$
 $$
 取$1< s < r$，我们有
 $$
-\lim\limits_{n \to \infty} \frac{(1+\frac{1}{n})^s-1}{\frac{1}{n}} = s.
+\lim\limits_{n \to \infty} \frac{(1+\frac{1}{n})^s-1}{\frac{1}{n}} = s \Rightarrow  (1+\frac{1}{n})^s = 1 + \frac{s}{n}
 $$
 于是在$n$充分大的时候，有
 $$
-(1+\frac{1}{n})^s \leq 1+\frac{r}{n}. 
+(1+\frac{1}{n})^s < 1+\frac{r}{n}. 
 $$
 因此
 $$
-\frac{a_n}{a_{n+1}} \geq (1+\frac{1}{n})^s,
+\frac{a_n}{a_{n+1}} < (1+\frac{1}{n})^s,
 $$
 故
 $$
-\frac{a_{n+1}}{a_n} \leq \frac{\frac{1}{(1+n)^s}}{\frac{1}{(n)^s}}.
+\frac{a_{n+1}}{a_n} < \frac{\frac{1}{(1+n)^s}}{\frac{1}{(n)^s}}.
+$$
+
+若从某项起有
+$$
+n\left( \left| \frac{a_n}{a_{n+1}} \right| - 1\right) \leq 1,
+$$
+则
+$$
+\left| \frac{a_n}{a_{n+1}} \right| \leq 1 + \frac{1}{n} \Rightarrow \left| \frac{a_{n+1}}{a_{n}}\right| \geq \frac{\frac{1}{n+1}}{\frac{1}{n}}
 $$
 \end{proof}
 
 \begin{annotation}
-\rm \bluet{拉阿伯判断法是以调和级数为标准而导出的比较审敛法}.
+\rm \bluet{拉阿伯判断法是以调和级数为标准而导出的比较审敛法}. 在判断比几何级数收敛得慢的级数时，比柯西判别法、达朗贝尔判别法更有效. 
 \end{annotation}
 
 \begin{proposition}
@@ -6176,7 +6185,7 @@ $$
 $$
 a_{n+1} = f(n+1) < F(n+1)-F(n) < f(n)=a_n. 
 $$
-因此若级数(1)收敛，那么$\sum\limits_{n=1}^{\infty}f(n+1)$也是收敛的，从而$\sum\limits_{n=1}^{\infty}f(n)$也是收敛的. 
+因此若级数(1)收敛，那么$\sum\limits_{n=1}^{\infty}f(n+1)$也是收敛的，从而$\sum\limits_{n=1}^{\infty}f(n+1) + f(1)  = \sum\limits_{n=1}^{\infty}f(n)$也是收敛的. 
 \end{proof}
 
 
@@ -6251,7 +6260,8 @@ $$
 \end{definition}
 
 \begin{theorem}
-\rm \redt{用系数表示收敛半径} 给定幂级数$\sum\limits_{n=0}^{\infty}a_nx^n$. 若
+\rm \redt{用系数表示收敛半径-Cauchy–Hadamard theorem
+} 给定幂级数$\sum\limits_{n=0}^{\infty}a_nx^n$. 若
 $$
 \lim\limits_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right| = \rho,
 $$
@@ -6286,15 +6296,15 @@ $$
 \end{proof}
 
 \begin{theorem}
-\rm \redt{幂级数的有理运算} 设幂级数$\sum\limits_{n=0}^{\infty}a_nx^n$的收敛半径为$R_1$，$\sum\limits_{n=0}^{\infty}a_nx^n$的收敛半径为$R_2$，则$\sum\limits_{n=0}^{\infty}a_nx^n$和$\sum\limits_{n=0}^{\infty}a_nx^n$都在$|x| < min(R_1,R_2)$上收敛. 对应的有理运算
+\rm \redt{幂级数的有理运算} 设幂级数$\sum\limits_{n=0}^{\infty}a_nx^n$的收敛半径为$R_1$，$\sum\limits_{n=0}^{\infty}a_nx^n$的收敛半径为$R_2$，则$\sum\limits_{n=0}^{\infty}a_nx^n$和$\sum\limits_{n=0}^{\infty}a_nx^n$都在$|x| < \min(R_1,R_2)$上收敛. 对应的有理运算
 $$
 \begin{array}{ll}
-\sum\limits_{n=0}^{\infty}a_nx^n \pm \sum\limits_{n=0}^{\infty}a_nx^n = \sum\limits_{n=0}^{\infty}(a_n,b_n)x^n \\ 
+\sum\limits_{n=0}^{\infty}a_nx^n \pm \sum\limits_{n=0}^{\infty}a_nx^n = \sum\limits_{n=0}^{\infty}(a_n\pm b_n)x^n \\ 
 \left(\sum\limits_{n=0}^{\infty}a_nx^n \right) \cdot \left( \sum\limits_{n=0}^{\infty}b_nx^n \right) = a_0b_0  + (a_0b_1+a_1b_0)x + \cdots + (a_0b_n + \cdots a_nb_0)x^n +\cdots \\
 \frac{\sum\limits_{n=0}^{\infty}a_nx^n}{\sum\limits_{n=0}^{\infty}b_nx^n} = \sum\limits_{n=0}^{\infty}c_nx^n, \sum\limits_{n=0}^{\infty}a_nx^n  =  \sum\limits_{n=0}^{\infty}b_nx^n \cdot \sum\limits_{n=0}^{\infty}c_nx^n
 \end{array}
 $$
-也在$|x| < min(R_1,R_2)$上收敛. 
+也在$|x| < \min(R_1,R_2)$上收敛. 
 \end{theorem}
 
 \begin{proposition}
@@ -6306,7 +6316,7 @@ $$
 $$
 S'(x) = \sum\limits_{n=1}^{\infty}na_nx^{n-1},
 $$
-其对应的幂级数与原幂级数有相同的收敛半径. \bluet{但其收敛域可能变大}.
+其对应的幂级数与原幂级数有相同的收敛半径. \bluet{但其收敛域可能变小}.
 \end{proposition}
 
 \begin{proposition}
@@ -6399,7 +6409,7 @@ $$
 \end{theorem}
 
 \begin{theorem}
-\rm \redt{狄利克雷判定法} 若数列$a_n$单调递减且$\lim\limits_{n \to \infty} a_n$，而数列$b_n$有界，则级数$\sum\limits_{n=1}^{+\infty} a_nb_n$收敛. 
+\rm \redt{狄利克雷判定法} 若数列$a_n$单调递减且$\lim\limits_{n \to \infty} a_n = 0$，而数列$b_n$有界，则级数$\sum\limits_{n=1}^{+\infty} a_nb_n$收敛. 
 \end{theorem}
 
 \newpage

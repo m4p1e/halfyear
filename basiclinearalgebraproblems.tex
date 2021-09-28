@@ -418,6 +418,9 @@ $$
 \end{example}
 
 
+\subsection{用矩阵运算拆开计算}
+
+
 
 \newpage
 \section{向量空间}
@@ -490,6 +493,40 @@ $$
 |a_{ll}| \leq \sum\limits_{j = 1 \atop j \neq l}^{n} |a_{lj}|,
 $$
 与前提条件矛盾. 从而$\mbf{A}$等于$n$. 
+\end{example}
+
+\subsection{矩阵运算中的秩}
+
+\begin{example}
+\rm 证明: $\rank{\mbf{A}+\mbf{B}} \leq \rank{\mbf{A}} + \rank{\mbf{B}}$.
+
+\hints\ 设$\mbf{A} = (\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n),\mbf{B}=(\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_n)$，那么$\mbf{A}+\mbf{B} = (\mbf{\alpha}_1+\mbf{\beta}_1,\mbf{\alpha}_2+\mbf{\beta}_2,\cdots,\mbf{\alpha}_n+\mbf{\beta}_n)$. 设$\mbf{A}$列向量的一个极大无关组$\mbf{\alpha}_{i_1},\mbf{\alpha}_{i_2},\cdots,\mbf{\alpha}_{i_n}$，$\mbf{B}$列向量的一个极大无关组$\mbf{\beta}_{j_1},\mbf{\beta}_{j_2},\cdots,\mbf{\beta}_{j_n}$. 显然$mbf{\alpha}_1+\mbf{\beta}_1,\mbf{\alpha}_2+\mbf{\beta}_2,\cdots,\mbf{\alpha}_n+\mbf{\beta}_n$可以由$\mbf{\alpha}_{i_1},\mbf{\alpha}_{i_2},\cdots,\mbf{\alpha}_{i_n},\mbf{\beta}_{j_1},\mbf{\beta}_{j_2},\cdots,\mbf{\beta}_{j_n}$线性表出. 
+\end{example}
+
+
+\begin{example}
+\rm 设$\mbf{A}$为$m \times n$矩阵，则
+$$
+\rank{\mbf{A}\mbf{A}^T} = \rank{\mbf{A}^T\mbf{A}} = \rank{\mbf{A}}. 
+$$
+\hints\ 在note上记录了一种化行阶梯形的证明方法，这里从判定$n$元齐次线性方程组$(\mbf{A}^T\mbf{A})\mbf{X}=\mbf{0}$与$\mbf{A}\mbf{X}= \mbf{0}$同解出发，同解意味着解空间维数相同，从而对应的系数矩阵的秩相同. 
+
+若$\mbf{\eta}$是$\mbf{A}\mbf{X}= \mbf{0}$的一个解，那么显然$\mbf{\eta}$也是$(\mbf{A}^T\mbf{A})\mbf{X}=\mbf{0}$的解. 
+
+若$\mbf{\delta}$是$(\mbf{A}^T\mbf{A})\mbf{X}=\mbf{0}$的解，于是有$(\mbf{A}^T\mbf{A})\mbf{\delta}=\mbf{0}$，将这个等式两边乘上$\mbf{\delta}^T$，得到
+$$
+\mbf{\delta}^T(\mbf{A}^T\mbf{A})\mbf{\delta}=\mbf{0} \Rightarrow (\mbf{\delta}^T\mbf{A}^T)(\mbf{A}\mbf{\delta})=\mbf{0} \Rightarrow (\mbf{A}\mbf{\delta})^T(\mbf{A}\mbf{\delta})=\mbf{0}
+$$
+那么设$(\mbf{A}\mbf{\delta})^T = (c_1,c_2,\cdots,c_n)$，那么则有
+$$
+c_1^2 + c_2^2 + \cdots + c_n^2 = 0,
+$$
+因此$c_1 = c_2 = \cdots = c_n = 0$，所以$\mbf{\delta}$也是$\mbf{A}\mbf{X}= \mbf{0}$的解. 
+
+最后
+$$
+\rank{\mbf{A}\mbf{A}^T} = \rank{(\mbf{A}^T)^T\mbf{A}^T} = \rank{\mbf{A}^T} = \rank{\mbf{A}}.   
+$$
 \end{example}
 
 \newpage
@@ -857,6 +894,22 @@ $$
 \rm 任一$n$阶矩阵都可以表示成一个对称矩阵和斜对称矩阵之和，并且表法唯一.
 
 \hints\ 设$\mbf{A} = \mbf{A}_1 + \mbf{A}_2$，其中$\mbf{A}_1$为对称矩阵，$\mbf{A}_2$为斜对称矩阵. 等式两边取转置，得到$\mbf{A}^T = \mbf{A}_1 - \mbf{A}_2$. 联立两个方程得到$\mbf{A}_1 = \frac{\mbf{A} + \mbf{A}^T}{2}$和$\mbf{A}_2 = \frac{\mbf{A} - \mbf{A}^T}{2}$. 
+\end{example}
+
+\subsection{特殊矩阵}
+
+\begin{example}
+\rm 令
+$$
+\mbf{C} = \begin{pmatrix}
+0 & 1 & 0 & 0 & \cdots & 0 & 0 \\
+0 & 0 & 1 & 0 & \cdots & 0 & 0 \\
+\vdots & \vdots & \vdots &  \ddots &  & \vdots & \vdots \\
+0 & 0 & 0 & 0 & \cdots & 0 & 1 \\
+1 & 0 & 0 & 0 & \cdots & 0 & 0 \\
+\end{pmatrix}
+$$
+称$\mbf{C}$为$n$阶循环移位矩阵. 用$\mbf{C}$左乘一个矩阵，就相当于把这个矩阵每一行向上移一行，第一行移到最后一行; 用$\mbf{C}$右乘一个矩阵，就相对于把这个矩阵的每一列想右移动一列，最后一列移到第一列. 
 \end{example}
 
 \newpage

@@ -1297,6 +1297,16 @@ $$
 即原级数在$a > 2$是收敛的. 同理若$\alpha \leq 2$时，是存在$\beta$使得$1+\beta-\alpha > -1$的，此时是无法判定其是否收敛的。 
 \end{example}
 
+\begin{example}
+\rm 已知级数$\sum\limits_{n=1}^{\infty} \frac{\sqrt{n+1}}{n^\alpha}$收敛，求$\alpha$取值. 
+
+\hints\ 先用比较审敛法确定一收敛与原级数收敛性相同的级数，显然这样选择一个调和级数$\frac{1}{n^{\alpha-\frac{1}{2}}}$，来验证一下
+$$
+\lim\limits_{n \to \infty} \frac{\frac{\sqrt{n+1}}{n^\alpha}}{\frac{1}{n^{\alpha-\frac{1}{2}}}} = \lim\limits_{n \to \infty} \sqrt{\frac{n+1}{n}} = 1.
+$$
+判定调和级数的收敛性，需要$\alpha > \frac{3}{2}$. 
+\end{example}
+
 \subsection{带-1的幂次}
 \begin{example}
 \rm 判断下述级数的收敛性
