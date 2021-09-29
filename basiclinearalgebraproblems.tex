@@ -420,6 +420,125 @@ $$
 
 \subsection{用矩阵运算拆开计算}
 
+\begin{example}
+\rm 设
+$$
+s_k = x_1^k +x_2^k + \cdots + x_n^k, ~ k = 0,1,2,\cdots, 
+$$
+设$\mbf{A} = (a_{ij})_{n \times n}$，其中
+$$
+a_{ij} = s_{i+j-2}, \, i,j = 1,2,\cdots,n.
+$$
+证明: $|\mbf{A}| = \prod\limits_{1 \leq j < i \leq n}(x_i - x_j)^2$. 
+
+\hints\ 这个左边是范德蒙行列式的通项的平方. 其中
+$$
+a_{ij} = x_1^{i-1}x_1^{j-1} + x_2^{i-1}x_2^{j-1} + \cdots + x_n^{i-1}x_n^{j-1} = \sum\limits_{r=1}^n x_r^{i-1}x_r^{j-1}. 
+$$
+因此
+$$
+|\mbf{A}| = \begin{vmatrix}
+1 & 1  & \cdots & 1 & 1 \\
+x_1 & x_2 & \cdots & x_{n-1} & x_n \\
+\vdots & \vdots &  & \vdots & \vdots \\
+x_1^{n-2} & x_2^{n-2} & \cdots & x_{n-1}^{n-2} & x_n^{n-2} \\
+x_1^{n-1} & x_2^{n-1} & \cdots & x_{n-1}^{n-1} & x_n^{n-1} \\
+\end{vmatrix}
+\begin{vmatrix}
+1 & x_1  & \cdots & x_1^{n-2} & x_1^{n-1} \\
+1 & x_2 & \cdots & x_2^{n-2} & x_2^{n-1} \\
+\vdots & \vdots &  & \vdots & \vdots \\
+1 & x_{n-1} & \cdots & x_{n-1}^{n-2} & x_{n-1}^{n-1} \\
+1 & x_{n} & \cdots & x_{n}^{n-1} & x_n^{n-1} \\
+\end{vmatrix}  
+$$
+显然这是两个范德蒙行列式的乘积
+\end{example}
+
+\begin{example}
+\rm 设
+$$
+u_j = \sum\limits_{i=1}^{n}c_i{a_i}^{j},\, 1 \leq j < 2n. 
+$$
+令
+$$
+\mbf{A} = \begin{pmatrix}
+u_1 & u_2 & \cdots & u_n \\
+u_2 & u_3 & \cdots & u_{n+1} \\
+\vdots & \vdots &  & \vdots \\
+u_n & u_{n+1} & \cdots & u_{2n-1}\\
+\end{pmatrix}
+$$
+证明: 对任意$\mbf{\beta} \in \mathbb{R}^n$，线性方程组$\mbf{A}\mbf{X} = \mbf{\beta}$有唯一解的充分必要条件是$a_1,a_2,\cdots,a_n$两两不等，且$a_i$和$c_i$全不为$0$($i=1,2,\cdots,n$). 
+
+\hints\ 就是我们要考察行列式$|\mbf{A}|$. 观察$\mbf{A}$也是可以拆开的
+$$
+\begin{array}{ll}
+\mbf{A} &= \begin{pmatrix}
+c_1 & c_2 & \cdots & c_{n-1} & c_n \\
+c_1a_1 & c_2a_1 & \cdots & c_{n-1}a_{n-1} & c_na_n \\
+\vdots & \vdots &  & \vdots & \vdots \\
+c_1a_1^{n-2} & c_2a_2^{n-2} & \cdots & c_{n-1}a_{n-1}^{n-2} & c_na_n^{n-2} \\
+c_1a_1^{n-1} & c_2a_2^{n-1} & \cdots & c_{n-1}a_{n-1}^{n-1} & c_na_n^{n-1}
+\end{pmatrix} 
+\begin{pmatrix}
+a_1 & a_1^2 & \cdots & a_1^{n-1} & a_1^n \\
+a_2 & a_2^2 & \cdots & a_2^{n-1} & a_2^n \\
+\vdots & \vdots &  & \vdots & \vdots \\
+a_{n-1} & a_{n-1}^2 & \cdots & a_{n-1}^{n-1} & a_{n-1}^{n} \\
+a_{n} & a_n^2 & \cdots & a_n^{n-1} & a_n^{n}  
+\end{pmatrix} \\
+&= c_1\cdots c_n a_1\cdots a_n \begin{pmatrix}
+1 & 1 & \cdots & 1 & 1 \\
+a_1 & a_2 & \cdots & a_{n-1} & a_n \\
+\vdots & \vdots &  & \vdots & \vdots \\
+a_1^{n-2} & a_2^{n-2} & \cdots & a_{n-1}^{n-2} & a_n^{n-2} \\
+a_1^{n-1} & a_2^{n-1} & \cdots & a_{n-1}^{n-1} & a_n^{n-1}
+\end{pmatrix} 
+\begin{pmatrix}
+1 & a_1 & \cdots & a_1^{n-2} & a_1^{n-1} \\
+1 & a_2 & \cdots & a_2^{n-2} & a_2^{n-1} \\
+\vdots & \vdots &  & \vdots & \vdots \\
+1 & a_{n-1} & \cdots & a_{n-1}^{n-2} & a_{n-1}^{n-1} \\
+1 & a_n & \cdots & a_n^{n-2} & a_n^{n-1}  
+\end{pmatrix} \\
+&= c_1\cdots c_2 a_1 \cdots a_n \sum\limits_{1 \leq j < i \leq n}(a_i -a_j)^2  
+\end{array}
+$$
+\end{example}
+
+\begin{example}
+\rm 计算$n$阶行列式
+$$
+|\mbf{A}| = 
+\begin{vmatrix}
+a_1 - b_1 & a_1 - b_2 & \cdots & a_1 - b_n \\
+a_2 - b_1 & a_2 - b_2 & \cdots & a_2 - b_n \\
+\vdots & \vdots && \vdots \\
+a_n - b_1 & a_n - b_2 & \cdots & a_n - b_n
+\end{vmatrix}
+$$
+
+\hints\ 矩阵$\mbf{A}$是可以拆开的
+$$
+\mbf{A} = \begin{pmatrix}
+a_1 & -1 \\
+a_2 & -1 \\
+\vdots & \vdots \\
+a_{n-1} & -1 \\
+a_n  & -1 
+\end{pmatrix} \begin{pmatrix}
+1 & 1 & \cdots & 1 & 1\\ 
+b_1 & b_2 & \cdots & b_{n-1} & b_n
+\end{pmatrix}
+$$
+当$n > 2$时，$\rank{\mbf{A}} \leq 2$，即$|\mbf{A}| = 0$. 
+
+当$n = 2$时，$|\mbf{A}| = (a_2 - a_1)(b_2 - b_1)$.
+
+当$n = 1$时，$|\mbf{A}| = a_1 - b_1$. 
+\end{example}
+
 
 
 \newpage
@@ -910,6 +1029,21 @@ $$
 \end{pmatrix}
 $$
 称$\mbf{C}$为$n$阶循环移位矩阵. 用$\mbf{C}$左乘一个矩阵，就相当于把这个矩阵每一行向上移一行，第一行移到最后一行; 用$\mbf{C}$右乘一个矩阵，就相对于把这个矩阵的每一列想右移动一列，最后一列移到第一列. 
+\end{example}
+
+\newpage
+\section{矩阵的逆}
+
+\subsection{复杂矩阵的逆}
+
+\begin{example}
+\rm 若$A^l = \mbf{0}$，其中$l$是使得$A^m = \mbf{0}$中最小的那个$m$，如果存在这样$l$，则称$\mbf{A}$是一个幂零矩阵，它的幂零指数为$l$. 证明在这种情况下$\mbf{I}-\mbf{A}$是可逆矩阵.
+
+\hints\ 这个是比较有构造性，需要把相应的可逆矩阵构造出来，即
+$$
+\mbf{I} - \mbf{A}^l = \mbf{0} \Rightarrow (\mbf{I}-\mbf{A})(\mbf{I} + \mbf{A} + \mbf{A}^2 +\cdots + \mbf{A}^{l-1}) = \mbf{I} - \mbf{A}^l = \mbf{I},
+$$  
+这里可以把$\mbf{I} - \mbf{A}^l = \mbf{0}$看做$1-x^n = 0$，那么$\mbf{I}$这个方程的一个根，把这个根先提出来，就可以得到上面的结果.
 \end{example}
 
 \newpage

@@ -2085,7 +2085,7 @@ $$
 	\item $(\mbf{A}^*)^T = (\mbf{A}^T)^*$;
 	\item $|\mbf{A}^*|=|\mbf{A}|^{n-1}$;
 	\item $(\mbf{A}^*)^* = |\mbf{A}|^{n-2}\mbf{A},\, n \geq 2$;
-	\item $(\mbf{A}\mbf{B})=\mbf{B}^*\mbf{A}^*$.
+	\item $(\mbf{A}\mbf{B})^*=\mbf{B}^*\mbf{A}^*$.
 \end{enumerate}
 \end{proposition}
 
@@ -2135,12 +2135,10 @@ $$
 \bluet{(6)}
 
 $$
-\mbf{A}\mbf{A}^*(\mbf{A}^*)^* = |\mbf{A}|(\mbf{A}^*)^*= \mbf{A} \begin{pmatrix}
-|\mbf{A}|^{n-1} & 0 & \cdots & 0\\
-0 & |\mbf{A}|^{n-1} & \cdots & 0\\
-\vdots & \vdots &  & \vdots\\
-0 & 0 & \cdots & |\mbf{A}|^{n-1}\\
-\end{pmatrix},
+\begin{array}{ll}
+(\mbf{A}\mbf{A}^*)(\mbf{A}^*)^* = |\mbf{A}|(\mbf{A}^*)^* \\
+\mbf{A}(\mbf{A}^*(\mbf{A}^*)^*) = \mbf{A} |\mbf{A}^*| \mbf{I} = |\mbf{A}|^{n-1}\mbf{A}, 
+\end{array}
 $$
 因此$(\mbf{A}^*)^* = |\mbf{A}|^{n-2}\mbf{A}$.
 \end{proof}
@@ -2160,9 +2158,9 @@ $$
 \begin{proof}
 当$\rank{\mbf{A}} = n$，显然有$\rank{\mbf{A}^*} = n$; 
 
-当$\rank{\mbf{A}} = n-1$时，那么$\mbf{A}\mbf{A}^* = \mbf{0}$，因此\ref{sylvester-inequality}可知$\rank{\mbf{A}^*} \leq 1$，再因为$\mbf{A}$存在$n-1$阶子式不等于，那么$\mbf{A}^* \neq \mbf{0}$，即$\mbf{A}^*$; 
+当$\rank{\mbf{A}} = n-1$时，那么$\mbf{A}\mbf{A}^* = \mbf{0}$，因此\ref{sylvester-inequality}可知$\rank{\mbf{A}^*} \leq 1$，再因为$\mbf{A}$存在$n-1$阶子式不等于，那么$\mbf{A}^* \neq \mbf{0}$，即$\rank{\mbf{A}^*} = 1$; 
 
-当$\rank{\mbf{A}} \leq n-1$，那么$\mbf{A}$的所有$n-1$子式都等于$0$，即$\rank{\mbf{A}^*} = 0$
+当$\rank{\mbf{A}} < n-1$，那么$\mbf{A}$的所有$n-1$子式都等于$0$，即$\rank{\mbf{A}^*} = 0$
 \end{proof}
 
 \begin{proposition}\label{invertible: prop1}
@@ -2213,6 +2211,16 @@ $$
 \rm (4) 
 $$
 (\mbf{A}\mbf{A}^{-1})^{T} = (\mbf{A}^{-1})^T\mbf{A}^{T} = \mbf{I}. 
+$$
+\end{proof}
+
+\begin{proposition}
+\rm \redt{对逆对} 可逆的对称矩阵的逆仍是对称矩阵. 
+\end{proposition}
+
+\begin{proof}
+$$
+(\mbf{A}^{-1})^{T} = (\mbf{A}^{T})^{-1} = {\mbf{A}}^{-1}.
 $$
 \end{proof}
 
