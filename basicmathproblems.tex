@@ -1358,6 +1358,45 @@ $$
 \end{example}
 
 
+\subsection{利用已有的幂级数求和}
+
+\begin{example}
+\rm 求下述幂级数的和函数
+$$
+\sum\limits_{n=1}^{\infty} (-1)^n \frac{2n+1}{(2n)!}x^{2n}.
+$$
+
+\hints\ 这个级数显然不能在有限次的积分或者求导来一般手法求和，考虑把它拆开成熟悉的级数，这里可以拆成两个熟悉的三角函数:
+$$
+S(x) = \sum\limits_{n=1}^{\infty}(-1)^n \frac{1}{(2n-1)!}x^{2n-1}x + \sum\limits_{n=0}^{\infty} (-1)^n \frac{1}{(2n)!}x^{2n}-1 = -x\sin x + \cos x -1. 
+$$
+
+\end{example}
+
+\subsection{构造微分方程}
+
+\begin{example}
+\rm 求下述幂级数的和函数
+$$
+\sum\limits_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!!}
+$$
+\hints\ 连续的求导和积分似乎很难做到，这里就很有技巧了，可以构造含$S(x)$一阶微分方程. 其中
+$$
+S'(x) = \sum\limits_{n=1}^{\infty} (-1)^n \frac{x^{2n-1}}{(2n-2)!!} = \sum\limits_{n=1}^{\infty} (-1)^n \frac{x^{2n-2} x}{(2n-2)!!} = -xS(x),
+$$
+解这个微分方程得到$S(x)= Ce^{-\frac{1}{2}}$，因为这里$S(0)=1$，最终得到$S(x) = e^{-\frac{1}{2}x^2}$. 
+\end{example}
+
+\begin{example}
+\rm 求下述幂级数的和函数
+$$
+\sum\limits_{n=0}^{\infty} \frac{x^{2n+1}}{(2n+1)!}
+$$
+
+\hints\ 观察这个系数有点像$e^x$的幂级数，但是只有奇数项. 那么偶数项其实就是$S'(x)$，因此$S'(x) +S(x) = e^x$，由此解得$S(x)= Ce^{-x} + \frac{1}{2}e^{x}$，由$S(0) = 0$，最终可得$S(x) = -\frac{1}{2}e^{-x} + \frac{1}{2}e^{x}$
+\end{example}
+
+
 \newpage
 \section{tricks}
 

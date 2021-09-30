@@ -3387,7 +3387,7 @@ p(\lambda) = (\lambda-a_{11})\cdots (\lambda - a_{nn}) + q(\lambda).
 $$
 其中$q(\lambda)$最高次项为$\lambda^{n-2}$，因此$c_{n-1}=-(a_{11} + \cdots + a_{nn})$. 综合则有$(\lambda_1+\cdots + \lambda_n) =  a_{11} + \cdots + a_{nn}$. 
 
-(6) 因$p(0) = (-1)^n\prod\limits_{i=1}^n \lambda_i$，而$p(0)=|0\cdot \mbf{I}-\mbf{A}| = (-1)^n|\mbf{A}| $.
+(6) 因$p(0) = (-1)^n\prod\limits_{i=1}^n \lambda_i$，而$p(0)= c_0 =|0\cdot \mbf{I}-\mbf{A}| = (-1)^n|\mbf{A}| $.
 \end{proof}
 
 \begin{proposition}
@@ -3459,6 +3459,54 @@ $$
 \rm 设$\mbf{A}$和$\mbf{B}$都为$n$阶方阵，则$\mbf{AB}$和$\mbf{BA}$有相同的特征值(特征多项式).
 \end{proposition}
 
+\begin{theorem}
+\rm \redt{Cayley–Hamilton theorem} 给定矩阵$\mbf{A}$，它的特征多项式为$p_{\mbf{A}}(\lambda) = |\lambda\mbf{I} - \mbf{A}|$. 那么$$
+p_{\mbf{A}}(\mbf{A}) = \mbf{A}^n + c_{n-1}\mbf{A}^{n-1}+  \cdots +c_1\mbf{A} +c_0\mbf{I} = \mbf{0}
+$$ 
+\end{theorem}
+
+\begin{annotation}
+\rm Cayley–Hamilton theorem的意义在于我们可以用比$\mbf{A}^n$低阶的幂矩阵来表示$\mbf{A}^n$. 
+\end{annotation}
+
+\begin{example}
+\rm 设$\mbf{A} = \begin{pmatrix}
+1 & 2 \\
+3 & 4 
+\end{pmatrix}$
+
+$\mbf{A}$的特征多项式为$\lambda^2 - 5\lambda - 2$，则有
+$$
+\begin{array}{ll}
+\mbf{A}^{2}=5\mbf{A}+2I_{2} \\
+\mbf{A}^{3}=(5A+2I_{2})A=5A^{2}+2A=5(5A+2I_{2})+2A=27A+10I_{2} \\
+\mbf{A}^{4}=\mbf{A}^{3}\mbf{A}=(27A+10I_{2})\mbf{A}=27\mbf{A}^{2}+10A=27(5A+2I_{2})+10A=145A+54I_{2}
+\end{array}
+$$ 
+\end{example}
+
+\begin{proposition}
+\rm 若$n$阶矩阵$\mbf{A}$可逆，那么
+$$
+\mbf{A}^{-1} = \frac{(-1)^{n-1}}{|\mbf{A}|}(\mbf{A}^{n-1}+c_{n-1}\mbf{A}^{n-2} + \cdots +c_1\mbf{I}). 
+$$
+\end{proposition}
+
+\begin{proof}
+首先设
+$$
+\mbf{A}^{n} + c_{n-1}\mbf{A}^{n-1} + \cdots + c_1\mbf{A} + c_0\mbf{I} = \mbf{0}, 
+$$
+等式两边左乘上$\mbf{A}^{-1}$，则有
+$$
+\mbf{A}^{n-1} + c_{n-1}\mbf{A}^{n-2} + \cdots + c_1\mbf{I} + c_0\mbf{A}^{-1} = \mbf{0},
+$$
+由于$\mbf{A}$可逆，因此$c_0 = (-1)^{n-1}|\mbf{A}| \neq 0$，两边除以$c_0$再移项. 
+\end{proof}
+
+\begin{annotation}
+\rm \bluet{前面这个命题使得我们再求逆矩阵的时候是可以使用待定系数法的，再配合$\mbf{A}\mbf{A}^{-1} = \mbf{I}$，有些时候是可以简化计算的}. 
+\end{annotation}
 
 \newpage
 \subsection{等价矩阵}

@@ -539,6 +539,22 @@ $$
 当$n = 1$时，$|\mbf{A}| = a_1 - b_1$. 
 \end{example}
 
+\subsection{矩阵行列式Lemma}
+
+\begin{lemma}
+\rm 给定两个列向量$\mbf{u},\mbf{v}$，则有
+$$
+|\mbf{I} + \mbf{u}\mbf{v}^{T}| = (1 + \mbf{v}^{T}\mbf{u}). 
+$$
+\end{lemma}
+
+\begin{lemma}
+\rm 设$\mbf{A}$可逆，给定两个列向量$\mbf{u},\mbf{v}$，则有
+$$
+|\mbf{A} + \mbf{u}\mbf{v}^{T}| = (1+\mbf{v}^{T}\mbf{A}^{-1}\mbf{u})|\mbf{A}|.
+$$
+\end{lemma}
+
 
 
 \newpage
@@ -646,6 +662,20 @@ $$
 $$
 \rank{\mbf{A}\mbf{A}^T} = \rank{(\mbf{A}^T)^T\mbf{A}^T} = \rank{\mbf{A}^T} = \rank{\mbf{A}}.   
 $$
+\end{example}
+
+\subsection{秩为1的矩阵相关问题}
+
+\begin{example}
+\rm MSE上相关问题收集\href{https://math.stackexchange.com/questions/904926/determinant-of-a-rank-1-update-of-a-scalar-matrix-or-characteristic-polynomia}{determinant-of-a-rank-1-update-of-a-scalar-matrix-or-characteristic-polynomia}
+\begin{enumerate}
+	\item \href{https://math.stackexchange.com/q/153457/18880}{元素全是$1$的$n$阶矩阵的特征多项式通项}
+	\item \href{https://math.stackexchange.com/q/55165/18880}{秩为$1$的$n$矩阵的特征值$uv^T$}
+	\item \href{https://math.stackexchange.com/q/577937/18880}{计算$A+I$的行列式，其中$A$为秩为1的$n$阶矩阵}
+	\item \href{https://math.stackexchange.com/q/84206/18880}{计算对角线元素都是$0$，其他元素都是$1$的$n$阶矩阵的行列式}
+	\item \href{https://math.stackexchange.com/q/86644/18880}{计算对角线元素都是$a$，其他元素都是$b$的$n$阶矩阵的行列式}
+	\item \href{https://math.stackexchange.com/questions/629892/determinant-of-a-special-n-times-n-matrix}{计算对角线元素都是$2$，其他元素都是$1$的$n$阶矩阵的行列式}
+\end{enumerate}
 \end{example}
 
 \newpage
@@ -1044,6 +1074,38 @@ $$
 \mbf{I} - \mbf{A}^l = \mbf{0} \Rightarrow (\mbf{I}-\mbf{A})(\mbf{I} + \mbf{A} + \mbf{A}^2 +\cdots + \mbf{A}^{l-1}) = \mbf{I} - \mbf{A}^l = \mbf{I},
 $$  
 这里可以把$\mbf{I} - \mbf{A}^l = \mbf{0}$看做$1-x^n = 0$，那么$\mbf{I}$这个方程的一个根，把这个根先提出来，就可以得到上面的结果.
+\end{example}
+
+\subsection{直觉猜}
+
+\begin{annotation}
+\rm 如果遇到求某种形式的矩阵的逆，你有一个直觉它的逆大概是怎样的，你可以按照你的直觉来推一下，如果恰好是这样的，再根据矩阵逆的唯一性，那么你的推测就是正确的. 
+\end{annotation}
+
+\begin{example}
+\rm 求下述$n$阶矩阵$\mbf{A}$的逆矩阵($n \geq 2$)
+$$
+\mbf{A} =
+\begin{pmatrix}
+0 & 1 & 1 & \cdots & 1 \\
+1 & 0 & 1 & \cdots & 1 \\
+\vdots & \vdots & \vdots &  & \vdots \\
+1 & 1 & 1 & \cdots & 0
+\end{pmatrix}
+$$
+
+\hints\ 这个矩阵的逆可以直接用行变换化单位矩阵的方法来做，但是有比较trick的做法，观察到$\mbf{A} = \mbf{B}-\mbf{I}$，其中$\mbf{B}$是元素全为$1$的矩阵，这里我们猜测$\mbf{A}^{-1} = a\mbf{B} + b\mbf{I}$，那么它一定需要满足
+$$
+\begin{array}{ll}
+\mbf{I}  &= (B-I)(aB + bI) \\
+  &= aB^2+(b-a)B -bI \\
+  &= anB + (b-a)B - bI \\
+  &= (an+b-a)B - bI
+\end{array}
+$$
+因此$b=-1,a = \frac{1}{n-1}$. 注意到这里有一个比较好的性质$\mbf{B}^2 = n\mbf{B}$.
+
+来讲述一下这里为什么可以这样来待定系数做的方法，首先我们观察到$\mbf{A}$是可逆的，因此这里可以有$\mbf{A}^{-1} = f(\mbf{A})$，其中$f(\mbf{A})$表示$\mbf{A}$的多项式，这一细节去看一下Cayley–Hamilton theorem即可. 这里将$\mbf{A}$分解成$\mbf{B} - \mbf{I}$再带入$f(\mbf{A})$可以得到一个关于$\mbf{B}$的多项式$g(\mbf{B})$. 特别地这里$\mbf{B}$秩等于$1$，那么$\mbf{B}$又可以分解为两个一维向量的乘积$\mbf{\alpha} \mbf{\beta}^T$，因此$\mbf{B}^m = k^{m-1}\mbf{B}$. 所以最终有形式$g(B) = a\mbf{B} + b\mbf{I}$. 
 \end{example}
 
 \newpage
