@@ -5,6 +5,9 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{cd}
 \usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
 
 \usepackage{amsthm}
 \usepackage{amsmath}
@@ -25,6 +28,7 @@
     }
 
 \usepackage{enumitem}
+\usepackage{nicematrix} %矩阵的package
 
 \usepackage[textwidth=18cm]{geometry} % 设置页宽=18
 
@@ -74,6 +78,7 @@
 \maketitle
 \tableofcontents
 
+\newpage
 \section{行列式}
 
 \subsection{定义}
@@ -555,6 +560,26 @@ $$
 $$
 \end{lemma}
 
+\begin{proposition}
+\rm \redt{Weinstein–Aronszajn identity} 设$\mbf{A}$是$m \times n$矩阵，$\mbf{B}$是$n \times m$矩阵，则有
+$$
+|\mbf{I}-\mbf{A}\mbf{B}| = |\mbf{I}-\mbf{B}\mbf{A}|
+$$
+\end{proposition}
+
+\begin{proof}
+因为有
+$$
+\det\begin{pmatrix} I_m & -A \\ B & I_n \end{pmatrix} 
+  = \det\begin{pmatrix} I_m & 0 \\ B & I_n + BA \end{pmatrix} = \det(I_n + BA).
+$$
+和
+$$
+\det\begin{pmatrix} I_m & -A \\ B & I_n \end{pmatrix} 
+  = \det\begin{pmatrix} I_m+AB & 0 \\ B & I_n  \end{pmatrix} = \det(I_m + AB).
+$$
+\end{proof}
+
 
 
 \newpage
@@ -676,6 +701,24 @@ $$
 	\item \href{https://math.stackexchange.com/q/86644/18880}{计算对角线元素都是$a$，其他元素都是$b$的$n$阶矩阵的行列式}
 	\item \href{https://math.stackexchange.com/questions/629892/determinant-of-a-special-n-times-n-matrix}{计算对角线元素都是$2$，其他元素都是$1$的$n$阶矩阵的行列式}
 \end{enumerate}
+\end{example}
+
+\begin{example}
+\rm 设任一非零列向量$\mbf{v}=(v_1,v_2,\cdots,v_n)^T$，求$\mbf{v}\mbf{v}^T$的特征值.
+
+首先由
+$$
+\mbf{v}\mbf{v}^T\mbf{v} = \left(\sum\limits_{i = 0}^{n}v_i^2 \right)\mbf{v},
+$$
+所以$\sum\limits_{i = 0}^{n}v_i^2$是其中一个特征值. 设$\mathcal{w}$和$\mathcal{v}$正交，则有
+$$
+\mbf{v}\mbf{v}^T\mbf{w} = \mbf{v} \cdot 0 = 0 \cdot \mbf{w}, 
+$$
+因此$0$也是其中一个特征值. 特别地，$\mbf{w}$和$\mbf{v}$正交，就$\mbf{v}\mbf{X} = \mbf{0}$，即
+$$
+v_1 x_1 + v_2 x_2 + \cdots + v_n x_n = 0, 
+$$
+显然它的解空间是$n-1$维，所以有$n-1$特征值$0$，一个特征值$\sum\limits_{i = 0}^{n}v_i^2$. 
 \end{example}
 
 \newpage
@@ -947,6 +990,61 @@ a^{k} & c(a^{k-1} + a^{k-2}b + \cdots + ab^{k-2}+b^{k-1}) \\
 \end{array}
 $$
 \end{example}
+
+\begin{example}
+\rm 求下述$n$阶矩阵的$m$阶幂
+$$
+\mbf{A} = \begin{pmatrix}
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \cdots & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & 0 & \cdots & 0 
+\end{pmatrix}
+$$
+
+\hints\ 首先可以简单的计算前几项
+$$
+\mbf{A}^2 = \begin{pmatrix}
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \cdots & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & 0 & \cdots & 0 
+\end{pmatrix} \begin{pmatrix}
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \cdots & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & 0 & \cdots & 0 
+\end{pmatrix} = 
+\begin{pmatrix}
+0 & 0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \vdots &  & \vdots \\
+0 & 0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & 0 & 0 & \cdots & 0 \\
+0 & 0 & 0 & 0 & \cdots & 0  
+\end{pmatrix}
+$$
+可以看出来把每一行的$1$都往右移了一列，因此我们假设
+$$
+\mbf{A}^m = 
+$$
+\end{example}
+
+$$
+\begin{pNiceMatrix}[name=matrix_1, ]
+0 & 0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \vdots &  & \vdots \\
+0 & 0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & 0 & 0 & \cdots & 0 \\
+0 & 0 & 0 & 0 & \cdots & 0  
+\CodeAfter
+\tikz[decoration={calligraphic brace, mirror, amplitude=6pt,raise=2pt}] \draw[decorate,thick] (matrix_1-6-1.south west) -- (matrix_1-6-6.south east) node[midway,yshift=-2em]{x};
+\end{pNiceMatrix}
+$$
 
 \subsection{矩阵交换性}
 
