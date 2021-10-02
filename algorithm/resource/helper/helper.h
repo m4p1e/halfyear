@@ -1,0 +1,1 @@
+int str2int(char *str, int len);
