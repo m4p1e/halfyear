@@ -1027,24 +1027,60 @@ $$
 0 & 0 & 0 & 0 & \cdots & 0  
 \end{pmatrix}
 $$
-可以看出来把每一行的$1$都往右移了一列，因此我们假设
-$$
-\mbf{A}^m = 
-$$
-\end{example}
+可以看出来把每一行的$1$都往右移了一列，因此我们假设当$m < n$时，有
 
 $$
-\begin{pNiceMatrix}[name=matrix_1, ]
-0 & 0 & 1 & 0 & \cdots & 0 \\
-0 & 0 & 0 & 1 & \cdots & 0 \\
-\vdots & \vdots & \vdots & \vdots &  & \vdots \\
-0 & 0 & 0 & 0 & \cdots & 1 \\
-0 & 0 & 0 & 0 & \cdots & 0 \\
-0 & 0 & 0 & 0 & \cdots & 0  
+\mbf{A}^m = \begin{pNiceMatrix}[name=matrix_1, ]
+0 & 0 & \cdots & 0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & \cdots & 0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots &  & \vdots & \vdots & \vdots &  & \vdots \\
+0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+\vdots & \vdots &  & \vdots & \vdots & \vdots &  & \vdots \\
+0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0  
 \CodeAfter
-\tikz[decoration={calligraphic brace, mirror, amplitude=6pt,raise=2pt}] \draw[decorate,thick] (matrix_1-6-1.south west) -- (matrix_1-6-6.south east) node[midway,yshift=-2em]{x};
-\end{pNiceMatrix}
+\begin{tikzpicture}[decoration={calligraphic brace, amplitude=6pt,raise=5pt}] \draw[decorate,thick] (matrix_1-1-1.north west) -- (matrix_1-1-4.north east) node[midway,yshift=+1.5em]{m};
+\draw[decorate, thick] (matrix_1-4-8.north east) -- (matrix_1-7-8.south east) node[midway,xshift=+1.5em]{m};
+\end{tikzpicture}
+\end{pNiceMatrix} 
 $$
+当$n=1$时，显然命题成立. 假设当$n = m-1$成立，那么
+
+$$
+\mbf{A}^m = \begin{pNiceMatrix}[name=matrix_2, ]
+0 & 0 & \cdots & 0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & \cdots & 0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots &  & \vdots & \vdots & \vdots &  & \vdots \\
+0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+\vdots & \vdots &  & \vdots & \vdots & \vdots &  & \vdots \\
+0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0  
+\CodeAfter
+\begin{tikzpicture}[] \draw[decorate,decoration={calligraphic brace, amplitude=6pt,raise=5pt},thick] (matrix_2-1-1.north west) -- (matrix_2-1-4.north east) node[midway,yshift=+1.5em]{m-1};
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=6pt,raise=5pt}, thick] (matrix_2-4-1.north west) -- (matrix_2-7-1.south west) node[midway,xshift=-2em]{m-1};
+\end{tikzpicture}
+\end{pNiceMatrix} \begin{pmatrix}
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \cdots & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & 0 & \cdots & 0 
+\end{pmatrix} = \begin{pNiceMatrix}[name=matrix_3, ]
+0 & 0 & \cdots & 0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & \cdots & 0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots &  & \vdots & \vdots & \vdots &  & \vdots \\
+0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0 \\
+\vdots & \vdots &  & \vdots & \vdots & \vdots &  & \vdots \\
+0 & 0 & \cdots & 0 & 0 & 0 & \cdots & 0  
+\CodeAfter
+\begin{tikzpicture}[decoration={calligraphic brace, amplitude=6pt,raise=5pt}] \draw[decorate,thick] (matrix_3-1-1.north west) -- (matrix_3-1-4.north east) node[midway,yshift=+1.5em]{m};
+\draw[decorate, thick] (matrix_3-4-8.north east) -- (matrix_3-7-8.south east) node[midway,xshift=+1.5em]{m};
+\end{tikzpicture}
+\end{pNiceMatrix} 
+$$
+因此假设成立. 当$m = n$时，$\mbf{A}^n  =\mbf{0}$，即当$m \geq n$时，有$\mbf{A}^m = \mbf{0}$. 
+\end{example}
 
 \subsection{矩阵交换性}
 
