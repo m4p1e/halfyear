@@ -991,7 +991,7 @@ a^{k} & c(a^{k-1} + a^{k-2}b + \cdots + ab^{k-2}+b^{k-1}) \\
 $$
 \end{example}
 
-\begin{example}
+\begin{example}\label{power-of-matrix:m1}
 \rm 求下述$n$阶矩阵的$m$阶幂
 $$
 \mbf{A} = \begin{pmatrix}
@@ -1198,7 +1198,7 @@ $$
 \newpage
 \section{矩阵的逆}
 
-\subsection{复杂矩阵的逆}
+\subsection{凑逆矩阵}
 
 \begin{example}
 \rm 若$A^l = \mbf{0}$，其中$l$是使得$A^m = \mbf{0}$中最小的那个$m$，如果存在这样$l$，则称$\mbf{A}$是一个幂零矩阵，它的幂零指数为$l$. 证明在这种情况下$\mbf{I}-\mbf{A}$是可逆矩阵.
@@ -1210,7 +1210,36 @@ $$
 这里可以把$\mbf{I} - \mbf{A}^l = \mbf{0}$看做$1-x^n = 0$，那么$\mbf{I}$这个方程的一个根，把这个根先提出来，就可以得到上面的结果.
 \end{example}
 
-\subsection{直觉猜}
+\begin{example}
+\rm 设$\mbf{A}$是$m \times n$矩阵，$\mbf{B}$是$n \times m$矩阵. 证明: 如果$\mbf{I}-\mbf{A}\mbf{B}$可逆，那么$\mbf{I}-\mbf{B}\mbf{A}$也可逆，并求出$(\mbf{I}-\mbf{B}\mbf{A})^{-1}$. 
+
+\hints\ 那么你要求出来$\mbf{C}$，使得
+$$
+(\mbf{I}-\mbf{B}\mbf{A})\mbf{C} = \mbf{I},
+$$
+这里的技巧是我们需要把这个$\mbf{C}$以某种更有价值的方式表示出来，可以猜$\mbf{C}  =  \mbf{I} + \mbf{X}$也有这样的形式，这样表示也是合理的. 于是我们得到
+$$
+\begin{array}{rl}
+(\mbf{I}-\mbf{B}\mbf{A})(\mbf{I} + \mbf{X}) &= \mbf{I} \\
+\mbf{I} + \mbf{X} -\mbf{BA} - \mbf{BAX} &= \mbf{I} \\
+\mbf{X} - \mbf{BAX} &= \mbf{BA} 
+\end{array}
+$$
+这里需要再凑一下$\mbf{X}$，使得$\mbf{X} = \mbf{B}\mbf{Y}\mbf{A}$，可以得到
+$$
+\begin{array}{rl}
+\mbf{B}\mbf{Y}\mbf{A} - \mbf{BA}\mbf{B}\mbf{Y}\mbf{A} &= \mbf{BA} \\
+\mbf{B}(\mbf{Y}-\mbf{ABY})\mbf{A} &= \mbf{BA} \\
+\mbf{B}(\mbf{I}-\mbf{AB})\mbf{Y}\mbf{A} &= \mbf{BA}
+\end{array}
+$$
+根据条件$\mbf{I}-\mbf{AB}$是可逆的，因此可以使得$\mbf{Y} = (\mbf{I}-\mbf{AB})^{-1}$让上式成立，从而$\mbf{X} = \mbf{B}(\mbf{I}-\mbf{AB})^{-1}\mbf{A}$，即
+$$
+(\mbf{I}-\mbf{B}\mbf{A})^{-1} = \mbf{I} + \mbf{B}(\mbf{I}-\mbf{AB})^{-1}\mbf{A}.
+$$
+\end{example}
+
+\subsection{拆开求}
 
 \begin{annotation}
 \rm 如果遇到求某种形式的矩阵的逆，你有一个直觉它的逆大概是怎样的，你可以按照你的直觉来推一下，如果恰好是这样的，再根据矩阵逆的唯一性，那么你的推测就是正确的. 
@@ -1240,6 +1269,44 @@ $$
 因此$b=-1,a = \frac{1}{n-1}$. 注意到这里有一个比较好的性质$\mbf{B}^2 = n\mbf{B}$.
 
 来讲述一下这里为什么可以这样来待定系数做的方法，首先我们观察到$\mbf{A}$是可逆的，因此这里可以有$\mbf{A}^{-1} = f(\mbf{A})$，其中$f(\mbf{A})$表示$\mbf{A}$的多项式，这一细节去看一下Cayley–Hamilton theorem即可. 这里将$\mbf{A}$分解成$\mbf{B} - \mbf{I}$再带入$f(\mbf{A})$可以得到一个关于$\mbf{B}$的多项式$g(\mbf{B})$. 特别地这里$\mbf{B}$秩等于$1$，那么$\mbf{B}$又可以分解为两个一维向量的乘积$\mbf{\alpha} \mbf{\beta}^T$，因此$\mbf{B}^m = k^{m-1}\mbf{B}$. 所以最终有形式$g(B) = a\mbf{B} + b\mbf{I}$. 
+\end{example}
+
+\begin{example}
+\rm 求下述$n$阶矩阵的逆
+$$
+\mbf{A} = 
+\begin{pmatrix}
+1 & b & b^2 & \cdots & b^{n-1} \\
+0 & 1 & b & \cdots & b^{n-2}  \\
+\vdots & \vdots & \vdots & & \vdots \\
+0 & 0 & 0 & \cdots & b \\
+0 & 0 & 0 & \cdots & 1 
+\end{pmatrix}
+$$
+
+由\ref{power-of-matrix:m1}，我们将$\mbf{A}$拆开
+$$
+\mbf{A} = \mbf{I} + b\mbf{B}+b^2\mbf{B}^2 + \cdots + b^{n-1}\mbf{B}^{n-1},
+$$
+其中
+$$
+\mbf{B} = \begin{pmatrix}
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \cdots & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & 0 & \cdots & 0 
+\end{pmatrix}
+$$
+这样将上述等式两边左乘上$(\mbf{I}-b\mbf{B})$得到
+$$
+\begin{array}{ll}
+(\mbf{I}-b\mbf{B})\mbf{A} &= (\mbf{I}-b\mbf{B})(\mbf{I} + b\mbf{B}+b^2\mbf{B}^2 + \cdots + b^{n-1}\mbf{B}^{n-1}) \\
+&=\mbf{I}-b^n\mbf{B}^{n} \\
+&=I
+\end{array}
+$$
+因此$\mbf{A}^{-1} = \mbf{I}-b\mbf{B}$. 
 \end{example}
 
 \newpage
