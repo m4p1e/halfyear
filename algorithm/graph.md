@@ -338,6 +338,28 @@ minimum_spannning_tree_kruskal(G)
 2.  在$G$上寻找连接$A$与$A$之外的结点的所有边，找权重最小的边加入$A$中.
 3.  余类推，直到$A$成为一颗最小生成树.
 
+在构造Prim算法的过程中，如何快速的找到连接树$A$中权重最小的边是最值得关注的
+
+```python
+minimum_spanning_tree_prim(G,r){
+	for each u in G.V
+    	u.key = maximum_int
+    	u.parent = nil
+    r.key = 0
+    Q = create_min_queue(G.V)
+    while Q != empty
+    	u = extract_min(Q)
+    	for each v in u.adj
+    		if v in Q  and w(u,v) < v.key
+    			v.parent = u
+    			v.key = w(u,v)
+}
+```
+
+这里最小队列$Q$总是维护着其他结点连接$A$的权重最小的边. 
+
+
+
 
 
 ### 0x07 最短路径

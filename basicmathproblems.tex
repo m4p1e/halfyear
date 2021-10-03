@@ -1104,7 +1104,52 @@ $$
 \end{example}
 
 \newpage
+\section{解析几何}
 
+\subsection{求直线在平面上的投影}
+
+\begin{annotation}
+\rm 如给定直线$L$和平面$S$，求$L$在$S$上投影直线方程. 
+\begin{enumerate}
+	\item 确定与$L$和$S$法向量$\eta$都垂直的向量$\gamma$; 、
+	\item 确定以$\gamma$为法向量，包含$L$的平面$S'$;
+	\item $S$和$S'$相交的直线就是$L$在$S$上的投影直线方程. 
+\end{enumerate}
+\end{annotation}
+
+
+\subsection{旋转直线方程}
+
+\begin{example}
+\rm 求直线$L: \frac{x-3}{2} = \frac{y-1}{3} = z+1$绕直线$L_1: \left\{ \begin{array}{ll}
+x = 2\\
+y = 3 
+\end{array}\right.$旋转一圈所产生的曲面方程.
+
+\hints\ 这里要用一个低维的思想，我们任取$L$上一点$(x_0,y_0,z_0)$考察它绕直线$L_1$旋转得到的方程
+$$
+\left\{
+\begin{array}{ll}
+z = z_0 \\
+(x-2)^2 + (y-3)^2 = (x_0-2)^2 + (y_0-3)^2
+\end{array} \right.
+$$
+再考虑点$(x_0,y_0,z_0)$在直线$L$，目的是为了让上述方程取遍所有$L$上的点. 这里有
+$$
+\left \{
+\begin{array}{ll}
+x_0 = 2z_0 + 5\\
+y_0 = 3z_0 + 4 
+\end{array} \right.
+$$
+将它们带入第一个方程，即有
+$$
+(x-2)^2 + (y-3)^2 = (2z+3)^2 + (3z+1)^2,
+$$
+这就是我们要求的曲线方程. 
+\end{example}
+
+\newpage
 \section{多元函数}
 
 \subsection{带不等式的条件极值}
@@ -1194,6 +1239,22 @@ $$
 \section{三重积分}
 
 \subsection{直角坐标}
+
+\begin{example}
+\rm 设$\Omega$由$x^2 + \frac{y^2}{2^2} + \frac{z^2}{3^2} \leq 1, 0 \leq z \leq 1$所确定，求
+$$
+\iiint\limits_{\Omega} z^2dv
+$$
+
+\hints\ 显然这是一个椭圆区域，因此先考虑二重积分再单重积分，$xOy$上椭圆方程为
+$$
+\frac{x^2}{1-\frac{z^2}{3}} + \frac{y^2}{2^2(1-\frac{z^2}{3})} = 1
+$$
+这里可以直接套公式得出该椭圆面积为$S=\pi ab= 2\pi(1-\frac{z^2}{3})$. 因此
+$$
+\iiint\limits_{\Omega} z^2dv = 2\pi \int_0^1 z^2(1-\frac{z^2}{3})dz = \frac{28}{45}\pi
+$$
+\end{example}
 
 \subsection{柱坐标}
 
