@@ -560,7 +560,7 @@ $$
 $$
 \end{lemma}
 
-\begin{proposition}
+\begin{proposition}\label{sylvester determinant}
 \rm \redt{Weinstein–Aronszajn identity} 设$\mbf{A}$是$m \times n$矩阵，$\mbf{B}$是$n \times m$矩阵，则有
 $$
 |\mbf{I}-\mbf{A}\mbf{B}| = |\mbf{I}-\mbf{B}\mbf{A}|
@@ -1213,7 +1213,7 @@ $$
 \begin{example}
 \rm 设$\mbf{A}$是$m \times n$矩阵，$\mbf{B}$是$n \times m$矩阵. 证明: 如果$\mbf{I}-\mbf{A}\mbf{B}$可逆，那么$\mbf{I}-\mbf{B}\mbf{A}$也可逆，并求出$(\mbf{I}-\mbf{B}\mbf{A})^{-1}$. 
 
-\hints\ 那么你要求出来$\mbf{C}$，使得
+\hints\ 如果仅仅判定可逆只需要\ref{sylvester determinant}即可，要求出来逆矩阵，那么你要求出来$\mbf{C}$，使得
 $$
 (\mbf{I}-\mbf{B}\mbf{A})\mbf{C} = \mbf{I},
 $$
@@ -1237,6 +1237,12 @@ $$
 $$
 (\mbf{I}-\mbf{B}\mbf{A})^{-1} = \mbf{I} + \mbf{B}(\mbf{I}-\mbf{AB})^{-1}\mbf{A}.
 $$
+
+再来研究一下这样猜逆矩阵形式的手法，这里同样我们可以用Cayley–Hamilton theorem，因为$\mbf{I}-\mbf{A}\mbf{B}$可逆，设它的逆为$\mbf{X}$，因此$\mbf{X} = f(\mbf{I}-\mbf{A}\mbf{B})$，其中$f(\mbf{I}-\mbf{A}\mbf{B})$是个关于$\mbf{I}-\mbf{A}\mbf{B}$的矩阵多项式，那么$\mbf{X} = g(\mbf{A}\mbf{B})$. 有趣的地方来了，这里有
+$$
+\mbf{B}\mbf{X}\mbf{A} = h(\mbf{BA}),
+$$
+这里会得到一个关于$\mbf{BA}$的多项式，但是这个里面不含$\mbf{I}$这一项，这恰恰因此$\mbf{I} +  \mbf{B}\mbf{X}\mbf{A}$有点形似关于$\mbf{I}-\mbf{BA}$的多项式. 
 \end{example}
 
 \subsection{拆开求}

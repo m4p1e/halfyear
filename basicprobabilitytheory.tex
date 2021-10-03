@@ -1459,7 +1459,7 @@ $$
 
 \emph{必要性} 若$X,Y$独立则$f(x,y) = f_X(x)f_Y(y)$，即
 $$
-f_X(x)f_Y(y) = {\frac {1}{2\pi \sigma _{1}\sigma _{1}}} \exp\left(-\frac{1}{2}\left[ \left(\frac {x-\mu _{1}}{\sigma _{1}}\right)^{2} +\left( \frac {y-\mu _{2}}{\sigma _{2}}\right)^{2}  \right] \right)
+f_X(x)f_Y(y) = {\frac {1}{2\pi \sigma _{1}\sigma _{2}}} \exp\left(-\frac{1}{2}\left[ \left(\frac {x-\mu _{1}}{\sigma _{1}}\right)^{2} +\left( \frac {y-\mu _{2}}{\sigma _{2}}\right)^{2}  \right] \right)
 $$ 
 (1)式和上式在当前前提条件都是$(X,Y)$的概率密度，这个两个概率密度都是连续的，它们应当处处相等，特别地应有
 $$
@@ -1477,14 +1477,17 @@ $$
 \end{proposition}
 
 \begin{proof}
-设$Z=aX+bY$，则$Z$的分布函数为
+这里要证明$(X,Y)$是二维正态分布当且仅当对任意的$a,b$，随机变量函数$aX+bY$都是正态分布，其实这是另一种定义二维正态分布的方法. 当$a=1,b=0$时，得到$X$是正态分布，同理$a=0,b=1$时，得到$Y$是正态分布. 随机$aX+bY \sim N(a\mu_1 + b\mu_2, a^2\sigma_1^2+2ab\sigma_1\sigma_2\rho+b^2\sigma_2^2)$. 
+
+定义两个独立分布的标准正态分布$Z_1,Z_1$. 再定义两个随机变量
 $$
-F_Z(z) = P\{Z \leq z\} = P\{aX+bY \leq z\},
+\left\{
+\begin{array}{ll}
+X = \sigma_1Z_1 + \mu_1 \\
+Y = \sigma_2(\rho Z_1+\sqrt{1-\rho^2}Z_2) + \mu_2,
+\end{array} \right.
 $$
-那么我们需要考虑平面上直线$ax+by=z$下方的区域$B$，即
-$$
-F(z) = \int_{B} f(x,y)dxdy = \int_{-\infty}^{+\infty}dx  \int_{-\infty}^{\frac{z-ax}{b}} f(x,y)dy = 
-$$
+可以验证$X \sim (\sigma_1, \mu_1),Y \sim (\mu_2,\sigma_2)$且$\rho(X,Y) = \rho$，同时还满足$aX+bY$服从正态分布，它们的联合分布就是定义中冗长的式子. 
 \end{proof}
 
 \begin{proposition}
@@ -1635,6 +1638,22 @@ $$
 
 
 \subsection{常见多元随机变量的函数分布}
+
+\begin{theorem}
+\rm 设二维连续随机$(X,Y)$概率密度为$f_{XY}(x,y)$，设二维随机变量$(Z,W) = (g_1(X,Y),g_2(Y,X))$，其中$g_1,g_2$均为连续单调函数，且具有一阶连续偏导. 设$h_1^{-1},h_2^{-1}$分别为$g_1,g_2$的反函数，则$(Z,W)$的概率分布为
+$$
+f_{ZW}(z,w) = f_{XY}(h_1(Z,W),h_2(Z,W))|J|,
+$$
+其中$J$表示jacob行列式(复合函数求导)
+\begin{align}
+  \nonumber J=   \det  \begin{bmatrix}
+                        \frac{\partial h_1}{\partial z} & \frac{\partial h_1}{\partial w}  \\
+                         &  \\
+                        \frac{\partial h_2}{\partial z}  & \frac{\partial h_2}{\partial w}  \\
+                      \end{bmatrix}
+                      =\frac{\partial h_1}{\partial z}.\frac{\partial h_2}{\partial w}-\frac{\partial h_2}{\partial z}\frac{\partial h_1}{\partial w}.
+\end{align}
+\end{theorem}
 
 \begin{example}
 \rm \redt{求两个连续型随机变量之和的概率密度的一般方法} 设$(X,Y)$的联合密度为$f(x,y)$，要求$Z=X+Y$.
