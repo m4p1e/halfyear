@@ -689,6 +689,22 @@ $$
 $$
 \end{example}
 
+\begin{example}
+\rm 设$\mbf{A}$是$n$阶矩阵，证明对任意的正整数$k$，有
+$$
+\rank{\mbf{A}^{n+k}} = \rank{\mbf{A}^n}.
+$$
+
+\hints\ 若$\mbf{A}$可逆，命题是显然的; 若$\mbf{A}$不可逆，即$\rank{A} < n$，那么矩阵乘法秩的上界，我们有
+$$
+\rank{\mbf{A}} \geq \rank{\mbf{A}^2} \geq \cdots \geq \rank{\mbf{A}^n} \geq \rank{\mbf{A}^{n+1}}
+$$
+那么肯定存在一个$m \leq n$，使得上述等号成立，即
+$$
+\mbf{A}^m = \mbf{A}^{m+1}.
+$$
+\end{example}
+
 \subsection{秩为1的矩阵相关问题}
 
 \begin{example}
