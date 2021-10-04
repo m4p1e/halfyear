@@ -1,13 +1,24 @@
 #include "helper.h"
 
 int str2int(char *str, int len){
-    int i, sum;
+    int i, sum, neg;
     sum = 0;
-    for(i = 0; i < len; i++){
+    
+    if(*str == '-'){
+        neg = 1;
+    }else{
+        neg = 0;
+    }
+
+    for(i = neg; i < len; i++){
         if('9' < str[i] || str[i] < '0'){
             break;
         }
         sum = sum * 10 + str[i]-'0'; 
+    }
+
+    if(neg){
+        return -sum;
     }
 
     return sum;

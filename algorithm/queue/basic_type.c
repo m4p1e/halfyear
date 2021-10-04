@@ -60,6 +60,7 @@ stack *create_stack(){
     s = malloc(sizeof(stack));
     s->top = NULL;
     s->depth = 0;
+    return s;
 }
 
 void stack_push(stack *s, void *attr){

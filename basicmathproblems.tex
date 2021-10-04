@@ -416,6 +416,38 @@ L = \lim\limits_{h \to 0} \frac{f(a+h)-f(a)-hf'(a)}{h^2} = \lim\limits_{h \to 0}
 $$
 \end{example}
 
+\subsection{三角函数相关}
+
+\begin{example}
+\rm 求
+$$
+\lim\limits_{n \to \infty} \sin^2(\pi \sqrt{n^2+n}). 
+$$
+
+\hints\ 这个积分有点反直觉，主要是变量放在了$\sin$里面. 
+$$
+\lim\limits_{n \to \infty} \sin^2(\pi \sqrt{n^2+n}) = \lim\limits_{n \to \infty} \sin^2[\pi(\sqrt{n^2 + n} -n)] = \lim\limits_{n \to \infty} \sin^2\left(\pi \frac{n}{\sqrt{n^2+n}+n} \right) = \sin^2 \frac{\pi}{2} = 1. 
+$$
+
+再来搞点不是那么反直觉的东西，
+$$
+\lim\limits_{n \to \infty} \sin^2 \left(\pi n \sqrt{1+\frac{1}{n}} \right),
+$$
+这里可以尝试将$\sqrt{1+\frac{1}{x}}$展开，首先
+$$
+\sqrt{1+x} = 1  + \frac{x}{2}+o(x),
+$$
+于是
+$$
+\sqrt{1+\frac{1}{x}} = 1 + \frac{1}{2}\cdot\frac{1}{x} + o(\frac{1}{x})
+$$
+因此
+$$
+\lim\limits_{n \to \infty} \sin^2 \left(\pi n (1 + \frac{1}{2}\cdot\frac{1}{n}+o(\frac{1}{n})) \right) = \sin^2\frac{\pi}{2}
+$$
+\end{example}
+
+\newpage
 \section{导数}
 
 \subsection{导数定义相关的}
@@ -1311,6 +1343,22 @@ $$
 $$
 \end{enumerate}
 \end{annotation}
+
+\begin{example}
+\rm 设$\Sigma$为球面$x^2 + y^2 + z^2 = 2ax$，求曲面积分
+$$
+I =\iint_{\Sigma} (x^2 + y^2 + z^3)dS.
+$$
+
+\hints\ 这道理按照球面来积分，好像有点难受. 首先我们做一个简单的代换
+$$
+I = \iint_{\Sigma} 2ax dS = 2a \iint_{\Sigma} xdS,
+$$
+其中$\iint_{\Sigma} xdS$可以看求曲面形心的$\bar{x}$中的分子，当且球面的形心的$\bar{x} = a$，从而
+$$
+I = 2a \cdot a \cdot 4\pi a^2 = 8\pi a^4. 
+$$
+\end{example}
 
 \subsection{第二类曲面积分}
 

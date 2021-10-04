@@ -141,7 +141,7 @@ Bnode *min_queue_insert(min_queue *q, void *attr){
 
     leaf_node = min_queue_next_leaf_node(q);
     leaf_node->attr = attr;
-
+    q->reverse_binding(leaf_node, leaf_node->attr);
     while(leaf_node->parent != NULL){
         if(q->compare(leaf_node->parent->attr, leaf_node->attr) > 0){
             attr = leaf_node->attr;
