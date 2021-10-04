@@ -701,7 +701,11 @@ $$
 $$
 那么肯定存在一个$m \leq n$，使得上述等号成立，即
 $$
-\mbf{A}^m = \mbf{A}^{m+1}.
+\mbf{A}^m = \mbf{A}^{m+1},
+$$
+因此对任意的$k \geq 1$有
+$$
+\mbf{A}^n = \mbf{A}^{n+k},
 $$
 \end{example}
 
@@ -735,6 +739,67 @@ $$
 v_1 x_1 + v_2 x_2 + \cdots + v_n x_n = 0, 
 $$
 显然它的解空间是$n-1$维，所以有$n-1$特征值$0$，一个特征值$\sum\limits_{i = 0}^{n}v_i^2$. 
+\end{example}
+
+\subsection{两个矩阵的秩相加}
+
+\begin{lemma}
+\rm \redt{构造新的分块矩阵} 给定矩阵$\mbf{A}=(a_{ij})_{m \times s},\mbf{B}=(b_{ij})_{s \times n}$，则
+$$
+\rank{\begin{pmatrix}
+\mbf{A} & \mbf{0} \\
+\mbf{0}	& \mbf{B} 
+\end{pmatrix}} = \rank{\mbf{A}}+\rank{\mbf{B}}
+$$
+\end{lemma}
+
+\begin{example}
+\rm 若$n$阶矩阵满足$\mbf{A}^2 = \mbf{A}$，那么称$\mbf{A}$是幂等矩阵. 证明
+$\mbf{A}$是幂等矩阵当且仅当
+$$
+\rank{\mbf{A}} + \rank{\mbf{I}-\mbf{A}} = n.
+$$
+\rm 若$\mbf{A}^2 = \mbf{A}$，当且仅当$\mbf{A}^2 - \mbf{A} = 0$. 由题意构造分块矩阵
+$$
+\begin{pmatrix}
+\mbf{A} & \mbf{0} \\
+\mbf{0} & \mbf{I}-\mbf{A}
+\end{pmatrix}
+$$
+做对应的初等变换
+$$
+\begin{pmatrix}
+\mbf{A} & \mbf{0} \\
+\mbf{0} & \mbf{I}-\mbf{A}
+\end{pmatrix} \longrightarrow 
+\begin{pmatrix}
+\mbf{A} & \mbf{0} \\
+\mbf{A} & \mbf{I}-\mbf{A}
+\end{pmatrix} \longrightarrow
+\begin{pmatrix}
+\mbf{A} & \mbf{A} \\
+\mbf{A} & \mbf{I} 
+\end{pmatrix} \longrightarrow
+\begin{pmatrix}
+\mbf{A}-\mbf{A}^2 & \mbf{0} \\
+\mbf{A} & \mbf{I} 
+\end{pmatrix} \longrightarrow
+\begin{pmatrix}
+\mbf{A}-\mbf{A}^2 & \mbf{0} \\
+\mbf{0} & \mbf{I} 
+\end{pmatrix}
+$$
+于是得到等式
+$$
+\rank{\mbf{A}} + \rank{\mbf{I}-\mbf{A}} = \rank{\mbf{A}-\mbf{A}^2} + n
+$$ 
+因此$\rank{\mbf{A}} + \rank{\mbf{I}-\mbf{A}} = n$. 反过来若$\rank{\mbf{A}} + \rank{\mbf{I}-\mbf{A}}$，还是构造上述分块矩阵，不难看出来易得$\mbf{A}^2 = \mbf{A}$. 
+
+
+\end{example}
+
+\begin{example}
+\rm 
 \end{example}
 
 \newpage
@@ -776,6 +841,20 @@ $$
 \eta = (0,\cdots,k_{i_1},\cdots,k_{i_j},\cdots)^{T}. 
 $$
 就是将其他分量扩充为0即可，这样和前提是矛盾的. 因此$H$的任意$s$列都线性无关. 
+\end{example}
+
+\begin{example}
+\rm 设$\mbf{A}$为$m \times n$矩阵，证明: 对于任意$\mbf{\beta} \in \mathbb{R}^m$，线性方程组$\mbf{A}^T\mbf{A}\mbf{X} = \mbf{A}^T\mbf{\beta}$
+
+\hints\ 当时套线性方程有解的充要条件，证明增广矩阵$(\mbf{A}^T\mbf{A},\mbf{A}^T\mbf{\beta})$和系数矩阵$\mbf{A}^T\mbf{A}$的秩相同即可. 显然有
+$$
+\rank{(\mbf{A}^T\mbf{A},\mbf{A}^T\mbf{\beta})} \geq \rank{\mbf{A}^T\mbf{A}}. 
+$$
+利用分块矩阵乘法，也有
+$$
+\rank{(\mbf{A}^T\mbf{A},\mbf{A}^T\mbf{\beta})} = \rank{\mbf{A}^T(\mbf{A},\mbf{\beta})} \leq \rank{\mbf{A}^T\mbf{A}}.
+$$
+因此$\rank{(\mbf{A}^T\mbf{A},\mbf{A}^T\mbf{\beta})} = \rank{\mbf{A}^T\mbf{A}}$. 
 \end{example}
 
 \subsection{给定方程组解的情况}
@@ -1329,6 +1408,58 @@ $$
 \end{array}
 $$
 因此$\mbf{A}^{-1} = \mbf{I}-b\mbf{B}$. 
+\end{example}
+
+\subsection{解方程}
+\begin{example}
+\rm 求下述$n$阶矩阵$\mbf{A}$的逆矩阵$(n \geq 2)$,
+$$
+\mbf{A} = \begin{pmatrix}
+1 & 2 & 3 & \cdots & n \\
+n & 1 & 2 & \cdots & n-1 \\
+\vdots & \vdots & \vdots & & \vdots \\
+2 & 3 & n & \cdots & 1
+\end{pmatrix}
+$$
+
+\hints\ 由
+$$
+\mbf{A}\mbf{B} = \mbf{I} = (\mbf{\varepsilon}_1,\mbf{\varepsilon}_2,\cdots,\mbf{\varepsilon}_n),
+$$
+同样我们也可以把$\mbf{B}$拆开$(\mbf{X}_1,\mbf{X}_2,\cdots,\mbf{X}_n)$. 因此我们可以分别求解$n$个方程组
+$$
+\mbf{A}\mbf{X}_i = \mbf{\varepsilon}_i, i=1,2,\cdots,n.
+$$
+考虑任意一个$X_i$的对应的解为$x_1,x_2,\cdots,x_n$. 按照我们解方程的手法将第一个方程减去第二个方程得到
+$$
+(1-n)x_1 + (x_2+x_3+\cdots+x_n) = b_1-b_2 ~~~~~~(1).
+$$
+将所有行都加到第一行有
+$$
+\frac{(1+n)n}{2}(x_1 + x_2 + \cdots + x_n) = b_1 + b_2 + \cdots + b_n~~~~~~~(2).
+$$
+讲$(2)$式带入$(1)$，即可得到
+$$
+x_1 = \frac{1}{n}\left[\frac{2\sum\limits_{i=1}^n x_i}{n(n-1)}-b_1 + b_2 \right].
+$$
+类似地，当$i \leq n-1$时，用$i+1$行减去$i$行得到
+$$
+x_i = \frac{1}{n}\left[\frac{2\sum\limits_{i=1}^n x_i}{n(n-1)}-b_i + b_{i+1} \right].
+$$
+用第$1$行减去第$n$行，得到
+$$
+x_n =  \frac{1}{n}\left[\frac{2\sum\limits_{i=1}^n x_i}{n(n-1)}-b_n + b_{1} \right]
+$$
+我们设$s = \frac{2\sum\limits_{i=1}^n x_i}{n(n-1)}$，将$\mbf{\varepsilon}_1,\mbf{\varepsilon}_2,\cdots,\mbf{\varepsilon}_n$分别带入上述通项，得到
+$$
+\mbf{A}^{-1} = \frac{1}{n} \begin{pmatrix}
+s-1 & s+1 & s & \cdots & s \\
+s & s-1 & s+1 & \cdots & s \\
+\vdots & \vdots & \vdots &  &\vdots \\
+s & s & s & \cdots & s+1\\
+s+1 & s & s & \cdots & s-1
+\end{pmatrix}
+$$
 \end{example}
 
 \newpage

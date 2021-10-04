@@ -2080,7 +2080,7 @@ $$
 \rm 伴随矩阵相关性质如下
 \begin{enumerate}
 	\item $\mbf{A}\mbf{A}^*=|\mbf{A}|\mbf{I}$;
-	\item 若$|\mbf{A}| \neq 0$，则$(\mbf{A}^*)^{-1}=\frac{\mbf{A}}{|\mbf{A}|}$;
+	\item 若$|\mbf{A}| \neq 0$，则$(\mbf{A}^*)^{-1}=\frac{\mbf{A}}{|\mbf{A}|}$，且$(\mbf{A}^*)^{-1} = (\mbf{A}^{-1})^{*}$;
 	\item $(k\mbf{A})^* = k^{n-1}\mbf{A}^*$;
 	\item $(\mbf{A}^*)^T = (\mbf{A}^T)^*$;
 	\item $|\mbf{A}^*|=|\mbf{A}|^{n-1}$;
@@ -2090,6 +2090,12 @@ $$
 \end{proposition}
 
 \begin{proof}
+\rm \bluet{(2)} 
+显然有$(\mbf{A}^*)^{-1}=\frac{\mbf{A}}{|\mbf{A}|}$. 
+$$
+\mbf{A}(\mbf{A}^{-1}(\mbf{A}^{-1})^*) = \mbf{A}|\mbf{A}^{-1}|\mbf{I} \Rightarrow (\mbf{A}^{-1})^* = \frac{\mbf{A}}{|\mbf{A}|}
+$$
+
 \rm \bluet{(3)} 
 $$
 \begin{pmatrix}
@@ -2141,6 +2147,11 @@ $$
 \end{array}
 $$
 因此$(\mbf{A}^*)^* = |\mbf{A}|^{n-2}\mbf{A}$.
+
+\bluet{(7)} 
+$$
+(\mbf{AB})(\mbf{AB})^* = |\mbf{AB}|\mbf{I} \Rightarrow \mbf{B}^* \mbf{A}^*(\mbf{AB})(\mbf{AB})^* = |\mbf{AB}|\mbf{B}^* \mbf{A}^* \Rightarrow (\mbf{AB})^* = \mbf{B}^* \mbf{A}^*
+$$
 \end{proof}
 
 
@@ -2874,13 +2885,13 @@ $$
 \end{proposition}
 
 \begin{proof}
-\rm 设$\mbf{B} =(\mbf{B}_1,\cdots,\mbf{B}_n)$，那么
+\rm 设$\mbf{B} =(\mbf{\beta}_1,\cdots,\mbf{\beta}_n)$，那么
 $$
-\mbf{A}(\mbf{B}_1,\cdots,\mbf{B}_n)=\mbf{0}.
+\mbf{A}(\mbf{\beta}_1,\cdots,\mbf{\beta}_n)=\mbf{0}.
 $$
 于是我们得到了$n$个齐次方程组
 $$
-\mbf{A}\mbf{B}_i = \mbf{0},\, i = 1,\cdots,n.
+\mbf{A}\mbf{\beta}_i = \mbf{0},\, i = 1,\cdots,n.
 $$
 即$B_i$是实际上$s$元齐次线性方程组$\mbf{A}\mbf{X}=\mbf{0}$的一个解，所以由\ref{homogeneous-linear-equation: the-dimension-of-sulotion-space}我们有
 $$
