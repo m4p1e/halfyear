@@ -1851,12 +1851,13 @@ $$
 $$
 因此
 $$
-\Gamma(\frac{n+1}{2}) = \frac{n-1}{2} \frac{n-3}{2} \cdots \Gamma(\frac{1}{2}). 
+\Gamma(\frac{n+1}{2}) = \frac{n-1}{2} \frac{n-3}{2}\cdots \frac{1}{2}\Gamma(\frac{1}{2}). 
 $$
-最终
+此时$n$是偶数，因此上面的分式有$\frac{n}{2}$项，
 $$
-E(X^n) = (n-1)!!
+E(X^n) =\frac{\sqrt{2}\Gamma(\frac{1}{2})}{\sqrt{2}\pi}(n-1)(n-3)\cdots 1 =  (n-1)!!,
 $$
+其中$\Gamma(\frac{1}{2}) = \frac{1}{2}$. 
 \end{proof}
 
 \begin{proposition}
@@ -2228,7 +2229,7 @@ $$
 D(X) &= \sum\limits_{k=0}^{\infty} (k-\lambda)^2 \frac{\lambda ^k}{k!}e^{-\lambda} \\ 
 &= \sum\limits_{k=0}^{\infty} (k^2 - 2k\lambda + \lambda^2) \frac{\lambda ^k}{k!}e^{-\lambda} \\ 
 &= \sum\limits_{k=1}^{\infty} \lambda (k-1+1) \cdot \frac{\lambda ^{k-1}}{(k-1)!}e^{-\lambda}  - 2\lambda^2 +\lambda^2\\
-&= \lambda^2 + \lambda - 2\lambda^2 + \lambda = \lambda
+&= \lambda^2 + \lambda - 2\lambda^2 + \lambda^2 = \lambda
 \end{array}
 $$
 \end{proof}

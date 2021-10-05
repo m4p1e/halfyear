@@ -99,14 +99,13 @@ $$
 \phi(wa) = \var(\phi(w),a)
 $$
 
-
 **Definition** 若字符串$w$是$x$的前缀，则记为$w \sqsubset x $，反之若$w$是$x$的后缀，则记为$w \sqsupset x$.
 
 定义函数$\sigma_P(w) : w \to \{1,2,\cdots,m\}$表示$w$的后缀中蕴含$P$的最长子串的长度，即
 $$
 \sigma_P(w) = \max\{k: P_k \sqsupset x\}
 $$
-例如设$P=ab$，则$\sigma_P(\varepsilon)= 0,\sigma_P(ccaca) = 1,\sigma_P(ccab) = 1$.
+例如设$P=ab$，则$\sigma_P(\varepsilon)= 0,\sigma_P(ccaca) = 1,\sigma_P(ccab) = 2$.
 
 
 
@@ -114,16 +113,16 @@ $$
 
 
 
-最主要是如何从对一个模式$P$生成一个字符串匹配自动机?
+最主要是如何对一个模式$P$生成一个字符串匹配自动机?
 
 对于给定模式$P=[1\cdots m]$
 
 1. 状态集合为$\{1,2,\cdots,m\}$. 开始状态$q_0 = 0$，并且状态$m$是唯一接受的状态.
 
-2. 对于任意的状态$q$和字符$a$，转移函数定义为$\var(q,a) = \sigma_P(P_qa)$. 
+2. 对于任意的状态$q$和字符$a$，转移函数定义为$\var(q,a) = \sigma_P(P_qa)$，其中$P_q$表示$P$的长度为$q$前缀. 
 
 
- 
+
 
 **Lemma** 对任意的字符串$w$和字符$a$，有$\sigma_P(wa) \leq \sigma_P(w) +1$.
 

@@ -2031,7 +2031,7 @@ d\subsection{基本积分表}
 	\item $\int \cos ^{n}(x)\,dx={\frac  {1}{n}}\cos ^{{n-1}}(x)\sin(x)+{\frac  {n-1}{n}}\int \cos ^{{n-2}}(x)\,dx$;
 	\item $\int \sin ^{n}(x)\,dx=-{\frac  {1}{n}}\sin ^{{n-1}}(x)\cos(x)+{\frac  {n-1}{n}}\int \sin ^{{n-2}}(x)\,dx$;
 	\item $\int \tan ^{n}(x)\,dx={\frac  {1}{n-1}}\tan ^{{n-1}}(x)-\int \tan ^{{n-2}}(x)\,dx$;
-	\item $\int (\ln(x))^{n}\,dx=x(\ln(x))^{n}-n\int (\ln(x))^{{n-1}}\,dx$.
+	\item $\int [\ln(x)]^{n}\,dx=x[\ln(x)]^{n}-n\int [\ln(x)]^{{n-1}}\,dx$.
 \end{enumerate}
 \end{proposition}
 
@@ -5587,6 +5587,8 @@ $$
 \end{enumerate}
 \end{annotation}
 
+\subsection{对称性和轮换对称性}
+
 \begin{proposition}
 \rm \redt{利用对称性计算的一般结论} 
 \begin{enumerate}
@@ -5595,6 +5597,58 @@ $$
 	\item 若区域$D$关于直线$y = x$对称，则$\int_D f(x,y)dxdy = \int_D f(y,x)dxdy$.
 \end{enumerate}
 \end{proposition}
+
+%http://www2.ztbu.edu.cn/gjb/jpkc/index_function/%E5%8D%9A%E8%A7%88%E7%BE%A4%E6%95%B0/%E5%9D%90%E6%A0%87%E7%9A%84%E8%BD%AE%E6%8D%A2%E5%AF%B9%E7%A7%B0%E6%80%A7%E5%9C%A8%E7%A7%AF%E5%88%86%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8.pdf
+\begin{definition}
+\rm 在$x0y$直角坐标轴上给定某个区域$D_{xy}$. 若交换$x$轴和$y$轴，原区域$D_{xy}$现记为$D_{yx}$，同时交换被积函数的自变量，则积分结果不变，即
+$$
+\iint_{D_{xy}} f(x,y)dxdy = \iint_{D_{yx}} f(y,x)dxdy.
+$$ 
+若$D_{xy} = D(yx)$，则称区域$D_{xy}$具有\redt{轮换对称性}，那么此时仅交换被积函数的自变量，积分结果不变，即
+$$
+\iint_{D_{xy}} f(x,y)dxdy = \iint_{D_{xy}} f(y,x)dxdy.
+$$
+若在空间区域$\Omega$对坐标$x,y$有轮换对称性，那么
+$$
+\iiint_\Omega f(x,y,z)dv = \iiint_\Omega f(y,x,z)dv.
+$$
+\end{definition}
+
+\begin{proposition}
+\rm \redt{平面区域轮换对称性判定} 若区域$D_{xy}$关于$y = x$对称，那么区域$D_{xy}$具有轮换对称性.
+\end{proposition}
+
+\begin{proof}
+\rm 考虑$D_{xy}$中任意一点$(x_0,y_0)$，下面来求它关于$y=x$的对称点. 过$(x_0,y_0)$垂直于$y=x$的直线方程$l$为
+$$
+y-y_0 = -(x-x_0),
+$$
+$l$和$y=x$的交点为
+$$
+\left\{
+\begin{array}{ll}
+y = x\\
+y-y_0 = -(x-x_0)
+\end{array} \right. \Rightarrow \left\{
+\begin{array}{ll}
+x_1 = \frac{x_0 + y_0}{2} \\
+y_1 = \frac{x_0 + y_0}{2}
+\end{array} \right.
+$$
+因此$(x_0,y_0)$对称点为
+$$
+\left\{
+\begin{array}{ll}
+x_2 = \frac{x_0 + y_0}{2} - (x_0 - \frac{x_0 + y_0}{2}) = y_0 \\
+y_2 = \frac{x_0 + y_0}{2} - (y_0 - \frac{x_0 + y_0}{2}) = x_0
+\end{array} \right.
+$$
+因此$(x_0,y_0)$和$(y_0,x_0)$同时在区域$D_{xy}$里面，所以$D_{xy}$具有轮换对称性. 
+\end{proof}
+
+\begin{annotation}
+\rm \redt{如何判定空间区域的轮换对称性} 给定空间区域$\Omega$，如果要判定$x,y$具有轮换对称性，可以用平面$z=c$去切$\Omega$，观察交线是否关于$y=x$对称.  其他坐标轮换对称性判定类似. 
+\end{annotation}
 
 \subsection{格林公式}
 
@@ -5869,7 +5923,7 @@ y = r\rho\sin\varphi\sin\theta \\
 z = r\cos\varphi
 \end{array}\right.
 $$
-其中$r$表示半径长度，$\varphi$为半径与$z$轴的夹角，$\theta$为半径在$x0y$上的投影和$x$轴的夹角，则三重积分为
+其中$r$表示半径长度，$\varphi$为半径与$z$轴的夹角，$\theta$为半径$r$在$x0y$上的投影和$x$轴的夹角，则三重积分为
 $$
 \int\int\int_{\Omega}f(x,y,z)dv = \int\int\int_{\Omega} f(r\rho\sin\varphi\cos\theta,r\rho\sin\varphi\sin\theta,r\cos\varphi)
 r^2\sin\varphi dr d\varphi d\theta.
