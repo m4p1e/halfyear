@@ -20,7 +20,7 @@ hashtable *create_hashtable(){
     return ht;
 }
 
-void *hashtable_find(hashtable *ht, char *key, int len){
+void *hashtable_find(hashtable *ht, char *key, int len, int *is_exist){
     uint32_t hash,idx;
     bucket *bt; 
     hash = get_hash_value_by_string(key, len);
@@ -30,9 +30,16 @@ void *hashtable_find(hashtable *ht, char *key, int len){
 
     while(bt){
         if(len == bt->len && !memcmp(key, bt->key, len)){
+            if(is_exist){
+                *is_exist = 1;
+            }
             return bt->val;
         }
         bt = bt->next;
+    }
+
+    if(is_exist){
+        *is_exist = 0;
     }
 
     return NULL;

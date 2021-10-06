@@ -81,14 +81,14 @@ graph_via_linklist *unserialize(char *vertexs, char *edges, hashtable *ht){
             keyword = malloc(p-q+1);
             memcpy(keyword,q,p-q);
             *(keyword + (p-q)) = '\0';
-            src = hashtable_find(ht, keyword, p-q+1);
+            src = hashtable_find(ht, keyword, p-q+1, 0);
             free(keyword);
             q = p+1;
         }else if(*p == ','){
             keyword = malloc(p-q+1);
             memcpy(keyword,q,p-q);
             *(keyword + (p-q)) = '\0';  
-            dst = hashtable_find(ht, keyword, p-q+1);
+            dst = hashtable_find(ht, keyword, p-q+1, 0);
             free(keyword);
             add_edge_to_graph_via_linklist(src, dst, 0);
             q = p+1;
@@ -98,7 +98,7 @@ graph_via_linklist *unserialize(char *vertexs, char *edges, hashtable *ht){
     keyword = malloc(p-q+1);
     memcpy(keyword,q,p-q);
     *(keyword + (p-q)) = '\0';  
-    dst = hashtable_find(ht, keyword, p-q+1);
+    dst = hashtable_find(ht, keyword, p-q+1, 0);
     free(keyword);
     add_edge_to_graph_via_linklist(src, dst, 0);
 
@@ -248,7 +248,7 @@ int main(){
     char *vertexs = "u,v,w,x,y,z";
     char *edges = "u-v,v-y,u-x,y-x,x-v,w-y,w-z,z-z";
     G = unserialize(vertexs, edges, ht);
-    source = hashtable_find(ht, "u", sizeof("u"));
+    source = hashtable_find(ht, "u", sizeof("u"), 0);
     //dfs(G, source, 0);
     //bfs(G, source);
     //toplogical_order(G);

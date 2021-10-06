@@ -7,5 +7,8 @@ typedef struct _bucket{
 }bucket;
 
 typedef struct _hashtable{
-
+    int cap;            //容量
+    int used;           //已经使用了的容量
+    bucket* buckets;    //顺序表
+    
 }hashtable;

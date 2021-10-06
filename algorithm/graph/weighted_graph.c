@@ -101,14 +101,14 @@ graph_via_linklist *unserialize(char *vertexs, char *edges, hashtable *ht, int i
             keyword = malloc(p-q+1);
             memcpy(keyword,q,p-q);
             *(keyword + (p-q)) = '\0';
-            src = hashtable_find(ht, keyword, p-q+1);
+            src = hashtable_find(ht, keyword, p-q+1, 0);
             free(keyword);
             q = p+1;
         }else if(*p == ':'){
             keyword = malloc(p-q+1);
             memcpy(keyword,q,p-q);
             *(keyword + (p-q)) = '\0';  
-            dst = hashtable_find(ht, keyword, p-q+1);
+            dst = hashtable_find(ht, keyword, p-q+1, 0);
             free(keyword);
             q = p+1;
         }else if(*p == ','){
@@ -440,7 +440,7 @@ int main(){
     char *directed_positive_vertexs = "s,t,x,y,z";
     char *directed_positive_edges = "s>t:10,s>y:5,t>x:1,t>y:2,x>z:4,y>x:9,y>z:2,y>t:3,z>s:7,z>x:6";
     G = unserialize(directed_positive_vertexs, directed_positive_edges, ht, 1);
-    source = hashtable_find(ht, "s", sizeof("s"));
+    source = hashtable_find(ht, "s", sizeof("s"), 0);
     //kruskal_minimum_spanning_tree(G);
     //prim_minimum_spanning_tree(G);
     //bellman_ford_shortest_path(G, source);

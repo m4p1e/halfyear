@@ -16,7 +16,7 @@ typedef struct _hashtable
 }hashtable;
 
 hashtable *create_hashtable();
-void *hashtable_find(hashtable *ht, char *key, int len);
+void *hashtable_find(hashtable *ht, char *key, int len, int *is_exist);
 void hashtable_insert(hashtable *ht, char *key, int len, void *val);
 void hashtable_delete(hashtable *ht, char *key, int len);
 
