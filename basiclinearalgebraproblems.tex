@@ -546,20 +546,6 @@ $$
 
 \subsection{矩阵行列式Lemma}
 
-\begin{lemma}
-\rm 给定两个列向量$\mbf{u},\mbf{v}$，则有
-$$
-|\mbf{I} + \mbf{u}\mbf{v}^{T}| = (1 + \mbf{v}^{T}\mbf{u}). 
-$$
-\end{lemma}
-
-\begin{lemma}
-\rm 设$\mbf{A}$可逆，给定两个列向量$\mbf{u},\mbf{v}$，则有
-$$
-|\mbf{A} + \mbf{u}\mbf{v}^{T}| = (1+\mbf{v}^{T}\mbf{A}^{-1}\mbf{u})|\mbf{A}|.
-$$
-\end{lemma}
-
 \begin{proposition}\label{sylvester determinant}
 \rm \redt{Weinstein–Aronszajn identity} 设$\mbf{A}$是$m \times n$矩阵，$\mbf{B}$是$n \times m$矩阵，则有
 $$
@@ -570,17 +556,36 @@ $$
 \begin{proof}
 因为有
 $$
-\det\begin{pmatrix} I_m & -A \\ B & I_n \end{pmatrix} 
-  = \det\begin{pmatrix} I_m & 0 \\ B & I_n + BA \end{pmatrix} = \det(I_n + BA).
+\det\begin{pmatrix} I_m & A \\ B & I_n \end{pmatrix} 
+  = \det\begin{pmatrix} I_m & 0 \\ B & I_n - BA \end{pmatrix} = \det(I_n - BA).
 $$
 和
 $$
-\det\begin{pmatrix} I_m & -A \\ B & I_n \end{pmatrix} 
-  = \det\begin{pmatrix} I_m+AB & 0 \\ B & I_n  \end{pmatrix} = \det(I_m + AB).
+\det\begin{pmatrix} I_m & A \\ B & I_n \end{pmatrix} 
+  = \det\begin{pmatrix} I_m-AB & 0 \\ B & I_n  \end{pmatrix} = \det(I_m - AB).
 $$
 \end{proof}
 
+\begin{corollary}
+\rm 给定两个列向量$\mbf{u},\mbf{v}$，则有
+$$
+|\mbf{I} + \mbf{u}\mbf{v}^{T}| = (1 + \mbf{v}^{T}\mbf{u}). 
+$$
+\end{corollary}
 
+\begin{corollary}
+\rm 设$\mbf{A}$可逆，给定两个列向量$\mbf{u},\mbf{v}$，则有
+$$
+|\mbf{A} + \mbf{u}\mbf{v}^{T}| = (1+\mbf{v}^{T}\mbf{A}^{-1}\mbf{u})|\mbf{A}|.
+$$
+\end{corollary}
+
+\begin{proof}
+\rm 
+$$
+|\mbf{A} + \mbf{u}\mbf{v}^{T}| = |\mbf{A}(\mbf{I} - \mbf{A}^{-1}\mbf{u}\mbf{v}^{T})| = (1+\mbf{v}^{T}\mbf{A}^{-1}\mbf{u})|\mbf{A}|.
+$$
+\end{proof}
 
 \newpage
 \section{向量空间}
@@ -1290,6 +1295,30 @@ $$
 称$\mbf{C}$为$n$阶循环移位矩阵. 用$\mbf{C}$左乘一个矩阵，就相当于把这个矩阵每一行向上移一行，第一行移到最后一行; 用$\mbf{C}$右乘一个矩阵，就相对于把这个矩阵的每一列想右移动一列，最后一列移到第一列. 
 \end{example}
 
+\subsection{矩阵方程}
+
+\begin{example}
+\rm 求下述矩阵$\mbf{A}$
+$$
+\mbf{A}\begin{pmatrix}
+1 & 1 & 1 \\
+0 & 2 & 2 \\
+0 & 0 & 3
+\end{pmatrix} = 
+\begin{pmatrix}
+2 & 1 & 3 \\
+1 & 0 & 2 \\
+-3 & 4 & 1
+\end{pmatrix}
+$$
+\hints\  上述矩阵我们记为$\mbf{AB} = \mbf{C}$这里比较直接的手法就是先求出$\mbf{A}$左边这个矩阵的逆，再右乘上等式右边的矩阵. 我们可以简化一下，等式两边先转置一下
+$$
+\mbf{B}^T\mbf{A}^T = \mbf{C}^T
+$$
+这样我们就可以对$(\mbf{B}^{T},\mbf{C}^T)$做初等行变换，这样最终会得到$\mbf{A}^T$，之后我们再转置一下就得到了$\mbf{A}$，这样相对直接采用前面的方法要少一个矩阵乘法，是值得的. 
+\end{example}
+
+
 \subsection{$AX=B$当$A$不可逆时求$X$}
 
 \begin{example}
@@ -1361,6 +1390,74 @@ $$
 \frac{1}{5}k_1 + \frac{9}{5} & \frac{1}{5}k_2 + \frac{3}{5} & \frac{1}{5}k_3 + \frac{7}{5} \\
 k_1 & k_2 & k_3
 \end{pmatrix}
+$$
+\end{example}
+
+\subsection{分块矩阵}
+
+\begin{example}
+\rm 设$\mbf{A},\mbf{B},\mbf{C},\mbf{D}$都是$n$阶矩阵，且$\mbf{A}\mbf{C} = \mbf{C}\mbf{A}$. 证明:
+$$
+\begin{pmatrix}
+\mbf{A} & \mbf{B} \\
+\mbf{C} & \mbf{D}
+\end{pmatrix} = |\mbf{AD} - \mbf{CB}|. 
+$$
+\hints\ 这里肯定要用分块矩阵的性质来简化等式左边这个矩阵，分两种情况考虑. 当$|\mbf{A}| = 0$时，这里可以做一个初等行变换
+$$
+\begin{pmatrix}
+\mbf{A} & \mbf{B} \\
+\mbf{C} & \mbf{D}
+\end{pmatrix} \to 
+\begin{pmatrix}
+\mbf{A} & \mbf{B} \\
+\mbf{0} & \mbf{D}-\mbf{C}\mbf{A}^{-1}\mbf{B} 
+\end{pmatrix}
+$$
+因此
+$$
+\begin{vmatrix}
+\mbf{A} & \mbf{B} \\
+\mbf{C} & \mbf{D}
+\end{vmatrix} = \begin{vmatrix}
+\mbf{A} & \mbf{B} \\
+\mbf{0} & \mbf{D}-\mbf{C}\mbf{A}^{-1}\mbf{B} 
+\end{vmatrix} =|\mbf{A}||\mbf{D}-\mbf{C}\mbf{A}^{-1}\mbf{B}|=|\mbf{AD}-\mbf{AC}\mbf{A}^{-1}\mbf{B}| = |\mbf{AD}-\mbf{CB}|,
+$$
+其中最后一个等号用到题目所给条件$\mbf{A}\mbf{C} = \mbf{C}\mbf{A}$. 
+
+当$|\mbf{A}| = 0$时，这里手法就比较巧妙了. 首先构造一个辅助矩阵函数
+$$
+\mbf{A}(t) = \mbf{A}-t\mbf{I}.
+$$
+那么$|\mbf{A}(t)| = |\mbf{A}-t\mbf{I}|$就是关于$t$一个$n$次多项式. 由算术基本定理
+$$
+|\mbf{A}(t)| = 0,
+$$
+至多有$n$个根，显然$t = 0$是它的一个根. 那么在$t = 0$的邻域附近一定是可以找到一个$t_0$使得$|\mbf{A}(t_0)| \neq 0$，根据前述结论我们有
+$$
+\begin{vmatrix}
+\mbf{A}(t_0) & \mbf{B} \\
+\mbf{C} & \mbf{D}
+\end{vmatrix} = |\mbf{A}(t_0)||\mbf{D}-\mbf{C}\mbf{A}(t_0)^{-1}\mbf{B}|=|\mbf{A}(t_0)\mbf{D}-\mbf{A}(t_0)\mbf{C}\mbf{A}(t_0)^{-1}\mbf{B}|,
+$$
+又因
+$$
+\mbf{A}(t)\mbf{C} = \mbf{AC} - t\mbf{C} = \mbf{CA}-t\mbf{C} = \mbf{C}\mbf{A}(t). 
+$$
+所以
+$$
+\begin{vmatrix}
+\mbf{A}(t_0) & \mbf{B} \\
+\mbf{C} & \mbf{D}
+\end{vmatrix}  = |\mbf{A}(t_0)\mbf{B}- \mbf{C}\mbf{B}|.
+$$
+这里对取极限$t_0 \to 0$，因$\mbf{A}(t)$是连续函数，所以
+$$
+\begin{pmatrix}
+\mbf{A} & \mbf{B} \\
+\mbf{C} & \mbf{D}
+\end{pmatrix} = |\mbf{AD} - \mbf{CB}|. 
 $$
 \end{example}
 
@@ -1534,6 +1631,73 @@ s & s & s & \cdots & s+1\\
 s+1 & s & s & \cdots & s-1
 \end{pmatrix}
 $$
+\end{example}
+
+\section{正交矩阵}
+
+\subsection{正交矩阵的性质}
+
+\begin{example}
+\rm 证明: 如果$n$阶正交矩阵$\mbf{A}$是上三角矩阵，那么$\mbf{A}$是对角矩阵，且$\mbf{A}$的主对角元$1$或者$-1$.
+
+\hints\ 设$\mbf{A}$的列向量为$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$，那么
+$$
+(\mbf{\alpha}_1^T,\mbf{\alpha}_2^T,\cdots,\mbf{\alpha}_n^T)^T(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n) = \mbf{I}
+$$
+于是则有
+$$
+\left\{
+\begin{array}{ll}
+\inp{\mbf{\alpha}_i}{\mbf{\alpha}_i} = 1 & i=1,2,\cdots,n \\
+\inp{\mbf{\alpha}_i}{\mbf{\alpha}_j} = 0 & i \neq j
+\end{array} \right.
+$$ 
+由因$\mbf{A}$是上三角矩阵，那么
+$$
+\begin{array}{ll}
+\inp{\mbf{\alpha}_1}{\mbf{\alpha}_1} = a_{11}^2 = 1 \Rightarrow a_{ii} = \pm 1 \\
+\inp{\mbf{\alpha}_1}{\mbf{\alpha}_2} = a_{11}a_{12} = 0 \Rightarrow a_{12} = 0  \\
+\inp{\mbf{\alpha}_2}{\mbf{\alpha}_2} = a_{12}^2 +a_{22}^2 = 1 \Rightarrow a_{22}^2 = \pm 1 \\
+\cdots \\
+\end{array}
+$$
+因此$\mbf{A}$是一个主对角线为$\pm 1$的对角矩阵. 
+\end{example}
+
+\subsection{施密斯正交化的应用}
+\begin{example}
+\rm 证明: 可逆$n$阶矩阵$\mbf{A}$可以被唯一分解为正交矩阵$T$和主对角线都为正数的上三角矩阵$\mbf{B}$的乘积，即$\mbf{A} = \mbf{T}\mbf{B}$. 
+
+\hints\ 设矩阵$\mbf{A}$的列向量为$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$，那么它们是线性无关的. 由施密斯正交化公式可知
+$$
+\begin{array}{ll}
+\mbf{\alpha}_1 = \mbf{\beta}_1 \\
+\mbf{\alpha}_2 = \mbf{\beta}_2 + \frac{\inp{\mbf{\alpha}_2}{\mbf{\beta}_1}}{\inp{\mbf{\beta}_1}{\mbf{\beta}_1}}\mbf{\beta}_1\\
+\cdots \\
+\mbf{\alpha}_n = \mbf{\beta}_n + \sum\limits_{i=1}^{n-1}\frac{\inp{\mbf{\alpha}_n}{\mbf{\beta}_i}}{\inp{\mbf{\beta}_i}{\mbf{\beta}_i}}\mbf{\beta}_i
+\end{array}
+$$
+设$b_{ij} = \frac{\inp{\mbf{\alpha}_j}{\mbf{\beta}_i}}{\inp{\mbf{\beta}_i}{\mbf{\beta}_i}}$，于是
+$$
+\mbf{A} = (\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_n)
+\begin{pmatrix}
+1 & b_{12} & b_{13} & \cdots & b_{1n} \\
+0 & 1 & b_{23} & \cdots & b_{2n} \\
+\vdots & \vdots & \vdots &  & \vdots\\
+0 & 0 & 0 & \cdots & b_{n-1,n} \\
+0 & 0 & 0 & \cdots & 1 
+\end{pmatrix}
+$$
+其中
+$$
+\left(\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_n \right) = \left(\frac{\mbf{\beta}_1}{|\mbf{\beta}_1|},\frac{\mbf{\beta}_2}{|\mbf{\beta}_2|},\cdots,\frac{\mbf{\beta}_n}{|\mbf{\beta}_n|}\right)\begin{pmatrix}
+|\mbf{\beta}_1| & 0 & 0 & \cdots & 0 \\
+0 & |\mbf{\beta}_2| & 0 & \cdots & 0 \\
+\vdots & \vdots & \vdots &  & \vdots \\ 
+0 & 0 & 0 & \cdots & |\mbf{\beta}_n|
+\end{pmatrix}
+$$
+那么命题得证. 
 \end{example}
 
 \newpage
