@@ -670,7 +670,7 @@ $$
 
 
 \begin{example}
-\rm 设$\mbf{A}$为$m \times n$矩阵，则
+\rm \redt{矩阵的秩的相等可转化为对应的齐次线性方程组通解} 设$\mbf{A}$为$m \times n$矩阵，则
 $$
 \rank{\mbf{A}\mbf{A}^T} = \rank{\mbf{A}^T\mbf{A}} = \rank{\mbf{A}}. 
 $$
@@ -1298,6 +1298,31 @@ $$
 \subsection{矩阵方程}
 
 \begin{example}
+\rm 设$\mbf{A},\mbf{B}$分别为$s \times m,s \times n$矩阵，证明: 矩阵方程$\mbf{A}\mbf{X} = \mbf{B}$有解的充要条件为
+$$
+\rank{\mbf{A}} = \rank{(\mbf{A},\mbf{B})},
+$$
+
+\hints\ 设$\mbf{A}$的列向量为$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$，$\mbf{B}$的列向量为$\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_n$. 那么
+$$
+(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n)\begin{pmatrix}
+x_{11} & x_{12} & \cdots & x_{1n} \\
+x_{21} & x_{22} & \cdots & x_{2n} \\
+\vdots & \vdots &  & \vdots \\
+x_{m1} & x_{m2} & \cdots & x_{mn} \\
+\end{pmatrix} = (\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_n)
+$$
+因此可以转化为求$n$个方程非齐次线性方程
+$$
+\mbf{A} \mbf{X}_i = \mbf{\beta}_i.  
+$$
+其中$\mbf{X}_i = (x_{1i},x_{2i},\cdots,x_{mi})^T$. 上述线性方程组成立等价于$\mbf{\beta}_{i}$是可以被$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$($i=1,2,\cdots,n$)，那么也就是
+$$
+\rank{(\mbf{A},\mbf{B})} = \rank{(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n,\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_n)} = \rank{(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n)} = \rank{\mbf{A}}.
+$$
+\end{example}
+
+\begin{example}
 \rm 求下述矩阵$\mbf{A}$
 $$
 \mbf{A}\begin{pmatrix}
@@ -1664,9 +1689,47 @@ $$
 因此$\mbf{A}$是一个主对角线为$\pm 1$的对角矩阵. 
 \end{example}
 
+\begin{example}
+\rm 设$\mbf{A}$是正交矩阵，证明
+\begin{enumerate}
+	\item 如果$|\mbf{A}| = 1$，那么$\mbf{A}$的每一个元素等于它自己的代数余子式.
+	\item 如果$|\mbf{A}| = -1$，那么$\mbf{A}$的每一个元素等于它自己的代数余子式乘以$-1$.
+\end{enumerate}
+上述结论反过来也可以推出$\mbf{A}$是正交矩阵. 
+
+\hints\ 设$\mbf{A}$是正交矩阵，因此$\mbf{A}^T = \mbf{A}^{-1} = \frac{\mbf{A}^*}{|\mbf{A}|}$，于是
+$$
+\mbf{A}(i,j) = \mbf{A}^T(j,i) = \frac{1}{|\mbf{A}|}\mbf{A}^*(j,i) = \frac{1}{|\mbf{A}|}A_{ij}. 
+$$
+\end{example}
+
+\begin{example}
+\rm 设$\mbf{A}$是$n$阶矩阵，$n \geq 3$且$\mbf{A} \neq 0$. 证明
+\begin{enumerate}
+	\item 如果$\mbf{A}$的每一个元素等于它自己的代数余子式，那么$\mbf{A}$是正交矩阵. 
+	\item 如果$\mbf{A}$的每一个元素等于它自己的代数余子式乘上$-1$，那么$\mbf{A}$是正交矩阵. 
+\end{enumerate}
+\end{example}
+
+\begin{example}
+\rm 证明: 任意$n$阶矩阵$\mbf{A}$满足下列三个性质中的任意两个性质，那么必有第三个性质: 正交矩阵，对称矩阵，对合矩阵($\mbf{A}^2 = \mbf{I}$). 
+\end{example}
+
+\begin{example}
+\rm \redt{正交变换不改变向量长度} 设$\mbf{A}$是$n$阶正交矩阵，证明: 对任一列向量$\mbf{\alpha}$，有
+$$
+\norm{\mbf{A}\mbf{\alpha}} = \norm{\mbf{\alpha}}.
+$$
+
+\hints\ 
+$$
+\norm{\mbf{A}\mbf{\alpha}}^2 = \inp{\mbf{A}\mbf{\alpha}}{\mbf{A}\mbf{\alpha}} = (\mbf{A}\mbf{\alpha})^T(\mbf{A}\mbf{\alpha}) = \mbf{\alpha}^T\mbf{\alpha} = \norm{\mbf{\alpha}}^2
+$$
+\end{example}
+
 \subsection{施密斯正交化的应用}
 \begin{example}
-\rm 证明: 可逆$n$阶矩阵$\mbf{A}$可以被唯一分解为正交矩阵$T$和主对角线都为正数的上三角矩阵$\mbf{B}$的乘积，即$\mbf{A} = \mbf{T}\mbf{B}$. 
+\rm 证明: 可逆$n$阶矩阵$\mbf{A}$可以被唯一分解为正交矩阵$T$和主对角线都为正数的上三角矩阵$\mbf{B}$的乘积，即$\mbf{A} = \mbf{T}\mbf{B}$. \redt{该结论可以推广至任意列满秩或者行满秩$m \times n$矩阵上}. 
 
 \hints\ 设矩阵$\mbf{A}$的列向量为$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$，那么它们是线性无关的. 由施密斯正交化公式可知
 $$
@@ -1700,6 +1763,41 @@ $$
 那么命题得证. 
 \end{example}
 
+\subsection{正交向量的性质}
+
+\begin{example}
+\rm 设$\mbf{A}$是$m \times n$矩阵，设齐次线性方程组$\mbf{AX}=\mbf{0}$的解空间为$W$. 证明$\mbf{A}$的行向量的转置都和$W$中的任一向量都正交.
+
+\hints 设$\mbf{A}$的行向量为$\mbf{\gamma}_1,\mbf{\gamma}_2,\cdots,\mbf{\gamma}_n$，$\mbf{\eta} \in W$，于是
+$$
+\mbf{A}\mbf{\eta} = \begin{pmatrix}
+\mbf{\gamma}_1 \\
+\mbf{\gamma}_2 \\
+\vdots \\
+\mbf{\gamma}_n
+\end{pmatrix} \mbf{\eta} = 
+\begin{pmatrix}
+\mbf{\gamma}_1\mbf{\eta} \\
+\mbf{\gamma}_2\mbf{\eta} \\
+\vdots \\
+\mbf{\gamma}_n\mbf{\eta}
+\end{pmatrix} = \begin{pmatrix}
+0 \\
+0 \\
+\vdots \\
+0
+\end{pmatrix}
+$$
+因此
+$$
+\mbf{\gamma}_i\mbf{\eta} = \inp{\mbf{\gamma}_i^T}{\mbf{\eta}} = 0,
+$$
+\end{example}
+
+\begin{example}
+\rm 如果向量$\mbf{\alpha}$和一个正交基的每一个向量都正交，那么$\mbf{\alpha} = \mbf{0}$. 
+\end{example}
+
 \newpage
 \section{矩阵等价}
 
@@ -1707,6 +1805,14 @@ $$
 
 \begin{annotation}
 \rm \redt{遵循矩阵等价当且仅当它们秩相同}.
+\end{annotation}
+
+\begin{annotation}
+\rm 常用推论，任一矩阵可以表示为
+$$
+\mbf{A} = \mbf{P} \mbf{I}_r \mbf{Q}
+$$
+其中$r$表示矩阵$\mbf{A}$的秩，$\mbf{P},\mbf{Q}$都为可逆矩阵. 
 \end{annotation}
 
 \subsection{矩阵等价的性质}
