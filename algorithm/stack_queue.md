@@ -61,11 +61,10 @@ full()
 
 ```python
 dequeue()
-	if empty(S_2){
+	if empty(S_2)
         while !empty(S_1) 
     	y = pop(S_1)
         push(S_2,x)
-    }
     
     if empty(S_2)
     	print "error"
@@ -95,7 +94,7 @@ pop()
     t = Q_1
     Q_1 = Q_2
     Q_2 = t
-    return x
+    return y
 
 empty()
 	return empty(Q_1)

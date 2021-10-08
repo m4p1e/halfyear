@@ -1864,6 +1864,30 @@ $$
 \newpage
 \section{矩阵相似}
 
+\subsection{相似性质}
+
+\subsection{特殊的相似矩阵}
+
+\begin{example}
+\rm 设$\mbf{A}$为$n$阶矩阵，定义
+$$
+f(\mbf{A}) = a_0\mbf{I} + a_1\mbf{A} + \cdots + a_m\mbf{A}^m 
+$$
+称矩阵$f(\mbf{A})$是$\mbf{A}$的多项式. 证明: 若$\mbf{A} \sim \mbf{B}$，那么$f(\mbf{A}) \sim f(\mbf{B})$. 
+
+\hints\ 
+$$
+\begin{array}{ll}
+f(\mbf{B}) &= a_0\mbf{I} + a_1\mbf{B} + \cdots + a_m\mbf{B}^m \\
+&= a_0\mbf{P}^{-1}\mbf{P} + a_1\mbf{P}^{-1}\mbf{A}\mbf{P} + \cdots + a_m\mbf{P}^{-1}\mbf{A}^m\mbf{P} \\
+&=\mbf{P}^{-1}(a_0\mbf{I} + a_1\mbf{A} + \cdots + a_m\mbf{A}^m) \mbf{P}.
+\end{array}
+$$
+\end{example}
+
+
+
+
 \subsection{相似判定}
 
 \begin{proposition}
