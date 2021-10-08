@@ -103,6 +103,21 @@ $$
 \end{example}
 
 \newpage
+\section{正态分布}
+
+\subsection{线性运算}
+
+\begin{example}
+\rm 设$X_1,X_2$是两个独立的正态分布$(\mu,\sigma^2)$，证明: $X_1 - X_2$和$X_1 + X_2$也是独立的. 
+
+\hints\ 
+$$
+\text{Cov}(X_1 - X_2, X_1 + X_2) = D(X_1) - D(X_2) = 0,
+$$
+且$X_1 - X_2 \sim (0, 2\sigma^2), X_1 + X_2(2u, 2\sigma^2)$. 
+\end{example}
+
+\newpage
 \section{期望和方差}
 
 \subsection{复杂随机变量函数}
@@ -126,10 +141,20 @@ $$
 
 \begin{example}
 \rm 设$X_1,X_2,\cdots,X_n$来自正态总体$N(\mu,\sigma^2)$的简单随机样本，求$E\left\{ \sum\limits_{i=1}^n X_i \left[\sum\limits_{j=1}^n(nX_j-\sum\limits_{k=1}^nX_k)^2 \right] \right\}$. 
+
+\hints\ $\overline{X}$和$S^2$线性无关. 
 \end{example}
 
 \begin{example}
 \rm 设$X_1,X_2,\cdots,X_n$和$Y_1,Y_2,\cdots,Y_n$分别来自正态总体$N(\mu,\sigma^2)$两个相互独立简单随机样本，设它们样本方差分别为$S_X^2$和$S_Y^2$，求统计量$T=(n-1)(S_X^2 + S_Y^2)$的方差$DT$.
+
+\hints\ $\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$.
+\end{example}
+
+\begin{example}
+\rm 设随机变量$X \sim F(n,n), p_1 = P\{X \geq 1\}, p_2 = P\{X \leq 1\}$，证明: $p_1 = p_2$.
+
+\hints\ $X \sim F(n_1,n_2) \Rightarrow \frac{1}{X} \sim F(n_2,n_1)$. 
 \end{example}
 
 \end{document}

@@ -1487,7 +1487,11 @@ X = \sigma_1Z_1 + \mu_1 \\
 Y = \sigma_2(\rho Z_1+\sqrt{1-\rho^2}Z_2) + \mu_2,
 \end{array} \right.
 $$
-可以验证$X \sim (\sigma_1, \mu_1),Y \sim (\mu_2,\sigma_2)$且$\rho(X,Y) = \rho$，同时还满足$aX+bY$服从正态分布，它们的联合分布就是定义中冗长的式子. 
+可以验证$X \sim (\sigma_1, \mu_1),Y \sim (\mu_2,\sigma_2)$且$\rho(X,Y) = \rho$，同时还满足$aX+bY$服从正态分布，$(X,Y)$就是定义中冗长的式子. 其中
+$$
+aX+bY = (a\sigma_1 + b\sigma_2\rho)Z_1 + b\sigma_2\sqrt{1-\rho^2} Z_2 + a\mu_1 + B\mu_2,
+$$
+分布求出它们的期望和方差就可以得到本命题中结论. \bluet{注意这里我们需要提前知道两个相互独立的正态分布$X_1,X_2$，它们的线性表达式$aX_1+bX_2 \sim N(a\mu_1+b\mu_2, a^2\sigma_1^2 + b^2\sigma_2^2)$，上述所有的推导都在这个事实下}.
 \end{proof}
 
 \begin{proposition}

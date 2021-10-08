@@ -5817,9 +5817,8 @@ $$
 \begin{proposition}
 \rm  \redt{第二类曲面积分化二重积分} 若曲面由方程$z=z(x,y)$确定，其$(x,y)$在平面$xOy$上的区域$D_{xy}$变动，函数$f(x,y)$在$D$上有连续偏导. 取$S$为曲面上侧，则每点法向量与$z$轴的夹角余弦值为正，则有
 $$
-\iint_{S} f(x,y,z)dxdy = \iint_{S} f(x,y,z)\cos\gamma dS =  \iint_{D_{xy}} f(x,y,z(x,y))\cos\gamma dxdy.
+\iint_{S} f(x,y,z)dxdy = \iint_{D_{xy}} f(x,y,z(x,y)) dxdy.
 $$
-其中$dS = \frac{dxdy}{\cos\gamma}$.
 \end{proposition}
 
 
@@ -5927,6 +5926,14 @@ $$
 $$
 \int\int\int_{\Omega}f(x,y,z)dv = \int\int\int_{\Omega} f(\rho\cos\theta,\rho\sin\theta,z)\rho d\rho d\theta dz.  
 $$
+其中
+$$
+\frac{D(x,y,z)}{D(\rho,\theta,z)} = \begin{pmatrix}
+\cos \theta & -\rho\sin \theta & 0 \\
+\sin \theta & \rho\cos \theta & 0 \\
+0 & 0 & 1
+\end{pmatrix} = \rho
+$$
 \end{proposition}
 
 \begin{proposition}
@@ -5934,8 +5941,8 @@ $$
 $$
 \left\{
 \begin{array}{ll}
-x = r\rho\sin\varphi\cos\theta \\
-y = r\rho\sin\varphi\sin\theta \\
+x = r\sin\varphi\cos\theta \\
+y = r\sin\varphi\sin\theta \\
 z = r\cos\varphi
 \end{array}\right.
 $$
