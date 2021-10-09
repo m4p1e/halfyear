@@ -135,6 +135,35 @@ D(|X_1 - X_2|) = D(|Z|) = E(Z^2) - E^2(|Z|) = 1-\frac{2}{\pi}.
 $$
 \end{example}
 
+\begin{example}
+\rm 设随机变量$X$的分布函数为$F(x) = 0.4\Phi(\frac{x-5}{2})+0.6\Phi(\frac{x+1}{3})$，其中$\Phi(x)$为标准正态分布的分布函数，求$E(X)$.
+
+\hints\ 常规思路是先求出$f(x)$，再积分
+$$
+\int_{-\infty}^{+\infty} \frac{x}{5}f(\frac{x-5}{2})dx + \int_{-\infty}^{+\infty} \frac{x}{5}f(\frac{x+1}{3})dx = \int_{-\infty}^{+\infty}(\frac{4}{5}t+2)f(t)dt + \int_{-\infty}^{+\infty} (\frac{9}{5}t - \frac{3}{5})f(t)dt = \frac{7}{5}. 
+$$
+也可以这样思考$\Phi(\frac{x-5}{2}) \sim N(5,4), \Phi(\frac{x+1}{3}) \sim N(-1,9)$，因此$E(X) = \frac{2}{5} \cdot 5 - 1 \cdot \frac{3}{5}= \frac{7}{5}$.
+\end{example}
+
+\subsection{随机变量乘积}
+
+\begin{example}
+\rm 设随机变量$X$服从标准正态分布$N(0,1)$，求$E[(X-2)^2e^{2X}]$.
+
+\hints\ 这里要用求随机变量函数期望的公式. 
+\end{example}
+
+\begin{example}
+\rm 设随机变量$X,Y$不相关，且$E(X) = 2, E(Y) = 1, D(X) = 3$，求$E[X(X+Y-2)]$.
+
+\hints\
+$$
+\text{Cov}(X, X+Y-2) = E[X(X+Y-2)]-E(X)E(X+Y-2).
+$$
+\end{example}
+
+
+
 \section{三大分布}
 
 \subsection{三大分布重要性质的应用}
