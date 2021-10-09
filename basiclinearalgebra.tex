@@ -1132,6 +1132,17 @@ a_2^{k-1} & a_3^{k-1} & \cdots & a_k^{k-1} & a_{k+1}^{k-1}
 $$
 \end{example}
 
+\subsection{关于不同类型子式的概念}
+
+\begin{definition}
+\rm 主要有以下定义的子式
+\begin{enumerate}
+	\item 没有特殊说明的$k$子式: 任取$k$行和$k$列的交点构成的行列式.
+	\item 主子式: 任取$k$行$i_1,i_2,\cdots,i_k$，同样取$k$列$i_1,i_2,\cdots,i_k$，它们交点处的行列式.  
+	\item 余子式: 取完子式之后剩下的元素构成的行列式.
+\end{enumerate}
+\end{definition}
+
 \newpage
 \section{线性空间}
 
@@ -3346,7 +3357,7 @@ $$
 \rm 设$\lambda$是$n$阶$\mbf{A}$的一个特征值，则下述命题成立
 \begin{enumerate}
 	\item $\lambda^m$是$\mbf{A}^m$的特征值;
-	\item 当$\mbf{A}$可逆时，则$\frac{1}{\lambda}$是$\mbf{A}^{-1}$的特征值.
+	\item 当$\mbf{A}$可逆时，则$\frac{1}{\lambda}$是$\mbf{A}^{-1}$的特征值(对应特征向量空间维数也是相同的).
 	\item $\mbf{A}$和$\mbf{A}^T$的特征值相同;
 	\item $\mbf{A}$有$n$个特征值(包含重根，也可能是复根);
 	\item $\mbf{A}$的所有特征值之和等于$\mbf{A}$的对角线之和;

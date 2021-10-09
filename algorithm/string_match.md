@@ -146,9 +146,18 @@ generate_transfer_function(P,C)
         	k = min(m+1,q+2) #这样做的目的是考虑最大的可能的P子串，+2是后面会首先减1. 我们考虑的最长子串只能是P本身. 
             repeat
             	k=k-1
-            until P_k is longest suffix string of P_qa
+            until P_k is longest suffix string of 
             transfer_func(q,a) = k
-    return transfer_func        
+    return transfer_func  
+
+finite_automation_search(S, transfer_func, m){ #m是terminal state
+    m = S.length
+    k = 0
+    for i = 2 to m
+    	k = transfer_func(k, S[i]);
+    	if k == m
+    		print "found at offset" i-m
+}
 ```
 
 
@@ -226,7 +235,21 @@ compute_prefix_function(P)
         	#这里为什么要在k=k+1之前加if? 
         	#当k=0时，那么这里需要比较P[1]和P_q最后一个元素P[q]来判定最大子串长度为1
         	k = k+1 #推论
-        pi[q] = k #    
+        pi[q] = k # 
+        
+kmp_search(S, P, pi){
+   m = S.length
+   k = 0 
+   for i=1 to m
+    	while k > 0 and S[i] != P[k+1]
+    		k = pi[k] 
+    	if S[i] = P[k+1]
+    		k = k + 1;
+    	
+    	if k == P.length
+    		print "found at offset" i-m;
+    		k = pi[k]
+}        	
 ```
 
 

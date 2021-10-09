@@ -1798,6 +1798,71 @@ $$
 \rm 如果向量$\mbf{\alpha}$和一个正交基的每一个向量都正交，那么$\mbf{\alpha} = \mbf{0}$. 
 \end{example}
 
+\subsection{置换矩阵}
+
+\begin{example}
+\rm 定义$n$阶矩阵
+$$
+\mbf{P} = (\mbf{\varepsilon}_{i_1},\mbf{\varepsilon}_{i_2},\cdots,\mbf{\varepsilon}_{i_n}),
+$$
+其中$\mbf{\varepsilon}_{i_1},\mbf{\varepsilon}_{i_2},\cdots,\mbf{\varepsilon}_{i_n}$是单位向量$\mbf{\varepsilon}_{1},\mbf{\varepsilon}_{2},\cdots,\mbf{\varepsilon}_{n}$的一个全排列. 我们称矩阵$\mbf{P}$为置换矩阵. 证明: 置换矩阵是正交矩阵.
+
+\hints\
+$$
+\begin{pmatrix}
+\mbf{\varepsilon}_{i_1}^T \\
+\mbf{\varepsilon}_{i_2}^T \\
+\vdots \\ 
+\mbf{\varepsilon}_{i_n}^T 
+\end{pmatrix}(\mbf{\varepsilon}_{i_1},\mbf{\varepsilon}_{i_2},\cdots,\mbf{\varepsilon}_{i_n}) = \mbf{I}.
+$$
+\end{example}
+
+\begin{example}\label{transpose-matrix-transform}
+\rm 设$i_1,i_2,\cdots,i_n$是$1,2,\cdots,n$的一个全排列，设$n$阶矩阵$\mbf{A}=(a_{ij})$，令
+$$
+\mbf{B} = \begin{pmatrix}
+a_{i_1i_1} & a_{i_1i_2} & \cdots & a_{i_1i_n}\\
+a_{i_2i_1} & a_{i_2i_2} & \cdots & a_{i_2i_n}\\
+\vdots & \vdots &  & \vdots\\
+a_{i_ni_1} & a_{i_ni_2} & \cdots & a_{i_ni_n}\\
+\end{pmatrix}
+$$
+证明: $\mbf{A} \sim \mbf{B}$.
+
+\hints\ 设$\mbf{P} = (\mbf{\varepsilon}_{i_1},\mbf{\varepsilon}_{i_2},\cdots,\mbf{\varepsilon}_{i_n})$
+$$
+\mbf{P}^T \mbf{A}\mbf{P} = \mbf{B}. 
+$$
+从这里可以知道\bluet{左乘转置矩阵，就是交换对应的行; 右乘转置矩阵，就是交换对应的列}. 
+\end{example}
+
+\begin{example}
+\rm 证明$\text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\} \sim \text{diag}\{\lambda_{i_1},\lambda_{i_2},\cdots,\lambda_{i_n}\}$，其中$i_1i_2\cdots i_n$是$1,2,\cdots,n$的一个排列.
+
+\hints\ \ref{transpose-matrix-transform}.
+\end{example}
+
+\begin{example}
+\rm 设
+$$
+\mbf{A} = \begin{pmatrix}
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \cdots & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+0 & 0 & 0 & \cdots & 0 
+\end{pmatrix}
+$$
+证明: $\mbf{A} \sim \mbf{A}^T$. 
+
+\hints\ 设转置矩阵$\mbf{P} = (\mbf{\varepsilon}_n, \mbf{\varepsilon}_{n-1},\cdots,\mbf{\varepsilon}_1)$，则
+$$
+\mbf{P}^T\mbf{A}\mbf{P} = \mbf{A}^T.
+$$
+\end{example}
+
+
 \newpage
 \section{矩阵等价}
 
@@ -1866,6 +1931,22 @@ $$
 
 \subsection{相似性质}
 
+\begin{example}
+\rm 证明:若两个$n$阶矩阵$\mbf{A},\mbf{B}$满足$\mbf{AB}-\mbf{BA} = \mbf{A}$，那么$\mbf{A}$不可逆. 
+
+\hints\ 假设$\mbf{A}$可逆，
+$$
+\mbf{B}-\mbf{A}^{-1}\mbf{BA} = \mbf{I} \Rightarrow \mbf{B}+\mbf{I} = \mbf{A}^{-1}\mbf{BA},
+$$
+这意味着$\mbf{B}$和$\mbf{B}+\mbf{I}$相似的，显然这是不可逆的，因为如果$\lambda$是$\mbf{B}$的一个特征值，那么总存在$\lambda+1$是$\mbf{B}+\mbf{I}$的特征值，这意味总是存在不同的特征值. 
+\end{example}
+
+\begin{example}
+\rm \redt{矩阵的迹在相似下不变} 给定$n$阶矩阵$\mbf{A}$，将$\mbf{A}$的对角线之和记为$\text{trace}(\mbf{A})$. 证明: 若$\mbf{A} \sim \mbf{B}$，那么$\text{trace}(\mbf{A}) = \text{trace}(\mbf{B})$.
+
+\hints\ $\mbf{A}$和$\mbf{B}$相似，则它们有相同的特征值，而$\text{trace}{\mbf{A}}$也等于特征值之和，因此$\text{trace}(\mbf{A}) = \text{trace}(\mbf{B})$. 
+\end{example}
+
 \subsection{特殊的相似矩阵}
 
 \begin{example}
@@ -1885,9 +1966,6 @@ f(\mbf{B}) &= a_0\mbf{I} + a_1\mbf{B} + \cdots + a_m\mbf{B}^m \\
 $$
 \end{example}
 
-
-
-
 \subsection{相似判定}
 
 \begin{proposition}
@@ -1897,8 +1975,8 @@ $$
 	\item 必要条件:特征值相等;
 	\item 充分条件: 对于都可对角化的矩阵，判定其特征值是否相同;
 	\item 否命题的充分条件: 一个可对角化，一个不可对角化，则它们不相似;
-	\item 对于都不可对角的矩阵，同一个特征值的特征子空间的维数相同;	
-	\item 对于都不可对角的矩阵，则对应的特征向量满足: 若$\mbf{B}$对应$\lambda$的特征向量$\lambda$，则$\mbf{A}$对应$\lambda$的特征向量为$P\alpha$. 这里需要求出可逆矩阵$P$
+	\item 对于都不可对角化的矩阵，同一个特征值的特征子空间的维数相同;	
+	\item 对于都不可对角化的矩阵，设$\mbf{P}\mbf{B} = \mbf{A}$，则对应的特征向量满足: 若$\mbf{B}$对应$\lambda$的特征向量$\alpha$，则$\mbf{A}$对应$\lambda$的特征向量为$P\alpha$. 这里需要求出可逆矩阵$P$
 \end{enumerate}
 \end{proposition}
 
@@ -1913,6 +1991,59 @@ $$
 	\item $n$重特征值对应特征子空间是否为$n$维;
 \end{enumerate}
 \end{proposition}
+
+\section{矩阵特征值和特征向量}
+
+\subsection{特殊矩阵的特征值}
+
+\begin{example}
+\rm 设$\mbf{A}$是一个$n$阶正交矩阵，证明
+\begin{enumerate}
+	\item 如果$\mbf{A}$有特征值，那么它的特征值是$1$或者$-1$;
+	\item 如果$|\mbf{A}| = -1$，那么$-1$是$\mbf{A}$的特征值;
+	\item 如果$|\mbf{A}| = 1$，且$n$是奇数，那么$1$是$\mbf{A}$的特征值;	
+\end{enumerate}
+
+\hints\ (1) 设$\lambda$是$\mbf{A}$的一个特征值，那么
+$$
+\mbf{A}\mbf{\alpha} = \lambda\mbf{\alpha} \Rightarrow \mbf{\alpha}^T\mbf{A}^T = \lambda\mbf{\alpha}^T,
+$$
+两式相乘得到
+$$
+\mbf{\alpha}^T\mbf{\alpha} = \lambda^2\mbf{\alpha}^T\mbf{\alpha} \Rightarrow \lambda^2 =  1,
+$$
+因此$\lambda = \pm 1$. 
+
+(2) 若$|\mbf{A}| = -1$，那么$\mbf{A}$的特征值的乘积也为$-1$，那么必有一个元素为$-1$，不可能全为$1$. 
+
+(3) 若$|\mbf{A}| = 1$，那么$\mbf{A}$的对特征值的乘积也为$1$，而且当$n$为奇数时，特征值闭不可能全为$-1$，因此存在$\lambda = 1$. 
+\end{example}
+
+\subsection{乘积矩阵的特征值}
+
+\begin{example}
+\rm 设$\mbf{A},\mbf{B}$分别为$m \times n, n \times m$矩阵. 证明:
+\begin{enumerate}
+	\item $\mbf{AB}$与$\mbf{BA}$有相同的非零特征向量，并且重数相同;
+	\item 如果$\mbf{\alpha}$是$\mbf{AB}$的属于非零特征值$\lambda$的一个特征向量，那么$\mbf{B\alpha}$是$\mbf{BA}$的属于$\lambda$的一个特征向量. 
+\end{enumerate}
+
+\hints\ (1) 这里容易联想到\ref{sylvester determinant}，设$\lambda$是$\mbf{AB}$的一个特征值向量，那么
+$$
+|\lambda\mbf{I} - \mbf{AB}| = \lambda^m|\mbf{I}-\frac{1}{\lambda}\mbf{AB}| = \lambda^m |\mbf{I} - \frac{1}{\lambda}\mbf{BA}| = \lambda^{m-n}|\lambda\mbf{I} - \mbf{BA}| = 0. 
+$$
+在复数域下展开
+$$
+|\lambda\mbf{I} - \mbf{AB}| = (\lambda- \lambda_0)^l_0(\lambda- \lambda_1)^l_1\cdots(\lambda- \lambda_{m-1})^l_{m-1}, 
+$$
+其中$l_0 + l_1 + \cdots + l_{m-1} = m$. 于是
+$$
+(\lambda- \lambda_0)^{l_0}(\lambda- \lambda_1)^{l_1}\cdots(\lambda- \lambda_{m-1})^{l_{m-1}} = \lambda^{m-n}|\lambda\mbf{I} - \mbf{BA}|,
+$$
+若$l_i$重根$\lambda_i \neq 0$，那么它必定也是$|\lambda\mbf{I}-\mbf{BA}|$的$l_i$重根. 其实两个相同的多项式必定有相同的根，这里仅仅提出来了$\lambda^{m-n}$对应着$\lambda = 0$的根，不会影响非零根的. 
+
+(2) 若$\mbf{AB\alpha} = \lambda\mbf{\alpha}$，等式两边乘上$\mbf{B}$，即有$\mbf{BAB\alpha} = \lambda\mbf{B\alpha}$. 
+\end{example}
 
 \section{二次型}
 

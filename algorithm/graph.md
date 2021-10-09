@@ -81,6 +81,10 @@ BFS(G, s):
 
 
 
+**基本分析性质**
+
+- 广搜的==复杂度==$O(E+V)$. 
+
 
 
 **关于Coloring的介绍** 已经探索过的结点标记为黑色，未被探索但是为黑丝的边界结点标记为灰色，其余的结点标记为白色。
@@ -160,6 +164,12 @@ DFS-VISIT(G, u):
 
 
 
+**基本分析性质**
+
+- 时间复杂度为$O(V+E)$. 
+
+
+
 **关于时间区间** 将$v$第一次被发现的时间记为$v.d$，完成对$v$所有出发边并回到$v$时的时间记为$v.f$. 
 
 **关于Coloring的介绍** 已经探索完成的的结点标记为黑色，出发边还没有探索完毕的结点标记为灰色，其余的结点标记为白色。
@@ -210,6 +220,12 @@ DFS-VISIT(G, u):
 
 
 
+**基本分析性质**
+
+- 时间复杂度和深搜的复杂度保持一致$O(V+E)$
+
+
+
 
 **Lemma** 一个有向图$G$无环当且仅当对其深搜时不产生后向边。
 
@@ -233,6 +249,12 @@ DFS-VISIT(G, u):
 
 1. 对$G$进行一次深搜，计算出每个结点的完成时间$v.f$，
 2. 对$G^T$在main loop中按照结点$v.f$递减的顺序再进行一次深搜，此时每个深搜树都是一个强连通分量。
+
+
+
+**基本分析性质**
+
+- 时间复杂度也和深搜保证一致$O(V+E)$.
 
 
 
@@ -312,7 +334,7 @@ minimum_spannning_tree_kruskal(G)
 	A={};
     for each v in G.V
     	make_set(v)
-    edges = sort_edges_into_nondecreasing_order(G) #权重最小的边都是可能是潜在的某个生成树的上边。
+    edges = sort_edges_into_nondecreasing_order(G) #这里可以用二叉堆来排，所需时间复杂度为 Eln E
     for each (u,v) in edges
     	if find_set(v) != find_set(v) #不遍历A已经覆盖了得结点
         	take (u,v) in A
@@ -322,7 +344,9 @@ minimum_spannning_tree_kruskal(G)
 
 
 
-因此Kruskal算法中的集合$A$可能是森林，Kruskal算法所需的时间复杂度为$O(E\ln V)$. 
+**基本分析性质**
+
+- Kruskal算法所需的时间复杂度为$O(E\ln V)$. 首先总共有$|V|+|E|$个disjoint_set上的操作，其中$|V|$个make-set操作，$|E|$个union和find_set操作， 那么其所需时间为$O((|V|+|E|)\alpha(V))$. 又因为这里假设是一个连通图，那么$|E| \geq |V|-1$，因此前面的复杂度可以写成$O(|E|\alpha(V))$.  其中$\alpha(V) \leq \lg V$，因此复杂度可以写为$O(E\ln V)$ .
 
 
 
@@ -352,7 +376,7 @@ minimum_spanning_tree_prim(G,r){
     	for each v in u.adj
     		if v in Q  and w(u,v) < v.key
     			v.parent = u
-    			v.key = w(u,v)
+    			v.key = w(u,v) #这里是有min_queue_decrease在里面的
 }
 ```
 
@@ -360,7 +384,9 @@ minimum_spanning_tree_prim(G,r){
 
 
 
+**基本分析性质**
 
+- Prime算法复杂度为$O(E\ln V+V\ln V)$，这里有$|E| \geq |V|-1$，因此复杂度可以写成$O(E\ln V)$. 
 
 ### 0x07 最短路径
 
@@ -445,8 +471,6 @@ relax(u,v,w)
 
 它的优势是可以处理带负值的有向图.   
 
-时间复杂度为$O(VE)$.
-
 ```python
 bellman_ford(G,w,s)
 	init(G,s)
@@ -461,6 +485,12 @@ bellman_ford(G,w,s)
 
 
 
+**基本分析性质**
+
+- 时间复杂度为$O(VE)$.
+
+  
+
 **DAG**算法
 
 这个算法是针对==有向无环图==的改进.    其主要思想如果$u,v$之间存在一条简单路径，那么在拓扑序中$u$应位于$v$的前面，因此我们可以只需要按照拓扑序的来一次relax操作，就可以计算出源节点到所有可达结点的最短路径. 
@@ -471,10 +501,12 @@ bellman_ford(G,w,s)
 dag(G,w,s)
 	linear_order = topologically_sort_graph(G)
     init(G,s)
-	for each v in linear_order
+	for each v in linear_order #遍历整张邻接矩阵表需要
     	for each u in v.adj
         	relax(v,u,w)            
 ```
+
+DAG算法的时间复杂度为$O(V+E)$. 
 
 
 
@@ -484,13 +516,17 @@ dag(G,w,s)
 
 主要步骤:
 
-1.  初始化所有结点$v.d = \infty$，其源结点$s.d = 0$，这是为了第一个从$Q$里面拿$s$出来
-2.  对所有结点按照$v.d$为关键字构造一个最小队列$Q$
-3.  从$Q$里面去一个$v.d$最小的结点出来，丢到结点集合$S$中
-4.  更新$v$的所有邻接的结点的$v.d$和$v.p$，同时维护$Q$
-5.  重复34操作直到$Q$为空，得到$S$就是所有从$s$可达的结点$v$，其$v.d$表示$s$到$v$的最短路径. 
+1. 初始化所有结点$v.d = \infty$，其源结点$s.d = 0$，这是为了第一个从$Q$里面拿$s$出来
 
-时间复杂度为$O(V^2 + E)$
+2. 对所有结点按照$v.d$为关键字构造一个最小队列$Q$
+
+3. 从$Q$里面去一个$v.d$最小的结点出来，丢到结点集合$S$中
+
+4. 更新$v$的所有邻接的结点的$v.d$和$v.p$，同时维护$Q$
+
+5. 重复34操作直到$Q$为空，得到$S$就是所有从$s$可达的结点$v$，其$v.d$表示$s$到$v$的最短路径. 
+
+   
 
 Dijkstra算法依赖最小队列的实现，因此需要看一下关于改进最小队列的实现. 
 
@@ -500,13 +536,15 @@ dijkstra(G,w,s)
 	S = {}
 	Q = build_minimum_queue(G.V)
 	while Q != empty
-		u = extract_min(Q) #此时最小队列extract_min操作时间我们可以理解为O(V), 而insert和delete_key认为是O(1)
+		u = extract_min(Q) #此时最小队列extract_min操作时间我们可以理解为O(ln v), 而insert和delete_key认为是O(1)
 		add(S,u)
-		for each v in u.adj #这里总共花费的时间，可以理解为整张邻接链表. 
+		for each v in u.adj #这里总共花费的时间，可以理解为整张邻接链表，这里也隐藏着一个min_queue_decrease_key
 			relax(u,v,w)
 ```
 
 
 
+**基本分析性质**
 
+- 时间复杂度为$O((V+E)\lg V)$. 
 
