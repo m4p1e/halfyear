@@ -728,24 +728,6 @@ $$
 \end{enumerate}
 \end{example}
 
-\begin{example}
-\rm 设任一非零列向量$\mbf{v}=(v_1,v_2,\cdots,v_n)^T$，求$\mbf{v}\mbf{v}^T$的特征值.
-
-首先由
-$$
-\mbf{v}\mbf{v}^T\mbf{v} = \left(\sum\limits_{i = 0}^{n}v_i^2 \right)\mbf{v},
-$$
-所以$\sum\limits_{i = 0}^{n}v_i^2$是其中一个特征值. 设$\mathcal{w}$和$\mathcal{v}$正交，则有
-$$
-\mbf{v}\mbf{v}^T\mbf{w} = \mbf{v} \cdot 0 = 0 \cdot \mbf{w}, 
-$$
-因此$0$也是其中一个特征值. 特别地，$\mbf{w}$和$\mbf{v}$正交，就$\mbf{v}\mbf{X} = \mbf{0}$，即
-$$
-v_1 x_1 + v_2 x_2 + \cdots + v_n x_n = 0, 
-$$
-显然它的解空间是$n-1$维，所以有$n-1$特征值$0$，一个特征值$\sum\limits_{i = 0}^{n}v_i^2$. 
-\end{example}
-
 \subsection{两个矩阵的秩相加}
 
 \begin{lemma}
@@ -1992,7 +1974,38 @@ $$
 \end{enumerate}
 \end{proposition}
 
+\newpage
 \section{矩阵特征值和特征向量}
+
+\subsection{特征值和特征向量的一些性质}
+
+\begin{example}\label{a+b-is-not-eigenvector}
+\rm 证明: 如果$\mbf{\alpha}$和$\mbf{\beta}$分别是$n$阶矩阵$\mbf{A}$的属于不同特征值的特征向量，那么$\mbf{\alpha}+\mbf{\beta}$不是$\mbf{A}$的特征向量. 
+
+\hints\ 设$\mbf{\alpha}$和$\mbf{\beta}$分别属于特征值$\lambda_1$和$\lambda_2$的特征值向量，且$\lambda_1 \neq \lambda_2$. 假设$\mbf{\alpha}+\mbf{\beta}$是属于特征值$\lambda_3$的特征值向量，那么
+$$
+\begin{array}{ll}
+\mbf{A}(\mbf{\alpha}+\mbf{\beta}) &= \lambda_3(\mbf{\alpha}+\mbf{\beta}) \\
+\lambda_1\mbf{\alpha}+\lambda_2\mbf{\beta} &= \lambda_3(\mbf{\alpha}+\mbf{\beta}) \\  
+(\lambda_1 - \lambda_2)\mbf{\alpha} + (\lambda_2 - \lambda_3)\mbf{\beta} &= \mbf{0}
+\end{array}
+$$
+因为$\mbf{\alpha}$和$\mbf{\beta}$线性无关，所以有
+$$
+\left\{
+\begin{array}{ll}
+\lambda_1 - \lambda_2 = 0\\
+\lambda_2 - \lambda_3 = 0
+\end{array}\right.
+$$
+那么这里解得$\lambda_1 = \lambda_2 = \lambda_3$，这是和前提条件矛盾的. 综上$\mbf{\alpha}+\mbf{\beta}$不是$\mbf{A}$的特征向量.
+\end{example}
+
+\begin{example}
+\rm 设$\mbf{A}$是$n$阶矩阵. 证明: 如果$\mathbb{R}^n$中任意的非零向量列向量都是$\mbf{A}$的特征向量，那么$\mbf{A}=\lambda\mbf{I}$，其中$\lambda$是常数.
+
+\hints\ 那么对任意的两个特征向量$\mbf{\alpha}$和$\mbf{\beta}$，它们之和还是特征向量，因此由\ref{a+b-is-not-eigenvector}，可以知道$\mbf{A}$只有一个特征值$\lambda$，同时它对应了$n$个线性无关的向量，因此$\mbf{A}$可以对角化，即$\mbf{P}^{-1}\mbf{A}\mbf{P} = \text{diag}\{\lambda,\lambda,\cdots,\lambda\} = \lambda\mbf{I}$，因此$\mbf{A} = \lambda\mbf{I}$.
+\end{example}
 
 \subsection{特殊矩阵的特征值}
 
@@ -2019,12 +2032,22 @@ $$
 (3) 若$|\mbf{A}| = 1$，那么$\mbf{A}$的对特征值的乘积也为$1$，而且当$n$为奇数时，特征值闭不可能全为$-1$，因此存在$\lambda = 1$. 
 \end{example}
 
+\begin{example}
+\rm 设$n$阶矩阵$\mbf{A}$满足$\mbf{A}^2 = \mbf{A}$. 证明$\mbf{A}$的特征值为$1$或者$0$.
+
+\hints\ 设$\lambda$是$\mbf{A}$的一个特征值，于是
+$$
+\mbf{A}^2\mbf{\alpha} = \lambda\mbf{A\alpha} = \lambda^2\mbf{\alpha}, 
+$$
+而$\mbf{A}^2 = \mbf{A}$，因此$\lambda^2$也是$\mbf{A}$的特征值. 同时也有$\lambda\mbf{\alpha} = \lambda^2\mbf{\alpha}$，那么$\lambda = 0$或者$\lambda = 1$. 
+\end{example}
+
 \subsection{乘积矩阵的特征值}
 
-\begin{example}
+\begin{example}\label{eigenvalue-of-AB-and-BA}
 \rm 设$\mbf{A},\mbf{B}$分别为$m \times n, n \times m$矩阵. 证明:
 \begin{enumerate}
-	\item $\mbf{AB}$与$\mbf{BA}$有相同的非零特征向量，并且重数相同;
+	\item \redt{$\mbf{AB}$与$\mbf{BA}$有相同的非零特征向量，并且重数相同};
 	\item 如果$\mbf{\alpha}$是$\mbf{AB}$的属于非零特征值$\lambda$的一个特征向量，那么$\mbf{B\alpha}$是$\mbf{BA}$的属于$\lambda$的一个特征向量. 
 \end{enumerate}
 
@@ -2043,6 +2066,34 @@ $$
 若$l_i$重根$\lambda_i \neq 0$，那么它必定也是$|\lambda\mbf{I}-\mbf{BA}|$的$l_i$重根. 其实两个相同的多项式必定有相同的根，这里仅仅提出来了$\lambda^{m-n}$对应着$\lambda = 0$的根，不会影响非零根的. 
 
 (2) 若$\mbf{AB\alpha} = \lambda\mbf{\alpha}$，等式两边乘上$\mbf{B}$，即有$\mbf{BAB\alpha} = \lambda\mbf{B\alpha}$. 这样还要验证一下$\mbf{B}\mbf{\alpha} \neq  \mbf{0}$，若$\mbf{B}\mbf{\alpha} \neq  \mbf{0} = 0$，那么则有$\mbf{AB\alpha} = \lambda\mbf{\alpha} = \mbf{0}$，这就得到了$\lambda = 0$，这和前提条件是矛盾的. 
+\end{example}
+
+
+\begin{example}
+\rm 设任一非零列向量$\mbf{v}=(v_1,v_2,\cdots,v_n)^T$，求$\mbf{v}\mbf{v}^T$的特征值.
+
+\hints\ 首先由
+$$
+\mbf{v}\mbf{v}^T\mbf{v} = \left(\sum\limits_{i = 0}^{n}v_i^2 \right)\mbf{v},
+$$
+所以$\sum\limits_{i = 0}^{n}v_i^2$是其中一个特征值. 设$\mbf{w}$和$\mbf{v}$正交，则有
+$$
+\mbf{v}\mbf{v}^T\mbf{w} = \mbf{v} \cdot 0 = 0 \cdot \mbf{w}, 
+$$
+因此$0$也是其中一个特征值. 特别地，$\mbf{w}$和$\mbf{v}$正交，即求解线性方程$\mbf{v}\mbf{X} = \mbf{0}$，即
+$$
+v_1 x_1 + v_2 x_2 + \cdots + v_n x_n = 0, 
+$$
+显然它的解空间是$n-1$维，所以有$n-1$特征值$0$，一个特征值$\sum\limits_{i = 0}^{n}v_i^2$. 
+
+换个思考方式，由\ref{eigenvalue-of-AB-and-BA}可知，$\mbf{v}\mbf{v}^T$和$\mbf{v}^T\mbf{v}$的非零特征值相同，而$\mbf{v}^T\mbf{v}$是一个一维矩阵，那么它的非零特征值$\lambda$满足
+$$
+\begin{array}{ll}
+\mbf{v}^T\mbf{v}\mbf{\alpha} &= \lambda \mbf{\alpha} \\
+\inp{\mbf{v}}{\mbf{v}} \mbf{\alpha} & = \lambda \mbf{\alpha}
+\end{array} 
+$$
+因此非零特征值只有一个$\lambda = \inp{\mbf{v}}{\mbf{v}}$，且重数为$1$. 特别地$|\mbf{v}\mbf{v}^T| = \mbf{0}$，因此$0$也是该矩阵的一个特征值，接下来类似. 
 \end{example}
 
 \section{二次型}
