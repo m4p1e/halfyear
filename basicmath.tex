@@ -1067,7 +1067,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-若$f(x)$为单调增的，假设$f(x)$在$\mathcal{X}$在$x_0$处有间断点，即$\lim\limits_{x \rightarrow x_0 ^-} f(x) < f(x_0)$，那么$f(x_0^-)$和$f(x_0)$之间的值，$f(x)$是无法取到的，这和命题是矛盾的，所以$f(x)$在$\mathcal{X}$上连续.
+若$f(x)$为单调增的，假设$f(x)$在$\mathcal{X}$在$x_0$处有间断点，假设右连续，那么则有$\lim\limits_{x \rightarrow x_0 ^-} f(x) < f(x_0)$，那么$f(x_0^-)$和$f(x_0)$之间的值，$f(x)$是无法取到的，这和命题是矛盾的，所以$f(x)$在$\mathcal{X}$上连续. 同理可证左连续的情况. 
 \end{proof}
 
 \subsection{初等函数的连续性}
@@ -6092,10 +6092,6 @@ $$
 \end{proposition}
 
 \begin{proposition}
-\rm \redt{可结合性} 若级数$\sum\limits_{n=1}^\infty a_n$收敛，那么对这级数的项任意加括号之后所成的级数仍收敛，其和不变.
-\end{proposition}
-
-\begin{proposition}
 \rm \redt{级数收敛的必要条件} 若级数$\sum\limits_{n=1}^\infty a_n$收敛，那么其通项$a_n$趋于$0$. 
 \end{proposition}
 
@@ -6171,7 +6167,7 @@ $$
 \end{proposition}
 
 \begin{proposition}
-\rm \redt{达朗贝尔判别法} 若当$n$充分大的时候有
+\rm \redt{达朗贝尔判别法} 若存在$N$使得当$n > N$时，有
 $$
 \frac{a_{n+1}}{a_n} \leq q
 $$
@@ -6179,10 +6175,11 @@ $$
 $$
 \frac{a_{n+1}}{a_n} \geq 1,
 $$
-则级数发散. 前提条件可以用极限语言表示为
+则级数发散. 若$a_n$的极限存在，也可以用极限语言来描述上述条件
 $$
-\lim\limits_{n \to \infty} \frac{a_{n+1}}{a_n} = q.
+\lim\limits_{n \to \infty} \frac{a_{n+1}}{a_n} = q,
 $$
+即$q < 1$时数列收敛. 
 \end{proposition}
 
 \begin{annotation}
@@ -6281,12 +6278,37 @@ $$
 \rm \redt{绝对收敛} 设给定级数$\sum\limits_{n=1}^{\infty}a_n$. 若由这个级数的项的绝对值所组成的级数$\sum\limits_{n=1}^{\infty}|a_n|$收敛，则给定级数也收敛.
 \end{theorem}
 
+\begin{proof}
+\rm 从前述的收敛原理可以立即证出来，
+$$
+|a_{n+1}+a_{n+2}+\cdots+a_{n+m}| \leq |a_{n+1}| + |a_{n+2}| +\cdots + |a_{n+m}|.
+$$
+
+也可以换一种方式讨论，把级数$\sum\limits_{n=1}^{\infty}a_n$中正项按次序重新组成级数
+$$
+\sum\limits_{k=1}^{\infty} p_k = p_1 + p_2 + \cdots + p_k + \cdots,
+$$
+同样将其负项的绝对值组成新的级数
+$$
+\sum\limits_{m=1}^{\infty} q_m = q_1 + q_2 + \cdots + q_m + \cdots.
+$$
+那么$\sum\limits_{k=1}^{\infty} p_k$和$\sum\limits_{k=1}^{\infty} q_k$都是$\sum\limits_{n=1}^{\infty}|a_n|$的部分和，因此它们是有界的，即它们是收敛的. 现在我们取$\sum\limits_{n=1}^{\infty}a_n$的前$n$项和$A_n$，假设其中有$k$个正项和$m$个，那么
+$$
+A_n = P_k -Q_m,
+$$
+其中$P_k,Q_m$分布表示$\sum\limits_{k=1}^{\infty} p_k$的前$k$项和及$\sum\limits_{m=1}^{\infty} q_m$的前$m$项和. 上述等式两边同时取极限，便得到了$\sum\limits_{n=1}^{\infty}a_n$收敛. 
+\end{proof}
+
 \begin{theorem}
 \rm 若级数$\sum\limits_{n=1}^{\infty}a_n$和它的绝对值级数$\sum\limits_{n=1}^{\infty}|a_n|$同时收敛，则称级数$\sum\limits_{n=1}^{\infty}a_n$\redt{绝对收敛}. 若级数$\sum\limits_{n=1}^{\infty}a_n$收敛，而其绝对值级数$\sum\limits_{n=1}^{\infty}|a_n|$不收敛，则称级数$\sum\limits_{n=1}^{\infty}a_n$\redt{非绝对收敛}(条件收敛).
 \end{theorem}
 
 \begin{annotation}
-\rm 注意绝对值级数发散，但是其原级数是可能收敛的. \bluet{但是使用柯西判别法和达朗贝尔办法在这里依然有效，即在这种情况判别绝对值级数发散，那么原级数一定也是发散的}. 
+\rm 注意绝对值级数发散，但是其原级数是可能收敛的. \bluet{但是使用柯西判别法和达朗贝尔办法判定绝对值级数的收敛性在这里依然有效}. 例如达朗贝尔判别法: 若满足
+$$
+\lim\limits_{n \to \infty} \frac{|a_{n+1}|}{|a_{n}|} = p, 
+$$
+则当$p < 1$时给定级数绝对收敛. 当$p > 1$时，那么$\lim\limits_{n \to \infty}|a_n| \neq 0$，因此原级数是发散. 
 \end{annotation}
 
 \begin{proposition}
@@ -6471,15 +6493,82 @@ $$
 $$
 C_{2m} = (c_1-c_2) + (c_3 - c_4) + \cdots + (c_{2m-1}-c_{2m}).
 $$
-其中每一项都是正的，所以$C_{2m}$是随着$m$的增大而增大. 另一方面上述的部分和还可以写成
+其中每一项都是正的，所以$C_{2m}$是单调增的. 另一方面上述的部分和还可以写成
 $$
-C_{2m} = c_1 - (c2-c_3) - (c_4-c_5) - \cdots - (c_{2m-2}-c_{2m-1}) - c_{2m},
+C_{2m} = c_1 - (c_2-c_3) - (c_4-c_5) - \cdots - (c_{2m-2}-c_{2m-1}) - c_{2m},
 $$
-因此$C_{2m} \leq c_1$，即$C_{2m}$上有界的. 结合前述结论，可知当$m \to \infty$时$C_{2m}$有有限极限. 而奇数项的部分和可以写成
+因此$C_{2m} \leq c_1$，即$C_{2m}$上有界的. 因此当$m \to \infty$时$C_{2m}$收敛. 而奇数项的部分和可以写成
 $$
 C_{2m-1} = C_{2m} + c_{2m}, 
 $$
-等式两边取极限，可得$\lim\limits_{m \to \infty} C_{2m-1}=C_{2m}$.   因此所有部分都有有限极限. 
+等式两边取极限，可得$\lim\limits_{m \to \infty} C_{2m-1}=C_{2m}$. 因此所有部分和都有相同的极限. 
+\end{proof}
+
+\begin{proposition}
+\rm 若给定交错级数满足莱布尼茨定理的条件，那么其交错级数的余式都具有与自己的第一项相同的符号，并且绝对值比这一项小. 
+\end{proposition}
+
+\begin{annotation}
+\rm \redt{解题技巧} 若级数里面出现某种正负交替的情况，不用假设连续交替. 例如
+$$
+a_1+a_2+a_3-a_4-a_5+\cdots
+$$
+这种情况我们如果想用莱布尼茨定定理，且我们可以预知上述级数收敛的情况下，我们可以加括号使得括号里面里面的数都有相同的符号，这是一非常简单做法即
+$$
+(a_1+a_2+a_3)-(a_4+a_5)+\cdots
+$$
+这样我们就可以来用莱布尼茨定理了. 
+\end{annotation}
+
+\subsection{收敛级数的可结合性}
+
+\begin{annotation}
+\rm 为什么要单独开这一章是因为无穷级数求和和有限多项求和是有区别的，前者是存在一个求极限的过程，在这一过程过程我们熟悉的普通求和的性质可能被破坏了. 因此，一般地，在这问题上我们必须保持小心谨慎. 
+\end{annotation}
+
+
+\begin{proposition}
+\rm \redt{可结合性} 若级数$\sum\limits_{n=1}^\infty a_n$收敛，那么对这级数的项任意加括号之后所成的级数仍收敛，其和不变. 其逆否命题，如果对级数$\sum\limits_{n=1}^\infty a_n$加括号之后所成的级数发散，那么原级数发散. 
+\end{proposition}
+
+\begin{proof}
+\rm 设对收敛级数$\sum\limits_{n=1}^\infty a_n$分组(和加括号是一个意思，一个括号内的元素为一个分组)为
+$$
+a_1 + \cdots + a_{n_1},a_{n_1 +1 } + \cdots + a_{n_2}, \cdots, a_{n_{k_1}+1} + \cdots + a_{n_k},\cdots, 
+$$
+其中${n_{k}}$是从自然数里面抽出的一个递增的下标数列. 将这些和组成一个新级数，即为
+$$
+(a_1 + \cdots + a_{n_1}) + ( a_{n_1 +1 } + \cdots + a_{n_2})+ \cdots + (a_{n_{k_1}+1} + \cdots + a_{n_k}) + \cdots.
+$$
+实际上，很容易看出这个新级数的部分和组成的是原级数的部分和数列的一个部分数列，即
+$$
+A_{n_1},A_{n_2},\cdots, A_{n_k},\cdots,
+$$
+因此原数列收敛，那么其部分数列也是收敛的，就证明了当前命题的断言. 
+\end{proof}
+
+\begin{annotation}
+\rm 从上面的证明过程需要理解\bluet{讨论加括号之后组成的新级数，实际上就是在讨论原级数的部分和数列的一个部分数列}. 如果级数本身不收敛，那么我们在探究不同部分数列的就可能由不同的结果，这也是可以遇见的. 举个例子
+$$
+\begin{array}{ll}
+(1-1)+(1-1)+(1-1)+\cdots = 0 + 0 + 0 +\cdots = 0, \\
+1-(1-1)-(1-1)-\cdots = 1 - 0 - 0 -\cdots = 1, \\
+1-1+1-1+\cdots 
+\end{array}
+$$
+从这个例子也可以体会到，无穷项求和和有限项求和有差别的. 
+\end{annotation}
+
+\begin{proposition}
+\rm \redt{对正项级数加括号不影响其收敛性}，最主要是说明如果该正项级数发散，那么加括号之后构成的新级数也是发散的. 
+\end{proposition}
+
+\begin{proof}
+设对正项级数分组之后构成的新级数的部分和数列为
+$$
+A_{n_1},A_{n_2},\cdots, A_{n_k},\cdots,
+$$
+因为$a_n > 0$，那么显然${A_{n}}$是一个递增的数列，如果它有收敛部分数列，那么它本身也是收敛的，这一点很容易证明. 因此${A_{n}}$发散，那么其部分数列也是发散的，因此上述新级数也是发散的. 
 \end{proof}
 
 \subsection{两个数列依次相乘组成的级数}
