@@ -1429,8 +1429,17 @@ $$
 \newpage
 \section{级数}
 
-\subsection{参数收敛}
+\subsection{级数判定总结}
 
+\begin{annotation}
+\rm 一些有用的资料
+\begin{enumerate}
+	\item \href{https://sites.lafayette.edu/thompsmc/files/2016/03/Series_Summary.pdf}{遇到一个级数应该用怎样的手法总结}.
+	\item \href{https://en.wikipedia.org/wiki/Convergence_tests}{级数判定手法大全}.
+\end{enumerate}
+\end{annotation} 
+
+\subsection{参数收敛}
 \begin{example}
 \rm 讨论下列级数收敛性
 $$
@@ -1541,6 +1550,8 @@ $$
 解这个微分方程得到$S(x)= Ce^{-\frac{1}{2}}$，因为这里$S(0)=1$，最终得到$S(x) = e^{-\frac{1}{2}x^2}$. 
 \end{example}
 
+\subsection{化增量公式}
+
 \begin{example}
 \rm 求下述幂级数的和函数
 $$
@@ -1550,6 +1561,58 @@ $$
 \hints\ 观察这个系数有点像$e^x$的幂级数，但是只有奇数项. 那么偶数项其实就是$S'(x)$，因此$S'(x) +S(x) = e^x$，由此解得$S(x)= Ce^{-x} + \frac{1}{2}e^{x}$，由$S(0) = 0$，最终可得$S(x) = -\frac{1}{2}e^{-x} + \frac{1}{2}e^{x}$
 \end{example}
 
+
+\begin{example}
+\rm 考虑调和级数$\sum\limits_{n=1}^{\infty} \frac{1}{n}$的收敛性.
+
+\hints\ 这次我们不从部分和出发，我们考虑它和另级一个发散的级数
+$$
+\sum\limits_{n=1}^{\infty} [\ln(n+1) - \ln n],
+$$
+来比较. 考虑这个函数$\ln(n+1) - \ln n$在$[n,n+1]$上的增量公式
+$$
+\ln(n+1) - \ln n = \frac{1}{(n+\theta)}, \theta
+$$
+于是
+$$
+\frac{1}{(n+\theta)} < \frac{1}{n}, 
+$$
+因此$\frac{1}{n}$是收敛的. 
+\end{example}
+
+\begin{example}
+\rm 考虑级数$\sum\limits_{n=0}^{\infty} \frac{x^{2n+1}}{(2n+1)!} \frac{1}{n^{1+s}}$的收敛性，其中$s > 0$. 
+
+\hints 同样引入收敛级数$\sum\limits_{n=0}^{\infty} \frac{1}{(n-1)^s} - \frac{1}{(n)^s}$来做比较. 考虑函数$\frac{1}{(n-1)^s} - \frac{1}{(n)^s}$在$[n-1,n]$上的增量公式
+$$
+\frac{1}{(n-1)^s} - \frac{1}{(n)^s} = \frac{1}{(n-\theta)^{1+s}}, 0 < \theta < 1,
+$$
+那么
+$$
+\frac{1}{n^{1+s}} < \frac{1}{(n-\theta)^{1+s}},
+$$
+因此原级数收敛. 
+\end{example}
+
+\begin{example}
+\rm 分析下述级数的收敛性
+$$
+\sum\limits_{n=2}^{\infty} \frac{1}{n\ln n}. 
+$$
+\hints\ 那个级数要比调和级数每一项$\frac{1}{n}$小那么一点，因此考虑和$\frac{1}{n^s}$比较，也可以换个级数来比较. 考虑级数
+$$
+\sum\limits_{n=2}^{\infty} \ln\ln(n+1) - \ln\ln n, 
+$$
+显然这级数是发散的，如果我们考虑函数$\ln\ln(n+1) - \ln\ln n$在$[n,n+1]$上的增量公式
+$$
+\ln\ln(n+1) - \ln\ln n = \frac{1}{(n+\theta)\ln(n + \theta)}, 0 < \theta < 1,
+$$
+那么有
+$$
+\frac{1}{(n+\theta)\ln(n + \theta)} < \frac{1}{n\ln n},
+$$
+因此原级数发散. 
+\end{example}
 
 \newpage
 \section{tricks}
