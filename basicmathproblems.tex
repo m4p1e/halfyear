@@ -1437,7 +1437,33 @@ $$
 	\item \href{https://sites.lafayette.edu/thompsmc/files/2016/03/Series_Summary.pdf}{遇到一个级数应该用怎样的手法总结}.
 	\item \href{https://en.wikipedia.org/wiki/Convergence_tests}{级数判定手法大全}.
 \end{enumerate}
-\end{annotation} 
+\end{annotation}
+
+\subsection{极限test}
+
+\begin{example}
+\rm 讨论下述级数的收敛性
+$$
+\sum\limits_{n=1}^\infty (n\ln\frac{2n+1}{2n-1} -1). 
+$$
+
+\hints\ 这里很难拿哪一个级数来做极限test，观察$n\ln t$，我们可以将其泰勒展开，找到最小的无穷小. 于是
+$$
+\ln(1+\frac{2}{2n-1}) = \frac{2}{2n-1} - \frac{1}{2}(\frac{2}{2n-1})^2 +  \frac{1}{3}(\frac{2}{2n-1})^2 + o((\frac{2}{2n-1})^3). 
+$$
+那么
+$$
+\begin{array}{ll}
+n\ln(1+\frac{2}{2n-1}) - 1 &= -1 + \frac{2n}{2n-1} - \frac{n}{2}(\frac{2}{2n-1})^2 +  \frac{n}{3}(\frac{2}{2n-1})^2 + o(n(\frac{2}{2n-1})^3) \\
+&= \frac{2n+3}{3(2n-1)}(\frac{1}{2n-1})^2 + o(\frac{8n}{(2n-1)}(\frac{1}{2n-1})^2)
+\end{array}
+$$
+因此
+$$
+\lim\limits_{n \to \infty} \frac{n\ln\frac{2n+1}{2n-1} -1}{(\frac{1}{2n-1})^2} = \frac{1}{3},
+$$
+其中级数$\sum\limits_{n \to \infty}(\frac{1}{2n-1})^2$是收敛的，所以原级数也是收敛的. 
+\end{example} 
 
 \subsection{参数收敛}
 \begin{example}
