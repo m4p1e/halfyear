@@ -102,6 +102,20 @@ P(B_2|B_1) = P(B_2|AB_1)P(A|B_1) + P(B_2|\bar{A}B_1)P(\bar{A}|B_1) = \frac{9}{49
 $$
 \end{example}
 
+\subsection{随机变量函数}
+
+\subsection{连续性判定}
+
+\begin{example}
+\rm 设随机变量$X$与$Y$相互独立，$X$服从参数为$\lambda$的指数分布，$Y$的分布律为$P\{Y=-1\}=\frac{1}{2},P{Y=1}=\frac{1}{2}$. 判定$Z=X+Y$的分布函数$F_Z(z)$的连续性.
+
+\hints\ 求出$F_Z(z)$来判断是下下策！ 这里要结合分布函数的性质来做就比较简单，如果$F_Z(z)$有间断点$a$，那么它是左间断的，即$P\{Z=a\} = F(a) - F(a-0) > 0$. 因此我们来求$P\{Z=a\}$，
+$$
+P\{Z=a\} = P\{X \leq a+1\}P\{Y = -1\} + P\{X \leq a-1\}P\{Y = 1\} = \frac{1}{2}\left[ P\{X \leq a+1\} + P\{X \leq a-1\} \right] = 0    
+$$
+最后一个等式成立条件是因为$X$是连续的. 
+\end{example}
+
 \newpage
 \section{正态分布}
 

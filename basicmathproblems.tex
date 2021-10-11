@@ -470,6 +470,39 @@ $$
 $$
 \end{example}
 
+\begin{example}
+\rm 求极限
+$$
+\lim\limits_{x \to 0} \frac{\cos(\sin x)-\cos x}{(1-\cos x)\sin^2 x}
+$$
+\hints\ 方法1: 直接泰勒爆算即可，其中
+$$
+\cos(\sin x) = 1 - \frac{\sin^2}{2!} + \frac{\sin^4}{4!} + o(\sin^4). 
+$$
+再把$\sin ^x = x -\frac{x^3}{3!} + o(x^3)$带入，
+$$
+\cos(\sin x) = 1 - \frac{(x -\frac{x^3}{3!} + o(x^3))^2}{2!} + \frac{(x -\frac{x^3}{3!} + o(x^3))^4}{4!} + o(x^4),
+$$
+这里泰勒余项要把握好，因为分母等价无穷小为$\frac{x^4}{2}$. 整理一下即有
+$$
+\cos(\sin x) = 1-\frac{x^2}{2!} + (\frac{1}{3!}+\frac{1}{4!})x^4 + o(x^4),
+$$
+
+方法2: 对分子用和差化积简化直接泰勒的压力，即
+$$
+\cos(\sin x)-\cos x = \cos\left( \frac{\sin x+x}{2} + \frac{\sin x-x}{2} \right) - \cos\left( \frac{\sin x+x}{2} - \frac{\sin x-x}{2} \right),
+$$
+于是
+$$
+\cos(\sin x)-\cos x  = -2\sin\left( \frac{\sin x+x}{2}  \right)\sin\left( \frac{\sin x-x}{2}\right) \sim \frac{(\sin x+x)(x-\sin x)}{2},
+$$
+因此
+$$
+\lim\limits_{x \to 0} \frac{\cos(\sin x)-\cos x}{(1-\cos x)\sin^2 x} = \lim\limits_{x \to 0} \frac{x^2 - \sin^2}{x^4} =  \lim\limits_{x \to 0} \frac{x^2-(x-\frac{x^3}{3}+o(x^3))^2}{x^4} = \lim\limits_{x \to 0} \frac{\frac{2}{3!}x^4 + o(x^4)}{x^4} = \frac{1}{3}.
+$$
+\end{example}
+
+
 \subsection{极限存在性}
 
 \begin{annotation}
@@ -1654,6 +1687,20 @@ $$
 (1+x)^n \leq 1 + nx, \; n \geq 0, x \leq -1.
 $$
 使得$(1+x) = a^{\frac{1}{n}}$，即可得到上式.
+\end{proposition}
+
+\begin{proposition}
+\rm 
+$$
+\sin x < x , 0 < x < +\infty
+$$
+\end{proposition}
+
+\begin{proposition}
+\rm 
+$$
+\ln(1+x) < x,  -1< x < +\infty
+$$
 \end{proposition}
 
 \subsection{Stirling公式}
