@@ -1974,6 +1974,22 @@ $$
 \end{enumerate}
 \end{proposition}
 
+\subsection{特殊矩阵的对角化}
+
+\begin{example}
+\rm 设$\mbf{A}=(a_{ij})$是$n$阶上三角矩阵. 证明
+\begin{enumerate}
+	\item 如果$a_{11},a_{22},\cdots,a_{nn}$两两不相等，那么$\mbf{A}$可对角化;
+	\item 如果$a_{11} = a_{22} = \cdots = a_{nn}$，并且至少有一个$a_{kl} \neq 0(k < l)$，那么$\mbf{A}$不能对角化. 	
+\end{enumerate}
+
+\hints\ (1) $|\lambda\mbf{I}-\mbf{A}| = (\lambda-a_{11})(\lambda-a_{22})\cdots (\lambda-a_{nn})$.
+
+(2) 意味着只有一个特征值，只有对应的特征向量空间维数为$n$维才行. 特征向量可以盖住整个$n$维向量空间的，只有数量矩阵$\lambda\mbf{I}$. 
+\end{example}
+
+
+
 \newpage
 \section{矩阵特征值和特征向量}
 

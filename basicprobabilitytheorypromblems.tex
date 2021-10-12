@@ -102,7 +102,35 @@ P(B_2|B_1) = P(B_2|AB_1)P(A|B_1) + P(B_2|\bar{A}B_1)P(\bar{A}|B_1) = \frac{9}{49
 $$
 \end{example}
 
-\subsection{随机变量函数}
+\newpage
+\section{常用分布}
+
+\subsection{参数确定}
+
+\begin{example}
+\rm 设随机变量$X \sim U(a,b)$，已知$P\{-2< X < 0\} = \frac{1}{4}$和$P\{1<X<3\} = \frac{1}{2}$，求$a,b$. 
+
+\hints\ 由已知条件，我们知道$[a,b]$和区间$[-2,0]$及$[1,3]$都是有重叠部分的，因此
+$$
+\left\{
+\begin{array}{ll}
+a < 0 \\
+b > 1  
+\end{array} \right.
+$$ 
+由此我们知道$[0,1]$完全躺在$[a,b]$里面的. (1 考虑由于$P\{1< X < 3\} =\frac{1}{2}$，那么
+$$
+P\{-2 < X < 1\} \leq \frac{1}{2}  \Rightarrow  P\{0 < X < 1\} \leq \frac{1}{4}.
+$$
+考虑$|[0,1]| = \frac{1}{2}|[1,2]|$，那么
+$$
+P\{0 < X < 1\} \geq \frac{1}{4}. 
+$$
+综上$P\{0 < X < 1 \} = \frac{1}{4}$. 因此$a = -1, b=3$. 
+\end{example}
+
+
+\section{随机变量函数}
 
 \subsection{连续性判定}
 
@@ -118,6 +146,7 @@ $$
 
 \newpage
 \section{正态分布}
+
 
 \subsection{线性运算}
 

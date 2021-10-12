@@ -121,3 +121,15 @@ empty()
 
 
 
+**3. 设计一个栈，除了提供入栈和出栈操作，还提供 min 函数，返回栈里的最小元素。所有三个函数都应该具有 O(1)的复杂度**
+
+最关键的问题是如何在push和pop的时候维护min元素？
+
+1. 栈元素$x$包括关键字$x.keyword$和一个字段$x.successor$.  
+2. 设置一个指向最小栈元素的指针$m$，初始化为$NIL$.
+3. push操作: 设push进来一个数$k$， 初始化一个栈元素$x$， 使得$x.keyword = k, x.successor = NUL$ . (1 若$m == NIL$, 那么$m = x$, (2 若$m \neq NIL$， 且$x.keyword <= m.keyword$，那么$x.successor = m, m = x$.
+4. pop操作: 设栈顶元素为$x$. (1 若$x == m$， 那么$m = x.successor$. 
+5. min操作: 直接返回$m.keyword$即可. 
+
+这里有一个chain，用$x.succussor$围起来了，主要为了保证最小元素出栈之后，可以更新最小元素. 
+
