@@ -103,7 +103,7 @@ empty()
 当然也可以把push操作调整成$O(n)$
 
 ```python
-push(x)
++3push(x)
 	Q_1.enqueue(x)
     while empty(Q_2)
     	y = Q_2.dequeue()
