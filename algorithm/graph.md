@@ -552,4 +552,144 @@ dijkstra(G,w,s)
 
 
 
-### 0x08 
+### 0x08 所有结点多的最短路径问题
+
+
+
+**Definition** 定义$G$的邻接矩阵对应的权重矩阵$W=(w_{ij})$为
+$$
+w_{ij} = \left\{ \begin{array}{ll}  
+0 & i=j \\
+\text{有向边}(i,j)\text{的权重} & i \neq j, (i,j) \in E \\
+\infty & i \neq j, (i,j) \notin E
+
+\end{array} \right.
+$$
+
+
+**Definition** 定义$l_{ij}^{(m)}$为结点$i$到结点$j$至多包含$m$条边的任意路的最小权重. 当$m = 0$时
+$$
+l_{ij}^{(0)} = \left\{ \begin{array}{ll} 
+0 & i = j \\
+\infty & i \neq j
+\end{array} \right.
+$$
+当$m \geq 1$时
+$$
+l_{ij}^{(m)} = \min( l_{ij}^{(m-1)},\min_{1 \leq k \leq n}\{ l_{ik}^{(m-1)}+w_{kj} \}).
+$$
+其中$n$表示$G$有$n$个结点. 当$k = j$时，$l_{ij}^{m-1} + w_{jj} = l_{ij}^{m-1}$，那么
+$$
+l_{ij}^{(m)} = \min_{1 \leq k \leq n}\{ l_{ik}^{(m-1)}+w_{kj} \}.
+$$
+
+
+**Proposition** 给定有$n$个结点的有向图$G$，则
+$$
+\delta(i,j) = l_{ij}^{(n-1)} = l_{ij}^{(n)} = l_{ij}^{(n+1)} = \cdots
+$$
+*proof*. 最短路径是简单路径. 
+
+
+
+**Definition** 给定两个$n$阶矩阵$A=(a_{ij}),B=(b_{ij})$，定义运算$\cdot :A \times A \to A$，设$A \cdot B = C$，那么
+$$
+c_{ij} = \min_{1 \leq k \leq n}\{ a_{ik}+b_{kj} \}.
+$$
+**Definition** 定义$L^{(1)}=W$，并递归定义
+$$
+L^{(m)} = L^{m-1} \cdot W.
+$$
+**Propositon** 
+$$
+(A \cdot B ) \cdot C = A \cdot (B \cdot C) 
+$$
+*proof*.  
+$$
+[(A \cdot B) \cdot C](i,j) = \min_{1 \leq k \leq n}\{ \min_{1 \leq q \leq n}\{ a_{iq}+b_{qk} \}+ c_{kj} \} = \min_{1 \leq k \leq n}\{ \min_{1 \leq q \leq n}\{ a_{iq}+b_{qk}+c_{kj} \} \} \\
+[A \cdot (B \cdot C)](i,j) = \min_{1 \leq k \leq n}\{ a_{ik} + \min_{1 \leq q \leq n}\{ b_{kq}+c_{qj} \}\} = \min_{1 \leq k \leq n}\{ \min_{1 \leq q \leq n}\{ a_{ik} + b_{kq}+c_{qj} \}\}
+$$
+任意重命名其中一个式子两个index就可得到另外一个. 
+
+
+
+**Lemma**
+$$
+L^{(2m)} = L^{(m)}\cdot L^{(m)}.
+$$
+*proof*.  
+$$
+L^{(2m)} = \underbrace{W \cdot W \cdot \cdots \cdot W\cdot W}_{2m} = \underbrace{(W \cdot W \cdot \cdots \cdot W)}_{m}\cdot \underbrace{(W \cdot W \cdot \cdots \cdot W)}_{m} = L^{(m)} \cdot L^{(m)}.
+$$
+
+
+**Definition** 定义前驱结点矩阵$\prod=(\pi_{ij})$，其中$\pi_{ij}$表示结点$i$到$j$的最短路径中$j$的前驱结点.   定义结点$i$的前驱子图为$G_{\pi,i} = (V_{\pi,i},E_{\pi,i})$，其中
+$$
+V_{\pi,i} = \{j \in V: \pi_{ij} \neq NIL\}\cup \{i\} ~~~ E_{\pi,i} = \{(\pi_{ij},j): j \in V_{\pi,i}-{i}\}
+$$
+
+
+这里的定义充分利用最短路径的子路径还是最短路径. 
+
+
+
+
+
+
+
+**朴素算法**
+
+```python
+shortest_paths(L, W)
+	n = L.dimension
+    L2 = create_new_matrix(n)
+    for i = 1 to n
+    	for j = 1 to n
+        	L2(i,j) = infinite
+            for k = 1 to n
+            	L2(i,j) = min(L2(i,j), L(i,k)+W(k,j))
+    return L2            
+```
+
+基本分析性质:
+
+- 时间复杂度为$O(n^3)$. 
+
+
+
+**重复平方计算**
+
+我们的目标是计算出$L^{(n-1)}$，那么可以考虑只计算$L^{(2)},L^{(4)},\cdots,L^{(2m)}$，最终只需要保证$2m >= n-1$就行. 
+
+```python
+faster_shortest_paths(W)
+	n = W.dimension
+	L = W
+	m = 1
+	while(m < n-1)
+		L = shortest_paths(L,L);
+		m = 2m
+	return L	
+```
+
+
+
+基本分析性质:
+
+- 时间复杂度为$O(n^3)$，但是其前面常数因子要小于朴素算法中的常数因子。
+- 这里还有一个上界$2m \leq 2n-2$，只需要计算$\lceil \lg (n-1) \rceil$次所定义的矩阵运算.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
