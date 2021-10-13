@@ -1799,8 +1799,23 @@ $$
 \subsection{特殊矩阵}
 
 \begin{definition}
+\rm 单位列向量$\mbf{\varepsilon}_i$表示第$i$个分量为$1$其余分量为$0$. 
+\end{definition}
+
+\begin{proposition}
+\rm \redt{非常好用的取元素操作} 设$\mbf{A}$为$m \times n$矩阵，则有
+$$
+a_{ij} = \mbf{\varepsilon}_i^T \mbf{A}\mbf{\varepsilon}_j. 
+$$
+\end{proposition}
+
+\begin{definition}
 \rm 只有一个元素是$1$，其余元素均为$0$的矩阵我们称为\redt{基本矩阵}. $(i,j)$元为$1$的基本矩阵记为$\mbf{E}_{ij}$
 \end{definition}
+
+\begin{proposition}
+\rm $\mbf{E}_{ij}$左乘一个矩阵$\mbf{A}$，就相当于把$\mbf{A}$的第$j$行搬到第$i$行的位置，并把其余行都变成零行; $\mbf{E}_{ij}$右乘一个矩阵$\mbf{A}$，就相当于把$\mbf{A}$的第$i$行搬到第$j$行的位置，并把其余列都变成零行. 
+\end{proposition}
 
 \begin{definition}
 \rm 除对主角线以外的元素均为0的方阵称为\redt{对角矩阵}.
