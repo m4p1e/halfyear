@@ -681,6 +681,34 @@ faster_shortest_paths(W)
 
 
 
+**根据计算出来的权重图构造前驱子图**
+
+遍历每个$L$的元素$l_{ij}$
+
+- 若$i = j$ 或者$l_{ij} = \infty$，$\pi_{ij} = \text{NIL}$
+- 若$i \neq j$ 或者$l_{ij} < \infty$ ， 那么遍历$L$第$j$列，由$l_{ij} = l_{ik}+ l_{kj}$确定$k$，$k$即为$i$到$j$最短路径上$j$的前驱. 
+
+```python
+genetrate_precessor(L)
+	n =  L.dimension
+	P = create_new_matrix(n)
+	for i = 1 to n
+		for j = 1 to n
+    		if(L(i,j) < inf)
+            	if(i == j)
+                	P(i,j) = NIL
+                else 
+                	for q = 1 to n
+                    ifL(i,q) + L(q,j) == L(i,j)
+                    	P(i,j) = q
+            else
+            	P(i,j) = NIL
+```
+
+
+
+
+
 **Floyd-Warshall算法**
 
 *motivation*
@@ -719,7 +747,7 @@ $$
 
 
 
-**Definition** 定义矩阵$D^{(m)} = (d_{ij}^{(m)})$， 那么$D^{(0)} = W$.
+**Definition** 定义矩阵$D^{(k)} = (d_{ij}^{(k)})$， 那么$D^{(0)} = W$.
 
 
 
@@ -729,23 +757,85 @@ $$
 floyd_warshall(W)
 	n = W.dimension
     D1 = W
-    D2 = create_new_matrix(n);
-    for m = 0 to n 
+    D2 = create_new_matrix(n)
+    for k = 0 to n 
     	for i = 1 to n
         	for j = 1 to n
             	D2(i,j) = min(D1(i,j), D1(i,k)+D1_(k,j));
-        D1 = D2        
+        D1 = D2       
+        
+        
+    return D1    
 ```
 
 
 
+基本分析性质
+
+- 时间复杂度为$O(n^3)$. 
 
 
 
+**Folyd-Warshall算法上构建前驱子图**
+
+**Definition** 定义$\pi_{ij}^{(k)}$为从结点$i$到结点$j$的一条所有中间结点都取自结点子集$\{1,2,\cdots,k\}$的最短路径上$j$的前驱结点.  定义矩阵$\prod^{(k)}=(\pi_{ij}^{(k)})$. 
 
 
 
+**Proposition** $\prod = \prod^{(n)}$
 
+
+
+**Proposition** 当$k=0$时 
+$$
+\pi_{ij}^{(0)} = \left\{ \begin{array}{ll} 
+\text{NIL} & i = j ~\text{or} ~ w_{ij} = \infty \\
+i & i \neq j ~\text{and}~ w_{ij} < \infty
+\end{array} \right.
+$$
+当$k \geq 1$时
+$$
+\pi_{ij}^{(k)} = \left\{ \begin{array}{ll} 
+\pi_{ij}^{(k-1)} & d_{ij}^{(k-1)} \leq d_{ik}^{(k-1)} + d_{kj}^{(k-1)} \\
+\pi_{kj}^{(k-1)} & d_{ij}^{(k-1)} > d_{ik}^{(k-1)} + d_{kj}^{(k-1)}
+\end{array} \right.
+$$
+*proof*.  若$k=0$时，结果是显然的.  
+
+若$k=1$时，若$d_{ij}^{(k-1)} > d_{ik}^{(k-1)} + d_{kj}^{(k-1)}$时，考虑路径$i \leadsto k \leadsto j$，这里可以确定$k \neq j$，因此$k \leadsto j$的最短路径(在$k-1$的限制下)上的$j$前驱和$i \leadsto k \leadsto j$是保持一致的. 其余情况类似讨论.  
+
+
+
+算法的伪代码
+
+```python
+floyd_warshall_with_precessor(W)
+	n = W.dimension
+    D1 = W
+    D2 = create_new_matrix(n)
+    
+    P1 = create_new_matrix(n)
+    P2 = create_new_matrix(n)
+    
+    for i = 1 to n
+    	for j = 1 to n
+        	if(W(i,j) < inf)
+                P(i,j) = i       
+    
+    for k = 1 to n 
+    	for i = 1 to n
+        	for j = 1 to n
+            	if(D1(i,j) > D1(i,k)+D1_(k,j)){
+                    P2(i,j) = P1(k,j)
+                    D2(i,j) = D1(i,k)+D1_(k,j)
+                else
+                    P2(i,j) = P1(i,j)
+                    D2(i,j) = D1(i,j)
+        D1 = D2
+        P1 = P2
+    
+    return D1,P1
+```
 
 
 
