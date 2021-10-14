@@ -2000,6 +2000,15 @@ $$
 \hints\ $\mbf{B}^T\mbf{A}\mbf{B} = \text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}$. 
 \end{example}
 
+\begin{example}
+\rm 设$n$阶实对称矩阵$\mbf{A}$的全部特征值按大小顺序排成$\lambda_1 \geq  \lambda_2 \geq \cdots \geq \lambda_2$. 证明
+$$
+\lambda_n \leq a_{ii} \leq \lambda_1, i =1,2,\cdots,n.
+$$
+
+\hints\ $a_{ii} = \mbf{\varepsilon}_i^T \mbf{A}\mbf{\varepsilon}_i$
+\end{example}
+
 \newpage
 \section{矩阵特征值和特征向量}
 
@@ -2129,7 +2138,33 @@ $$
 因此非零特征值只有一个$\lambda = \inp{\mbf{v}}{\mbf{v}}$，且重数为$1$. 特别地$|\mbf{v}\mbf{v}^T| = \mbf{0}$，因此$0$也是该矩阵的一个特征值，接下来类似. 
 \end{example}
 
+\newpage
 \section{二次型}
+
+\subsection{规范形的使用}
+
+\begin{example}
+\rm 设二次型$\mbf{X}^T\mbf{A}\mbf{X}$. 证明: 如果存在列向量$\mbf{\alpha}_1,\mbf{\alpha}_2$，使得$\mbf{\alpha}_1\mbf{A}\mbf{\alpha}_1 >0, \mbf{\alpha}_2\mbf{A}\mbf{\alpha}_2 < 0$，那么存在列向量$\mbf{\alpha}_3$，使得$\mbf{\alpha}_3^T\mbf{A}\mbf{\alpha}_3 = 0$.
+
+\hints\ 首先化规范形，设$\mbf{X}=C\mbf{Y}$，使得
+$$
+\mbf{X}^T\mbf{A}\mbf{X} = y_1^2 + \cdots + y_p^2-y_{p+1}^2 - \cdots - y_r^2,
+$$
+若$\mbf{\alpha}_1\mbf{A}\mbf{\alpha}_1 >0$，那么$p > 0$; 若$\mbf{\alpha}_2\mbf{A}\mbf{\alpha}_2 < 0$，那么$r-p > 0$. 换句话说符号差不等于$r$，因此可以使得
+$$
+\mbf{\beta} =(\underbrace{1,0,\cdots,0}_{p},1,0,\cdots,0)^T,
+$$
+令$\mbf{\alpha}_3 = C\mbf{\beta}$，则有
+$$
+\mbf{\alpha}_3^T\mbf{A}\mbf{\alpha}_3 = 0. 
+$$
+\end{example}
+
+\begin{example}
+\rm 设$\mbf{A}$为一个$n$阶实对称矩阵，证明: 如果$|\mbf{A}| < 0$，那么存在列向量$\mbf{\alpha}$，使得$\mbf{\alpha}^T\mbf{A}\mbf{\alpha} < 0$.
+
+\hints\ 若$|\mbf{A}| < 0$，那么存在$\mbf{A}$存在奇数个负的特征值. 
+\end{example}
 
 \subsection{正定性的判定}
 
