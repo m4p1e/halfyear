@@ -2168,6 +2168,56 @@ $$
 
 \subsection{正定性的判定}
 
+\begin{example}
+\rm 如果$\mbf{A}$是$n$阶正定矩阵，那么$\mbf{A}^{-1}$也是正定矩阵.
 
+\hints\ $\mbf{A}=C^T\mbf{I}C$.
+\end{example}
+
+\begin{example}
+\rm \redt{必要条件} $n$元二次型为正定的必要条件是，它的$n$个平方项系数都是正. 
+
+\hints\ $\mbf{A}=C^T\mbf{I}C$.
+\end{example}
+
+\begin{example}
+\rm $n$阶矩实对称矩阵$\mbf{A}$是正定的充分必要条件是: 存在$n$阶可逆矩阵$C$使得
+$$
+\mbf{A}=C^TC
+$$
+\end{example}
+
+\begin{example}
+\rm $n$阶矩实对称矩阵$\mbf{A}$是正定的充分必要条件是: 存在$n$阶可逆矩阵实对称矩阵$C$使得
+$$
+\mbf{A}=C^2
+$$
+
+\hints\ 若对称矩阵$\mbf{A}$是正定的，那么存在正交矩阵$T$
+$$
+T^{-1}\mbf{A}T = \text{diag}{\lambda_1,\lambda_2,\cdots,\lambda_n} \Rightarrow \mbf{A} =  (T\text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}T^{-1})(T \text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}T^{-1}) = C^2,
+$$
+必要性是显然的. 
+\end{example}
+
+\begin{example}
+\rm 如果$\mbf{A}$与$\mbf{B}$都是正定矩阵，那么$\mbf{A+B}$也是正定矩阵. 
+
+\hints\ $\mbf{\alpha}^T (\mbf{A}+\mbf{B})\mbf{\alpha} = \mbf{\alpha}^T\mbf{A}\mbf{\alpha} + \mbf{\alpha}^T\mbf{B}\mbf{\alpha} > 0$. 
+\end{example}
+
+\begin{example}
+\rm 如果$\mbf{A}$与$\mbf{B}$都是正定矩阵，那么$\mbf{AB}$也是正定矩阵的充分必要条件是$\mbf{AB} = \mbf{BA}$. 
+
+\hints\ $\mbf{A},\mbf{B}$对称加上$\mbf{A}\mbf{B}$交换，可以得到$\mbf{A}\mbf{B}$也是对称矩阵. 设$\mbf{A}=C_1^TC_1,\mbf{B}=C_2^TC_2$，那么
+$$
+\begin{array}{ll}
+\mbf{AB} &= C_1^TC_1C_2^TC_2 \\
+C_2\mbf{AB}C_2^{-1} &= C_2C_1^TC_1C_2^T  \\
+& = (C_1C_2^T)^TC_1C_2^T
+\end{array}
+$$
+$C_2\mbf{AB}C_2^{-1}$合同于单位矩阵，那么它是正定矩阵，同时它还相似于$\mbf{AB}$，即有相同的特征值，最终$\mbf{AB}$也是正定的. 
+\end{example}
 
 \end{document}
