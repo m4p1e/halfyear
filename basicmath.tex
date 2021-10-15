@@ -4647,6 +4647,49 @@ $$
 若$\mbf{a},\mbf{b},\mbf{c}$共面，则有$(\mbf{a}\mbf{b}\mbf{c})=0$.  
 \end{proposition}
 
+\subsection{方向余弦}
+
+\begin{definition}
+\rm 设向量$\mbf{v} = a\mbf{i} + b\mbf{j} + c\mbf{k}$，其中$\mbf{i},\mbf{j},\mbf{k}$为一组标准正交基，在直角坐标下通常坐标轴$x,y,z$的正向. 令
+$$
+\cos \alpha = \frac{a}{\sqrt{a^2 + b^2 + c^2}}, \cos \beta = \frac{b}{\sqrt{a^2 + b^2 + c^2}},\cos \gamma = \frac{c}{\sqrt{a^2 + b^2 + c^2}},
+$$
+它们称之为$\mbf{v}$对$x,y,z$轴的方向余弦，其中$\alpha,\beta,\gamma$可以分别看做$\mbf{v}$与$x,y,z$轴的夹角值. 
+\end{definition}
+
+\begin{lemma}
+\rm 
+$$
+\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1.
+$$
+\bluet{方向余弦值构成的向量是原来向量的一个单位向量}. 
+\end{lemma}
+
+\begin{proposition}
+\rm 若向量$\mbf{v}$和$\mbf{u}$正交，设$\mbf{v}$的方向余弦为$\cos \alpha_1, \cos \beta_1, \cos \gamma_1$，$\mbf{v}$的方向余弦为$\cos \alpha_2, \cos \beta_2, \cos \gamma_2$，则
+$$
+\cos \alpha_1\cos \alpha_2 + \cos \beta_1\cos \beta_2 + \cos \gamma_1\cos \gamma_2 = 0.
+$$
+
+\end{proposition}
+
+\begin{proposition}
+\rm 设$\mbf{v}$为平面向量，设其方向余弦分别为$\cos\alpha_1,\cos \beta_1$. 若向量$\mbf{u}$与$\mbf{v}$正交，那么$\mbf{u}$的方向余弦满足
+$$
+\left\{
+\begin{array}{ll}
+\cos\alpha_2 = \cos\beta_1 \\
+\cos\beta_2 = -\cos\alpha_1 \\
+\end{array}\right.
+~\text{或}~
+\left\{
+\begin{array}{ll}
+\cos\alpha_2 = -\cos\beta_1\\
+\cos\beta_2 = \cos\alpha_1\\
+\end{array}\right.
+$$
+\end{proposition}
+
 \subsection{空间平面与直线}
 
 \begin{definition}
@@ -5637,6 +5680,7 @@ $$
 	\item 若区域$D$关于直线$y = c$对称，且$f(x,y) = -f(x,2c-y)$，则$\int_D f(x,y)dxdy = 0$.
 	\item 若区域$D$关于直线$y = x$对称，则$\int_D f(x,y)dxdy = \int_D f(y,x)dxdy$.
 \end{enumerate}
+\bluet{同理可推广至曲线积分}. 
 \end{proposition}
 
 %http://www2.ztbu.edu.cn/gjb/jpkc/index_function/%E5%8D%9A%E8%A7%88%E7%BE%A4%E6%95%B0/%E5%9D%90%E6%A0%87%E7%9A%84%E8%BD%AE%E6%8D%A2%E5%AF%B9%E7%A7%B0%E6%80%A7%E5%9C%A8%E7%A7%AF%E5%88%86%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8.pdf
@@ -5645,7 +5689,7 @@ $$
 $$
 \iint_{D_{xy}} f(x,y)dxdy = \iint_{D_{yx}} f(y,x)dxdy.
 $$ 
-若$D_{xy} = D(yx)$，则称区域$D_{xy}$具有\redt{轮换对称性}，那么此时仅交换被积函数的自变量，积分结果不变，即
+若$D_{xy} = D_{yx}$，则称区域$D_{xy}$具有\redt{轮换对称性}，那么此时仅交换被积函数的自变量，积分结果不变，即
 $$
 \iint_{D_{xy}} f(x,y)dxdy = \iint_{D_{xy}} f(y,x)dxdy.
 $$
@@ -7045,6 +7089,5 @@ $$
 \end{array}
 $$
 \end{proposition}
-
 \end{document}
 
