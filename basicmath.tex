@@ -4673,22 +4673,104 @@ $$
 
 \end{proposition}
 
-\begin{proposition}
-\rm 设$\mbf{v}$为平面向量，设其方向余弦分别为$\cos\alpha_1,\cos \beta_1$. 若向量$\mbf{u}$与$\mbf{v}$正交，那么$\mbf{u}$的方向余弦满足
+\begin{lemma}
+\rm 设向量$\mbf{v}=(x,y)$. 若向量$\mbf{u}$是$\mbf{v}$逆时针旋转$\theta$得到的，那么
+$$
+\mbf{u}^T = \begin{pmatrix}
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix} \begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+$$
+若向量$\mbf{u}$是$\mbf{v}$顺时针旋转$\theta$得到的，那么
+$$
+\mbf{u}^T = \begin{pmatrix}
+\cos\theta & \sin\theta \\
+-\sin\theta & \cos\theta
+\end{pmatrix} \begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+$$
+\bluet{可以看出来上面是两个正交矩阵}.
+\end{lemma}
+
+\begin{proof}
+\rm 设$\mbf{v}$长度为$r$，$\mbf{v}$和$x$轴的正方向夹角为$\alpha$，设$\mbf{u}=(x',y')$.  于是
 $$
 \left\{
 \begin{array}{ll}
-\cos\alpha_2 = \cos\beta_1 \\
-\cos\beta_2 = -\cos\alpha_1 \\
-\end{array}\right.
-~\text{或}~
+x = r\cos\alpha \\
+y = r\sin\alpha
+\end{array} \right.
+$$
+那么
+$$
+\left\{
+\begin{array}{ll}
+x' = r\cos(\alpha+\theta) = x\cos\theta - y\sin\theta  \\
+y' = r\sin(\alpha+\theta) = x\sin\theta + y\cos\theta
+\end{array} \right.
+$$
+再将上述方程组写成命题中矩阵的乘法. 同理若是顺时针旋转$\theta$，那么
+$$
+\left\{
+\begin{array}{ll}
+x' = r\cos(\alpha-\theta) = x\cos\theta + y\sin\theta  \\
+y' = r\sin(\alpha-\theta) = -x\sin\theta + y\cos\theta
+\end{array} \right.
+$$
+\end{proof}
+
+\begin{proposition}
+\rm 设$\mbf{v}$为平面向量，设其方向余弦分别为$\cos\alpha_1,\cos \beta_1$. 若向量$\mbf{u}$与$\mbf{v}$正交，且$\mbf{u}$是$\mbf{v}$逆时针旋转$\frac{\pi}{2}$得到的，那么$\mbf{u}$的方向余弦满足
+$$
 \left\{
 \begin{array}{ll}
 \cos\alpha_2 = -\cos\beta_1\\
 \cos\beta_2 = \cos\alpha_1\\
 \end{array}\right.
 $$
+若是$\mbf{u}$是$\mbf{v}$顺时针旋转$\frac{\pi}{2}$得到的，那么
+$$
+\left\{
+\begin{array}{ll}
+\cos\alpha_2 = \cos\beta_1 \\
+\cos\beta_2 = -\cos\alpha_1 \\
+\end{array}\right.
+$$
 \end{proposition}
+
+\begin{proof}
+\rm 假设$\mbf{u}$是$\mbf{v}$逆时针旋转$\frac{\pi}{2}$得到的，利用旋转公式
+$$
+\begin{pmatrix}
+\cos \frac{\pi}{2} & -\sin\frac{\pi}{2} \\
+\sin \frac{\pi}{2} & \cos\frac{\pi}{2}
+\end{pmatrix}\begin{pmatrix}
+\cos \alpha_1 \\
+\cos \beta_1
+\end{pmatrix} = \begin{pmatrix}
+-\cos\beta_1 \\
+\cos \alpha_1
+\end{pmatrix}
+$$
+同理
+$$
+\begin{pmatrix}
+\cos \frac{\pi}{2} & \sin\frac{\pi}{2} \\
+-\sin \frac{\pi}{2} & \cos\frac{\pi}{2}
+\end{pmatrix}\begin{pmatrix}
+\cos \alpha_1 \\
+\cos \beta_1
+\end{pmatrix} = \begin{pmatrix}
+\cos\beta_1 \\
+-\cos \alpha_1
+\end{pmatrix}
+$$
+\end{proof}
 
 \subsection{空间平面与直线}
 
