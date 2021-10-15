@@ -56,6 +56,13 @@ $$
 
 **Proposition** 所有渐进符号都满足传递性.  
 
+**Proposition** 转置对称性
+$$
+f(n) = O(g(n)) ~\text{if and only if}  ~g(n)=\Omega(f(n)) \\
+f(n) = o(g(n)) ~\text{if and only if}  ~g(n)= \omega(f(n)) \\
+$$
+
+
 **Proposition** 常见性质
 
 1. $f_1(n) + f_2(n) \in O(\max(f_1(n),f_2(n)))$
