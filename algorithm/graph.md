@@ -465,7 +465,7 @@ relax(u,v,w)
 
 
 
-**Bellman-ford算法**
+#### Bellman-ford算法
 
 根据前面路径松弛的性质，要求一对结点$(v_0,v_k)$最短路径，若它们之间存在最短路径，那么只要按照这个最短路径的依次做松弛操作.  显然我们是不可能提前预知那一条是最短路径，因此考虑对$G$上所有边都做$|G.V|-1$（简单路径上最多有$|G.V|$个结点，因此最多有$|G.V|-1$条边）次relax操作，这样对每一对可达的结点而言，总有一个松弛序列对应它们的最短路径.  
 
@@ -491,7 +491,7 @@ bellman_ford(G,w,s)
 
   
 
-**DAG**算法
+#### DAG算法
 
 这个算法是针对==有向无环图==的改进.    其主要思想如果$u,v$之间存在一条简单路径，那么在拓扑序中$u$应位于$v$的前面，因此我们可以只需要按照拓扑序的来一次relax操作，就可以计算出源节点到所有可达结点的最短路径. 
 
@@ -510,7 +510,7 @@ DAG算法的时间复杂度为$O(V+E)$.
 
 
 
-**Dijkstra算法**
+#### Dijkstra算法
 
 此时要求是有向图上所有的边的权重都是==非负的==.  Dijkstra算法本质是一个贪心算法，这里我们要对所有结点$v.d$维护一个最小队列，因为每条边的权重非负，才能确保我们做一次贪心操作的正确性，不会出现多条边正负抵消而最短的效果. 
 
@@ -553,6 +553,8 @@ dijkstra(G,w,s)
 
 
 ### 0x08 所有结点多的最短路径问题
+
+#### 边迭代
 
 
 
@@ -621,7 +623,7 @@ $$
 $$
 L^{(2m)} = \underbrace{W \cdot W \cdot \cdots \cdot W\cdot W}_{2m} = \underbrace{(W \cdot W \cdot \cdots \cdot W)}_{m}\cdot \underbrace{(W \cdot W \cdot \cdots \cdot W)}_{m} = L^{(m)} \cdot L^{(m)}.
 $$
-
+的没有
 
 **Definition** 定义前驱结点矩阵$\prod=(\pi_{ij})$，其中$\pi_{ij}$表示结点$i$到$j$的最短路径中$j$的前驱结点.   定义结点$i$的前驱子图为$G_{\pi,i} = (V_{\pi,i},E_{\pi,i})$，其中
 $$
@@ -630,10 +632,6 @@ $$
 
 
 这里的定义充分利用最短路径的子路径还是最短路径. 
-
-
-
-
 
 
 
@@ -699,17 +697,16 @@ genetrate_precessor(L)
                 	P(i,j) = NIL
                 else 
                 	for q = 1 to n
-                    ifL(i,q) + L(q,j) == L(i,j)
+                    if L(i,q) + L(q,j) == L(i,j)
                     	P(i,j) = q
             else
             	P(i,j) = NIL
+                
 ```
 
 
 
-
-
-**Floyd-Warshall算法**
+#### Floyd-Warshall算法
 
 *motivation*
 
@@ -802,7 +799,7 @@ $$
 $$
 *proof*.  若$k=0$时，结果是显然的.  
 
-若$k=1$时，若$d_{ij}^{(k-1)} > d_{ik}^{(k-1)} + d_{kj}^{(k-1)}$时，考虑路径$i \leadsto k \leadsto j$，这里可以确定$k \neq j$，因此$k \leadsto j$的最短路径(在$k-1$的限制下)上的$j$前驱和$i \leadsto k \leadsto j$是保持一致的. 其余情况类似讨论.  
+若$k=1$时，若$d_{ij}^{(k-1)} > d_{ik}^{(k-1)} + d_{kj}^{(k-1)}$时，考虑路径$i \leadsto k \leadsto j$，这里可以确定$k \neq j$（不然前面不等式就取等号了），因此$k \leadsto j$的最短路径(在$k-1$的限制下)上的$j$前驱和$i \leadsto k \leadsto j$(在$k$的限制下)是保持一致的. 其余情况类似讨论.  
 
 
 
@@ -839,9 +836,70 @@ floyd_warshall_with_precessor(W)
 
 
 
+#### Floyd-Warshall算法应用于构造传递闭包
 
 
 
+**Definition** 定义有向图$G$的传递闭包为图$G^* = (G.V, E^*)$，其中$E^* = \{(i,j): \text{如果$G$包含一条$i$到$j$的路径}\}$。
+
+
+
+**Solution** 计算一个有向图$G$的传递闭包，可以将$G$的每条边权重赋予$1$，再用Floyd-Warshall算法，最终如果$d_{ij} < n$那么$i$到$j$之间就存在一条路径.  时间复杂度依然为$O(n^3)$. 
+
+
+
+**Solution** 进一步优化上述算法，可以使用逻辑运算符号$\vee$和$\wedge$来替换Floyd-Warshall算法中的$\min$和$+$，还需要调整一下初始的权重矩阵，使得那么$\infty$权重变成$0$. 这样迭代矩阵中的元素用一个bit就足够了. 
+
+
+
+#### Johnson算法
+
+
+
+**Definition** 给定图$G$和其权重函数$w$，若给定另外一个权重函数$\widehat{w}$满足
+
+- 给定任意两个结点$u,v \in V$，给定$u,v$之间的一条路径$p$，那么$p$在使用权重函数$w$是$u$到$v$的一条最短路径，当且仅当$p$在使用权重函数$\widehat{w}$是$u$到$v$的一条最短路径. 
+- 对于任意的边$(u,v) \in E$，有$\widehat{w}(u,v) >= 0$.
+
+则称$\widehat{w}$是$w$是在最短路径的条件下的一个非负权重等价. 若仅满足第一个条件，则称它们是等价的.  
+
+
+
+**Lemma** 给定图$G$和其权重函数$w$，引入一个辅助函数$h: V \to \mathbb{R}$，定义权重函数$\widehat{w}$
+$$
+\widehat{w}(u,v) = w(u,v) + h(u)-h(v).
+$$
+那么$w$和$\widehat{w}$是在最短路径的条件下是等价.  而且$G$在使用$w$时不包含负值的环路当且仅当在$\widehat{w}$不包含负值环路. 
+
+
+
+*proof.* 设$p =(v_0,v_1,\cdots,v_k)$是结点$v_0$到$v_k$的一条最短路径，那么这条路径在使用$\widehat{w}$时的总权重为
+$$
+\sum\limits_{i=1}^{k} \widehat{w}(v_{i-1},v_i) =\sum\limits_{i=1}^{k} w(v_{i-1},v_i) + h(v_{i-1})-h(v_i) = \sum\limits_{i=1}^{k} [w(v_{i-1},v_i) ] + h(v_0) -h(v_k).
+$$
+因此这个总权重只与$p$在$w$下计算的总权重和两个端点的$h(v_0),h(v_k)$有关，那么任意两条$v_0$到$v_1$之间路径的权重在$w$下的大小关系在$\widehat(w)$下依然满足(比如比较差值，后面两个函数值一减就消去了).
+
+假设$p =(v_0,v_1,\cdots,v_k)$是一条环路，即$v_0 = v_k$，那么根据上式则有
+$$
+\sum\limits_{i=1}^{k} \widehat{w}(v_{i-1},v_i) = \sum\limits_{i=1}^{k} [w(v_{i-1},v_i) ]
+$$
+因此一个存在负环当且仅当另一个也存在负环.  
+
+
+
+**Solution** ==如何构造一个$h(x)$使得$\widehat{w}$非负==.  在$G$上添加一个新的结点$s$，并且对所有的$v \in G$引入边$(s,v)$，同时设置$w(s,v) = 0$.   令
+$$
+h(v) = \delta(s,v)
+$$
+于是在三角不等式性质下有
+$$
+h(v) \leq h(u) + w(u,v) \Rightarrow  w(u,v) + h(u)-h(v) \geq 0
+$$
+非常巧妙！对于计算$h(v)$，我们以$s$为源结点使用一下Bellman-Ford算法即可. 
+
+ 
+
+**Solution** 在计算出$\widehat{w}$ 之后，我们只需要对每个结点做一次dijkstra算法即可.  算法运行实际包括一次Bellman-Ford运行时间$O(VE)$，$|V|$次dijkstra运行时间为$O(V(V+E)\lg V)$，那么总的时间为$O(V(V+E)\lg V)$. 
 
 
 
