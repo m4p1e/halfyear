@@ -2195,9 +2195,40 @@ $$
 
 \hints\ 若对称矩阵$\mbf{A}$是正定的，那么存在正交矩阵$T$
 $$
-T^{-1}\mbf{A}T = \text{diag}{\lambda_1,\lambda_2,\cdots,\lambda_n} \Rightarrow \mbf{A} =  (T\text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}T^{-1})(T \text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}T^{-1}) = C^2,
+T^{-1}\mbf{A}T = \text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\} \Rightarrow \mbf{A} =  (T\text{diag}\{\sqrt{\lambda_1},\sqrt{\lambda_2},\cdots,\sqrt{\lambda_n}\}T^{-1})(T \text{diag}\{\sqrt{\lambda_1},\sqrt{\lambda_2},\cdots,\sqrt{\lambda_n}\}T^{-1}) = C^2,
 $$
 必要性是显然的. 
+\end{example}
+
+\begin{example}
+\rm $n$阶矩阵$\mbf{A}$是正定的充分必要条件为$\mbf{A}$的所有主子式都大于$0$. 
+
+\hints\ 充分性是显然的. 
+
+证必要性需要用一下乘积矩阵的子式公式. 设$\mbf{A} = C^TC$，那么$\mbf{A}$任一主子式为
+$$
+\begin{aligned}
+\mbf{A}\begin{pmatrix}
+i_1 & i_2 & \cdots & i_m \\
+i_1 & i_2 & \cdots & i_m
+\end{pmatrix} &= C^TC\begin{pmatrix}
+i_1 & i_2 & \cdots & i_m \\
+i_1 & i_2 & \cdots & i_m
+\end{pmatrix} \\
+&= \sum\limits_{1 \leq v_1,v_2,\cdots,v_m} C^T\begin{pmatrix}
+i_1 & i_2 & \cdots & i_m \\
+v_1 & v_2 & \cdots & v_m
+\end{pmatrix}C\begin{pmatrix}
+i_1 & i_2 & \cdots & i_m \\
+v_1 & v_2 & \cdots & v_m
+\end{pmatrix} \\
+&=\sum\limits_{1 \leq v_1,v_2,\cdots,v_m}\left[C\begin{pmatrix}
+i_1 & i_2 & \cdots & i_m \\
+v_1 & v_2 & \cdots & v_m
+\end{pmatrix}\right]^2
+\end{aligned} 
+$$
+因为$C$是可逆的，因此存在任意阶非零的子式，所有对应$\mbf{A}$主子式也是非零的. 
 \end{example}
 
 \begin{example}
@@ -2219,5 +2250,48 @@ C_2\mbf{AB}C_2^{-1} &= C_2C_1^TC_1C_2^T  \\
 $$
 $C_2\mbf{AB}C_2^{-1}$合同于单位矩阵，那么它是正定矩阵，同时它还相似于$\mbf{AB}$，即有相同的特征值，最终$\mbf{AB}$也是正定的. 
 \end{example}
+
+\begin{example}
+\rm 设
+$$
+\mbf{M} = \begin{pmatrix}
+\mbf{A} & \mbf{B} \\
+\mbf{B}^T & \mbf{C}
+\end{pmatrix}
+$$
+是正定矩阵，其中$\mbf{A}$是$r$阶矩阵$(r < n)$. 证明$\mbf{A},\mbf{D},\mbf{C}-\mbf{B}^T\mbf{A}^{-1}\mbf{B}$都是正定矩阵. 
+
+\hints\ $\mbf{A}$的顺序主子式都是$\mbf{M}$的顺序主子式，$\mbf{C}$的主子式都是$\mbf{M}$的主子式，因此$\mbf{A}$和$\mbf{C}$都是正定的. 再做分块矩阵的初等变换
+$$
+ \begin{pmatrix}
+\mbf{A} & \mbf{B} \\
+\mbf{B}^T & \mbf{C}
+\end{pmatrix} \to \begin{pmatrix}
+\mbf{A} & \mbf{0} \\
+\mbf{0} & \mbf{C}-\mbf{B}^T\mbf{A}^{-1}\mbf{B} 
+\end{pmatrix}
+$$
+右边这个矩阵是对称矩阵，且相似于$\mbf{M}$，那么它是正定的. 再根据已经证明的结论$\mbf{C}-\mbf{B}^T\mbf{A}^{-1}\mbf{B}$也是正定的. 
+\end{example}
+
+\subsection{正定矩阵的性质}
+
+\begin{example}
+\rm 设$\mbf{A}$是$n$阶正定矩阵，$\mbf{B}$是$n$阶对称矩阵，则存在一个$n$阶可逆矩阵$C$使得$C^T\mbf{A}C$和$C^T\mbf{B}C$都是对角矩阵. 
+
+\hints\ 由于$\mbf{A}$是正定矩阵，那么$\mbf{A}$合同于$\mbf{I}$，即存在可逆矩阵$C_1$使得
+$$
+C_1^T\mbf{A}C_1 = \mbf{I},
+$$
+再构造一个对称矩阵$C_1^T\mbf{B}C_1$，那么存在正交矩阵$C_2$使得
+$$
+C_2^T(C_1^T\mbf{B}C_1)C_2 = \text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\}.
+$$
+令$C = C_1C_2$，可以验证它是满足命题要求的可逆矩阵. 
+\end{example}
+
+
+
+
 
 \end{document}
