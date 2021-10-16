@@ -34,7 +34,7 @@
 \usepackage{indentfirst}
 
 \newcommand{\mbf}[1]{\bm{#1}} 
-
+%\def\arraystretch{2.2}
 
 \usepackage{xcolor}
 \usepackage{titlesec}
@@ -4652,7 +4652,11 @@ $$
 \begin{definition}
 \rm 设向量$\mbf{v} = a\mbf{i} + b\mbf{j} + c\mbf{k}$，其中$\mbf{i},\mbf{j},\mbf{k}$为一组标准正交基，在直角坐标下通常坐标轴$x,y,z$的正向. 令
 $$
-\cos \alpha = \frac{a}{\sqrt{a^2 + b^2 + c^2}}, \cos \beta = \frac{b}{\sqrt{a^2 + b^2 + c^2}},\cos \gamma = \frac{c}{\sqrt{a^2 + b^2 + c^2}},
+\begin{aligned}
+\cos \alpha = \frac{\mbf{v}\cdot\mbf{i}}{\norm{v}} = \frac{a}{\sqrt{a^2 + b^2 + c^2}}\\
+\cos \beta =  \frac{\mbf{v}\cdot\mbf{j}}{\norm{v}} = \frac{b}{\sqrt{a^2 + b^2 + c^2}} \\
+\cos \gamma =  \frac{\mbf{v}\cdot\mbf{k}}{\norm{v}} = \frac{c}{\sqrt{a^2 + b^2 + c^2}}
+\end{aligned}
 $$
 它们称之为$\mbf{v}$对$x,y,z$轴的方向余弦，其中$\alpha,\beta,\gamma$可以分别看做$\mbf{v}$与$x,y,z$轴的夹角值. 
 \end{definition}
