@@ -338,12 +338,8 @@ $$
 \end{example}
 
 \begin{definition}
-\rm {\color{red} (逆序数的概率)} 若给定一个排列$j_1j_2\cdots j_n$，取其中任意两个不同的数$j_p$和$j_q$，使得$1 \leq p< q \leq n$. 若$j_p > j_q$，就称$j_p$和$j_q$构成一个{\color{red}逆序}. 一个排列中所有逆序的总和称为这个排列的{\color{red}逆序数}. 特别地，如果一个排列的逆序数是偶数，则称这个排列为{\color{red}偶排列}，否则称为{\color{red}奇排列}.
+\rm {\color{red} (逆序数)} 若给定一个排列$j_1j_2\cdots j_n$，取其中任意两个不同的数$j_p$和$j_q$，使得$1 \leq p< q \leq n$. 若$j_p > j_q$，就称$j_p$和$j_q$构成一个{\color{red}逆序}. 一个排列中所有逆序的总和称为这个排列的{\color{red}逆序数}. 特别地，如果一个排列的逆序数是偶数，则称这个排列为{\color{red}偶排列}，否则称为{\color{red}奇排列}.
 \end{definition}
-
-我们假设$x = 1.1$，则我们可以认为$x \approx 1$，在原命题上我们可以推出$\frac{1}{2}(2x - 0.2)= x \approx 1$，这里得到的就是$x \approx 
-\frac{2.2}{2} \neq 1$. 
-
 
 \begin{definition}
 \rm {\color{red} ($n$阶行列式的概念)} $n$阶行列式的{\color{red}完全展开式}如下
@@ -925,9 +921,9 @@ $$
 0 & \cdots & 0 & a_{11} &\cdots &a_{1k} \\
  \vdots &  &\vdots& \vdots & \mbf{A} & \vdots \\
 0 & \cdots & 0 & a_{k1} &\cdots& a_{kk}  \\
-c_{11} &\cdots &c_{1k} & b_{11} & \cdots & b_{1r} \\
+c_{11} &\cdots &c_{1r} & b_{11} & \cdots & b_{1k} \\
 \vdots & \mbf{C} & \vdots & \vdots & \mbf{B} &\vdots \\
-c_{r1} &\cdots& c_{rk} & b_{r1} & \cdots & b_{rr} \\
+c_{r1} &\cdots& c_{rr} & b_{r1} & \cdots & b_{rk} \\
 \end{vmatrix} = (-1)^{(n+1)k}
 \begin{vmatrix}
 a_{11} &\cdots &a_{1k} \\
@@ -935,9 +931,9 @@ a_{11} &\cdots &a_{1k} \\
 a_{k1} &\cdots& a_{kk} \\
 \end{vmatrix} \cdot
 \begin{vmatrix}
-b_{11} &\cdots &b_{1r} \\
+c_{11} &\cdots &c_{1r} \\
 \vdots & & \vdots  \\
-b_{r1} &\cdots& b_{rr} \\
+c_{r1} &\cdots& c_{rr} \\
 \end{vmatrix}((-1)^{(n+1)k}|\mbf{A}|\cdot|\mbf{B}|).
 $$ 
 \end{corollary}
@@ -985,12 +981,12 @@ $$
 	$$
 	\begin{vmatrix}
 	a_{11} & 1 & 1 & \cdots & 1 \\ 
-	1 & a_{22} & 0 & \cdots & 1 \\
-	\vdots & \vdots & \vdots &  & 1 \\
+	1 & a_{22} & 0 & \cdots & 0 \\
+	\vdots & \vdots & \vdots &  & 0 \\
 	1 & 0 & 0 & \cdots  & a_{nn} \\ 
 	\end{vmatrix} = \left(\prod\limits_{i=2}a_{ii}\right)\left(a_{11}-\sum\limits_{j=2}\frac{1}{a_{jj}}\right)
 	$$
-\end{enumerate}
+	其中$a_{22}a_{33}\cdots a_{nn} \neq 0$. 将第$2$列的$-\frac{1}{a_{22}}$加到第$1$列，其余列类似，化成下三角行列式.\end{enumerate}
 \end{proposition}
 
 
