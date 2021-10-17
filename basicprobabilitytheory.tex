@@ -1083,7 +1083,7 @@ $$
 \rm 设$X \sim E(\lambda)$，则有
 \begin{enumerate}
 	\item 当$t > 0$时，$P\{X > t\} = \int_t^{+\infty} \lambda e^{-\lambda t}dt$;
-	\item 当$t > 0, s >0$时，$P\{X > t+s |x > s\} = \frac{P\{t+s\}}{P\{s\}} = \frac{e^{-\lambda(t+s)}}{e^{-\lambda}(s)} = e^{-\lambda t} = P\{X > t\}$. 此性质称为指数分布具有"无记忆性". 
+	\item 当$t > 0, s >0$时，$P\{X > t+s |x > s\} = \frac{P\{X > t+s \}}{P\{X > s\}} = \frac{e^{-\lambda(t+s)}}{e^{-\lambda}(s)} =1- e^{-\lambda t} = P\{X > t\}$. 此性质称为指数分布具有"无记忆性". 
 \end{enumerate}
 \end{proposition}
 

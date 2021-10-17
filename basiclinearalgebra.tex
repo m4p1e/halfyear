@@ -3489,7 +3489,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm 设$\mbf{A}$和$\mbf{B}$都为$n$阶方阵(实际不需要是方阵，任意的$m \times n$矩阵即可)，则$\mbf{AB}$和$\mbf{BA}$有相同的特征值(特征多项式).
+\rm 设$\mbf{A}$和$\mbf{B}$都为$n$阶方阵，则$\mbf{AB}$和$\mbf{BA}$有相同的特征值(特征多项式).
 \end{proposition}
 
 \begin{proof}
@@ -3497,8 +3497,10 @@ $$
 $$
 \lambda\mbf{B\alpha} = \mbf{B}(\mbf{AB\alpha}) = (\mbf{BA})\mbf{B\alpha},
 $$
-因此$\lambda$也是$\mbf{BA}$的特征值. (2)若$\mbf{\alpha} = 0$，那么$|\mbf{AB}| = 0$，因此$|\mbf{BA}| = 0$，即$0$也是$|\mbf{BA}|$的特征值.
+因此$\lambda$也是$\mbf{BA}$的特征值. (2)若$\lambda = 0$，那么$|\mbf{AB}| = 0$，因此$|\mbf{BA}| = 0$，即$0$也是$|\mbf{BA}|$的特征值.
 \end{proof} 
+
+\subsection{矩阵多项式}
 
 \begin{theorem}
 \rm \redt{Cayley–Hamilton theorem} 给定矩阵$\mbf{A}$，它的特征多项式为$p_{\mbf{A}}(\lambda) = |\lambda\mbf{I} - \mbf{A}|$. 那么$$
