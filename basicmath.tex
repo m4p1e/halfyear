@@ -1396,7 +1396,7 @@ $$
 $$
 dy = {\color{red}y_t' \cdot dt} = y_x' \cdot x_t' \cdot dt = {\color{red}y_x' \cdot dx}
 $$
-又回到原来的微分形式. 这种微分形式即使在原来的自变量换成新的自变量以后仍可以保持着的性质称为{\color{red}微分形式不变性}. {\color{blue}要注意的是上面式子中$dx$并不是表示$\Delta x$，而是$x=\varphi(t)$关于$t$的微分}.
+又回到原来的微分形式. 这种微分形式即使在原来的自变量换成新的自变量以后仍可以保持着的性质称为{\color{red}微分形式不变性}. {\color{blue}要注意的是上面式子中$dx$可以理解为$\Delta x = \Delta \varphi(t)$}.
 \end{definition}
 
 \begin{example}
@@ -1413,6 +1413,8 @@ $$
 y_x' = \frac{dy}{dx} = \frac{y_t' \cdot dt}{x_t' \cdot dt} = \frac{y_t'}{x_t'} = \frac{\psi'(t)
 }{\varphi'(t)}. 
 $$
+其实这里是有一点问题的，$y_x'$是关于$x$的一个函数，而$\frac{\psi'(t)}{\varphi'(t)}$是关于$t$的一个函数，因此最后这里应该把$x^{-1}(x)$带进去. 
+
 特别地，若$\varphi(t)$和$\psi(t)$二阶可导，则有
 $$
 y_x'' = \frac{d^2y}{dx^2}  = \frac{d\left(\frac{y_t'}{x_t'}\right)}{dx} = \frac{\left(\frac{\psi'(t)
@@ -3554,7 +3556,7 @@ $$
 $$
 的微分方程，称为齐次微分方程. 此时令$u = \frac{y}{x}$，则$y' = u+xu'$，从而原方程化为
 $$
-xu' = \varphi(u) - u,
+xu' = \varphi(u) - u \Rightarrow \frac{du}{\varphi(u)-u} = xdx 
 $$
 此方程为可分离变量的方程. 
 \end{definition}
@@ -3579,7 +3581,7 @@ $$
 
 %https://www.bilibili.com/s/video/BV1t5411t7tB
 \begin{annotation}
-\rm \redt{一阶线性方程通项绝对值是否去掉} 若$-\int P(x)dx = |g(x,y)|$，这里能否去掉绝对值取决于$P(x)$中的常数系数$a$. 若$a$是无理数，或者$a$是$\pm \frac{1}{2},\pm \frac{1}{4},\cdots$等偶分母分数时，积分结果出现了$\ln$时，可以直接不写绝对值.  
+\rm \redt{一阶线性方程通项绝对值是否去掉} 若$-\int P(x)dx = |g(x,y)|$，这里能否去掉绝对值取决于$P(x)$中的常数系数$a$. 若$a$是无理数，或者$a$是$\pm \frac{1}{2},\pm \frac{1}{4},\cdots$等偶分母分数时，积分结果出现了$\ln$时，绝对值不可省去.  
 \end{annotation}
 
 \begin{definition}
@@ -3591,7 +3593,7 @@ $$
 $$
 y^{-n} \frac{dy}{dx} + P(x)y^{1-n} = Q(x).
 $$
-此时令$u = y^{1-n}$，则有
+此时令$u = y^{1-n}$，那么$du = (1-n)y'y^{-n}dx$，于是有
 $$
 \frac{du}{dx} + (1-n)P(x)u = (1-n)Q(x).
 $$
@@ -3678,7 +3680,11 @@ $$
 $$
 y'' = f(y,y')
 $$
-的微分方程，此时令$p = y', p \frac{dp}{dy} = y''$ ，则有
+的微分方程，此时令$p = y'$ ，那么
+$$
+y'' = \frac{d(y')}{dx} = \frac{dp}{dy} \cdot \frac{dy}{dx} = p \frac{dp}{dy}. 
+$$
+于是则有
 $$
 p \frac{dp}{dy} = f(y,p),
 $$
@@ -3812,8 +3818,8 @@ $$
 这样我们可以通过对这两个等式做线性的变换导出两个新的线性无关的解
 $$
 \begin{array}{ll}
-y = e^{ax}\cos \beta x \\
-y = e^{ax}\sin \beta x
+y_1 = e^{ax}\cos \beta x \\
+y_2 = e^{ax}\sin \beta x
 \end{array}
 $$
 因此原方程的通解为$e^{ax}(C_1\cos \beta x +C_2 \sin \beta x)$. 这里可能有一点小疑问在我们在取第二个解的时候，需要除或者乘上$i$，这个$i$在复数域上我们默认是常数. 
@@ -3895,7 +3901,7 @@ $$
 \end{definition}
 
 \begin{annotation}
-\rm 作变换$x=e^t$或者$t = ln x$(与$x < 0$时所得结果一致)，则有
+\rm 作变换$x=e^t$或者$t = \ln x$(与$x < 0$时所得结果一致)，则有
 $$
 \begin{array}{ll}
 \frac{dy}{dx} = \frac{dy}{dt}\frac{dt}{dx} = \frac{1}{x} \frac{dy}{dt} \\
