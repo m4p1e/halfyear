@@ -1468,6 +1468,41 @@ $$
 $$
 \end{example}
 
+
+\begin{example}
+\rm 设$\mbf{A}$为2阶矩阵，$\mbf{P}=(\mbf{\alpha},\mbf{A\alpha})$，其中$\mbf{\alpha}$为非零向量，且不是$\mbf{A}$的特征向量. 若$\mbf{A}^2\mbf{\alpha}+\mbf{A\alpha}-6\mbf{\alpha} = \mbf{0}$，证明$\mbf{P}$是可逆矩阵，求$\mbf{P}^{-1}\mbf{A}\mbf{P}$. 
+
+\hints\ 根据题意不存在$\lambda$使得$\mbf{A\alpha} = \lambda\mbf{\alpha}$，那么$\mbf{A\alpha}$和$\mbf{\alpha}$是向量无关的. 这个$\mbf{P}^{-1}$估计是不能表示出来，猜测最后结果有这样的形式$\mbf{AP} = \mbf{P}\mbf{B}$，那么来我们来求$\mbf{AP}$.
+$$
+\begin{aligned}
+\mbf{AP} &= (\mbf{A\alpha} + \mbf{A}^2\mbf{\alpha})  \\
+&=(\mbf{A\alpha},6\mbf{\alpha}-\mbf{A\alpha}) \\
+&=\mbf{P}\begin{pmatrix}
+0 & 1 \\
+1 & 1
+\end{pmatrix}\begin{pmatrix}
+1 & 0 \\
+0 & 6
+\end{pmatrix}
+\begin{pmatrix}
+1 & -1 \\
+0 & 1
+\end{pmatrix} \\
+& = \mbf{P}\begin{pmatrix}
+0 & 6 \\
+1 & -1
+\end{pmatrix}
+\end{aligned}
+$$
+因此
+$$
+\mbf{P}^{-1}\mbf{A}\mbf{P} = \begin{pmatrix}
+0 & 6 \\
+1 & -1
+\end{pmatrix}
+$$
+\end{example}
+
 \newpage
 \section{矩阵的逆}
 

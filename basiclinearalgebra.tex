@@ -75,6 +75,7 @@
 \newcommand{\hints}{{\color{blue} \text{hints}}}
 \newcommand{\mbf}[1]{\bm{#1}} 
 \newcommand{\rank}[1]{\text{rank}\left(#1\right)} % rank
+\newcommand{\trace}[1]{\text{tr}\left(#1\right)} % trace
 \newcommand\inp[2]{\langle #1, #2 \rangle} %inner product
 
 \newcommand{\redt}[1]{\textcolor{red}{#1}}
@@ -3600,6 +3601,34 @@ $$
 \begin{annotation}
 \rm \bluet{矩阵相似是一种等价关系}，并且是矩阵等价的特例.  
 \end{annotation}
+
+\begin{definition}
+\rm $n$阶矩阵的$\mbf{A}=(a_{ij})$的主对角元素的和称为$\mbf{A}$的\redt{迹}，记做$\trace{A}$，即
+$$
+\trace{A} = a_{11}+ a_{22} + \cdots + a_{nn}. 
+$$
+\end{definition}
+
+\begin{proposition}
+\rm 给定两个$n$阶矩阵$\mbf{A},\mbf{B}$，矩阵的迹满足一下性质
+\begin{enumerate}
+	\item $\trace{\mbf{A}+\mbf{B}} = \trace{\mbf{A}} + \trace{\mbf{B}}$;
+	\item $\trace{k\mbf{A}} = k\trace{\mbf{A}}$;
+	\item $\trace{\mbf{A}\mbf{B}} = \trace{\mbf{B}\mbf{A}}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+\rm 相似矩阵有相同的迹.
+\end{proposition}
+
+\begin{proof}
+\rm 若$\mbf{A} \sim \mbf{B}$，那么
+$$
+\trace{\mbf{B}} = \trace{\mbf{P}^{-1}\mbf{A}\mbf{P}} = \trace{\mbf{A}\mbf{P}\mbf{P}^{-1}} = \trace{\mbf{A}}.
+$$
+前面已经证明过了它们等于特征值之和. 
+\end{proof}
 
 \begin{proposition}\label{similar-matrix: same-characteristic-values}
 \rm \redt{重要的一个必要条件} 相似矩阵有相等的特征多项式，从而特征值亦相同. 
