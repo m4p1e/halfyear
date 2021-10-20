@@ -1532,10 +1532,15 @@ $$
 	\item 确定曲面的方向;
 	\item 确定曲面是否可以围成一个闭区域，考虑使用高斯公式
 	$$
-	\int\int_\sum Pdydz + Qdzdx + Rdxdy = \int\int\int_\Omega (\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dv.
+	\iint_\sum Pdydz + Qdzdx + Rdxdy = \iint_\Omega (\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dv.
 	$$
 	这里曲面需要取外侧方向，如果当且曲面是内侧方向则需要加负号，也需要确定$P,Q,R$是否具有一阶连续偏导. 
 	\item 考虑是否可以增加补面围成一个闭区间来使用高斯公式. 
+	\item 考虑将其转换为第一类曲面积分，计算每点的法向量$\bm{\eta}$，利用法向量计算出对应的方向余弦，再利用
+	$$
+	\iint_\Sigma P\cos\alpha + Q\cos\beta + R\cos\gamma = \iint_\Sigma Pdydz + Qdzdx + Pdxdy. 
+	$$
+	这样做的前提是可以化为第一类曲面积分之后可以简化计算. 
 	\item 直接计算，上述给定是$z$关于$x,y$方程，那么曲线方向决定了曲面法线和$z$轴的夹角余弦值，若余弦值是负的，则需要在下式积分号就带负号
 	$$
 	\int\int_{S} f(x,y,z)dxdy = \pm \int\int_{D_{xy}} f(x,y,f(x,y))dxdy.
@@ -1543,6 +1548,36 @@ $$
 	这里要注意若给定是$y$关于$x,z$的方程，这里的余弦值则是看曲面法向量和$y$轴的夹角. 
 \end{enumerate}
 \end{annotation}
+
+\subsection{两类曲面积分的联系}
+
+\begin{example}
+\rm 设$\Sigma$为曲面$z = \sqrt{x^2 + y^2}(1 \leq x^2 + y^2 \leq 4)$的下侧，$f(x)$为连续函数，计算
+$$
+I = \iint_\Sigma [xf(xy) + 2x-y]dydz + [yf(xy) + 2y + x]dzdx + [zf(xy) + z]dxdy. 
+$$
+
+\hints\ 这里有未知函数$f(xy)$肯定不能硬积分. 考虑转换第一类曲面积分，曲面$z$的法向量$\bm{\eta}$为
+$$
+(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}},-1)
+$$
+这里方向是是一致的，因为$\bm{\varepsilon}_z \cdot \bm{\eta} < 0$. 为了方便计算方向余弦，令$\eta = (x,y,-z)$，于是
+$$
+\begin{aligned}
+I &= \iint_{\Sigma} \frac{x^2f(xy) + 2x^2-xy + y^2f(xy)+2y^2 + xy - z^2f(xy)-z^2}{\sqrt{2(x^2+y^2)}}dS\\
+& =  \iint_{\Sigma} \frac{(x^2+y^2-z^2)f(xy) + 2x^2+2y^2-z^2}{\sqrt{2(x^2+y^2)}}dS \\
+& = \frac{\sqrt{2}}{2} \iint_{\Sigma} \sqrt{x^2 + y^2}dS
+\end{aligned}
+$$
+这样我们得到一个简洁的第一类曲面积分，再将其放到$x0y$上的区域$D=\{(x,y): 1 \leq x^2 + y^2 \leq 4\}$来计算，于是得到
+$$
+\begin{aligned}
+I &= \frac{\sqrt{2}}{2} \iint_D \sqrt{x^2 + y^2} \cdot  \sqrt{\frac{x^2}{x^2+y^2} + \frac{y^2}{x^2+y^2} + 1}dxdy \\
+&= \int_0^{2\pi} d\theta \int_1^2 \rho^2 dp\\
+&= \frac{14\pi}{3}
+\end{aligned}
+$$
+\end{example}
 
 \newpage
 \section{级数}
@@ -1681,6 +1716,14 @@ $$
 \end{example}
 
 \subsection{构造微分方程}
+
+\begin{annotation}
+\rm 下面两种形式可以尝试构造微分方程:
+\begin{enumerate}
+	\item 形如$a_nx^{f(n)}$，$a_n$里面含有关于$f(n)$.
+	\item 可以构造$g(a_n)$使得其含有关于$f(n)$的因子.
+\end{enumerate}
+\end{annotation}
 
 \begin{example}
 \rm 求下述幂级数的和函数
