@@ -214,6 +214,30 @@ $$
 \end{example}
 
 
+\subsection{线性相关}
+
+\begin{example}
+\rm 设随机变量$X \sim N(0,1), Y \sim N(1,4)$，且相关系数$\rho_{XY} = 1$，求$Y=aX+b$. 
+
+\hints\ 这个题非常经典，$\rho_{XY} = 1$表示$X$和$Y$线性相关，来求它们之间的线性表达式. 
+
+\redt{方法1.} 直接祭关键表达式
+$$
+E\{[t(X-E(X)) + (Y-E(Y))]^2\} = t^2D(X)+2t\text{Cov}(X,Y)+D(Y),
+$$
+使得上式左边等于$0$，求出$t$. 因此
+$$
+t(X-E(X)) + (Y-E(Y)) = 0,
+$$
+带入$t=2$，即可求得$Y=2X+1$. 
+
+\redt{方法2.} 由$Y=aX+b$，那么$E(Y)=E(aX+b)$，求出$b = 1$. 再由
+$$
+\text{Cov}(X,Y) = \text{Cov}(X,aX+b) = a\text{Cov}(X,X) = 2,
+$$
+求出$a=2$.  
+\end{example}
+
 
 \section{三大分布}
 

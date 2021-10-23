@@ -2318,6 +2318,22 @@ $$
 右边这个矩阵是对称矩阵，且相似于$\mbf{M}$，那么它是正定的. 再根据已经证明的结论$\mbf{C}-\mbf{B}^T\mbf{A}^{-1}\mbf{B}$也是正定的. 
 \end{example}
 
+\begin{example}
+\rm 若$\mbf{A}$是$n$阶可逆矩阵，那么$\mbf{A}\mbf{A}^T$正定. 
+
+\hints\ 显然$\mbf{A}\mbf{A}^T$是一个对称矩阵，设$\mbf{B} = \mbf{A}^T$，那么
+$$
+\begin{aligned}
+\mbf{\alpha}^T\mbf{A}\mbf{A}^T\mbf{\alpha} &= \mbf{\alpha}^T\mbf{B}^T\mbf{B}\mbf{\alpha} \\
+&= (\mbf{B}\mbf{\alpha})^T \mbf{B}\mbf{\alpha},
+\end{aligned} 
+$$
+设$\mbf{y} = \mbf{B}\mbf{\alpha}$，当$\mbf{\alpha} \neq \mbf{0}$时，因$\mbf{A}$是可逆矩阵，那么$\mbf{y} \neq \mbf{0}$，所以
+$$
+\mbf{y}\mbf{y}^T > 0. 
+$$
+\end{example}
+
 \subsection{正定矩阵的性质}
 
 \begin{example}
