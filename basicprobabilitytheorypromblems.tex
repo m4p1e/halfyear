@@ -261,4 +261,17 @@ $$
 \hints\ $X \sim F(n_1,n_2) \Rightarrow \frac{1}{X} \sim F(n_2,n_1)$. 
 \end{example}
 
+\section{假设检验}
+
+\subsection{犯错的概率}
+
+\begin{example}
+\rm 设$X_1,X_2,\cdots,X_16$是来自总体$N(\mu,4)$的简单样本，考虑假设检验问题$H_0: \mu \leq 10, H_1: u > 10$. 若该检验问题的拒绝域为$W=\{\overline{X} > 11 \}$，其中$\overline{X} = \frac{1}{16}\sum\limits_{i=1}^{16}X_i$，则$\mu = 11.5$时，求该检验犯第二类错误的概率. 
+
+\hints\ 给定$\mu = 11.5$，那么原假设$H_0$为假的，因此按照定义
+$$
+\beta = P\{\overline{X} \leq 11\} = P\{\frac{\overline{X}-11.5}{\frac{1}{2}} \leq -1\} = \Phi(-1) = 1-\Phi(1). 
+$$
+\end{example}
+
 \end{document}

@@ -3083,25 +3083,39 @@ $$
 \end{enumerate}
 \end{example}
 
+
 \begin{definition}
-\rm 拒绝实际真的假设$H_0$称为\redt{第一类错误}; 接受实际不真的假设$H_0$称为\redt{第二类错误}.
+\rm 给定某假设检验问题$H_0$，设该假设检验中构造的统计量为$T$. 假设$H_0$的\redt{拒绝域}就是$T$的一个取值范围$W$，当$T \in W$我们则拒绝原假设$H_0$，反之则接受原假设$H_0$. 
 \end{definition}
 
 \begin{definition}
-\rm 在假设$H_0$成立时，仍有$\alpha$的概率会拒绝$H_0$，这个$\alpha$称为\redt{检验水平}. 一般$\alpha$取$0.1,0.05,0.01,0.001$. 
+\rm 当原假设$H_0$为真的情况下拒绝了$H_0$则称为\redt{第一类错误}; 反之在假设$H_0$为假的情况下接受了$H_0$则称为\redt{第二类错误}.
+\end{definition}
+
+\begin{definition}
+\rm 当原假设$H_0$为真时，仍有$\alpha$大小的概率拒绝原假设，则称$\alpha$为\redt{显著性水平}.  
+\end{definition}
+
+%https://core.ac.uk/download/pdf/41448134.pdf 两类错误
+\begin{definition}
+\rm 给定假设问题$H_0$，设假设检验的过程中构造的统计量为$T$，把显著水平$\alpha$下确定的拒绝域记为$W$，接受域为$\overline{W}$. 当原假设$H_0$为真时，仍有$\alpha$大小的概率拒绝原假设$H_0$，则称$\alpha$为\redt{犯第一类错误的概率}，表示为
+$$
+\alpha = P\{T \in W|H_0\text{为真}\}. 
+$$
+当原假设$H_0$为假时，仍有$\beta$大小的概率的接受它，则称$\beta$为\redt{犯第二类错误的概率}，表示为
+$$
+\beta = P\{T \in \overline{W} | H_0\text{为假}\}. 
+$$  
 \end{definition}
 
 \begin{definition}
 \rm 只控制第一类错误概率$\alpha$的统计检验，称为\redt{显著性检验}.
 \end{definition}
 
-\begin{definition}
-\rm 在给定检验水平情况下，不可能出现的样本的范围，称之为\redt{拒绝域}，即如果一旦出现这个范围里面的样本，则拒绝当前假设. 
-\end{definition}
-
 \begin{proposition}
-\rm 检验水平越小，则拒绝域也越小. 
+\rm 显著水平越小，则拒绝域也越小. 
 \end{proposition}
+
 
 \begin{annotation}
 \rm \redt{设总体$X \sim N(\mu,\sigma^2)$，检验$H_0: \mu=\mu_0$}. 如果已知$\sigma^2$，则使用统计量为
@@ -3141,7 +3155,7 @@ $$
 $$
 P\{Y \geq \lambda \} = P\left\{\overline{X} \geq \mu_0 + \lambda\sqrt{\frac{\sigma^2}{n}}\right\} \leq P\left\{ \overline{X} \geq \mu + \lambda\sqrt{\frac{\sigma^2}{n}} \right\} = P\{U \geq \lambda\} = \alpha.
 $$ 
-\bluet{上述不等式成立条件是在同参数$\overline{X}$下而言的}，因此$\{Y \geq \lambda\}$也是一个小概率事件，使得我们可以直接来计算$Y$来检验$H_0$. 当计算出来的$Y \geq \lambda$时，则拒绝$H_0$，否则接受$H_0$. 
+\bluet{上述不等式成立条件是在同参数$\overline{X}$下而言的}，因此$\{Y \geq \lambda\}$也是一个小概率事件，使得我们可以直接来计算$Y$来检验$H_0$. 从而这里的拒绝域为$W = \{\overline{X} \geq \mu_0 + \lambda\sqrt{\frac{\sigma^2}{n}}\}$，若计算出来的$\overline{X} \in W$则拒绝$H_0$，否则接受$H_0$. 
 
 同理，\redt{检验$H_0: \mu \geq \mu_0$}，直观上样本均值$\overline{X}$越大越与原假设相符合，即统计量$U$越大越符合假设，当$U$比较小时则违背原假设. 因此取$\lambda$使
 $$
@@ -3153,9 +3167,9 @@ Y = \frac{\overline{X}-\mu_0}{\sqrt{\frac{\sigma^2}{n}}} \geq U , \mu \geq \mu_0
 $$
 于是
 $$
-P\{Y \leq \lambda \} \leq P\{U \leq \lambda\} = \alpha
+P\{Y \leq \lambda \} =  P\{\overline{X} \leq \mu_0 + \lambda\sqrt{\frac{\sigma^2}{n}}\} \leq P\{U \leq \lambda\} = \alpha
 $$
-因此${Y \leq \lambda}$也是一个小概率事件. 当计算出来的$Y \leq \lambda$时，则拒绝$H_0$，否则接受$H_0$.
+因此${Y \leq \lambda}$也是一个小概率事件. 从而这里的拒绝域为$W = \{\overline{X} \leq \mu_0 + \lambda\sqrt{\frac{\sigma^2}{n}}\}$，若计算出来的$\overline{X} \in W$则拒绝$H_0$，否则接受$H_0$.
 \end{annotation}
 
 \begin{annotation}
@@ -3164,7 +3178,7 @@ $$
 	\item 提出待检验的假设$H_0$;
 	\item 给出检验水平$\alpha$ ($0 < \alpha < 1$);
 	\item 确定检验使用的统计量$U$及拒绝域$W$的形式;
-	\item 根据样本计算出统计量$u$和按$\alpha$求出拒绝域$w$
+	\item 根据样本计算出统计量$u$和按$\alpha$求出拒绝域$W$
 	\item 比较统计量是否在拒绝域中，若在$u \in w $，则拒绝原假设$H_0$，否则接受$H_0$.
 \end{enumerate}
 \end{annotation}

@@ -22,12 +22,12 @@
 halt(P,I) #给定一个特定程序P和输入I，判定P是否会在有限的时间内结束运行，若可以在有限时间内返回，则返回true，否则返回false. 
 
 foo(P){
-    while(halt(P,P)){
+    while(halt(foo,P)){
         #dead loop
     }
 }
 
-halt(foo(P)) #??? 会正常返回吗？
+halt(foo,P) #??? 会正常返回吗？
 ```
 
 
