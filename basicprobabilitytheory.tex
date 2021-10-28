@@ -134,6 +134,10 @@ $$
 \end{enumerate}
 \end{proposition}
 
+\begin{annotation}
+\rm {\color{red} 零概率事件$P(A) = 0$与不可能事件$A=\emptyset,P(A) = 0$不是一个概念}.
+\end{annotation}
+
 \subsection{古典概型和几何概率}
 
 \begin{definition}
@@ -618,63 +622,7 @@ $$
 \end{proof}
 
 
-
 \newpage
-\subsection{更深的思考和技巧}
-
-\begin{annotation}
-\rm {\color{red} 零概率事件$P(A) = 0$与不可能事件$A=\emptyset,P(A) = 0$不是一个概念}.
-\end{annotation}
-
-
-%https://zhuanlan.zhihu.com/p/53736521 独立和互斥
-\begin{annotation}
-\rm {\color{red} 如何理解事件之间独立性} 事件$A$和$B$独立，则有下面等式成立
-$$
-P(AB) = P(A)P(B). 
-$$
-你可能总想深究其更本质的含义，可能你会联想到当事件$A$和$B$独立时，那么$A$和$B$之间有什么关系呢？ 当$P(A)>0, P(B) > 0$时，有这样一种关系: {\color{red} 互斥不独立，独立不互斥}，证明也是很显然的. 举个例子两个人都在扔色子，事件$A$表示第一个人扔出$6$，事件$B$表示第二个人扔出$6$，那么$A$和$B$是独立的，即它们发生是互不影响的; 若事件$A$表示扔出第一个人$6$，事件$B$表示第一个人扔不出$6$，那么$A$和$B$是互斥的，显然$A$发生$B$就不会发生，反之依然.
-\end{annotation}
-
-\begin{annotation}
-\rm {\color{red} 当$P(A) = 0$时，如何计算$P(AB)$？}条件概率的定义中特别指明了$P(A) > 0$，那么$P(A)$等于$0$时候，条件概率$P(B|A)$是未定义的. 那么此时如果我们要计算$P(AB)$应该怎么办呢？ 肯定不能使用乘法公式了. 我们可以利用$P$的{\color{blue}单调性}，因为$AB \subseteq A$，所以$P(AB) \leq P(A)$，所以$P(AB)=0$.
-\end{annotation}
-
-$$
-AB ~\text{和} \bar{A} \bar{B}
-$$
-
-\begin{annotation}
-\rm {\color{red} 取部分对立事件不影响独立性} 若$P(AB) = P(A)P(B)$，有下面等式成立
-$$
-\begin{array}{l}
-P(\bar{A}\bar{B}) = P(\bar{A})P(\bar{B})\\
-P(\bar{A}B) = P(\bar{A})P(B)\\
-P(A\bar{B}) = P(A)P(\bar{B})
-\end{array}
-$$
-我们来证明第一个等式
-$$
-\begin{array}{rl}
-P(AB) &= P(A)P(B) \\
-	  &= (1-P(\bar{A}))(1-P(\bar{B}))\\
-	  &= 1-P(\bar{A})-P(\bar{B}) + P(\bar{A})P(\bar{B})\\
-	  \\
-P(\bar{A}) + P(\bar{B}) - P(\bar{A} \cup \bar{B}) &= P(\bar{A})P(\bar{B}) \\
-P(\bar{A}\bar{B}) &= P(\bar{A})P(\bar{B})
-\end{array}
-$$
-其余的等式应用类似的手法来证明. 由此在$A$和$B$相互独立的情况下，延伸出来一些有用的等式
-$$
-\begin{array}{l}
-P(A \cup B) = 1 - P(\bar{A}\bar{B}) = 1-P(\bar{A})P(\bar{B})\\
-P(A-B) = P(A\bar{B}) = P(A)P(\bar{B}) 
-\end{array}
-$$
-这些等式也可以推广为$n$个事件相互独立.
-\end{annotation}
-
-
 \section{随机变量及其概率分布}
 
 \subsection{随机变量及其分部函数}
