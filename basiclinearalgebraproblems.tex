@@ -594,6 +594,7 @@ $$
 
 \begin{example}
 \rm 证明: 如果向量组$\mbf{\alpha}_1,\mbf{\alpha}_2,\mbf{\alpha}_3$线性无关，那么向量组$3\mbf{\alpha}_1-\mbf{\alpha}_2,5\mbf{\alpha}_2 + 2\mbf{\alpha}_3, 4\mbf{\alpha}_3-7\mbf{\alpha}_1$
+
 \hints\ 直接用线性无关的定义，即
 $$
 k_1(3\mbf{\alpha}_1-\mbf{\alpha}_2) + k_2(5\mbf{\alpha}_2 + 2\mbf{\alpha}_3)+ k_3(4\mbf{\alpha}_3-7\mbf{\alpha}_1) = \mbf{0}
@@ -795,11 +796,11 @@ $$
 \subsection{方程组性质}
 
 \begin{example}
-\rm 证明: 给定$s$个$n$线性方程组成的线性方程组，如果该方程组的增广矩阵的第$i$个行向量$\mbf{\alpha}_i$可以由其余行向量线性表出，即
+\rm 证明: 给定$s$个$n$元线性方程组成的线性方程组，如果该方程组的增广矩阵的第$i$个行向量$\mbf{\alpha}_i$可以由其余行向量线性表出，即
 $$
 \mbf{\alpha}_i = k_1\mbf{\alpha}_1 + k_{i-1}\mbf{\alpha}_{i-1} + k_{i+1}\mbf{\alpha}_{k+1} + \cdots + k_s\mbf{\alpha}_s 
 $$
-那么将第$i$个方程去掉之后得到的方程组与原方程组通解. 
+那么将第$i$个方程去掉之后得到的方程组与原方程组同解. 
 \end{example}
 
 \begin{example}
@@ -811,29 +812,29 @@ $$
 
 \hints\ \emph{必要性}\ 若$H$的任意$s$列都线性无关. 假设上述线性方程存在一个非零解为
 $$
-\eta = (0,\cdots,c_{i_1},\cdots,c_{i_j},\cdots)^{T}. 
+\eta = (0,\cdots,c_{i_1},\cdots,c_{i_l},\cdots)^{T}. 
 $$
-其中$c_{i_1},\cdots,c_{i_j}$均不为零，且$ l \leq s$. 则
+其中$c_{i_1},\cdots,c_{i_l}$均不为零，且$ l \leq s$. 则
 $$
-c_{i_1}\mbf{\alpha}_{i_1}+\cdots+c_{i_j}\mbf{\alpha}_{i_j} = \mbf{0},
+c_{i_1}\mbf{\alpha}_{i_1}+\cdots+c_{i_l}\mbf{\alpha}_{i_j} = \mbf{0},
 $$
 这意味着存在$l$列线性相关，与前提数矛盾，因此任一非零解的非零分量的数目大于$s$
 
 \emph{充分性}\ 若$H$的任一非零向量的非零分量的数目大于$s$. 假设有$l\leq s$个列向量线性相关
 $$
-k_{i_1}\mbf{\alpha}_{i_1}+\cdots+k_{i_j}\mbf{\alpha}_{i_j} = \mbf{0},
+k_{i_1}\mbf{\alpha}_{i_1}+\cdots+k_{i_l}\mbf{\alpha}_{i_l} = \mbf{0},
 $$
 那么存在一个非零解，即
 $$
-\eta = (0,\cdots,k_{i_1},\cdots,k_{i_j},\cdots)^{T}. 
+\eta = (0,\cdots,k_{i_1},\cdots,k_{i_l},\cdots)^{T}. 
 $$
 就是将其他分量扩充为0即可，这样和前提是矛盾的. 因此$H$的任意$s$列都线性无关. 
 \end{example}
 
 \begin{example}
-\rm 设$\mbf{A}$为$m \times n$矩阵，证明: 对于任意$\mbf{\beta} \in \mathbb{R}^m$，线性方程组$\mbf{A}^T\mbf{A}\mbf{X} = \mbf{A}^T\mbf{\beta}$
+\rm 设$\mbf{A}$为$m \times n$矩阵，证明: 对于任意$\mbf{\beta} \in \mathbb{R}^m$，线性方程组$\mbf{A}^T\mbf{A}\mbf{X} = \mbf{A}^T\mbf{\beta}$有解. 
 
-\hints\ 当时套线性方程有解的充要条件，证明增广矩阵$(\mbf{A}^T\mbf{A},\mbf{A}^T\mbf{\beta})$和系数矩阵$\mbf{A}^T\mbf{A}$的秩相同即可. 显然有
+\hints\ 直接套线性方程有解的充要条件，证明增广矩阵$(\mbf{A}^T\mbf{A},\mbf{A}^T\mbf{\beta})$和系数矩阵$\mbf{A}^T\mbf{A}$的秩相同即可. 显然有
 $$
 \rank{(\mbf{A}^T\mbf{A},\mbf{A}^T\mbf{\beta})} \geq \rank{\mbf{A}^T\mbf{A}}. 
 $$
