@@ -2033,7 +2033,7 @@ E\left[t(X-E(X)) + (Y-E(Y))\right]^2 = \sigma_1^2t^2 + 2\text{Cov}(X,Y)t + \sigm
 \begin{equation}
 \sigma_1^2\sigma_2^2 \leq \left[\text{Cov}(X,Y)\right]^2.
 \end{equation}
-\emph{必要性}\ 若(2)式等号成立，那么(1)式RHS就可以写成$(\sigma_1t \pm \sigma_2)^2$. 其中$\pm$取决于$\text{Cov}(X,Y)$的符号，方便证明我们这里假设$\text{Cov}(X,Y) > 0$，则(1)式RHS为$(\sigma_1t +\sigma_2)^2$. 于是$t=t_0=-\frac{\sigma_2}{\sigma_1}$时，(1)式就等于$0$，即
+\emph{必要性}\ 若(2)式等号成立，那么(1)式RHS就可以写成$(\sigma_1t \pm \sigma_2)^2$. 其中$\pm$取决于$\text{Cov}(X,Y)$的符号，方便证明我们这里假设$\text{Cov}(X,Y) > 0$，则(1)式RHS为$(\sigma_1t +\sigma_2)^2$. 于是取$t=t_0=-\frac{\sigma_2}{\sigma_1}$时，(1)式就等于$0$，即
 $$
 E\left[t_0(X-E(X_1)) + (Y-E(Y))\right]^2 = 0.
 $$
@@ -2162,7 +2162,7 @@ E(X) = \sum\limits_{k=1}^n kC_n^kp^kq^{n-k} = \sum\limits_{k=1}^n k\cdot\frac{n!
 $$
 其方差为
 $$
-D(X) = E(X^2) -E^2(X) = np\sum\limits_{k'=0}^{n-1} (k'+1) C_{n-1}^{k'}p^{k'}q^{(n-1)-k'} = np(n-1)p + np - n^2p^2 = np(1-p).
+D(X) = E(X^2) -E^2(X) = np\sum\limits_{k'=0}^{n-1} (k'+1) C_{n-1}^{k'}p^{k'}q^{(n-1)-k'} -n^2p^2= np(n-1)p + np - n^2p^2 = np(1-p).
 $$
 \end{proof}
 

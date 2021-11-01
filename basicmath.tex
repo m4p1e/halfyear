@@ -2111,7 +2111,7 @@ $$
 $$
 设$t=\sin x$，那么原式为
 $$
-\int \sin^3x\cos xdx = \int \sin^3xd\sin x = \int t^3 dt = \frac{t^4}{t}+C.
+\int \sin^3x\cos xdx = \int \sin^3xd\sin x = \int t^3 dt = \frac{t^4}{4}+C.
 $$
 最后$t$替换为$\sin x$即可.
 \end{example}
@@ -2149,7 +2149,7 @@ $$
 $$
 \int \frac{1}{\sqrt{x}(1+\sqrt[3]{x})}dx
 $$
-这里令$x=t^3$，那么原式就变成了
+这里令$x=t^6$，那么原式就变成了
 $$
 \int \frac{6t^5}{t^3(1+t^2)}dt = 6\int \left[ 1-\frac{1}{1+t^2} \right] = 6t-6\arctan t + C = 6\sqrt[6]{x}-6\arctan \sqrt[6]{x} + C
 $$
@@ -2685,7 +2685,7 @@ I-\varepsilon \leq s \leq \sigma \leq S \leq I+\varepsilon.
 $$
 可以马上得到$|S-s| \leq \varepsilon$.
 
-{\color{blue} 充分性} 由前一个lemma，可以知道所有的达布下积分都有上界，取对应的上确界为$I_*$； 下积分都有下界，取对应的下确界为$I^*$. 命题条件说明当$\lambda \rightarrow 0$时，有$I_* = I^*$，设其公共值为$I$，即有
+{\color{blue} 充分性} 由前一个lemma，可以知道所有的达布下积分都有上界，取对应的上确界为$I_*$； 达布上积分都有下界，取对应的下确界为$I^*$. 命题条件说明当$\lambda \rightarrow 0$时，有$I_* = I^*$，设其公共值为$I$，即有
 $$
 s \leq I \leq S,
 $$
@@ -2718,7 +2718,7 @@ $$
 \end{proof}
 
 \begin{theorem}
-\rm {\color{red} (可积的判别条件3) } 在$[a,b]$单调有界函数$f(x)$永远可积.
+\rm {\color{red} (可积的判别条件3) } $f(x)$在$[a,b]$上单调有界$f(x)$，则$f(x)$在$[a,b]$上可积. 
 \end{theorem}
 
 \begin{proof}
@@ -2732,7 +2732,7 @@ $$
 $$
 使得$f(b)\neq f(a)$，不然常函数肯定可积. 再让$\lambda < \delta$，即$\Delta x_i < \delta$，那么
 $$
-\sum\limits_{i=0}^{n-1}\omega_i\Delta x_i < \sum\limits_{i=0}^{n-1}\left[f(x_{i+1})-f(x_{i})\right] \delta = \varepsilon\left[ f(b)-f(a) \right] 
+\sum\limits_{i=0}^{n-1}\omega_i\Delta x_i < \sum\limits_{i=0}^{n-1}\left[f(x_{i+1})-f(x_{i})\right] \delta = \varepsilon 
 $$
 由此可推导$f(x)$可积.
 \end{proof}
@@ -2811,7 +2811,7 @@ $$
 $$
 \frac{1}{b-a}\int_a^b f(x)dx = u,
 $$
-移项即马上可以得到命题中的结论.
+移项即马上可以得到命题中的结论. 若$f(x)$连续，再用一下介值定理即可找到$f(c_0) = u$，其中$m \leq c_0 \leq M$. 
 \end{proof}
 
 \begin{theorem}
@@ -2819,7 +2819,7 @@ $$
 $$
 \int_a^b f(x)g(x)dx = u\int_a^b g(x)dx.
 $$
-特别地当$f(x)$连续时，存在一点$c\in [a,b]$使得$u=f(c)$.  
+其中$m \leq  u \leq M$. 特别地当$f(x)$连续时，存在一点$c\in [a,b]$使得$u=f(c)$.  
 \end{theorem}
 
 \begin{proof}
@@ -2827,7 +2827,7 @@ $$
 $$
 mg(x) \leq f(x)g(x) \leq Mg(x),
 $$
-同时取积分，可以得到
+同时取积分再除去$\int_a^b g(x)dx$，可以得到
 $$
 m \leq \frac{\int_a^b f(x)g(x)dx}{\int_a^b g(x)dx} \leq M.
 $$
@@ -2847,7 +2847,7 @@ $$
 \begin{proof}
 \rm 先证右侧不等式，若$f$在$[a,b]$上是凸函数，则
 $$
-f(x) \leq f(x)\leq \frac {x-a}{b-a}f(b)+\frac {b-x}{b-a}f(a),\forall x\in [a,b].
+f(x)\leq \frac {x-a}{b-a}f(b)+\frac {b-x}{b-a}f(a),\forall x\in [a,b],
 $$
 两边同时积分得到
 $$
@@ -2864,7 +2864,7 @@ $$
 $$
 两边同时积分得到
 $$
-\int_{0}^{\frac{b-a}{2}} f\left(\frac{a+b}{2}+h\right) + f\left(\frac{a+b}{2}-h\right) \geq f\left(\frac{a+b}{2}\right)(b-a) 
+\int_{0}^{\frac{b-a}{2}} f\left(\frac{a+b}{2}+h\right) + f\left(\frac{a+b}{2}-h\right)dh \geq f\left(\frac{a+b}{2}\right)(b-a),
 $$
 左边这个积分拆开换元即有
 $$
@@ -2898,7 +2898,7 @@ $$
 $$
 \Phi(x+h) - \Phi(x)  = \mu h.
 $$
-其中$m \leq \mu \leq M$，这个确界是$f(x)$在$[x,x+h]$上的，言下之意它更是包含在$[a,b]$的确界之中的，说明$\mu$是bounded，即证明了$\Phi(x+h) - \Phi(x) = 0$.
+其中$m \leq \mu \leq M$，这个确界是$f(x)$在$[x,x+h]$上的，言下之意它更是包含在$[a,b]$的确界之中的，说明$\mu$是bounded，即证明了$\lim\limits_{x \to 0}\Phi(x+h) - \Phi(x) = 0$.
 \end{proof}
 
 \begin{theorem}
@@ -2941,12 +2941,12 @@ $$
 \end{theorem}
 
 \begin{proof}
-{\color{blue}先回答一个问题为什么$f(x)$可积}，因为单调有界必可积. 引入辅助函数
+{\color{blue}先回答一个问题为什么$f(x)$可积}，因为它在闭区间上单调，那么必有界，因此可积. 引入辅助函数
 $$
 \varphi(x) = f(a)\int_a^x g(t)dt + f(b)\int_x^b g(t)dt,
 $$
 首先这个函数是连续的(变上下限积分的连续性在前面已经证明了)，我们需要证明
-$\int_a^b f(x)g(x)dx$在$\varphi(a) = f(b)\int_a^b g(t)dt$和$\varphi(b) = f(a) \int_a^b g(t)dt$之间，然后再用一下介值定理就可以找到对应的$\xi$. 但是我发现这条路并不好走，因为{\color{blue}把$f(x)$提到积分外面来并不是一件很显然的事}，所以这里的证明用了比较具有构造性的手法，使得
+$\int_a^b f(x)g(x)dx$在$\varphi(a) = f(b)\int_a^b g(t)dt$和$\varphi(b) = f(a) \int_a^b g(t)dt$之间，然后再用一下介值定理就可以找到对应的$\xi$. 因为{\color{blue}$f(a)$，$f(b)$和$g(x)$的符号并不能确定，因此不能直接比较}，所以这里的证明用了比较具有构造性的手法，划分区间$[a,b]$使得
 $$
 \begin{array}{ll}
 I &= \sum\limits_{i=0}^{n-1}\int_{x_i}^{x_{i+1}} f(x)g(x)dx \\
@@ -2958,7 +2958,7 @@ $$
 $$
 \left|\sum\limits_{i=0}^{n-1}\int_{x_i}^{x_{i+1}}\left[ f(x)-f(x_i)\right]g(x)dx \right| \leq \sum\limits_{i=0}^{n-1}\int_{x_i}^{x_{i+1}}\left| f(x)-f(x_i)\right||g(x)|dx \leq L \sum\limits_{i=0}^{n-1} \omega_i\Delta x_i. 
 $$
-其中$L$表示$|g(x)|$在$[a,b]$的上确界，$\omega_i$表示$f(x)$在$[x_i,x_{i+1}]$的振幅. 由于$f(x)$可积，所以最后一项等于$0$. 下面来考虑第一项，我们再来引入一个辅助函数$G(x) = \int_a^x g(t)dt$，那么
+其中$L$表示$|g(x)|$在$[a,b]$的上确界，$\omega_i=|f(x_{i+1}-x_i)|$表示在$[x_i,x_{i+1}]$上最大振幅. 由于$f(x)$可积，所以最后一项趋于$0$. 下面来考虑第一项，我们再来引入一个辅助函数$G(x) = \int_a^x g(t)dt$，那么
 $$
 \int_{x_i}^{x_{i+1}} g(x)dx = G(x_{i+1})-G(x_{i}).
 $$
@@ -2971,9 +2971,9 @@ $$
 我们记上面这个式子为$\sigma$，下一步需要对$\sigma$来进行放缩. 我们对$f(x)$来放缩一下，那么$\sigma$应该位于
 $$
 f(a)\sum\limits_{i=0}^{n-1} \left[ G(x_{i+1})-G(x_{i})\right]~\text{与}~f(b)\sum\limits_{i=0}^{n-1} \left[ G(x_{i+1})-G(x_{i})\right]
-$$之间，注意到它们里面的和式都是可以化简的，最后即$f(a)G(b)$和$f(b)G(b)$. 这样就把$f(x)$提出来了，因此可以找到$\xi \in [a,b]$使得$\varphi(c)=I$. 
+$$之间，注意到它们里面的和式都是可以化简的，即$f(a)[G(b)-G(a)]= \varphi(b)$和$f(b)[G(b)-G(a)]=\varphi(a)$. 因此可以找到$\xi \in [a,b]$使得$\varphi(c)=I$. 
 
-下面来证明前面两个小lemma，首先以第一个lemma为例子，即$f(x)$单调减且非负.     这就意味着$f(a)G(b)$和$f(b)G(b)$是同号的，那么这个范围是可以继续放缩的，即$\sigma$位于$f(a)G(b)$和$0$之间的，这个$0$可以写作$f(a)G(a)$，因此考虑新的辅助函数$\varphi_1(x)=f(a)G(x)$，它是连续的，所以根据介值定理我们可以找到一点$\xi_1$使得$\varphi_1(\xi_1) = u$. 同理$f(x)$单调增且非负的时候，$\sigma$位于$f(b)G(b)$和$0$中间，这个$0$可以写做$f(b)\int_b^{b} g(x)dx$，因此考虑新的辅助函数$\varphi_2(x) = f(b)\int_{x}^b g(t)dt$，根据介值定理也可以找到一点$\xi_2$使得$\varphi_2(\xi_2) = \sigma$，第二个lemma得证.
+下面顺便证明一下前面两个小lemma，首先以第一个lemma为例子，即$f(x)$单调减且非负.     这就意味着$f(a)G(b)$和$f(b)G(b)$是同号的，那么这个范围是可以继续放缩的，即$\sigma$位于$f(a)G(b)$和$0$之间的，这个$0$可以写作$f(a)G(a)$，因此考虑新的辅助函数$\varphi_1(x)=f(a)G(x)$，它是连续的，所以根据介值定理我们可以找到一点$\xi_1$使得$\varphi_1(\xi_1) = u$. 同理$f(x)$单调增且非负的时候，$\sigma$位于$f(b)G(b)$和$0$中间，这个$0$可以写做$f(b)\int_b^{b} g(x)dx$，因此考虑新的辅助函数$\varphi_2(x) = f(b)\int_{x}^b g(t)dt$，根据介值定理也可以找到一点$\xi_2$使得$\varphi_2(\xi_2) = \sigma$，第二个lemma得证.
 \end{proof}
 
 \subsection{积分学的基本公式}
@@ -3090,7 +3090,7 @@ $$
 \begin{theorem}
 \rm 若函数$f(x,y)$在矩形区域$[a,b;c,d]$上连续，并设曲线
 $$
-x=\alpha(y),y=\beta(y) ~ [c \leq y \leq d]
+x=\alpha(y),x=\beta(y) ~ [c \leq y \leq d]
 $$
 是连续的; 而且它没有落在矩形的界限以外，则积分
 $$
