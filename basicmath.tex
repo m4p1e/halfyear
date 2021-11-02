@@ -3210,11 +3210,11 @@ $$
 $$
 \frac{f(x)}{g(x)} < K + \varepsilon,
 $$
-故有$f(x) <  (K+\varepsilon)g(x)$. 这里需要知道$\int_a^{+\infty}(K+\varepsilon)g(x)dx$和$\int_a^{+\infty}g(x)dx$收敛性也是相同的，即同时收敛或者同时发散. 当$x$取定之后，$\int_a^{x} f(x)dx$和$\int_a^{x} g(x)dx$都是存在的，这是条件给定的，所以只需要考虑$\int_{x}^{+\infty}f(x)dx$和$\int_{x}^{+\infty}g(x)dx$反常积分存在. 若$\int_{x}^{+\infty}g(x)dx$存在，回归到前面的定理上，$\int_{x}^{+\infty}f(x)dx$也存在; 若$\int_{x}^{+\infty}g(x)dx$不存在，假设$\int_{x}^{+\infty}f(x)dx$存在，那么调整一下上面不等式为
+故有$f(x) <  (K+\varepsilon)g(x)$. 这里需要知道$\int_a^{+\infty}(K+\varepsilon)g(x)dx$和$\int_a^{+\infty}g(x)dx$收敛性也是相同的，即同时收敛或者同时发散. 当$x$取定之后，$\int_a^{x} f(t)dt$和$\int_a^{x} g(t)dt$都是存在的，这是条件给定的，所以只需要考虑$\int_{x}^{+\infty}f(t)dt$和$\int_{x}^{+\infty}g(t)dt$反常积分存在性. 若$\int_{x}^{+\infty}g(t)dt$存在，那么$\int_{x}^{+\infty}f(t)dt$也存在; 若$\int_{x}^{+\infty}g(t)dt$不存在，假设$\int_{x}^{+\infty}f(t)dt$存在，那么调整一下上面不等式为
 $$
 K-\varepsilon < \frac{f(x)}{g(x)},
 $$
-这样根据上面的证明手法会推得$\int_{x}^{+\infty}g(x)dx$也存在，这就产生矛盾了，因此$\int_{x}^{+\infty}f(x)dx$也不存在. 
+使用上面类似的证明手法会推得$\int_{x}^{+\infty}g(x)dx$也存在，这就产生矛盾了，因此$\int_{x}^{+\infty}f(x)dx$也不存在. 
 \end{proof}
 
 \begin{proposition}
@@ -3246,7 +3246,7 @@ $$
 $$
 \varphi(x) = \frac{1}{2}\left[f(x) + |f(x)|\right],
 $$
-显然$\varphi(x)$是一个正函数，同时也有$\varphi(x) \leq |f(x)|$，而$\int_a^{+\infty} |f(x)|dx$收敛，则$\int_a^{+\infty} \varphi(x)$也收敛. 此时有$f(x) = 2\varphi(x) - |f(x)|$，于是
+显然$\varphi(x)$是一个正函数，同时也有$\varphi(x) \leq |f(x)|$，而$\int_a^{+\infty} |f(x)|dx$收敛，则$\int_a^{+\infty} \varphi(x)$也收敛. 再由$f(x) = 2\varphi(x) - |f(x)|$，可以推得
 $$
 \int_a^{+\infty} f(x)dx = \int_a^{+\infty} \left[2\varphi(x) - |f(x)| \right] dx=  \int_a^{+\infty} 2\varphi(x)dx - \int_a^{+\infty} |f(x)|dx,
 $$ 
@@ -4323,7 +4323,7 @@ M_0 = (x_0,y_0), M_1(x_0+\Delta x,y_0 + \Delta y).
 $$
 则有
 $$
-\Delta f(x_0,y_0) = f(x_0+\Delta x, y_0 + \Delta y) - f(x_0,y_0) = f_x'(x_0+\theta\Delta x, y_0 + \theta\Delta y)\Delta x + f_x'(x_0+\theta\Delta x, y_0 + \theta\Delta y)\Delta y.
+\Delta f(x_0,y_0) = f(x_0+\Delta x, y_0 + \Delta y) - f(x_0,y_0) = f_x'(x_0+\theta\Delta x, y_0 + \theta\Delta y)\Delta x + f_y'(x_0+\theta\Delta x, y_0 + \theta\Delta y)\Delta y.
 $$
 \end{theorem}
 
@@ -4358,7 +4358,7 @@ x = \varphi(t,v),\, y = \psi(t,v).
 $$
 它们也都是可微的，则有复合函数$z=f(\varphi(t,v),\psi(t,v))$全微分为
 $$
-dz= z_x'(x_t'dt + x_v'dv) + z_y'(y_t'dt+y_v'dv) = z_x'dx = z_y'dy, 
+dz= z_x'(x_t'dt + x_v'dv) + z_y'(y_t'dt+y_v'dv) = z_x'dx + z_y'dy, 
 $$
 其中$dx = x_t'dt + x_v'dv,dy = y_t'dt+y_v'dv$
 \end{proposition}
@@ -4470,7 +4470,7 @@ $$
 \end{definition}
 
 \begin{theorem}\label{mixed-derivatives: exchange-order}
-\rm 设函数$f(x,y)$定义于区域$D$中. 若二阶偏导$f_{xy}''$及$f_{yx}''$存在且在$(x_0,y_0)$处连续，那么在一点
+\rm \redt{二阶混合偏导连续则相等} 设函数$f(x,y)$定义于区域$D$中. 若二阶偏导$f_{xy}''$及$f_{yx}''$存在且在$(x_0,y_0)$处连续，那么在一点
 $$
 f_{xy}''(x_0,y_0) = f_{yx}''(x_0,y_0).
 $$
@@ -4479,7 +4479,7 @@ $$
 \begin{theorem}
 \rm \redt{\ref{mixed-derivatives: exchange-order}加强版} 若$f(x)$一阶偏导都存在，二阶偏导$f_{xy}''(x,y)$存在. 其次，存在着有限极限
 $$
-\lim\limits_{x \rightarrow x_0 \atop y \rightarrow x_0} = A.
+\lim\limits_{x \rightarrow x_0 \atop y \rightarrow x_0} f_{xy}''(x,y) = A.
 $$
 则在$(x_0,y_0)$这点的两个二阶混合导数存在且相等.
 \end{theorem}
