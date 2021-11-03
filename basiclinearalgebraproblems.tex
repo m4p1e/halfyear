@@ -872,14 +872,14 @@ $$
 $$
 \left\{
 \begin{array}{l}
-a_{11}x_1 + a_{21}x_2 + \cdots + a_{s1}x_m = 0, \\
-a_{12}x_1 + a_{22}x_2 + \cdots + a_{s2}x_m = 0, \\
+a_{11}x_1 + a_{21}x_2 + \cdots + a_{m1}x_m = 0, \\
+a_{12}x_1 + a_{22}x_2 + \cdots + a_{m2}x_m = 0, \\
 \cdots \\
-a_{1m}x_1 + a_{2m}x_2 + \cdots +a_{sm}x_m = 0, \\
+a_{1n}x_1 + a_{2n}x_2 + \cdots +a_{mn}x_m = 0, \\
 b_{1}x_1 + b_{2}x_2 + \cdots+ b_{m}x_m = 1, \\
 \end{array} \right.
 $$
-
+无解. 
 \hints\ 设第一个方程组的系数矩阵为$\mbf{A}$，增广矩阵为$\tilde{\mbf{A}}$. 那么第二个方程组的系数矩阵及增广矩阵分别为
 $$
 \begin{array}{ll}
@@ -898,9 +898,9 @@ $$
 \end{array}
 $$
 
-当$\rank{\mbf{A}} = \rank{\tilde{\mbf{A}}}$时，有$\rank{\mbf{B}} < \rank{\tilde{\mbf{B}}}$. 
+当方程组(1)有解时，即$\rank{\mbf{A}} = \rank{\tilde{\mbf{A}}}$时，则$\rank{\mbf{B}} < \rank{\tilde{\mbf{B}}}$，因此方程组(2)无解. 
 
-当$\rank{\mbf{B}} < \rank{\tilde{\mbf{B}}}$时，有$\rank{\tilde{\mbf{A}}} + 1 = \rank{\mbf{A}} + 1$. \bluet{这里能得到这个结果是因为增广矩阵的秩那么等于系数矩阵的秩，那么等于系数矩阵的秩加1}. 
+当方程组(2)无解时，即$\rank{\mbf{B}} < \rank{\tilde{\mbf{B}}}$时，则$\rank{\tilde{\mbf{A}}} + 1 = \rank{\mbf{A}} + 1$(系数矩阵和增广矩阵的秩相差不超过$1$)，因此方程组(1)有解.
 \end{example}
 
 \subsection{齐次线性方程组的性质}
