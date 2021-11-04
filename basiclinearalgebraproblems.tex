@@ -951,7 +951,7 @@ $$
 $$
 \mbf{A}^2 - \mbf{B}^2 \neq (\mbf{A} + \mbf{B})(\mbf{A} - \mbf{B}).
 $$
-即使有$\mbf{A}$和$\mbf{B}$，即
+即使有$\mbf{A}$和$\mbf{B}$交换，即
 $$
 (\mbf{A} + \mbf{B})(\mbf{A} - \mbf{B}) = \mbf{0},
 $$
@@ -987,11 +987,11 @@ $$
 $$
 \mbf{B}^2 = \mbf{0}. 
 $$
-还有一个关键是$\mbf{B}$和$\mbf{I}$是可交换的，因此才有
+还有一个关键是$\mbf{B}$和$\mbf{I}$是可交换的，因此展开式的每一项都可以写成
 $$
-(2\mbf{I}3\mbf{B})(2\mbf{I}3\mbf{B})\cdots(2\mbf{I}3\mbf{B}) = 2^m3^m \mbf{I}^m \mbf{B}^m,
+2^i3^j \mbf{I}^i \mbf{B}^j,
 $$ 
-不然这里是用不了二项式展开的. 于是
+其中$i+j=m$，不然这里是不能用二项式展开的. 于是
 $$
 \mbf{A}^m = (2\mbf{I} + 3\mbf{B})^m = (2\mbf{I})^m + C_m^1 (2\mbf{I})^{m-1}3\mbf{B} = 2^m \mbf{I} + 3m 2^{m-1}\mbf{B} = \begin{pmatrix}
 2^m & 3m2^{m-1} \\
