@@ -1411,7 +1411,7 @@ $$
 \mbf{C} & \mbf{D}
 \end{pmatrix} = |\mbf{AD} - \mbf{CB}|. 
 $$
-\hints\ 这里肯定要用分块矩阵的性质来简化等式左边这个矩阵，分两种情况考虑. 当$|\mbf{A}| = 0$时，这里可以做一个初等行变换
+\hints\ 这里肯定要用分块矩阵的性质来简化等式左边这个矩阵，分两种情况考虑. 当$|\mbf{A}| \neq 0$时，这里可以做一个初等行变换
 $$
 \begin{pmatrix}
 \mbf{A} & \mbf{B} \\
@@ -1480,7 +1480,7 @@ $$
 &=(\mbf{A\alpha},6\mbf{\alpha}-\mbf{A\alpha}) \\
 &=\mbf{P}\begin{pmatrix}
 0 & 1 \\
-1 & 1
+1 & 0
 \end{pmatrix}\begin{pmatrix}
 1 & 0 \\
 0 & 6
