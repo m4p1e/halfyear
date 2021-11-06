@@ -158,7 +158,7 @@ void merge_order (int *A, int start, int end) {
 
 ```c
 int better_partition(int *A, int start, int end){
-    int r,i,j,t;
+    int r,i,j,t;\&\&
 
     r = A[end];
     i = start-1; // i是用来记录那些比r小的元素中下标最大的，
@@ -170,7 +170,7 @@ int better_partition(int *A, int start, int end){
     //2. A[i+1，j-1] 都是大于r的
     while(j < end){
         if(A[j] <= r){ // A[i+1]和A[j]安全的替换
-            i = i + 1;
+            i = i + 1;\&\&
             t = A[j];
             A[j] = A[i];
             A[i] = t;            
@@ -187,7 +187,7 @@ int better_partition(int *A, int start, int end){
 
 void quicksort(int *A, int start, int end){
     int mid;
-    if(end > start){
+    if(end > start){\&\&
         mid = better_partition(A,start,end);
         printf("mid = %d\n",mid);
         quicksort(A,start,mid-1);
@@ -217,7 +217,7 @@ int main(){
 
 
 
-**Theorem** 在最坏情况下，任何比较排序算法都需要做$\Omega(n \ln n)$次比较.  
+**\&\&Theorem** 在最坏情况下，任何比较排序算法都需要做$\Omega(n \ln n)$次比较.  
 
 
 
@@ -249,7 +249,7 @@ counting-sort(A,B,k)
 
 **基数排序**
 
-- 前提假设: $n$个输入均为$k$进制$d$位数字，$b$表示全体输入数字中最大的位数.
+- 前提假设: $n$个输入均为$k$进制$d$位数字.
 - 算法特点: 从最低位开始对全体数字进行排序，直到最高位.  这个过程完毕，则排序完成. 
 - 分析性质: 如果每一次位排序可以看做一个计数排序，因此整个运行过程需要时间$O(d(n+k))$.  
 
@@ -257,12 +257,12 @@ counting-sort(A,B,k)
 
 **Lemma** 给定$n$个$b$位的二进制数，如果可以找到某个整数$r \leq b$使得，对$[0,2^r-1]$上的数排序可以用参数为$k = 2^r-1$计数排序在$O(n+2^r)$时间内完成，那么我们就可以在$O((b/r)(n+2^r))$时间内排好这$n$个数.
 
-应用上面这个lemma，我们可以强制把位排序弄成计数排列，再去研究前面这个因子.  
+应用上面这个lemma，我们可以强制将每个关键字分解为了$\lceil b/r\rceil$个$r$位的二进制数.  在一般情况下对于给定的$n$和$b$，我们希望选择的$r$可以得到的最优的运行时间.   
 
 1. 如果$b < \lfloor \lg n\rfloor$， 那么对于任意的$r \leq b$都有$O((b/r)(n+2^r)) = O(n)$.  
 2. 如果$b \geq  \lfloor \lg n\rfloor$，选择$r = \lfloor \lg n\rfloor$将得到偏差不超过常数系数范围内的最优时间代价. 
 
-通常情况下，考虑$b = O(\lg n)$，我们可以取$r \approx \lg n$，那么应用上述lemma所需时间只需要$O(n)$.  
+\&\&通常情况下，考虑$b = O(\lg n)$，我们可以取$r \approx \lg n$，那么应用上述lemma所需时间只需要$O(n)$.  
 
 
 
@@ -288,9 +288,11 @@ counting-sort(A,B,k)
 - 并归排序
   - 哨兵的存在使得我们在while里面可以只用一个条件语句。
   - 可以去掉哨兵，那么只要一个堆里面的元素取完了就退出while，可以直接把另一个堆里面剩下的元素直接全部拷贝过来. 这样做你需要写两个while.  
-- 
+  - 当子问题的规模变的足够小的时候，假设对应子问题为$k$.  不进一步对该子问题并归排序处理，而是直接使用插入排序. 在这种情况下最坏的运行时间为$O(nk + n\lg(n/k))$.  
 
 
+
+*proof*. ==对并归排序+k插入排序的最坏运行时间的证明==.  对每个$\lceil n/k \rceil$个长度为$k$的分布使用插入排序所需的总时间为$O(\lceil n/k \rceil \cdot k^2) = O(nk)$.  再考虑并归排序所需的合并总时间，因为$k\cdot2^h \leq n$，因此最多分解问题$\ln(n/k)$次，即合并总时间为$O(n \ln(n/k))$.  综上两个运行时间加起来就是总的运行时间
 
 
 
@@ -315,8 +317,12 @@ counting-sort(A,B,k)
 - 若$Q$至少存在这样这一对pair:  
   - 我们需要证明一个循环不等式， 假设这个pair为$(a,b)$，其中$a,b$表示$Q$的一个index，不失一般性假设$a < b$. 我们需要证明$l\leq a \leq b \leq r$.
     - 初始时显然是满足的.
+    
     - 在一次循环中，若$Q[l] + Q[r] == x$，那么直接输出结果，退出循环; 若$Q[l] + Q[r] < x$， 即$Q[l]+Q[r] < Q[a] + Q[b]$，因为$Q[b] < Q[r]$，所以$Q[l] < Q[a]$，即$l < a$，从而$l+1 \leq a$，因此依然保持满足; 若$Q[l] + Q[r] > x$，同理可以得到$b < r$，从而$b \leq r-1$.
+    
     - 循环终止条件$l > r$，显然它不满足上述不等式，因此在循环结束之前就已经退出了. 
+    
+      
 
 **Solution 2 Hashing**
 
@@ -336,7 +342,7 @@ counting-sort(A,B,k)
 - 创建一个大小为$x+1$的元素全为0的数组$R$
 - 遍历$S$，若$S[i] \leq x$，则$R[S[i]] = R[S[i]] + 1$.
 - 遍历$R$，$i = 0 \to \lfloor\frac{x}{2}\rfloor$ ，
-  -  若$R[i]> 0 ~ \&\& ~R[x-i] > 0$，那么我们则得到了这样一对pair
+  -  若$R[i]> 0 ~ \text{and} ~R[x-i] > 0$，那么我们则得到了这样一对pair
 - 若上述没有得到我们想要的pair. 
   - 若$x$是一个偶数且$R[\frac{x}{2}] > 1$，那么我们也这样一对pair.
 
