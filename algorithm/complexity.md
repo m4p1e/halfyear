@@ -54,6 +54,10 @@ $$
 
 
 
+**Definition** 若$f(n)=o(g(n))$，则称$f(n)$渐进小于$g(n)$. 若$f(n) = \omega(g(n))$，则称$f(n)$渐进大于$g(n)$. 
+
+
+
 **Proposition** 所有渐进符号都满足传递性.  
 
 **Proposition** 转置对称性

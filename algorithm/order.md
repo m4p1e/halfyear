@@ -290,9 +290,14 @@ counting-sort(A,B,k)
   - 可以去掉哨兵，那么只要一个堆里面的元素取完了就退出while，可以直接把另一个堆里面剩下的元素直接全部拷贝过来. 这样做你需要写两个while.  
   - 当子问题的规模变的足够小的时候，假设对应子问题为$k$.  不进一步对该子问题并归排序处理，而是直接使用插入排序. 在这种情况下最坏的运行时间为$O(nk + n\lg(n/k))$.  
 
-
-
 *proof*. ==对并归排序+k插入排序的最坏运行时间的证明==.  对每个$\lceil n/k \rceil$个长度为$k$的分布使用插入排序所需的总时间为$O(\lceil n/k \rceil \cdot k^2) = O(nk)$.  再考虑并归排序所需的合并总时间，因为$k\cdot2^h \leq n$，因此最多分解问题$\ln(n/k)$次，即合并总时间为$O(n \ln(n/k))$.  综上两个运行时间加起来就是总的运行时间
+
+
+
+**排序算法补充**
+
+- 冒泡排序
+  - 最坏运行时间为$O(n^2)$. 
 
 
 
@@ -347,4 +352,40 @@ counting-sort(A,B,k)
   - 若$x$是一个偶数且$R[\frac{x}{2}] > 1$，那么我们也这样一对pair.
 
 这相当于做一个整数的分解，这样所需的运行时间只需要是依赖$x$的，即$O(x+n)$. 
+
+------
+
+
+
+**Promble**  描述一个算法用于寻找$n$个元素的数组$A$里面有所有的逆序对数量. 
+
+**Solution**  对$A$做一次类似并归排序的操作，同时修改merge过程，设左右两堆元素分别为$L$和$R$.
+
+```python
+reverse-order(A,p,r)
+	if p < r
+		q = p+r/2 # floor
+        reverse = reverse-order(A,p,q) + reverse-order(A,q+1,r) + reverse-merge(A,p,q,r)
+	else 
+		reverse = 0
+    return reverse
+
+reverse-merge(A,p,q,r)
+    #init L and R same with merge-sort
+	#...
+    reverse = 0
+    i=1
+    j=1
+    for k=p to r
+    	if i <= L.length and (j > R.length or L[i] <= L[j])
+        	A[k] = L[i]
+            i++
+        else 
+        	A[k] = R[j]
+            j++
+            reserve = reserve + (L.length - i + 1) # L里面还剩余的元素相对于A[j]来说都是逆序数	
+    return reverse
+```
+
+
 
