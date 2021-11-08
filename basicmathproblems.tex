@@ -962,6 +962,46 @@ $$
 因此原积分等于$\ln 2$. 
 \end{example}
 
+\subsection{被积函数带绝对值}
+
+\begin{example}
+\rm 求曲线$y=e^{-x}\sin x$与$x$轴之间图形的面积. 
+
+\hints\ 由题意面积$S$为
+$$
+S = \int_0^{+\infty} e^{-x}|\sin x|dx,
+$$
+没有办法直接计算，因此考虑把它看成分段函数
+$$
+S = \int_0^{\pi} e^{-x}\sin xdx - \int_\pi^{2\pi} e^{-x}\sin xdx + \int_{2\pi}^{3\pi} e^{-x}\sin xdx - \cdots, 
+$$ 
+我们再来研究一下被积函数的原函数
+$$
+\begin{aligned}
+\int e^{-x}\sin xdx &= -\int \sin xde^{-x} \\
+&= -e^{-x}\sin x + \int e^{-x}\cos xdx \\
+&= -e^{-x}\sin x -\int \cos x de^{-x} \\
+&= -e^{-x}\sin x -e^{-x}\cos x -\int e^{-x}\sin xdx 
+\end{aligned}
+$$
+由此可以推出
+$$
+\int e^{-x}\sin xdx = \frac{-e^{-x}(\sin x + \cos x)}{2}.
+$$
+于是
+$$
+\begin{aligned}
+\int_{k\pi}^{(k+1)\pi} e^{-x}\sin x dx &= \frac{-e^{-(k+1)\pi} \cos(k+1)\pi + e^{-k\pi}\cos k\pi}{2} & k=0,1,\cdots \\
+& = \frac{(-1)^k e^{-(k+1)\pi} + (-1)^k e^{-k\pi}}{2} \\
+& = (-1)^k \cdot \frac{e^{-(k+1)\pi} + e^{-k\pi}}{2}   
+\end{aligned}
+$$
+最终
+$$
+S = \sum\limits_{k=0}^{+\infty}  \frac{e^{-(k+1)\pi} + e^{-k\pi}}{2} = \frac{e^{-\pi}+1}{2-2e^{-\pi}} = \frac{e^{\pi} + 1}{2e^{\pi}-2}.
+$$
+\end{example}
+
 \newpage
 \section{反常积分}
 

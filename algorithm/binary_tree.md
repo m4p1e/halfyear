@@ -733,5 +733,29 @@ huffman(C)
 - 含$n$个元素的堆(数组表示形式)的叶子节点的下标为$\lfloor n/2 \rfloor +1, \lfloor n/2 \rfloor +2,\cdots,n$ .  hints: 最后一个元素为下标为$n$，它的父节点为$\lfloor n/2 \rfloor$. 
 - 含$n$个元素的堆至多有$\lceil n/2^{h+1} \rceil$个高度为$h$的结点.  hints: 使用数学归纳法，$h=0$即叶子结点的个数. 
 
+------
 
+**0x03** 优先队列（最小堆和最大堆）的应用
+
+- 用最小优先队列可以实现队列，每个进来的keyword都赋予一个递增的序数. 
+
+- 用最大优先队列可以实现栈，每个进来的keyword都赋予一个递增的序数. 
+
+- 用最小堆将$k$个有序链表合并一个有序链表，设$k$个有序链表总共含有$n$个元素.    （利用并归操作也可以实现）
+
+  ```python
+  merge-order-list(lists, k, n)
+  	h = create_min_heap();
+  	L = create_linked_list();
+      for i=1 to k
+      	min_heap_insert(h, lists[i].head)
+      while !is_empty(h)  #最小堆总是维护最多k个元素,我们总是可以在这个k个元素中选出最小的元素插入到大的链表中
+      	e = heap_extract_min(L);
+      	linked_list_insert(L, e)
+          if e.next != nil
+          	heap_extract_min(h, e.next);
+      return L;    
+  ```
+
+  
 
