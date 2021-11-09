@@ -285,12 +285,66 @@ counting-sort(A,B,k)
 
 - 插入排序
   - 若将插入的过程改成二分法，可以将最坏时间改善到$O(n\lg n)$.
+  
 - 并归排序
   - 哨兵的存在使得我们在while里面可以只用一个条件语句。
   - 可以去掉哨兵，那么只要一个堆里面的元素取完了就退出while，可以直接把另一个堆里面剩下的元素直接全部拷贝过来. 这样做你需要写两个while.  
   - 当子问题的规模变的足够小的时候，假设对应子问题为$k$.  不进一步对该子问题并归排序处理，而是直接使用插入排序. 在这种情况下最坏的运行时间为$O(nk + n\lg(n/k))$.  
+  
+- 快排
+
+  - 小的子问题用插入排序
+
+  - 对一个元素全部相同的数组进行排序的时候，每次部分排序操作返回的pivot都会是最后一个元素. 这样会造成性能的损失，因此考虑当元素全部相同时返回中间index，即返回$\lfloor (p+r)/2 \rfloor$
+
+    ```python
+    partition(A, p, r)
+    	x = A[r]
+    	i = p-1
+    	n = 0 #记录与x相同的元素个数
+        for j=p to r-1
+        	if A[j] <= x
+            	if A[j] == x
+                	n=n+1
+                i = i + 1    
+              	exchange A[i] with A[j]
+        exchange A[i+1] with  A[r]
+        return i+1 - (n/2 + 1) #n/2 + 1表示取n/2的上界
+    ```
+
+  - median of three:  记录一个最坏的例子`1 2 3 4 5 6 7 8 0 `
+
+  - 三向切割: partition总是返回一个元素作为pivot，我们可以使用一个元素集合来作为pivot，即与被选择$x$相同元素我们找出来将其排除不进入递归的quicksort. 
+
+  - 尾递归
+
+    ```python
+    tail-recursive-quicksort(A,p,r)
+    	while p < r
+    		q = partition(A,p,r)
+            if 2q > p + r #这样做的目的是我优先处理较小的子数组，让其早点处理完，尽量使得栈的深度较小
+            	tail-recursive-quicksort(A,q+1,r)
+                r = q-1
+           	else
+            	tail-recursive-quicksort(A,p,q-1)
+                p = q+1
+                
+    ```
+
+    
+
+
+
+
+
 
 *proof*. ==对并归排序+k插入排序的最坏运行时间的证明==.  对每个$\lceil n/k \rceil$个长度为$k$的分布使用插入排序所需的总时间为$O(\lceil n/k \rceil \cdot k^2) = O(nk)$.  再考虑并归排序所需的合并总时间，因为$k\cdot2^h \leq n$，因此最多分解问题$\ln(n/k)$次，即合并总时间为$O(n \ln(n/k))$.  综上两个运行时间加起来就是总的运行时间
+
+
+
+**算法选择** 
+
+- 当输入越有序时，插入算法要不快排更有优势. 
 
 
 
