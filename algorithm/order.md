@@ -314,10 +314,30 @@ counting-sort(A,B,k)
 
   - median of three:  记录一个最坏的例子`1 2 3 4 5 6 7 8 0 `
 
-  - 三向切割: partition总是返回一个元素作为pivot，我们可以使用一个元素集合来作为pivot，即与被选择$x$相同元素我们找出来将其排除不进入递归的quicksort. 
+  - 三向切割: partition总是返回一个元素作为pivot，我们可以使用一个元素集合来作为pivot，即与被选择$x$相同元素我们找出来将其排除不进入递归的quicksort. 此时partition会返回两个下标low,high使得$A[low-high]$之间的元素都是相等的. 
 
+    ```python 
+    partition(A,p,r)
+    	x = A[p]
+        low = p #维护两个index
+        hight = p
+        for j = p+1 to r
+        	if A[j] < x
+            	exchange A[low] with A[j]
+                low = low + 1
+                high = high + 1
+                if(high != j)
+                	exchange A[high] with A[j]    
+            else if a[j] == x
+            	high = high + 1
+            	exchange A[j] with A[high]
+         return low,high       
+    ```
+  
+    
+  
   - 尾递归
-
+  
     ```python
     tail-recursive-quicksort(A,p,r)
     	while p < r
@@ -330,11 +350,8 @@ counting-sort(A,B,k)
                 p = q+1
                 
     ```
-
+  
     
-
-
-
 
 
 
@@ -411,7 +428,7 @@ counting-sort(A,B,k)
 
 
 
-**Promble**  描述一个算法用于寻找$n$个元素的数组$A$里面有所有的逆序对数量. 
+**Problem**  描述一个算法用于寻找$n$个元素的数组$A$里面有所有的逆序对数量. 
 
 **Solution**  对$A$做一次类似并归排序的操作，同时修改merge过程，设左右两堆元素分别为$L$和$R$.
 
@@ -442,4 +459,51 @@ reverse-merge(A,p,q,r)
 ```
 
 
+
+------
+
+**Problem**  medium of three类型的快排的分析性质. 
+
+设给定一个$n$个互异元素的数组$A$（$n \geq 3$）， 假设$A'$为排好的数组.  我们要探究的medium of three方法究竟能对产生一个好的划分带来什么影响？ 因此首先我们要给出挑出的中位数概率分布，设$p_i = P\{x= A'[i]\}$.  那么
+$$
+p_i = \frac{(i-1)(n-i)}{C_n^3} = \frac{6(i-1)(n-i)}{n(n-1)(n-2)}
+$$
+计算上述概率的过程为:
+
+- 从$n$个元素里面挑3个元素一共有$C_n^3$种可能.
+- 当我们选定$A'[i]$之后，以它作为中位数的$3-\text{Set}$ 的形式一定是在$A'[i]$的左边挑一个元素，然后在$A'[i]$右边挑一个元素. 因此这样的挑法有$(i-1)(n-i)$种可能. 
+
+最好划分就是直接把$A$的中位数挑出来了，相对于平凡的快排实现，medium of three能给把这种挑法的可能提高多少呢？$A$的中位数为$A'[\lceil n/2 \rceil]$，那么
+$$
+\lim\limits_{n \to \infty} \frac{\frac{6(\lceil n/2 \rceil-1)(n-\lceil n/2 \rceil)}{n(n-1)(n-2)}}{\frac{1}{n}} = \lim\limits_{n \to \infty} \frac{6(\lceil n/2 \rceil \lfloor n/2 \rfloor-\lfloor n/2 \rfloor)}{(n-1)(n-2)} = \frac{3}{2}
+$$
+其中$\frac1n$表示平凡快排下选择中位数的概率. 
+
+进一步我们认为一个“好”的划分意味着主元选择$x=A'[i]$，其中$n/3 \leq i \leq 2n/3$. 那么medium of three下主元落在这个区间的概率是多少呢？ 直接取个积分，同时对$n$取极限
+$$
+\lim\limits_{n \to \infty} \sum\limits_{i = n/2}^{2n/3} \frac{6(i-1)(n-i)}{n(n-1)(n-2)} = \int_{n/2}^{2n/3} \frac{6(i-1)(n-i)}{n(n-1)(n-2)} = \frac{13}{27}. 
+$$
+在平凡的快排下这个概率应该为$1/3$.  
+
+------
+
+**Problem** 设计算法对$n$个区间$[a_i,b_i]$进行模糊排序，即最后得到一个区间序列$I_1,I_2,\cdots,I_n$使得对任意$i < j$都能找到$c_i \in I_i,c_j \in I_j$满足$c_i \leq c_j$.  
+
+可以通过对每个区间的左端点进行排序，同时利用区间重叠这个性质加速我们的操作.  如果两个区间有重叠的部分，那么这个两个区间之前的order是没有限制的，分析一个极端情况: 如果$n$个区间都相互重叠，那么它是天然满足模糊排序输出的条件，这种情况下我们不需要对所给区间再排序.  当我们选择用快排来解决上述问题的时候，当我们选择一个区间作为pivot的时候，我们可以找出所有与它重叠的区间，它们构成的集合可以作为一个pivot，这就好比我们在快排里面利用三向法处理相同元素所做的的操作. 
+
+```python
+find-intersection(A, p, r)
+	low = A[r].a;
+    high = A[r].b
+    for i=p to r-1
+    	if A[i].a <= b and A[i].b >= a # 当两个区间[a,b],[c,d]不相交的条件为a > d or c>b，因此if条件是它的一个对立的形式
+    		low = max(A[i].a, a) #取两个区间的交区间
+    		high = min(A[i].b, b)
+   	return a,b 
+
+parition_right(A,a,p,r)
+	
+parition_left(A,a,p,t)    
+    
+```
 
