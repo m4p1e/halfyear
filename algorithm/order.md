@@ -244,13 +244,14 @@ counting-sort(A,B,k)
 - 算法特点:  设置一个$k+1$长度的数组$C$，对于每一个输入的$x$，执行对应的$C[x] = C[x] + 1$.  执行完这样的操作之后，遍历数组$C$，将其记录的数字一字排开，这样访问访问每一个$C[i]$的时候，我们都可以知道$i$前面有元素，将$i$排在它们后面即可. 
 - 分析性质: 整个运行过程所需时间为$O(n+k)$， 如果$k = O(n)$，那么显然该排序的运行时间为$O(n)$. 
 - 计数算法不是原址的. 
+- 计数排序是稳定的，稳定是指: 两个相同元素在输出数组中的次序和它们在输入数组中的次序是一样的.  ==这也是为什么计数排序最后一个循环是降序的==
 
 
 
 **基数排序**
 
 - 前提假设: $n$个输入均为$k$进制$d$位数字.
-- 算法特点: 从最低位开始对全体数字进行排序，直到最高位.  这个过程完毕，则排序完成. 
+- 算法特点: 从最低位开始对全体数字进行排序，直到最高位.  这个过程完毕，则排序完成.  但是需要注意使用的排序算法需要是==稳定的==.
 - 分析性质: 如果每一次位排序可以看做一个计数排序，因此整个运行过程需要时间$O(d(n+k))$.  
 
 
@@ -492,18 +493,77 @@ $$
 可以通过对每个区间的左端点进行排序，同时利用区间重叠这个性质加速我们的操作.  如果两个区间有重叠的部分，那么这个两个区间之前的order是没有限制的，分析一个极端情况: 如果$n$个区间都相互重叠，那么它是天然满足模糊排序输出的条件，这种情况下我们不需要对所给区间再排序.  当我们选择用快排来解决上述问题的时候，当我们选择一个区间作为pivot的时候，我们可以找出所有与它重叠的区间，它们构成的集合可以作为一个pivot，这就好比我们在快排里面利用三向法处理相同元素所做的的操作. 
 
 ```python
-find-intersection(A, p, r)
-	low = A[r].a;
+find_intersection(A, p, r)
+	low = A[r].a; #A[r]是我们选择作为pivot的区间
     high = A[r].b
     for i=p to r-1
     	if A[i].a <= b and A[i].b >= a # 当两个区间[a,b],[c,d]不相交的条件为a > d or c>b，因此if条件是它的一个对立的形式
-    		low = max(A[i].a, a) #取两个区间的交区间
+    		low = max(A[i].a, a) # 取两个区间的交
     		high = min(A[i].b, b)
    	return a,b 
 
-parition_right(A,a,p,r)
+parition_right(A,a,p,r) #右边都是A[j].a > a 且和A[r]不相交的区间 
+	i = p-1
+    for j=p to r-1
+    	if A[j].a <= a
+        	i=i+1
+            exchange A[j] with A[i]
+    exchange A[i+1] with A[r]
+	return i+1
 	
-parition_left(A,a,p,t)    
+parition_left(A,a,p,t) #当且
+	i = p -1
+    for j=p to t-1
+    	if A[j].b < b
+        	i=i+1
+        	exchange A[j] with A[i]
+    exchange A[i+1] with A[t]
+    return i+1
     
+fuzz_order(A,p,r)
+	a,b = find_intersection(A, p, r)
+    t = partion_right(A,a,p,r)
+    q = partion_left(A,b,p,t)
+    fuzz_order(A, t+1, r)
+    fuzz_order(A, p, q-1)
+
+    
+```
+
+------
+
+**Problem** 设计一个算法，它能够对于任何给定的介于$0$到$k$之间的$n$个整数进行预处理，然后在$O(1)$时间内回答输入的$n$个整数有多少个元素落在$[a,b]$内.  该算法总的运行时间为$O(n+k)$.
+
+以计数排序作为预处理得到一个counting数组$C$，其中$C[i]$表示小于等于$i$的整数个数. 因此有$C[b]-C[a-1]$个元素落在$[a,b]$中. 
+
+------
+
+**Problem** 设计算法在$O(n)$时间内，对$0$对$n^3-1$区间内的$n$个整数进行排序. 
+
+首先将每个整数转换成$n$进制，因此每个整数最多有$\log_n n^3 =3$位，再采用基数排序.  
+
+------
+
+**Problem** 修改对$n$个在区间$[1,k]$的整数计数排序，额外使用$O(k)$大小空间使得其变为原址排序. 
+
+```python
+counting_sort_in_place(A,B,k)
+	let C[1..k] be a new array
+	for i=0 to k
+		C[i] = 0
+	for j = 1 to A.length
+    	C[A[j]] = C[A[j]] + 1
+    B = C #拷贝一个B数组出来表示每个整数i的个数.   
+    for i=1 to k
+    	C[i] = C[i]+C[i-1] #C[i] represent the number less than or equal(<=) i 
+    
+    #此时利用B和C，我们可以直接确定A[j]的正确位置C[A[j]-1] + B[A[j]]. 
+    for j=1 to A.length
+    	#当A[i]的位置不是i的时候，我们把它交换到正确的位置，直到A[i]位置是i. 
+    	while B[A[j]] > 0 and C[A[j]-1] + B[A[j]] != j 
+        	t = A[j]
+            swap A[j] with A[C[A[j]-1] + B[A[j]]]
+        	B[t] = B[t]-1
+    return A        
 ```
 
