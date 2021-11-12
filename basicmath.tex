@@ -4512,38 +4512,6 @@ $$
 其中$0 \leq \theta \leq 1$. 
 \end{theorem}
 
-\begin{proposition}
-\rm \redt{条件极值} 可微函数$z=f(x,y)$在$\varphi(x,y)=0$(确定的隐函数可微)下的条件极值与函数
-$$
-L(x,y,r) = f(x,y)+r\varphi(x,y)
-$$
-的极值点等价. 
-\end{proposition}
-
-\begin{proof}
-\rm 函数$L(x,y)$的全微分为
-$$
-dL = [f_x'(x,y) + r\varphi_x'(x,y)]dx + [f_y'(x,y) + r\varphi_y'(x,y)]dy + \varphi(x,y)dr.
-$$
-因此它极值点必要条件是
-$$
-\left \{
-\begin{array}{ll}
-f_x'(x,y) + r\varphi_x'(x,y) = 0 \\
-f_y'(x,y) + r\varphi_y'(x,y) = 0 \\
-\varphi(x,y) = 0
-\end{array} \right.
-$$
-在$\varphi(x,y)=0$的条件下，有$L=f$. 因此$L$的极值点就是$f$的极值点. 
-\end{proof}
-
-\begin{corollary}
-\rm \redt{多条件极值} 对于$n$元函数$f(x_1,\cdots,x_n)$在$m$个约束条件$\varphi_1(x_1,\cdots,x_n) = 0,\cdots,\varphi_m(x_1,\cdots,x_n) = 0$的极值点与函数
-$$
-L(x_1,\cdots,x_n,r_1,\cdots,r_m) = f + r_1\varphi_1 + \cdots + r_m\varphi_m
-$$
-的极值点等价. 
-\end{corollary}
 
 \subsection{多元函数的极值}
 
@@ -4578,6 +4546,40 @@ $$
 	\item 若$a_{11}a_{22} - a_{12}^2 = 0$. 此时$f(x,y)$可能在$(x_0,y_0)$处有极值，也可能没有极值. 
 \end{enumerate}
 \end{proposition}
+
+
+\begin{proposition}
+\rm \redt{条件极值} 可微函数$z=f(x,y)$在$\varphi(x,y)=0$(确定的隐函数可微)下的条件极值与函数
+$$
+L(x,y,r) = f(x,y)+r\varphi(x,y)
+$$
+的极值点等价. 
+\end{proposition}
+
+\begin{proof}
+\rm 函数$L(x,y)$的全微分为
+$$
+dL = [f_x'(x,y) + r\varphi_x'(x,y)]dx + [f_y'(x,y) + r\varphi_y'(x,y)]dy + \varphi(x,y)dr.
+$$
+因此它极值点必要条件是
+$$
+\left \{
+\begin{array}{ll}
+f_x'(x,y) + r\varphi_x'(x,y) = 0 \\
+f_y'(x,y) + r\varphi_y'(x,y) = 0 \\
+\varphi(x,y) = 0
+\end{array} \right.
+$$
+在$\varphi(x,y)=0$的条件下，有$L=f$. 因此$L$的极值点就是$f$的极值点. 
+\end{proof}
+
+\begin{corollary}
+\rm \redt{多条件极值} 对于$n$元函数$f(x_1,\cdots,x_n)$在$m$个约束条件$\varphi_1(x_1,\cdots,x_n) = 0,\cdots,\varphi_m(x_1,\cdots,x_n) = 0$的极值点与函数
+$$
+L(x_1,\cdots,x_n,r_1,\cdots,r_m) = f + r_1\varphi_1 + \cdots + r_m\varphi_m
+$$
+的极值点等价. 
+\end{corollary}
 
 
 \begin{proof}
@@ -5198,9 +5200,9 @@ $$
 $$
 类似地，可以推广到空间区域$V$，则$V$的质心为
 $$
-\overline{x} = \frac{\iiint_V xf(x,y,z)d\sigma}{\iint_D f(x,y)d\sigma}, 
-\overline{y} = \frac{\iiint_V yf(x,y,z)d\sigma}{\iint_D f(x,y)d\sigma},
-\overline{z} = \frac{\iiint_V zf(x,y,z)d\sigma}{\iint_D f(x,y,z)d\sigma}.
+\overline{x} = \frac{\iiint_V xf(x,y,z)d\sigma}{\iiint_V f(x,y)d\sigma}, 
+\overline{y} = \frac{\iiint_V yf(x,y,z)d\sigma}{\iiint_V f(x,y)d\sigma},
+\overline{z} = \frac{\iiint_V zf(x,y,z)d\sigma}{\iiint_V f(x,y,z)d\sigma}.
 $$
 \end{proposition}
 
@@ -5363,7 +5365,7 @@ $$
 \subsection{第二类曲线积分}
 
 \begin{definition}
-\rm 将第一类曲线积分的积分变量换成部分弧长$\sigma_1$的在$x$轴或者$y$上的投影$\Delta x_i$或者$\Delta y_i$，于是得到了\redt{第二类曲线积分}
+\rm 将第一类曲线积分的积分变量换成部分弧长$\sigma_i$的在$x$轴或者$y$上的投影$\Delta x_i$或者$\Delta y_i$，于是得到了\redt{第二类曲线积分}
 $$
 I_x = \int_L f(x,y)dx,\, I_y = \int_L f(x,y)dy.
 $$
@@ -5439,13 +5441,13 @@ $$
 $$
 \begin{array}{ll}
 \int_L P(x,y,z)dx + Q(x,y,z)dy + R(x,y,z)dz &= 
-\int\int_\sum
+\iint_\sum
 \begin{vmatrix}
 \cos \alpha & \cos \beta & \cos \gamma \\
 \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial x} \\
 P & Q & R
 \end{vmatrix} dS \\
-&= \int\int_\sum (\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z})dydz + (\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x})dzdx + (\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy
+&= \iint_\sum (\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z})dydz + (\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x})dzdx + (\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy
 \end{array}
 $$
 其中$\alpha,\beta,\gamma$分别是曲面法线与$x,y,z$轴的夹角. 
