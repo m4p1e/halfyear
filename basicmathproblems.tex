@@ -1456,6 +1456,26 @@ $$
 \end{enumerate}
 \end{annotation}
 
+\begin{example}
+\rm 设$L$为球面$x^2+y^2+z^2=1$与平面$x+y+z=0$的交线，求
+$$
+\oint_L xyds
+$$
+
+\hints\ 这里要充分考虑$L$的性质，对于任意$L$上一点$(x_0,y_0,z_0)$，显然点$(y_0,x_0,z_0)$，$(z_0,y_0,x_0)$也都在$L$上，因此$L$具有轮换对称性. 于是
+$$
+\oint_L xyds = \oint_L yx ds = \oint_L zyds 
+$$
+考虑所给$L$的特殊性，这里有
+$$
+\oint_L (x+y+z)^2 - (x^2+y^2+z^2) = 2 \oint_L xy+yz+xz ds = 6 \oint_L xyds = -2\pi, 
+$$
+因此
+$$
+\oint_L xyds = -\frac{\pi}{3}. 
+$$
+\end{example}
+
 \subsection{第二类曲线积分}
 
 \begin{annotation}
