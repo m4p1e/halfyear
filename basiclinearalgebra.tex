@@ -3501,6 +3501,22 @@ $$
 因此$\lambda$也是$\mbf{BA}$的特征值. (2)若$\lambda = 0$，那么$|\mbf{AB}| = 0$，因此$|\mbf{BA}| = 0$，即$0$也是$|\mbf{BA}|$的特征值.
 \end{proof} 
 
+\begin{proposition}
+\rm \redt{矩阵的秩和特征值的关系} 矩阵的秩大于等于非零特征值的个数.
+\end{proposition}
+
+\begin{proof}
+\rm 考虑方程
+$$
+|0\cdot \mbf{I} - \mbf{A}| \mbf{X} = \mbf{0},
+$$
+这个方程解的个数为$n - \rank{A}$. 设$a$是$0$作为$\mbf{A}$特征值的代数重数，于是
+$$
+a \geq n-\rank{A} \Rightarrow \rank{A} \geq n-a,
+$$ 
+其中$n-a$就是非零特征值的代数重数. 
+\end{proof}
+
 \subsection{矩阵多项式}
 
 \begin{theorem}
