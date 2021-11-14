@@ -42,7 +42,81 @@
 
 
 
+### 0xFF 考点
 
+**Problem** 在$O(n)$时间内逆转一个长度为$n$的单链表且只能用常数大小的额外存储空间.
 
+```python
+reverse_singly_list(L)
+	x = L.head
+    pre = NIL
+    suc = NIL
+    while x != NIL
+    	suc = x.next
+        x.next = pre
+        pre = x
+        x = suc
+	L.head = pre
+    return L
+```
 
+------
+
+**Problem** 利用一个指针实现双链表.
+
+假设所有指针都是视为$k$位整数型，每个列表元素有一个指针$x.np$，我们要用它来表示next和prev. 这里我们利用$\text{XOR}$来做，利用它的性质
+$$
+x~\text{XOR}~x~\text{XOR}~y = y \\
+y~\text{XOR}~x~\text{XOR}~y = x
+$$
+ 我们使得$x.np = x.next ~ \text{XOR} ~ x.prev$.  由于列表头$L.head.prev = nil$的特殊性，我们可以实现解码$x.np$来实现遍历整张列表. 
+
+```python
+list_search(L,k)
+	prev = NIL
+	x = L.head
+	while x != NIL and x.key != k
+		next = x.np ^ prev
+        prev = x
+        x = next
+	return x
+
+list_insert(L,x)
+	y = L.head
+    prev = NIL
+   	if y == NIL
+    	L.head = x
+        x.np = prev ^ NIL
+    else
+    	x.np = prev ^ y
+        y.np = y.np ^ prev ^ x
+                
+list_delete(L,x)
+	prev = NIL
+    y = L.head
+    #要从头开始解码得到x.prev
+    while y != x
+    	next = y.np ^ prev
+        prev = y
+        y = next
+    x_prev = prev
+    x_next = x.np ^ prev
+    
+    if x_prev != NIL #判断x是不是L.head
+    	x_prev.np = x_prev.np ^ x ^ x_next
+    else 
+    	L.head = x_next
+	
+    if x_next != NIL #判断x是不是L.tail
+    	x_next.np = x_next.np ^ x ^ x_prev    
+```
+
+我们如果记录一个队尾指针$L.tail$就可以在$O(1)$时间内完成对该链表的逆转
+
+```python
+list_reverse(L)
+	t = L.head
+    L.head = L.tail
+    L.tail = t
+```
 

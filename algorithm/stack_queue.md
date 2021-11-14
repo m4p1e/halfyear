@@ -12,7 +12,25 @@
 
 1.  栈最基本需要一个栈顶指针，常见操作为插入push，取pop，检测栈的状态(空栈，满栈，栈的长度)。
 
-2.  队列最基本需要两个指针一个队头和队尾，常见操作为插入enqueue，取dequeue，检测队列状态. 
+2.  队列最基本需要两个指针一个队头和队尾，常见操作为插入enqueue，取dequeue，检测队列状态.  注意头尾两个指针是可以环绕的. 
+
+
+
+```python
+queue_empty(Q)
+	if Q.tail == Q.head
+		return true
+	else
+    	return false
+    
+queue_full(Q)
+	#这种情况下插入元素实际上不会发生冲突，因为Q.tail处是可用，但是插入之后就没有办法区分empty和full的情况
+    #因此最好还是设置一个计数器来记录队列里面有多少元素. 
+	if (Q.head == 1 and Q.tail == Q.length) or (Q.head == Q.tail + 1) 
+    	return true
+   	else
+    	return false
+```
 
 
 
@@ -103,7 +121,7 @@ empty()
 当然也可以把push操作调整成$O(n)$
 
 ```python
-+3push(x)
+push(x)
 	Q_1.enqueue(x)
     while empty(Q_2)
     	y = Q_2.dequeue()
@@ -131,5 +149,7 @@ empty()
 4. pop操作: 设栈顶元素为$x$. (1 若$x == m$， 那么$m = x.successor$. 
 5. min操作: 直接返回$m.keyword$即可. 
 
-这里有一个chain，用$x.succussor$围起来了，主要为了保证最小元素出栈之后，可以更新最小元素. 
+这里有一个chain，主要为了保证最小元素出栈之后，可以更新最小元素. 
+
+
 
