@@ -525,6 +525,21 @@ $$
 因此$\lim\limits_{x \to 1} f(x)$不存在. 
 \end{example}
 
+\subsection{积分定义}
+
+\begin{example}
+\rm 求
+$$
+\lim\limits_{n \to \infty} \sum\limits_{k=1}^n \frac{k}{n^2} \ln(1+\frac{k}{n}). 
+$$
+
+\hints 看见这种对求和取极限的，可以考虑一下积分的定义. 这里有
+$$
+\lim\limits_{n \to \infty} \sum\limits_{k=1}^n \frac{k}{n^2} \ln(1+\frac{k}{n}) = \lim\limits_{n \to \infty} \sum\limits_{k=1}^n \frac{1}{n} \cdot \frac{k}{n}\ln(1+\frac{k}{n}) = \int_0^1 x\ln(1+x)dx = \frac{1}{4},
+$$
+求解上述积分可以用分部积分把$x$提到微分符号里面去. 
+\end{example}
+
 \newpage
 \section{导数}
 
@@ -546,6 +561,20 @@ $$
 \end{example}
 
 \subsection{泰勒公式求高阶导数}
+
+\begin{example}
+\rm 已知函数$f(x)=\frac{1}{1+x^2}$，求$f^{(3)}(0)$.
+
+\hints\ 直接求3阶导是比较麻烦，这里可以使用泰勒展开再求导. 首先考虑$\frac{1}{1+x}$在$x=0$处的展开
+$$
+\frac{1}{1+x} = 1 - x + x^2 - x^3 + \cdots + (-1)^n x^n.
+$$
+那么
+$$
+\frac{1}{1+x^2} = 1 - x^2 + x^4 - x^6 \cdots 
+$$
+因此$f^{(3)}(0) = 0$. 
+\end{example}
 
 \subsection{递归法求高阶导数}
 
@@ -614,9 +643,9 @@ $$
 因此存在$f(\theta_2) = f(b)$.  
 
 现在需要分类讨论一下，若$\theta_1  \leq \theta_2$，则根据罗尔定理我们可以在$(a,\theta_1)$及$(\theta_2,b)$上各找到一个零点. 若$\theta_1 > \theta_2$，此时由$g(a+\xi_1) > 0, g(\theta_2) \leq 0$，存在一点$\theta_3$使得$f(\theta_3) = 0$，同理由$g(\theta_1) \geq 0, g(b-\xi_2) < 0$，可以找到一点$\theta_4$使得$f(\theta_4) = 0$，这样$\theta_3 < \theta_4$，回到了前面一种情况. 证闭！
-
-
 \end{example}
+
+\subsection{经典证明题}
 
 
 \newpage
@@ -1604,6 +1633,30 @@ $$
 $$
 I = 2a \cdot a \cdot 4\pi a^2 = 8\pi a^4. 
 $$
+\end{example}
+
+\begin{example}
+\rm 设薄片型物体$S$是圆锥面$z=\sqrt{x^2+y^2}$被柱面$z^2 = 2x$割下的有限部分，其上任一点的密度为$u(x,y,x)=9\sqrt{x^2 + y^2 + z^2}$. 求$S$的质量. 
+
+\hints\ 这种题型看似复杂的曲面都难以想象，直接按照步骤来行. 先确定圆锥面和柱面的交线
+$$
+\left\{
+\begin{aligned}
+z&=\sqrt{x^2+y^2} \\
+z^2 &= 2x
+\end{aligned} \right.  \Rightarrow 
+(x-1)^2 + y^2 = 0
+$$
+它在$x0y$上的投影是一个我们熟悉的圆. 于是直接套公式就行
+$$
+\begin{aligned}
+M &= \iint_S 9\sqrt{x^2 + y^2 + z^2}ds \\
+ &=  \iint_D 9\sqrt{x^2 + y^2 + z^2}\sqrt{1 + \left(\frac{x}{\sqrt{x^2 + y^2}}\right)^2 + \left(\frac{y}{\sqrt{x^2 + y^2}}\right)^2}dxdy \\
+ &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}d\theta \int_0^{2\cos\theta} 9\sqrt{2\rho^2}\sqrt{2} \rho d\rho \\
+ &= 64
+\end{aligned}
+$$
+其中$(x-1)^2 + y^2=0$的极坐标方程为$\rho = 2\cos\theta$. 
 \end{example}
 
 \subsection{第二类曲面积分}
