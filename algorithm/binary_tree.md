@@ -728,7 +728,7 @@ huffman(C)
 
 **0x02** 关于二叉堆的一些性质
 
-- 在高度为$h$的堆中，元素个数最多为$2^{h+1}-1$和$2^{h}$.
+- 在高度为$h$的堆中，元素个数最多为$2^{h+1}-1$和最少为$2^{h}$.
 - 含$n$个元素的堆的高度为$\lfloor \ln n \rfloor$.  
 - 含$n$个元素的堆(数组表示形式)的叶子节点的下标为$\lfloor n/2 \rfloor +1, \lfloor n/2 \rfloor +2,\cdots,n$ .  hints: 最后一个元素为下标为$n$，它的父节点为$\lfloor n/2 \rfloor$. 
 - 含$n$个元素的堆至多有$\lceil n/2^{h+1} \rceil$个高度为$h$的结点.  hints: 使用数学归纳法，$h=0$即叶子结点的个数. 
@@ -757,5 +757,77 @@ huffman(C)
       return L;    
   ```
 
-  
+
+------
+
+**0x04** 二叉搜索树查找路径的判定: 假设一颗二叉树搜索树中的结点在$1$到$1000$之间，现在想要查找数值为$363$的结点，下面序列中哪个不是查找过的序列:
+
+1. 2, 252, 401, 398, 330, 344, 397, 363
+
+2. 925, 202, 911, 240, 912, 245, 363
+
+3. 935, 278, 347, 621, 299, 392, 358, 363
+
+判定这类题的关键是确定每一个点的下一步搜索方向是它的左子树还是右子树，那么这个点之后的所有点都必须满足子树的条件，即都小于这个点或者都大于这个点. 
+
+1. 是正确的.
+2. 在911这个点这里，我们下一步是搜索它的左子树，因此它后面的结点都必须小于它，但是后面出现了912，因此这不是一个查找序列.
+3. 在347这个点这里，我们下一步是搜索它的右子树，因此它后面的结点都必须大于它，但是后面出现了299，因此这不是一个查找序列.
+
+------
+
+**0x05** 使用一个栈实现非递归形式的中序遍历.
+
+```python
+inorder(T)
+	S = init_empty_stack()
+	x = T.root
+    done = 0
+	while !done
+		if x != nil #保持当前结点，以便后续处理它的右子树
+			push(S, x)
+            x = x.left
+        else
+            if !S.empty()
+            	visit(x)
+            	x = pop(S）
+            	x = x.right
+            else
+            	done = 1		
+```
+
+------
+
+**0x06** 不是使用栈实现非递归形式的中序遍历
+
+```python
+inorder(T)
+	x = T.root
+	done = 0
+	while !done
+    	#经过上述循环，我可以达到以x为根结点的子树最深的最左的叶子结点. 
+		while x.left！= NIl or x.right！= NIl
+        	while x.left != NIL
+            	x = x.left
+            visit(x)    
+            if x.right != NIL
+            	x = x.right
+        
+        #只有一个root结点或者右叶子结点
+        if x == T->root or x == x->parent->right
+        	visit(x)
+        
+        #此时我们需要向上回溯，去遍历当且叶子结点的父节点可能存在的还没有遍历的左子树. 
+        while x != T.root and (x.parent.right == x || x.parent.right == NULL)
+        	if(x.parent.right == NULL)
+            	visit(x.parent)
+        	x = x.parent
+        
+        #回溯直到T.root.
+        if x != T.root
+        	x = x.parent.right
+        else
+        	done = 1
+                         	
+```
 
