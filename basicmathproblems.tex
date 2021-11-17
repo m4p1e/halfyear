@@ -1127,7 +1127,7 @@ $$
 $$
 \lim\limits_{x \to \infty} \frac{\frac{1}{x^a(1+x)^b}}{\frac{1}{x^{\lambda}}} = \frac{x^{\lambda-(a+b)}}{(\frac{1}{x}+1)^b},
 $$
-其中分母是趋于$0$，为保证分子不趋于无穷，则需要$\lambda < (a+b)$，即$a+b > 1$. 当$x \to 0$时，那么就要和$\frac{1}{x^{\lambda}}(\lambda < 1)$比较， 于是有
+其中分母是趋于$1$，为保证分子不趋于无穷，则需要$\lambda < (a+b)$，即$a+b > 1$. 当$x \to 0$时，那么就要和$\frac{1}{x^{\lambda}}(\lambda < 1)$比较， 于是有
 $$
 \lim\limits_{x \to \infty} \frac{\frac{1}{x^a(1+x)^b}}{\frac{1}{x^{\lambda}}} = \frac{1}{x^{a-\lambda}(1+x)^b},
 $$
@@ -1653,7 +1653,7 @@ $$
 M &= \iint_S 9\sqrt{x^2 + y^2 + z^2}ds \\
  &=  \iint_D 9\sqrt{x^2 + y^2 + z^2}\sqrt{1 + \left(\frac{x}{\sqrt{x^2 + y^2}}\right)^2 + \left(\frac{y}{\sqrt{x^2 + y^2}}\right)^2}dxdy \\
  &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}d\theta \int_0^{2\cos\theta} 9\sqrt{2\rho^2}\sqrt{2} \rho d\rho \\
- &= 64
+ &= 64 
 \end{aligned}
 $$
 其中$(x-1)^2 + y^2=0$的极坐标方程为$\rho = 2\cos\theta$. 
