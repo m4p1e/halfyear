@@ -1280,7 +1280,7 @@ $$
 
 \subsection{矩阵方程}
 
-\begin{example}
+\begin{example}\label{matrix-equation-1}
 \rm 设$\mbf{A},\mbf{B}$分别为$s \times m,s \times n$矩阵，证明: 矩阵方程$\mbf{A}\mbf{X} = \mbf{B}$有解的充要条件为
 $$
 \rank{\mbf{A}} = \rank{(\mbf{A},\mbf{B})},
@@ -1303,6 +1303,33 @@ $$
 $$
 \rank{(\mbf{A},\mbf{B})} = \rank{(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n,\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_n)} = \rank{(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n)} = \rank{\mbf{A}}.
 $$
+\end{example}
+
+\begin{example}
+\rm 设矩阵矩阵$\mbf{A},\mbf{B}$分别为
+$$
+\mbf{A} = \begin{pmatrix}
+1 & -1 & -1 \\
+2 & a & 1 \\
+-1 & 1 & a 
+\end{pmatrix},
+\mbf{B} = \begin{pmatrix}
+2 & 2 \\
+1 & a \\
+-a-1 & -2 
+\end{pmatrix}
+$$
+当$a$为何值时方程有解，方程$\mbf{AX} = \mbf{B}$无界，有唯一解，有多穷多个解. 
+
+\hints\ 显然我们要考察矩阵$(\mbf{A} | \mbf{B})$，对其做初等行变换我们可以得到
+$$
+(\mbf{A} | \mbf{B}) = \left(\begin{array}{ccc|cc}
+1 & -1 & -1 & 2 & 2 \\
+0 & a+2 & 3 & -3 & a-4 \\
+0 & 0 & a-1 & 1-a & 0
+\end{array}\right)
+$$
+这个时候我们就要根据\ref{matrix-equation-1}来考察一下$\mbf{A}$和$(\mbf{A},\mbf{B})$秩的情况. 当$a \neq 1, a \neq -2$时，$\rank{\mbf{A}} = 3$，显然此时肯定有解且是唯一解. 当$a = 1$时，$\rank{\mbf{A}} = \rank{(\mbf{A},\mbf{B})} = 2$，此时有无穷解. 当$a = -2$时，$\rank{A} = 2$，而$\rank{(\mbf{A},\mbf{B})}=3$，那么方程是无解的. 
 \end{example}
 
 \begin{example}

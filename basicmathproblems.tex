@@ -560,6 +560,20 @@ $$
 求出需要$\lim\limits_{x \to 0} \frac{f(x_0-2x)-f(x_0)}{x}$和$\lim\limits_{x \to 0} \frac{f(x_0-x)-f(x_0)}{x}$，两项相减再取倒. 
 \end{example}
 
+\begin{example}
+\rm 已知$f(x) = \left\{ \begin{aligned} x, ~&~ x\leq 0 \\ \frac{1}{n},~ &~ \frac{1}{n+1} < x < \frac{1}{n}, n = 0,1,2,\cdots \end{aligned} \right.$, 判断$f(x)$在$x=0$是否可导. 
+
+\hints\ 当$x \to 0^+$时，$n \to \infty$，那么$\frac{1}{n} \to 0$，因此$f(x)$在$x=0$这点连续. 再来研究$f(x)$在$x=0$这一点的右导数
+$$
+\lim\limits_{x \to 0^+} \frac{\frac{1}{n}}{x} = \frac{1}{nx},
+$$
+显然有点无从下手，需要用一下分段函数的性质
+$$
+\frac{1}{n+1} < x < \frac{1}{n} \Rightarrow n \leq \frac{1}{x} \leq n+1 \Rightarrow 1 \leq \frac{1}{nx} \leq \frac{n+1}{n},
+$$
+对上面不等式取极限再用一下夹逼定理，可知$\lim\limits_{x \to 0^+} \frac{1}{nx} = 1$. 因此$f(x)$在$x=0$这里可导. 
+\end{example}
+
 \subsection{泰勒公式求高阶导数}
 
 \begin{example}

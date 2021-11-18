@@ -1,4 +1,5 @@
-
+#ifndef binary_tree_decl
+#define binary_tree_decl
 typedef struct __tree_node
 {
     struct __tree_node* left;
@@ -23,6 +24,6 @@ Bnode* binary_tree_maximum(Bnode *node);
 Bnode* binary_tree_minimum(Bnode *node);
 Bnode* binary_tree_successor(Bnode *node);
 Bnode* binary_tree_replace_no_free(Btree*, Bnode*, Bnode*);
-
-
+void binary_tree_in_order_tree_walk(Btree *T, void (*visit)(void *));
+#endif
 

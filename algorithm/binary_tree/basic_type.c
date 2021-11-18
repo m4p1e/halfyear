@@ -41,19 +41,20 @@ Bnode* binary_tree_insert(Btree* T, void* attr){
     Bnode *node = T->root;
     int order;
     Bnode *new_node = create_binary_tree_node();
+    new_node->attr = attr;
 
     while(node != NULL){
-        order = T->compare(node, attr);
+        order = T->compare(node->attr, attr);
         if(order >= 0){
             if(node->left == NULL){
-                node->left == new_node;   
+                node->left = new_node;   
                 break; 
             }else{
                 node = node->left;    
             }
         }else{
             if(node->right == NULL){
-                node->right == new_node;   
+                node->right = new_node;   
                 break; 
             }else{
                 node = node->right;    
@@ -65,7 +66,7 @@ Bnode* binary_tree_insert(Btree* T, void* attr){
     if(T->root == NULL){
         T->root = new_node;
     }
-
+   
     return new_node;
 }
 
