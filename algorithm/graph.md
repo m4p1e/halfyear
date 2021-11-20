@@ -957,6 +957,42 @@ is_contain_universal_sink(G)
     - 结点$j$不是通用汇点，它的出度为0，说明$G$一定也没有通用汇点，我们的目的也实现了.
   - 走到某一行$j$不全为$0$，说明前$j$个结点没有公共目标结点，显然$G$也不会有通用汇点。
 
+
+
 ------
 
-**Problem** 
+**Problem** 假定$G$上权重取值全为整数，且在范围在$1 \sim |V|$内. 在这种情况下对Kruskal算法和Prim算法有什么影响?
+
+------
+
+**Problem** 如果把$G$的每条边的权重x2，是否会改变$G$上两个点之间的最短路径? 如果把$G$的每条边的权重平方，是否会改变$G$上两个点之间的最短路径? 同样在权重平方的作用下，假设$G$上每条边的权重均不同，那么是否会影响Prim和Kruskal算法呢?
+
+设权重改变之后的$G$为$G'$
+
+- 在权重加倍的情况下，不会影响最短路径.  在$G$上的最短路径当且仅当在$G'$上也是最短路径，这很容易证明
+- 在权重平方的情况下，会影响最短路径.  例如在$G$上$w((s,v))=5, w((s,u))=3, w(u,v) = 4$，那么显然此时较短的路径为$s \to v$. 但是经过平方之后$s\to u \to v$和$s \to v$的路径权重一样.  
+- 在权重平方的情况下，不会影响Prim算法和Kruskal，因为它们都仅仅使用两个边权重大小的相对关系，平方之后并没有破坏这些关系. 
+
+------
+
+**Problem** 修改Bellman-Ford算法，如果$G$上有一个$s\to v$路径包含负环，则将$v.d = -\infty$.
+
+```python
+bellman_ford(G,w,s)
+	init(G,s)
+	for i = 1 to |G.v|-1
+		for each (u,v) in G.E
+			relax(u,v,w)
+	for each (u,v) in G.E #有结点的v.d可以任意小，代表有负权重的环
+    	if v.d > u.d + w(u,v)
+    		mark v
+    for each vertex v in marked vertex
+    	mark_pred(v)
+
+mark_pred(v) #加以修改可以列出一个负环上的所有结点. 
+	if v != NIL and v.d != -inf
+    	v.d = -inf
+    else
+    	return
+```
+
