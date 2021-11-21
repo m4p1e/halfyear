@@ -1992,6 +1992,37 @@ $$
 \hints\ $\mbf{A}$和$\mbf{B}$相似，则它们有相同的特征值，而$\text{trace}{\mbf{A}}$也等于特征值之和，因此$\text{trace}(\mbf{A}) = \text{trace}(\mbf{B})$. 
 \end{example}
 
+\subsection{待定系数矩阵相似}
+
+\begin{example}
+\rm 设矩阵$\mbf{A},\mbf{B}$分别为
+$$
+\mbf{A} = 
+\begin{pmatrix}
+0 & 2 & -3 \\
+-1 & 3 & -3  \\
+1 & -2 & a 
+\end{pmatrix},
+\mbf{B} = 
+\begin{pmatrix}
+1 & -2 & 0 \\
+0 & b & 0  \\
+0 & 3 & 1 
+\end{pmatrix}
+$$
+若$\mbf{A}$和$\mbf{B}$相似，求$a$和$b$. 
+
+\hints\ 实际上我们并没有比较好的充分条件来判定两个矩阵相似，但是这里我们可以只用两个比较简单的必要条件解出$a,b$
+$$
+\left\{
+\begin{array}{ll}
+\text{tr}(A) = \text{tr}(B) \\
+|\mbf{A}| = |\mbf{B}|
+\end{array}\right.
+$$
+不要去尝试求特征值，这样做只会让这个题目变得更难. 
+\end{example}
+
 \subsection{特殊的相似矩阵}
 
 \begin{example}

@@ -1526,7 +1526,7 @@ $$
 \begin{enumerate}
 	\item 确定是平面曲线还是空间曲线;
 	\item 确定曲线方向;
-	\item 确定曲线方程的给定形式和自变量的变换范围, 注意无论怎样的曲线方程都是可以看做参数方程的;
+	\item 确定曲线方程的给定形式和自变量的变换范围(1 常见的参数方程类型的曲线，这种曲线有可能直接计算或者路径无关; (2 方程组形式的曲线，例如两个曲面的交线，这里情况下可能无法直接将曲线转换为参数方程，就要小心比较巧妙的计算手法和化简步骤. 
 	\item 确定\redt{平面曲线}积分是否与路径无关，常见判定手法(1 $Pdx+Qdy$是否是某个二元函数的全微分 (2 $\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$. 若与路径无关考虑， (1 利用原函数直接计算 (2 化简单积分路线，例如平行于坐标轴，就化为两个定积分. 
 	\item 确定是否为光滑的\redt{平面闭曲线}，若为光滑曲线考虑使用格林公式化二重积分，注意曲线方向和其围成的区域$D$要遵守左手法则，即绕着曲线的方向绕一圈，区域$D$总是在观察者的左手边. \redt{还需要注意被积函数$P,Q$在$D$上要有连续的一阶偏导};
 	\item 确定若不是\redt{平面闭曲线}，可以考虑做补线让其变成一个闭曲线，再使用格林公式，可能可以简化计算. 
@@ -1548,7 +1548,7 @@ I = \int_L \frac{4x-y}{4x^2 + y^2}dx + \frac{x+y}{4x^2+y^2}dy
 $$
 其中$L$是$x^2+y^2 = 2$，方向为逆时针方向. 
 
-\hints\ \redt{千万注意这里不能使用格林公式，因为被积函数有个奇点$(0,0)$在圆里面}. 注意到
+\hints\ \redt{千万注意这里不能直接使用格林公式，因为被积函数有个奇点$(0,0)$在圆里面}. 注意到
 $$
 \frac{\partial }{\partial x}\left( \frac{x+y}{4x^2+y^2} \right) = \frac{\partial }{\partial y}\left( \frac{4x-y}{4x^2 + y^2} \right),
 $$
@@ -1563,6 +1563,46 @@ $$
 我们可以通过选择合适的$L_2$来避免引入奇点，例如令$L_2: 4x^2+y^2=1$，那么
 $$
 I = \int_{L_2} 4x-y dx + x+y dy = \iint_{D} 2dxdy = 2\cdot \frac{1}{2}\pi = \pi, 
+$$
+\end{example}
+
+\begin{example}
+\rm 已知曲线$L$的方程为
+$$
+\left\{
+\begin{aligned}
+&z = \sqrt{2-x^2-y^2} \\
+&z = x
+\end{aligned}\right. 
+$$
+起点为$A(0,\sqrt{2},0)$，终点为$B(0,-\sqrt{2},0)$，计算曲线积分
+$$
+I = \int_L (y+z)dx+(z^2-x^2+y)dy+x^2y^2dz
+$$
+\hints\ 不能直接写出曲线的参数方程，意味我们可能不能直接求化为普通的单重积分. $L$是一个空间曲线，且通过$z=\sqrt{2-x^2-y^2}$我们知道$L$是一条半圆弧，$A,B$是它的两个端点. 因此我们考虑补上直线段$L_{BA}$，与$L$的方向保持一至. 设$L$和$L_{BA}$围成的封闭平面区域为$\Sigma$，$\\Sigma$在平面$z=x$上那么我们就可以使用stokes公式得到
+$$
+I=\iint_\Sigma \begin{vmatrix}
+\cos \alpha & \cos \beta & \cos \gamma \\
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+y+z & z^2-x^2+y & x^2y^2 
+\end{vmatrix}dS-\int_{L_{AB}} (y+z)dx+(z^2-x^2+y)dy+x^2y^2dz
+$$
+根据右手定则知道$\Sigma$的法向量为$(1,0,-1)$，因此方向余弦为$(\frac{1}{\sqrt{2}},0,-\frac{1}{\sqrt{2}})$. 于是
+$$
+\begin{aligned}
+\iint_\Sigma \begin{vmatrix}
+\frac{1}{\sqrt{2}}(2x^2y -2z) - \frac{1}{\sqrt{2}}(-2x-1)dS
+\end{vmatrix}dS &= \frac{1}{\sqrt{2}} \iint_\Sigma 2x^2y +1 dS 
+&= \frac{\sqrt{2}}{2}\pi
+\end{aligned}
+$$
+其中$\Sigma$关于平面$xOz$对称，因此$\iint_\Sigma 2x^2ydS = 0$. 而
+$$
+\int_{L_{AB}} (y+z)dx+(z^2-x^2+y)dy+x^2y^2dz = \int_{L_{AB}} ydy = 0.
+$$
+最终
+$$
+I = \frac{\sqrt{2}}{2}\pi. 
 $$
 \end{example}
 

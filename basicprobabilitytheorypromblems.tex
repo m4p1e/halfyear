@@ -238,6 +238,38 @@ $$
 求出$a=2$.  
 \end{example}
 
+\section{参数估计}
+
+\subsection{均匀分布的参数估计}
+
+\begin{example}
+\rm 设总体$X$的概率密度为
+$$
+f(x;\theta) = \left\{
+\begin{array}{ll}
+\frac{1}{1-\theta}, & \theta\leq x \leq 1, \\
+0, & \text{其他}. 
+\end{array} \right. 
+$$
+
+\hints\ 那么似然函数为
+$$
+\begin{aligned}
+L(x_1,x_2,\cdots,x_n;\theta) &= 
+\left\{
+\begin{array}{ll}
+\frac{1}{(1-\theta)^n}, & \theta\leq x_i \leq 1, i=1,2,\cdots,n\\
+0, & \text{其他}. 
+\end{array} \right. \\
+&= \left\{
+\begin{array}{ll}
+\frac{1}{(1-\theta)^n}, & \theta\leq \min\{x_1,x_2,\cdots,x_n\} \\
+0, & \text{其他}. 
+\end{array} \right.
+\end{aligned}
+$$
+因此当$\theta = \min\{x_1,x_2,\cdots,x_n\}$时，$L(x_1,x_2,\cdots,x_n;\theta)$取最大值. \redt{一定理解这个表示形式，因为拿到手你不太好表示这个似然函数的}. 
+\end{example}
 
 \section{三大分布}
 
