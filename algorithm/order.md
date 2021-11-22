@@ -390,7 +390,7 @@ merge(L, p, r)
 方法2: 使用最小堆，时间复杂度$n \lg k$. 最小堆总是维护$k$个元素. 
 
 ```python
-merge(L)
+kmerge(L)
 	L2 = create_singly_linked_list()
 	Q = create_min_priority_queue()
 	for i = 1 to L.length
@@ -400,7 +400,7 @@ merge(L)
     	insert_at_tail(L2,e)
     	succ = e.next
     	if succ != NIL
-    		insert(L, succ)	
+    		insert(Q, succ)	
     return L2
 ```
 
