@@ -373,6 +373,39 @@ counting-sort(A,B,k)
 
 **算法应用**
 
+**Problem** 合并k个升序链表
+
+方法1:  使用分治法，时间复杂度$n\lg k$
+
+```python
+merge(L, p, r)
+	if p == r
+    	return L[p]
+    if p > r
+    	return NIL
+    q = (p+r)/2 #floor
+    return merge_two_lists(merge(L, p, q), merge(L, q+1, r))
+```
+
+方法2: 使用最小堆，时间复杂度$n \lg k$. 最小堆总是维护$k$个元素. 
+
+```python
+merge(L)
+	L2 = create_singly_linked_list()
+	Q = create_min_priority_queue()
+	for i = 1 to L.length
+		insert(L, L[i].head)
+	while !empty(Q)
+    	e = extract_min(Q)
+    	insert_at_tail(L2,e)
+    	succ = e.next
+    	if succ != NIL
+    		insert(L, succ)	
+    return L2
+```
+
+
+
 **Problem** 描述一个运行时间为$O(n\lg n)$ 的算法，给定一个包含$n$数的集合$S$和另外一个整数$x$，该算法能确定$S$中是否存在两个其和刚好为$x$的元素. 
 
 **Solution 1.  Sorting**
