@@ -154,7 +154,35 @@ DFS-VISIT(G, u):
             # 探索完v后，循环继续进行，探索u的下一个邻接结点
     u.color = BLACK
     time = time + 1
-    u.f = time                # 探索完成            
+    u.f = time                # 探索完成
+    
+FIRST-WHITE-CHILD(G, u)
+	for each v in G.Adj[u]
+    	if v.color == WHITE
+        	return v
+    retur NIL    
+    
+DFS-VISIT-STACK(G, u)
+	time = time + 1
+    u.d = time
+    u.color = GRAY
+    S = init_stack();
+   	repeat
+    	v = FIRST-WHITE-CHILD(G,u)
+        if v != NIL
+        	v.pi = u
+            v.color = GRAY
+            time = time + 1
+            u.d = time
+            PUSH(S,v)
+            u = v
+        else
+        	u.color = BLACK
+            time = time + 1
+            u.f = time
+            if !empty(S)
+            	u = pop(S)    
+    until empty(S)           
 ````
 
 
@@ -962,6 +990,19 @@ is_contain_universal_sink(G)
     - 结点$j$不是通用汇点，这种情况下我们的目的就已经实现了
     - 结点$j$不是通用汇点，它的出度为0，说明$G$一定也没有通用汇点，我们的目的也实现了.
   - 走到某一行$j$不全为$0$，说明前$j$个结点没有公共目标结点，显然$G$也不会有通用汇点。
+
+------
+
+**Problem** 如果有向图$G$上包含一条$u$到$v$的路径，并且在对$G$进行DFS的时候有$u.d < v.d$，则$v$不一定是$u$在深度优先树上的一个后代. 
+
+```
+	---->w
+	|  /  \	
+	| /    \
+	u		v
+```
+
+即$(w,u),(u,w),(w,v)$，当DFS遍历的顺序为$w \to u \to v$. 
 
 ------
 
