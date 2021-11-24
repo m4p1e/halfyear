@@ -18,7 +18,7 @@
 
 如何定义额外的操作？
 
-1. 从某个对象新增元素，可以使用make-set，再进行union.
+1. 对某个对象新增元素，可以使用make-set，再进行union.
 2. 删除元素？
 
 
@@ -48,7 +48,7 @@
 
 
 
-**Proposition** 使用不相交集合的链表表示和加权合并启发式策略，一个具有$m$个$make,union,find-set$操作的序列（其中有$n$个make操作）需要时间为$O(m+nlgn)$.  
+**Proposition** 使用不相交集合的链表表示和加权合并启发式策略，一个具有$m$个$make,union,find-set$操作的序列（其中有$n$个make操作）需要时间为$O(m+n\lg n)$.  
 
 
 
@@ -88,6 +88,9 @@ make_set(x)
 	x.p = x
     x.rank = 0
 
+union(x,y)
+	link(find_set(x),find_set(y))
+    
 link(x,y)
 	if x.rank > y.rank
     	y.p = x
@@ -126,4 +129,25 @@ find-set(x)
 - 同时使用按秩合并和路径压缩时间复杂度为$O(m\alpha(n))$，对于所有实际应用均有 $\alpha(n) \leq 4$ 
 
  
+
+
+
+### 0xFF 考点
+
+**Problem** 利用disjoint-set来计算无向图$G$的连通量. 
+
+```python
+connected_components(G)
+	for each v in G.v
+		make_set(v)
+	for each (u,v) in G.E
+    	if find_set(u) != find_set(v)
+    		union(u,v)
+    
+same_component(u,v)
+	if find_set(u) != find_set(v)
+		return true
+	else
+    	return false 
+```
 
