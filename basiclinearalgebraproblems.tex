@@ -2051,11 +2051,49 @@ $$
 	\item 必要条件:特征值相等;
 	\item 充分条件: 对于都可对角化的矩阵，判定其特征值是否相同;
 	\item 否命题的充分条件: 一个可对角化，一个不可对角化，则它们不相似;
-	\item 对于都不可对角化的矩阵，同一个特征值的特征子空间的维数相同;	
+	\item 对于都不可对角化的矩阵，同一个特征值的特征子空间的维数相同(必要条件);	
 	\item 对于都不可对角化的矩阵，设$\mbf{P}\mbf{B} = \mbf{A}$，则对应的特征向量满足: 若$\mbf{B}$对应$\lambda$的特征向量$\alpha$，则$\mbf{A}$对应$\lambda$的特征向量为$P\alpha$. 这里需要求出可逆矩阵$P$
 \end{enumerate}
 \end{proposition}
 
+
+\begin{example}
+\rm 设$n$阶矩阵$\mbf{A}$和$\mbf{B}$分别为
+$$
+\mbf{A} = \begin{pmatrix}
+1 & 1 & \cdots & 1 \\
+1 & 1 & \cdots & 1 \\
+\vdots & \vdots &  & \vdots \\
+1 & 1 & \cdots & 1 \\
+\end{pmatrix},
+\mbf{B} = \begin{pmatrix}
+0 & 0 & \cdots & 1 \\
+0 & 0 & \cdots & 2 \\
+\vdots & \vdots &  & \vdots \\
+0 & 0 & \cdots & n \\
+\end{pmatrix} 
+$$
+证明$\mbf{A}$和$\mbf{B}$相似. 
+
+\hints\ 经典的秩为$1$的矩阵，想一想矩阵相似我们的充分条件只有可对角下的特征值相等. 首先肯定就是判定它们是否可对角化
+$$
+\begin{aligned}
+|\lambda\mbf{I}-\mbf{A}| &= \begin{pmatrix}
+\lambda-1 & -1 & \cdots & -1 \\
+-1 & \lambda-1 & \cdots & -1 \\
+\vdots & \vdots &  & \vdots \\
+-1 & -1 & \cdots & \lambda-1 \\
+\end{pmatrix} = (\lambda-n)\lambda^{n-1} \\
+|\lambda\mbf{I}-\mbf{B}| &= \begin{pmatrix}
+\lambda & 0 & \cdots & -1 \\
+0 & \lambda & \cdots & -2 \\
+\vdots & \vdots &  & \vdots \\
+0 & 0 & \cdots & \lambda-n \\
+\end{pmatrix} = (\lambda-n)\lambda^{n-1}
+\end{aligned}
+$$
+它们的特征值相同. 当$\lambda=n$时，容易验证它们的特征值子空间都是$1$维的; 当$\lambda=0$时，也容易验证它们的特征值子空间都是$n-1$维的. 因此它们可以对角化且特征值相同，那么它们相似. 
+\end{example}
 
 \subsection{对角化判定}
 

@@ -188,6 +188,30 @@ $$
 也可以这样思考$\Phi(\frac{x-5}{2}) \sim N(5,4), \Phi(\frac{x+1}{3}) \sim N(-1,9)$，因此$E(X) = \frac{2}{5} \cdot 5 - 1 \cdot \frac{3}{5}= \frac{7}{5}$.
 \end{example}
 
+
+\begin{example}
+\rm 设连续型随机变量$X_1$与$X_2$相互独立且方差均存在，$X_1$和$X_2$的概率密度分别为$f_1(x)$与$f_2(x)$，随机变量$Y_1$的概率密度为$f_{Y_1}(y) = \frac{1}{2}[f_1(y)+f_2(y)]$，随机变量$Y_2=\frac{1}{2}(X_1 + X_2)$. 比较$D(Y_1)$和$D(Y_2)$.
+
+\hints\ 首先计算它们的期望
+$$
+\begin{aligned}
+E(Y_1) &= \frac{1}{2}\int_{-\infty}^{+\infty}yf_1(y)dy + \frac{1}{2}\int_{-\infty}^{+\infty}yf_2(y) = \frac{E(X_1)+E(X_1)}{2} \\
+E(Y_2) &= \frac{E(X_1)+E(X_1)}{2}
+\end{aligned}
+$$
+而$D(Y) = E(Y^2) - E^2(Y)$，这里$E(Y_1) = E(Y_2)$，因此我们可以通过比较$E(Y_1^2)$和$E(Y_2^2)$来比较$D(Y_1)$和$D(Y_2)$. 
+$$
+\begin{aligned}
+E(Y_1^2) &= \frac{E(X_1^2)+E(X_2^2)}{2} \\
+E(Y_2^2) &= \frac{E(X_1^2) + 2E(X_1X_2) + E(X_2^2)}{4}
+\end{aligned}
+$$
+那么
+$$
+E(Y_1^2) - E(Y_2^2) = \frac{E[(X_1-X_2)^2]}{4} > 0. 
+$$
+\end{example}
+
 \subsection{随机变量乘积}
 
 \begin{example}

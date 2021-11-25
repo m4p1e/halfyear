@@ -1606,6 +1606,28 @@ I = \frac{\sqrt{2}}{2}\pi.
 $$
 \end{example}
 
+
+\begin{example}
+\rm 设$L$是柱面$x^2+y^2=1$与平面$y+z=0$的交线，从$z$轴正向忘$z$轴负向看去为逆时针方向，求曲线积分
+$$
+\oint_L zdx + ydz.
+$$
+
+\hints\ 这里直接用stokes公式
+$$
+\oint_L zdx + ydz = \iint_\Sigma \begin{vmatrix}
+\cos \alpha & \cos \beta & \cos \gamma \\
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+z & 0 & y 
+\end{vmatrix}dS
+$$
+其中$\Sigma$为闭曲线$L$围成的平面区域，其法向量为$(0,1,1)$，因此其方向余弦为$(0,\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$. 因此
+$$
+I = \iint_\Sigma \frac{1}{\sqrt{2}}dS=  \iint_{D_{xy}} \frac{1}{\sqrt{2}} \sqrt{1^2 + 1^2}dxdy = \pi
+$$
+其中$\Sigma: \left\{ \begin{aligned} &x^2+y^2 \leq 1 \\ &y+z = 0  \end{aligned} \right.$，因此其在$xOy$上的投影区域$D_{xy}: x^2+y^2 \leq 1$. 
+\end{example}
+
 \subsection{两类曲线积分关系}
 
 \begin{example}
