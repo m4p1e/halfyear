@@ -2013,6 +2013,48 @@ $$
 因此原级数发散. 
 \end{example}
 
+\section{综合证明题}
+
+\subsection{级数}
+
+\begin{example}
+\rm 设数列${a_n},{b_n}$满足$0 < a_n < \frac{\pi}{2}, 0 < b_n < \frac{\pi}{2}, \cos a_n - a_n = \cos b_n$，且级数$\sum\limits_{n=1}^{\infty}b_n$收敛. 证明:(1 $\lim\limits_{n \to \infty} a_n = 0$; (2 级数$\sum\limits_{n=1}^{\infty} \frac{a_n}{b_n}$. 
+
+\hints (1 由级数$\sum\limits_{n=1}^{\infty}b_n$收敛，因此$\lim\limits_{n \to \infty} b_n = 0$，因此
+$$
+\lim\limits_{n \to \infty} \cos a_n-a_n = 1,
+$$
+设辅助函数$f(x) = \cos x-x$，其$f'(x) = -\sin x - 1$，那么它在$(0,\frac{1}{\pi})$是单调递减的，而$f(0) = 1$，因此$\lim\limits_{n \to \infty} a_n = 0$. 
+
+(2 方法1: 直接求
+$$
+\begin{aligned}
+\lim\limits_{n \to \infty} \frac{a_n}{b_n^2} &= \lim\limits_{n \to \infty} \frac{1-\cos b_n}{b_n^2} \cdot \frac{a_n}{1-\cos b_n} \\
+&= \frac{1}{2} \lim\limits_{n \to \infty}  \frac{a_n}{1-\cos b_n} \\
+&= \frac{1}{2} \frac{a_n}{1+a_n - \cos a_n} \\
+&= \frac{1}{2}
+\end{aligned}
+$$
+
+
+方法2(未完成): 想办法把$a_n$表示出来，稍微变换一下题目中的式子
+$$
+(\cos a_n-a_n) -(\cos b_n-b_n) = b_n, 
+$$
+还是使用上面的辅助函数$f(x)$，这里用一下中值定理有
+$$
+f(a_n)-f(b_n)=(a_n-b_n)(-\sin \theta - 1)
+$$
+其中$\theta$在$a_n$和$b_n$之中. 于是
+$$
+a_n = b_n - \frac{b_n}{1+\sin \theta},
+$$
+那么
+$$
+\lim\limits_{n \to \infty} \frac{\frac{a_{n+1}}{b_{n+1}}}{\frac{a_{n}}{b_{n}}} = \lim\limits_{n \to \infty} \frac{b_n(b_{n+1} - \frac{b_{n+1}}{1+\sin \theta_2})}{b_{n+1}(b_{n} - \frac{b_{n}}{1+\sin \theta_1})} = \lim\limits_{n \to \infty} \frac{\sin \theta_2(1+\sin\theta_1)}{\sin \theta_1(1+\sin\theta_2)}
+$$
+\end{example}
+
 \newpage
 \section{tricks}
 
