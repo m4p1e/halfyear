@@ -2334,7 +2334,7 @@ $$
 \end{proof}
 
 \begin{theorem}
-\rm \redt{(辛钦大数定理)} 设$X_1,X_2,\cdots,X_n,\cdots$是独立同分布的随机变量，即$E(X_i) = \mu,i=1,2,\cdots$. 则对任意数$\varepsilon > 0$有
+\rm \redt{(辛钦大数定理)} 设$X_1,X_2,\cdots,X_n,\cdots$是独立同分布的随机变量，且$E(X_i) = \mu$(并不要求方差存在)，则对任意数$\varepsilon > 0$有
 $$
 \lim\limits_{n \rightarrow \infty}P\{|\overline{X}_n -\mu| \geq \varepsilon\} = 0,
 $$ 
@@ -2342,7 +2342,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-设$D(X_i) = \sigma^2, i =1,2,\cdots$. 由切比雪夫不等式有
+这里只证明方差存在的情况，设$D(X_i)=\sigma^2, i=1,2,\cdots$由切比雪夫不等式有
 $$
 P\{|\overline{X}_n -\mu| \geq \varepsilon\} \leq \frac{D(\overline{X}_n)}{\varepsilon^2} = \frac{n\frac{\sigma^2}{n^2}}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}. 
 $$
@@ -2375,7 +2375,7 @@ $$
 \end{proof}
 
 \begin{theorem}
-\rm \redt{更一般的切比雪夫大数定理} 设$X_1,X_2,\cdots,X_n,\cdots$为相互独立的随机变量，它们的期望$E(X_i)$和方差$D(X_i)$都存在，而且方差上有界，即$D(X_i) \leq L, i = 1,2,\cdots$. 则对任意的$\varepsilon > 0$，都有
+\rm \redt{更一般的切比雪夫大数定理} 设$X_1,X_2,\cdots,X_n$为相互独立的随机变量，它们的期望$E(X_i)$和方差$D(X_i)$都存在，而且方差上有界，即$D(X_i) \leq L, i = 1,2,\cdots$. 则对任意的$\varepsilon > 0$，都有
 $$
 \lim\limits_{n \to \infty} P\left\{ \left| \frac{1}{n} \sum\limits_{i=1}^n X_i - \frac{1}{n} \sum\limits_{i=1}^n E(X_i) \right| \geq \varepsilon \right\} = 0. 
 $$
