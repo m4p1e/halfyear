@@ -22,9 +22,9 @@
 ```python
 navie_string_match(T,P)
 	n = T.length
-	m = p.length
+	m = P.length
 	for s=0 to n-m
-    	if compare(T,s,P) == true
+    	if T[s+1,s+m] == p[1,m]
     		print "found" 		
 ```
 
@@ -44,7 +44,7 @@ navie_string_match(T,P)
 2. 计算$n-m+1$个子串$T[s+1\cdots s+m ]$的数字表示$t_s$
 3. 将$p$依次与$t_s$比较. 
 
-对于$P$计算$p$，可以在时间$O(m)$完成，低位在$P[m]$. 
+对于$P$计算$p$，可以在时间$O(m)$完成，注意低位在$P[m]$. 
 $$
 p = P[m] + 10(P[m-1]+10(P[m-2]+\cdots+10(P[2]+10P[1])\cdots))
 $$
@@ -52,17 +52,11 @@ $$
 $$
 t_{s+1} = 10(t_s - 10^{m-1}*T[s+1])+T[s+1+m]
 $$
-实际上就是先减去高位，再左移补上最低位. 
+实际上就是先将前m-1位都左移一位即忽略$T[s]$这里的高位，再补上最低位.  
 
 
 
 **一般情况**
-
-最坏情况下所需时间为$O(m(n-m+1))$. 
-
-算法的期望时间为$O(n+m)$. 
-
-
 
 若不限制$P$的长度$m$，显然比较两个任意的长度数字是不实际的，因此这里考虑一个启发式的算法:
 
@@ -71,7 +65,7 @@ $$
 3.  若$p$和$t_s$相等，则其对应的字符串有可能是相同的; 若$p$和$t_s$不相等，则其对应的字符串一定是不相同的. 
 4.  在$p$和$t_s$相等下，我们做进一步的字符串的比较，来确定是否相同. 
 
-这里描述的实际是一个启发式的算法. 
+这里描述的实际是一个启发式的算法，相比于简单情况下，这里额外需要$O(m)$时间比较两个字符串最终是否相等. 
 
 这里假设是$d$进制字母表，这里需要调整一下计算$t_{s+1}$的算法. 
 $$
@@ -81,9 +75,15 @@ $$
 
 
 
+- 最坏情况下所需时间为$O(m(n-m+1))$. 
+
+- 算法的期望时间为$O(n+m)$. 
+
+
+
 **分析RK算法**
 
-RK算法其实就是对pattern取hash，同样对比较的字符串也逐长做hash.  对比朴素算法，在逐长做hash的时候可以做到$O(1)$，比较两个hash所需时间也是比较短的. 但是在最坏情况下RK算法和朴素算法所需时间都是一样的都需要$O(mn)$. 
+RK算法其实就是对pattern取hash，同样对比较的字符串也逐长做hash.  对比朴素算法，在逐长做hash的时候可以做到$O(1)$，比较两个hash所需时间可以看做$O(1)$. 但是在最坏情况下RK算法和朴素算法所需时间都是一样的都需要$O(m(n-m+1))$. 
 
 
 
@@ -103,7 +103,7 @@ $$
 \phi(wa) = \var(\phi(w),a)
 $$
 
-**Definition** 若字符串$w$是$x$的前缀，则记为$w \sqsubset x $，反之若$w$是$x$的后缀，则记为$w \sqsupset x$.
+**Definition** 若字符串$w$是$x$的前缀，则记为$w \sqsubset x $，反之若$w$是$x$的后缀，则记为$w \sqsupset x$.  空串是任意字符串的前缀或者后缀. 
 
 定义函数$\sigma_P(w) : w \to \{1,2,\cdots,m\}$表示$w$的后缀中蕴含$P$的最长子串的长度，即
 $$
@@ -143,21 +143,21 @@ generate_transfer_function(P,C)
 	m = P.length
 	for q = 0 to m
 		for a in C 
-        	k = min(m+1,q+2) #这样做的目的是考虑最大的可能的P子串，+2是后面会首先减1. 我们考虑的最长子串只能是P本身. 
-            repeat
-            	k=k-1
-            until P_k is longest suffix string of 
-            transfer_func(q,a) = k
+        	#由前面的lemma, 对于长度q的后缀子串，P_qa的最大后缀子串长度最大为q+1, 这里q+2是为了和后面do-while操作保持一致
+            #同时最大后缀子串只能是P本身. 
+        	k = min(m,q+1) 
+            while !is_suffix(P_qa, P_k)
+            	k = k - 1
+            transfer_func(q,a) = k   
     return transfer_func  
 
-finite_automation_search(S, transfer_func, m){ #m是terminal state
+finite_automation_search(S, transfer_func, m) #m是terminal state
     m = S.length
     k = 0
-    for i = 2 to m
+    for i = 1 to m
     	k = transfer_func(k, S[i]);
     	if k == m
     		print "found at offset" i-m
-}
 ```
 
 
@@ -176,11 +176,11 @@ finite_automation_search(S, transfer_func, m){ #m是terminal state
 
 
 
-那么如何设计这个$\pi$呢？ 也就是说当已经成功匹配了$P_q$之后，紧着失败了，那么最小的偏移应该是多少？最小的偏移等价于找到最长的后缀子串.  形式化地可以解释为给定子串$P_q$，求满足$P_k \sqsubset P_q$的$k$的最大值.  即
+那么如何设计这个$\pi$呢？ 也就是说当已经成功匹配了$P_q$之后，紧着失败了，那么最小的偏移应该是多少？最小的偏移等价于找到最长的后缀子串.  形式化地可以解释为给定子串$P_q$，求满足$P_k \sqsubset P_q$的$k$的最大值，其中$k < p$.  即
 $$
-\pi[q] = \max\{k : P_k \sqsubset P_q\}
+\pi[q] = \max\{k : k < q~\text{且}~P_k \sqsubset P_q\}
 $$
-这个算法是看起来不是那么容易.  首先需要理解一些分析性质才行. 
+下面算法的构造是看起来不是那么容易.  首先需要理解一些分析性质才行. 
 
 
 
@@ -190,7 +190,7 @@ $$
 $$
 其中$\pi^{(i)}[q]=\pi[\pi^{(i-1)}[q]]$，$\pi^{(t)}[q] = 0$.  那么$\pi^*[q] = \{k : P_k \sqsubset P_q\}$，即$\pi^*[q]$是$P_q$所有可能的后缀下标集合. 
 
-*Proof.* 两边夹来证$\pi^*[q] \subseteq \{k : P_k \sqsubset P_q\}$是显然.  另一方向，假设$\{k : P_k \sqsubset P_q\} - \pi^*[q] \neq \emptyset$， 取$j$是$\{k : P_k \sqsubset P_q\} - \pi^*[q]$中最大的那个值，可以肯定是必有$j < \pi[q]$，那么我们就可以取$j'$是$\pi^*[q]$中比$j$大的最小值（前面的条件保证了$j'$的存在性），那么这里有$\pi[j'] = j$，从而$j \in \pi^*[q]$，这和假设是矛盾的.  
+*Proof.* 两边夹来证.  $\pi^*[q] \subseteq \{k : P_k \sqsubset P_q\}$是显然.  另一方向，假设$\{k : P_k \sqsubset P_q\} - \pi^*[q] \neq \emptyset$， 取$j$是$\{k : P_k \sqsubset P_q\} - \pi^*[q]$中最大的那个值，可以肯定是必有$j < \pi[q]$，那么我们就可以取$j'$是$\pi^*[q]$中比$j$大的最小值（前面的条件保证了$j'$的存在性），那么这里有$\pi[j'] = j$，从而$j \in \pi^*[q]$，这和假设是矛盾的.  
 
 
 
@@ -217,10 +217,10 @@ $$
 我们根据最后这个推论:
 
 1. $\pi[q]$值在是$\pi^*[q-1]$中满足$P[k+1]=P[q]$最大的值$k$加上1. 
-
 2. 如果$\pi^*[q-1]$为空，那么$\pi[q] = 0$.  
+3. $\pi[1] = 0$. 
 
-   
+使得可以递归的计算$\pi[q]$. 
 
 ```python
 compute_prefix_function(P)
@@ -228,37 +228,69 @@ compute_prefix_function(P)
 	pi[1] = 0 
 	k = 0
 	for q=2 to m
-    	#k总是等于p[q-1]
+    	#k总是等于pi[q-1]
 		while k > 0 and P[k+1] != P[q] #第二个lemma
-			k = pi[k] #这里用了第一个lemma，遍历pi[q-1]中的所有k
+			k = pi[k] #这里用了第一个lemma，遍历pi[q-1]中的所有k    
         if P[k+1] == P[q] 
-        	#这里为什么要在k=k+1之前加if? 
-        	#当k=0时，那么这里需要比较P[1]和P_q最后一个元素P[q]来判定最大子串长度为1
-        	k = k+1 #推论
-        pi[q] = k # 
+        	k = k+1 #第二个lemma    
+        pi[q] = k 
         
-kmp_search(S, P, pi){
+kmp_search(S, P, pi)
    m = S.length
-   k = 0 
+   k = 0 #k表示已经匹配了的最长前缀长度 
    for i=1 to m
-    	while k > 0 and S[i] != P[k+1]
-    		k = pi[k] 
+    
+        #找到最长前缀k
+        while k > 0 and S[i] != P[k+1]
+    		k = pi[k]
+        
+		#判定是否匹配k+1
     	if S[i] = P[k+1]
     		k = k + 1;
     	
+        #k == P.length，即完成一次匹配
     	if k == P.length
     		print "found at offset" i-m;
+            #开始下一轮匹配
     		k = pi[k]
-}        	
 ```
 
 
 
 
 
+### 0xFF
+
+**Problem** 当模式$P$中的所有字符都不相同时，如何加速朴素算法?
+
+假设一次比较过程失败发生在$P[k]$这里
+
+- 当$k\geq 3$时，我们可以知道成功匹配了$P[1,k-1]$对应$T[s+1, s+k-1]$. 由前提条件$P$中的每个字符是互异的，那么$T[s+2,s+k-1]$之中的字符肯定都是不等于$P[1]$的，因此我们可以将$s$向前移动$k-1$，即下一次从$T[s+k-1+1]$和$P[1]$开始比较. 
+- 当$k==1$时，依然只能往前移动一位.
+- 当$k==2$时，还是只能往前移动一位，中间没有位数让我们可以跳跃. 
+
+```python
+navie_string_match(T,P)
+	n = T.length
+	m = p.length
+	for s=0 to n-m
+    	i = 1
+    	while T[i+s] == P[i]
+    		i++
+    	if i == m+1 #说明成功比较了m次
+    		print "found with shift" s
+    	else
+        	#非常奇怪这里尽然不连续
+        	if i == 1 or i == 2 # 
+            	s = s + 1
+        	else
+        		s = s + i-1 #
+    		
+```
 
 
 
+ 
 
 
 
