@@ -230,34 +230,34 @@ $$
 $$
 \hints\
 $$
-\ln \sqrt[n]{a_1a_2\cdots a_n} = \frac{\ln a_1 + \ln a_2 + \cdots + \ln a_n}{n} = \ln a.
+\ln \sqrt[n]{a_1a_2\cdots a_n} = \frac{\ln a_1 + \ln a_2 + \cdots + \ln a_n}{n}.
 $$
-因为$\ln x$的连续性，所以$\lim \ln a_n = \ln a$，再根据\ref{ex:jishu1}. 
+因为$\ln x$的连续性，所以$\lim\limits_{n \to \infty} \ln a_n = \ln a$，再根据\ref{ex:jishu1}. 
 \end{example}
 
 \begin{example}\label{ex:jishu3}
-当$\lim\limits_{n \rightarrow \infty} a_n = a, a_n > 0$，则
+\rm 当$\lim\limits_{n \rightarrow \infty} a_n = a, a_n > 0$，则
 $$
 \lim\limits_{n \rightarrow \infty} \sqrt[n]{a_1a_2\cdots a_n} = a.
 $$
 \hints\ 取对数再根据\ref{ex:jishu2}
 $$
-\sqrt[n]{a_1a_2\cdots a_n} = e^{\ln \sqrt[n]{a_1a_2\cdots a_n}} = e^{ln a} = a.
+\sqrt[n]{a_1a_2\cdots a_n} = e^{\ln \sqrt[n]{a_1a_2\cdots a_n}} = e^{\ln a} = a.
 $$
 \end{example}
 
 \begin{example}
-求极限
+\rm 求极限
 $$
 \lim\limits_{n \rightarrow \infty}\frac{\sqrt[n]{n!}}{n}.
 $$
-\hints\ 由 \ref{ex:jishu3} 可知$a_n$和$b_n = \sqrt[n]{a_1a_2\cdots a_n}$的极限是相同的(假设$a_n$的极限存在). 那么有一个推论，对于数列
+\hints\ 由 \ref{ex:jishu3} 可知$a_n$和$b_n = \sqrt[n]{a_1a_2\cdots a_n}$的极限是相同的(假设$a_n$的极限存在). 那么我们设$a_n = \frac{c_{n}}{c_{n-1}}, n=2,\cdots$，其中$a_1 = c_1$，即下述队列数列
 $$
-a_1, \frac{a_2}{a_1}, \frac{a_3}{a_2},\cdots,\frac{a_{n+1}}{a_n},\cdots
+c_1, \frac{c_2}{c_1}, \frac{c_3}{c_2},\cdots,\frac{c_{n+1}}{c_n},\cdots
 $$
-则$\lim \sqrt[n]{a_n} = \lim \frac{a_{n+1}}{a_{n}}$，只要等式右边的极限存在就行. 在这里我们只要设$a_n = \frac{n!}{n^n}$即可，那么
+则$\lim\limits_{n \to \infty} \sqrt[n]{c_{n}} = \lim\limits_{n \to \infty} \frac{c_{n}}{c_{n-1}}$，只要等式右边的极限存在就行. 在这里我们只要设$c_n = \frac{n!}{n^n}$即可，那么
 $$
-\lim \frac{(n+1)!}{(n+1)^{n+1}} \cdot \frac{n^n}{n!} = \lim \frac{n^n}{(n+1)^n} = \frac{1}{(1+\frac{1}{n})^n} = \frac{1}{e}.
+\lim\limits_{n \rightarrow \infty}\frac{\sqrt[n]{n!}}{n} = \lim\limits_{n \rightarrow \infty} \sqrt[n]{c_n} = \lim\limits_{n \rightarrow \infty} \frac{(n)!}{(n)^{n}} \cdot \frac{{n-1}^{n-1}}{(n-1)!} = \lim\limits_{n \rightarrow \infty} \frac{(n-1)^{n-1}}{(n)^{n-1}} = \left(1-\frac{1}{n} \right)^{n-1} = \frac{1}{e}.
 $$
 \end{example}
 
@@ -266,7 +266,7 @@ $$
 
 %https://math.stackexchange.com/questions/3491441/limit-lim-limits-x-to-infty-sqrtnxa-1xa-2-xa-n-x?noredirect=1&lq=1
 \begin{example}
-求极限
+\rm 求极限
 $$
 \lim\limits_{x \rightarrow +\infty} \left[ \sqrt[k]{(x+a_1)(x+a_2)\cdots(x+a_k)} - x\right].
 $$
@@ -276,9 +276,12 @@ $$
 $$
 那么
 $$
-x\left(1+\frac{a_1+a_2+\cdots+a_k}{x}+\mathcal{O}\left(\frac{1}{x^2}\right)\right)^{\frac{1}{n}} = x\left(1+ \frac{a_1+a_2+\cdots+a_n}{nx} + \mathcal{O}\left(\frac{1}{x^2}\right)\right) = x + \frac{a_1+a_2+\cdots+a_n}{nx} + \mathcal{O}\left(\frac{1}{x}\right),
+\begin{aligned}
+\lim\limits_{x \rightarrow +\infty} \left[ \sqrt[k]{(x+a_1)(x+a_2)\cdots(x+a_k)} - x\right] &= \lim\limits_{x \rightarrow +\infty} x\left(\sqrt[k]{1+\frac{a_1+a_2+\cdots+a_k}{x}+\mathcal{O}(\frac{1}{x^2})}-1\right) \\
+& = \lim\limits_{x \rightarrow +\infty} x\cdot \frac{1}{k}\left(\frac{a_1+a_2+\cdots+a_k}{x}+\mathcal{O}(\frac{1}{x^2}) \right) \\
+& = \frac{a_1 + a_2 + \cdots + a_k}{k}
+\end{aligned}
 $$
-这里第一个等号右边对$(1+x)^p$在$x=0$处用了一下{\color{blue}泰勒展开}得到$(1+qx+\mathcal{O}(x^2))$，这个$\mathcal{O}$表示最高次的多项式. 
 
 还有一种{\color{blue}升次}的方法，即下面的恒等式
 $$
@@ -290,7 +293,7 @@ $$
 $$
 \begin{array}{lll}
 = &\frac{(x+a_1)(x+a_2)\cdots(x+a_k) - x^k}{\left[\sqrt[k]{(x+a_1)(x+a_2)\cdots(x+a_k)}\right]^{k-1}+\left[\sqrt[k]{(x+a_1)(x+a_2)\cdots(x+a_k)}\right]^{k-2}x + \cdots + x^{k-1} } \\
-= & \frac{a_1+a_2+\cdots + a_k + \mathcal{O}(\frac{1}{x})}{\left[\sqrt[k]{(1+\frac{a_1}{x})(1+\frac{a_2}{x})\cdots(1+\frac{a_k}{x})}\right]^{k-1}+\left[\sqrt[k]{(1+\frac{a_1}{x})(1+\frac{a_2}{x})\cdots(1+\frac{a_k}{x})}\right]^{k-2}x + \cdots + 1} & {\color{blue}\text{上下除以$x^{k-1}$}}
+= & \frac{a_1+a_2+\cdots + a_k + \mathcal{O}(\frac{1}{x})}{\left[\sqrt[k]{(1+\frac{a_1}{x})(1+\frac{a_2}{x})\cdots(1+\frac{a_k}{x})}\right]^{k-1}+\left[\sqrt[k]{(1+\frac{a_1}{x})(1+\frac{a_2}{x})\cdots(1+\frac{a_k}{x})}\right]^{k-2} + \cdots + 1} & {\color{blue}\text{上下除以$x^{k-1}$}}
 \end{array}
 $$
 分母中$\sqrt[k]{(1+\frac{a_1}{x})(1+\frac{a_2}{x})\cdots(1+\frac{a_k}{x})}$是趋于$1$的，再用一下函数$x^{\frac{m}{n}}$的连续性，取其函数值也是等于$1$，所以分母就有$k \cdot 1$.
@@ -298,7 +301,7 @@ $$
 
 %https://math.stackexchange.com/questions/28348/proof-of-lim-n-to-infty-sqrtnn-1
 \begin{example}
-求极限
+\rm 求极限
 $$
 \lim\limits_{n \rightarrow \infty} \sqrt[n]{n} = 1.
 $$
@@ -332,7 +335,7 @@ $$
 \subsection{换元取极限}
 
 \begin{example}
-求极限
+\rm 求极限
 $$
 \lim\limits_{x \rightarrow 0} \frac{\sqrt[m]{x+1}-1}{x},\; m \in \mathbb{N}.
 $$
@@ -344,13 +347,36 @@ $$
 \end{example}
 
 \begin{example}
-求极限
+\rm 求极限
 $$
 \lim\limits_{x \rightarrow 0} \frac{(x+1)^{\frac{n}{m}}-1}{x}.
 $$
 \hints\ 还是使得$y = (x+1)^{\frac{1}{m}}-1$，那么就变成了
 $$
 \lim\limits_{y \rightarrow 0} \frac{(1+y)^n-1}{(1+y)^m-1} = \lim\limits_{y \rightarrow 0} \frac{(1+y)^n-1}{y}\frac{y}{(1+y)m-1} = \frac{n}{m}. 
+$$
+\end{example}
+
+\begin{example}
+\rm 求极限
+$$
+I = \lim\limits_{x \to 0}\frac{\cos(xe^x)-e^{-\frac{x^2}{2}e^{2x}}}{x^4}.
+$$
+
+\hints\ 这里设$xe^x = t$，则有
+$$
+I =  \lim\limits_{x \to 0}\frac{\cos(t)-e^{-\frac{t^2}{2}}}{t^4} \cdot e^{4x} = \lim\limits_{t \to 0}\frac{\cos(t)-e^{-\frac{t^2}{2}}}{t^4},
+$$
+这里用泰勒展开是比较好的，
+$$
+\begin{array}{ll}
+\cos t = 1 - \frac{t^2}{2!} + \frac{t^4}{4!} + o(t^4)\\
+e^{-\frac{t^2}{2}} = 1 + \frac{-\frac{t^2}{2}}{1!} + \frac{\frac{t^4}{4}}{2!}+o(t^4)
+\end{array}
+$$
+因此
+$$
+I = \lim\limits_{t \to 0} \frac{\frac{t^4}{24}-\frac{t^4}{8}+o(t^4)}{t^4} = -\frac{1}{12}.
 $$
 \end{example}
 
@@ -369,9 +395,6 @@ a = a \cdot 0 \Rightarrow a = 0.
 $$
 \end{example}
 
-\subsection{等价无穷小的替换}
-
-
 \subsection{中值定理}
 
 \begin{example}
@@ -389,29 +412,6 @@ $$
 $$
 \end{example}
 
-\begin{example}
-\rm 求极限
-$$
-I = \lim\limits_{x \to 0}\frac{\cos(xe^x)-e^{-\frac{x^2}{2}e^{2x}}}{x^4}.
-$$
-
-\hints\ 这里设$xe^x = t$，则有
-$$
-I =  \lim\limits_{x \to 0}\frac{\cos(t)-e^{-t^2}}{t^4} \cdot e^{4x} = \lim\limits_{t \to 0}\frac{\cos(t)-e^{-\frac{t^2}{2}}}{t^4},
-$$
-这里用泰勒展开是比较好的，
-$$
-\begin{array}{ll}
-\cos t = 1 - \frac{t^2}{2!} + \frac{t^4}{4!} + o(t^4)\\
-e^{-\frac{t^2}{2}} = 1 + \frac{-\frac{t^2}{2}}{1!} + \frac{\frac{t^4}{4}}{2!}+o(t^4)
-\end{array}
-$$
-因此
-$$
-I = \lim\limits_{t \to 0} \frac{\frac{t^4}{24}-\frac{t^4}{8}+o(t^4)}{t^4} = -\frac{1}{12}.
-$$
-\end{example}
-
 \subsection{含积分的极限}
 
 %https://math.stackexchange.com/questions/4228847/how-to-calculate-lim-x-to-0-frac-int-0x-sqrtx-tetdt-sqrtx3
@@ -420,7 +420,7 @@ $$
 $$
 \lim _{x\to 0^+} \frac{\int _0^x\sqrt{x-t}e^tdt}{\sqrt{x^3}}
 $$
-\hints\ 这样的含参数积分最好的办法就是洛必达，但是这里首先需要换元一下，令$u = x-t$，则
+\hints\ 这样的含参数积分最好的办法就是洛必达，但是这里首先需要换元一下以免对参数积分求导，令$u = x-t$，则
 $$
 \int _0^x\sqrt{x-t}e^tdt = \int_{0}^x \sqrt{u}e^{x-u}du = e^x \sqrt{u}e^{-u}du.
 $$
@@ -451,7 +451,7 @@ $$
 \lim\limits_{n \to \infty} \sin^2(\pi \sqrt{n^2+n}). 
 $$
 
-\hints\ 这个积分有点反直觉，主要是变量放在了$\sin$里面. 
+\hints\ 这个积分有点反直觉，主要是变量放在了$\sin$里面. 这里可以充分利用$\sin x$的性质
 $$
 \lim\limits_{n \to \infty} \sin^2(\pi \sqrt{n^2+n}) = \lim\limits_{n \to \infty} \sin^2[\pi(\sqrt{n^2 + n} -n)] = \lim\limits_{n \to \infty} \sin^2\left(\pi \frac{n}{\sqrt{n^2+n}+n} \right) = \sin^2 \frac{\pi}{2} = 1. 
 $$
