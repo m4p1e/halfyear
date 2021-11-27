@@ -208,11 +208,11 @@ x_n  = \frac{1^k + 2^k + \cdots + n^k}{n^{k+1}}.
 $$
 \hints\ 用O.Stolz定理考虑
 $$
-\lim\limits_{n \rightarrow \infty} \frac{n^k}{n^{k+1} - (n-1)^{k+1}}
+\lim\limits_{n \rightarrow \infty} \frac{n^k}{n^{k+1} - (n-1)^{k+1}} = \frac{1}{1+k}
 $$
-分母二项式展开合并极有$\lim \frac{n^k}{(k+1)n^k + \cdots} = \frac{1}{k+1}$. 这道题初等方法似乎不能很好的把握，用和式的方法写出来其实就是黎曼积分的定义
+这道题初等方法似乎不能很好的把握，有一个很trick的方法是将其看做积分定义
 $$
-\lim\limits_{n \rightarrow \infty} \frac{1}{n} \sum\limits_{k=1}^k \frac{k}{n} = \int_0^1 x^k = \frac{1}{k+1}. 
+\lim\limits_{n \rightarrow \infty} \frac{1}{n} \sum\limits_{i=1}^n \left(\frac{i}{n}\right)^k = \int_0^1 x^k = \frac{1}{k+1}. 
 $$
 {\color{blue} 级数相关的问题往往可以尝试考虑用定积分的思路来解决}. 下面是$1^k + 2^k +\cdots + n^k$的转换思路
 $$
