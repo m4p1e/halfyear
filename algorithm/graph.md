@@ -590,7 +590,7 @@ Dijkstra算法依赖最小队列的实现，因此需要看一下关于改进最
 
 ```python
 dijkstra(G,w,s)
-	init(G,s)
+	init(G,s) #s.d = 0
 	S = {}
 	Q = build_minimum_queue(G.V)
 	while Q != empty
@@ -752,8 +752,8 @@ genetrate_precessor(L)
 	P = create_new_matrix(n)
 	for i = 1 to n
 		for j = 1 to n
-    		if(L(i,j) < inf)
-            	if(i == j)
+    		if L(i,j) < inf
+            	if i == j
                 	P(i,j) = NIL
                 else 
                 	for q = 1 to n

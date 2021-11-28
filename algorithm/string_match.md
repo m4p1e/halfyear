@@ -236,9 +236,9 @@ compute_prefix_function(P)
         pi[q] = k 
         
 kmp_search(S, P, pi)
-   m = S.length
+   n = S.length
    k = 0 #k表示已经匹配了的最长前缀长度 
-   for i=1 to m
+   for i=1 to n
     
         #找到最长前缀k
         while k > 0 and S[i] != P[k+1]
@@ -256,6 +256,11 @@ kmp_search(S, P, pi)
 ```
 
 
+
+分析性质
+
+- 预处理需要$O(m)$时间，分析这个时间最主要是弄清for里面的while所消耗的时间. 首先$k$最多只能增加$m$次，而while里面的过程是一个$k$减小的过程，由于$k$是非负数，那么最多只可能减少$m$次，因此while消耗的总时间是$O(m)$. 
+- 搜索时间需要$O(n)$时间，与上述是类似的分析手法. 
 
 
 
