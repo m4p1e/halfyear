@@ -612,17 +612,17 @@ $$
 $$
 (1-x^2)f'(x)-xf(x)-1 = 0
 $$ 
-两边求$n$次，根据$n$的莱布尼茨公式有
+两边求$n$次，根据$n$阶莱布尼茨公式有
 $$
 (1-x^2)f^{(n+1)}(x) - (2n+1)xf^{n}(x)-n^2f^{(n-1)}(x) = 0. 
 $$
 带入$x=0$，这里就可能消掉$f^{(n)}$的项，得到一个递归式
 $$
-f^{(n+1)}(0) - n^2f^{(n-1)}(0). 
+f^{(n+1)}(0) - n^2f^{(n-1)}(0) = 0. 
 $$
 这里我们让$n=n+1$，则有
 $$
-f^{(n+2)}(0) =  n^2f^{(n)}(0). 
+f^{(n+2)}(0) =  (n+1)^2f^{(n)}(0). 
 $$
 我们可以求出最前面的两项$f'(0) = 1$和$f''(0) = 0$， 于是这里有
 $$
@@ -642,7 +642,9 @@ $$
 \begin{example}
 \rm 设$f(x)$在$[a,b]$可导，$f'_+(a) > 0, f'_-(b) > 0, f(a) \geq f(b)$. 则$f'(x)$在$[a,b]$上有两个零点. 
 
-\hints\ $f'(x)$有两个零点，也就是有两个极值点. 这样的题目最好还是构造相应的函数，用罗尔定理来做. 设$g(x) = f(x)-f(a)$和$h(x)=f(x)-f(b)$，我们思路是确定$g(x)$和$h(x)$的一个零点，那么就可以用罗尔定理来确定两个$f'(x)$的零点. 确定$g(x)$和$h(x)$零点，我们要用零点定理来做. 由于$f'_+(a) > 0$，根据导数的定义有
+\hints\ 这样的题目最好还是构造相应的函数，用罗尔定理来做. 简单分析一下，如果使用罗尔我们需要分别找到两对函数值相同的点对，每对点确定一个$f'(x)$的零点. 这里只有$f(a)$和$f(b)$给我们用，因此我们需要分别找到一个函数值和它们相等的点.
+
+设$g(x) = f(x)-f(a)$和$h(x)=f(x)-f(b)$，那么我们思路就变为了确定$g(x)$和$h(x)$的一个零点. 而确定$g(x)$和$h(x)$零点，我们可以用零点定理来做. 由于$f'_+(a) > 0$，根据导数的定义有
 $$
 \lim\limits_{x \to 0^+} \frac{f(a+x)-f(a)}{x} > 0 \Rightarrow f(a + \xi_1) > f(a),\xi_1 > 0
 $$  
@@ -652,15 +654,15 @@ $$
 $$
 注意这里的$\Rightarrow$用到的是极限的保号性. 于是这里由零点定理有
 $$
-g(a + \xi_1) > 0, g(b-\xi_1) \leq 0 \Rightarrow g(\theta_1) = 0, \,a+\xi_1 < \theta_1 < b-\xi_1
+g(a + \xi_1) > 0, g(b-\xi_1) < 0 \Rightarrow g(\theta_1) = 0, \,a+\xi_1 < \theta_1 < b-\xi_1
 $$
 因此存在$f(\theta_1) = f(a)$. 同理有
 $$
 h(a+\xi_1) > 0, h(b-\xi_2) < 0 \Rightarrow g(\theta_2) = 0, \,a+\xi_1 < \theta_2 < b-\xi_1
 $$
-因此存在$f(\theta_2) = f(b)$.  
+其中因为$f(a+\xi_i) > a \geq b$才有$h(a+\xi_1) > 0$，因此存在$f(\theta_2) = f(b)$.  
 
-现在需要分类讨论一下，若$\theta_1  \leq \theta_2$，则根据罗尔定理我们可以在$(a,\theta_1)$及$(\theta_2,b)$上各找到一个零点. 若$\theta_1 > \theta_2$，此时由$g(a+\xi_1) > 0, g(\theta_2) \leq 0$，存在一点$\theta_3$使得$f(\theta_3) = 0$，同理由$g(\theta_1) \geq 0, g(b-\xi_2) < 0$，可以找到一点$\theta_4$使得$f(\theta_4) = 0$，这样$\theta_3 < \theta_4$，回到了前面一种情况. 证闭！
+但是我们还不确定$\theta_1$和$\theta_2$的关系. 因此需要分类讨论一下，若$\theta_1  \leq \theta_2$，则根据罗尔定理我们可以在$(a,\theta_1)$及$(\theta_2,b)$上各找到一个零点. 若$\theta_1 > \theta_2$，此时由$g(a+\xi_1) > 0, g(\theta_2) \leq 0$，存在一点$\theta_3$使得$f(\theta_3) = a$，同理由$g(\theta_1) \geq 0, g(b-\xi_2) < 0$，可以找到一点$\theta_4$使得$f(\theta_4) = b$，这样$\theta_3 < \theta_4$，回到了前面一种情况. 证闭！
 \end{example}
 
 \subsection{经典证明题}
@@ -692,7 +694,7 @@ $$
 $$
 \int \frac{x+5}{x^2-6x+13}dx.
 $$
-\hints 观察分子多项式次数小于分母的，且只小一次，所以我们考虑这样部分分式
+\hints\ 观察分子多项式次数小于分母的，且只小一次，所以我们考虑这样部分分式
 $$
 \frac{1}{2}\int \frac{2x-6}{x^2-6x+13}dx + 8\int \frac{1}{x^2-6x+13}dx = \frac{1}{2}\int \frac{1}{x^2-6x+13}d(x^2-6x+13) + 8\int \frac{1}{4+(x-3)^2}dx,
 $$
@@ -720,7 +722,7 @@ $$
 $$
 \int \frac{dx}{\sqrt{x(4-x)}}.
 $$
-\hints 根号下凑平方
+\hints\ 根号下凑平方
 $$
 \int \frac{1}{\sqrt{4-(x-2)^2}}d(x-2) = \arcsin \frac{x-2}{2} +C
 $$
@@ -746,7 +748,7 @@ $$
 $$
 \int \frac{x^2}{\sqrt{a^2 - x^2}}dx 
 $$
-\hints\ 考虑第二类换元，令$x=a\sin t$，则
+\hints\ 这是实在没办法处理根号的时候，考虑第二类换元，令$x=a\sin t$，则
 $$
 \int \frac{a^2\sin^2 t}{a\cos t} \cdot a\cos t dt = \frac{a^2}{2}\int 1-\cos 2t dt = \frac{a^2 t}{2} - \frac{a^2}{4}\sin 2t.
 $$
@@ -761,7 +763,7 @@ $$
 $$
 \frac{dx}{x\sqrt{x^4+1}}.
 $$
-\hints 这里还是要凑根号下的微分，有比较多的凑法，这里提及一种凑微分再配合三角换元的，
+\hints\ 这里还是要凑根号下的微分，有比较多的凑法，这里提及一种凑微分再配合三角换元的，
 $$
 \frac{dx}{x\sqrt{x^4+1}} = \int \frac{1}{2} \frac{dx^2}{x^2 \sqrt{(x^2)^2 + 1}},
 $$
@@ -783,8 +785,17 @@ $$
 $$
 这里也可以尝试令$x=\frac{1}{t}$，有
 $$
--\int \frac{tdt}{\sqrt{1+t^2}(1+t^2)} = \int \frac{d\sqrt{1+x^2}}{1+x^2}
+-\int \frac{tdt}{\sqrt{1+t^2}(1+t^2)} = - \int \frac{d\sqrt{1+x^2}}{1+x^2}
 $$
+
+当然也可以爆算设$x = \tan u$，则
+$$
+\begin{aligned}
+\int \frac{\sec^2u}{\sec^3u} du  &= \int \cos u dx \\
+& = -\sin u \\
+\end{aligned}
+$$
+我们可以计算得到$\sec^2 u = 1+x^2$，因此$\sin u = \frac{\tan u}{\sec u}  = \frac{x}{\sqrt{1+x^2}}$.  似乎这样更简单...
 \end{example}
 
 \subsection{换元法}
@@ -794,7 +805,7 @@ $$
 $$
 \int \sqrt{1+e^x} dx
 $$
-\hints 考虑第二类换元，令$x = \ln (t^2-1)$，则
+\hints\ 考虑第二类换元，令$x = \ln (t^2-1)$，则
 $$
 \int t \cdot \frac{2t}{t^2-1} dt = 2 \int 1 + \frac{1}{t^2-1}dt =2t + \ln |\frac{t-1}{t+1}| + C
 $$
@@ -828,6 +839,15 @@ $$
 $$
 -\frac{1}{4} \ln \left|\frac{1-\sin x}{1+\sin x}\right| - \frac{1}{2}\frac{1}{1+\sin x}+C. 
 $$
+
+这里还可以做一下变换
+$$
+\begin{aligned}
+\int \frac{\cos x dx}{\cos^2x(1+\sin x)} &= \int \frac{d\sin x}{(1-\sin^2)(1+\sin x)}  \\
+&= \int \frac{1}{4(1-\sin x)} + \frac{1}{4(1+\sin x)} + \frac{1}{2(1+\sin x)^2}d\sin x
+\end{aligned}
+$$
+这样做也比较简单.
 \end{example}
 
 \begin{example}
