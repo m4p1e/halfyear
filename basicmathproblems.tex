@@ -1208,7 +1208,7 @@ $$
 $$
 \int_0^{+\infty} \frac{\sin x}{x^2}dx  = \int_0^{\frac{\pi}{2}} \frac{\sin x}{x^2}dx + \int_{\frac{\pi}{2}}^{+\infty} \frac{\sin x}{x^2}dx
 $$
-\hints 其中后面这个积分在柯西判别法很容易确定是收敛的(实际上可以用狄利克雷判别法)，因为总是满足
+\hints\ 其中后面这个积分在柯西判别法很容易确定是收敛的(实际上可以用狄利克雷判别法)，因为总是满足
 $$
 f(x) \leq  \frac{1}{x^2}
 $$
@@ -1216,7 +1216,18 @@ $$
 $$
 \int_0^{\frac{\pi}{2}} \frac{\sin x}{x^2}dx =  \int_0^{\frac{\pi}{2}}  \frac{1}{x} \cdot \frac{\sin x}{x}dx \geq \frac{2}{\pi} \int_0^{\frac{\pi}{2}}  \frac{1}{x}
 $$
-这是因为$\frac{\sin x}{x}$在$(0,\frac{\pi}{2}]$上是单调减的，这一点求两次导即可知道，所以前面这个积分是发散的. 因此整个积分是发散的.  
+这是因为$\frac{\sin x}{x}$在$(0,\frac{\pi}{2}]$上是单调减的，因此$\frac{\sin x}{x} \leq \frac{\pi}{2}, x \in (0,\frac{\pi}{2}]$这一点求两次导即可知道，所以前面这个积分是发散的. 因此整个积分是发散的.  
+
+推广导一般形式
+$$
+\int_0^{+\infty} \frac{\sin x}{x^p}dx, 
+$$
+\begin{enumerate}
+ \item 当$p \leq 0$时，显然发散.
+ \item 当$0 < p \leq 1$时，条件收敛.
+ \item 当$1 < p < 2$时，绝对收敛.
+ \item 当$p \geq 2$时，发散.
+\end{enumerate}
 \end{example}
 
 \subsection{求值}
@@ -1304,7 +1315,7 @@ $$
 $$
 求$f(x)$.
 
-\hints\ 尝试去掉积分符号，去导前做一些变换,
+\hints\ 尝试去掉积分符号，求导前做一些变换,
 $$
 \begin{array}{rl}
 \int_0^x f(u)du &= x\int_0^x f(t)dt - \int_0^x tf(t)dt + e^{-x}-1 \\
@@ -1334,7 +1345,7 @@ $$
 		\item 若是可分离变量方程，且里面没有无理数因子，我们可以把绝对值去掉
 		\item 若是一阶线性方程，在对$P(x)$积分结果中出现$\ln|f(x)|$，根据$P(x)$中的是否有无理数因子或者分母为偶数的因子，如果有，那么这个绝对值不要去掉，最后分类讨论; 若没有，可以直接去绝对值. 
 	\end{enumerate}
-	\item 拿不准的时候，就彻底不去，直接开讨论就行. 
+	\item 拿不准的时候，就彻底不取，直接开讨论就行. 
 \end{enumerate}	
 \end{annotation}
 
