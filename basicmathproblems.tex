@@ -859,6 +859,16 @@ $$
 $$
 - \int \frac{1}{\frac{1}{\sqrt{1+u^2}}(\frac{1}{\sqrt{1+u^2}} + \frac{u}{\sqrt{1+u^2}})} \frac{1}{1+u^2} du = - \int \frac{1}{1+u}du = - \ln |u| + C = -\ln|1+\cot x| + C .
 $$
+
+也可以做一个小变换
+$$
+\begin{aligned}
+\int \frac{\sin^2x + \cos^2 x}{\sin x(\sin x + \cos x)} dx &= \int \frac{\tan^2 + 1}{\tan(\tan + 1)}dx \\
+&= \int \frac{d\tan x}{\tan(\tan + 1)} \\
+&= \ln |\tan x| - \ln |\tan+1| + C \\
+&= \ln \left| \frac{\tan x}{\tan x + 1}\right| + C
+\end{aligned}
+$$
 \end{example}
 
 \begin{example}
@@ -866,7 +876,25 @@ $$
 $$
 \int \frac{\sin x}{\sin x + \cos x}dx
 $$
-\hints\ 这种情况可以考虑先化简一下分子，即上下乘以$(\cos x - \sin x)$，这样之后就可以考虑部分分式. 
+\hints\ 暴力合并
+$$
+\begin{aligned}
+\int \frac{\sin x}{\sin x + \cos x}dx &= \int \frac{\frac{1}{2}\sin 2x-\frac{1}{2}(1-\cos 2x)}{\cos 2x} dx \\
+&= -\frac{1}{4}\int \frac{1}{\cos 2x}d \cos 2x-\frac{1}{2}\int \sec 2x dx + \frac{x}{2} \\
+&=  -\frac{1}{4}\ln |\cos 2x|-\frac{1}{4}\ln |\sec 2x + \tan 2x| + \frac{x}{2} + C
+&= -\frac{1}{4} \ln |1 + \sin 2x| + \frac{x}{2} + C
+\end{aligned}
+$$
+
+还有一种比较理想是思路，是把分子往$d(\sin x + \cos x)$上凑，即
+$$
+\begin{aligned}
+\int \frac{\sin x}{\sin x + \cos x}dx &= \int \frac{\frac{1}{2}(\sin x - \cos x) +  \frac{1}{2}(\sin x +\cos)}{\sin x + \cos x} \\
+&= \int \frac{1}{2} dx - \frac{1}{2}\int\frac{d{\sin x+\cos x}}{\sin x + \cos x} \\
+& = \frac{x}{2}-\frac{1}{2}\ln |\cos x + \sin x| + C
+\end{aligned}
+$$
+其中$1+\sin 2x = (\sin x + \cos x)^2$. 
 \end{example}
 
 \subsection{递归式}
@@ -876,7 +904,7 @@ $$
 $$
 \int e^{ax}\cos nx dx.
 $$
-\hints 分部积分2次回到原积分
+\hints\ 连续分部积分2次回到原积分，总是把$e^{ax}$提到积分符号里面. 
 $$
 \begin{array}{ll}
 \int e^{ax}\cos nx dx = \frac{1}{a}\int \cos nx d e^{ax}  &= \frac{1}{a}\left(e^{ax}\cos nx + n \int e^{ax}\sin nx dx \right) \\
@@ -901,7 +929,7 @@ $$
 $$
 \int \frac{\arcsin e^x}{e^x}dx. 
 $$
-\hints\ 必须得想办法吧$\arcsin e^x$提出来，因为我们没有已知原函数导数为反三角的，这里自然地就要使用部分积分了
+\hints\ 必须得想办法处理$\arcsin e^x$，因为我们没有已知原函数导数为反三角的，这里自然地就要使用部分积分了
 $$
 -\int \arcsin e^x d(e^{-x}) = -\frac{\arcsin e^x}{e^x} + \int e^{-x} \frac{e^x}{\sqrt{1-e^{2x}}}dx = \int \frac{1}{\sqrt{1-e^{2x}}}dx . 
 $$
@@ -920,18 +948,19 @@ $$
 $$
 \int \ln\left( 1+\sqrt{\frac{1+x}{x}} \right)dx, x>0
 $$
-\hints 首选分部积分，但是为了为了能部分积分，我们必须先第一类换元，令$t = \sqrt{\frac{1+x}{x}}$，那么$x =\frac{1}{t^2-1}$，于是
+\hints\ 根号下的有理分式，得先有理化，同时这是$\ln$结构的积分，再优先考虑分部积分，令$t = \sqrt{\frac{1+x}{x}}$，那么$x =\frac{1}{t^2-1}$，于是
 $$
-\int \ln(1+t)d\left(\frac{1}{t^2-1}\right) = \frac{\ln(1+t)}{{t^2-1}}- \int \frac{1}{(1+t)^2(t-1)},
+\int \ln(1+t)d\left(\frac{1}{t^2-1}\right) = \frac{\ln(1+t)}{{t^2-1}}- \int \frac{1}{(1+t)^2(t-1)}dt,
 $$
 其中
 $$
-\int \frac{1}{(1+t)^2(t-1)} = \frac{1}{2}\int \frac{(t+1)-(t-1)}{(1+t)^2(t-1)} = \frac{1}{2} \int \frac{1}{t^2-1} - \frac{1}{(1+t)^2} = \frac{1}{4}\ln\left|\frac{t-1}{t+1} \right| + \frac{1}{2(1+t)} + C. 
+\int \frac{1}{(1+t)^2(t-1)}dt = \frac{1}{2}\int \frac{(t+1)-(t-1)}{(1+t)^2(t-1)}dt = \frac{1}{2} \int \frac{1}{t^2-1} - \frac{1}{(1+t)^2}dt = \frac{1}{4}\ln\left|\frac{t-1}{t+1} \right| + \frac{1}{2(1+t)} + C. 
 $$
 因此
 $$
 \int \ln\left( 1+\sqrt{\frac{1+x}{x}} \right)dx = \frac{\ln(1+t)}{{t^2-1}} + \frac{1}{4}\ln\left|\frac{t-1}{t+1} \right| + \frac{1}{2(1+t)} + C. 
 $$
+最后带入$x$. 
 \end{example}
 
 \newpage
@@ -946,7 +975,7 @@ $$
 $$
 \frac{d}{dx}\int_0^x tf(x^2-t^2)dt.
 $$
-\hints\ 对于这种第二类的参数积分，对于有比较简洁的结果的，首先应该换元试试，令$u = x^2 - t^2$，那么即有
+\hints\ 对于这种第二类的参数积分，应该有比较简洁的结果的，首先应该换元试试，令$u = x^2 - t^2$，那么即有
 $$
 -\frac{1}{2}\int_{x^2}^{0} f(u)du = \frac{1}{2}\int_{0}^{x^2} f(u)du 
 $$
@@ -959,11 +988,11 @@ $$
 \subsection{奇怪的定积分}
 
 \begin{example}
-\rm 设$f(x)=\int_0^{\pi} \frac{\sin t}{\pi-t}dt$，求$\int_0^{\pi}f(x)dx$.
+\rm 设$f(x)=\int_0^{x} \frac{\sin t}{x-t}dt$，求$\int_0^{\pi}f(x)dx$.
 
-\hints\ 可以用分部积分
+\hints\ 这题暂时有问题，题目似乎有问题，可以用分部积分
 $$
-\int_0^{\pi}f(x)dx =  xf(x)\big\vert_0^{\pi} - \int_{0}^{\pi} xf'(x)dx =  \pi\int_{0}^{\pi} \frac{\sin x}{\pi-x}dx - \int_{0}^{\pi} \frac{\sin x}{\pi-x}dx = \int_{0}^{\pi} \sin x dx = 2. 
+\int_0^{\pi}f(x)dx =  xf(x)\big\vert_0^{\pi} - \int_{0}^{\pi} xf'(x)dx =  \pi\int_{0}^{\pi} \frac{\sin x}{\pi-x}dx - \int_{0}^{\pi} x\cdot\frac{\sin x}{\pi-x}dx = \int_{0}^{\pi} \sin x dx = 2. 
 $$
 \end{example}
 
@@ -972,7 +1001,7 @@ $$
 \begin{example}
 \rm 求
 $$
-I = \int_0^{\pi} \frac{x\sin x}{1+\cos^2 x}.
+I = \int_0^{\pi} \frac{x\sin x}{1+\cos^2 x}dx.
 $$
 \hints\ 如果不能一眼看出来
 $$
@@ -986,7 +1015,7 @@ $$
 
 \redt{尝试方法} 我们要充分利用三角函数的性质，一开始我们令$u = \pi-x $，则有
 $$
-I = \int_0^\pi \frac{(\pi-u)\sin u}{1+\cos^u} \rightarrow 2I = \pi \int_0^{\pi} \frac{\sin x}{1+\cos^2x}dx = -\pi \left. \arctan\cos x\right|_0^\pi  = \frac{\pi^2}{2}
+I = \int_0^\pi \frac{(\pi-u)\sin u}{1+\cos^2u} \rightarrow 2I = \pi \int_0^{\pi} \frac{\sin x}{1+\cos^2x}dx = -\pi \left. \arctan\cos x\right|_0^\pi  = \frac{\pi^2}{2}
 $$
 \end{example}
 
@@ -1016,7 +1045,7 @@ $$
 $$
 \hints\ 考虑部分分式
 $$
-\int_0^{+\infty} \frac{xe^{-x}}{(1+e^{-x})^2}dx = \int_0^{+\infty}x d\frac{1}{1+e^{-x}} = \left. \frac{x}{1+e^{-x}} \right|_0^{+\infty} - \int_0^{+\infty} \frac{1}{1+e^{-x}}
+\int_0^{+\infty} \frac{xe^{-x}}{(1+e^{-x})^2}dx = \int_0^{+\infty}x d\frac{1}{1+e^{-x}} = \left. \frac{x}{1+e^{-x}} \right|_0^{+\infty} - \int_0^{+\infty} \frac{1}{1+e^{-x}}dx
 $$
 你会发现第一个积分是发散的，这里我们考虑把它转换为极限的形式
 $$
@@ -1024,7 +1053,7 @@ $$
 $$
 其中
 $$
-\lim\limits_{a \to +\infty} \left[ \frac{a}{1+e^{-a}}-\ln{1+e^a}\right] = \lim\limits_{a \to +\infty} \frac{1}{1+e^{-a}}(a-(1+e^{-a})\ln(1+e^a)) = \lim\limits_{a \to +\infty} \ln e^a - \ln(1+e^a) - \frac{\ln (1+e^a)}{e^a} = 0
+\lim\limits_{a \to +\infty} \left[ \frac{a}{1+e^{-a}}-\ln(1+e^a)\right] = \lim\limits_{a \to +\infty} \frac{1}{1+e^{-a}}(a-(1+e^{-a})\ln(1+e^a)) = \lim\limits_{a \to +\infty} \ln e^a - \ln(1+e^a) - \frac{\ln (1+e^a)}{e^a} = 0
 $$
 因此原积分等于$\ln 2$. 
 \end{example}
@@ -1078,7 +1107,7 @@ $$
 $$
 a_{n-2}-a_n = \int_0^1 x^{n-2}(1-x)^{\frac{3}{2}}dx,
 $$
-但是似乎还是没有什么用. 观察$a_n$的形式是一个多项式乘上一个函数，我们要拆出$x^{n-2}$，大致方向应该是朝部分积分努力. 于是
+但是似乎还是没有什么用，先放着. 观察$a_n$的形式是一个多项式乘上一个函数，那么将$a_n$朝$a_{n-2}$努力，我们首先要拆出$x^{n-2}$，大致方向应该是朝部分积分努力. 于是
 $$
 \begin{aligned}
 a_n = \int_0^1 x^n \sqrt{1-x^2}dx &= -\frac{1}{3}\int_0^1  x^{n-1}d(1-x^2)^\frac{3}{2} \\
@@ -1102,7 +1131,7 @@ $$
 $$
 \int_a^{+\infty} x^\mu e^{-ax}dx ~ (\mu,a > 0).
 $$
-\hints 比较审敛法，取任意的$\lambda > 1$，即$\frac{1}{x^\lambda}$是收敛的，于是
+\hints\ 比较审敛法，取任意的$\lambda > 1$，即$\frac{1}{x^\lambda}$是收敛的，于是
 $$
 \lim\limits_{x \to +\infty} \frac{x^\mu e^{-ax}}{\frac{1}{x^\lambda}} = \frac{x^{u+\lambda}}{e^{ax}} = 0,
 $$
@@ -1114,7 +1143,7 @@ $$
 $$
 \int_0^{+\infty} \frac{xdx}{\sqrt{e^{2x}-1}}.
 $$
-\hints 这里需要注意两个上下积分限都需要考察，我们可以将上述积分划分为
+\hints\ 这里需要注意两个上下积分限都需要考察，我们可以将上述积分划分为
 $$
 \int_0^{+\infty} \frac{xdx}{\sqrt{e^{2x}-1}} = \int_0^{A} \frac{xdx}{\sqrt{e^{2x}-1}} + \int_A^{+\infty} \frac{xdx}{\sqrt{e^{2x}-1}},
 $$
@@ -1124,7 +1153,7 @@ $$
 $$
 即积分$\int_0^{A} \frac{xdx}{\sqrt{e^{2x}-1}}$是收敛的. 当$x \to \infty$时，取$\lambda > 1$，于是
 $$
-\lim\limits_{x \to \infty} \frac{\frac{x}{\sqrt{e^{2x}-1}}}{\frac{1}{x}^\lambda} =  \frac{1}{\sqrt{e^{2x}\cdot x^{-(2\lambda+2)-x^{-(2\lambda+2)}}}} = 0,
+\lim\limits_{x \to \infty} \frac{\frac{x}{\sqrt{e^{2x}-1}}}{\frac{1}{x}^\lambda} =  \frac{x^{1+\lambda}}{\sqrt{e^{2x}-1}} = 0,
 $$
 \end{example}
 
@@ -1132,7 +1161,7 @@ $$
 
 %universal_gravitation.png
 \begin{example}
-\rm 设无穷长直线$L$的线密度为$1$，引力常数为$k$，则$L$对距直接为$a$的单位质点.
+\rm 设无穷长直线$L$的线密度为$1$，引力常数为$k$，求距$L$距离为$a$的单位质点与$L$的万有引力.
 
 \hints\ 首先得知道万有引用公式$F = k \frac{Mn}{r^2}$. 再考虑直线上某个点对给定单位质点的引力，然后考虑这些引力的合成. 示意图为
 \begin{center}
@@ -1165,11 +1194,11 @@ $$
 $$
 \lim\limits_{x \to \infty} \frac{\frac{1}{x^a(1+x)^b}}{\frac{1}{x^{\lambda}}} = \frac{x^{\lambda-(a+b)}}{(\frac{1}{x}+1)^b},
 $$
-其中分母是趋于$1$，为保证分子不趋于无穷，则需要$\lambda < (a+b)$，即$a+b > 1$. 当$x \to 0$时，那么就要和$\frac{1}{x^{\lambda}}(\lambda < 1)$比较， 于是有
+其中分母是趋于$1$，为保证分子不趋于无穷，则需要$\lambda \leq (a+b)$，即$a+b > 1$. 当$x \to 0$时，那么就要和$\frac{1}{x^{\lambda}}(\lambda < 1)$比较， 于是有
 $$
-\lim\limits_{x \to \infty} \frac{\frac{1}{x^a(1+x)^b}}{\frac{1}{x^{\lambda}}} = \frac{1}{x^{a-\lambda}(1+x)^b},
+\lim\limits_{x \to 0} \frac{\frac{1}{x^a(1+x)^b}}{\frac{1}{x^{\lambda}}} = \frac{1}{x^{a-\lambda}(1+x)^b},
 $$
-其中$(1+x)^b \to 0$，则$a < \lambda$，即$a < 1$.
+其中$(1+x)^b \to 0$，则$a \leq \lambda$，即$a < 1$.
 \end{example}
 
 \subsection{分离积分}

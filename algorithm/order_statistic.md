@@ -25,13 +25,11 @@ minimum_and_maximum(A)
     max = pos_inf
     for i to |A|/2
     	if A[2i-1] > A[2i]
-        	if(A[2i-1] > max){
+        	if A[2i-1] > max
                 max = A[2i-1]
-            }
             
-            if(A[2i] < min){
+            if A[2i] < min
                 min = A[2i]
-            }
         else
         	#symmetric as bleow
         	...
