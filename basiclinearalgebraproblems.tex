@@ -670,7 +670,7 @@ $$
 \begin{example}
 \rm 证明: $\rank{\mbf{A}+\mbf{B}} \leq \rank{\mbf{A}} + \rank{\mbf{B}}$.
 
-\hints\ 设$\mbf{A} = (\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n),\mbf{B}=(\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_n)$，那么$\mbf{A}+\mbf{B} = (\mbf{\alpha}_1+\mbf{\beta}_1,\mbf{\alpha}_2+\mbf{\beta}_2,\cdots,\mbf{\alpha}_n+\mbf{\beta}_n)$. 设$\mbf{A}$列向量的一个极大无关组$\mbf{\alpha}_{i_1},\mbf{\alpha}_{i_2},\cdots,\mbf{\alpha}_{i_n}$，$\mbf{B}$列向量的一个极大无关组$\mbf{\beta}_{j_1},\mbf{\beta}_{j_2},\cdots,\mbf{\beta}_{j_n}$. 显然$mbf{\alpha}_1+\mbf{\beta}_1,\mbf{\alpha}_2+\mbf{\beta}_2,\cdots,\mbf{\alpha}_n+\mbf{\beta}_n$可以由$\mbf{\alpha}_{i_1},\mbf{\alpha}_{i_2},\cdots,\mbf{\alpha}_{i_n},\mbf{\beta}_{j_1},\mbf{\beta}_{j_2},\cdots,\mbf{\beta}_{j_n}$线性表出. 
+\hints\ 设$\mbf{A} = (\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n),\mbf{B}=(\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_n)$，那么$\mbf{A}+\mbf{B} = (\mbf{\alpha}_1+\mbf{\beta}_1,\mbf{\alpha}_2+\mbf{\beta}_2,\cdots,\mbf{\alpha}_n+\mbf{\beta}_n)$. 设$\mbf{A}$列向量的一个极大无关组$\mbf{\alpha}_{i_1},\mbf{\alpha}_{i_2},\cdots,\mbf{\alpha}_{i_n}$，$\mbf{B}$列向量的一个极大无关组$\mbf{\beta}_{j_1},\mbf{\beta}_{j_2},\cdots,\mbf{\beta}_{j_n}$. 显然$\mbf{\alpha}_1+\mbf{\beta}_1,\mbf{\alpha}_2+\mbf{\beta}_2,\cdots,\mbf{\alpha}_n+\mbf{\beta}_n$可以由$\mbf{\alpha}_{i_1},\mbf{\alpha}_{i_2},\cdots,\mbf{\alpha}_{i_n},\mbf{\beta}_{j_1},\mbf{\beta}_{j_2},\cdots,\mbf{\beta}_{j_n}$线性表出. 
 \end{example}
 
 
@@ -751,7 +751,7 @@ $\mbf{A}$是幂等矩阵当且仅当
 $$
 \rank{\mbf{A}} + \rank{\mbf{I}-\mbf{A}} = n.
 $$
-\rm 若$\mbf{A}^2 = \mbf{A}$，当且仅当$\mbf{A}^2 - \mbf{A} = 0$. 由题意构造分块矩阵
+\hints\ 若$\mbf{A}^2 = \mbf{A}$，那么$\mbf{A}^2 - \mbf{A} = \mbf{0}$. 由题意构造分块矩阵
 $$
 \begin{pmatrix}
 \mbf{A} & \mbf{0} \\
@@ -2295,7 +2295,7 @@ $$
 $$
 \mbf{X}^T\mbf{A}\mbf{X} = y_1^2 + \cdots + y_p^2-y_{p+1}^2 - \cdots - y_r^2,
 $$
-若$\mbf{\alpha}_1\mbf{A}\mbf{\alpha}_1 >0$，那么$p > 0$; 若$\mbf{\alpha}_2\mbf{A}\mbf{\alpha}_2 < 0$，那么$r-p > 0$. 换句话说符号差不等于$r$，因此可以使得
+若$\mbf{\alpha}_1\mbf{A}\mbf{\alpha}_1 >0$，那么$p > 0$; 若$\mbf{\alpha}_2\mbf{A}\mbf{\alpha}_2 < 0$，那么$r-p > 0$. 换句话说$r,p$均大于$0$，因此可以使得
 $$
 \mbf{\beta} =(\underbrace{1,0,\cdots,0}_{p},1,0,\cdots,0)^T,
 $$
