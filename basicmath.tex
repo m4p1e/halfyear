@@ -6007,7 +6007,7 @@ $$
 \begin{theorem}
 \rm \redt{高斯公式} 设空间闭区域$\Omega$由分片光滑比曲面$\sum$所围成，函数$P,Q,R$在$\Omega$上具有一阶连续偏导，则有
 $$
-\iint_\sum Pdydz + Qdzdx + Rdxdy = \iiint_\Omega (\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dv.
+\iint_\sum Pdydz + Qdzdx + Rdxdy = \iiint_\Omega \left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)dv.
 $$
 其中$\sum$的法向量向外. 
 \end{theorem}
@@ -7087,6 +7087,20 @@ $$
 因此其傅里叶数为
 $$
 e^{ax} = \frac{e^{\pi a}-e^{-\pi a}}{2\pi a} + \sum\limits_{m=1}^{+\infty} \frac{2\cos n\pi}{\pi(a^2+n^2)}(a\cos nx - n\sin nx). 
+$$
+\end{example}
+
+\begin{example}
+\rm $f(x)=x$在$[-\pi,\pi]$上的傅里叶级数展开式
+$$
+f(x) = \sum _{n=1}^{\infty }-\frac{2\left(-1\right)^n\sin \left(nx\right)}{n}
+$$
+\end{example}
+
+\begin{example}
+\rm $f(x)=|x|$在$[-\pi,\pi]$上的傅里叶级数展开式
+$$
+f(x) = \frac{\pi }{2}+\sum _{n=1}^{\infty \:}\frac{\cos \left(nx\right)\left(2\left(-1\right)^n-2\right)}{\pi n^2}
 $$
 \end{example}
 

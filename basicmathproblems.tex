@@ -1758,12 +1758,13 @@ $$
 $$
 I = 2a \cdot a \cdot 4\pi a^2 = 8\pi a^4. 
 $$
+这道题非常trick，你必须很敏锐的察觉这里的形心公式. 
 \end{example}
 
 \begin{example}
 \rm 设薄片型物体$S$是圆锥面$z=\sqrt{x^2+y^2}$被柱面$z^2 = 2x$割下的有限部分，其上任一点的密度为$u(x,y,x)=9\sqrt{x^2 + y^2 + z^2}$. 求$S$的质量. 
 
-\hints\ 这种题型看似复杂的曲面都难以想象，直接按照步骤来行. 先确定圆锥面和柱面的交线
+\hints\ 这种题型看似复杂的曲面都难以想象，直接按照步骤来行. 先确定圆锥面和柱面的交线方程
 $$
 \left\{
 \begin{aligned}
@@ -1789,11 +1790,11 @@ $$
 \begin{annotation}
 \rm 第二类曲面积分的一般计算方法
 \begin{enumerate}
-	\item 确定曲面方程，实际上只有一种$z=f(x,y)$，并没有复杂的参数方程，和其自变量变化范围; 
+	\item 确定曲面方程: (1 直接参数方程 （2 截面方程; 
 	\item 确定曲面的方向;
 	\item 确定曲面是否可以围成一个闭区域，考虑使用高斯公式
 	$$
-	\iint_\sum Pdydz + Qdzdx + Rdxdy = \iint_\Omega (\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dv.
+	\iint_\sum Pdydz + Qdzdx + Rdxdy = \iint_\Omega \left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z} \right) dv.
 	$$
 	这里曲面需要取外侧方向，如果当且曲面是内侧方向则需要加负号，也需要确定$P,Q,R$是否具有一阶连续偏导. 
 	\item 考虑是否可以增加补面围成一个闭区间来使用高斯公式. 
@@ -1818,9 +1819,9 @@ $$
 I = \iint_\Sigma [xf(xy) + 2x-y]dydz + [yf(xy) + 2y + x]dzdx + [zf(xy) + z]dxdy. 
 $$
 
-\hints\ 这里有未知函数$f(xy)$肯定不能硬积分. 考虑转换第一类曲面积分，曲面$z$的法向量$\bm{\eta}$为
+\hints\ 这里有未知函数$f(xy)$肯定不能硬积分，同样曲面用高斯公式这里没法对$f(xy)$求导. 考虑转换第一类曲面积分，曲面$z$的法向量$\bm{\eta}$为
 $$
-(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}},-1)
+\left(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}},-1 \right)
 $$
 这里方向是是一致的，因为$\bm{\varepsilon}_z \cdot \bm{\eta} < 0$. 为了方便计算方向余弦，令$\eta = (x,y,-z)$，于是
 $$
@@ -1858,7 +1859,7 @@ $$
 \begin{example}
 \rm 讨论下述级数的收敛性
 $$
-\sum\limits_{n=1}^\infty (n\ln\frac{2n+1}{2n-1} -1). 
+\sum\limits_{n=1}^\infty \left(n\ln\frac{2n+1}{2n-1} -1\right). 
 $$
 
 \hints\ 这里很难拿哪一个级数来做极限test，观察$n\ln t$，我们可以将其泰勒展开，找到最小的无穷小. 于是
@@ -1893,11 +1894,7 @@ $$
 $$
 \frac{\ln (n!)}{n^\alpha} < \frac{n^{1+\beta}}{n^\alpha} = n^{1+\beta - \alpha},
 $$
-因此取$\alpha > 2$时，存在$\beta$使得
-$$
-\frac{\ln (n!)}{n^\alpha} < \frac{1}{n} < \frac{n^{1+\beta}}{n^\alpha}. 
-$$
-即原级数在$a > 2$是收敛的. 同理若$\alpha \leq 2$时，是存在$\beta$使得$1+\beta-\alpha > -1$的，此时是无法判定其是否收敛的。 
+因此取$\alpha > 2$时，原级数是收敛的. 同理若$\alpha \leq 2$时，是存在$\beta$使得$1+\beta-\alpha > -1$的，此时级数是发散的。 
 \end{example}
 
 \begin{example}
@@ -1916,7 +1913,7 @@ $$
 $$
 \sum\limits_{n=2}^{\infty}\frac{1+(-1)^n}{\ln n}
 $$
-\hints\ 这个级数奇数时为零，因此我们写作
+\hints\ 这个级数奇数时为零，因此我们可以写作
 $$
 \sum\limits_{n=1}^{\infty}\frac{2}{\ln 2n}
 $$
@@ -1931,7 +1928,7 @@ $$
 $$
 的收敛半径. 
 
-\hints 这是一个不标准的幂级数，无法直接用结论. 所以先化标准的形式$a_nx^n$. 先考虑积分，消掉指数的常数，即有
+\hints\ 这是一个不标准的幂级数，无法直接用结论. 所以先化标准的形式$a_nx^n$. 先考虑积分，消掉指数的常数，即有
 $$
 \sum\limits_{n=1}^\infty \int_0^{x} \frac{n}{2^n + (-3)^n}x^{2n-1} = \sum\limits_{n=1}^\infty \frac{1}{2(2^n + (-3)^n)}x^{2n}.
 $$
@@ -1949,13 +1946,13 @@ $$
 $$
 \sum\limits_{n = 1}^{+\infty} \frac{(-1)^n \sin n}{n}
 $$
-\hints\ 考虑$s(x) = \frac{x}{\pi}$在$(-\pi,pi)$上的傅里叶级数，它是一个奇函数因此
+\hints\ 考虑$s(x) = x$在$(-\pi,\pi)$上的傅里叶级数，它是一个奇函数因此
 $$
-s(x) = \sum\limits_{n=1}^{+\infty} b_n \sin nx = \sum\limits_{n=1}^{+\infty} \left(\frac{2}{\pi}\int_{0}^{\pi} \frac{x}{\pi} \sin nx dx  \sin nx \right) =  \sum\limits_{n=1}^{+\infty} -\frac{2}{\pi}\frac{(-1)^{n}\sin nx}{n}.
+s(x) = \sum\limits_{n=1}^{+\infty} b_n \sin nx = \sum\limits_{n=1}^{+\infty} \left(\frac{2}{\pi}\int_{0}^{\pi} x \sin nx dx\right)  \cdot \sin nx  =  \sum\limits_{n=1}^{+\infty} -{2} \cdot \frac{(-1)^{n}\sin nx}{n}.
 $$
 显然有
 $$
-s(1) = -\frac{2}{\pi} \sum\limits_{n = 1}^{+\infty} \frac{(-1)^n \sin n}{n} = \frac{1}{\pi},
+s(1) = -{2} \sum\limits_{n = 1}^{+\infty} \frac{(-1)^n \sin n}{n} = 1,
 $$
 因此$\sum\limits_{n = 1}^{+\infty} \frac{(-1)^n \sin n}{n} = -\frac{1}{2}$. 
 \end{example}
@@ -1981,8 +1978,8 @@ $$
 \begin{annotation}
 \rm 下面两种形式可以尝试构造微分方程:
 \begin{enumerate}
-	\item 形如$a_nx^{f(n)}$，$a_n$里面含有关于$f(n)$.
-	\item 可以构造$g(a_n)$使得其含有关于$f(n)$的因子.
+	\item 形如$a_nx^{f(n)}$，$a_n$里面含有关于$\frac{1}{f(n)}$因子.
+	\item 可以构造$g(a_n)$使得其含有关于$\frac{1}{f(n)}$的因子.
 \end{enumerate}
 \end{annotation}
 
@@ -1995,10 +1992,9 @@ $$
 $$
 S'(x) = \sum\limits_{n=1}^{\infty} (-1)^n \frac{x^{2n-1}}{(2n-2)!!} = \sum\limits_{n=1}^{\infty} (-1)^n \frac{x^{2n-2} x}{(2n-2)!!} = -xS(x),
 $$
-解这个微分方程得到$S(x)= Ce^{-\frac{1}{2}}$，因为这里$S(0)=1$，最终得到$S(x) = e^{-\frac{1}{2}x^2}$. 
+解这个微分方程得到$S(x)= Ce^{-\frac{1}{2}x^2}$，因为这里$S(0)=1$，最终得到$S(x) = e^{-\frac{1}{2}x^2}$. 
 \end{example}
 
-\subsection{化增量公式}
 
 \begin{example}
 \rm 求下述幂级数的和函数
@@ -2006,9 +2002,14 @@ $$
 \sum\limits_{n=0}^{\infty} \frac{x^{2n+1}}{(2n+1)!}
 $$
 
-\hints\ 观察这个系数有点像$e^x$的幂级数，但是只有奇数项. 那么偶数项其实就是$S'(x)$，因此$S'(x) +S(x) = e^x$，由此解得$S(x)= Ce^{-x} + \frac{1}{2}e^{x}$，由$S(0) = 0$，最终可得$S(x) = -\frac{1}{2}e^{-x} + \frac{1}{2}e^{x}$
+\hints\ 观察这个系数有点像$e^x$的幂级数，但是只有奇数项. 那么偶数项其实就是$S'(x)$，因此$S'(x) +S(x) = e^x$，由此解得$S(x)= Ce^{-x} + \frac{1}{2}e^{x}$，由$S(0) = 0$，最终可得$S(x) = -\frac{1}{2}e^{-x} + \frac{1}{2}e^{x}$.
 \end{example}
 
+\subsection{化增量公式}
+
+\begin{annotation}
+\rm 实际上就是积分定义的思想. 
+\end{annotation}
 
 \begin{example}
 \rm 考虑调和级数$\sum\limits_{n=1}^{\infty} \frac{1}{n}$的收敛性.
@@ -2025,11 +2026,11 @@ $$
 $$
 \frac{1}{(n+\theta)} < \frac{1}{n}, 
 $$
-因此$\frac{1}{n}$是收敛的. 
+因此$\frac{1}{n}$是发散的. 
 \end{example}
 
 \begin{example}
-\rm 考虑级数$\sum\limits_{n=0}^{\infty} \frac{x^{2n+1}}{(2n+1)!} \frac{1}{n^{1+s}}$的收敛性，其中$s > 0$. 
+\rm 考虑级数$\sum\limits_{n=0}^{\infty}  \frac{1}{n^{1+s}}$的收敛性，其中$s > 0$. 
 
 \hints 同样引入收敛级数$\sum\limits_{n=0}^{\infty} \frac{1}{(n-1)^s} - \frac{1}{(n)^s}$来做比较. 考虑函数$\frac{1}{(n-1)^s} - \frac{1}{(n)^s}$在$[n-1,n]$上的增量公式
 $$
@@ -2073,7 +2074,7 @@ $$
 $$
 \lim\limits_{n \to \infty} \cos a_n-a_n = 1,
 $$
-设辅助函数$f(x) = \cos x-x$，其$f'(x) = -\sin x - 1$，那么它在$(0,\frac{1}{\pi})$是单调递减的，而$f(0) = 1$，因此$\lim\limits_{n \to \infty} a_n = 0$. 
+设辅助函数$f(x) = \cos x-x$，其$f'(x) = -\sin x - 1$，那么它在$(0,\frac{\pi}{2})$是单调递减的，而$f(0) = 1$，因此$\lim\limits_{n \to \infty} a_n = 0$. 
 
 (2 方法1: 直接求
 $$
@@ -2139,7 +2140,7 @@ $$
 \begin{proposition}
 \rm 
 $$
-\ln(n!) = n\ln n-n+O(\ln n). 
+\ln(n!) = n\ln n-n+\Theta(\ln n). 
 $$
 \bluet{经常用于拆解$\ln n!$有奇效}. 
 \end{proposition}

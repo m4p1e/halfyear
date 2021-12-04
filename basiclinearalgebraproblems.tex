@@ -2316,13 +2316,16 @@ $$
 \begin{example}
 \rm 如果$\mbf{A}$是$n$阶正定矩阵，那么$\mbf{A}^{-1}$也是正定矩阵.
 
-\hints\ $\mbf{A}=C^T\mbf{I}C$.
+\hints\ $\mbf{A}=C^T\mbf{I}C$. 
 \end{example}
 
 \begin{example}
 \rm \redt{必要条件} $n$元二次型为正定的必要条件是，它的$n$个平方项系数都是正. 
 
-\hints\ $\mbf{A}=C^T\mbf{I}C$.
+\hints\ $\mbf{A}=C^T\mbf{I}C$. 从而
+$$
+A(i,i) = \sum_{r}^n C^T(i,r)C(r,i) = \sum_{r}^n [C(r,i)]^2 > 0 
+$$
 \end{example}
 
 \begin{example}
@@ -2330,6 +2333,12 @@ $$
 $$
 \mbf{A}=C^TC
 $$
+\end{example}
+
+\begin{example}
+\rm 设$\mbf{A}$是$n$阶对称矩阵，它的$n$个特征值的绝对值的最大值记为$S_r(A)$. 证明: 当$t > S_r(A)$时，$t\mbf{I}+\mbf{A}$是正定矩阵. 
+
+\hints\ 若$\mbf{A}$的特征值为$\lambda_1,\lambda_2,\cdots, \lambda_n$，那么$t\mbf{I}+\mbf{A}$的特征值为$t+\lambda_1,t+\lambda_2,\cdots, t+\lambda_n$. 当$t > S_r(A)$时，这些特征值显然都是大于$0$的. 
 \end{example}
 
 \begin{example}
@@ -2342,13 +2351,15 @@ $$
 $$
 T^{-1}\mbf{A}T = \text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\} \Rightarrow \mbf{A} =  (T\text{diag}\{\sqrt{\lambda_1},\sqrt{\lambda_2},\cdots,\sqrt{\lambda_n}\}T^{-1})(T \text{diag}\{\sqrt{\lambda_1},\sqrt{\lambda_2},\cdots,\sqrt{\lambda_n}\}T^{-1}) = C^2,
 $$
-必要性是显然的. 
+必要性得证.
+
+充分性是显然的.  
 \end{example}
 
 \begin{example}
 \rm $n$阶矩阵$\mbf{A}$是正定的充分必要条件为$\mbf{A}$的所有主子式都大于$0$. 
 
-\hints\ 充分性是显然的. 
+\hints\ 充分性是显然的，所有主子式包括了顺序主子式. 
 
 证必要性需要用一下乘积矩阵的子式公式. 设$\mbf{A} = C^TC$，那么$\mbf{A}$任一主子式为
 $$
