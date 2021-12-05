@@ -2375,8 +2375,8 @@ i_1 & i_2 & \cdots & i_m
 i_1 & i_2 & \cdots & i_m \\
 v_1 & v_2 & \cdots & v_m
 \end{pmatrix}C\begin{pmatrix}
-i_1 & i_2 & \cdots & i_m \\
-v_1 & v_2 & \cdots & v_m
+v_1 & v_2 & \cdots & v_m \\
+i_1 & i_2 & \cdots & i_m
 \end{pmatrix} \\
 &=\sum\limits_{1 \leq v_1,v_2,\cdots,v_m}\left[C\begin{pmatrix}
 i_1 & i_2 & \cdots & i_m \\
@@ -2415,7 +2415,7 @@ $$
 \mbf{B}^T & \mbf{C}
 \end{pmatrix}
 $$
-是正定矩阵，其中$\mbf{A}$是$r$阶矩阵$(r < n)$. 证明$\mbf{A},\mbf{D},\mbf{C}-\mbf{B}^T\mbf{A}^{-1}\mbf{B}$都是正定矩阵. 
+是正定矩阵，其中$\mbf{A}$是$r$阶矩阵$(r < n)$. 证明$\mbf{A},\mbf{C},\mbf{C}-\mbf{B}^T\mbf{A}^{-1}\mbf{B}$都是正定矩阵. 
 
 \hints\ $\mbf{A}$的顺序主子式都是$\mbf{M}$的顺序主子式，$\mbf{C}$的主子式都是$\mbf{M}$的主子式，因此$\mbf{A}$和$\mbf{C}$都是正定的. 再做分块矩阵的初等变换
 $$
