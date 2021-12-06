@@ -1716,7 +1716,7 @@ $$
 
 \hints\ 设$\mbf{A}$的列向量为$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$，那么
 $$
-(\mbf{\alpha}_1^T,\mbf{\alpha}_2^T,\cdots,\mbf{\alpha}_n^T)^T(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n) = \mbf{I}
+(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n)^T(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n) = \mbf{I}
 $$
 于是则有
 $$
@@ -1729,7 +1729,7 @@ $$
 由因$\mbf{A}$是上三角矩阵，那么
 $$
 \begin{array}{ll}
-\inp{\mbf{\alpha}_1}{\mbf{\alpha}_1} = a_{11}^2 = 1 \Rightarrow a_{ii} = \pm 1 \\
+\inp{\mbf{\alpha}_1}{\mbf{\alpha}_1} = a_{11}^2 = 1 \Rightarrow a_{11} = \pm 1 \\
 \inp{\mbf{\alpha}_1}{\mbf{\alpha}_2} = a_{11}a_{12} = 0 \Rightarrow a_{12} = 0  \\
 \inp{\mbf{\alpha}_2}{\mbf{\alpha}_2} = a_{12}^2 +a_{22}^2 = 1 \Rightarrow a_{22}^2 = \pm 1 \\
 \cdots \\
@@ -1758,7 +1758,22 @@ $$
 	\item 如果$\mbf{A}$的每一个元素等于它自己的代数余子式，那么$\mbf{A}$是正交矩阵. 
 	\item 如果$\mbf{A}$的每一个元素等于它自己的代数余子式乘上$-1$，那么$\mbf{A}$是正交矩阵. 
 \end{enumerate}
+
+\hints\  这里只证明第一个命题. 首先由条件可知
+$$
+|\mbf{A}| = \sum\limits_{r=1}^n a_{ir}A{ir} > 0,
+$$
+且
+$$
+\mbf{A}^T(i,j) = \mbf{A}(j,i) = \mbf{A}^*(i,j).
+$$
+再由$|\mbf{A}^*| = |\mbf{A}|^{n-1}$，于是
+$$
+|\mbf{A}^T| = |\mbf{A}| = |\mbf{A}|^{n-1},
+$$
+当$n \geq 3$时，$n-1 \geq 2$，因此$|\mbf{A}|=1$.  
 \end{example}
+
 
 \begin{example}
 \rm 证明: 任意$n$阶矩阵$\mbf{A}$满足下列三个性质中的任意两个性质，那么必有第三个性质: 正交矩阵，对称矩阵，对合矩阵($\mbf{A}^2 = \mbf{I}$). 
@@ -1783,10 +1798,10 @@ $$
 \hints\ 设矩阵$\mbf{A}$的列向量为$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$，那么它们是线性无关的. 由施密斯正交化公式可知
 $$
 \begin{array}{ll}
-\mbf{\alpha}_1 = \mbf{\beta}_1 \\
-\mbf{\alpha}_2 = \mbf{\beta}_2 + \frac{\inp{\mbf{\alpha}_2}{\mbf{\beta}_1}}{\inp{\mbf{\beta}_1}{\mbf{\beta}_1}}\mbf{\beta}_1\\
+\mbf{\beta}_1 = \mbf{\alpha}_1 \\
+\mbf{\beta}_2 = \mbf{\alpha}_2 - \frac{\inp{\mbf{\alpha}_2}{\mbf{\beta}_1}}{\inp{\mbf{\beta}_1}{\mbf{\beta}_1}}\mbf{\beta}_1\\
 \cdots \\
-\mbf{\alpha}_n = \mbf{\beta}_n + \sum\limits_{i=1}^{n-1}\frac{\inp{\mbf{\alpha}_n}{\mbf{\beta}_i}}{\inp{\mbf{\beta}_i}{\mbf{\beta}_i}}\mbf{\beta}_i
+\mbf{\beta}_n = \mbf{\alpha}_n - \sum\limits_{i=1}^{n-1}\frac{\inp{\mbf{\alpha}_n}{\mbf{\beta}_i}}{\inp{\mbf{\beta}_i}{\mbf{\beta}_i}}\mbf{\beta}_i
 \end{array}
 $$
 设$b_{ij} = \frac{\inp{\mbf{\alpha}_j}{\mbf{\beta}_i}}{\inp{\mbf{\beta}_i}{\mbf{\beta}_i}}$，于是
@@ -1817,7 +1832,7 @@ $$
 \begin{example}
 \rm 设$\mbf{A}$是$m \times n$矩阵，设齐次线性方程组$\mbf{AX}=\mbf{0}$的解空间为$W$. 证明$\mbf{A}$的行向量的转置都和$W$中的任一向量都正交.
 
-\hints 设$\mbf{A}$的行向量为$\mbf{\gamma}_1,\mbf{\gamma}_2,\cdots,\mbf{\gamma}_n$，$\mbf{\eta} \in W$，于是
+\hints\ 设$\mbf{A}$的行向量为$\mbf{\gamma}_1,\mbf{\gamma}_2,\cdots,\mbf{\gamma}_n$，$\mbf{\eta} \in W$，于是
 $$
 \mbf{A}\mbf{\eta} = \begin{pmatrix}
 \mbf{\gamma}_1 \\
@@ -1887,7 +1902,7 @@ $$
 \end{example}
 
 \begin{example}
-\rm 证明$\text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\} \sim \text{diag}\{\lambda_{i_1},\lambda_{i_2},\cdots,\lambda_{i_n}\}$，其中$i_1i_2\cdots i_n$是$1,2,\cdots,n$的一个排列.
+\rm 证明$\text{diag}\{\lambda_1,\lambda_2,\cdots,\lambda_n\} \sim \text{diag}\{\lambda_{i_1},\lambda_{i_2},\cdots,\lambda_{i_n}\}$，其中$i_1, i_2, \cdots , i_n$是$1,2,\cdots,n$的一个排列.
 
 \hints\ \ref{transpose-matrix-transform}.
 \end{example}
@@ -1934,7 +1949,7 @@ $$
 \begin{example}
 \rm 设$m \times n$矩阵$\mbf{A}$的秩为$r(r>0)$，则$\mbf{A}$可以表示成$r$个秩为$1$的矩阵之和. 
 
-\hints\ 根据$\mbf{A}$相似于它的标准型，有
+\hints\ 根据$\mbf{A}$等价于它的标准型，有
 $$
 \mbf{A} = \mbf{P}\begin{pmatrix}
 \mbf{I}_r & \mbf{0} \\
@@ -1987,13 +2002,13 @@ $$
 $$
 \mbf{B}-\mbf{A}^{-1}\mbf{BA} = \mbf{I} \Rightarrow \mbf{B}+\mbf{I} = \mbf{A}^{-1}\mbf{BA},
 $$
-这意味着$\mbf{B}$和$\mbf{B}+\mbf{I}$相似的，显然这是不可逆的，因为如果$\lambda$是$\mbf{B}$的一个特征值，那么总存在$\lambda+1$是$\mbf{B}+\mbf{I}$的特征值，这意味总是存在不同的特征值. 
+这意味着$\mbf{B}$和$\mbf{B}+\mbf{I}$相似的，显然这是不可能的，因为如果$\lambda$是$\mbf{B}$的一个特征值，那么总存在$\lambda+1$是$\mbf{B}+\mbf{I}$的特征值，这意味总是存在不同的特征值. 
 \end{example}
 
 \begin{example}
 \rm \redt{矩阵的迹在相似下不变} 给定$n$阶矩阵$\mbf{A}$，将$\mbf{A}$的对角线之和记为$\text{trace}(\mbf{A})$. 证明: 若$\mbf{A} \sim \mbf{B}$，那么$\text{trace}(\mbf{A}) = \text{trace}(\mbf{B})$.
 
-\hints\ $\mbf{A}$和$\mbf{B}$相似，则它们有相同的特征值，而$\text{trace}{\mbf{A}}$也等于特征值之和，因此$\text{trace}(\mbf{A}) = \text{trace}(\mbf{B})$. 
+\hints\ $\mbf{A}$和$\mbf{B}$相似，则它们有相同的特征值，而$\text{trace}(\mbf{A})$也等于特征值之和，因此$\text{trace}(\mbf{A}) = \text{trace}(\mbf{B})$. 
 \end{example}
 
 \subsection{待定系数矩阵相似}
@@ -2128,7 +2143,7 @@ $$
 \subsection{对角化的应用}
 
 \begin{example}
-\rm 设$n$阶实对称矩阵$\mbf{A}$的全部特征值按大小顺序排成$\lambda_1 \geq  \lambda_2 \geq \cdots \geq \lambda_2$. 证明对应任意的非零列向量$\mbf{\alpha}$，都有
+\rm 设$n$阶实对称矩阵$\mbf{A}$的全部特征值按大小顺序排成$\lambda_1 \geq  \lambda_2 \geq \cdots \geq \lambda_n$. 证明对应任意的非零列向量$\mbf{\alpha}$，都有
 $$
 \lambda_n \leq \frac{\mbf{\alpha}^T\mbf{A}\mbf{\alpha}}{\norm{\mbf{a}}^2} \leq \lambda_1
 $$
