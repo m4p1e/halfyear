@@ -1063,7 +1063,7 @@ $$
 当$m = 2$时，显然是满足. 假设$m = k-1$时满足，考虑$m = k$时. 根据幂运算，有
 $$
 \begin{array}{ll}
-\mbf{A}^k = \mbf{A}^{k-1} \mbf{A} = \mbf{A}^m &= \begin{pmatrix}
+\mbf{A}^k = \mbf{A}^{k-1} \mbf{A} &= \begin{pmatrix}
 a^{k-1} & c(a^{k-2} + a^{k-3}b + \cdots + ab^{k-3}+b^{k-2}) \\
 0 & b^{k-1}
 \end{pmatrix}\begin{pmatrix}
@@ -1303,7 +1303,7 @@ $$
 $$
 \mbf{A} \mbf{X}_i = \mbf{\beta}_i.  
 $$
-其中$\mbf{X}_i = (x_{1i},x_{2i},\cdots,x_{mi})^T$. 上述线性方程组成立等价于$\mbf{\beta}_{i}$是可以被$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$($i=1,2,\cdots,n$)，那么也就是
+其中$\mbf{X}_i = (x_{1i},x_{2i},\cdots,x_{mi})^T$. 上述线性方程组成立等价于$\mbf{\beta}_{i}$是可以被$\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n$($i=1,2,\cdots,n$)线性表出，那么也就是
 $$
 \rank{(\mbf{A},\mbf{B})} = \rank{(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n,\mbf{\beta}_1,\mbf{\beta}_2,\cdots,\mbf{\beta}_n)} = \rank{(\mbf{\alpha}_1,\mbf{\alpha}_2,\cdots,\mbf{\alpha}_n)} = \rank{\mbf{A}}.
 $$
@@ -1323,7 +1323,7 @@ $$
 -a-1 & -2 
 \end{pmatrix}
 $$
-当$a$为何值时方程有解，方程$\mbf{AX} = \mbf{B}$无界，有唯一解，有多穷多个解. 
+当$a$为何值时方程有解，方程$\mbf{AX} = \mbf{B}$无解，有唯一解，有多穷多个解. 
 
 \hints\ 显然我们要考察矩阵$(\mbf{A} | \mbf{B})$，对其做初等行变换我们可以得到
 $$
