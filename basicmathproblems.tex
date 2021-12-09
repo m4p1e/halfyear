@@ -1515,6 +1515,21 @@ $$
 $$
 \end{example}
 
+\subsection{高维思考}
+\begin{example}
+\rm 设$D = \{(x,y) | (x-1)^2 + y^2 \leq 1 \}$，且
+$$
+\begin{aligned}
+&I_1 = \iint_D \sqrt{2x-x^2 - y^2}dxdy, \\
+&I_2 = \iint_D ( 1- \sqrt{x^2 + y^2 - 2x + 1})dxdy, \\
+&I_3 = \iint_D \sqrt{x^2 + y^2 - 2x + 1}dxdy,
+\end{aligned}
+$$
+求$I_1 : I_2 : I_3$.
+
+\hints\ 首先看$I_1$，记$z = \sqrt{2x-x^2 - y^2}$，那么$(x-1)^2 +y^2 + z^2 = 1$，因此$I_1$是一个半球的体积. 其次再看$I_3$，同样记$z = \sqrt{x^2 + y^2 - 2x + 1}$，那么$z = \sqrt{(x-1)^2 + y^2}$，因此$I_2$是一个圆锥体积. 最后将$I_2$看做一个圆柱体积减去$I_2$. 这样来考虑和计算就清晰明了.
+\end{example}
+
 \newpage
 \section{三重积分}
 

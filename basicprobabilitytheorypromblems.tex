@@ -103,6 +103,34 @@ P(B_2|B_1) = P(B_2|AB_1)P(A|B_1) + P(B_2|\bar{A}B_1)P(\bar{A}|B_1) = \frac{9}{49
 $$
 \end{example}
 
+
+\subsection{不等式}
+\begin{example}
+\rm 设$A,B$是随机事件，求$|P(AB)-P(A)P(B)|$的最大值. 
+
+\hints\ 非常有趣的一个问题. 首先有$P(AB) < \min\{P(A),P(B)\}$，即
+$$
+\begin{aligned}
+P(AB) \leq P(A) \\ 
+P(AB) \leq P(B)
+\end{aligned}
+$$
+因此有$[P(AB)]^2 \leq P(A)P(B)$. 于是
+$$
+P(AB)-P(A)P(B) \leq P(AB) - [P(AB)]^2,
+$$
+其中$\max(P(AB) - [P(AB)]^2) = \frac{1}{4}$. 反过来也可以得到$\min([P(AB)]^2 -P(AB)) = -\frac{1}{4}$. 
+
+另一种分解过程: 当$P(B) = 0$时，显然$P(AB) - P(A)P(B)=0$，同样$P(B) = 1$时，$P(AB) = P(A)-P(A\overline{B}) = P(A)$，因此$P(AB) - P(A)P(B)=0$. 当$P(B) \in (0,1)$时
+\begin{align}|P(A\cap B)-P(A)P(B)|
+&= \left|P(B)P(B^c)\left[ \frac{P(A\cap B)}{P(B)P(B^c)} - \frac{P(A\cap B)+P(A\cap B^c)}{P(B^c)} \right]\right|\\ 
+&= \left|P(B)P(B^c)\left[\frac{P(A\cap B)(1-P(B))}{P(B)P(B^c)}-\frac{P(A\cap B^c)}{P(B^c)} \right]\right|\\
+&=P(B)P(B^c)|P(A\mid B)-P(A\mid B^c)|\\
+&=P(B)(1-P(B))\underbrace{|P(A\mid B)-P(A\mid B^c)|}_{\leq 1}\\
+&\leq \frac 14
+\end{align}
+\end{example}
+
 \newpage
 \section{常用分布}
 
