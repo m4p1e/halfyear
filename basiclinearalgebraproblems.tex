@@ -2298,6 +2298,30 @@ $$
 因此非零特征值只有一个$\lambda = \inp{\mbf{v}}{\mbf{v}}$，且重数为$1$. 特别地$|\mbf{v}\mbf{v}^T| = \mbf{0}$，因此$0$也是该矩阵的一个特征值，接下来类似. 
 \end{example}
 
+\subsection{对称矩阵}
+
+\begin{example}
+\rm	设$3$阶对称矩阵$\mbf{A} = (\mbf{\alpha}_1,\mbf{\alpha}_2,\mbf{\alpha}_3)$有二重特征值$\lambda_1 = \lambda_2 = 2$，且满足$\mbf{\alpha}_1-2\mbf{\alpha}_3 = (-3,0,6)^T$. 	求$\mbf{A}$. 
+
+\hints\ 设$\mbf{\beta}_3 = (1,0,-2)^T$，由题目条件有
+$$
+\mbf{A}\mbf{\beta}_3 = -3\mbf{\beta}_3. 
+$$		
+因此$\mbf{A}$有特征值$\lambda_3 = -3$. 再利用对称矩阵的特征向量是正交这一性质，设$\mbf{X} = (x_1,x_2,x_3)^T$，那么则有
+$$
+\mbf{\beta}_3^T\mbf{X} = 0, 
+$$
+即
+$$
+x_1 - 2x_3 = 0,
+$$
+解得$\mbf{\beta_1} = (0,1,0)^T , \mbf{\beta_2} = (2,0,1)^T$. 因此
+$$
+\mbf{A}\mbf{P} = \mbf{P}\mbf{D}  \Rightarrow \mbf{A} = \mbf{P}\mbf{D}\mbf{P}^{-1} 
+$$
+其中$\mbf{P}=(\mbf{\beta}_1,\mbf{\beta}_2, \mbf{\beta}_3)，\mbf{D}=\text{diag}\{\lambda_1,\lambda_2,\lambda_3\}$. 
+\end{example}
+
 \newpage
 \section{二次型}
 
