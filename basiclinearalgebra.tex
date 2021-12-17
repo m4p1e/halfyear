@@ -1556,7 +1556,7 @@ $$
 \end{proof}
 
 \begin{example}
-\rm \redt{已知基础解系求原方程组} 设$\mbf{A}=(\mbf{\alpha}_1,\mbf{\alpha}_2,\mbf{\alpha}_3,\mbf{\alpha}_4)$，给定$\mbf{A}\mbf{x} = 0$的基础解系为$\mbf{\xi}_1 = [1,0,2,3]^T, \mbf{\xi}_2=[0,1,-1,1]^T$. 
+\rm \redt{已知基础解系求原方程组} 设$\mbf{A}=(\mbf{\alpha}_1,\mbf{\alpha}_2,\mbf{\alpha}_3,\mbf{\alpha}_4)$，给定$\mbf{A}\mbf{X} = 0$的基础解系为$\mbf{\xi}_1 = [1,0,2,3]^T, \mbf{\xi}_2=[0,1,-1,1]^T$. 
 
 \begin{enumerate}
 	\item 首先确定原系数矩阵的秩为$2$，即$\mbf{\alpha}_1,\mbf{\alpha}_2,\mbf{\alpha}_3,\mbf{\alpha}_4$的向量组的秩为$2$.
@@ -1737,7 +1737,7 @@ $$
 \end{proof}
 
 \begin{annotation}
-\rm $\mbf{AB}=\mbf{0}$并不能确定$\mbf{A}=\mbf{0}$或者$\mbf{B}=\mbf{A}$. 但若$\mbf{A}$是可逆的，则可推出$\mbf{B}=\mbf{0}$. 
+\rm $\mbf{AB}=\mbf{0}$并不能确定$\mbf{A}=\mbf{0}$或者$\mbf{B}=\mbf{0}$. 但若$\mbf{A}$是可逆的，则可推出$\mbf{B}=\mbf{0}$. 
 \end{annotation}
 
 \subsection{矩阵乘法中的线性组合}
@@ -1806,12 +1806,16 @@ a_{ij} = \mbf{\varepsilon}_i^T \mbf{A}\mbf{\varepsilon}_j.
 $$
 \end{proposition}
 
+\begin{proof}
+\rm 右乘$\mbf{\varepsilon}_j$得到$\mbf{A}$的第$j$列，再左乘上$\mbf{\varepsilon}_i^T$就得到了$a_{ij}$. 
+\end{proof}
+
 \begin{definition}
 \rm 只有一个元素是$1$，其余元素均为$0$的矩阵我们称为\redt{基本矩阵}. $(i,j)$元为$1$的基本矩阵记为$\mbf{E}_{ij}$
 \end{definition}
 
 \begin{proposition}
-\rm $\mbf{E}_{ij}$左乘一个矩阵$\mbf{A}$，就相当于把$\mbf{A}$的第$j$行搬到第$i$行的位置，并把其余行都变成零行; $\mbf{E}_{ij}$右乘一个矩阵$\mbf{A}$，就相当于把$\mbf{A}$的第$i$行搬到第$j$行的位置，并把其余列都变成零行. 
+\rm $\mbf{E}_{ij}$左乘一个矩阵$\mbf{A}$，只留下$\mbf{A}$的第$i$行的位置的元素，并把其余行都变成零行; $\mbf{E}_{ij}$右乘一个矩阵$\mbf{A}$，只留下了第$j$列的位置，并把其余列都变成零行. 
 \end{proposition}
 
 \begin{definition}
@@ -2429,8 +2433,8 @@ $$
 \mbf{C} & \mbf{D} 
 \end{pmatrix}^T =
 \begin{pmatrix}
-\mbf{A}^T & \mbf{B}^T \\
-\mbf{C}^T & \mbf{D}^T
+\mbf{A}^T & \mbf{C}^T \\
+\mbf{B}^T & \mbf{D}^T
 \end{pmatrix}
 $$
 \end{example}
@@ -3165,7 +3169,11 @@ a_{1n} & \cdots & a_{nn}
 $$
 为$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$到$\mbf{\beta}_1,\cdots,\mbf{\beta}_n$的\redt{过渡矩阵}，即满足
 $$
-(\mbf{\beta}_1,\cdots,\mbf{\beta}_n) = (\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n)\mbf{A}. 
+(\mbf{\beta}_1,\cdots,\mbf{\beta}_n) = (\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n)\begin{pmatrix}
+a_{11} & \cdots & a_{n1}\\
+\vdots & & \vdots \\
+a_{1n} & \cdots & a_{nn}
+\end{pmatrix}. 
 $$
 \end{definition}
 
@@ -3181,19 +3189,15 @@ $$
 \end{proposition}
 
 \begin{proof}
-设$v$在$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$的坐标表示为$\mbf{v}_{1}  = (a_1,\cdots,a_2)^T$，那么即有
+设$v$在$\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n$的坐标表示为$\mbf{v}_{1}  = (a_1,\cdots,a_2)^T$. 我们把过渡矩阵的形式稍微变换一下
 $$
-v = a_1\mbf{\alpha}_1 + \cdots + a_n\mbf{\alpha}_n = (\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n)\mbf{v}_1. 
+(\mbf{\beta}_1,\cdots,\mbf{\beta}_n) \begin{pmatrix}
+a_{11} & \cdots & a_{n1}\\
+\vdots & & \vdots \\
+a_{1n} & \cdots & a_{nn}
+\end{pmatrix}^{-1}= (\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n)
 $$
-由过渡矩阵我们有
-$$
-(\mbf{\beta}_1,\cdots,\mbf{\beta}_n)\mbf{A}^{-1} = (\mbf{\alpha}_1,\cdots,\mbf{\alpha}_n).
-$$
-因此
-$$
-v = (\mbf{\beta}_1,\cdots,\mbf{\beta}_n)\mbf{A}^{-1}\mbf{v}_1 = b_1\mbf{\beta}_1 + \cdots + b_n\mbf{\beta}_n 
-$$
-所以$(b_1,\cdots,b_n) = \mbf{A}^{-1}(a_1,\cdots,a_2)^T$. 
+两边乘上$\mbf{v}_1$，显然就有命题中的结论. 
 \end{proof}
 
 
@@ -3429,15 +3433,7 @@ $$
 \end{proposition}
 
 \begin{proof}
-$$
-\begin{array}{ll}
-\mbf{A}^*\mbf{\alpha} &= \lambda'\mbf{\alpha} \\
-|\mbf{A}|\mbf{A}^{-1}\mbf{\alpha} &= \lambda'\mbf{\alpha} \\
-|\mbf{A}|\mbf{\alpha} &= \lambda' \mbf{A}\mbf{\alpha} \\
-\frac{|\mbf{A}|}{\lambda'} \mbf{\alpha} = \mbf{A}\mbf{\alpha}
-\end{array}
-$$
-因此$\frac{|\mbf{A}|}{\lambda'} = \lambda$，即$\lambda' = \frac{|\mbf{A}|}{\lambda}$.
+首先$\mbf{A}^{-1} = \frac{\mbf{A}^*}{|\mbf{A}|}$，因此$\mbf{A}^* = |\mbf{A}|\mbf{A}^{-1}$. 由因$\mbf{A}^{-1}$特征值为$\frac{1}{\lambda}$，所以$\mbf{A}^*$的特征值为$\frac{|\mbf{A}|}{\lambda}$. 
 \end{proof}
 
 \begin{definition}
@@ -3502,7 +3498,7 @@ $$
 \end{proof} 
 
 \begin{proposition}
-\rm \redt{矩阵的秩和特征值的关系} 矩阵的秩大于等于非零特征值的个数.
+\rm \redt{矩阵的秩和特征值的关系} 矩阵的秩大于等于非零特征值的个数(两个相同的特征值按两个计算).
 \end{proposition}
 
 \begin{proof}
@@ -3510,7 +3506,7 @@ $$
 $$
 |0\cdot \mbf{I} - \mbf{A}| \mbf{X} = \mbf{0},
 $$
-这个方程解的个数为$n - \rank{A}$. 设$a$是$0$作为$\mbf{A}$特征值的代数重数，于是
+这个方程解空间维数为$n - \rank{A}$. 设$a$是$0$作为$\mbf{A}$特征值的代数重数，于是
 $$
 a \geq n-\rank{A} \Rightarrow \rank{A} \geq n-a,
 $$ 
