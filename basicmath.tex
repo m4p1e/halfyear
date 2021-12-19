@@ -3448,7 +3448,7 @@ $$
 \end{theorem}
 
 \begin{theorem}
-\rm \redt{隐函数的可微性} (1若函数$F(x,y)$在以点$(x_0,y_0)$为中心的矩形中有定义且连续; (2 在这个邻域中偏导数$F_x'$及$F_y'$存在且连续; (3 $F(x,y)$在点$(x_0,y_0)$在点$(x_0,y_0)$等于零; (4 导数$F_y'(x_0,y_0)$. 则由方程$F(x,y)=0$确定的隐函数$f(x)$有连续导数，且
+\rm \redt{隐函数的可微性} (1若函数$F(x,y)$在以点$(x_0,y_0)$为中心的矩形中有定义且连续; (2 在这个邻域中偏导数$F_x'$及$F_y'$存在且连续; (3 $F(x,y)$在点$(x_0,y_0)$处等于零; (4 导数$F_y'(x_0,y_0)$不为零. 则由方程$F(x,y)=0$确定的隐函数$f(x)$有连续导数，且
 $$
 f'(x) = -\frac{F_x'}{F_y'}.
 $$ 
@@ -4272,7 +4272,7 @@ $$
 \begin{proof}
 显然我们让$\Delta y = 0$时，上式即有
 $$
-\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x} = A + \frac{o(|\Delta x|)}{\Delta}.
+\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x} = A + \frac{o(|\Delta x|)}{\Delta x}.
 $$
 由此必有
 $$
@@ -4615,7 +4615,7 @@ $$
 \begin{enumerate}
 	\item 几何表示 $\mbf{a} \cdot \mbf{b} = |\mbf{a}| |\mbf{b}| \cos \alpha$.
 	\item 代数表示 $\mbf{a} \cdot \mbf{b} = a_xb_x + a_yb_y + a_xb_z$.
-	\item 运算性质 $\mbf{a} \cdot \mbf{b} = \mbf{b} \cdot \mbf{a},~~ \mbf{a}(\mbf{b} + \mbf{c}) = \mbf{a} \cdot \mbf{b} + \mbf{a}\mbf{c}$. 
+	\item 运算性质 $\mbf{a} \cdot \mbf{b} = \mbf{b} \cdot \mbf{a},~~ \mbf{a}(\mbf{b} + \mbf{c}) = \mbf{a} \cdot \mbf{b} + \mbf{a}\cdot \mbf{c}$. 
 	\item 几何应用 模长公式 $|\mbf{a}| = \sqrt{\mbf{a}\cdot\mbf{a}}$; 夹角公式 $\cos \alpha = \frac{\mbf{a}\cdot\mbf{b}}{|\mbf{a}||\mbf{b}|}$; 正交 $\mbf{a} \perp \mbf{b} \Leftrightarrow \mbf{a}\cdot\mbf{b} = 0$. 
 \end{enumerate}
 \end{definition}
@@ -5598,7 +5598,7 @@ $$
 $$ 
 及
 $$
-\int_{(x_1,x_2)}^{(y_1,y_2)} Pdx + Qdy = \int_{y_1}^{y_2} P(x_1,y)dy + \int_{x_1}^{2_2} Q(x,y_2)dx. 
+\int_{(x_1,x_2)}^{(y_1,y_2)} Pdx + Qdy = \int_{y_1}^{y_2} P(x_1,y)dy + \int_{x_1}^{x_2} Q(x,y_2)dx. 
 $$
 \bluet{变成了两个平行于坐标轴的直线的积分}.
 \end{proposition}
@@ -6270,7 +6270,7 @@ $$
 
 
 \begin{proposition}
-\rm \redt{可加性} 若两个级数$\sum\limits_{n=1}^\infty a_n$及$\sum\limits_{n=1}^\infty b_n$分布收敛于$S_a$和$S_b$，那么级数$\sum\limits_{n=1}^\infty (a_n \pm b_n)$也收敛，且其和为$S_a \pm S_b$.
+\rm \redt{可加性} 若两个级数$\sum\limits_{n=1}^\infty a_n$及$\sum\limits_{n=1}^\infty b_n$分别收敛于$S_a$和$S_b$，那么级数$\sum\limits_{n=1}^\infty (a_n \pm b_n)$也收敛，且其和为$S_a \pm S_b$.
 \end{proposition}
 
 \begin{proposition}
