@@ -1278,7 +1278,7 @@ $$
 	$$
 	F(x_2,y_2)-F(x_1,y_2) - F(x_2,y_1) + F(x_1,y_1) \geq 0.
 	$$
-	上述实际上就是概率$P\{x_1 < X \leq X_2, y_1 < Y \leq y_2\}$.
+	上述实际上就是概率$P\{x_1 < X \leq x_2, y_1 < Y \leq y_2\}$.
 \end{enumerate}
 \end{proposition}
 
@@ -1807,7 +1807,7 @@ $$
 $$
 此时$n$是偶数，因此上面的分式有$\frac{n}{2}$项，
 $$
-E(X^n) =\frac{\sqrt{2}\Gamma(\frac{1}{2})}{\sqrt{2}\pi}(n-1)(n-3)\cdots 1 =  (n-1)!!,
+E(X^n) =\frac{\sqrt{2}\Gamma(\frac{1}{2})}{\sqrt{2\pi}}(n-1)(n-3)\cdots 1 =  (n-1)!!,
 $$
 其中$\Gamma(\frac{1}{2}) = \sqrt{\pi}$. 
 \end{proof}
@@ -2031,7 +2031,7 @@ E\left[t(X-E(X)) + (Y-E(Y))\right]^2 = \sigma_1^2t^2 + 2\text{Cov}(X,Y)t + \sigm
 \end{equation}
 (1)式左边是一个非负随机变量的期望，所以它对任意的$t$都是非负的. 那么左边是个关于$t$的二次多项式，非负就意味至多有且只有一个根，因此
 \begin{equation}
-\sigma_1^2\sigma_2^2 \leq \left[\text{Cov}(X,Y)\right]^2.
+\sigma_1^2\sigma_2^2 \geq \left[\text{Cov}(X,Y)\right]^2.
 \end{equation}
 \emph{必要性}\ 若(2)式等号成立，那么(1)式RHS就可以写成$(\sigma_1t \pm \sigma_2)^2$. 其中$\pm$取决于$\text{Cov}(X,Y)$的符号，方便证明我们这里假设$\text{Cov}(X,Y) > 0$，则(1)式RHS为$(\sigma_1t +\sigma_2)^2$. 于是取$t=t_0=-\frac{\sigma_2}{\sigma_1}$时，(1)式就等于$0$，即
 $$
@@ -2131,7 +2131,7 @@ $$
 \end{proof}
 
 \begin{proposition}
-\rm \redt{线性变换不影响相关系数} 若随机$X$和$Y$的相关系数为$\rho_{XY} \neq 0$，那么$Y$和$aX+b$的相关系数等于$\frac{a}{|a|}\rho_{XY}$，其中$a \neq 0$. 
+\rm \redt{线性变换对相关系数的影响} 若随机$X$和$Y$的相关系数为$\rho_{XY} \neq 0$，那么$Y$和$aX+b$的相关系数等于$\frac{a}{|a|}\rho_{XY}$，其中$a \neq 0$. 
 \end{proposition}
 
 \subsection{常用分布的数字特征}
