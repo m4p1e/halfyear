@@ -74,7 +74,7 @@ void insert_order3 (int *A, int length) {
 
 
 
-#### 希尔排序A[]
+#### 希尔排序
 
 算法思想概要: 
 
@@ -182,7 +182,7 @@ void merge_order (int *A, int start, int end) {
 - 时间复杂度$O(n\lg n)$
 - 算法特点: 选择一个位置将原序列拆成两个子序列分开排序（通常我们选择一份为2，或者随机选择），最后把排好序的部分序列在组合起来.  最主要是merge这个操作如何在$O(n)$下实现. 
 - 最坏的情况下需要比较次数: $n\lceil \lg n\rceil - 2^{\lceil \lg n\rceil} + 1$. 
-- 最好的情况下需要比较次数是最坏情况下的一般
+- 最好的情况下需要比较次数是最坏情况下的一半
 
 
 
@@ -227,7 +227,7 @@ int better_partition(int *A, int start, int end){
 
 void quicksort(int *A, int start, int end){
     int mid;
-    if(end > start){\&\&
+    if(end > start){
         mid = better_partition(A,start,end);
         printf("mid = %d\n",mid);
         quicksort(A,start,mid-1);
@@ -301,10 +301,10 @@ counting-sort(A,B,k)
 
 应用上面这个lemma，我们可以强制将每个关键字分解为了$\lceil b/r\rceil$个$r$位的二进制数.  在一般情况下对于给定的$n$和$b$，我们希望选择的$r$可以得到的最优的运行时间.   
 
-1. 如果$b < \lfloor \lg n\rfloor$， 那么对于任意的$r \leq b$都有$O((b/r)(n+2^r)) = O(n)$.  
+1. 如果$b < \lfloor \lg n\rfloor$， 那么对于$r = b$时有$O((b/r)(n+2^r)) = O(n)$.  
 2. 如果$b \geq  \lfloor \lg n\rfloor$，选择$r = \lfloor \lg n\rfloor$将得到偏差不超过常数系数范围内的最优时间代价. 
 
-\&\&通常情况下，考虑$b = O(\lg n)$，我们可以取$r \approx \lg n$，那么应用上述lemma所需时间只需要$O(n)$.  
+通常情况下，考虑$b = O(\lg n)$，我们可以取$r \approx \lg n$，那么应用上述lemma所需时间只需要$O(n)$.  
 
 
 
